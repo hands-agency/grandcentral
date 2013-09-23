@@ -1,0 +1,149 @@
+/********************************************************************************************/
+/* tabs
+/********************************************************************************************/
+#tabs
+{
+	background:#24A6B3;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	box-shadow: 0px 0 6px -6px hsla(0,0%,0%,1);
+	padding:0 45px;
+}
+#tabs>ul
+{
+	font-size:15px;
+}
+#tabs>ul>li
+{
+	position:relative;
+	text-align:center;
+	display:inline-block;
+}
+#tabs>ul>li a
+{
+	opacity:0.3;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+	display:block;
+	position:relative;
+	z-index:1;
+	padding:20px 15px;
+}
+#tabs>ul>li>a>span
+{
+	display:block;
+}
+#tabs>ul>li>a .title
+{
+	font-family:'proximanovalight';
+	color:#fff;
+}
+#tabs>ul>li>a .descr
+{
+	font-size:0.65em;
+	color:#fff;
+	opacity:0.5;
+	display:none;
+}
+#tabs>ul>li.on a,
+#tabs>ul>li:hover a
+{
+	opacity:1;
+}
+#tabs>ul>li.on>a:after
+{
+	content:'';
+	position:absolute;
+	border-style: solid;
+	border-width: 15px 15px 0px 15px;
+	border-color: #24A6B3 transparent transparent transparent;
+	bottom:-15px;
+	margin-left:-15px;
+	left:50%;
+}
+
+/* Dividers */
+#tabs>ul li.divider:before
+{
+	content:'•';
+	font-size:1.3em;
+	color:#eeeeee;
+	position:relative;
+	top:5px;
+}
+
+/* Bubbles */
+#tabs>ul>li .cc-bubble
+{
+	display:none;
+	top:-17px;
+	right:-7px;
+}
+#tabs>ul>li:hover .cc-bubble
+{
+	display:block;
+}
+
+/* Droppable */
+#tabs>ul>li .droppable
+{
+	width:110px;
+	height:110px;
+	position:absolute;
+	pointer-events:none;
+	opacity:0;
+	z-index:3;
+	text-shadow: 0 1px 0 rgba(0,0,0,0.3);
+	-moz-border-radius:100px;
+	-webkit-border-radius:100px;
+	border-radius:100px;
+	background:#aaa;
+	font-size:2.4em;
+	color:#fff;
+	text-align:center;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
+    -webkit-box-shadow: 0 4px 5px rgba(0, 0, 0, .15);
+    -moz-box-shadow: 0 4px 5px rgba(0, 0, 0, .15);
+    -o-box-shadow: 0 4px 5px rgba(0, 0, 0, .15);
+    box-shadow: 0 4px 5px rgba(0, 0, 0, .15);
+}
+#tabs>ul>li.ui-droppable-hover .droppable
+{
+	opacity:0.8;
+	-moz-transform: scale(1.5);
+	-webkit-transform: scale(1.5);
+	transform: scale(1.5);
+}
+
+/* Drops */
+#tabs>ul>li .cc-drop
+{
+	left:-59px;
+	top:30px;
+	position:absolute;
+	width:150px;
+}
+#tabs>ul>li .cc-drop:after
+{
+	position:absolute;
+	top:-10px;
+	left:75px;
+	content:'';
+	border-style: solid;
+	border-width: 10 10px 10px 10px;
+	border-width: 0 10px 10px 10px;
+	border-color: transparent transparent #333 transparent;
+}
+
+/* You can have some tabs on the right side as well */
+#tabs>ul>li.right
+{
+	float:right;
+	margin:0 0 0 10px;
+}

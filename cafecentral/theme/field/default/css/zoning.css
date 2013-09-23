@@ -1,0 +1,330 @@
+/********************************************************************************************/
+/* Full screen
+/********************************************************************************************/
+li[data-type="zoning"]
+{
+	background:#fff;
+	padding:0;
+}
+li[data-type="zoning"] label
+{
+	display:none;
+}
+li[data-type="zoning"] .wrapper
+{
+	width:100%;
+}
+
+li[data-type="zoning"] .wrapper .field
+{
+	padding:0;
+}
+
+/********************************************************************************************/
+/* Browser
+/********************************************************************************************/
+li[data-type="zoning"] .field .droppable
+{
+	float:left;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	width:75%;
+	padding:0 100px;
+}
+li[data-type="zoning"] .field .browser
+{
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	-webkit-box-shadow: 0px 3px 5px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 3px 5px rgba(0,0,0,0.2);
+	-o-box-shadow: 0px 3px 5px rgba(0,0,0,0.2);
+	box-shadow: 0px 3px 6px rgba(0,0,0,0.2);
+	background:#F9F9F9;
+	-moz-user-select:none;
+	-webkit-user-select:none;
+	position:relative;
+}
+li[data-type="zoning"] .field .browser:before
+{
+	content:'';
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+	color:#999;
+	background-color: #F2F2F2;
+	height: 30px;
+	display: block;
+	position: relative;
+	border-bottom: 1px solid #eee;
+	width: 100%;
+	padding:0 10px;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	margin-bottom:10px;
+}
+li[data-type="zoning"] .field .legend
+{
+	color:#bbbbbb;
+	text-align:center;
+	font-size:0.9em;
+}
+/* Bubble */
+li[data-type="zoning"] .field .cc-bubble
+{
+	top:-15px;
+	right:-7px;
+	display:none;
+}
+
+/********************************************************************************************/
+/* Zones
+/********************************************************************************************/
+li[data-type="zoning"] .field .browser .zone
+{
+	position:relative;
+	clear:both;
+	margin:0 0 10px 0;
+}
+
+/* Zone title */
+li[data-type="zoning"] .field .browser .zone>.title
+{
+	position:absolute;
+	left:-100px;
+	top:15px;
+	padding:0 10px 0 0;
+	border-right:1px solid #cccccc;
+	width:75px;
+	color:#666666;
+	font-size:10px;
+	font-family:"proximanovaregular";
+	text-align:right;
+}
+li[data-type="zoning"] .field .browser .zone>.title:after
+{
+	content:"●";
+	position:absolute;
+	right:-39px;
+	top:5px;
+	z-index:1;
+	border-bottom:1px solid #cccccc;
+	width:38px;
+	line-height:0.1px;
+	letter-spacing:-4px;
+	font-size:20px;
+	color:#df3528;
+	box-shadow:0 1px 0px 0 rgba(255, 255, 255, 0.6);
+}
+.unlocked li[data-type="zoning"] .browser .field .zone>.title
+{
+	display:block;
+}
+li[data-type="zoning"] .field .browser .zone.right>.title
+{
+	left:auto;
+	right:-100px !important;
+	text-align:left;
+	padding:0 0 0 10px;
+	border:none;
+	border-left:1px solid #cccccc;
+}
+li[data-type="zoning"] .field .browser .zone.right>.title:after
+{
+	left:-39px !important;
+}
+
+/* Tabs */
+li[data-type="zoning"] .field .tabs
+{
+	margin-bottom:10px;
+}
+li[data-type="zoning"] .field .tabs li
+{
+	display:inline-block;
+	margin:0 10px 0 0;
+}
+
+/* Champs */
+li[data-type="zoning"] .field .selected li:not(.nodata),
+li[data-type="zoning"] .field .available li:not(.nodata)
+{
+	border:1px solid #dedede;
+	background:#fff;
+	padding:5px;
+	margin:1px 0;
+	min-height:17px;
+	font-size:0.9em;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+	-moz-user-select:none;
+	-webkit-user-select:none;
+}
+li[data-type="zoning"] .field .selected li:not(.nodata):hover,
+li[data-type="zoning"] .field .available li:not(.nodata):hover
+{
+	border-color: #3eb4d6;
+	-webkit-box-shadow: 0 0 4px #3eb4d6;
+	box-shadow: 0 0 4px #3eb4d6;
+}
+li[data-type="zoning"] .field .selected li .icon,
+li[data-type="zoning"] .field .available li .icon
+{
+	width:17px;
+	height:17px;
+	float:left;
+	margin:0 !important;
+}
+
+li[data-type="zoning"] .field li .title
+{
+	margin:2px 0 0 23px;
+}
+li[data-type="zoning"] .field li .descr
+{
+	color:#ccc;
+	margin-left:23px;
+}
+li[data-type="zoning"] .field li .delete
+{
+	float:right;
+	width:13px;
+	height:13px;
+	font-size:8px;
+	padding:0;
+	line-height:10px;
+}
+li[data-type="zoning"] .field li .delete:before
+{
+	content:'×';
+}
+
+/********************************************************************************************/
+/* Selected sections
+/********************************************************************************************/
+/* Floats */
+li[data-type="zoning"] .field .selected.left,
+li[data-type="zoning"] .field .selected.right
+{
+	clear:none !important;
+	width:50%;
+	float:left;
+}
+li[data-type="zoning"] .field .selected .left
+{
+}
+li[data-type="zoning"] .field .selected .right
+{
+}
+
+/* Sections */
+li[data-type="zoning"] .field .selected ol
+{
+	border:1px dashed #ddd;
+	padding:5px;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	margin:0 10px !important;
+	background:#fff;
+}
+li[data-type="zoning"] .field .selected ol li:not(.nodata)
+{
+}
+li[data-type="zoning"] .field .selected ol li .delete
+{
+}
+li[data-type="zoning"] .field .selected ol li .title:hover
+{
+	color:#3eb4d6;
+}
+li[data-type="zoning"] .field .selected ol li .config
+{
+	clear:both;
+	border-top:1px solid #ccc;
+	padding:10px;
+	margin-top:5px;
+}
+
+/* Nodata */
+li[data-type="zoning"] .field .selected ol li.nodata
+{
+	padding:5px 0 !important;
+	font-size:12px;
+}
+
+/* Placeholder */
+li[data-type="zoning"] .field .selected .placeholder
+{
+	height:20px;
+}
+
+/********************************************************************************************/
+/* Available apps
+/********************************************************************************************/
+li[data-type="zoning"] .field .draggable
+{
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	float:right;
+	width:25%;
+}
+li[data-type="zoning"] .field .available
+{
+	padding:10px;
+	background:#F5F5F5;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	-webkit-box-shadow: 0px 2px 2px rgba(0,0,0,0.027);
+	-moz-box-shadow: 0px 2px 2px rgba(0,0,0,0.027);
+	-o-box-shadow: 0px 2px 2px rgba(0,0,0,0.027);
+	box-shadow: 0px 2px 2px rgba(0,0,0,0.027);
+}
+li[data-type="zoning"] .field .available p
+{
+	margin:0 0 5px 0;
+	color:#999;
+	text-shadow: 0px 1px 0px rgba(255,255,255,0.69);
+}
+
+/* Refine */
+li[data-type="zoning"] .field .available .refine input
+{
+	width:100% !important;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	margin:0 0 5px 0;
+	border:1px solid #ccc;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	padding:5px;
+}
+
+/* Available */
+li[data-type="zoning"] .field .available ul {
+	overflow:auto;
+	max-height:500px;	
+}
+li[data-type="zoning"] .field .available li .delete
+{
+	display:none;
+}
+
+
+/* Fav */
+li[data-type="zoning"] .field .available ul.fav {
+	padding-bottom:10px;
+	margin-bottom:10px;
+	border-bottom:1px dashed #ccc;
+}
+li[data-type="zoning"] .field .available li .delete
+{
+	display:none;
+}

@@ -1,0 +1,77 @@
+section.timeline ul
+{
+}
+section.timeline>ol>li:not(.divider)
+{
+	font-size: 12px;
+	position:relative;
+	clear:left;
+	border:1px solid #eee;
+	background:#fff;
+	margin-bottom:10px;
+	border-radius:3px;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+/*
+	width:50%;
+	float:left;
+*/
+}
+section.timeline>ol>li>.padding
+{
+	padding:10px;
+}
+
+/* Divider */
+section.timeline ol>li.divider
+{
+	text-align:center;
+}
+section.timeline ol>li.divider h2
+{
+	background:#fff;
+	padding:0 10px;
+	display:inline;
+	position:relative;
+	top:7px;
+	color:#cecece;
+	z-index:2;
+}
+
+/* Fields */
+section.timeline>ol>li>.padding>*:not(.icon):not(h2)
+{
+	margin-left:57px;
+	margin-bottom:5px;
+}
+section.timeline>ol>li>.padding>.icon
+{
+	float:left;
+	width:40px;
+	height:40px;
+	-moz-border-radius:30px;
+	-webkit-border-radius:30px;
+	border-radius:30px;
+	border-width:3px;
+	position:relative;
+	z-index:1;
+}
+section.timeline>ol>li>.padding>.title
+{
+	font-size:14px;
+	color:#333;
+}
+section.timeline>ol>li>.padding>.title .user
+{
+	font-weight:bold;
+}
+section.timeline>ol>li>.padding>.thumbnails
+{
+	overflow:auto;
+}
+section.timeline>ol>li>.padding>.thumbnails li
+{
+	float:left;
+	margin:0 10px 10px 0;
+}

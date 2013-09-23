@@ -1,0 +1,12 @@
+/********************************************************************************************/
+/* template
+/********************************************************************************************/
+[data-type="template"] .fieldPageContainer
+{
+	text-align:center;
+}
+[data-type="template"] .fieldPageContainer label,
+[data-type="template"] .fieldPageContainer .field
+{
+	display:inline-block;
+}

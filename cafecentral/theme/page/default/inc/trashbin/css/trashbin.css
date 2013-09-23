@@ -1,0 +1,58 @@
+/********************************************************************************************/
+/* Trashbin
+/********************************************************************************************/
+#trashbin
+{
+	width:40px;
+	height:40px;
+	left:50%;
+	position:fixed;
+	padding:20px;
+	z-index:3;
+	text-shadow: 0 1px 0 rgba(0,0,0,0.3);
+	-moz-border-radius:40px;
+	-webkit-border-radius:40px;
+	border-radius:40px;
+	background:#aaa;
+	font-size:2.4em;
+	color:#fff;
+	text-align:center;
+	opacity:0.8;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
+    -webkit-box-shadow: 0 4px 5px rgba(0, 0, 0, .15);
+    -moz-box-shadow: 0 4px 5px rgba(0, 0, 0, .15);
+    -o-box-shadow: 0 4px 5px rgba(0, 0, 0, .15);
+    box-shadow: 0 4px 5px rgba(0, 0, 0, .15);
+}
+#trashbin.hover
+{
+	-moz-transform: scale(1.5);
+	-webkit-transform: scale(1.5);
+	transform: scale(1.5);
+}
+#trashbin.full
+{
+	
+}
+#trashbin.visible
+{
+	bottom:50px;
+}
+#trashbin.hidden
+{
+	bottom:-100px;
+}
+#trashbin.empty
+{
+	
+}
+#trashbin .cc-bubble
+{
+	display:none;
+	position:absolute;
+	top:-15px;
+	right:-10px;
+}

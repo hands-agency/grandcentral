@@ -1,0 +1,62 @@
+/********************************************************************************************/
+/* attr
+/********************************************************************************************/
+/* key and type */
+[data-type="attr"] [data-key="key"]
+{
+	display:inline-block;
+	width:80%;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+[data-type="attr"] [data-key="key"] label
+{
+	width:31.5% !important;
+}
+[data-type="attr"] [data-key="key"] .wrapper
+{
+	width:68.5% !important;
+}
+[data-type="attr"] [data-key="type"]
+{
+	display:inline-block;
+	width:20%;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+[data-type="attr"] [data-key="type"] .wrapper
+{
+	width:100% !important;
+}
+
+/* min, max, required */
+[data-type="attr"] [data-key="min"]
+{
+	display:inline-block;
+	width:50%;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+[data-type="attr"] [data-key="min"] label
+{
+	width:51% !important;
+}
+[data-type="attr"] [data-key="min"] .wrapper
+{
+	width:49% !important;
+}
+[data-type="attr"] [data-key="max"]
+{
+	display:inline-block;
+	width:50%;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+[data-type="attr"] [data-key="max"] .wrapper
+{
+	width:75% !important;
+}

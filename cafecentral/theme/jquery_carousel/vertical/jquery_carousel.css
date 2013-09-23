@@ -1,0 +1,39 @@
+.carousel_vertical
+{
+	list-style: none;
+	width: 100%;
+}
+.carousel_vertical li
+{
+	float: left;
+	width: 172px;
+	padding: 0 8px;
+	position: relative;
+}
+.carousel_vertical .ico
+{
+	height: 150px;
+	background-color: green;
+}
+.carousel_vertical .key
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 172px;
+	padding: 20px 8px;
+	text-align: center;
+	color: #FFF;
+}
+.carousel_vertical .title
+{
+	height: 40px;
+	
+}
+.carousel_vertical .carousel-pagination a
+{
+	display: block;
+	float: left;
+	padding: 4px;
+	cursor: pointer;
+}

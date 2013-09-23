@@ -1,0 +1,45 @@
+/********************************************************************************************/
+/* Apps
+/********************************************************************************************/
+ol>li[data-type="app"] .fieldAppContainer
+{
+	text-align:center;
+}
+[data-type="app"] .fieldAppContainer span label,
+[data-type="app"] .fieldAppContainer span .field
+{
+	display:inline-block;
+}
+
+/********************************************************************************************/
+/* Params
+/********************************************************************************************/
+ol>li[data-type="app"] .fieldAppParamArray>ol
+{
+	text-align:left;
+	background:#F2F2F2;
+	margin-top:10px;
+	padding:5px;
+	position:relative;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+ol>li[data-type="app"] .fieldAppParamArray>ol:after
+{
+	position:absolute;
+	top:-15px;
+	left:50%;
+	margin-left:-15px;
+	content:'';
+	border-style: solid;
+	border-width: 0 15px 15px 15px;
+	border-color: transparent transparent #fff transparent;
+}
+ol>li[data-type="app"] .fieldAppParamArray>ol>li
+{
+	margin-bottom:5px;
+}
