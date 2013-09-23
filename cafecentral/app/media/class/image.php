@@ -109,17 +109,22 @@ class image extends media
 	public function thumbnail($width, $height, $quality = 75)
 	{
 		$root = SITE_CACHE_ROOT.'/media/thumbnail_w'.$width.'_h'.$height;
-		$thumb = new image($root.'/'.$this->get_key());
-	//	création du thumbnail
-		if (!$thumb->exists())
-		{
-			$this->copy($root);
-			$thumb = new image($root.'/'.$this->get_key());
-			$thumb->resize($width, $height, true);
-			$thumb->save(true);
-		}
 		
-		return $thumb->get_url();
+		$file = $root.'/'.$this->get_key();
+		if (!is_dir($file))
+		{
+			$thumb = new image($file);
+		//	création du thumbnail
+			if (!$thumb->exists())
+			{
+				$this->copy($root);
+				$thumb = new image($root.'/'.$this->get_key());
+				$thumb->resize($width, $height, true);
+				$thumb->save(true);
+			}
+		//	Return
+			return $thumb->get_url();
+		}
 	}
 	
 /**
