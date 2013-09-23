@@ -376,12 +376,12 @@ class database
 		{
 			$preparedQuery = 'SELECT COUNT(*) as count FROM `'.$table.'`'.$cJoin.$cWhere.$cGroupby.$cLimit;
 		}
-		if ($table == 'logbook') {
-			# code...
-		
-	//	print '<pre>';print_r(str_replace(array('WHERE', 'JOIN', 'GROUP', 'ORDER'), array('<br />WHERE', '<br />JOIN', '<br />GROUP', '<br />ORDER'), $preparedQuery));print'</pre>';
-	//	print '<pre>';print_r($preparedData);print'</pre>';
-		}
+		// if ($table == 'cast') {
+		// 	# code...
+		// 
+		// print '<pre>';print_r(str_replace(array('WHERE', 'JOIN', 'GROUP', 'ORDER'), array('<br />WHERE', '<br />JOIN', '<br />GROUP', '<br />ORDER'), $preparedQuery));print'</pre>';
+		// print '<pre>';print_r($preparedData);print'</pre>';
+		// }
 		$results = $this->query($preparedQuery, $preparedData);
 	//	création du tableau de retour
 		$datas = array();
