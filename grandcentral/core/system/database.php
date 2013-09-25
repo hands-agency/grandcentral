@@ -258,6 +258,7 @@ class database
 	//	recherche de la définition des attributs dans le registre
 		// print'<pre>';print_r($params);print'</pre>';
 		$attrs = registry::get($env, registry::structure_index, $table, 'attr');
+		if (empty($attrs)) trigger_error('Sorry, can\'t find the structure of <strong>'.$table.'</strong>.', E_USER_ERROR);
 		$attrsKey = array_keys($attrs);
 		$rels = array();
 		// print'<pre>';print_r($attrs);print'</pre>';

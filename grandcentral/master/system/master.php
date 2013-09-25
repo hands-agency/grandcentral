@@ -1,6 +1,6 @@
 <?php
 /**
- * App handling
+ * The master class
  * 
  * @package		Core
  * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
@@ -26,6 +26,8 @@ class master
 	{
 	//	get the page to display
 		$page = cc('page', current);
+	//	Give the page the header
+		$page->header();
 		// print'<pre>';print_r($page);print'</pre>';
 	//	define the master content type
 		self::$content_type = $page['template']['type'];
