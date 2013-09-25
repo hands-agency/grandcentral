@@ -43,7 +43,7 @@ class file
 	{
 		$this->key = mb_substr($this->root, mb_strrpos($this->root, '/') + 1);
 		$this->dir = dirname($this->root);
-		$this->url = CC_DIR.substr($this->root, strlen(CC_ROOT));
+		// $this->url = CC_DIR.substr($this->root, strlen(CC_ROOT));
 	}
 
 /**

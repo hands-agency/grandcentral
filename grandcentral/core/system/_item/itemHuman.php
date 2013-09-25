@@ -7,7 +7,7 @@
  * @access   public
  * @see      http://www.cafecentral.fr/fr/wiki
  */
-class itemUser extends _items
+class itemHuman extends _items
 {
 /**
  * Class constructor (Don't forget it is an abstract class)
