@@ -1,1 +1,0 @@
-génération de contenus

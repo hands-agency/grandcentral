@@ -1,1 +1,0 @@
-<ul id="eventstream"><!-- Welcome Ajax --></ul>
