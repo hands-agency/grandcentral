@@ -234,7 +234,7 @@ class bunch implements ArrayAccess, Iterator, Countable {
  */
 	public function get_by_nickname($nicknames)
 	{
-		print'<pre>';print_r($nicknames);print'</pre>';
+		// print'<pre>';print_r($nicknames);print'</pre>';
 		$nicknames = (array) $nicknames;
 	//	analyse des nicknames
 		foreach ($nicknames as $nickname)

@@ -30,7 +30,8 @@ class master
 	//	define the master content type
 		self::$content_type = $page['template']['type'];
 	//	instanciate the app master
-		$this->app = new app('master', $page['template']['key']);
+		$params['page'] = $page;
+		$this->app = new app('master', $page['template']['key'], $params);
 	//	retreive the template root
 		$root = $this->app->get_templateroot().$page['template']['key'].'.'.$page['template']['type'].'.php';
 	//	parse the template and parse zones
@@ -116,6 +117,24 @@ class master
 	public static function bind($zone, $data)
 	{
 		self::$zones[$zone]['data'] .= $data;
+	}
+/**
+ * 
+ *
+ * @return	string	la clé de l'app
+ * @access	public
+ */
+	public static function bind_section()
+	{
+		$page = cc('page', current);
+		$sections = $page['section']->unfold();
+		
+		foreach ($sections as $section)
+		{
+			$params = (isset($section['template']['param'])) ? $section['template']['param'] : null;
+			$app = new app($section['template']['app'], $section['key'].'/'.$section['template']['template'], $params);
+			master::bind($section['zone']->get(), $app->__tostring());
+		}
 	}
 }
 ?>
