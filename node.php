@@ -35,6 +35,9 @@
 //	Store the events
 	event::prepare();
 	
+	// $_POST['id'] = 1;
+	// $cast = cc('cast', $_POST['id']);
+	// print'<pre>';print_r($cast);print'</pre>';
 	// $param = array(
 	// 	'id' => 'test',
 	// 	'class' => 'class',

@@ -239,6 +239,7 @@ class bunch implements ArrayAccess, Iterator, Countable {
 		{
 			$site = registry::get(registry::current_index, $this->get_env());
 			$rel['version'] = $site->data->data['version']['id'];
+			// $rel['version'] = null;
 		}
 	//	requête des datas
 		$db = database::connect($this->get_env());
