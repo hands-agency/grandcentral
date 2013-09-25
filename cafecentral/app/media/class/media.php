@@ -42,7 +42,7 @@ class media extends file
  */
 	public function get_uses()
 	{
-		return '123';
+		return 'TODO';
 	}
 }
 ?>

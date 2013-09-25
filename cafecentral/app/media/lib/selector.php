@@ -23,8 +23,22 @@
 		//	image
 			case 'image/gif':
 			case 'image/jpeg':
+			case 'image/pjpeg':
 			case 'image/png':
+			case 'image/svg+xml':
+			case 'image/tiff':
 				$media = new image($path);
+				break;
+		//	video
+			case 'video/mpeg':
+			case 'video/mp4':
+			case 'video/ogg':
+			case 'video/quicktime':
+			case 'video/webm':
+			case 'video/x-matroska':
+			case 'video/x-ms-wmv':
+			case 'video/x-flv':
+				$media = new video($path);
 				break;
 		}
 		
