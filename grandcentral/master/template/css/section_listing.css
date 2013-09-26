@@ -1,0 +1,115 @@
+/********************************************************************************************/
+/*////////////////////////////////////////////////////////////////////////////////////////////
+/* A List Section
+/////////////////////////////////////////////////////////////////////////////////////////////
+/********************************************************************************************/
+section.listing
+{}
+
+/* Common */
+
+/* in Stacks */
+.instack section.listing ol li .title,
+.instack section.listing ol li .option,
+.instack section.listing ol li .comment
+{
+	line-height:20px;
+	margin-left:37px;
+}
+.instack section.listing ol li .title .flag
+{
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	background:#F2F2F2;
+	color:#aaaaaa;
+	font-size:0.8em;
+	padding:3px 7px;
+	margin-left:10px;
+	border:none;
+}
+.instack section.listing ol li .title .flag.on
+{
+	background:#3eb4d6;
+	color:#ffffff;
+	display:inline;
+}
+
+.instack section.listing ol li .title .flag.archive,
+.instack section.listing ol li .title .flag.workflow
+{
+	display:none;
+}
+.instack section.listing ol li .title:hover .flag
+{
+	display:inline;
+}
+.instack section.listing ol li .fork
+{
+	display:none;
+}
+.instack section.listing ol li .archives
+{
+	display:none;
+	margin:7px 7px 0 7px;
+	font-size:0.8em;
+	list-style-type:square;
+}
+.instack section.listing ol li .archives li
+{
+	margin:0 0 3px 15px;
+}
+
+/* in Grid */
+.ingrid section.listing ol li
+{
+	float:left;
+	width:120px;
+	height:120px;
+	padding:10px;
+	border:none;
+	clear:none;
+}
+.ingrid section.listing ol li .icon
+{
+	float:none;
+	margin:auto auto 10px auto;
+	width:70px;
+	height:70px;
+}
+.ingrid section.listing ol li .title
+{
+	font-size:0.8em;
+	text-align:center;
+	height:25px;
+	overflow:hidden;
+}
+.ingrid section.listing ol li .title .infeed
+{
+	color:#999999;
+	display:block;
+}
+
+/* Comments */
+section.listing>ol>li>.comment
+{
+	margin-top:5px;
+}
+section.listing>ol>li>.comment li
+{
+	margin:0 0 2px 0;
+}
+section.listing>ol>li>.comment li .descr a
+{
+	font-weight:bold;
+}
+section.listing>ol>li>.comment input
+{
+	border:1px solid #dddddd;
+	width:470px;
+	padding:5px;
+}
+section.listing>ol>li>.comment input[type="submit"]
+{
+	display:none;
+}

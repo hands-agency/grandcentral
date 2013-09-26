@@ -19,22 +19,40 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	The autoload takes care of starting the engine
+//	General binding of scripts & css files
 /********************************************************************************************/
-	require 'inc.autoload.php';
+//	jQuery
+//	$_APP->bind_script('https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js');
+//	$_APP->bind_script('https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js');
+	$_APP->bind_script('js/jquery-1.8.2.min.js');
+	$_APP->bind_script('js/jquery-ui-1.9.1.custom.min.js');
+	
+//	Constants
+	$_APP->bind('script', "
+		const SITE_URL = '".SITE_URL."';
+		const ADMIN_URL = '".ADMIN_URL."';
+	");
+
+/********************************************************************************************/
+//	Local binding scripts & css files
+/********************************************************************************************/
+//	Script
+	$_APP->bind_script('js/login.js');
+//	css
+	$_APP->bind_css('css/login.css');
 	
 /********************************************************************************************/
-//	Loading the sentinel
+//	Apps
 /********************************************************************************************/
-	sentinel::getInstance();
+//	$_APP->bind_app('font-awesome');
 
 /********************************************************************************************/
-//	Loading the registry
+//	Meta
 /********************************************************************************************/
-	registry::getInstance();
-
+//	$_APP->bind_template('meta', '/inc/meta');
+	
 /********************************************************************************************/
-//	Loading the master
+//	Sections liées à la page
 /********************************************************************************************/
-	master::getInstance();
+	$_ITEM->bind_section();
 ?>

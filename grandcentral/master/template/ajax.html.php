@@ -19,22 +19,43 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	The autoload takes care of starting the engine
+//	DEBUG
 /********************************************************************************************/
-	require 'inc.autoload.php';
-	
-/********************************************************************************************/
-//	Loading the sentinel
-/********************************************************************************************/
-	sentinel::getInstance();
+	if (isset($_POST['DEBUG']))
+	{
+		unset($_POST['DEBUG']);
+		sentinel::debug('AJAX debug ('.__FILE__.' line '.__LINE__.')', $_POST);
+	}
 
 /********************************************************************************************/
-//	Loading the registry
+//	Go
 /********************************************************************************************/
-	registry::getInstance();
-
-/********************************************************************************************/
-//	Loading the master
-/********************************************************************************************/
-	master::getInstance();
+	if (!empty($_POST))
+	{
+	//	The app, the theme and the section
+		$app = $_POST['app'];
+		$theme = $_POST['theme'];
+		$template = $_POST['template'];
+		
+	//	Reroot original $_GET passed as $_POST['_GET'] the $_GET
+		if (isset($_POST['_GET']))
+		{
+			$_GET = $_POST['_GET'];
+			unset($_POST['_GET']);
+		}
+		
+	//	Echo
+		if (isset($_POST['type']) && $_POST['type'] == 'routine')
+		{
+			echo new routine($app, $theme, $template);
+		}
+		else
+		{
+			$_APP->zone_filename('css', $app.'.'.$theme.'.'.$template);
+			$_APP->zone_filename('script', $app.'.'.$theme.'.'.$template);
+			echo new html($app, $theme, $template);
+			echo '<!-- ZONE:css -->';
+			echo '<!-- ZONE:script -->';
+		}
+	}
 ?>

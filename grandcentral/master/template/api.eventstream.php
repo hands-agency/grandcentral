@@ -19,22 +19,27 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	The autoload takes care of starting the engine
+//	DEBUG
 /********************************************************************************************/
-	require 'inc.autoload.php';
+	if (isset($_GET['DEBUG']))
+	{
+		unset($_GET['DEBUG']);
+		sentinel::debug('Debug ('.__FILE__.' line '.__LINE__.')', $_GET);
+	}
 	
 /********************************************************************************************/
-//	Loading the sentinel
+//	Headers
 /********************************************************************************************/
-	sentinel::getInstance();
+	header('Cache-Control: no-cache'); // recommended to prevent caching of event data.
 
 /********************************************************************************************/
-//	Loading the registry
+//	Some vars
 /********************************************************************************************/
-	registry::getInstance();
-
-/********************************************************************************************/
-//	Loading the master
-/********************************************************************************************/
-	master::getInstance();
+	$app = $_GET['app'];
+	$theme = $_GET['theme'];
+	$template = $_GET['template'];
+	
+//	API to use
+	$api = ROOT.'/theme/'.$app.'/'.$theme.'/'.$template.'.eventstream.php';
+	require $api;
 ?>

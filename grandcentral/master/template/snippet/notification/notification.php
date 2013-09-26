@@ -19,22 +19,19 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	The autoload takes care of starting the engine
+//	Bind
 /********************************************************************************************/
-	require 'inc.autoload.php';
-	
-/********************************************************************************************/
-//	Loading the sentinel
-/********************************************************************************************/
-	sentinel::getInstance();
+	$_APP->bind_script('inc/notification/js/notification.js');
+	$_APP->bind_css('inc/notification/css/notification.css');
 
 /********************************************************************************************/
-//	Loading the registry
+//	Bla bla bla
 /********************************************************************************************/
-	registry::getInstance();
-
-/********************************************************************************************/
-//	Loading the master
-/********************************************************************************************/
-	master::getInstance();
+	header('Content-Type: text/event-stream');
+	header('Cache-Control: no-cache');
+//	Generate random number for demonstration
+	$count = rand(0, 10);
+//	Go
+	echo 'data: ';
+	for ($i=0; $i < $count; $i++) echo '<li><a href="en">Jean-Paul Sartre</a> a ajouté <a href="en">Un long titre pour...</a>.</li>';
 ?>
