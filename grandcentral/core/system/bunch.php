@@ -27,8 +27,8 @@ class bunch implements ArrayAccess, Iterator, Countable {
 	private $_env;
 	private $_cIndex = false;
 	private $_sIndex;
-	public $data = array();
 	public $count = 0;
+	public $data = array();
 
 /**
  * Instantiate a bunch of items

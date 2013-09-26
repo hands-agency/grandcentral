@@ -373,10 +373,6 @@ class database
 		{
 			$preparedQuery = 'SELECT COUNT(*) as count FROM `'.$table.'`'.$cJoin.$cWhere.$cGroupby.$cLimit;
 		}
-		if ($table == 'cast') {
-			print'<pre>';print_r($preparedQuery);print'</pre>';
-			print'<pre>';print_r($preparedData);print'</pre>';
-		}
 	//	requête
 		$db = database::connect($env);
 		$results = $db->query($preparedQuery, $preparedData);
