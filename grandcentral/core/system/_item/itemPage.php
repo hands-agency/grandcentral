@@ -29,15 +29,21 @@ class itemPage extends _items
  *
  * @access	public
  */
-	protected function header()
+	public function header()
 	{
-		$template = $this['template'];
-		$view = $template['type'];
-		$content_type = $view::content_type;
+	//	Content types
+		$mime = array(
+			'xml' => 'application/xml',
+			'html' => 'text/html',
+		);
+	//	Convert the GC content type to MIME content types
+		$content_type = $mime[$this['template']['type']];
 		
+	//	Print the header
 		header('HTTP/1.0 '.$this['http_status']);
 		header('Content-Type: '.$content_type.'; charset=utf-8');
 	}
+
 /**
  * Returns the front-end URL of an item
  *

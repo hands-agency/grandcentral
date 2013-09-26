@@ -129,5 +129,16 @@ abstract class _attrs
 	{
 		return $this->params['key'];
 	}
+/**
+ * xxxx
+ *
+ * @param	string	la variable
+ * @return	string	une string
+ * @access	public
+ */
+	public function is_empty()
+	{
+		return (empty($this->data)) ? true : false;
+	}
 }
 ?>

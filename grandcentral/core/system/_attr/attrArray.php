@@ -72,6 +72,17 @@ class attrArray extends _attrs implements ArrayAccess, Iterator
 		return $definition;
 	}
 /**
+ * Count
+ *
+ * @param	string	la variable
+ * @return	string	une string
+ * @access	public
+ */
+	public function count()
+	{
+		return count($this->data);
+	}
+/**
  * ArrayAccess Interface methods
  *
  * @param	string	la variable
