@@ -108,7 +108,8 @@ class image extends media
  */
 	public function thumbnail($width, $height, $quality = 75)
 	{
-		$root = SITE_CACHE_ROOT.'/media/thumbnail_w'.$width.'_h'.$height;
+		$app = new app('cache');
+		$root = $app->get_templateroot().'/media/thumbnail_w'.$width.'_h'.$height;
 		
 		$file = $root.'/'.$this->get_key();
 		if (!is_dir($file))
