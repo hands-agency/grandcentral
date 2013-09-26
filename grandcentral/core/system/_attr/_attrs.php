@@ -72,7 +72,7 @@ abstract class _attrs
  */
 	public function database_get()
 	{
-		return $this->get();
+		return (empty($this->data)) ? '' : $this->get();
 	}
 /**
  * xxxx
