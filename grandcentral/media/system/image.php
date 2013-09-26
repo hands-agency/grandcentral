@@ -7,7 +7,7 @@
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
  */
-class image extends media
+class image extends file
 {
 	protected $width;
 	protected $height;
@@ -109,7 +109,7 @@ class image extends media
 	public function thumbnail($width, $height, $quality = 75)
 	{
 		$app = new app('cache');
-		$root = $app->get_templateroot().'/media/thumbnail_w'.$width.'_h'.$height;
+		$root = $app->get_templateroot().'media/thumbnail_w'.$width.'_h'.$height;
 		
 		$file = $root.'/'.$this->get_key();
 		if (!is_dir($file))
@@ -124,7 +124,7 @@ class image extends media
 				$thumb->save(true);
 			}
 		//	Return
-			return $thumb->get_url();
+			return $thumb;
 		}
 	}
 	

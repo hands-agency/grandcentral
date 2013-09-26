@@ -155,6 +155,7 @@ class boot
 	private function define_config()
 	{
 		$this->define('admin', $this->admin);
+		$this->define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT']);
 		$this->core_root = ADMIN_ROOT.'/'.$this->boot;
 		// define('CC_ROOT', $this->root);
 		// define('CC_DIR', $this->relative_root);

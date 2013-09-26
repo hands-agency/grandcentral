@@ -15,9 +15,13 @@
  * @return	object	a media object
  * @access	public
  */
-	function media($path)
+	function media($file)
 	{
-		$media = new media($path);
+		
+		$appMedia = new app('media');
+		$root = $appMedia->get_templateroot();
+		$media = new file($root.$file);
+		
 		switch ($media->get_mime())
 		{
 		//	image
@@ -27,7 +31,7 @@
 			case 'image/png':
 			case 'image/svg+xml':
 			case 'image/tiff':
-				$media = new image($path);
+				$media = new image($media->get_root());
 				break;
 		//	video
 			case 'video/mpeg':
@@ -38,7 +42,7 @@
 			case 'video/x-matroska':
 			case 'video/x-ms-wmv':
 			case 'video/x-flv':
-				$media = new video($path);
+				$media = new video($media->get_root());
 				break;
 		}
 		
