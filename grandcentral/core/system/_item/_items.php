@@ -31,7 +31,7 @@ abstract class _items implements ArrayAccess, Iterator
 		$attrs = registry::get($this->get_env(), registry::structure_index, $this->get_table(), 'attr');
 		if (empty($attrs))
 		{
-			trigger_error('Can not find <strong>user</strong> structure', E_USER_ERROR);
+			trigger_error('Can not find <strong>'.$this->get_table().'</strong> structure', E_USER_ERROR);
 		}
 		foreach ($attrs as $key => $value)
 		{

@@ -35,6 +35,7 @@ class itemPage extends _items
 		$mime = array(
 			'xml' => 'application/xml',
 			'html' => 'text/html',
+			'routine' => 'text/html'
 		);
 	//	Convert the GC content type to MIME content types
 		$content_type = $mime[$this['template']['type']];

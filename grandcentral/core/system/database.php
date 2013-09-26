@@ -507,6 +507,7 @@ class database
 		//	log
 			self::$query_count += count($this->_spooler);
 			self::$transactions[] = $this->_spooler;
+			$this->_spooler = null;
 		//	return
 			if (isset($id)) return $id;
 		}
