@@ -182,7 +182,7 @@ abstract class _items implements ArrayAccess, Iterator
 	//	insert
 		else
 		{
-			$this->insert();
+			$this->_insert();
 			$this['id']->database_set($db->flush_spooler());
 		}
 	}
