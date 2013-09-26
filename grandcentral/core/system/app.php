@@ -423,7 +423,7 @@ class app
 				$param['What went wrong ?'] = 'Can\'t find <strong>'.$this->get_key().' app</strong> config.ini file.';
 				break;
 			case 'no-tpl':
-				$param['What went wrong ?'] = 'template <strong>'.$this->template.'</strong> in <strong>'.$this->get_templateroot().' does not exists</strong>.';
+				$param['What went wrong ?'] = 'template <strong>'.$this->template.'.'.master::$content_type.'.php'.'</strong> in <strong>'.$this->get_templateroot().' does not exists</strong>.';
 				break;
 		}
 		sentinel::log(E_WARNING, $param);
