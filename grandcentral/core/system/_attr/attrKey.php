@@ -21,5 +21,17 @@ class attrKey extends _attrs
 		$this->data = (string) $data;
 		return $this;
 	}
+/**
+ * Set string attribute
+ *
+ * @param	string	la variable
+ * @return	string	une string
+ * @access	public
+ */
+	public function database_get()
+	{
+		if (empty($this->data)) $this->data = md5(uniqid($_SESSION['user']['key'], true));
+		return $this->get();
+	}
 }
 ?>
