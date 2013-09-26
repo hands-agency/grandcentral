@@ -281,7 +281,8 @@ class app
 		
 		if (SITE_DEBUG === true)
 		{
-			$data = '<link rel="stylesheet" href="'.$url.$file.'" type="text/css" charset="utf-8">';
+			$refresh = '?'.time();
+			$data = '<link rel="stylesheet" href="'.$url.$file.'?'.$refresh.'" type="text/css" charset="utf-8">';
 		}
 		else
 		{
@@ -310,8 +311,9 @@ class app
 		
 		if (SITE_DEBUG === true)
 		{
+			$refresh = '?'.time();
 			$file = (filter_var($file, FILTER_VALIDATE_URL) === false) ? $url.$file : $file;
-			$data = '<script src="'.$file.'" type="text/javascript" charset="utf-8"></script>';
+			$data = '<script src="'.$file.'?'.$refresh.'" type="text/javascript" charset="utf-8"></script>';
 		}
 		else
 		{
