@@ -286,7 +286,7 @@ class database
 						$operator = $matches[1];
 						$value = $matches[2];
 						break;
-					case in_array($attrs[$key], array('string', 'date', 'array')):
+					case in_array($attrs[$key]['type'], array('string', 'date', 'array')):
 						$operator = 'LIKE';
 						break;
 					default:
@@ -372,6 +372,10 @@ class database
 		else
 		{
 			$preparedQuery = 'SELECT COUNT(*) as count FROM `'.$table.'`'.$cJoin.$cWhere.$cGroupby.$cLimit;
+		}
+		if ($table == 'cast') {
+			print'<pre>';print_r($preparedQuery);print'</pre>';
+			print'<pre>';print_r($preparedData);print'</pre>';
 		}
 	//	requête
 		$db = database::connect($env);
