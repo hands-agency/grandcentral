@@ -26,6 +26,17 @@ class item extends _items
 	{
 		$this->table = $table;
 		$this->env = $env;
+		
+	//	création de la liste des attributs
+		$attrs = registry::get($this->get_env(), registry::structure_index, $this->get_table(), 'attr');
+		if (empty($attrs))
+		{
+			trigger_error('Can not find <strong>user</strong> structure', E_USER_ERROR);
+		}
+		foreach ($attrs as $key => $value)
+		{
+			$this->set_attr($key, null);
+		}
 	}
 /** 
  * Item factory
