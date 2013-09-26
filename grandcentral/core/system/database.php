@@ -156,10 +156,6 @@ class database
 						$return['data'][] = $row;
 					}
 				}
-				if (strstr($query, 'INSERT '))
-				{
-					$return['inserted_id'] = $this->_pdo->lastInsertId();
-				}
 			}
 		//	commit
 			$this->_pdo->commit();
@@ -184,6 +180,7 @@ class database
 				'Database' => self::$env,
 				//'Line' => $e->getFile().' '.$e->getLine(),
 	    		'What went wrong ?' => 'Sorry, <strong>'.$query.'</strong> is not a valid request.',
+				'Params' => print_r($p, true)
 		    );
 		   	sentinel::log(E_ERROR, $l);
 		}
@@ -267,7 +264,7 @@ class database
 			if (isset($attrs[$key]) && $attrs[$key]['type'] == 'rel')
 			{
 				$rels[$key] = $value;
-				unset($params['key']);
+				unset($params[$key]);
 			}
 		}
 	//	clause Where
@@ -326,7 +323,7 @@ class database
 			foreach ((array) $rel as $value)
 			{
 				$cIn .= ':relid'.$i.',';
-				$preparedData['relid'.$i] = $value;
+				$preparedData['relid'.$i] = mb_substr($value, mb_strpos($value, '_') + 1);
 				$i++;
 			}
 			$cRel .= '('.$cKey.' ('.substr($cIn, 0, -1).')) OR ';
@@ -379,7 +376,6 @@ class database
 	//	requête
 		$db = database::connect($env);
 		$results = $db->query($preparedQuery, $preparedData);
-		// print'<pre>';print_r($results);print'</pre>';exit;
 	//	créations d'un item vide
 		$model = array();
 		foreach ($attrs as $key => $value)

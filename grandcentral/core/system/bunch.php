@@ -217,7 +217,7 @@ class bunch implements ArrayAccess, Iterator, Countable {
 		foreach ($results as $result)
 		{
 			$item = item::create($table, null, $this->get_env());
-			$item->data = $result;
+			$item->set_data($result);
 			$this->data[] = $item;
 		}
 		
