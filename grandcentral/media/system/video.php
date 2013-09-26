@@ -7,7 +7,7 @@
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
  */
-class video extends media
+class video extends file
 {
 	protected $width;
 	protected $height;
