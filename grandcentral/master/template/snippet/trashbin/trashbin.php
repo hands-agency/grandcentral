@@ -21,8 +21,12 @@
 /********************************************************************************************/
 //	Bind
 /********************************************************************************************/
-	$_APP->bind_script('inc/trashbin/js/trashbin.plugin.js');
-	$_APP->bind_script('$("#trashbin").trashbin();');
+	$_APP->bind_script('snippet/trashbin/js/trashbin.plugin.js');
+	$_APP->bind_code('script', '
+		<script type="text/javascript" charset="utf-8">
+			$("#trashbin").trashbin();
+		</script>
+	');
 //	CSS
-	$_APP->bind_css('inc/trashbin/css/trashbin.css');
+	$_APP->bind_css('snippet/trashbin/css/trashbin.css');
 ?>

@@ -21,9 +21,9 @@
 /********************************************************************************************/
 //	Bind
 /********************************************************************************************/
-	$_APP->bind_script('inc/greenbutton/js/greenbutton.plugin.js');
-	$_APP->bind_script('inc/greenbutton/js/greenbutton.js');
-	$_APP->bind_css('inc/greenbutton/css/greenbutton.css');
+	$_APP->bind_script('snippet/greenbutton/js/greenbutton.plugin.js');
+	$_APP->bind_script('snippet/greenbutton/js/greenbutton.js');
+	$_APP->bind_css('snippet/greenbutton/css/greenbutton.css');
 	
 /********************************************************************************************/
 //	Prepare the labels

@@ -51,8 +51,6 @@
 		}
 		else
 		{
-			$_APP->zone_filename('css', $app.'.'.$theme.'.'.$template);
-			$_APP->zone_filename('script', $app.'.'.$theme.'.'.$template);
 			echo new html($app, $theme, $template);
 			echo '<!-- ZONE:css -->';
 			echo '<!-- ZONE:script -->';
