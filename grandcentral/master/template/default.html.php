@@ -22,10 +22,10 @@
 
 			<div id="content" class="locked instack">
 				<!-- ZONE:content|left -->
-				<? foreach($sections as $section) : ?>
+				<? if ($sections) : foreach($sections as $section) : ?>
 				<? $template = $section['template'] ?>
 				<section id="section_<?= $section['key']; ?>" class="<?= $template['theme']; ?>" data-theme="<?= $template['theme']; ?>" data-template="<?= $template['template']; ?>" <?= $section->get_customdata(); ?> data-greenbuttonaction='<?= $section['greenbuttonaction']; ?>'></section>
-				<? endforeach; ?>
+				<? endforeach; endif; ?>
 			</div>
 		
 			<div id="contextwrapper">

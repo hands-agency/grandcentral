@@ -73,15 +73,17 @@
 	$sections = $page['section'];
 	
 //	Find the default section
-	$defaults = $page['sectiondefault'];
-	foreach ($defaults as $key => $default)
+	if ($defaults = $page['sectiondefault'])
 	{
-		foreach ($sections as $key => $section)
+		foreach ($defaults as $key => $default)
 		{
-			if ($section['key'] == $default['key'])
+			foreach ($sections as $key => $section)
 			{
-				$defaultSection = $default['key'];
-				break;
+				if ($section['key'] == $default['key'])
+				{
+					$defaultSection = $default['key'];
+					break;
+				}
 			}
 		}
 	}
