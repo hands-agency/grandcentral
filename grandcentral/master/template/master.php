@@ -116,7 +116,7 @@
 	$_APP->bind_snippet('content', 'snippet/options');
 //	Store the green button actions in the section
 	$sections = cc(env, current)['section'];
-/*	if (!$sections->is_empty())
+	if ($sections)
 	{
 		foreach ($sections as $section)
 		{
@@ -124,7 +124,6 @@
 			$section['greenbuttonaction'] = json_encode($greenbuttonaction);
 		}
 	}
-*/
 	
 /********************************************************************************************/
 //	Context

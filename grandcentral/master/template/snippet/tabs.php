@@ -70,7 +70,7 @@
 /********************************************************************************************/
 //	Fetch the altered sections
 /********************************************************************************************/
-	$sections = $page['section'];
+	$sections = $page['section']->unfold();
 	
 //	Find the default section
 	if ($defaults = $page['sectiondefault'])
