@@ -253,7 +253,7 @@ class app
 		ob_start();
 	//	on charge les données à afficher
 		if (is_file($routine)) include($routine);
-		if (is_file($template)) require($template);
+		(is_file($template)) ? require($template) : trigger_error('Snippet <strong>'.$template.'</strong> does not exist.', E_USER_NOTICE);
 	//	on ferme le tampon
 		$content = ob_get_contents();
 		ob_end_clean();
@@ -279,16 +279,20 @@ class app
 			$root =$this->get_systemroot();
 		}
 		
-		if (SITE_DEBUG === true)
-		{
-			$refresh = '?'.time();
-			$data = '<link rel="stylesheet" href="'.$url.$file.'?'.$refresh.'" type="text/css" charset="utf-8">';
-		}
+		if (!is_file($root.$file)) trigger_error('Css <strong>'.$file.'</strong> does not exist.', E_USER_NOTICE);
 		else
 		{
-			
+			if (SITE_DEBUG === true)
+			{
+				$refresh = '?'.time();
+				$data = '<link rel="stylesheet" href="'.$url.$file.'?'.$refresh.'" type="text/css" charset="utf-8">';
+			}
+			else
+			{
+		
+			}
+			master::bind('css', $data);
 		}
-		master::bind('css', $data);
 	}
 /**
  * 
@@ -309,17 +313,21 @@ class app
 			$root =$this->get_systemroot();
 		}
 		
-		if (SITE_DEBUG === true)
-		{
-			$refresh = '?'.time();
-			$file = (filter_var($file, FILTER_VALIDATE_URL) === false) ? $url.$file : $file;
-			$data = '<script src="'.$file.'?'.$refresh.'" type="text/javascript" charset="utf-8"></script>';
-		}
+		if (!is_file($root.$file)) trigger_error('Script <strong>'.$file.'</strong> does not exist.', E_USER_NOTICE);
 		else
 		{
-			
+			if (SITE_DEBUG === true)
+			{
+				$refresh = '?'.time();
+				$file = (filter_var($file, FILTER_VALIDATE_URL) === false) ? $url.$file : $file;
+				$data = '<script src="'.$file.'?'.$refresh.'" type="text/javascript" charset="utf-8"></script>';
+			}
+			else
+			{
+		
+			}
+			master::bind('script', $data);
 		}
-		master::bind('script', $data);
 	}
 /**
  * 
