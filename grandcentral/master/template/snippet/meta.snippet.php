@@ -1,5 +1,5 @@
 <meta charset="utf-8" />
-<title html="<?=cc(env, current)['title']?> — <?=cc('page', current)['title']?>" />
+<title><?=cc(env, current)['title']?> — <?=cc('page', current)['title']?></title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="description" content="<?=cc('page', current)['descr']?>" />
 <meta name="author" content="" />
