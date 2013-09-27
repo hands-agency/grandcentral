@@ -20,18 +20,14 @@
  */
 /********************************************************************************************/
 //	Some vars
-/********************************************************************************************/	
+/********************************************************************************************/
+	require 'adminItemForm.class.php';
+	
 //	Env
 	$handled_env = $_SESSION['pref']['handled_env'];
 //	Item
 	$handled_item = $_GET['item'];
 	$handled_id = (isset($_GET['id'])) ? $_GET['id'] : null;
-//	Current section
-	$section = $_POST['section'];
 
-/********************************************************************************************/	
-//	Create the new form if not already existing
-/********************************************************************************************/	
-	require 'admin_item_form.php';
-	$form = new admin_item_form($handled_env, $handled_item, $section, $handled_id);
+	$form = new adminItemForm($handled_env, $handled_item, $handled_id);
 ?>
