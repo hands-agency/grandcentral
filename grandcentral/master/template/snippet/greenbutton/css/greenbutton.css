@@ -1,0 +1,122 @@
+/********************************************************************************************/
+/* greenbutton
+/********************************************************************************************/
+#greenbutton {
+	position:fixed;
+	top:30px;
+	right:30px;
+}
+#greenbutton>a
+{
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	padding:7px 15px;
+	color:#ffffff;
+	display:inline-block;
+	line-height:25px;
+	font-size:16px;
+	-moz-user-select:none;
+	-webkit-user-select:none;
+	cursor:pointer;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow: 5px 5px rgba(0, 0, 0, 0.02);
+	-webkit-box-shadow: 5px 5px rgba(0, 0, 0, 0.02);
+	box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.02);
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
+}
+
+/********************************************************************************************/
+/* Default
+/********************************************************************************************/
+#greenbutton #greenbutton-default
+{
+	margin:0 10px 0 0;
+	text-shadow:0px 1px 1px rgba(0, 0, 0, 0.5);
+	border:3px solid transparent;
+	background:#B7DA72;
+	font-family:"proximanovabold";
+}
+#greenbutton #greenbutton-default:hover
+{
+	background:#FF9900;
+	-moz-transform: scale(1.1);
+	-webkit-transform: scale(1.1);
+	-o-transform: scale(1.1);
+	transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=1.1, M12=-0, M21=0, M22=1.1);
+}
+#greenbutton #greenbutton-default.on
+{
+	background:#df3528;
+	-moz-transform: scale(1.3);
+	-webkit-transform: scale(1.3);
+	-o-transform: scale(1.3);
+	transform: scale(1.3);
+	-ms-transform: scale(1.3);
+	filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=1.3, M12=-0, M21=0, M22=1.3);
+}
+
+/********************************************************************************************/
+/* Or...
+/********************************************************************************************/
+#greenbutton #greenbutton-or
+{
+	margin:0 10px 0 0;
+	background:#F2F2F2;
+	color:#555555;
+	border:3px solid transparent;
+	font-family:"proximanovaregular";
+}
+#greenbutton #greenbutton-or:hover
+{
+	background:#ddd;
+}
+#greenbutton #greenbutton-or.on
+{
+	background:#363f48;
+	color:#F2F2F2;
+	position:relative;
+    -webkit-transition-duration: 0.3s;
+}
+#greenbutton #greenbutton-or.on:after
+{
+	position:absolute;
+	bottom:-15px;
+	left:50%;
+	margin-left:-10px;
+	content:'';
+	border-style: solid;
+	border-width: 10 10px 10px 10px;
+	border-width: 0 10px 10px 10px;
+	border-color: transparent transparent #363f48 transparent;
+}
+
+/********************************************************************************************/
+/* Choices
+/********************************************************************************************/
+#greenbutton-choices
+{
+	margin:10px 0 0 0;
+	clear:both;
+	font-size:1em;
+}
+
+/********************************************************************************************/
+/* In landscape mode
+/********************************************************************************************/
+.inlandscape #greenbutton
+{
+	float:right;
+	margin-left:30px;
+}
+.inlandscape #ctx .box li#greenbutton
+{
+	border-left:1px solid #dddddd;
+	padding-left:30px;
+}

@@ -195,8 +195,8 @@ a:visited
 /********************************************************************************************/
 /* States of things
 /********************************************************************************************/
-.invite 			{background-color:#88d082 !important;}
-.invite:before 		{border-top-color:#88d082 !important;}
+.invite 			{background-color:#B7DA72 !important;}
+.invite:before 		{border-top-color:#B7DA72 !important;}
 /*.selected,
 .ui-selected		{background-color:#FFFBCC !important;}
 */
@@ -553,7 +553,7 @@ progress::-webkit-progress-value {
 }
 .ui-sortable-hover
 {
-	border-color:#88d082 !important;
+	border-color:#B7DA72 !important;
 }
 /* Placeholder */
 .placeholder
@@ -613,11 +613,13 @@ progress::-webkit-progress-value {
 	text-align:center;
 	color:#fff;
 	background-color:#ccc;
+	/*
 	text-shadow: 0 1px 0 rgba(0,0,0,0.1);
 	-webkit-box-shadow: 0px 1px 1px rgba(0,0,0,0.2);
 	-moz-box-shadow: 0px 1px 1px rgba(0,0,0,0.2);
 	-o-box-shadow: 0px 1px 1px rgba(0,0,0,0.2);
 	box-shadow: 0px 1px 1px rgba(0,0,0,0.2);
+	*/
 	-moz-border-radius:100px;
 	-webkit-border-radius:100px;
 	border-radius:100px;
@@ -710,20 +712,24 @@ progress::-webkit-progress-value {
 #main
 {
 	position:relative;
-	clear:left;
-	padding:30px 0;
-	background:#F0F0F0;
+	overflow:hidden;
 	color:#2a323a;
+	width:auto;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
 }
 #content
 {
-	padding-right:20px;
+	padding:0 0px 30px 0px;
+	float:left;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
 }
 #context
 {
+	min-height:1000px;
 }
 /* Footer */
 footer
@@ -783,7 +789,6 @@ footer
 .in2col #content
 {
 	width:75%;
-	float:left;
 }
 /* Context */
 .in2col #contextwrapper
@@ -802,25 +807,22 @@ footer
 .in2col #context section
 {
 	border-bottom:1px solid #e2e4e6;
-	padding:20px 0 20px 20px;
-}
-.in2col #context section:first-child
-{
-	padding-top:0;
+	padding:30px;
 }
 
 /********************************************************************************************/
 /* The structure in landscape
 /********************************************************************************************/
 /* Content */
-.inlandscape #content section
+.inlandscape #content
 {
-
+	width:100%;
 }
 /* Context */
 .inlandscape #contextwrapper
 {
 	border-top:3px double #eee;
+	clear:both;
 }
 .inlandscape #context
 {
@@ -906,13 +908,13 @@ footer
 /********************************************************************************************/
 #content section
 {
-	margin:0 0 40px 0;
-	padding:20px;
+	margin:0;
+	padding:30px 60px;
 	border-radius:3px;
 	font-size:0.8em;
 	display:none;
 	position:relative;
-	background:#fff;
+
 }
 #content section>p,
 #content section>ul,
@@ -1182,6 +1184,39 @@ section>ol>li ul.comments
 }
 #toolcontent ul li.on
 {
+}
+
+/********************************************************************************************/
+/* Build the admin
+/********************************************************************************************/
+body[data-env="admin"]:before
+{
+	display:block;
+	height:10px;
+	content:'';
+	position:relative;
+	top:0px;
+	width:100%;
+	z-index:10;
+	-webkit-background-size: 40px 40px;
+	-moz-background-size: 40px 40px;
+	background-size: 40px 40px; /* Controls the size of the stripes */
+	background-color: #F26C4F;
+	background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, .5) 25%, transparent 25%,
+		transparent 50%, rgba(255, 255, 255, .5) 50%, rgba(255, 255, 255, .5) 75%,
+		transparent 75%, transparent);
+	background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, .5) 25%, transparent 25%,
+		transparent 50%, rgba(255, 255, 255, .5) 50%, rgba(255, 255, 255, .5) 75%,
+		transparent 75%, transparent);
+	background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, .5) 25%, transparent 25%,
+		transparent 50%, rgba(255, 255, 255, .5) 50%, rgba(255, 255, 255, .5) 75%,
+		transparent 75%, transparent);
+	background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, .5) 25%, transparent 25%,
+		transparent 50%, rgba(255, 255, 255, .5) 50%, rgba(255, 255, 255, .5) 75%,
+		transparent 75%, transparent);
+	background-image: linear-gradient(-45deg, rgba(255, 255, 255, .5) 25%, transparent 25%,
+		transparent 50%, rgba(255, 255, 255, .5) 50%, rgba(255, 255, 255, .5) 75%,
+		transparent 75%, transparent);	
 }
 
 /********************************************************************************************/
