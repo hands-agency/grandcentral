@@ -27,7 +27,13 @@ class itemVersion extends _items
 			$lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 			$param['lang'] = $lang;
 		}
+		
 		$this->get($param);
+		
+		if (!$this->exists())
+		{
+			$this->get(1);
+		}
 	}
 }
 ?>

@@ -258,7 +258,13 @@ class database
 		if (empty($attrs)) trigger_error('Sorry, can\'t find the structure of <strong>'.$table.'</strong>.', E_USER_ERROR);
 		$attrsKey = array_keys($attrs);
 		$rels = array();
+	//	version
+		if (isset($attrs['version']))
+		{
+			# code...
+		}
 		// print'<pre>';print_r($attrs);print'</pre>';
+	//	tri attributs / relations
 		foreach ((array) $params as $key => $value)
 		{
 			if (isset($attrs[$key]) && $attrs[$key]['type'] == 'rel')

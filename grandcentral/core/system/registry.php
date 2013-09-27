@@ -218,6 +218,8 @@ class registry
 		$page = item::create('page');
 		$page->guess();
 		self::set(self::current_index, 'page', $page);
+	//	constants
+		cc('const', array('version' => $version['id']->get()));
 	}
 }
 ?>
