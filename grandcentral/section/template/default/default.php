@@ -19,21 +19,12 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	DEBUG
+//	Bind
 /********************************************************************************************/
-	if (isset($_GET['DEBUG']))
-	{
-		unset($_GET['DEBUG']);
-		sentinel::debug('Debug ('.__FILE__.' line '.__LINE__.')', $_GET);
-	}
+	// $_APP->bind_script('js/tabs.js');
+	// 	$_APP->bind_css('css/tabs.css');
 
-/********************************************************************************************/
-//	Some vars
-/********************************************************************************************/
-	$app = $_GET['app'];
-	$template = $_GET['template'];
-	
-//	API to use
-	$api = ROOT.'/theme/'.$app.'/'.$template.'.json.php';
-	require $api;
+	sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, 'Section par défaut ici');
+	// print '<pre>';print_r($_GET);print'</pre>';
+	// print '<pre>';print_r($sections);print'</pre>';
 ?>

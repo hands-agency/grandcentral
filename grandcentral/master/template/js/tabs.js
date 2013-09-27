@@ -14,7 +14,6 @@ $(document).ready(function ()
 		link = $(this).find('a');
 	//	App, theme and template
 		app = 'section';
-		theme = link.data('theme');
 		template = link.data('template');
 	
 	//	Target section...
@@ -32,7 +31,6 @@ $(document).ready(function ()
 				.ajx(
 				{
 					app:app,
-					theme:theme,
 					template:template,
 					section:section
 				});
@@ -118,7 +116,6 @@ $(document).ready(function ()
 					$().ajx(
 					{
 						app: 'page',
-						theme: 'default',
 						template: 'status',
 						type: 'routine',
 						item:item,

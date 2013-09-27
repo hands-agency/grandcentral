@@ -19,26 +19,55 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	DEBUG
+//	Bind
 /********************************************************************************************/
-	if (isset($_GET['DEBUG']))
-	{
-		unset($_GET['DEBUG']);
-		sentinel::debug('Debug ('.__FILE__.' line '.__LINE__.')', $_GET);
-	}
-	
-/********************************************************************************************/
-//	Headers
-/********************************************************************************************/
-	header('Cache-Control: no-cache'); // recommended to prevent caching of event data.
+	$_APP->bind_css('css/doc.css');
 
 /********************************************************************************************/
-//	Some vars
+//	Get the app list
 /********************************************************************************************/
-	$app = $_GET['app'];
-	$template = $_GET['template'];
+	$param = array();
+//	Refine ?
+	if (isset($_POST['q'])) $param['title'] = '%'.$_POST['q'].'%';
+	$apps = cc('app', $param);
 	
-//	API to use
-	$api = ROOT.'/theme/'.$app.'/'.$template.'.eventstream.php';
-	require $api;
+/********************************************************************************************/
+//	Loop throught the apps and build the doc
+/********************************************************************************************/
+	$i = 0;
+	$html = array();
+	
+	foreach($apps as $app)
+	{
+	//	Get the ini file
+		$ini = $app->ini();
+		
+	//	General intel
+		$html[$i] = array(
+			'title' => $ini['about']['title'],
+			'descr' => $ini['about']['descr'],
+		);
+		
+	//	Files
+		$files = array('class', 'lib', 'routine');
+		foreach($files as $file)
+		{
+			if (isset($ini['php'][$file]))
+			{
+				foreach($ini['php'][$file] as $name)
+				{
+					$name = strtolower(basename($name, '.php'));
+					$html[$i][$file][$name] = array();
+				//	List the methods of classes
+					if ($file == 'class')
+					{	
+						$doc = new doc($name);
+						// sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $doc);
+						$html[$i][$file][$name] = $doc->data;
+					}
+				}
+			}
+		}
+		$i++;
+	}
 ?>

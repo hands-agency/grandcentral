@@ -19,21 +19,8 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	DEBUG
+//	Get the admin view of an app
 /********************************************************************************************/
-	if (isset($_GET['DEBUG']))
-	{
-		unset($_GET['DEBUG']);
-		sentinel::debug('Debug ('.__FILE__.' line '.__LINE__.')', $_GET);
-	}
-
-/********************************************************************************************/
-//	Some vars
-/********************************************************************************************/
-	$app = $_GET['app'];
-	$template = $_GET['template'];
-	
-//	API to use
-	$api = ROOT.'/theme/'.$app.'/'.$template.'.json.php';
-	require $api;
+	$app = cc('app', $_GET['id']);
+	$view = new html($app, 'admin', 'admin');
 ?>

@@ -46,7 +46,6 @@
 				//	Go to trash
 					$element.ajx({
 						app: 'page',
-						theme: 'default',
 						template: 'status',
 						type: 'routine',
 						item:item,

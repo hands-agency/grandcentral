@@ -98,7 +98,6 @@
 			notes.ajx(
 			{
 				app:'section',
-				theme:'notes',
 				template:'notes',
 				displayNotes:5,
 				item:item.data('item'),

@@ -18,34 +18,45 @@
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
  */
+
 /********************************************************************************************/
-//	DEBUG
+//	Get the data
 /********************************************************************************************/
-	if (isset($_POST['DEBUG']))
+	$p = array(
+		'order()' => 'created',
+	);
+//	Since
+	if (isset($_GET['since'])) 
 	{
-		unset($_POST['DEBUG']);
-		sentinel::debug('AJAX debug ('.__FILE__.' line '.__LINE__.')', $_POST);
+		$p['created'] = '> '.$_GET['since'];	
+	}
+	$logbooks = cc('logbook', $p, $_SESSION['pref']['handled_env']);
+
+	/**
+	 * Constructs the SSE data format and flushes that data to the client.
+	 *
+	 * @param string $id Timestamp/id of this connection.
+	 * @param string $msg Line of text that should be transmitted.
+	 */
+	function sendMsg($id, $msg)
+	{
+		echo "id: $id" . PHP_EOL;
+		echo "data: $msg" . PHP_EOL;
+		echo PHP_EOL;
+		ob_flush();
+		flush();
 	}
 
 /********************************************************************************************/
-//	Go
+//	Write logbooks
 /********************************************************************************************/
-	if (!empty($_POST))
+	foreach ($logbooks as $logbook)
 	{
-	//	The app and the section
-		$app = $_POST['app'];
-		$template = $_POST['template'];
-		
-	//	Reroute original $_GET passed as $_POST['_GET'] the $_GET
-		if (isset($_POST['_GET']))
-		{
-			$_GET = $_POST['_GET'];
-			unset($_POST['_GET']);
-		}
-		
-	//	Echo
-		echo new app($app, $template);
-		echo '<!-- ZONE:css -->';
-		echo '<!-- ZONE:script -->';
+	//	Author
+		$author = cc($logbook['subject'], $logbook['subjectid'])['title'];
+	//	Message
+		$msg = '{"id": "'.$logbook['id'].'", "event": "'.$logbook['key'].'", "author": "'.$author.'", "item": "'.$logbook['item'].'", "itemid": "'.$logbook['itemid'].'"}';
+	//	Send message
+		sendMsg($logbook['id'], $msg);
 	}
 ?>

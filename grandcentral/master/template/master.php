@@ -115,7 +115,7 @@
 /********************************************************************************************/
 	$_APP->bind_snippet('content', 'snippet/options');
 //	Store the green button actions in the section
-	$sections = cc(env, current)['section'];
+	$sections = cc('page', current)['section']->unfold();
 	if ($sections)
 	{
 		foreach ($sections as $section)

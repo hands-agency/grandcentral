@@ -19,21 +19,30 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	DEBUG
+//	Reorder the sitetree
 /********************************************************************************************/
-	if (isset($_GET['DEBUG']))
-	{
-		unset($_GET['DEBUG']);
-		sentinel::debug('Debug ('.__FILE__.' line '.__LINE__.')', $_GET);
-	}
+//	Our new list of pages
+	$sitetree = $_POST['sitetree'];
 
-/********************************************************************************************/
-//	Some vars
-/********************************************************************************************/
-	$app = $_GET['app'];
-	$template = $_GET['template'];
-	
-//	API to use
-	$api = ROOT.'/theme/'.$app.'/'.$template.'.json.php';
-	require $api;
+//	Loop through the pages
+	foreach ($sitetree as $sitetree)
+	{
+		if (isset($sitetree['children']))
+		{
+		//	fetch the complete page
+			list($item, $id) = explode('_', $sitetree['item']);
+			$page = cc($item, $id, $_SESSION['pref']['handled_env']);
+		//	Reset the children pages
+			$page->set_rel('child', null);
+		//	Add the new one by one
+			foreach ($sitetree['children'] as $child)
+			{
+				$page->add_rel('child', $child);
+			}
+		//	Save
+			$page->save();
+		}
+	}
+//	TODO !!!
+	exit;
 ?>

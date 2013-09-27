@@ -51,7 +51,6 @@ jQuery(document).ready(function($)
 				$drop.ajx(
 				{
 					app:'page',
-					theme:'default',
 					template:'inc/options.unlocked',
 					sectiontype:$('#content section:visible').attr('class'),
 				},{
@@ -114,7 +113,6 @@ jQuery(document).ready(function($)
 		
 		section = panel.data('status');
 		value = $(this).data('value');
-		theme = panel.data('theme');
 		template = panel.data('template');
 	//	Toggle
 		$(this).toggleClass('on off');
@@ -122,7 +120,6 @@ jQuery(document).ready(function($)
 		panel.ajx(
 		{
 			app:'section',
-			theme:theme,
 			template:template,
 			section:section,
 			filter:filter,

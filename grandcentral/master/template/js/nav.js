@@ -86,7 +86,6 @@
 				$('#globalsearch').searchasyoutype(
 				{
 					app:'page',
-					theme:'default',
 					template:'inc/cc-search',
 				}, '#globalsearch-container');
 			};

@@ -2,7 +2,7 @@
 	<? foreach($sections as $section) : ?>
 	<? $template = $section['template']; ?>
 		<li title="<?=$section['descr']?>" data-status="<?=$section['key']?>">
-			<a href="<?='#'.$section['key']?>" data-section="<?=$section['key']?>" data-theme="<?=$template['theme']?>" data-template="<?=$template['template']?>">
+			<a href="<?='#'.$section['key']?>" data-section="<?=$section['key']?>" data-template="<?=$template['template']?>">
 				<span class="title"><?=$section['title']?></span>
 				<span class="descr"><?=$section['descr']?></span>
 			</a>

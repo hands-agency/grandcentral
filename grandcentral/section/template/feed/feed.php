@@ -19,21 +19,19 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	DEBUG
-/********************************************************************************************/
-	if (isset($_GET['DEBUG']))
-	{
-		unset($_GET['DEBUG']);
-		sentinel::debug('Debug ('.__FILE__.' line '.__LINE__.')', $_GET);
-	}
-
-/********************************************************************************************/
 //	Some vars
-/********************************************************************************************/
-	$app = $_GET['app'];
-	$template = $_GET['template'];
-	
-//	API to use
-	$api = ROOT.'/theme/'.$app.'/'.$template.'.json.php';
-	require $api;
+/********************************************************************************************/	
+//	Env
+	$handled_env = $_SESSION['pref']['handled_env'];
+//	Item
+	$handled_item = $_GET['item'];
+	$handled_id = (isset($_GET['id'])) ? $_GET['id'] : null;
+//	Current section
+	$section = $_POST['section'];
+
+/********************************************************************************************/	
+//	Create the new form if not already existing
+/********************************************************************************************/	
+	require ADMIN_THEME_ROOT.'/section/edit/admin_item_form.php';
+	$form = new admin_item_form($handled_env, $handled_item, $section, $handled_id);
 ?>

@@ -1,0 +1,25 @@
+section.appini table
+{
+
+	margin-bottom:10px;
+}
+section.appini table td,
+section.appini table th
+{
+	padding:5px 10px;
+}
+section.appini table th
+{
+	width:140px;
+	text-align:right;
+	font-family: "proximanovaregular";
+}
+section.appini table td
+{
+	background:#F5F5F5;
+}
+section.appini table ul li
+{
+	list-style-type:square;
+	margin:0 0 0 15px;
+}

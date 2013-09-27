@@ -1,0 +1,208 @@
+/********************************************************************************************/
+/* Common 
+/********************************************************************************************/
+.sitetree
+{
+}
+.sitetree li
+{
+	position:relative;
+	padding:0;
+}
+.sitetree li ol
+{
+	position:relative;
+	margin:0px 0 0px 50px;
+}
+
+/* Second-level pages for readability */
+.sitetree>li>ol>li>*:first-child
+{
+	background:#ccc;
+	-moz-border-radius: 40px;
+	border-radius: 40px;
+	padding:10px;
+	width:400px;
+}
+.sitetree>li>ol>li>*:first-child .icon
+{
+	border:none;
+}
+
+/* Connexions */
+.sitetree ol:before
+{
+	content:'';
+	height:100%;
+	top:-5px;
+	position:absolute;
+	z-index:-1;
+	left:-27px;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	width:3px;
+	background:#eee;
+	border-bottom:26px solid #fff;
+}
+.sitetree li ol li *:first-child:before
+{
+	content:'';
+	border-top:4px solid #eee;
+	width:30px;
+	height:50px;
+	position:absolute;
+	z-index:-1;
+	top:50%;
+	left:-40px;
+}
+.sitetree li ol li *:first-child:after
+{
+	content:'';
+	width:25px;
+	height:25px;
+	margin-top:-10px;
+	left:-65px;
+	top:50%;
+	background:#eee;
+	position:absolute;
+}
+
+/* Icon (handle) & placeholder */
+.sitetree li * .icon
+{
+	margin:0 10px 0 0;
+}
+
+/* Title */
+.sitetree li * .title
+{
+	font-family: "proximanovaregular";
+}
+.sitetree li li li * .title
+{
+	font-size:1em;
+}
+.sitetree li * .title a:not(:hover)
+{
+	color:#666;
+}
+/* URL */
+.sitetree li * .url
+{
+	font-size:1em;
+	color:#ccc;
+	font-family: "proximanovalight";
+}
+
+/* Action */
+.sitetree li * .action
+{
+	display:none;
+}
+
+/* Kill draggable animations */
+.sitetree.ui-sortable li
+{
+	cursor:auto;
+    -webkit-transition:none !important;
+    -moz-transition:none !important;
+    transition:none !important;
+}
+.sitetree.ui-sortable .ui-sortable-helper
+{
+	box-shadow:none !important;
+	background:none !important;
+	border:none !important;
+    -webkit-transform:none !important;
+    -moz-transform:none !important;
+    transform:none !important;
+}
+.sitetree.ui-sortable .ui-sortable-helper:before,
+.sitetree.ui-sortable .ui-sortable-helper:after
+{
+	display:none;
+}
+.sitetree li ol li.ui-sortable-helper>*:before
+{
+	border:none;
+}
+
+/* new draggable animations */
+.sitetree.ui-sortable li .icon
+{
+	cursor:move;
+}
+.sitetree.ui-sortable li .icon:hover,
+.sitetree.ui-sortable-dragging .icon
+{
+	box-shadow: 3px 3px 1px 0 rgba(0, 0, 0, .1) !important;
+}
+
+/* Placeholder */
+.sitetree li.placeholder
+{
+	width:70px;
+	height:70px;
+	margin:0 0 10px 0;
+	border-radius:40px;
+}
+
+/********************************************************************************************/
+/* Pages
+/********************************************************************************************/
+.sitetree li>div
+{
+	position:relative;
+	margin:0px 0 10px 0;
+}
+
+/* Icon */
+.sitetree li .page .icon
+{
+	width:50px;
+	height:50px;
+	font-size:20px;
+	-moz-border-radius: 40px;
+	border-radius: 40px;
+	background:#fff;
+	color:#666;
+	font-family: "proximanovalight";
+	font-size:20px;
+	line-height:50px;
+	border:10px solid #ccc;
+}
+.sitetree li .page .title
+{
+	font-size:1.5em;
+	padding:5px 0 0 0;
+}
+
+/********************************************************************************************/
+/* Header
+/********************************************************************************************/
+.sitetree li .pageheader
+{
+
+}
+
+/********************************************************************************************/
+/* Links
+/********************************************************************************************/
+.sitetree li .pagelink
+{
+	
+}
+.sitetree li .pagelink .icon
+{
+	width:35px !important;
+	height:35px !important;
+	line-height:35px;
+	background:#ddd;
+}
+
+/* Second-level pages for readability */
+.sitetree>li>ol>li>.pagelink:first-child
+{
+	background:#eee;
+}

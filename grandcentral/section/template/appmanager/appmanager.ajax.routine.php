@@ -1,0 +1,93 @@
+<?php
+/**
+ * Description: This is the description of the document.
+ * You can add as many lines as you want.
+ * Remember you're not coding for yourself. The world needs your doc.
+ * Example usage:
+ * <pre>
+ * if (Example_Class::example()) {
+ *    echo "I am an example.";
+ * }
+ * </pre>
+ * 
+ * @package		The package
+ * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
+ * @author		Sylvain Frigui <sf@cafecentral.fr>
+ * @copyright	Copyright © 2004-2012, Café Central
+ * @license		http://www.cafecentral.fr/fr/licences GNU Public License
+ * @access		public
+ * @link		http://www.cafecentral.fr/fr/wiki
+ */
+
+	// print '<pre>';print_r($_POST);print'</pre>';
+	
+	switch ($_POST['action'])
+	{
+/********************************************************************************************/
+//	Installer
+/********************************************************************************************/
+		case 'install':
+		//	création d'une nouvelle app
+			$app = cc('app');
+			$app['key'] = $_POST['key'];
+			$about = $app->ini('about');
+			$app['title'] = $about['title'];
+			$app['descr'] = $about['descr'];
+		//	création des dépendances
+			if ($dep = $app->ini('dependencies'))
+			{
+			//	ajout des dépendances parentes
+				if (isset($dep['parent']))
+				{
+					$app['dependency'] = $dep['parent'];
+				}
+			//	création des dépendances enfants
+				if (isset($dep['child']))
+				{
+					foreach ($dep['child'] as $appkey)
+					{
+						$child = cc('app', $appkey);
+						if ($child->exists())
+						{
+							$tmp = $child['dependency'];
+							$tmp[] = $app['key'];
+							$child['dependency'] = $tmp;
+							$child->save();
+						}
+					}
+				}
+			}
+		//	sauvegarde
+			$app->save();
+			break;
+/********************************************************************************************/
+//	Supprimer
+/********************************************************************************************/
+		case 'remove':
+			$app = cc('app', $_POST['key']);
+			// print '<pre>';print_r($app);print'</pre>';
+		//	suppression des dépendances enfants
+			if ($dep = $app->ini('dependencies'))
+			{
+				if (isset($dep['child']))
+				{
+					foreach ((array) $dep['child'] as $appkey)
+					{
+						$child = cc('app', $appkey);
+						if ($child->exists())
+						{
+							$childDep = (array) $child['dependency'];
+							$index = array_search($app['key'], $childDep);
+							unset($childDep[$index]);
+							$child['dependency'] = $childDep;
+							$child->save();
+						}
+					}
+				}
+			}
+		//	suppression
+			$app->delete();
+			break;
+	}
+	// print '<pre>';print_r($app);print'</pre>';
+?>

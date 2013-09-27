@@ -1,0 +1,97 @@
+/********************************************************************************************/
+/* Common
+/********************************************************************************************/
+#content section.doc .descr
+{
+	color:#888;
+	margin-bottom:10px;
+}
+/* Code */
+#content section.doc code,
+#content section.doc pre
+{
+	background:#F2F2F2;
+	font-size:0.8em;
+	margin:10px 0;
+}
+#content section.doc pre
+{
+	border:1px solid #F2F2F2;
+	padding:10px 40px;
+}
+#content section.doc p,
+#content section.doc ul
+{
+	margin:0 0 10px 0;
+}
+#content section.doc ul
+{
+	padding:0 0 0 20px;
+	list-style-type:square;
+}
+
+/* Tables */
+#content section.doc table
+{
+	background:#eee;
+	width:100%;
+	margin:0 0 10px 0;
+}
+#content section.doc table tr th
+{
+	font-weight:bold;
+	text-align:left;
+}
+#content section.doc table tr th,
+#content section.doc table tr td
+{
+	padding:10px;
+	border-bottom:1px solid #fff;
+}
+#content section.doc table tr ul,
+#content section.doc table tr ol
+{
+	padding-left:10px;
+	margin:0;
+}
+#content section.doc table tr ul
+{
+	list-style-type:square;
+}
+#content section.doc table tr ol
+{
+	list-style-type:decimal;
+}
+
+/********************************************************************************************/
+/* The PHP doc
+/********************************************************************************************/
+#content section.doc#section_php ul
+{
+	border-bottom:1px solid #ccc;
+	padding:0 0 20px 0;
+	margin:0 0 20px 0;
+}
+
+/********************************************************************************************/
+/* Detail
+/********************************************************************************************/
+/* Toc */
+#content section.doc#section_doc .toc
+{
+	padding:20px;
+}
+/* heading */
+#content section.doc#section_doc h2
+{
+	color:#999;
+}
+#content section.doc#section_doc h2 em
+{
+	color:#000;
+}
+#content section.doc#section_doc h3
+{
+	margin-top:20px;
+}
+
