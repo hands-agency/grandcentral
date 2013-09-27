@@ -44,25 +44,5 @@ class itemPage extends _items
 		header('HTTP/1.0 '.$this['http_status']);
 		header('Content-Type: '.$content_type.'; charset=utf-8');
 	}
-
-/**
- * Returns the front-end URL of an item
- *
- * @param	array	An associative array of arguments added to the URL
- * @return	string	The URL of the object
- * @access	public
- */
-	public function link($arg = null)
-	{
-	//	Return
-		if (isset($this['url']))
-		{
-		//	Args?
-			if (isset($arg)) $arg = '?'.http_build_query($arg);
-		//	Return
-			return constant(mb_strtoupper($this->get_env()).'_URL').$this['url'].$arg;
-		}
-		else return false;
-	}
 }
 ?>
