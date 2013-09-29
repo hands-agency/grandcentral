@@ -410,7 +410,14 @@ class database
 			//	affectation des valeurs
 				foreach ($data as $key => $value)
 				{
-					$tmp[$key]->database_set($value);
+					if (isset($tmp[$key]))
+					{
+						$tmp[$key]->database_set($value);
+					}
+					else
+					{
+						trigger_error('Attributes <strong>'.$key.'</strong> is missing in <strong>'.$table.'</strong> structure. What did you expect ?', E_USER_ERROR);
+					}
 				}
 				$id = $tmp['id']->get();
 				$datas[$id] = $tmp;

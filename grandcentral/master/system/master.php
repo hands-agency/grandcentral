@@ -120,23 +120,5 @@ class master
 	{
 		self::$zones[$zone]['data'] .= $data;
 	}
-/**
- * 
- *
- * @return	string	la clé de l'app
- * @access	public
- */
-	public static function bind_section()
-	{
-		$page = cc('page', current);
-		$sections = $page['section']->unfold();
-		
-		foreach ($sections as $section)
-		{
-			$params = (isset($section['template']['param'])) ? $section['template']['param'] : null;
-			$app = new app($section['template']['app'], $section['key'].'/'.$section['template']['template'], $params);
-			master::bind($section['zone']->get(), $app->__tostring());
-		}
-	}
 }
 ?>

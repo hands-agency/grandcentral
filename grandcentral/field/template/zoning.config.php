@@ -36,7 +36,7 @@
 	
 //	Fetch the section
 	$p = array(
-		'value' => $section['template'],
+		'value' => $section['app'],
 	);
 	$appField = new field_app('temp', $p);
 ?>

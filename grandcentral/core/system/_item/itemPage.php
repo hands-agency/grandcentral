@@ -23,6 +23,10 @@ class itemPage extends _items
 		{
 			$this->get('error_404');
 		}
+		if (!$this->exists())
+		{
+			trigger_error('No page found. Give me a 404.', E_USER_ERROR);
+		}
 	}
 /**
  * Envoie les entêtes HTTP de la page
@@ -43,6 +47,19 @@ class itemPage extends _items
 	//	Print the header
 		header('HTTP/1.0 '.$this['http_status']);
 		header('Content-Type: '.$content_type.'; charset=utf-8');
+	}
+	
+/**
+ * Affiche les section de la page dans leur zone respectives
+ *
+ * @access	public
+ */
+	public function bind_section()
+	{
+		foreach ($this['section']->unfold() as $section)
+		{
+			echo $section;
+		}
 	}
 }
 ?>

@@ -26,8 +26,9 @@
 //	Env
 	$handled_env = $_SESSION['pref']['handled_env'];
 //	Item
-	$handled_item = $_GET['item'];
+	$handled_item = (isset($_GET['item'])) ? $_GET['item'] : null;
 	$handled_id = (isset($_GET['id'])) ? $_GET['id'] : null;
 
 	// $form = new adminItemForm($handled_env, $handled_item, $handled_id);
+	$form = '<p>in da place</p>';
 ?>

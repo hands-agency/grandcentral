@@ -28,7 +28,7 @@ class app
  */
 	public function __construct($key, $template = 'default', $params = null, $env = env)
 	{
-		$this->key = $key;
+		$this->key = (!empty($key)) ? $key : trigger_error('Your <strong>$key param</strong> is empty, new app() will not work', E_USER_WARNING);
 		$this->template = $template;
 		$this->env = $env;
 		

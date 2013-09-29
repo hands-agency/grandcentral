@@ -20,6 +20,11 @@
  */
 
 /********************************************************************************************/
+//	Vars
+/********************************************************************************************/
+	$_PAGE = $_APP->param['page'];
+
+/********************************************************************************************/
 //	Test mail
 /********************************************************************************************/
 //	$mail = cc('mail', 1, 'admin');
@@ -115,15 +120,15 @@
 /********************************************************************************************/
 	$_APP->bind_snippet('content', 'snippet/options');
 //	Store the green button actions in the section
-	$sections = cc('page', current)['section']->unfold();
-	if ($sections)
-	{
-		foreach ($sections as $section)
-		{
-			$greenbuttonaction = $section['greenbuttonaction'];
-			$section['greenbuttonaction'] = json_encode($greenbuttonaction);
-		}
-	}
+	// $sections = cc(env, current)['section'];
+	// if ($sections)
+	// {
+	// 	foreach ($sections as $section)
+	// 	{
+	// 		$greenbuttonaction = $section['greenbuttonaction'];
+	// 		$section['greenbuttonaction'] = json_encode($greenbuttonaction);
+	// 	}
+	// }
 	
 /********************************************************************************************/
 //	Context
@@ -137,5 +142,5 @@
 //	Footer
 /********************************************************************************************/
 	$_APP->bind_snippet('footer', 'snippet/footer');
-
+	
 ?>
