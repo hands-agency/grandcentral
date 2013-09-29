@@ -1,0 +1,49 @@
+/********************************************************************************************/
+/* Toolbar
+/********************************************************************************************/
+.wysiwyg .toolbar
+{
+	margin:7px 7px 0 7px;
+}
+.wysiwyg .toolbar>li:not(.divider)
+{
+	display:inline-block;
+	position:relative;
+}
+.wysiwyg .toolbar>li:not(.divider) button
+{
+	min-width:20px;
+}
+.wysiwyg .toolbar>li.wysihtml5-command-active button
+{
+	background: #e3e3e3;
+}
+/* Divider */
+.wysiwyg .toolbar li.divider
+{
+	width:5px;
+	display:inline-block;
+}
+/* drop */
+.wysiwyg .toolbar li ul
+{
+	position:absolute;
+	top:25px;
+	right:0px;
+	padding:5px;
+	background:#eee;
+	display:none;
+	border-radius: 3px;
+}
+
+/********************************************************************************************/
+/* Editor iframe
+/********************************************************************************************/
+.wysiwyg iframe
+{
+
+	width:670px !important;
+	min-height:200px !important;
+	border:none !important;
+	padding:7px !important;
+}

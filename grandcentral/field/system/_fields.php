@@ -16,15 +16,13 @@ abstract class _fields
 	protected $descr;
 	protected $name;
 	protected $value;
-	protected $cssclass;
-	protected $customdata;
-	protected $containerclass = 'field';
 	protected $required = false;
 	protected $readonly = false;
 	protected $disabled = false;
 	protected $min;
 	protected $max;
 	protected $attrs;
+	protected $template;
 	protected $errors;
 	protected $errors_message;
 	
@@ -175,64 +173,8 @@ abstract class _fields
 		if (!empty($text))
 		{
 			$this->value = $text;
-			$this->attrs['value'] = $this->get_cleaned_value($text);
+			$this->attrs['value'] = $this->get_cleaned_value();
 		}
-		return $this;
-	}
-/**
- * Affecte une ou plusieurs classes css au champ
- * 
- * @param	string	la ou les classes css
- * @access	public
- */
-	public function set_cssclass($text)
-	{
-		if (!empty($text)) $this->attrs['class'] = $text;
-		return $this;
-	}
-/**
- * Affecte un placeholder au champ
- * 
- * @param	string	le placeholder
- * @access	public
- */
-	public function set_placeholder($text)
-	{
-		if (!empty($text)) $this->attrs['placeholder'] = $text;
-		return $this;
-	}
-/**
- * Affecte une série de data personnalisée (format HTML5) au champ
- * 
- * ex :
- * $field = new field_text('title');
- * $field->customdata(array('key' => 'jquery'))
- * 
- * rendu html = <input type="text" name="title" data-key="jquery" />
- * 
- * @param	array	le tableau de données personnalisées à ajouter
- * @access	public
- */
-	public function set_customdata($array)
-	{
-		if (is_array($array))
-		{
-			foreach ($array as $key => $value)
-			{
-				$this->attrs['data-'.$key] = $value;
-			}
-		}
-		return $this;
-	}
-/**
- * Affecte une classe au container du champ (classe css "field" par défaut)
- * 
- * @param	string	la classe du container du champ
- * @access	public
- */
-	public function set_containerclass($class)
-	{
-		$this->containerclass = $class;
 		return $this;
 	}
 /**
@@ -307,16 +249,6 @@ abstract class _fields
 		return $this->name;
 	}
 /**
- * Obtenir les classes css du champ
- * 
- * @return	string	les classes css du champ
- * @access	public
- */
-	public function get_cssclass()
-	{
-		return $this->attrs['class'];
-	}
-/**
  * Obtenir la valeur du champ
  * 
  * @return	string	la valeur du champ
@@ -342,9 +274,9 @@ abstract class _fields
  * @return	string	le nom propre du champ
  * @access	public
  */
-	public function get_cleaned_value($value)
+	public function get_cleaned_value()
 	{
-		return $value;
+		return $this->value;
 	}
 /**
  * Obtenir la liste des erreurs soulevées lors de la validation du champ
@@ -384,10 +316,9 @@ abstract class _fields
  */
 	function get_type()
 	{
-		$class = get_called_class();
-		return substr($class, 6);
+		$class = mb_strtolower(get_called_class());
+		return mb_substr($class, 5);
 	}
-	
 /**
  * Obtenir la clef du champ
  * 
@@ -398,57 +329,20 @@ abstract class _fields
 	{
 		if (isset($this->attrs['data-key'])) return $this->attrs['data-key'] ; else return null;
 	}
-	
 /**
  * Obtenir la liste de tous les attributs du champ
  * 
  * @return	array	le tableau des attributs du champ
  * @access	public
  */
-	public function get_attr($attr = null)
+	public function get_attrs()
 	{
-		if (!empty($attr))
+		$attrs = '';
+		foreach ($this->attrs as $key => $value)
 		{
-			if (isset($this->$attr)) return $this->$attr;
-			else if (isset($this->attr[$attr])) return $this->attr[$attr];
+			$attrs .= ' '.$key.'="'.$value.'"';
 		}
-		else
-		{
-			$reflection = new ReflectionClass($this);
-			$tmp = $reflection->getProperties();
-			foreach ($tmp as $attr)
-			{
-				$attrs[$attr->getName()]= $this->{$attr->getName()};
-			}
-			return $attrs;
-		}
-	}
-/**
- * Obtenir la définition des propriétés du champ
- * 
- * @return	array 	la liste des propriétés et leurs définitions
- * @access	public
- * @static
- */
-	public static function get_defined_properties()
-	{
-		
-		$properties['key'] = array(
-			'label' => 'key',
-			'type' => 'text',
-			'required' => true
-		);
-		$properties['label'] = 'text';
-		$properties['descr'] = 'textarea';
-		$properties['required'] = 'bool';
-		$properties['disabled'] = 'bool';
-		$properties['readonly'] = 'bool';
-		$properties['placeholder'] = 'text';
-		$properties['min'] = 'number';
-		$properties['max'] = 'number';
-		$properties['customdata'] = 'array';
-		
-		return $properties;
+		return $attrs;
 	}
 /**
  * Know whether is field is required or not
@@ -470,20 +364,23 @@ abstract class _fields
  */
 	public function __tostring()
 	{
-	//	label
-		$label = '';
-		if (!empty($this->label))
+		if (empty($this->template))
 		{
-			$label = '<label for="'.$this->attrs['name'].'">'.$this->label.'</label>';
+			$this->template = mb_substr(mb_strtolower(get_called_class()), 5);
 		}
-	//	template
-		$field = substr(get_called_class(), 6);
-		$html = new html($this, 'default', $field);
-	//	champ caché pour atteindre l'édition
-		// $hidden = '<input type="hidden" name="'.$this->attrs['name'].'" id="'.$this->attrs['name'].'" disabled="disabled" />';
-	//	affichage
-		// return $hidden.$label.'<span class="'.$this->containerclass.'">'.$html->__tostring().'</span>';
-		return $label.'<span class="'.$this->containerclass.'">'.$html->__tostring().'</span>';
+		$app = new app('field', $this->template, array('field' => $this));
+		return $app->__tostring();
+	}
+/**
+ * Obtenir la définition des propriétés du champ
+ * 
+ * @return	array 	la liste des propriétés et leurs définitions
+ * @access	public
+ * @static
+ */
+	public static function get_defined_properties()
+	{
+		
 	}
 }
 ?>

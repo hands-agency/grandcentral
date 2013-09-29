@@ -29,8 +29,8 @@
 //	General binding of scripts & css files
 /********************************************************************************************/
 //	jQuery
-//	$_APP->bind_script('https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js');
-//	$_APP->bind_script('https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js');
+	$_APP->bind_script('https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js');
+	$_APP->bind_script('https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js');
 	$_APP->bind_script('js/jquery-1.8.2.min.js');
 	$_APP->bind_script('js/jquery-ui-1.9.1.custom.min.js');
 	
@@ -137,4 +137,10 @@
 //	Footer
 /********************************************************************************************/
 	$_APP->bind_snippet('footer', 'snippet/footer');
+	
+	$value = array(
+		'ici' => 'là',
+		'oui' => 'oui'
+	);
+	$f = new fieldRadio('test', array('label' => 'testid', 'id' => 'ok', 'values' => $value, 'valuestype' => 'array', 'value' => 'oui'));
 ?>

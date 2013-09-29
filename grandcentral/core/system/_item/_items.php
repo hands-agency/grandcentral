@@ -13,7 +13,7 @@ abstract class _items implements ArrayAccess, Iterator
 {
 	protected $env;
 	protected $table;
-	public $data;
+	protected $data;
 	
 /**
  * Class constructor (Don't forget it is an abstract class)

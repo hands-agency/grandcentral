@@ -1,0 +1,1 @@
+<input<?=$_FIELD->get_attrs();?>>

@@ -21,6 +21,7 @@
 			</div>
 
 			<div id="content" class="locked instack">
+				<?= $f; ?>
 				<!-- ZONE:content|left -->
 				<? if ($sections) : foreach($sections as $section) : ?>
 				<? $template = $section['template'] ?>

@@ -68,10 +68,10 @@ class form
  */
 	public function set_field($field, $name, $param = null)
 	{
-		$field = 'field_'.$field;
+		$field = 'field'.ucfirst($field);
 		$object = new $field($name, $param);
 		
-		if ($field == 'field_hidden')
+		if ($field == 'fieldHidden')
 		{
 			$this->hidden_fields[] = $name;
 		}
@@ -297,7 +297,7 @@ class form
 		// print '<pre>';print_r($classes);print'</pre>';
 		foreach ($classes as $class)
 		{
-			if (mb_strpos($class, 'field_') !== false)
+			if (mb_strpos($class, 'field') !== false)
 			{
 				$fields[] = substr($class, 6);
 				if (!empty($datatype))
