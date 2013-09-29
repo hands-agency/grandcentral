@@ -36,7 +36,7 @@
 	//	<li>
 		$li .= '
 		<li>
-			<input type="radio" value="'.htmlspecialchars($option['id']).'" name="'.$_FIELD->get_name().'" id="ID'.$_FIELD->get_name().$i.'"'.$checked.'/>
+			<input type="checkbox" value="'.htmlspecialchars($option['id']).'" name="'.$_FIELD->get_name().'" id="ID'.$_FIELD->get_name().$i.'"'.$checked.'/>
 			<label for="ID'.$_FIELD->get_name().$i.'">
 				<span class="title">'.htmlspecialchars($option['title']).'</span>
 				'.$descr.'

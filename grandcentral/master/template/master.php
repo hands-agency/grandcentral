@@ -137,10 +137,5 @@
 //	Footer
 /********************************************************************************************/
 	$_APP->bind_snippet('footer', 'snippet/footer');
-	
-	$value = array(
-		'ici' => 'là',
-		'oui' => 'oui'
-	);
-	$f = new fieldRadio('test', array('label' => 'testid', 'id' => 'ok', 'values' => $value, 'valuestype' => 'array', 'value' => 'oui'));
+
 ?>
