@@ -32,16 +32,6 @@
 
 //	Build nav
 	$nav = array(
-	//	User
-		'me' => array(
-			'title' => null,
-			'descr' => null,
-			'icon' => true,
-			'flag' => false,
-			'page' => 'list',
-		//	Subnav
-			'subnav' => array(),
-		),
 	//	Environment
 		'env' => array(
 			'title' => false,
@@ -59,9 +49,19 @@
 				'support' =>  array(
 					'display' => 'hive',
 					'link' => 'list',
-					'bunch' => cc('page', 'env', 'admin')['child'],
+					'bunch' => cc('page', 'env', 'admin')['child']->unfold(),
 				),
 			),
+		),
+	//	User
+		'me' => array(
+			'title' => null,
+			'descr' => null,
+			'icon' => true,
+			'flag' => false,
+			'page' => 'list',
+		//	Subnav
+			'subnav' => array(),
 		),
 	//	Search
 		'search' => array(
@@ -133,11 +133,11 @@
 //	Get the list of level1 pages
 /********************************************************************************************/
 	foreach ($nav as $key => $value) $keys[] = $key;
-	$p = array(
+	$level1 = cc('page', array
+	(
 		'key' => $keys,
 		'order()' => 'inherit(key)',
-	);
-	$level1 = cc('page', $p);
+	));
 	
 /********************************************************************************************/
 //	Grab the Gravatar

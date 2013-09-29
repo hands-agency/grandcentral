@@ -7,7 +7,7 @@
 	<? foreach($bunch as $item) : ?>
 	<li data-item="<?=$item->get_nickname()?>">
 		
-		<div class="media"><a href="<?=$item->edit()?>"></a></div>
+		<!--div class="media"><a href="<?=$item->edit()?>"></a></div-->
 		
 		<div class="padding">
 			
@@ -20,8 +20,7 @@
 		
 		<ul class="action">
 			<li><a href="" class="notes">Discussion</a></li>
-			<? $date = new date($item['created']); ?>
-			<li class="icon-time"><?=$date->time_since() ?></li>
+			<li class="icon-time"><?=$item['created']->time_since() ?></li>
 		</ul>
 		
 		<div class="notes"></div>

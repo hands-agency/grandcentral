@@ -53,5 +53,48 @@ class attrDate extends _attrs
 	//	retour
 		return $definition;
 	}
+/**
+ * Definition mysql
+ * ex : `datetimeinsert` datetime NOT NULL
+ *
+ * @param	array 	le tableau de paramètres
+ * @return	string	la définition mysql
+ * @access	public
+ * @static
+ */
+	public function time_since()
+	{
+		$timeFirst  = strtotime($this->data);
+		$timeSecond = strtotime(date('Y-m-d H:i:s'));
+		$since = $timeSecond - $timeFirst;
+	
+	//	Just now (< 30 second ago)
+		if ($since < 30) $return = DATE_NOW;
+		
+	//	Otherwise
+		else
+		{
+			$chunks = array(
+				array(60 * 60 * 24 * 365 , DATE_YEAR),
+				array(60 * 60 * 24 * 30 , DATE_MONTH),
+				array(60 * 60 * 24 * 7, DATE_WEEK),
+				array(60 * 60 * 24 , DATE_DAY),
+				array(60 * 60 , DATE_HOUR),
+				array(60 , DATE_MINUTE),
+				array(1 , DATE_SECOND)
+			);
+
+			for ($i = 0, $j = count($chunks); $i < $j; $i++)
+			{
+				$seconds = $chunks[$i][0];
+				$name = $chunks[$i][1];
+				if (($count = floor($since / $seconds)) != 0) break;
+			}
+
+		    $return = ($count == 1) ? '1 '.$name : "$count {$name}s";
+		}
+	//	Return
+	    return $return;
+	}
 }
 ?>

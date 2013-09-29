@@ -31,7 +31,7 @@ $(document).ready(function ()
 				.ajx(
 				{
 					app:app,
-					template:template,
+					key:template,
 					section:section
 				});
 		//	Updated

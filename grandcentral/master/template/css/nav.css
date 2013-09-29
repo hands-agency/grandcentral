@@ -6,12 +6,12 @@ nav#nav-cc
 	color:#222;
 	top:0;
 	left:0;
-	background:#333;
+	background:#222;
 	width:170px;
 	height:1000px;
 	display:none;
 	float:left;
-	-webkit-box-shadow:inset  -5px 0px 3px rgba(0, 0, 0, 0.2);
+/*	-webkit-box-shadow:inset  -5px 0px 3px rgba(0, 0, 0, 0.2); */
 /*	-moz-box-shadow: 0 4px 16px rgba(0,0,0,0.2); */
 /*	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); */
 }
@@ -46,17 +46,17 @@ nav#nav-cc>ul>li.on
 }
 nav#nav-cc>ul>li>.icon
 {
+	display:block;
+	width:85px;
+	height:85px;
+	background:#444;
 }
 nav#nav-cc>ul>li>.icon a
 {
-	width:30px;
-	height:30px;
-	background:#444;
 	display:block;
-	float:left;
-	-moz-border-radius:12px;
-	-webkit-border-radius:12px;
-	border-radius:25px;
+	-moz-border-radius:85px;
+	-webkit-border-radius:85px;
+	border-radius:85px;
 	margin:0 10px 0 0;
 }
 nav#nav-cc>ul>li>.descr
@@ -105,26 +105,10 @@ nav#nav-cc>ul .flag
 }
 
 /* Specificities */
-nav#nav-cc>ul li.me .icon a,
-nav#nav-cc>ul li.env .icon a
-{
-	width:80px;
-	height:80px;
-	margin:0;
-}
-nav#nav-cc>ul li.me .icon a
-{
-	float:left;
-}
 nav#nav-cc>ul li.env
 {
-
-}
-nav#nav-cc>ul li.env .icon a
-{
-	float:right;
-	position:relative;
-	top:-30px;
+	height:170p;
+	border-bottom:1px solid #333;
 }
 
 /********************************************************************************************/

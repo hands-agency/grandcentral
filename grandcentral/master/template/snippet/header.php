@@ -30,7 +30,7 @@
 	$item = null;
 	$title = null;
 	$icon = null;
-	$h1_nav = '<a class="nav"><i class="icon-reorder"></i></a>';
+	$h1_nav = '<a class="nav">☰</a>';
 
 //	Edit: we got an item
 	if (isset($_GET['item']) && (isset($_GET['id'])))

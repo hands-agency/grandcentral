@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?= cc('version', current)->get_attr('key'); ?>">
+<html lang="<?= cc('version', current)->get_attr('key') ?>">
 <head>
 	<!-- ZONE:meta-->
 	<!-- ZONE:css -->
@@ -24,8 +24,8 @@
 				<!-- ZONE:content|left -->
 				<? if ($sections) : foreach($sections as $section) : ?>
 				<? $template = $section['template'] ?>
-				<section id="section_<?= $section['key']; ?>" class="TODO" data-template="<?= $template['template']; ?>" data-greenbuttonaction='<?= $section['greenbuttonaction']; ?>'></section>
-				<? endforeach; endif; ?>
+				<section id="section_<?= $section['key'] ?>" data-template="<?= $template['key'] ?>" data-greenbuttonaction='<?= $section['greenbuttonaction'] ?>'></section>
+				<? endforeach; endif ?>
 			</div>
 		
 			<div id="contextwrapper">

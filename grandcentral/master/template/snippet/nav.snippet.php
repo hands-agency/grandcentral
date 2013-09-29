@@ -1,8 +1,8 @@
 <nav id="nav-cc">
 	<ul>
 		<? foreach ($level1 as $page): ?>
-		
-		<? $config = $nav[$page['key']] ?>
+		<? $truc = (string)$page['key'];?>
+		<? $config = $nav[$truc] ?>
 		<? $level2 = $config['subnav'] ?>
 		<? $title = (is_string($config['title'])) ? $config['title'] : $page['title'] ?>
 		<? $descr = (is_string($config['descr'])) ? $config['descr'] : $page['descr'] ?>
@@ -15,6 +15,7 @@
 	
 				<? foreach ($level2 as $key => $level2): ?>
 				<? $bunch = $level2['bunch'] ?>
+
 				<? $link = $level2['link'] ?>
 				<? $display = $level2['display'] ?>
 				<? if ($bunch->count()): ?>
@@ -28,7 +29,7 @@
 						<a href="<?=$url ?>">
 							<span class="icon small"><? if (isset($subpage['icon'])): ?><i class="icon-<?=$subpage['icon']?>"></i><? endif ?></span>
 							<span class="title"><?=$subpage['title']?></span>
-							<span class="descr"><?=text::cut($subpage['descr'], 200)?></span>
+							<span class="descr"><?=$subpage['descr']->cut(200)?></span>
 						</a>
 					</li>
 					<? endforeach ?>
