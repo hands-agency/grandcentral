@@ -1,0 +1,120 @@
+<?php
+/**
+ * Description: This is the description of the document.
+ * You can add as many lines as you want.
+ * Remember you're not coding for yourself. The world needs your doc.
+ * Example usage:
+ * <pre>
+ * if (Example_Class::example()) {
+ *    echo "I am an example.";
+ * }
+ * </pre>
+ * 
+ * @package		The package
+ * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
+ * @author		Sylvain Frigui <sf@cafecentral.fr>
+ * @copyright	Copyright © 2004-2012, Café Central
+ * @license		http://www.cafecentral.fr/fr/licences GNU Public License
+ * @access		public
+ * @link		http://www.cafecentral.fr/fr/wiki
+ */
+/********************************************************************************************/
+//	Bind
+/********************************************************************************************/
+	$_APP->bind_css('css/addable.css');
+	$_APP->bind_css('css/array.css');
+	$_APP->bind_script('js/addable.js');
+	$_APP->bind_script('js/array.js');
+	$_APP->bind_code('script', '<script type="text/javascript" charset="utf-8">$(\'li[data-type="array"]\').addable();</script>');
+	
+/********************************************************************************************/
+//	Some vars
+/********************************************************************************************/
+//	Hide or show the nodata
+	$hideNodata = '';
+//	The data from the DB
+	$data = '';
+//	The add buttons
+	$addbuttons = '';
+//	The html templates for jQuery
+	$template = '';
+
+/********************************************************************************************/
+//	Set defaults
+/********************************************************************************************/
+//	List of available rel
+	$available = array('array');
+	
+//	Default field attributes for all fields
+	$params[] = array(
+		'type' => 'text',
+		'placeholder' => 'Key',
+		'max' => 32,
+		'customdata' => array('associative' => 'array'),
+	);
+	$params[] = array(
+		'type' => 'text',
+		'placeholder' => 'Value',
+	);
+		
+/********************************************************************************************/
+//	The list of add buttons
+/********************************************************************************************/
+	foreach ($available as $field) $addbuttons .= '<li><button type="button" data-type="'.$field.'">'.$field.'</button></li>';
+
+/********************************************************************************************/
+//	Print the data from the Database
+/********************************************************************************************/
+	$_FIELD = $_PARAM['field'];
+	$values = $_FIELD->get_value();
+	foreach ((array) $values as $key => $value)
+	{
+		$li = '';
+		foreach ($params as $param)
+		{
+		//	Field
+			$class = 'field'.ucfirst($param['type']);
+		//	Key and value fields are differents
+			if (isset($param['customdata']['associative']))
+			{
+				$field = new $class(null, $param);
+				$field->set_value($key);
+			}
+			else
+			{
+				$field = new $class($_FIELD->get_name().'['.$key.']', $param);
+				$field->set_value($value);
+			}
+		//	Label
+			$label = $field->get_label();
+			$field->set_label('');
+		//	Li
+			$li .= '<li data-type="'.$field->get_type().'"><div class="wrapper">'.$field.'</div></li>';
+		}
+		$data .= '<li><ol>'.$li.'</ol><button type="button" class="delete"></button></li>';
+	}
+//	No data
+	if ($values) $hideNodata = 'style="display:none;"';
+
+/********************************************************************************************/
+//	Now we can build the templates used when creating new fields
+/********************************************************************************************/
+//	It's a template, these fields MUST be disabled (appending will enable them)
+ 	for ($i=0; $i < count($params); $i++) $params[$i]['disabled'] = true;
+	$li = '';
+	foreach ($params as $param)
+	{
+	//	Field
+		$class = 'field'.ucfirst($param['type']);	
+	//	Key and value fields are differents
+		if (isset($param['customdata']['associative'])) $field = new $class(null, $param);
+		else $field = new $class($_FIELD->get_name().'[]', $param);
+	//	Label
+		$field->set_label('');
+		$li .= '<li data-type="'.$field->get_type().'"><div class="wrapper">'.$field.'</div></li>';
+	}
+	
+//	We store them in jscript vars, so that the addable.js plugin can retrieve them
+	$html = '<li style="display:none;"><ol>'.$li.'</ol><button type="button" class="delete"></li>';
+	$template['array'] = $html;
+?>

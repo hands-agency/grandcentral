@@ -72,7 +72,7 @@ class adminItemForm
 		}
 		
 		$this->form['field'] = $fields;
-		
+		print'<pre>';print_r($fields);print'</pre>';
 		$this->form['field']['table'] = array(
 			'type' => 'hidden',
 			'key' => 'table',
@@ -100,28 +100,49 @@ class adminItemForm
  */
 	private function _attr_to_field($attr)
 	{
-		print'<pre>';print_r($attr);print'</pre>';
-	// //	key, label
-	// 	$field['key'] = $attr['key'];
-	// 	$field['label'] = (isset($attr['title']) && !empty($attr['title'])) ? $attr['title'] : $attr['key'];
-	// //	types
-	// 	switch (true)
-	// 	{
-	// 	//	string
-	// 		case $attr['type'] == 'string':
-	// 		//	particularités
-	// 			switch (true)
-	// 			{
-	// 				case $attr['max'] <= 255:
-	// 					$field['type'] = 'text';
-	// 					break;
-	// 				
-	// 				default:
-	// 					$field['type'] = 'textarea';
-	// 					break;
-	// 			}
-	// 			
-	// 			break;
+		// print'<pre>';print_r($attr);print'</pre>';
+	//	key, label
+		$field['key'] = $attr['key'];
+		$field['label'] = (isset($attr['title']) && !empty($attr['title'])) ? $attr['title'] : $attr['key'];
+	//	types
+		switch (true)
+		{
+		//	id
+			case $attr['type'] == 'id':
+				$field['type'] = 'number';
+				$field['readonly'] = true;
+				break;
+		//	int
+			case $attr['type'] == 'int':
+				$field['type'] = 'number';
+				break;
+		//	string
+			case $attr['type'] == 'string':
+			//	particularités
+				switch (true)
+				{
+					case $attr['max'] <= 255:
+						$field['type'] = 'text';
+						break;
+					
+					default:
+						$field['type'] = 'textarea';
+						break;
+				}
+				break;
+		//	key
+			case $attr['type'] == 'key':
+				$field['type'] = 'text';
+				break;
+		//	bool
+			case $attr['type'] == 'bool':
+				$field['type'] = 'bool';
+				break;
+		//	bool
+			case $attr['type'] == 'date':
+				$field['type'] = 'text';
+				break;
+		}
 	// 	//	int
 	// 		case $attr['type'] == 'int':
 	// 			$field['type'] = 'number';
@@ -163,20 +184,13 @@ class adminItemForm
 	// 					break;
 	// 			}
 	// 			break;
-	// 	//	bool
-	// 		case $attr['type'] == 'bool':
-	// 			$field['type'] = 'bool';
-	// 			break;
-	// 	//	bool
-	// 		case $attr['type'] == 'date':
-	// 			$field['type'] = 'text';
-	// 			break;
 	// 	}
-	// 	if (isset($attr['required'])) $field['required'] = $attr['required'];
-	// 	if (isset($attr['min'])) $field['min'] = $attr['min'];
-	// 	if (isset($attr['max'])) $field['max'] = $attr['max'];
+		if (isset($attr['required'])) $field['required'] = $attr['required'];
+		if (isset($attr['min'])) $field['min'] = $attr['min'];
+		if (isset($attr['max'])) $field['max'] = $attr['max'];
 		// print'<pre>';print_r($attr);print'</pre>';
 		// 		print'<pre>';print_r($field);print'</pre><hr>';
+		
 		return $field;
 	}
 /**
@@ -214,15 +228,9 @@ class adminItemForm
  */
 	private function _populate_with_item()
 	{
-	//	attributs
-		foreach ($this->item->data->data as $key => $value)
+		foreach ($this->item as $key => $value)
 		{
-			if (isset($this->form['field'][$key])) $this->form->data->data['field'][$key]['value'] = $value;
-		}
-	//	relations
-		foreach ((array) $this->item->rel as $key => $value)
-		{
-			if (isset($this->form['field'][$key])) $this->form->data->data['field'][$key]['value'] = array_keys($value);
+			// if (isset($this->form['field'][$key])) $this->form['field'][$key]['value'] = $value;
 		}
 	}
 

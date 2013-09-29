@@ -117,7 +117,7 @@ class app
 		if (empty($this->ini))
 		{
 			$file = ADMIN_ROOT.'/'.$this->key.'/'.boot::app_ini_file;
-			$this->ini = (file_exists($file)) ? parse_ini_file($file, true) : $this->_error('no-ini');
+			$this->ini = (file_exists($file)) ? parse_ini_file($file, true) : trigger_error('Can\'t find <strong>'.$this->get_key().' app</strong> config.ini file.', E_USER_WARNING);
 		}
 		
 		return (!is_null($cat) && isset($this->ini[$cat])) ? $this->ini[$cat] : $this->ini;
@@ -179,14 +179,15 @@ class app
 		$_APP = &$this;
 		$_PARAM = &$this->param;
 	//	on prépare la vue
+		$content_type = (empty(master::$content_type)) ? 'html' : master::$content_type;
 		$root = $this->get_templateroot();
-		$routine = $root.$this->template.'.php';
-		$template = $root.$this->template.'.'.master::$content_type.'.php';
+		$_ROUTINE = $root.$this->template.'.php';
+		$_TEMPLATE = $root.$this->template.'.'.$content_type.'.php';
 	//	on ouvre le tampon
 		ob_start();
 	//	on charge les données à afficher
-		if (is_file($routine)) include($routine);
-		(is_file($template)) ? require($template) : $this->_error('no-tpl');
+		if (is_file($_ROUTINE)) include($_ROUTINE);
+		(is_file($_TEMPLATE)) ? require($_TEMPLATE) : trigger_error('template <strong>'.$this->template.'.'.$content_type.'.php'.'</strong> in <strong>'.$this->get_templateroot().'</strong> does not exists.', E_USER_WARNING);
 	//	on ferme le tampon
 		$content = ob_get_contents();
 		ob_end_clean();
@@ -313,7 +314,7 @@ class app
 			$root =$this->get_systemroot();
 		}
 		
-		if (!is_file($root.$file)) trigger_error('Script <strong>'.$file.'</strong> does not exist.', E_USER_NOTICE);
+		if (!is_file($root.$file) && filter_var($file, FILTER_VALIDATE_URL) === false) trigger_error('Script <strong>'.$file.'</strong> does not exist.', E_USER_NOTICE);
 		else
 		{
 			if (SITE_DEBUG === true)
@@ -338,6 +339,17 @@ class app
 	public function bind_app($zone, app $app)
 	{
 		master::bind($zone, $app->__tostring());
+	}
+	
+/**
+ * 
+ *
+ * @return	string	la clé de l'app
+ * @access	public
+ */
+	public function get_param()
+	{
+		return $this->param;
 	}
 // 	
 // /**
@@ -372,69 +384,5 @@ class app
 // 		}
 // 		return $templates;
 // 	}
-// /**
-//  * retourne dans un tableau les chemins des fichiers javascript trouvé dans le fichier de config
-//  *
-//  * @param	string  $sample the sample data
-//  * @author	mvd@cafecentral.fr
-//  * @return	charge 
-//  * @access	private
-//  */
-// 	public function get_script()
-// 	{
-// 		$scripts = array();
-// 		if (isset($this->ini['script']['file']))
-// 		{
-// 			foreach ($this->ini['script']['file'] as $script)
-// 			{
-// 				$scripts[] = (filter_var($script, FILTER_VALIDATE_URL) === FALSE) ? $script : $script;
-// 			}
-// 		}
-// 		return $scripts;
-// 	}
-// 
-// /**
-//  * retourne dans un tableau les chemins des fichiers javacss trouvé dans le fichier de config
-//  *
-//  * @param	string  $sample the sample data
-//  * @author	mvd@cafecentral.fr
-//  * @return	charge 
-//  * @access	private
-//  */
-// 	public function get_css()
-// 	{
-// 		$csss = array();
-// 		if (isset($this->ini['css']['file']))
-// 		{
-// 			foreach ($this->ini['css']['file'] as $css)
-// 			{
-// 				$csss[] = (filter_var($css, FILTER_VALIDATE_URL) === FALSE) ? $css : $css;
-// 			}
-// 		}
-// 		return $csss;
-// 	}
-
-/**
- * Throw errors
- *
- * @param	string  $sample the sample data
- * @author	mvd@cafecentral.fr
- * @return	array	all of the exciting sample options
- * @access	public
- */
-	private function _error($key)
-	{
-		$param['class'] = 'app';
-		switch ($key)
-		{
-			case 'no-ini':
-				$param['What went wrong ?'] = 'Can\'t find <strong>'.$this->get_key().' app</strong> config.ini file.';
-				break;
-			case 'no-tpl':
-				$param['What went wrong ?'] = 'template <strong>'.$this->template.'.'.master::$content_type.'.php'.'</strong> in <strong>'.$this->get_templateroot().' does not exists</strong>.';
-				break;
-		}
-		sentinel::log(E_WARNING, $param);
-	}
 }
 ?>

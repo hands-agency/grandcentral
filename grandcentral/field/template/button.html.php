@@ -1,0 +1,1 @@
+<button<?=$_FIELD->get_attrs();?>><?= $_FIELD->get_cleaned_value(); ?></button>
