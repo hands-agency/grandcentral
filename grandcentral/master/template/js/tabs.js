@@ -15,7 +15,7 @@ $(document).ready(function ()
 	//	App, theme and template
 		app = 'section';
 		template = link.data('template');
-		console.log(link)
+
 	//	Target section...
 		section = link.data('section');
 		panel = $('#section_'+section);
@@ -31,7 +31,7 @@ $(document).ready(function ()
 				.ajx(
 				{
 					app:app,
-					template:section+'/'+template,
+					template:template+'/'+template,
 					section:section
 				});
 		//	Updated

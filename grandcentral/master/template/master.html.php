@@ -24,7 +24,7 @@
 				<!-- ZONE:content|left -->
 				<? foreach($_PAGE['section']->unfold() as $section) : ?>
 				<? $template = $section['app'] ?>
-				<section id="section_<?= $section['key'] ?>" data-template="<?= $template['template'] ?>" data-greenbuttonaction='<?= $section['greenbuttonaction'] ?>'></section>
+				<section data-template="<?= $template['template'] ?>" data-greenbuttonaction='<?= $section['greenbuttonaction'] ?>'></section>
 				<? endforeach; ?>
 			</div>
 		
