@@ -35,7 +35,6 @@
 			{
 				'type':'routine',
 				'app':'form',
-				'theme':'default',
 				'template':'validation.ajax',
 				'form':vars['key'],
 			};
