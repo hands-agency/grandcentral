@@ -17,8 +17,7 @@ class itemSection extends _items
  */
 	public function __tostring()
 	{
-		// print'<pre>';print_r($this['title']);print'</pre>';
-		$app = new app($this['app']['key'], $this['key'].'/'.$this['app']['template'], $this['app']['param']);
+		$app = new app($this['app']['key'], $this['app']['template'], $this['app']['param']);
 		return $app->__tostring();
 	}
 }
