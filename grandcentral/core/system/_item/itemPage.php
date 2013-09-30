@@ -38,6 +38,7 @@ class itemPage extends _items
 	//	Content types
 		$mime = array(
 			'xml' => 'application/xml',
+			'json' => 'application/json',
 			'html' => 'text/html',
 			'routine' => 'text/html'
 		);

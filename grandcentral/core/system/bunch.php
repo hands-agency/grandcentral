@@ -22,8 +22,8 @@
  * @access   public
  * @see      http://www.cafecentral.fr/fr/wiki
  */
-class bunch implements ArrayAccess, Iterator, Countable {
-	
+class bunch implements ArrayAccess, Iterator, Countable, JsonSerializable
+{	
 	private $_env;
 	private $_cIndex = false;
 	private $_sIndex;
@@ -345,6 +345,20 @@ class bunch implements ArrayAccess, Iterator, Countable {
 		foreach ($this->data as $item) $item->delete();
 		return $this;
 	}
+
+/**
+ * Serialize this bunch in Json
+ *
+ * @param	string  la table des objets pour la recherche
+ * @param	array  	le tableau de paramètres de la recherche
+ * @param	string  admin ou site
+ * @access	public
+ */
+	public function jsonSerialize()
+	{
+		/* TODO */
+        return 'todo';
+    }
 
 //	Arrayaccess
 	public function offsetSet($offset, $value)
