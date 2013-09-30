@@ -21,7 +21,7 @@
 /********************************************************************************************/
 //	Bind
 /********************************************************************************************/	
-	$_APP->bind_css('css/sitetree.css');
+	$_APP->bind_css('css/tree.css');
 	$_APP->bind_script('js/nestedSortable/jquery.mjs.nestedSortable.js');
 	// $_APP->bind_script('js/nestedSortable/jquery.ui.touch-punch.js');
 	$_APP->bind_script('js/nestedSortable/treemap.js');
@@ -29,10 +29,10 @@
 /********************************************************************************************/
 //	Make the tree
 /********************************************************************************************/
-	class sitetree
+	class tree
 	{
 		private $start = 'page_home';
-		private $class = 'sitetree';
+		private $class = 'tree';
 		private $tree;
 		private $pages;
 		private $ref;
@@ -51,7 +51,7 @@
 		{
 
 		//	Get the list of those items
-			$p = array('fitsinsitetree' => true);
+			$p = array('fitsintree' => true);
 			$fitsinthetree = cc('structure', $p);
 		//	This will be the bunch of items that fit in the site tree
 			$this->pages = new bunch(null, null, $_SESSION['pref']['handled_env']);
@@ -139,5 +139,5 @@
 		}
 	}
 //	Build the tree
-	$sitetree = new sitetree();	
+	$tree = new tree();	
 ?>

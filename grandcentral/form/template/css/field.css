@@ -256,7 +256,7 @@ ol>li[data-type="app"]>.wrapper,
 ol>li[data-type="media"]>.wrapper
 {
 	width:auto !important;
-	display:block !important;
+	float:none !important;
 	margin:0 3px;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;

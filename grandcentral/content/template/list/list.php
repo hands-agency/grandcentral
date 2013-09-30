@@ -28,6 +28,7 @@
 //	Fetch the section
 /********************************************************************************************/
 	$section = cc('section', $_POST['section']);
+	$param = $section['app']['param'];
 
 /********************************************************************************************/
 //	Some vars
@@ -47,7 +48,7 @@
 //	Fetch the bunch of items
 /********************************************************************************************/
 	$param = array(
-		'status' => $section['data']['status'],
+		'status' => $param['status'],
 	);
 //	Order
 	if (isset($_POST['filter'])) $param[$_POST['filter'].'()'] = $_POST['value'];

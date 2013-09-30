@@ -8,14 +8,14 @@ $(document).ready(function ()
 	{
 	//	Add data-control bubbles
 		var bubble = '<div data-control=""></div>';
-		$('section.edit form>fieldset>ol>li').addClass('editable').each(function()
+		$('section[data-template="edit/edit"] form>fieldset>ol>li').addClass('editable').each(function()
 		{
 			control = $(this).find('data-control');
 			if (control.length == 0) $(bubble).appendTo($(this)).show('slide', { direction: 'left' }, 100).attr('class', 'icon-pencil');
 			else control.show("slide", { direction: 'left' }, 100);
 		});
 	//	Start sortable
-		$('section.edit form').sortable(
+		$('section[data-template="edit/edit"] form').sortable(
 		{
 			items:'li',
 			handle:'label',
@@ -31,17 +31,16 @@ $(document).ready(function ()
 	$(document).bind('lock', function()
 	{
 	//	Some vars
-		form = $('section.edit form');
+		form = $('section[data-template="edit/edit"] form');
 		order = form.sortable('toArray', {attribute:'data-key'});
 	
 	//	destroy all the data-control bubbles
-		$('section.edit form>fieldset>ol>li').removeClass('editable').find('[data-control]').hide('slide', { direction: 'left' }, 100);
+		$('section[data-template="edit/edit"] form>fieldset>ol>li').removeClass('editable').find('[data-control]').hide('slide', { direction: 'left' }, 100);
 
 	//	Kill sortable and store new order		
 		$.ajx(
 		{
 			app: 'form',
-			theme: 'default',
 			template: 'order.routine',
 			form:form.data('key'),
 			order: order,
@@ -49,7 +48,7 @@ $(document).ready(function ()
 			done:function()
 			{
 			//	Kill sortable
-				$('section.edit form').sortable('destroy');
+				$('section[data-template="edit/edit"] form').sortable('destroy');
 			},
 		}, true);
 	});
@@ -79,7 +78,6 @@ $(document).ready(function ()
 		$li.find('.editWrapper').ajx(
 		{
 			app: 'form',
-			theme: 'default',
 			template: 'field.edit',
 			form: form,
 			field: $li.data('key'),

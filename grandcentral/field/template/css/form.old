@@ -4,23 +4,23 @@
 /////////////////////////////////////////////////////////////////////////////////////////////
 /********************************************************************************************/
 /* Fieldsets */
-section.edit fieldset
+section[data-template="edit/edit"] fieldset
 {
 	padding-top:7px;
 	margin-bottom:10px;
 }
-section.edit>form>fieldset>legend
+section[data-template="edit/edit"]>form>fieldset>legend
 {
 	font-weight:bold;
 }
-section.edit>form>fieldset>.descr
+section[data-template="edit/edit"]>form>fieldset>.descr
 {
 	margin-bottom:10px;
 	color:#ccc;
 }
 
 /* Lines */
-.in2col section.edit>form>fieldset>ol>li
+.in2col section[data-template="edit/edit"]>form>fieldset>ol>li
 {
 	background:#F2F2F2;
 	margin-bottom:10px;
@@ -32,7 +32,7 @@ section.edit>form>fieldset>.descr
 }
 
 /* Labels */
-section.edit>form>fieldset>ol>li>label
+section[data-template="edit/edit"]>form>fieldset>ol>li>label
 {
 	color:#333333;
 	width:160px;
@@ -44,25 +44,25 @@ section.edit>form>fieldset>ol>li>label
 }
 
 /* Field */
-.in2col section.edit>form>fieldset ol>li .wrapper
+.in2col section[data-template="edit/edit"]>form>fieldset ol>li .wrapper
 {
 	width:508px; 
 	display:inline-block;
 }
-.in2col section.edit>form>fieldset ol>li .wrapper .field
+.in2col section[data-template="edit/edit"]>form>fieldset ol>li .wrapper .field
 {
 	position:relative;
 	display:block;
 	padding:3px;
 }
 
-.in2col section.edit>form>fieldset ol>li.number>.wrapper .field,
-.in2col section.edit>form>fieldset ol>li.text>.wrapper .field,
-.in2col section.edit>form>fieldset ol>li.textarea>.wrapper .field,
-.in2col section.edit>form>fieldset ol>li.attr>.wrapper .field,
-.in2col section.edit>form>fieldset ol>li.wysiwyg>.wrapper .field,
-.in2col section.edit>form>fieldset ol>li.multipleselect>.wrapper .field,
-.in2col section.edit>form>fieldset ol>li.rel>.wrapper .field	
+.in2col section[data-template="edit/edit"]>form>fieldset ol>li.number>.wrapper .field,
+.in2col section[data-template="edit/edit"]>form>fieldset ol>li.text>.wrapper .field,
+.in2col section[data-template="edit/edit"]>form>fieldset ol>li.textarea>.wrapper .field,
+.in2col section[data-template="edit/edit"]>form>fieldset ol>li.attr>.wrapper .field,
+.in2col section[data-template="edit/edit"]>form>fieldset ol>li.wysiwyg>.wrapper .field,
+.in2col section[data-template="edit/edit"]>form>fieldset ol>li.multipleselect>.wrapper .field,
+.in2col section[data-template="edit/edit"]>form>fieldset ol>li.rel>.wrapper .field	
 {
 	border:1px solid #ccc;
 	-moz-border-radius:3px;
@@ -78,7 +78,7 @@ section.edit>form>fieldset>ol>li>label
 /********************************************************************************************/
 /* Help
 /********************************************************************************************/
-section.edit>form>fieldset ol>li .wrapper .help
+section[data-template="edit/edit"]>form>fieldset ol>li .wrapper .help
 {
 	padding:10px 0;
 	display:none;
@@ -96,7 +96,7 @@ li.ko .field {
 }
 
 /* Control */
-section.edit fieldset ol>li .control {
+section[data-template="edit/edit"] fieldset ol>li .control {
 	position:absolute;
 	right:-50px;
 	top:10px;
@@ -109,7 +109,7 @@ section.edit fieldset ol>li .control {
 	-webkit-border-radius:5px;
 	border-radius:5px;
 }
-section.edit fieldset ol>li .control:after
+section[data-template="edit/edit"] fieldset ol>li .control:after
 {
 	content:'';
 	width:0;
@@ -122,37 +122,37 @@ section.edit fieldset ol>li .control:after
 	left:-8px;
 }
 /* Control guiding you */
-section.edit fieldset ol>li.guiding .control{
+section[data-template="edit/edit"] fieldset ol>li.guiding .control{
 	background:#ccc;
 }
-section.edit fieldset ol>li.guiding .control:after {
+section[data-template="edit/edit"] fieldset ol>li.guiding .control:after {
 	border-right-color:#ccc;
 }
 /* Control OK */
-section.edit fieldset ol>li.ok .control{
+section[data-template="edit/edit"] fieldset ol>li.ok .control{
 	background:#B7DA72;
 }
-section.edit fieldset ol>li.ok .control:after {
+section[data-template="edit/edit"] fieldset ol>li.ok .control:after {
 	border-right-color:#B7DA72;
 }
-section.edit fieldset ol>li.ok .control:before {
+section[data-template="edit/edit"] fieldset ol>li.ok .control:before {
 	content:'✔';
 }
 /* Control K0 */
-section.edit fieldset ol>li.ko .control {
+section[data-template="edit/edit"] fieldset ol>li.ko .control {
 	background:#df3528;
 }
-section.edit fieldset ol>li.ko .control:after {
+section[data-template="edit/edit"] fieldset ol>li.ko .control:after {
 	border-right-color:#df3528;
 }
-section.edit fieldset ol>li.ko .control:before {
+section[data-template="edit/edit"] fieldset ol>li.ko .control:before {
 	content:'✕';
 }
 
 /********************************************************************************************/
 /* Todo
 /********************************************************************************************/
-section.edit>form>fieldset ol>li .wrapper .todo
+section[data-template="edit/edit"]>form>fieldset ol>li .wrapper .todo
 {
 	list-style-type:square;
 	padding:10px 0 0 20px;
@@ -168,7 +168,7 @@ section.edit>form>fieldset ol>li .wrapper .todo
 	display:block;
 }
 /* Fieldsets */
-section.edit>form>fieldset fieldset
+section[data-template="edit/edit"]>form>fieldset fieldset
 {
 	margin:10px;
 }

@@ -13,7 +13,7 @@ $(document).ready(function ()
 	//	Shortcut to the data
 		link = $(this).find('a');
 	//	App, theme and template
-		app = 'section';
+		app = link.data('app');
 		template = link.data('template');
 
 	//	Target section...
@@ -31,7 +31,7 @@ $(document).ready(function ()
 				.ajx(
 				{
 					app:app,
-					template:template+'/'+template,
+					template:template,
 					section:section
 				});
 		//	Updated

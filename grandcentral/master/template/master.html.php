@@ -23,8 +23,8 @@
 			<div id="content" class="locked instack">
 				<!-- ZONE:content|left -->
 				<? foreach($_PAGE['section']->unfold() as $section) : ?>
-				<? $template = $section['app'] ?>
-				<section data-template="<?= $template['template'] ?>" data-greenbuttonaction='<?= $section['greenbuttonaction'] ?>'></section>
+				<? $app = $section['app'] ?>
+				<section id="section_<?= $section['key'] ?>" data-app="<?= $app['key'] ?>" data-template="<?= $app['template'] ?>" data-greenbuttonaction='<?= $section['greenbuttonaction'] ?>'></section>
 				<? endforeach; ?>
 			</div>
 		
