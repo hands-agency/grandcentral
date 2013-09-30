@@ -26,10 +26,10 @@
 	
 //	Create a blank field (tweak)
 	$param = array(
-		'values' => json_decode(htmlspecialchars_decode($_POST['values']), true),
+		'values' => $_POST['values'],
 		'valuestype' => $_POST['valuestype'],
 	);
-	$multipleselect = new field_multipleselect(null, $param);
+	$multipleselect = new fieldMultipleselect(null, $param);
 	
 //	Get the available values
 	$available = $multipleselect->prepare_values();

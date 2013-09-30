@@ -36,12 +36,7 @@ class itemPage extends _items
 	public function header()
 	{
 	//	Content types
-		$mime = array(
-			'xml' => 'application/xml',
-			'json' => 'application/json',
-			'html' => 'text/html',
-			'routine' => 'text/html'
-		);
+		$mime = $this->get_authorised_mime();
 	//	Convert the GC content type to MIME content types
 		$content_type = $mime[$this['template']['type']];
 		
@@ -49,7 +44,23 @@ class itemPage extends _items
 		header('HTTP/1.0 '.$this['http_status']);
 		header('Content-Type: '.$content_type.'; charset=utf-8');
 	}
-	
+/**
+ * Envoie les entêtes HTTP de la page
+ *
+ * @access	public
+ */
+	public function get_authorised_mime()
+	{
+	//	Content types
+		$mime = array(
+			'xml' => 'application/xml',
+			'json' => 'application/json',
+			'html' => 'text/html',
+			'routine' => 'text/x-php',
+			'eventstream' => 'text/event-stream'
+		);
+		return $mime;
+	}
 /**
  * Affiche les section de la page dans leur zone respectives
  *

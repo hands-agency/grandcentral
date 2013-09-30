@@ -29,8 +29,6 @@
 	$handled_item = (isset($_GET['item'])) ? $_GET['item'] : null;
 	$handled_id = (isset($_GET['id'])) ? $_GET['id'] : null;
 
-	// $form = new adminItemForm($handled_env, $handled_item, $handled_id);
-	
-	$form = cc('form', 'login');
+	$form = new adminItemForm($handled_env, $handled_item, $handled_id);
 	
 ?>

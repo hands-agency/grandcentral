@@ -19,6 +19,7 @@ class app
 	protected $template;
 	protected $ini;
 	protected $param;
+	protected static $loaded_file = array();
 /**
  * Class constructor (Don't forget it is an abstract class)
  *
@@ -269,31 +270,39 @@ class app
  */
 	public function bind_css($file, $system = false)
 	{
-		if ($system === false)
-		{
-			$url = $this->get_templateurl();
-			$root = $this->get_templateroot();
-		}
-		else
-		{
-			$url = $this->get_systemurl();
-			$root =$this->get_systemroot();
-		}
+		$key = $this->get_key().'/'.$file;
 		
-		if (!is_file($root.$file)) trigger_error('Css <strong>'.$file.'</strong> does not exist.', E_USER_NOTICE);
-		else
+		if (!in_array($key, self::$loaded_file))
 		{
-			if (SITE_DEBUG === true)
+			if ($system === false)
 			{
-				$refresh = '?'.time();
-				$data = '<link rel="stylesheet" href="'.$url.$file.'?'.$refresh.'" type="text/css" charset="utf-8">';
+				$url = $this->get_templateurl();
+				$root = $this->get_templateroot();
 			}
 			else
 			{
-		
+				$url = $this->get_systemurl();
+				$root =$this->get_systemroot();
 			}
-			master::bind('css', $data);
+		
+			if (!is_file($root.$file)) trigger_error('Css <strong>'.$file.'</strong> does not exist.', E_USER_NOTICE);
+			else
+			{
+				if (SITE_DEBUG === true)
+				{
+					$refresh = '?'.time();
+					$data = '<link rel="stylesheet" href="'.$url.$file.$refresh.'" type="text/css" charset="utf-8">';
+				}
+				else
+				{
+		
+				}
+				master::bind('css', $data);
+				self::$loaded_file[] = $key;
+			}
 		}
+		
+		
 	}
 /**
  * 
@@ -303,31 +312,46 @@ class app
  */
 	public function bind_script($file, $system = false)
 	{
-		if ($system === false)
+	//	script interne
+		if (filter_var($file, FILTER_VALIDATE_URL) === false)
 		{
-			$url = $this->get_templateurl();
-			$root = $this->get_templateroot();
-		}
-		else
-		{
-			$url = $this->get_systemurl();
-			$root =$this->get_systemroot();
-		}
-		
-		if (!is_file($root.$file) && filter_var($file, FILTER_VALIDATE_URL) === false) trigger_error('Script <strong>'.$file.'</strong> does not exist.', E_USER_NOTICE);
-		else
-		{
-			if (SITE_DEBUG === true)
+			if ($system === false)
 			{
-				$refresh = '?'.time();
-				$file = (filter_var($file, FILTER_VALIDATE_URL) === false) ? $url.$file : $file;
-				$data = '<script src="'.$file.'?'.$refresh.'" type="text/javascript" charset="utf-8"></script>';
+				$urlscript = $this->get_templateurl().$file;
+				$rootscript = $this->get_templateroot().$file;
 			}
 			else
 			{
-		
+				$urlscript = $this->get_systemurl().$file;
+				$rootscript = $this->get_systemroot().$file;
 			}
-			master::bind('script', $data);
+		}
+	//	script externe
+		else
+		{
+			$urlscript = $file;
+		}
+		
+		if (!in_array($urlscript, self::$loaded_file))
+		{
+			if (isset($rootscript) && !is_file($rootscript))
+			{
+				trigger_error('Script <strong>'.$file.'</strong> does not exist.', E_USER_NOTICE);
+			}
+			else
+			{
+				if (SITE_DEBUG === true)
+				{
+					$refresh = '?'.time();
+					$data = '<script src="'.$urlscript.'" type="text/javascript" charset="utf-8"></script>';
+				}
+				else
+				{
+		
+				}
+				master::bind('script', $data);
+				self::$loaded_file[] = $urlscript;
+			}
 		}
 	}
 /**

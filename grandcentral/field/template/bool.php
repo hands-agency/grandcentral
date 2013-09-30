@@ -18,34 +18,10 @@
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
  */
-/********************************************************************************************/
-//	DEBUG
-/********************************************************************************************/
-	if (isset($_POST['DEBUG']))
-	{
-		unset($_POST['DEBUG']);
-		sentinel::debug('AJAX debug ('.__FILE__.' line '.__LINE__.')', $_POST);
-	}
 
 /********************************************************************************************/
-//	Go
+//	Routine
 /********************************************************************************************/
-	if (!empty($_POST))
-	{
-	//	The app and the section
-		$app = $_POST['app'];
-		$key = $_POST['template'];
-		
-	//	Reroute original $_GET passed as $_POST['_GET'] the $_GET
-		if (isset($_POST['_GET']))
-		{
-			$_GET = $_POST['_GET'];
-			unset($_POST['_GET']);
-		}
-		
-	//	Echo
-		echo new app($app, $key);
-		echo '<!-- ZONE:css -->';
-		echo '<!-- ZONE:script -->';
-	}
+	$_FIELD = $_PARAM['field'];
+	
 ?>

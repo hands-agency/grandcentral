@@ -11,6 +11,7 @@
  */
 class adminItemForm
 {
+	private $env;
 	private $table;
 	private $form;
 	private $item;
@@ -22,21 +23,20 @@ class adminItemForm
  * @param	mixed	l'identifiant ou la clé de l'objet à éditer
  * @access	public
  */
-	public function __construct($env, $table, $key = null)
+	public function __construct($env, $table, $id = null)
 	{
 		$this->env = $env;
 		$this->table = $table;
 	//	recherche du formulaire
-		$this->form = cc('form', $env.'_'.$table, 'admin');
-		$this->form['key'] = $env.'_'.$table;
-		$this->form['title'] = $env.'_'.$table;
-		$this->form['theme'] = 'default';
-		$this->form['template'] = 'form';
+		$key = $env.'_'.$table;
+		$this->form = cc('form', $key, 'admin');
+		$this->form['key'] = $key;
+		$this->form['title'] = $key;
+		$this->form['template'] = 'default';
 		$this->form['action'] = 'item';
 		$this->form['method'] = 'post';
-		$this->form['status'] = 'live';
 	//	recherche de l'objet
-		$this->item = cc($table, $key, $env);
+		$this->item = cc($table, $id, $env);
 	}
 /**
  * Mettre en conformité le formulaire et la structure
@@ -72,14 +72,14 @@ class adminItemForm
 		}
 		
 		$this->form['field'] = $fields;
-		print'<pre>';print_r($fields);print'</pre>';
+		
 		$this->form['field']['table'] = array(
 			'type' => 'hidden',
 			'key' => 'table',
 			'value' => $this->table
 		);
 		
-		// $this->form->save();
+		$this->form->save();
 		// print'<pre>';print_r($fields);print'</pre>';
 	}
 /**
@@ -138,87 +138,60 @@ class adminItemForm
 			case $attr['type'] == 'bool':
 				$field['type'] = 'bool';
 				break;
-		//	bool
-			case $attr['type'] == 'date':
+		//	date, created, updated
+			case in_array($attr['type'], array('created', 'updated', 'date')):
 				$field['type'] = 'text';
 				break;
+		//	status
+			case $attr['type'] == 'status':
+				$field['type'] = 'text';
+				break;
+		//	version
+			case $attr['type'] == 'version':
+				$field['type'] = 'text';
+				break;
+		//	array
+			case $attr['type'] == 'array':
+				$field['type'] = 'array';
+			//	particularités
+				switch (true)
+				{
+				//	objet page
+					case $this->item->get_table() == 'page' && $attr['key'] == 'template':
+						$field['type'] = 'template';
+						break;
+				//	objet form
+					case $this->item->get_table() == 'form' && $attr['key'] == 'field':
+						$field['type'] = 'form';
+						break;
+				//	objet structure
+					case $this->item->get_table() == 'structure' && $attr['key'] == 'attr':
+						$field['type'] = 'attr';
+						break;
+					case $this->item->get_table() == 'structure' && $attr['key'] == 'rel':
+						$field['type'] = 'rel';
+						break;
+				//	objet section
+					case $this->item->get_table() == 'section' && $attr['key'] == 'template':
+						$field['type'] = 'app';
+						break;
+				//	objet group
+					case $this->item->get_table() == 'group' && $attr['key'] == 'right':
+						$field['type'] = 'right';
+						break;
+				}
+				break;
+		//	relation
+			case $attr['type'] == 'rel':
+				$field['valuestype'] = 'bunch';
+				$field['values'] = $attr['param'];
+				$field['type'] = (isset($attr['max']) && $attr['max'] == 1) ? 'select' : 'multipleselect';
+				break;
 		}
-	// 	//	int
-	// 		case $attr['type'] == 'int':
-	// 			$field['type'] = 'number';
-	// 			if ($attr['key'] == 'id') $field['readonly'] = true;
-	// 			break;
-	// 	//	decimal
-	// 		case $attr['type'] == 'decimal':
-	// 			$field['type'] = 'number';
-	// 			$field['step'] = $attr['round'];
-	// 			break;
-	// 	//	array
-	// 		case $attr['type'] == 'array':
-	// 			$field['type'] = 'array';
-	// 		//	particularités
-	// 			switch (true)
-	// 			{
-	// 			//	objet page
-	// 				case $this->item->get_table() == 'page' && $attr['key'] == 'template':
-	// 					$field['type'] = 'page';
-	// 					break;
-	// 			//	objet form
-	// 				case $this->item->get_table() == 'form' && $attr['key'] == 'field':
-	// 					$field['type'] = 'form';
-	// 					break;
-	// 			//	objet structure
-	// 				case $this->item->get_table() == 'structure' && $attr['key'] == 'attr':
-	// 					$field['type'] = 'attr';
-	// 					break;
-	// 				case $this->item->get_table() == 'structure' && $attr['key'] == 'rel':
-	// 					$field['type'] = 'rel';
-	// 					break;
-	// 			//	objet section
-	// 				case $this->item->get_table() == 'section' && $attr['key'] == 'template':
-	// 					$field['type'] = 'app';
-	// 					break;
-	// 			//	objet group
-	// 				case $this->item->get_table() == 'group' && $attr['key'] == 'right':
-	// 					$field['type'] = 'right';
-	// 					break;
-	// 			}
-	// 			break;
-	// 	}
 		if (isset($attr['required'])) $field['required'] = $attr['required'];
 		if (isset($attr['min'])) $field['min'] = $attr['min'];
 		if (isset($attr['max'])) $field['max'] = $attr['max'];
-		// print'<pre>';print_r($attr);print'</pre>';
-		// 		print'<pre>';print_r($field);print'</pre><hr>';
 		
-		return $field;
-	}
-/**
- * Déduire le type de champ à afficher en fonction d'une relation de structure
- *
- * @param	array 	un attribut de structure
- * @access	public
- */
-	private function _rel_to_field($rel)
-	{
-		// print'<pre>';print_r($rel);print'</pre>';
-	//	key, label
-		$field['key'] = $rel['key'];
-		$field['label'] = (isset($rel['title']) && !empty($rel['title'])) ? $rel['title'] : $rel['key'];
-	//	types
-		switch (true)
-		{
-			case isset($rel['max']) && $rel['max'] == 1:
-				$field['type'] = 'select';
-				break;
-			default:
-				$field['type'] = 'multipleselect';
-				break;
-		}
-	//	values
-		$field['valuestype'] = 'bunch';
-		$field['values'] = $rel['item'];
-		if (isset($attr['required'])) $field['required'] = $attr['required'];
 		return $field;
 	}
 /**
@@ -230,7 +203,12 @@ class adminItemForm
 	{
 		foreach ($this->item as $key => $value)
 		{
-			// if (isset($this->form['field'][$key])) $this->form['field'][$key]['value'] = $value;
+			if (isset($this->form['field'][$key]))
+			{
+				$field = $this->form['field'][$key];
+				$field['value'] = $value;
+				$this->form['field'][$key] = $field;
+			}
 		}
 	}
 

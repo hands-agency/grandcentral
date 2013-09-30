@@ -19,15 +19,20 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
+//	Vars
+/********************************************************************************************/
+	$_FIELD = $_PARAM['field'];
+	
+/********************************************************************************************/
 //	Bind
 /********************************************************************************************/
-	$_VIEW->bind('css', '/css/multipleselect.css');
-	$_VIEW->bind('script', '/js/multipleselect.js');
+	$_APP->bind_css('css/multipleselect.css');
+	$_APP->bind_script('js/multipleselect.js');
 	
 /********************************************************************************************/
 //	The rel
 /********************************************************************************************/
-	$attrs = $_ITEM->get_attr();
+	// $attrs = $_FIELD->get_attrs();
 	// print '<pre>';print_r($attrs);print'</pre>';
 	
 //	Careful with the environement
@@ -35,7 +40,8 @@
 	$selected = new bunch(null, null, $env);
 	
 //	Get the selected value(s)
-	$value = $_ITEM->get_value();
+	$value = $_FIELD->get_value();
+	$tmp = array();
 	if (!empty($value))
 	{
 	//	Prepare them to be in a bunch
@@ -53,12 +59,12 @@
 	else $hideNodata = 'style="display:none;"';
 	
 //	Get the available values
-	$available = $_ITEM->prepare_values();
+	$available = $_FIELD->prepare_values();
 	
 /********************************************************************************************/
 //	Sort of a repository of data for Ajax
 /********************************************************************************************/
-	$name = $_ITEM->get_name();
-	$values = htmlspecialchars(json_encode($attrs['values']), ENT_COMPAT);
-	$valuestype = $attrs['valuestype'];
+	$name = $_FIELD->get_name();
+	$values = htmlspecialchars(json_encode($_FIELD->get_values()), ENT_COMPAT);
+	$valuestype = $_FIELD->get_valuestype();
 ?>

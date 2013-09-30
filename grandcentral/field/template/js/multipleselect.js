@@ -156,7 +156,6 @@ $(document).ready(function ()
 //	Go	
 	$('[data-type="multipleselect"]').multipleselect({		
 		app:'field',
-		theme:'default',
-		template:'multipleselect.available',
+		template:'multipleselect.available'
 	});
 });

@@ -51,11 +51,31 @@ abstract class _fieldsSelector extends _fields
  * @param	mixed	un tableau associatif, le nom d'une fonction, d'une méthode ou la description d'un bunch
  * @access	public
  */
+	public function get_valuestype()
+	{
+		return $this->valuestype;
+	}
+/**
+ * Définit les choix possible dans le sélecteur
+ * 
+ * @param	mixed	un tableau associatif, le nom d'une fonction, d'une méthode ou la description d'un bunch
+ * @access	public
+ */
 	public function set_values($values)
 	{
 		// print '<pre>';print_r($values);print'</pre>';
 		$this->values = $values;
 		return $this;
+	}
+/**
+ * Définit les choix possible dans le sélecteur
+ * 
+ * @param	mixed	un tableau associatif, le nom d'une fonction, d'une méthode ou la description d'un bunch
+ * @access	public
+ */
+	public function get_values()
+	{
+		return $this->values;
 	}
 /**
  * Prépare la liste des valeurs en fonction du type passé

@@ -19,32 +19,35 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
+//	Vars
+/********************************************************************************************/
+	$_FIELD = $_PARAM['field'];
+	
+/********************************************************************************************/
 //	Bind
 /********************************************************************************************/
-	$_VIEW->bind('css', '/css/page.css');
-	$_VIEW->bind('script', '/js/page.js');
+	$_APP->bind_css('css/page.css');
+	$_APP->bind_script('js/page.js');
 	
 /********************************************************************************************/
 //	construction du champ app
 /********************************************************************************************/
-	$values = array('html', 'xml', 'routine', 'json', 'eventstream');
+	$page = cc('page');
 	$p = array(
 		'label' => 'type : ',
-		'values' => $values,
+		'values' => array_keys($page->get_authorised_mime()),
 		'valuestype' => 'array',
 		'value' => 'html'
 	);
-	$field = new field_select($_ITEM->get_name().'[type]', $p);
+	$field = new fieldSelect($_FIELD->get_name().'[type]', $p);
 	
 /********************************************************************************************/
 //	Préchargement auto
 /********************************************************************************************/
-	$value = $_ITEM->get_value();
-	// print '<pre>';print_r($value);print'</pre>';
+	$value = $_FIELD->get_value();
+
 //	type
 	if (isset($value['type']) && !empty($value['type'])) $field->set_value($value['type']);
-//	theme
-	$theme = (isset($value['theme']) & !empty($value['theme'])) ? $value['theme'] : null;
 //	template
 	$template = (isset($value['template']) & !empty($value['template'])) ? $value['template'] : null;
 ?>
