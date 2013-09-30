@@ -70,7 +70,7 @@ class itemPage extends _items
 	{
 		foreach ($this['section']->unfold() as $section)
 		{
-			echo $section;
+			$section->__tostring();
 		}
 	}
 }

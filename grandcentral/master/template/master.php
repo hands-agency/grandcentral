@@ -36,8 +36,8 @@
 //	jQuery
 	$_APP->bind_script('https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js');
 	$_APP->bind_script('https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js');
-	$_APP->bind_script('js/jquery-1.8.2.min.js');
-	$_APP->bind_script('js/jquery-ui-1.9.1.custom.min.js');
+	// $_APP->bind_script('js/jquery-1.8.2.min.js');
+	// $_APP->bind_script('js/jquery-ui-1.9.1.custom.min.js');
 	
 //	Reroot get in ajax
 	$_APP->bind_code("script", "
@@ -108,7 +108,7 @@
 	$truc = '<div id="eventstream"><ul class="mine"></ul><ul class="everybodyelses"></ul></div>';
 	$_APP->bind_code('header', $truc);
 //	Green button
-	$_APP->bind_snippet('header', 'snippet/greenbutton/greenbutton');
+	// $_APP->bind_snippet('header', 'snippet/greenbutton/greenbutton');
 	
 /********************************************************************************************/
 //	Tabs

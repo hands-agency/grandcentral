@@ -19,7 +19,7 @@ class app
 	protected $template;
 	protected $ini;
 	protected $param;
-	protected static $loaded_file = array();
+	public static $loaded_file = array();
 /**
  * Class constructor (Don't forget it is an abstract class)
  *
