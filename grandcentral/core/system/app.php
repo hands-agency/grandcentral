@@ -19,7 +19,7 @@ class app
 	protected $template;
 	protected $ini;
 	protected $param;
-	public static $loaded_file = array();
+	protected static $loaded_file = array();
 /**
  * Class constructor (Don't forget it is an abstract class)
  *
@@ -375,38 +375,35 @@ class app
 	{
 		return $this->param;
 	}
-// 	
-// /**
-//  * Obtenir la liste des templates de la vue
-//  *
-//  * @param	string	le nom du theme
-//  * @param	string	le type de template (html, routine, json...)
-//  * @param	string	l'environnement, site ou admin
-//  * @return	array	le tableau des templates
-//  * @access	public
-//  */
-// 	public function get_templates()
-// 	{
-// 		$root = ($env == 'site') ? SITE_ROOT.'/'.$this->key : ADMIN_ROOT.'/'.$this->key.boot::app_template_dir;
-// 		// $root = $theme_root.'/'.$this->key().'/'.$theme;
-// 		// print '<pre>';print_r($root);print'</pre>';
-// 		$dir = new dir($root);
-// 		$templates = array();
-// 		if ($dir->exists())
-// 		{
-// 			$dir->get();
-// 			$templates = array();
-// 			foreach ((array) $dir->data as $item)
-// 			{
-// 				$key = $item->get_key();
-// 				if (mb_strpos($key, '.'.$viewtype.'.php') !== false)
-// 				{
-// 					$templates[] = mb_substr($key, 0, -mb_strlen('.'.$viewtype.'.php'));
-// 				}
-// 			
-// 			}
-// 		}
-// 		return $templates;
-// 	}
+/**
+ * Obtenir la liste des templates de la vue
+ *
+ * @param	string	le nom du theme
+ * @param	string	le type de template (html, routine, json...)
+ * @param	string	l'environnement, site ou admin
+ * @return	array	le tableau des templates
+ * @access	public
+ */
+	public function get_templates($type, $env)
+	{
+		$root = $this->get_templateroot($env);
+		$dir = new dir($root);
+		$templates = array();
+		if ($dir->exists())
+		{
+			$dir->get();
+			$templates = array();
+			foreach ((array) $dir->data as $item)
+			{
+				$key = $item->get_key();
+				if (mb_strpos($key, '.'.$type.'.php') !== false)
+				{
+					$templates[] = mb_substr($key, 0, -mb_strlen('.'.$type.'.php'));
+				}
+			
+			}
+		}
+		return $templates;
+	}
 }
 ?>

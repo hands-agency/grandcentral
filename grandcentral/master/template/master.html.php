@@ -40,8 +40,7 @@
 				<!-- ZONE:footer -->
 			</footer>
 		</div>
-		
-		<!-- ZONE:script -->
 	</div>
+	<!-- ZONE:script -->
 </body>
 </html>
