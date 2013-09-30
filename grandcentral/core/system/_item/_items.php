@@ -358,6 +358,21 @@ abstract class _items implements ArrayAccess, Iterator
 		return '/admin/edit?item='.$this->get_table().'&id='.$this['id']->get();
 	}
 	
+/**
+ * Serialize this item in JSON
+ *
+ * @return	string	l'url de l'objet
+ * @access	public
+ */
+	public function json()
+	{
+		foreach ($this->data as $value)
+		{
+			$return[$value->get_key()] = $value->get();
+		}
+		return json_encode($return);
+	}
+	
 /********************************************************************************************/
 //	ArrayAccess
 /********************************************************************************************/

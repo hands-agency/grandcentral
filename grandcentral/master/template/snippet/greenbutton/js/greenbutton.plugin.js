@@ -31,22 +31,19 @@
 				link = $(this).find('a');
 				section = link.data('section');
 			//	The different choices
-				choices = $('#section_'+section).data('greenbuttonaction');
-				console.log(choices);
-			//	If you have choices
-				if (choices['count'])
-				{
-					choices = choices['data'];
+				choices = $('#section_'+section).data('greenbutton');
 
+			//	If you have choices
+				if (choices.length > 0)
+				{
 				//	Default choices
 					dflt = choices.shift();
-					dflt = dflt['data']['data'];
 
 				//	Other choices
 					var li = '';
 					for (var i=0; i<choices.length ; i++)
 					{
-						choice = choices[i]['data']['data'];
+						choice = choices[i];
 						li += '<li class="'+choice['key']+'"><a data-action="'+choice['key']+'">'+choice['title']+'</a></li>';
 					}
 
@@ -188,7 +185,7 @@
 	//	Workflow
 		plugin.workflow = function()
 		{
-			console.log('tric');
+			console.log('bon...');
 		}
 
 	//	Fire up the plugin!

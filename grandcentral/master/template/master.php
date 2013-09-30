@@ -108,7 +108,7 @@
 	$truc = '<div id="eventstream"><ul class="mine"></ul><ul class="everybodyelses"></ul></div>';
 	$_APP->bind_code('header', $truc);
 //	Green button
-	// $_APP->bind_snippet('header', 'snippet/greenbutton/greenbutton');
+	$_APP->bind_snippet('header', 'snippet/greenbutton/greenbutton');
 	
 /********************************************************************************************/
 //	Tabs
@@ -119,16 +119,6 @@
 //	Content
 /********************************************************************************************/
 	$_APP->bind_snippet('content', 'snippet/options');
-//	Store the green button actions in the section
-	// $sections = cc(env, current)['section'];
-	// if ($sections)
-	// {
-	// 	foreach ($sections as $section)
-	// 	{
-	// 		$greenbuttonaction = $section['greenbuttonaction'];
-	// 		$section['greenbuttonaction'] = json_encode($greenbuttonaction);
-	// 	}
-	// }
 	
 /********************************************************************************************/
 //	Context

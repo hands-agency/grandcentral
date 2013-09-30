@@ -22,7 +22,7 @@
  * @access   public
  * @see      http://www.cafecentral.fr/fr/wiki
  */
-class bunch implements ArrayAccess, Iterator, Countable, JsonSerializable
+class bunch implements ArrayAccess, Iterator, Countable
 {	
 	private $_env;
 	private $_cIndex = false;
@@ -354,10 +354,11 @@ class bunch implements ArrayAccess, Iterator, Countable, JsonSerializable
  * @param	string  admin ou site
  * @access	public
  */
-	public function jsonSerialize()
+	public function json()
 	{
-		$json = json_encode($this->data);
-        return $json;
+		$return = array();
+		foreach ($this->data as $item) $return[] = $item->json();
+        return '['.implode(',',$return) .']';
     }
 
 //	Arrayaccess
