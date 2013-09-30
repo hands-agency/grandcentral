@@ -38,7 +38,7 @@ class itemPage extends _items
 	//	Content types
 		$mime = $this->get_authorised_mime();
 	//	Convert the GC content type to MIME content types
-		$content_type = $mime[$this['template']['type']];
+		$content_type = $mime[$this['master']['type']];
 		
 	//	Print the header
 		header('HTTP/1.0 '.$this['http_status']);

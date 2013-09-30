@@ -8,7 +8,7 @@
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
  */
-class fieldTemplate extends _fields
+class fieldMaster extends _fields
 {
 	protected $datatype = array('array');
 	

@@ -30,12 +30,12 @@ class master
 		$page->header();
 		// print'<pre>';print_r($page);print'</pre>';
 	//	define the master content type
-		self::$content_type = $page['template']['type'];
+		self::$content_type = $page['master']['type'];
 	//	instanciate the app master
 		$params['page'] = $page;
-		$this->app = new app('master', $page['template']['key'], $params);
+		$this->app = new app('master', $page['master']['key'], $params);
 	//	retreive the template root
-		$root = $this->app->get_templateroot().$page['template']['key'].'.'.$page['template']['type'].'.php';
+		$root = $this->app->get_templateroot().$page['master']['key'].'.'.$page['master']['type'].'.php';
 	//	parse the template and parse zones
 		self::$zones = self::get_zones($root);
 	//	display
