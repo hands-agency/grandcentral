@@ -53,7 +53,11 @@ class adminItemForm
 	//	modification du formaulaire seulement si la structure de l'objet a été modifiée
 		else
 		{
- 
+			$structure = cc('structure', $this->table);
+			if ($structure['updated'] > $this->form['updated'])
+			{
+				$this->_update_form();
+			}
 		}
 	}
 /**
@@ -80,7 +84,6 @@ class adminItemForm
 		);
 		
 		$this->form->save();
-		// print'<pre>';print_r($fields);print'</pre>';
 	}
 /**
  * Mettre à jour le formulaire à partir des éléments de la structure
