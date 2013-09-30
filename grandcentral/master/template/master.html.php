@@ -21,11 +21,10 @@
 			</div>
 
 			<div id="content" class="locked instack">
-				<?= /* KILL HIM --> */cc('section', 'edit'); ?>
 				<!-- ZONE:content|left -->
 				<? foreach($_PAGE['section']->unfold() as $section) : ?>
-				<? $template = $section['template'] ?>
-				<section id="section_<?= $section['key'] ?>" data-template="<?= $template['key'] ?>" data-greenbuttonaction='<?= $section['greenbuttonaction'] ?>'></section>
+				<? $template = $section['app'] ?>
+				<section id="section_<?= $section['key'] ?>" data-template="<?= $template['template'] ?>" data-greenbuttonaction='<?= $section['greenbuttonaction'] ?>'></section>
 				<? endforeach; ?>
 			</div>
 		

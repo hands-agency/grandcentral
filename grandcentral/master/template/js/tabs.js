@@ -15,7 +15,7 @@ $(document).ready(function ()
 	//	App, theme and template
 		app = 'section';
 		template = link.data('template');
-	
+		console.log(link)
 	//	Target section...
 		section = link.data('section');
 		panel = $('#section_'+section);
@@ -31,7 +31,7 @@ $(document).ready(function ()
 				.ajx(
 				{
 					app:app,
-					key:template,
+					template:section+'/'+template,
 					section:section
 				});
 		//	Updated
@@ -50,7 +50,6 @@ $(document).ready(function ()
 		$('#refine input').searchasyoutype(
 		{
 			app:app,
-			theme:theme,
 			template:template,
 			section:section
 		}, '#content section:visible');

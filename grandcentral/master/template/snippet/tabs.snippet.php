@@ -1,6 +1,6 @@
 <ul class="tabs" data-target="content" <? if (isset($defaultSection)): ?>data-default="<?=$defaultSection?>"<? endif ?>>
 	<? foreach($sections as $section) : ?>
-	<? $template = $section['template']; ?>
+	<? $template = $section['app']; ?>
 		<li title="<?=$section['descr']?>" data-status="<?=$section['key']?>">
 			<a href="<?='#'.$section['key']?>" data-section="<?=$section['key']?>" data-template="<?=$template['key']?>">
 				<span class="title"><?=$section['title']?></span>
