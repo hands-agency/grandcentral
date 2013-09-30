@@ -356,8 +356,8 @@ class bunch implements ArrayAccess, Iterator, Countable, JsonSerializable
  */
 	public function jsonSerialize()
 	{
-		/* TODO */
-        return 'todo';
+		$json = json_encode($this->data);
+        return $json;
     }
 
 //	Arrayaccess
