@@ -30,5 +30,7 @@
 	$handled_id = (isset($_GET['id'])) ? $_GET['id'] : null;
 
 	// $form = new adminItemForm($handled_env, $handled_item, $handled_id);
-	$form = '<p>in da place</p>';
+	
+	$form = cc('form', 'login');
+	
 ?>

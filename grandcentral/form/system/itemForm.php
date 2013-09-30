@@ -46,11 +46,10 @@ class itemForm extends _items
 		);
 	//	instanciation du formulaire
 		$form = new form($params);
-		// print'<pre>';print_r($form);print'</pre>';
 	//	ajout des champs
 		if (isset($this['field']))
 		{
-			foreach ((array) $this['field'] as $data)
+			foreach ($this['field'] as $data)
 			{
 				if ($data['type'] == 'fieldset')
 				{
@@ -66,4 +65,5 @@ class itemForm extends _items
 		return $form->__tostring();
 	}
 }
+
 ?>

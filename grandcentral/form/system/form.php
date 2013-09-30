@@ -280,7 +280,8 @@ class form
  */
 	public function __tostring()
 	{
-		$html = new app('form', $this->template, $this);
+		$param['form'] = $this;
+		$html = new app('form', $this->template, $param);
 		return $html->__tostring();
 	}
 /**
