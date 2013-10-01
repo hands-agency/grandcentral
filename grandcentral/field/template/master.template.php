@@ -33,7 +33,7 @@
 			'valuestype' => 'array',
 			'value' => 'master'
 		);
-		$field = new fieldSelect($_POST['name'].'[template]', $params);
+		$field = new fieldSelect($_POST['name'].'[key]', $params);
 		if (!empty($_POST['value'])) $field->set_value($_POST['value']);
 	}
 ?>

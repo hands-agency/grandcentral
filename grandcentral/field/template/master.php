@@ -49,5 +49,5 @@
 //	type
 	if (isset($value['type']) && !empty($value['type'])) $field->set_value($value['type']);
 //	template
-	$template = (isset($value['template']) & !empty($value['template'])) ? $value['template'] : null;
+	$template = (isset($value['key']) & !empty($value['key'])) ? $value['key'] : null;
 ?>
