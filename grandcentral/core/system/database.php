@@ -500,11 +500,14 @@ class database
 				{
 					$id = $this->_pdo->lastInsertId();
 					// print'<pre>';print_r($id);print'</pre>';
-					foreach ($this->_spooler[$i+1]['params'] as $key => $value)
+					if (isset($this->_spooler[$i+1]))
 					{
-						if ($value === 'lastid')
+						foreach ($this->_spooler[$i+1]['params'] as $key => $value)
 						{
-							$this->_spooler[$i+1]['params'][$key] = $id;
+							if ($value === 'lastid')
+							{
+								$this->_spooler[$i+1]['params'][$key] = $id;
+							}
 						}
 					}
 				}
