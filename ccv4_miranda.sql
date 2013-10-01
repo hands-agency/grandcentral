@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.7
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
--- Client: localhost
--- Généré le: Mar 01 Octobre 2013 à 12:23
--- Version du serveur: 5.5.29
--- Version de PHP: 5.4.10
+-- Host: localhost
+-- Generation Time: Oct 01, 2013 at 07:13 PM
+-- Server version: 5.5.25
+-- PHP Version: 5.4.4
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `ccv4_miranda`
+-- Database: `ccv4_miranda`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `cast`
+-- Table structure for table `cast`
 --
 
 CREATE TABLE `cast` (
@@ -48,7 +48,7 @@ CREATE TABLE `cast` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=307 ;
 
 --
--- Contenu de la table `cast`
+-- Dumping data for table `cast`
 --
 
 INSERT INTO `cast` (`id`, `title`, `descr`, `key`, `created`, `updated`, `status`, `lat`, `lng`, `address`, `report`, `locastid`, `significativity`, `media`, `version`) VALUES
@@ -375,7 +375,7 @@ INSERT INTO `cast` (`id`, `title`, `descr`, `key`, `created`, `updated`, `status
 -- --------------------------------------------------------
 
 --
--- Structure de la table `casttype`
+-- Table structure for table `casttype`
 --
 
 CREATE TABLE `casttype` (
@@ -391,7 +391,7 @@ CREATE TABLE `casttype` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
--- Contenu de la table `casttype`
+-- Dumping data for table `casttype`
 --
 
 INSERT INTO `casttype` (`id`, `title`, `key`, `created`, `updated`, `status`) VALUES
@@ -403,7 +403,7 @@ INSERT INTO `casttype` (`id`, `title`, `key`, `created`, `updated`, `status`) VA
 -- --------------------------------------------------------
 
 --
--- Structure de la table `const`
+-- Table structure for table `const`
 --
 
 CREATE TABLE `const` (
@@ -423,7 +423,7 @@ CREATE TABLE `const` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `form`
+-- Table structure for table `form`
 --
 
 CREATE TABLE `form` (
@@ -448,7 +448,7 @@ CREATE TABLE `form` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Contenu de la table `form`
+-- Dumping data for table `form`
 --
 
 INSERT INTO `form` (`id`, `key`, `title`, `descr`, `theme`, `template`, `action`, `method`, `target`, `enctype`, `back`, `field`, `created`, `updated`, `status`) VALUES
@@ -457,7 +457,7 @@ INSERT INTO `form` (`id`, `key`, `title`, `descr`, `theme`, `template`, `action`
 -- --------------------------------------------------------
 
 --
--- Structure de la table `human`
+-- Table structure for table `human`
 --
 
 CREATE TABLE `human` (
@@ -477,7 +477,7 @@ CREATE TABLE `human` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=18 ;
 
 --
--- Contenu de la table `human`
+-- Dumping data for table `human`
 --
 
 INSERT INTO `human` (`id`, `key`, `title`, `descr`, `profilepic`, `password`, `created`, `updated`, `status`, `system`) VALUES
@@ -502,7 +502,28 @@ INSERT INTO `human` (`id`, `key`, `title`, `descr`, `profilepic`, `password`, `c
 -- --------------------------------------------------------
 
 --
--- Structure de la table `map`
+-- Table structure for table `logbook`
+--
+
+CREATE TABLE `logbook` (
+  `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT COMMENT 'The unique identifier',
+  `key` varchar(32) COLLATE utf8_unicode_ci NOT NULL COMMENT 'The key',
+  `subject` mediumtext COLLATE utf8_unicode_ci NOT NULL COMMENT 'Subject',
+  `subjectid` mediumint(3) unsigned NOT NULL COMMENT 'Subject ID',
+  `item` mediumtext COLLATE utf8_unicode_ci NOT NULL COMMENT 'Object',
+  `itemid` mediumint(3) unsigned NOT NULL COMMENT 'Object id',
+  `created` datetime NOT NULL COMMENT 'Created Datetime',
+  `updated` datetime NOT NULL COMMENT 'Updated Datetime',
+  `status` varchar(32) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Status',
+  PRIMARY KEY (`id`),
+  KEY `status` (`status`),
+  KEY `key` (`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `map`
 --
 
 CREATE TABLE `map` (
@@ -519,7 +540,7 @@ CREATE TABLE `map` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Contenu de la table `map`
+-- Dumping data for table `map`
 --
 
 INSERT INTO `map` (`id`, `title`, `descr`, `key`, `created`, `updated`, `status`) VALUES
@@ -528,7 +549,7 @@ INSERT INTO `map` (`id`, `title`, `descr`, `key`, `created`, `updated`, `status`
 -- --------------------------------------------------------
 
 --
--- Structure de la table `page`
+-- Table structure for table `page`
 --
 
 CREATE TABLE `page` (
@@ -552,7 +573,7 @@ CREATE TABLE `page` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
 
 --
--- Contenu de la table `page`
+-- Dumping data for table `page`
 --
 
 INSERT INTO `page` (`id`, `key`, `title`, `descr`, `text`, `http_status`, `master`, `url`, `system`, `version`, `created`, `updated`, `status`) VALUES
@@ -568,7 +589,7 @@ INSERT INTO `page` (`id`, `key`, `title`, `descr`, `text`, `http_status`, `maste
 -- --------------------------------------------------------
 
 --
--- Structure de la table `region`
+-- Table structure for table `region`
 --
 
 CREATE TABLE `region` (
@@ -581,12 +602,19 @@ CREATE TABLE `region` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `key` (`key`),
   KEY `status` (`status`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `region`
+--
+
+INSERT INTO `region` (`id`, `title`, `key`, `created`, `updated`, `status`) VALUES
+(1, 'Europe', 'eu', '2013-10-01 12:30:29', '2013-10-01 02:35:21', 'live');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `section`
+-- Table structure for table `section`
 --
 
 CREATE TABLE `section` (
@@ -605,7 +633,7 @@ CREATE TABLE `section` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Contenu de la table `section`
+-- Dumping data for table `section`
 --
 
 INSERT INTO `section` (`id`, `key`, `title`, `descr`, `zone`, `app`, `created`, `updated`, `status`) VALUES
@@ -615,7 +643,7 @@ INSERT INTO `section` (`id`, `key`, `title`, `descr`, `zone`, `app`, `created`, 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `site`
+-- Table structure for table `site`
 --
 
 CREATE TABLE `site` (
@@ -632,7 +660,7 @@ CREATE TABLE `site` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Contenu de la table `site`
+-- Dumping data for table `site`
 --
 
 INSERT INTO `site` (`id`, `key`, `title`, `created`, `updated`, `status`, `defaultversion`) VALUES
@@ -641,7 +669,7 @@ INSERT INTO `site` (`id`, `key`, `title`, `created`, `updated`, `status`, `defau
 -- --------------------------------------------------------
 
 --
--- Structure de la table `structure`
+-- Table structure for table `structure`
 --
 
 CREATE TABLE `structure` (
@@ -657,10 +685,10 @@ CREATE TABLE `structure` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `key` (`key`),
   KEY `status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=29 ;
 
 --
--- Contenu de la table `structure`
+-- Dumping data for table `structure`
 --
 
 INSERT INTO `structure` (`id`, `key`, `title`, `descr`, `system`, `attr`, `created`, `updated`, `status`) VALUES
@@ -675,12 +703,13 @@ INSERT INTO `structure` (`id`, `key`, `title`, `descr`, `system`, `attr`, `creat
 (24, 'casttype', 'Cast types', '', 0, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"A short title","min":"","max":"","required":"1"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"}}', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live'),
 (25, 'typology', 'Types in the typology', '', 0, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"Name of the type","min":"","max":""},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"}}', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live'),
 (26, 'region', 'Regions', '', 0, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"Title","min":"","max":"","required":"1"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"}}', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live'),
-(27, 'const', 'Text constants', '', 1, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"Title","min":"","max":"","required":"1"},"version":{"key":"version","type":"version"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"}}', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live');
+(27, 'const', 'Text constants', '', 1, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"Title","min":"","max":"","required":"1"},"version":{"key":"version","type":"version"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"}}', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live'),
+(28, 'logbook', 'Logbook', '', 1, '{"id":{"key":"id","title":"The unique identifier","type":"id","min":"0","max":"0","index":"primary","auto_increment":"1"},"key":{"key":"key","title":"The key","type":"key","min":"0","max":"32","required":"1"},"subject":{"key":"subject","title":"Subject","type":"string","min":"","max":""},"subjectid":{"key":"subjectid","title":"Subject ID","type":"int","min":"","max":""},"item":{"key":"item","title":"item","type":"string","min":"","max":""},"itemid":{"key":"itemid","title":"item id","type":"int","min":"","max":""},\r\n"created":{"key":"created","type":"created","title":"Created Datetime"},\r\n"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},\r\n"status":{"key":"status","type":"status","title":"Status"}}', '0000-00-00 00:00:00', '2013-04-05 12:41:29', 'live');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `typology`
+-- Table structure for table `typology`
 --
 
 CREATE TABLE `typology` (
@@ -696,7 +725,7 @@ CREATE TABLE `typology` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19 ;
 
 --
--- Contenu de la table `typology`
+-- Dumping data for table `typology`
 --
 
 INSERT INTO `typology` (`id`, `title`, `key`, `created`, `updated`, `status`) VALUES
@@ -722,7 +751,7 @@ INSERT INTO `typology` (`id`, `title`, `key`, `created`, `updated`, `status`) VA
 -- --------------------------------------------------------
 
 --
--- Structure de la table `version`
+-- Table structure for table `version`
 --
 
 CREATE TABLE `version` (
@@ -739,7 +768,7 @@ CREATE TABLE `version` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Contenu de la table `version`
+-- Dumping data for table `version`
 --
 
 INSERT INTO `version` (`id`, `key`, `title`, `lang`, `created`, `updated`, `status`) VALUES
@@ -748,7 +777,7 @@ INSERT INTO `version` (`id`, `key`, `title`, `lang`, `created`, `updated`, `stat
 -- --------------------------------------------------------
 
 --
--- Structure de la table `_rel`
+-- Table structure for table `_rel`
 --
 
 CREATE TABLE `_rel` (
@@ -766,7 +795,7 @@ CREATE TABLE `_rel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Relations of page';
 
 --
--- Contenu de la table `_rel`
+-- Dumping data for table `_rel`
 --
 
 INSERT INTO `_rel` (`item`, `itemid`, `key`, `rel`, `relid`, `position`) VALUES

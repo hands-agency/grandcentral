@@ -33,12 +33,12 @@
 	header('Cache-Control: no-cache'); // recommended to prevent caching of event data.
 
 /********************************************************************************************/
-//	Some vars
+//	This API has the right content-type. Now Lets find the content
 /********************************************************************************************/
+//	Some vars
 	$app = $_GET['app'];
-	$template = $_GET['template'];
-	
-//	API to use
-	$api = ROOT.'/theme/'.$app.'/'.$template.'.eventstream.php';
-	require $api;
+	$key = $_GET['template'];
+		
+//	Call the right page
+	echo new app($app, $key);
 ?>

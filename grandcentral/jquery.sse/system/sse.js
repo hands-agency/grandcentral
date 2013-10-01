@@ -19,11 +19,12 @@
 	//	Connect to source
 		function connect()
 		{
-		//	The source	
-			source = new EventSource(url+since+datetime+delay);
+		//	The source
+			sourceUrl = url+since+datetime+delay;
+			source = new EventSource(sourceUrl);
 			
 		//	DEBUG
-		//	console.log(url+since+datetime+delay);
+			console.log(sourceUrl);
 
 		//	Listen to event source
 			source.addEventListener('message', function(e)

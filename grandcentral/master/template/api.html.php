@@ -28,11 +28,11 @@
 	}
 
 /********************************************************************************************/
-//	Go
+//	This API has the right content-type. Now Lets find the content
 /********************************************************************************************/
 	if (!empty($_POST))
 	{
-	//	The app and the section
+	//	Some vars
 		$app = $_POST['app'];
 		$key = $_POST['template'];
 		
@@ -43,7 +43,10 @@
 			unset($_POST['_GET']);
 		}
 		
-	//	Echo
+	//	Call the right page
 		echo new app($app, $key);
+	//	Write down those 2 zones
+		echo '<!-- ZONE:css -->';
+		echo '<!-- ZONE:script -->';
 	}
 ?>

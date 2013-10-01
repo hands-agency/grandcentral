@@ -64,11 +64,14 @@
 /********************************************************************************************/
 //	Apps
 /********************************************************************************************/
+//	Progressive search
 	$app = new app('searchasyoutype');
 	$app->load();
+//	Server-Side Events
 	$app = new app('jquery.sse');
 	$app->load();
-
+	
+	
 /*
 	$_APP->bind_app('jquery.sse');
 	$_APP->bind_app('font-awesome');
@@ -109,6 +112,8 @@
 	$_APP->bind_code('header', $truc);
 //	Green button
 	$_APP->bind_snippet('header', 'snippet/greenbutton/greenbutton');
+//	Even stream
+	$_APP->bind_snippet('header', 'snippet/eventstream');	
 	
 /********************************************************************************************/
 //	Tabs

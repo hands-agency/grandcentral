@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.7
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
--- Client: localhost
--- Généré le: Mar 01 Octobre 2013 à 12:23
--- Version du serveur: 5.5.29
--- Version de PHP: 5.4.10
+-- Host: localhost
+-- Generation Time: Oct 01, 2013 at 07:13 PM
+-- Server version: 5.5.25
+-- PHP Version: 5.4.4
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `ccv4_admin_mvd`
+-- Database: `ccv4_admin_sf`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `const`
+-- Table structure for table `const`
 --
 
 CREATE TABLE `const` (
@@ -41,7 +41,7 @@ CREATE TABLE `const` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=62 ;
 
 --
--- Contenu de la table `const`
+-- Dumping data for table `const`
 --
 
 INSERT INTO `const` (`id`, `key`, `title`, `version`, `created`, `updated`, `status`) VALUES
@@ -89,7 +89,7 @@ INSERT INTO `const` (`id`, `key`, `title`, `version`, `created`, `updated`, `sta
 -- --------------------------------------------------------
 
 --
--- Structure de la table `form`
+-- Table structure for table `form`
 --
 
 CREATE TABLE `form` (
@@ -112,7 +112,7 @@ CREATE TABLE `form` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
 
 --
--- Contenu de la table `form`
+-- Dumping data for table `form`
 --
 
 INSERT INTO `form` (`id`, `key`, `title`, `descr`, `template`, `action`, `method`, `target`, `enctype`, `field`, `created`, `updated`, `status`) VALUES
@@ -123,7 +123,7 @@ INSERT INTO `form` (`id`, `key`, `title`, `descr`, `template`, `action`, `method
 -- --------------------------------------------------------
 
 --
--- Structure de la table `greenbutton`
+-- Table structure for table `greenbutton`
 --
 
 CREATE TABLE `greenbutton` (
@@ -140,7 +140,7 @@ CREATE TABLE `greenbutton` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 --
--- Contenu de la table `greenbutton`
+-- Dumping data for table `greenbutton`
 --
 
 INSERT INTO `greenbutton` (`id`, `key`, `title`, `created`, `updated`, `status`, `icon`) VALUES
@@ -158,7 +158,28 @@ INSERT INTO `greenbutton` (`id`, `key`, `title`, `created`, `updated`, `status`,
 -- --------------------------------------------------------
 
 --
--- Structure de la table `page`
+-- Table structure for table `logbook`
+--
+
+CREATE TABLE `logbook` (
+  `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT COMMENT 'The unique identifier',
+  `key` varchar(32) COLLATE utf8_unicode_ci NOT NULL COMMENT 'The key',
+  `subject` mediumtext COLLATE utf8_unicode_ci NOT NULL COMMENT 'Subject',
+  `subjectid` mediumint(3) unsigned NOT NULL COMMENT 'Subject ID',
+  `item` mediumtext COLLATE utf8_unicode_ci NOT NULL COMMENT 'Object',
+  `itemid` mediumint(3) unsigned NOT NULL COMMENT 'Object id',
+  `created` datetime NOT NULL COMMENT 'Created Datetime',
+  `updated` datetime NOT NULL COMMENT 'Updated Datetime',
+  `status` varchar(32) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Status',
+  PRIMARY KEY (`id`),
+  KEY `status` (`status`),
+  KEY `key` (`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `page`
 --
 
 CREATE TABLE `page` (
@@ -177,17 +198,16 @@ CREATE TABLE `page` (
   PRIMARY KEY (`id`),
   KEY `key` (`key`),
   KEY `status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=35 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=39 ;
 
 --
--- Contenu de la table `page`
+-- Dumping data for table `page`
 --
 
 INSERT INTO `page` (`id`, `key`, `title`, `descr`, `text`, `http_status`, `master`, `url`, `system`, `created`, `updated`, `status`) VALUES
 (1, 'home', 'Digest', 'Welcome home', '', '200 OK', '{"type":"html","key":"master"}', '/', 0, '0000-00-00 00:00:00', '2013-08-30 01:19:17', 'live'),
 (2, 'error_404', 'Oups, that 404 thing again!', '', '', '404 Not Found', '{"type":"html","key":"master"}', '/404', 1, '0000-00-00 00:00:00', '2013-08-26 01:28:27', 'live'),
 (3, 'post', 'Post', 'Receives all the posts from the forms.', '', '200 OK', '{"type":"routine","key":"post"}', '/post', 1, '0000-00-00 00:00:00', '2013-08-25 19:33:38', 'live'),
-(4, 'ajax', 'Ajax page for HTML content', 'Receives all the ajax requests.', '', '200 OK', '{"type":"html","key":"ajax"}', '/ajax.html', 1, '0000-00-00 00:00:00', '2013-03-06 06:21:38', 'live'),
 (5, 'list', 'List', '', '', '200 OK', '{"type":"html","key":"master"}', '/list', 0, '0000-00-00 00:00:00', '2013-08-28 17:32:19', 'live'),
 (6, 'edit', 'Edit', '', '', '200 OK', '{"type":"html","key":"master"}', '/edit', 0, '0000-00-00 00:00:00', '2013-08-27 14:58:31', 'live'),
 (7, 'doc', 'Doc', 'About classes, methods and functions available to you, kind developer.', '', '200 OK', '{"type":"html","key":"master"}', '/doc', 0, '0000-00-00 00:00:00', '2013-03-10 23:07:24', 'live'),
@@ -197,15 +217,16 @@ INSERT INTO `page` (`id`, `key`, `title`, `descr`, `text`, `http_status`, `maste
 (12, 'social', 'Socialise', 'Chinwag', '', '200 OK', '{"type":"html","key":"master"}', '/social', 0, '0000-00-00 00:00:00', '2013-03-10 23:03:28', 'live'),
 (29, 'logbook', 'Logbook', '', '', '200 OK', '{"type":"html","key":"master"}', '/logbook', 0, '0000-00-00 00:00:00', '2013-03-06 06:21:38', 'live'),
 (30, 'login', 'Login', '', '', '200 OK', '{"type":"html","key":"login"}', '/login', 1, '0000-00-00 00:00:00', '2013-08-28 12:39:41', 'live'),
-(31, 'api-json', 'API (json)', '', '', '200 OK', '{"type":"json","key":"api"}', '/api-json', 1, '2013-03-06 03:21:46', '2013-03-22 12:56:52', 'live'),
+(31, 'api.json', 'API (json)', '', '', '200 OK', '{"type":"json","key":"api"}', '/api.json', 1, '2013-03-06 03:21:46', '2013-03-22 12:56:52', 'live'),
 (32, 'me', 'My profile', 'dfsdf', '', '200 OK', '{"type":"html","key":"master"}', '/me', 0, '0000-00-00 00:00:00', '2013-03-13 14:04:08', 'live'),
-(33, 'api-eventstream', 'API (event-stream)', '', '', '200 OK', '{"type":"eventstream","key":"api"}', '/api-eventstream', 1, '2013-03-06 03:21:46', '2013-03-22 13:22:05', 'live'),
-(34, 'ajax.json', 'Ajax page for JSON content', 'Receives all the routines.', '', '200 OK', '{"type":"json","key":"ajax"}', '/ajax.json', 1, '0000-00-00 00:00:00', '2013-03-06 06:21:38', 'live');
+(33, 'api.eventstream', 'API (event-stream)', '', '', '200 OK', '{"type":"eventstream","key":"api"}', '/api.eventstream', 1, '2013-03-06 03:21:46', '2013-03-22 13:22:05', 'live'),
+(35, 'api.html', 'API (hmtl)', '', '', '200 OK', '{"type":"html","key":"api"}', '/api.html', 1, '2013-03-06 03:21:46', '2013-03-22 13:22:05', 'live'),
+(38, 'api.json', 'API (json)', '', '', '200 OK', '{"type":"json","key":"api"}', '/api.json', 1, '2013-03-06 03:21:46', '2013-03-22 12:56:52', 'live');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `section`
+-- Table structure for table `section`
 --
 
 CREATE TABLE `section` (
@@ -224,7 +245,7 @@ CREATE TABLE `section` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=35 ;
 
 --
--- Contenu de la table `section`
+-- Dumping data for table `section`
 --
 
 INSERT INTO `section` (`id`, `key`, `title`, `descr`, `zone`, `app`, `created`, `updated`, `status`) VALUES
@@ -248,7 +269,7 @@ INSERT INTO `section` (`id`, `key`, `title`, `descr`, `zone`, `app`, `created`, 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `site`
+-- Table structure for table `site`
 --
 
 CREATE TABLE `site` (
@@ -265,7 +286,7 @@ CREATE TABLE `site` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Contenu de la table `site`
+-- Dumping data for table `site`
 --
 
 INSERT INTO `site` (`id`, `key`, `title`, `created`, `updated`, `status`, `defaultversion`) VALUES
@@ -274,7 +295,7 @@ INSERT INTO `site` (`id`, `key`, `title`, `created`, `updated`, `status`, `defau
 -- --------------------------------------------------------
 
 --
--- Structure de la table `structure`
+-- Table structure for table `structure`
 --
 
 CREATE TABLE `structure` (
@@ -290,10 +311,10 @@ CREATE TABLE `structure` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `key` (`key`),
   KEY `status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
 
 --
--- Contenu de la table `structure`
+-- Dumping data for table `structure`
 --
 
 INSERT INTO `structure` (`id`, `key`, `title`, `descr`, `system`, `attr`, `created`, `updated`, `status`) VALUES
@@ -304,12 +325,13 @@ INSERT INTO `structure` (`id`, `key`, `title`, `descr`, `system`, `attr`, `creat
 (5, 'const', 'Text constants', '', 1, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"Title","min":"","max":"","required":"1"},"version":{"key":"version","type":"version"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"}}', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live'),
 (6, 'form', 'Forms', '', 1, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"Title","min":"","max":"","required":"1"},"descr":{"key":"descr","title":"A short description","type":"string","min":"0","max":"500"},"template":{"key":"template","type":"string","title":"Template","min":"","max":"","required":"1"},"action":{"key":"action","type":"string","title":"Action","min":"","max":"","required":"1"},"method":{"key":"method","type":"list","option":"post,get","title":"Method","required":"1"},"target":{"key":"target","type":"string","title":"Target"},"enctype":{"key":"enctype","type":"list","option":"application/x-www-form-urlencoded,multipart/form-data","title":"Enctype","required":"1"},"field":{"key":"field","type":"array","title":"The Fields"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"}}', '2013-09-27 08:33:31', '2013-09-27 08:33:31', 'live'),
 (7, 'section', 'Sections', '', 1, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"A short title","min":"0","max":"255","required":"1"},"descr":{"key":"descr","type":"string","title":"A short description","min":"0","max":"500"},"zone":{"key":"zone","type":"string","title":"The zone","min":"0","max":"255"},"app":{"key":"app","type":"array","title":"The template","required":"1"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"},"greenbutton":{"key":"child","param":[{"item":"greenbutton"}],"min":"","max":"","type":"rel"}}', '2013-09-25 08:33:09', '2013-09-25 08:33:09', 'live'),
-(8, 'greenbutton', 'Green actions', '', 1, '{"id":{"key":"id","title":"The unique identifier","type":"id"},"key":{"key":"key","title":"The key","type":"key"},"title":{"key":"title","title":"A short title","type":"string","min":"0","max":"255","required":"1"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"},"icon":{"key":"icon","type":"string","title":"Icon"}}', '2013-09-25 08:33:09', '2013-09-25 08:33:09', 'live');
+(8, 'greenbutton', 'Green actions', '', 1, '{"id":{"key":"id","title":"The unique identifier","type":"id"},"key":{"key":"key","title":"The key","type":"key"},"title":{"key":"title","title":"A short title","type":"string","min":"0","max":"255","required":"1"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"},"icon":{"key":"icon","type":"string","title":"Icon"}}', '2013-09-25 08:33:09', '2013-09-25 08:33:09', 'live'),
+(9, 'logbook', 'Logbook', '', 1, '{"id":{"key":"id","title":"The unique identifier","type":"id","min":"0","max":"0","index":"primary","auto_increment":"1"},"key":{"key":"key","title":"The key","type":"key","min":"0","max":"32","required":"1"},"subject":{"key":"subject","title":"Subject","type":"string","min":"","max":""},"subjectid":{"key":"subjectid","title":"Subject ID","type":"int","min":"","max":""},"item":{"key":"item","title":"item","type":"string","min":"","max":""},"itemid":{"key":"itemid","title":"item id","type":"int","min":"","max":""},\r\n"created":{"key":"created","type":"created","title":"Created Datetime"},\r\n"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},\r\n"status":{"key":"status","type":"status","title":"Status"}}', '0000-00-00 00:00:00', '2013-04-05 12:41:29', 'live');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `version`
+-- Table structure for table `version`
 --
 
 CREATE TABLE `version` (
@@ -326,7 +348,7 @@ CREATE TABLE `version` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Contenu de la table `version`
+-- Dumping data for table `version`
 --
 
 INSERT INTO `version` (`id`, `key`, `title`, `lang`, `created`, `updated`, `status`) VALUES
@@ -335,7 +357,7 @@ INSERT INTO `version` (`id`, `key`, `title`, `lang`, `created`, `updated`, `stat
 -- --------------------------------------------------------
 
 --
--- Structure de la table `_rel`
+-- Table structure for table `_rel`
 --
 
 CREATE TABLE `_rel` (
@@ -353,7 +375,7 @@ CREATE TABLE `_rel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Relations of page';
 
 --
--- Contenu de la table `_rel`
+-- Dumping data for table `_rel`
 --
 
 INSERT INTO `_rel` (`item`, `itemid`, `key`, `rel`, `relid`, `position`) VALUES

@@ -57,7 +57,7 @@ class itemPage extends _items
 			'json' => 'application/json',
 			'html' => 'text/html',
 			'routine' => 'text/x-php',
-			'eventstream' => 'text/event-stream'
+			'eventstream' => 'text/event-stream',
 		);
 		return $mime;
 	}

@@ -29,7 +29,7 @@
 			mime = option['mime'] || 'html';
 		
 		//	Params
-			var url = ADMIN_URL+'/ajax.'+mime;
+			var url = ADMIN_URL+'/api.'+mime;
 		//	Add the current item
 			param['caller_item'] = ITEM;
 			param['caller_id'] = ID;

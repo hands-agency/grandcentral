@@ -1,0 +1,39 @@
+#eventstream {}
+#eventstream ul
+{
+	padding-left:5px; /* optical alignment */
+	list-style-type:disc;
+	color:#2a323a;
+	margin-left:12px;
+}
+#eventstream ul li
+{
+	margin-bottom: 1px;
+	font-size: 12px;
+	position:relative;
+/*	display:none;*/
+}
+#eventstream ul li:hover
+{
+	opacity:1;
+}
+#eventstream ul li:not(:first-child):before
+{
+	content:'';
+	width:1px;
+	position:absolute;
+	border-left:2px solid #2a323a;
+	height:7px;
+	bottom:10px;
+	left:-13px;
+}
+#eventstream ul.everybodyelse li:first-child:before
+{
+	content:'';
+	width:10px;
+	position:absolute;
+	border-top:1px dotted #ccc;
+	height:0px;
+	top:0px;
+	left:-17px;
+}
