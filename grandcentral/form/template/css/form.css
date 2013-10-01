@@ -27,7 +27,6 @@ section[data-template="edit/edit"]>form>fieldset>.descr
 	padding:10px;
 	position:relative;
 	margin:0 50px 10px 0;
-	overflow:auto;
 }
 
 /* Labels */
@@ -49,7 +48,7 @@ section[data-template="edit/edit"]>form>fieldset ol>li>label
 .in2col section[data-template="edit/edit"]>form>fieldset ol>li .wrapper
 {
 	width:75%;
-	float:left;
+	display:inline-block;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;

@@ -80,13 +80,14 @@
 			vars['ajaxParam']['field'] = field.data('key');
 			vars['ajaxParam']['value'] = field.find('[name^="' + vars['key'] + '"]').val();
 
+		//	Try to validate
 			$.ajx(vars['ajaxParam'],
 			{
 			//	Callback
 				done:function(msg)
 				{
 				//	DEBUG (what validation.routine sends back)
-					console.log(msg);
+				//	console.log(msg);
 			
 					$li = field;
 				//	Start clean
@@ -115,6 +116,7 @@
 					//	The whole form is not valid
 						vars['formIsValid'] = false;
 					}
+					
 				//	Append the control if needed
 					if ($li.find('[data-control]').length == 0) $li.append(controlCode);
 				//	Customize the control and the line
