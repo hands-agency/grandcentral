@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 3.5.7
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Oct 01, 2013 at 02:05 AM
--- Server version: 5.5.25
--- PHP Version: 5.4.4
+-- Client: localhost
+-- Généré le: Mar 01 Octobre 2013 à 12:23
+-- Version du serveur: 5.5.29
+-- Version de PHP: 5.4.10
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `ccv4_miranda`
+-- Base de données: `ccv4_miranda`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cast`
+-- Structure de la table `cast`
 --
 
 CREATE TABLE `cast` (
@@ -48,7 +48,7 @@ CREATE TABLE `cast` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=307 ;
 
 --
--- Dumping data for table `cast`
+-- Contenu de la table `cast`
 --
 
 INSERT INTO `cast` (`id`, `title`, `descr`, `key`, `created`, `updated`, `status`, `lat`, `lng`, `address`, `report`, `locastid`, `significativity`, `media`, `version`) VALUES
@@ -375,7 +375,7 @@ INSERT INTO `cast` (`id`, `title`, `descr`, `key`, `created`, `updated`, `status
 -- --------------------------------------------------------
 
 --
--- Table structure for table `casttype`
+-- Structure de la table `casttype`
 --
 
 CREATE TABLE `casttype` (
@@ -391,7 +391,7 @@ CREATE TABLE `casttype` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `casttype`
+-- Contenu de la table `casttype`
 --
 
 INSERT INTO `casttype` (`id`, `title`, `key`, `created`, `updated`, `status`) VALUES
@@ -403,7 +403,7 @@ INSERT INTO `casttype` (`id`, `title`, `key`, `created`, `updated`, `status`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `const`
+-- Structure de la table `const`
 --
 
 CREATE TABLE `const` (
@@ -423,7 +423,7 @@ CREATE TABLE `const` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `form`
+-- Structure de la table `form`
 --
 
 CREATE TABLE `form` (
@@ -448,7 +448,7 @@ CREATE TABLE `form` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `form`
+-- Contenu de la table `form`
 --
 
 INSERT INTO `form` (`id`, `key`, `title`, `descr`, `theme`, `template`, `action`, `method`, `target`, `enctype`, `back`, `field`, `created`, `updated`, `status`) VALUES
@@ -457,7 +457,7 @@ INSERT INTO `form` (`id`, `key`, `title`, `descr`, `theme`, `template`, `action`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `human`
+-- Structure de la table `human`
 --
 
 CREATE TABLE `human` (
@@ -477,7 +477,7 @@ CREATE TABLE `human` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=18 ;
 
 --
--- Dumping data for table `human`
+-- Contenu de la table `human`
 --
 
 INSERT INTO `human` (`id`, `key`, `title`, `descr`, `profilepic`, `password`, `created`, `updated`, `status`, `system`) VALUES
@@ -502,7 +502,7 @@ INSERT INTO `human` (`id`, `key`, `title`, `descr`, `profilepic`, `password`, `c
 -- --------------------------------------------------------
 
 --
--- Table structure for table `map`
+-- Structure de la table `map`
 --
 
 CREATE TABLE `map` (
@@ -519,7 +519,7 @@ CREATE TABLE `map` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `map`
+-- Contenu de la table `map`
 --
 
 INSERT INTO `map` (`id`, `title`, `descr`, `key`, `created`, `updated`, `status`) VALUES
@@ -528,7 +528,7 @@ INSERT INTO `map` (`id`, `title`, `descr`, `key`, `created`, `updated`, `status`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `page`
+-- Structure de la table `page`
 --
 
 CREATE TABLE `page` (
@@ -541,31 +541,34 @@ CREATE TABLE `page` (
   `master` mediumtext COLLATE utf8_unicode_ci NOT NULL COMMENT 'The template',
   `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'The url',
   `system` tinyint(1) NOT NULL COMMENT 'System',
+  `version` mediumint(3) unsigned NOT NULL,
   `created` datetime NOT NULL COMMENT 'Created Datetime',
   `updated` datetime NOT NULL COMMENT 'Updated Datetime',
   `status` varchar(32) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Status',
   PRIMARY KEY (`id`),
   KEY `key` (`key`),
-  KEY `status` (`status`)
+  KEY `status` (`status`),
+  KEY `version` (`version`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
 
 --
--- Dumping data for table `page`
+-- Contenu de la table `page`
 --
 
-INSERT INTO `page` (`id`, `key`, `title`, `descr`, `text`, `http_status`, `master`, `url`, `system`, `created`, `updated`, `status`) VALUES
-(1, 'home', 'Home', '', '', '200 OK', '{"type":"html","key":"master"}', '/', 0, '2013-03-25 17:08:31', '2013-08-26 13:54:05', 'live'),
-(3, 'get.xml', 'The XML GET API', '', '', '200 OK', '{"type":"xml","key":"get"}', '/get.xml', 1, '2013-03-25 17:08:31', '2013-08-26 13:54:05', 'live'),
-(4, 'post', 'The POST API', '', '', '200 OK', '{"type":"xml","key":"post"}', '/post', 1, '2013-03-25 17:08:31', '2013-08-26 13:54:05', 'live'),
-(5, 'sync', 'Sync Locast & Miranda', '', '', '200 OK', '{"type":"routine","key":"sync"}', '/sync', 1, '0000-00-00 00:00:00', '2013-08-21 15:03:07', 'live'),
-(6, 'get.json', 'The JSON GET API', '', '', '200 OK', '{"type":"json","key":"get"}', '/get.json', 1, '2013-03-25 17:08:31', '2013-08-26 13:54:05', 'live'),
-(7, 'ajax.html', 'Ajax page for HTML content', '', '', '200 OK', '{"type":"html","key":"ajax"}', '/ajax.html', 1, '0000-00-00 00:00:00', '2013-09-13 10:18:30', 'live'),
-(8, 'ajax.json', 'Ajax page for JSON content', '', '', '200 OK', '{"type":"json","key":"ajax"}', '/ajax.json', 1, '0000-00-00 00:00:00', '2013-09-13 10:18:30', 'live');
+INSERT INTO `page` (`id`, `key`, `title`, `descr`, `text`, `http_status`, `master`, `url`, `system`, `version`, `created`, `updated`, `status`) VALUES
+(1, 'home', 'Home', '', '', '200 OK', '{"type":"html","key":"master"}', '/', 1, 1, '2013-03-25 17:08:31', '2013-10-01 12:11:24', 'live'),
+(2, 'error_404', '404', '', '', '404 Not Found', '{"type":"html","key":"master"}', '/404', 1, 1, '2013-10-16 06:48:43', '2013-10-16 06:48:43', 'live'),
+(3, 'get.xml', 'The XML GET API', '', '', '200 OK', '{"type":"xml","key":"get"}', '/get.xml', 1, 1, '2013-03-25 17:08:31', '2013-08-26 13:54:05', 'live'),
+(4, 'post', 'The POST API', '', '', '200 OK', '{"type":"xml","key":"post"}', '/post', 1, 1, '2013-03-25 17:08:31', '2013-08-26 13:54:05', 'live'),
+(5, 'sync', 'Sync Locast & Miranda', '', '', '200 OK', '{"type":"routine","key":"sync"}', '/sync', 1, 1, '0000-00-00 00:00:00', '2013-08-21 15:03:07', 'live'),
+(6, 'get.json', 'The JSON GET API', '', '', '200 OK', '{"type":"json","key":"get"}', '/get.json', 1, 1, '2013-03-25 17:08:31', '2013-08-26 13:54:05', 'live'),
+(7, 'ajax.html', 'Ajax page for HTML content', '', '', '200 OK', '{"type":"html","key":"ajax"}', '/ajax.html', 1, 1, '0000-00-00 00:00:00', '2013-09-13 10:18:30', 'live'),
+(8, 'ajax.json', 'Ajax page for JSON content', '', '', '200 OK', '{"type":"json","key":"ajax"}', '/ajax.json', 1, 1, '0000-00-00 00:00:00', '2013-09-13 10:18:30', 'live');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `region`
+-- Structure de la table `region`
 --
 
 CREATE TABLE `region` (
@@ -583,7 +586,7 @@ CREATE TABLE `region` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `section`
+-- Structure de la table `section`
 --
 
 CREATE TABLE `section` (
@@ -602,7 +605,7 @@ CREATE TABLE `section` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `section`
+-- Contenu de la table `section`
 --
 
 INSERT INTO `section` (`id`, `key`, `title`, `descr`, `zone`, `app`, `created`, `updated`, `status`) VALUES
@@ -612,7 +615,7 @@ INSERT INTO `section` (`id`, `key`, `title`, `descr`, `zone`, `app`, `created`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `site`
+-- Structure de la table `site`
 --
 
 CREATE TABLE `site` (
@@ -629,7 +632,7 @@ CREATE TABLE `site` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `site`
+-- Contenu de la table `site`
 --
 
 INSERT INTO `site` (`id`, `key`, `title`, `created`, `updated`, `status`, `defaultversion`) VALUES
@@ -638,7 +641,7 @@ INSERT INTO `site` (`id`, `key`, `title`, `created`, `updated`, `status`, `defau
 -- --------------------------------------------------------
 
 --
--- Table structure for table `structure`
+-- Structure de la table `structure`
 --
 
 CREATE TABLE `structure` (
@@ -657,17 +660,17 @@ CREATE TABLE `structure` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=28 ;
 
 --
--- Dumping data for table `structure`
+-- Contenu de la table `structure`
 --
 
 INSERT INTO `structure` (`id`, `key`, `title`, `descr`, `system`, `attr`, `created`, `updated`, `status`) VALUES
 (1, 'structure', 'Structures', '', 1, '{"id":{"key":"id","title":"The unique identifier","type":"id"},"key":{"key":"key","title":"The key","type":"key"},"title":{"key":"title","title":"A short title","type":"string","min":"0","max":"255","required":"1"},"descr":{"key":"descr","title":"A short description","type":"string","min":"0","max":"500"},"system":{"key":"system","title":"Is system","type":"bool"},"attr":{"key":"attr","title":"Attributes","type":"array"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status"}}', '0000-00-00 00:00:00', '2013-04-05 12:39:48', 'live'),
 (2, 'site', 'Your websites', 'Manage your website basics, and the apps that will be opened at all time.', 1, '{"id":{"key":"id","title":"The unique identifier","type":"id"},"key":{"key":"key","title":"The key","type":"key"},"title":{"key":"title","title":"A short title","type":"string","min":"0","max":"255","required":"1"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"},"defaultversion":{"key":"defaultversion","type":"int","title":"Default Version"}}', '0000-00-00 00:00:00', '2013-04-05 12:41:29', 'live'),
-(3, 'page', 'Page', '', 1, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"A short title","min":"0","max":"255","required":"1"},"descr":{"key":"descr","type":"string","title":"A short description","min":"0","max":"500"},"text":{"key":"text","type":"string","title":"The text content","min":"0","max":"65035"},"http_status":{"key":"http_status","type":"string","title":"The http status","min":"0","max":"255"},"master":{"key":"master","type":"array","title":"The master"},"url":{"key":"url","type":"string","title":"The url","min":"0","max":"255","required":"1"},"system":{"key":"system","type":"bool","title":"System"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"},"version":{"key":"version","type":"version"},"child":{"key":"child","param":[{"item":"structure_3"}],"min":"","max":"","type":"rel"},"section":{"key":"section","param":{"1":{"item":"structure_5"}},"min":"","max":"","type":"rel"}}', '0000-00-00 00:00:00', '2013-08-20 18:57:03', 'live'),
+(3, 'page', 'Page', '', 1, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"A short title","min":"0","max":"255","required":"1"},"descr":{"key":"descr","type":"string","title":"A short description","min":"0","max":"500"},"text":{"key":"text","type":"string","title":"The text content","min":"0","max":"65035"},"http_status":{"key":"http_status","type":"string","title":"The http status","min":"0","max":"255"},"master":{"key":"master","type":"array","title":"The master"},"url":{"key":"url","type":"string","title":"The url","min":"0","max":"255","required":"1"},"system":{"key":"system","type":"bool","title":"System"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"},"version":{"key":"version","type":"version"},"child":{"key":"child","param":[{"item":"page"}],"min":"","max":"","type":"rel"},"section":{"key":"section","param":{"1":{"item":"section"}},"min":"","max":"","type":"rel"}}', '0000-00-00 00:00:00', '2013-08-20 18:57:03', 'live'),
 (4, 'version', 'Versions', '', 1, '{"id":{"key":"id","title":"The unique identifier","type":"id"},"key":{"key":"key","title":"The key","type":"key"},"title":{"key":"title","title":"A short title","type":"string","min":"0","max":"255","required":"1"},"lang":{"key":"lang","title":"Language","type":"string","min":"0","max":"32","required":"1"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"}}', '0000-00-00 00:00:00', '2013-04-05 12:43:36', 'live'),
 (5, 'human', 'Humans', '', 1, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"A short title","min":"0","max":"255","required":"1"},"descr":{"key":"descr","type":"string","title":"Short bio"},"password":{"key":"password","type":"string","title":"Password","min":"0","max":"255","required":"1"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status"},"system":{"key":"system","type":"bool"},"profilepic":{"key":"profilepic","type":"array","title":"Profile Picture"}}', '2013-09-25 09:16:34', '2013-09-25 09:16:34', 'live'),
 (7, 'section', 'Sections', '', 1, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"A short title","min":"0","max":"255","required":"1"},"descr":{"key":"descr","type":"string","title":"A short description","min":"0","max":"500"},"zone":{"key":"zone","type":"string","title":"The zone","min":"0","max":"255"},"app":{"key":"app","type":"array","title":"The template","required":"1"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"},"version":{"key":"version","type":"version","title":"Version"}}', '2013-09-25 08:33:09', '2013-09-25 08:33:09', 'live'),
-(21, 'cast', 'Casts', 'A core sample of raw data sent by one of our investigators.', 0, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"Cast title","min":"","max":"","required":"1"},"descr":{"key":"descr","type":"string","title":"Description","min":"","max":""},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"},"lat":{"key":"lat","type":"string","title":"Latitude","min":"","max":"","required":"1"},"lng":{"key":"lng","type":"string","title":"Longitude","min":"","max":"","required":"1"},"address":{"key":"address","type":"string","title":"Address","min":"","max":""},"report":{"key":"report","type":"string","title":"Report","min":"","max":""},"locastid":{"key":"locastid","type":"int","title":"ID in Locast (for sync)","min":"","max":""},"significativity":{"key":"significativity","type":"array","title":"Significativity"},"media":{"key":"media","type":"array","title":"Media"},"version":{"key":"version","type":"version","title":"Version"},"map":{"key":"map","param":[{"item":"structure_22"}],"min":"","max":"","type":"rel"},"casttype":{"key":"casttype","param":[{"item":"structure_24"}],"min":"","max":"","type":"rel"},"typology":{"key":"typology","param":[{"item":"structure_25"}],"min":"","max":"","type":"rel"},"author":{"key":"author","param":{"1":{"item":"structure_4"}},"min":"1","max":"1","required":"1","type":"rel"}}', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live'),
+(21, 'cast', 'Casts', 'A core sample of raw data sent by one of our investigators.', 0, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"Cast title","min":"","max":"","required":"1"},"descr":{"key":"descr","type":"string","title":"Description","min":"","max":""},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"},"lat":{"key":"lat","type":"string","title":"Latitude","min":"","max":"","required":"1"},"lng":{"key":"lng","type":"string","title":"Longitude","min":"","max":"","required":"1"},"address":{"key":"address","type":"string","title":"Address","min":"","max":""},"report":{"key":"report","type":"string","title":"Report","min":"","max":""},"locastid":{"key":"locastid","type":"int","title":"ID in Locast (for sync)","min":"","max":""},"significativity":{"key":"significativity","type":"array","title":"Significativity"},"media":{"key":"media","type":"array","title":"Media"},"version":{"key":"version","type":"version","title":"Version"},"map":{"key":"map","param":[{"item":"map"}],"min":"","max":"","type":"rel"},"casttype":{"key":"casttype","param":[{"item":"casttype"}],"min":"","max":"","type":"rel"},"typology":{"key":"typology","param":[{"item":"typology"}],"min":"","max":"","type":"rel"},"author":{"key":"author","param":{"1":{"item":"human"}},"min":"1","max":"1","required":"1","type":"rel"}}', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live'),
 (22, 'map', 'Maps', '', 0, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"Cast title","min":"","max":"","required":"1"},"descr":{"key":"descr","type":"string","title":"Description","min":"","max":""},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"}}', '2013-09-25 09:16:34', '2013-09-25 09:16:34', 'live'),
 (24, 'casttype', 'Cast types', '', 0, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"A short title","min":"","max":"","required":"1"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"}}', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live'),
 (25, 'typology', 'Types in the typology', '', 0, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"Name of the type","min":"","max":""},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"}}', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live'),
@@ -677,7 +680,7 @@ INSERT INTO `structure` (`id`, `key`, `title`, `descr`, `system`, `attr`, `creat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `typology`
+-- Structure de la table `typology`
 --
 
 CREATE TABLE `typology` (
@@ -693,7 +696,7 @@ CREATE TABLE `typology` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19 ;
 
 --
--- Dumping data for table `typology`
+-- Contenu de la table `typology`
 --
 
 INSERT INTO `typology` (`id`, `title`, `key`, `created`, `updated`, `status`) VALUES
@@ -719,7 +722,7 @@ INSERT INTO `typology` (`id`, `title`, `key`, `created`, `updated`, `status`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `version`
+-- Structure de la table `version`
 --
 
 CREATE TABLE `version` (
@@ -736,7 +739,7 @@ CREATE TABLE `version` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `version`
+-- Contenu de la table `version`
 --
 
 INSERT INTO `version` (`id`, `key`, `title`, `lang`, `created`, `updated`, `status`) VALUES
@@ -745,7 +748,7 @@ INSERT INTO `version` (`id`, `key`, `title`, `lang`, `created`, `updated`, `stat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `_rel`
+-- Structure de la table `_rel`
 --
 
 CREATE TABLE `_rel` (
@@ -763,11 +766,10 @@ CREATE TABLE `_rel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Relations of page';
 
 --
--- Dumping data for table `_rel`
+-- Contenu de la table `_rel`
 --
 
 INSERT INTO `_rel` (`item`, `itemid`, `key`, `rel`, `relid`, `position`) VALUES
-('page', 1, 'section', 'section', 1, 0),
 ('cast', 1, 'map', 'map', 1, 0),
 ('cast', 1, 'author', 'human', 2, 0),
 ('cast', 2, 'map', 'map', 1, 0),
@@ -1530,7 +1532,8 @@ INSERT INTO `_rel` (`item`, `itemid`, `key`, `rel`, `relid`, `position`) VALUES
 ('cast', 305, 'map', 'map', 1, 0),
 ('cast', 305, 'author', 'human', 2, 0),
 ('cast', 306, 'map', 'map', 1, 0),
-('cast', 306, 'author', 'human', 2, 0);
+('cast', 306, 'author', 'human', 2, 0),
+('page', 1, 'section', 'section', 1, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
