@@ -19,23 +19,31 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	We start from the form and the field
+//	DEBUG
 /********************************************************************************************/
-//	The form
-	$form = new item_form($_POST['form']);
-//	The field
-	$field = $form['field'][$_POST['field']];
-	
-//	création du champ de test
-	if (isset($_POST['value'])) $field['value'] = $_POST['value'];
-	$class = 'field_'.$field['type'];
-	$field = new $class($field['key'], $field);
+	if (isset($_POST['DEBUG']))
+	{
+		unset($_POST['DEBUG']);
+		sentinel::debug('AJAX debug ('.__FILE__.' line '.__LINE__.')', $_POST);
+	}
 
 /********************************************************************************************/
-//	And now we validate
+//	Go
 /********************************************************************************************/
-	if ($field->is_valid()) $return = true;
-	else $return = $field->get_error();
-//	Send back data in json
-	echo json_encode($return);
+	if (!empty($_POST))
+	{
+	//	The app and the section
+		$app = $_POST['app'];
+		$key = $_POST['template'];
+		
+	//	Reroute original $_GET passed as $_POST['_GET'] the $_GET
+		if (isset($_POST['_GET']))
+		{
+			$_GET = $_POST['_GET'];
+			unset($_POST['_GET']);
+		}
+		
+	//	Echo
+		echo new app($app, $key);
+	}
 ?>

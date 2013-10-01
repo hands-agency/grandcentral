@@ -15,9 +15,10 @@
 		//	Don't print the return
 			if (!option) option = Array;
 			option['print'] = false;
+			option['mime'] = 'json';
 			$.fn.ajx(param, callback, option);
 		}
-		
+
 		$.fn.ajx = function(param, callback, option)
 		{
 		//	Option
@@ -25,9 +26,10 @@
 			debug = option['debug'] || false;
 			async = option['async'] || true;
 			print = option['print'] || true;
-			
+			mime = option['mime'] || 'html';
+		
 		//	Params
-			var page = ADMIN_URL+'/ajax';
+			var url = ADMIN_URL+'/ajax.'+mime;
 		//	Add the current item
 			param['caller_item'] = ITEM;
 			param['caller_id'] = ID;
@@ -35,12 +37,12 @@
 			param['_GET'] = _GET;
 		//	Pass DEBUG via post
 			if (debug === true) param['DEBUG'] = 'true';
-
+			
 		//	Call
 			$.ajax(
 			{
 				type:'POST',
-				url:page,
+				url:url,
 				async:async,
 				context:this,
 				data:param,
@@ -48,23 +50,17 @@
 			.done(function(html)
 			{
 			//	Return HTML
+			/* bug : option is global and must be reset !*/
 				if (print === true) $(this).html(html);
 			//	Execute callback
 				done(html);
-			//	TMP recall after ajax
-			//	TODO find a best way to do that.
-				$(document).ready(function()
-				{
-				//	$('textarea').autosize();
-				//	$('select').select2();
-				});
 			});
-		
+	
 		//	Callback
 			if (!callback) callback = Array;
-		
+	
 		//	Call back functions
-			function done(html)
+			done = function(html)
 			{
 				if (callback['done']) callback['done'](html);
 			}

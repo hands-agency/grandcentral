@@ -33,9 +33,8 @@
 		//	More vars
 			vars['ajaxParam'] =
 			{
-				'type':'routine',
 				'app':'form',
-				'template':'validation.ajax',
+				'template':'validation',
 				'form':vars['key'],
 			};
 
@@ -80,73 +79,69 @@
 			var callback = callback;
 			vars['ajaxParam']['field'] = field.data('key');
 			vars['ajaxParam']['value'] = field.find('[name^="' + vars['key'] + '"]').val();
-			request = $.ajax(
-			{
-				type: 'POST',
-				async: true,
-				url: ADMIN_URL+'/ajax',
-				dataType: 'json',
-				data: vars['ajaxParam'],
-			});
 
-		//	When done
-			request.done(function(msg)
+			$.ajx(vars['ajaxParam'],
 			{
-			//	DEBUG (what validation.ajax.routine sends back)
-			//	console.log(msg);
+			//	Callback
+				done:function(msg)
+				{
+				//	DEBUG (what validation.routine sends back)
+					console.log(msg);
 			
-				$li = field;
-			//	Start clean
-				$li.removeClass('ok ko guiding');
+					$li = field;
+				//	Start clean
+					$li.removeClass('ok ko guiding');
 				
-			//	Field is OK
-				if (msg === true)
-				{
-					css = 'ok';
-					bounceDirection = 'up';
-				//	Kill the todo list
-					$li.find('.todo').css({'text-decoration':'line-through'}).hide('fast', function() {$(this).remove();});
-					valid = true;
-				//	Progressive saving
-				//	$('#greenbutton').data('greenbutton').save();
-				}
-			//	Field is KO
-				else
-				{
-					css = 'ko';
-					bounceDirection = 'left';
-				//	Append (maybe) and fill the todo list
-					if ($li.find('.todo').length == 0) $li.find('.wrapper').append(todoCode);
-					$li.find('.todo').html('<li>'+msg.required['descr']+'</li>').show('fast');
-					valid = false;
-				//	The whole form is not valid
-					vars['formIsValid'] = false;
-				}
-			//	Append the control if needed
-				if ($li.find('[data-control]').length == 0) $li.append(controlCode);
-			//	Customize the control and the line
-				$li.find('[data-control]')
-					.html('')
-					.attr('class', vars['icon'][css])
-					.effect('bounce', {direction: bounceDirection, distance:'10', times:'2'}, 250)
-					.delay(vars['delay'][css])
-					.fadeOut('slow');
-				$li.addClass(css);
+				//	Field is OK
+					if (msg === true)
+					{
+						css = 'ok';
+						bounceDirection = 'up';
+					//	Kill the todo list
+						$li.find('.todo').css({'text-decoration':'line-through'}).hide('fast', function() {$(this).remove();});
+						valid = true;
+					//	Progressive saving
+					//	$('#greenbutton').data('greenbutton').save();
+					}
+				//	Field is KO
+					else
+					{
+						css = 'ko';
+						bounceDirection = 'left';
+					//	Append (maybe) and fill the todo list
+						if ($li.find('.todo').length == 0) $li.find('.wrapper').append(todoCode);
+						$li.find('.todo').html('<li>'+msg.required['descr']+'</li>').show('fast');
+						valid = false;
+					//	The whole form is not valid
+						vars['formIsValid'] = false;
+					}
+				//	Append the control if needed
+					if ($li.find('[data-control]').length == 0) $li.append(controlCode);
+				//	Customize the control and the line
+					$li.find('[data-control]')
+						.html('')
+						.attr('class', vars['icon'][css])
+						.effect('bounce', {direction: bounceDirection, distance:'10', times:'2'}, 250)
+						.delay(vars['delay'][css])
+						.fadeOut('slow');
+					$li.addClass(css);
 				
-			//	Back to normal
-				vars['fieldHasChanged'] = false;
+				//	Back to normal
+					vars['fieldHasChanged'] = false;
 			
-			//	And execute callbacks
-				if (callback)
-				{
-					if (vars['formIsValid'] === true && callback['success']) callback['success']();
-					else if (vars['formIsValid'] === false && callback['error']) callback['error']();
-					if (callback['complete']) callback['complete']();
-				}
+				//	And execute callbacks
+					if (callback)
+					{
+						if (vars['formIsValid'] === true && callback['success']) callback['success']();
+						else if (vars['formIsValid'] === false && callback['error']) callback['error']();
+						if (callback['complete']) callback['complete']();
+					}
+				},
+			},{
+			//	Option
+				debug:false,
+				async:true,
 			});
-			
-		//	If fail
-			request.fail(function(msg) {console.log(msg.responseText);});
 		}
 
 	//	Fire up the plugin!
