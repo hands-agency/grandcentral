@@ -34,7 +34,7 @@
 	{
 	//	The app and the section
 		$app = $_POST['app'];
-		$key = $_POST['template'];
+		$template = $_POST['template'];
 		
 	//	Reroute original $_GET passed as $_POST['_GET'] the $_GET
 		if (isset($_POST['_GET']))
@@ -44,7 +44,7 @@
 		}
 		
 	//	Echo
-		echo new app($app, $key);
+		echo new app($app, $template);
 		echo '<!-- ZONE:css -->';
 		echo '<!-- ZONE:script -->';
 	}
