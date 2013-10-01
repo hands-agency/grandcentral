@@ -19,48 +19,29 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	DEBUG
+//	Vars
 /********************************************************************************************/
-//	sentinel::debug('Our post', $_POST);
-
+	$_FORM = $_PARAM['form'];
 /********************************************************************************************/
-//	Go
+//	Debug
 /********************************************************************************************/
-	if (!empty($_POST))
-	{
-		// print '<pre>';print_r($_POST);print'</pre>';
-	//	hack magic_quote_gpc
-		if (get_magic_quotes_gpc())
-		{
-			$_POST = stripslashes_deep($_POST);
-		}
-		
-	//	recherche du formulaire de provenance
-		$key = array_keys($_POST);
-		$form = cc('form', $key[0]);
-		
-		if ($form->exists())
-		{
-		//	altération du POST
-			$_POST = $_POST[$key[0]];
-		//	appel de la routine
-			$param['form'] = $form;
-			echo new app('form', $form['action'], $param);
-		}
-		else
-		{
-			trigger_error('Give me a form. '.$key[0].' does not exists', E_USER_ERROR);
-		}
+	// print'<pre>';print_r($_POST);print'</pre>';
+	// print'<pre>';print_r($_FORM);print'</pre>';
 	
-	}
+/********************************************************************************************/
+//	Insertion
+/********************************************************************************************/
+	list($env, $table) = explode('_', $_FORM['key']);
 	
-//	function hack pour supprimer les quotes lorsque magic_quote_gpc est actif sur la machine
-	function stripslashes_deep($value)
+	$id = (isset($_POST['id'])) ? $_POST['id'] : null;
+	$i = cc($table, $id, $env);
+	
+	foreach ($_POST as $key => $value)
 	{
-	    $value = is_array($value) ?
-                    array_map('stripslashes_deep', $value) :
-                    stripslashes($value);
-
-	    return $value;
+		$i[$key] = $value;
 	}
+	// print'<pre>';print_r($i);print'</pre>';
+	$i->save();
+	
+	echo $i['id'];
 ?>

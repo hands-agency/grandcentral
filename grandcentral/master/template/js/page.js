@@ -54,6 +54,9 @@
 				if (print === true) $(this).html(html);
 			//	Execute callback
 				done(html);
+			})
+			.fail(function( jqXHR, textStatus ) {
+				console.log( "Request failed: " + textStatus );
 			});
 	
 		//	Callback

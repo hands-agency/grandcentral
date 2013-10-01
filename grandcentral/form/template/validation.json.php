@@ -22,22 +22,22 @@
 //	We start from the form and the field
 /********************************************************************************************/
 //	The form
-//	$form = new item_form($_POST['form']);
+	$form = cc('form', $_POST['form']);
 //	The field
-//	$field = $form['field'][$_POST['field']];
+	$field = $form['field'][$_POST['field']];
 	
 //	création du champ de test
-//	if (isset($_POST['value'])) $field['value'] = $_POST['value'];
-//	$class = 'field_'.$field['type'];
-//	$field = new $class($field['key'], $field);
+	if (isset($_POST['value'])) $field['value'] = $_POST['value'];
+	$class = 'field'.ucfirst($field['type']);
+	$field = new $class($field['key'], $field);
 
 /********************************************************************************************/
 //	And now we validate
 /********************************************************************************************/
-//	if ($field->is_valid()) $return = true;
-//	else $return = $field->get_error();
+	if ($field->is_valid()) $return = true;
+	else $return = $field->get_error();
 //	Send back data in json
-	$return = array('required' => array('descr' => 'KO looks like that (on peut pas virer le required ?)'));
+	// $return = array('required' => array('descr' => 'form : '.$class.' / field : '.$_POST['field'].' / value : '.$_POST['value'].''));
 //	$return = 'true';
 	echo json_encode($return);
 ?>

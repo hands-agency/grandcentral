@@ -77,12 +77,6 @@ class adminItemForm
 		
 		$this->form['field'] = $fields;
 		
-		$this->form['field']['table'] = array(
-			'type' => 'hidden',
-			'key' => 'table',
-			'value' => $this->table
-		);
-		
 		$this->form->save();
 	}
 /**
@@ -160,8 +154,8 @@ class adminItemForm
 				switch (true)
 				{
 				//	objet page
-					case $this->item->get_table() == 'page' && $attr['key'] == 'template':
-						$field['type'] = 'template';
+					case $this->item->get_table() == 'page' && $attr['key'] == 'master':
+						$field['type'] = 'master';
 						break;
 				//	objet form
 					case $this->item->get_table() == 'form' && $attr['key'] == 'field':
@@ -171,11 +165,8 @@ class adminItemForm
 					case $this->item->get_table() == 'structure' && $attr['key'] == 'attr':
 						$field['type'] = 'attr';
 						break;
-					case $this->item->get_table() == 'structure' && $attr['key'] == 'rel':
-						$field['type'] = 'rel';
-						break;
 				//	objet section
-					case $this->item->get_table() == 'section' && $attr['key'] == 'template':
+					case $this->item->get_table() == 'section' && $attr['key'] == 'app':
 						$field['type'] = 'app';
 						break;
 				//	objet group
