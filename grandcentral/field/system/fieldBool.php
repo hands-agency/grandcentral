@@ -34,6 +34,7 @@ class fieldBool extends _fields
 	{
 		parent::__construct($name, $attrs);
 		$this->attrs['type'] = 'checkbox';
+		$this->attrs['value'] = 1;
 	}
 /**
  * Affecte une valeur au champ
@@ -43,6 +44,7 @@ class fieldBool extends _fields
  */
 	public function set_value($value)
 	{
+		if (is_a($value, 'attrBool')) $value = $value->get();
 		$value = (bool) $value;
 		if (true === $value)
 		{

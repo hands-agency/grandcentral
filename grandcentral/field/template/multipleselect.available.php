@@ -33,6 +33,7 @@
 	
 //	Get the available values
 	$available = $multipleselect->prepare_values();
+	
 //	HACK MULTI TABLE
 	if (count($param['values']) > 1 && is_array($param['values']))
 	{

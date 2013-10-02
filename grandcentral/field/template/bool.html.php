@@ -5,6 +5,7 @@
 <div class="wrapper">
 	<?php if ($_FIELD->get_descr() != null) : ?><div class="help"><?= $_FIELD->get_descr(); ?></div><?php endif ?>
 	<span class="field">
+		<input type="hidden" name="<?= $_FIELD->get_name(); ?>" value="0">
 		<input<?=$_FIELD->get_attrs();?>>
 	</span>
 </div>

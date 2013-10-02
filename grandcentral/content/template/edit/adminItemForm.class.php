@@ -113,12 +113,16 @@ class adminItemForm
 			case $attr['type'] == 'int':
 				$field['type'] = 'number';
 				break;
+		//	int
+			case $attr['type'] == 'media':
+				$field['type'] = 'media';
+				break;
 		//	string
 			case $attr['type'] == 'string':
 			//	particularités
 				switch (true)
 				{
-					case $attr['max'] <= 255:
+					case isset($attr['max']) && $attr['max'] <= 255:
 						$field['type'] = 'text';
 						break;
 					
@@ -142,6 +146,10 @@ class adminItemForm
 		//	status
 			case $attr['type'] == 'status':
 				$field['type'] = 'text';
+				break;
+		//	status
+			case $attr['type'] == 'password':
+				$field['type'] = 'password';
 				break;
 		//	version
 			case $attr['type'] == 'version':
@@ -200,7 +208,7 @@ class adminItemForm
 			if (isset($this->form['field'][$key]))
 			{
 				$field = $this->form['field'][$key];
-				$field['value'] = $value;
+				$field['value'] = $value->get();
 				$this->form['field'][$key] = $field;
 			}
 		}

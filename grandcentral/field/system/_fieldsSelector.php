@@ -23,13 +23,14 @@ abstract class _fieldsSelector extends _fields
  */
 	public function set_value($value)
 	{
-		if (is_a($value, '_items'))
+		switch (true)
 		{
-			$value = $value->get_nickname();
-		}
-		elseif (is_array($value))
-		{
-			$value = $value;
+			case is_a($value, '_items'):
+				$value = $value->get_nickname();
+				break;
+			case is_a($value, '_attrs'):
+				$value = $value->get();
+				break;
 		}
 		$this->value = $value;
 		return $this;

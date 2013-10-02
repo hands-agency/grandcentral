@@ -41,6 +41,7 @@
 	
 //	Get the selected value(s)
 	$value = $_FIELD->get_value();
+	
 	$tmp = array();
 	if (!empty($value))
 	{

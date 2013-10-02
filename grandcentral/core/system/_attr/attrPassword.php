@@ -13,9 +13,19 @@ class attrPassword extends _attrs
 	protected $params = array(
 		'round' => 10
 	);
-	
 /**
- * Set array attribute
+ * Get password attribute
+ *
+ * @param	string	la variable
+ * @return	string	une string
+ * @access	public
+ */
+	public function get()
+	{
+		return null;
+	}	
+/**
+ * Set password attribute
  *
  * @param	string	la variable
  * @return	string	une string
@@ -48,17 +58,6 @@ class attrPassword extends _attrs
 	{
 		$this->hash = $data;
 		return $this;
-	}
-/**
- * xxxx
- *
- * @param	string	la variable
- * @return	string	une string
- * @access	public
- */
-	public function __toString()
-	{
-		return 'xxxxxxxx';
 	}
 /**
  * Set array attribute

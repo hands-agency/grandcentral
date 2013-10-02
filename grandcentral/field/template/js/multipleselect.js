@@ -52,7 +52,8 @@
 				{
 				//	Test if not present
 					li = $(this).data().sortable.currentItem;
-					value = li.data('item').split('_')[1];
+					// value = li.data('item').split('_')[1];
+					value = li.data('item');
 					count = $field.find('.selected input[value="'+value+'"]').length;
 
 				//	Refuse if item already exists

@@ -23,12 +23,20 @@
 /********************************************************************************************/
 	require 'adminItemForm.class.php';
 	
+	
 //	Env
 	$handled_env = $_SESSION['pref']['handled_env'];
 //	Item
 	$handled_item = (isset($_GET['item'])) ? $_GET['item'] : null;
 	$handled_id = (isset($_GET['id'])) ? $_GET['id'] : null;
 
-	$form = new adminItemForm($handled_env, $handled_item, $handled_id);
+	if (!empty($handled_item))
+	{
+		$form = new adminItemForm($handled_env, $handled_item, $handled_id);
+	}
+	else
+	{
+		$form = null;
+	}
 	
 ?>

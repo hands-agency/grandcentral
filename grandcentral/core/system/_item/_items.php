@@ -273,13 +273,13 @@ abstract class _items implements ArrayAccess, Iterator
 					{
 						$relQuery[] = '(:'.$attr->get_key().'_item_'.$i.',:'.$attr->get_key().'_itemid_'.$i.',:'.$attr->get_key().'_key_'.$i.',:'.$attr->get_key().'_rel_'.$i.',:'.$attr->get_key().'_relid_'.$i.',:'.$attr->get_key().'_position_'.$i.')';
 						
-						list($table, $id) = explode('_', $rel);
+						list($rel_table, $rel_id) = explode('_', $rel);
 						
 						$relData[':'.$attr->get_key().'_item_'.$i] 		= $this->get_table();
 						$relData[':'.$attr->get_key().'_itemid_'.$i] 	= 'lastid';
 						$relData[':'.$attr->get_key().'_key_'.$i] 		= $attr->get_key();
-						$relData[':'.$attr->get_key().'_rel_'.$i] 		= $table;
-						$relData[':'.$attr->get_key().'_relid_'.$i] 	= $id;
+						$relData[':'.$attr->get_key().'_rel_'.$i] 		= $rel_table;
+						$relData[':'.$attr->get_key().'_relid_'.$i] 	= $rel_id;
 						$relData[':'.$attr->get_key().'_position_'.$i] 	= $i;
 						$i++;
 					}

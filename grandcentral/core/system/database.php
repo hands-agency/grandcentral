@@ -483,7 +483,6 @@ class database
  */
 	public function flush_spooler()
 	{
-		// print'<pre>';print_r($this->_spooler);print'</pre>';exit;
 		try
 		{
 		//	begin transaction
