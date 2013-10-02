@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 3.5.7
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Oct 01, 2013 at 07:13 PM
--- Server version: 5.5.25
--- PHP Version: 5.4.4
+-- Client: localhost
+-- Généré le: Mer 02 Octobre 2013 à 13:11
+-- Version du serveur: 5.5.29
+-- Version de PHP: 5.4.10
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `ccv4_admin_sf`
+-- Base de données: `ccv4_admin_mvd`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `const`
+-- Structure de la table `const`
 --
 
 CREATE TABLE `const` (
@@ -41,7 +41,7 @@ CREATE TABLE `const` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=62 ;
 
 --
--- Dumping data for table `const`
+-- Contenu de la table `const`
 --
 
 INSERT INTO `const` (`id`, `key`, `title`, `version`, `created`, `updated`, `status`) VALUES
@@ -89,7 +89,7 @@ INSERT INTO `const` (`id`, `key`, `title`, `version`, `created`, `updated`, `sta
 -- --------------------------------------------------------
 
 --
--- Table structure for table `form`
+-- Structure de la table `form`
 --
 
 CREATE TABLE `form` (
@@ -109,21 +109,25 @@ CREATE TABLE `form` (
   PRIMARY KEY (`id`),
   KEY `key` (`key`),
   KEY `status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=22 ;
 
 --
--- Dumping data for table `form`
+-- Contenu de la table `form`
 --
 
 INSERT INTO `form` (`id`, `key`, `title`, `descr`, `template`, `action`, `method`, `target`, `enctype`, `field`, `created`, `updated`, `status`) VALUES
 (1, 'login', 'Login', '', 'login', 'login', 'post', '', '', '{"login":{"type":"text","key":"login","label":"Login","placeholder":"Your login","required":true},"password":{"type":"password","key":"password","label":"Password","placeholder":"Password","required":true},"save":{"type":"button","buttontype":"submit","key":"save","value":"submit"}}', '2013-09-14 12:53:52', '2013-09-14 12:53:52', ''),
 (12, 'site_cast', 'site_cast', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text"},"title":{"key":"title","label":"Cast title","type":"text","required":"1","min":"","max":""},"descr":{"key":"descr","label":"Description","type":"text","min":"","max":""},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"Status","type":"text"},"lat":{"key":"lat","label":"Latitude","type":"text","required":"1","min":"","max":""},"lng":{"key":"lng","label":"Longitude","type":"text","required":"1","min":"","max":""},"address":{"key":"address","label":"Address","type":"text","min":"","max":""},"report":{"key":"report","label":"Report","type":"text","min":"","max":""},"locastid":{"key":"locastid","label":"ID in Locast (for sync)","type":"number","min":"","max":""},"significativity":{"key":"significativity","label":"Significativity","type":"array"},"media":{"key":"media","label":"Media","type":"array"},"version":{"key":"version","label":"Version","type":"text"},"map":{"key":"map","label":"map","valuestype":"bunch","values":[{"item":"map"}],"type":"multipleselect","min":"","max":""},"casttype":{"key":"casttype","label":"casttype","valuestype":"bunch","values":[{"item":"casttype"}],"type":"multipleselect","min":"","max":""},"typology":{"key":"typology","label":"typology","valuestype":"bunch","values":[{"item":"typology"}],"type":"multipleselect","min":"","max":""},"author":{"key":"author","label":"author","valuestype":"bunch","values":{"1":{"item":"human"}},"type":"select","required":"1","min":"1","max":"1"}}', '2013-10-01 12:19:15', '2013-10-01 12:19:15', 'live'),
-(13, 'site_region', 'site_region', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text"},"title":{"key":"title","label":"Title","type":"text","required":"1","min":"","max":""},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"Status","type":"text"}}', '2013-10-01 12:19:47', '2013-10-01 12:19:47', 'live');
+(13, 'site_region', 'site_region', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text"},"title":{"key":"title","label":"Title","type":"text","required":"1","min":"","max":""},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"Status","type":"text"}}', '2013-10-01 12:19:47', '2013-10-01 12:19:47', 'live'),
+(14, 'site_page', 'site_page', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text"},"title":{"key":"title","label":"A short title","type":"text","required":"1","min":"0","max":"255"},"descr":{"key":"descr","label":"A short description","type":"textarea","min":"0","max":"500"},"text":{"key":"text","label":"The text content","type":"textarea","min":"0","max":"65035"},"http_status":{"key":"http_status","label":"The http status","type":"text","min":"0","max":"255"},"master":{"key":"master","label":"The master","type":"master"},"url":{"key":"url","label":"The url","type":"text","required":"1","min":"0","max":"255"},"system":{"key":"system","label":"System","type":"bool"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"Status","type":"text"},"version":{"key":"version","label":"version","type":"text"},"child":{"key":"child","label":"child","valuestype":"bunch","values":[{"item":"page"}],"type":"multipleselect","min":"","max":""},"section":{"key":"section","label":"section","valuestype":"bunch","values":{"1":{"item":"section"}},"type":"multipleselect","min":"","max":""}}', '2013-10-01 08:32:41', '2013-10-01 08:32:41', 'live'),
+(16, 'site_structure', 'site_structure', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text"},"title":{"key":"title","label":"A short title","type":"text","required":"1","min":"0","max":"255"},"descr":{"key":"descr","label":"A short description","type":"textarea","min":"0","max":"500"},"system":{"key":"system","label":"Is system","type":"bool"},"attr":{"key":"attr","label":"Attributes","type":"attr"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"status","type":"text"}}', '2013-10-02 11:40:15', '2013-10-02 11:40:15', 'live'),
+(17, 'site_group', 'site_group', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text"},"title":{"key":"title","label":"Title","type":"text","required":"1","min":"","max":""},"admin":{"key":"admin","label":"admin","type":"bool"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"Status","type":"text"}}', '2013-10-02 11:58:56', '2013-10-02 11:58:56', 'live'),
+(21, 'site_human', 'site_human', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text"},"title":{"key":"title","label":"A short title","type":"text","required":"1","min":"0","max":"255"},"descr":{"key":"descr","label":"Short bio","type":"textarea"},"password":{"key":"password","label":"Password","type":"password","required":"1","min":"0","max":"255"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"status","type":"text"},"system":{"key":"system","label":"system","type":"bool"},"profilepic":{"key":"profilepic","label":"Profile Picture","type":"media"},"group":{"key":"group","label":"group","valuestype":"bunch","values":[{"item":"group"}],"type":"multipleselect","min":"","max":""}}', '2013-10-02 01:03:55', '2013-10-02 01:03:55', 'live');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `greenbutton`
+-- Structure de la table `greenbutton`
 --
 
 CREATE TABLE `greenbutton` (
@@ -140,7 +144,7 @@ CREATE TABLE `greenbutton` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 --
--- Dumping data for table `greenbutton`
+-- Contenu de la table `greenbutton`
 --
 
 INSERT INTO `greenbutton` (`id`, `key`, `title`, `created`, `updated`, `status`, `icon`) VALUES
@@ -158,7 +162,7 @@ INSERT INTO `greenbutton` (`id`, `key`, `title`, `created`, `updated`, `status`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `logbook`
+-- Structure de la table `logbook`
 --
 
 CREATE TABLE `logbook` (
@@ -179,7 +183,7 @@ CREATE TABLE `logbook` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `page`
+-- Structure de la table `page`
 --
 
 CREATE TABLE `page` (
@@ -201,7 +205,7 @@ CREATE TABLE `page` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=39 ;
 
 --
--- Dumping data for table `page`
+-- Contenu de la table `page`
 --
 
 INSERT INTO `page` (`id`, `key`, `title`, `descr`, `text`, `http_status`, `master`, `url`, `system`, `created`, `updated`, `status`) VALUES
@@ -226,7 +230,7 @@ INSERT INTO `page` (`id`, `key`, `title`, `descr`, `text`, `http_status`, `maste
 -- --------------------------------------------------------
 
 --
--- Table structure for table `section`
+-- Structure de la table `section`
 --
 
 CREATE TABLE `section` (
@@ -245,7 +249,7 @@ CREATE TABLE `section` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=35 ;
 
 --
--- Dumping data for table `section`
+-- Contenu de la table `section`
 --
 
 INSERT INTO `section` (`id`, `key`, `title`, `descr`, `zone`, `app`, `created`, `updated`, `status`) VALUES
@@ -269,7 +273,7 @@ INSERT INTO `section` (`id`, `key`, `title`, `descr`, `zone`, `app`, `created`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `site`
+-- Structure de la table `site`
 --
 
 CREATE TABLE `site` (
@@ -286,7 +290,7 @@ CREATE TABLE `site` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `site`
+-- Contenu de la table `site`
 --
 
 INSERT INTO `site` (`id`, `key`, `title`, `created`, `updated`, `status`, `defaultversion`) VALUES
@@ -295,7 +299,7 @@ INSERT INTO `site` (`id`, `key`, `title`, `created`, `updated`, `status`, `defau
 -- --------------------------------------------------------
 
 --
--- Table structure for table `structure`
+-- Structure de la table `structure`
 --
 
 CREATE TABLE `structure` (
@@ -314,7 +318,7 @@ CREATE TABLE `structure` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
 
 --
--- Dumping data for table `structure`
+-- Contenu de la table `structure`
 --
 
 INSERT INTO `structure` (`id`, `key`, `title`, `descr`, `system`, `attr`, `created`, `updated`, `status`) VALUES
@@ -331,7 +335,7 @@ INSERT INTO `structure` (`id`, `key`, `title`, `descr`, `system`, `attr`, `creat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `version`
+-- Structure de la table `version`
 --
 
 CREATE TABLE `version` (
@@ -348,7 +352,7 @@ CREATE TABLE `version` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `version`
+-- Contenu de la table `version`
 --
 
 INSERT INTO `version` (`id`, `key`, `title`, `lang`, `created`, `updated`, `status`) VALUES
@@ -357,7 +361,7 @@ INSERT INTO `version` (`id`, `key`, `title`, `lang`, `created`, `updated`, `stat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `_rel`
+-- Structure de la table `_rel`
 --
 
 CREATE TABLE `_rel` (
@@ -375,7 +379,7 @@ CREATE TABLE `_rel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Relations of page';
 
 --
--- Dumping data for table `_rel`
+-- Contenu de la table `_rel`
 --
 
 INSERT INTO `_rel` (`item`, `itemid`, `key`, `rel`, `relid`, `position`) VALUES

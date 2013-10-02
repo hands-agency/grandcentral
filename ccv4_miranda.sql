@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 3.5.7
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Oct 01, 2013 at 07:13 PM
--- Server version: 5.5.25
--- PHP Version: 5.4.4
+-- Client: localhost
+-- Généré le: Mer 02 Octobre 2013 à 13:11
+-- Version du serveur: 5.5.29
+-- Version de PHP: 5.4.10
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `ccv4_miranda`
+-- Base de données: `ccv4_miranda`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cast`
+-- Structure de la table `cast`
 --
 
 CREATE TABLE `cast` (
@@ -48,7 +48,7 @@ CREATE TABLE `cast` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=307 ;
 
 --
--- Dumping data for table `cast`
+-- Contenu de la table `cast`
 --
 
 INSERT INTO `cast` (`id`, `title`, `descr`, `key`, `created`, `updated`, `status`, `lat`, `lng`, `address`, `report`, `locastid`, `significativity`, `media`, `version`) VALUES
@@ -375,7 +375,7 @@ INSERT INTO `cast` (`id`, `title`, `descr`, `key`, `created`, `updated`, `status
 -- --------------------------------------------------------
 
 --
--- Table structure for table `casttype`
+-- Structure de la table `casttype`
 --
 
 CREATE TABLE `casttype` (
@@ -391,7 +391,7 @@ CREATE TABLE `casttype` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `casttype`
+-- Contenu de la table `casttype`
 --
 
 INSERT INTO `casttype` (`id`, `title`, `key`, `created`, `updated`, `status`) VALUES
@@ -403,7 +403,7 @@ INSERT INTO `casttype` (`id`, `title`, `key`, `created`, `updated`, `status`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `const`
+-- Structure de la table `const`
 --
 
 CREATE TABLE `const` (
@@ -423,7 +423,7 @@ CREATE TABLE `const` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `form`
+-- Structure de la table `form`
 --
 
 CREATE TABLE `form` (
@@ -448,7 +448,7 @@ CREATE TABLE `form` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `form`
+-- Contenu de la table `form`
 --
 
 INSERT INTO `form` (`id`, `key`, `title`, `descr`, `theme`, `template`, `action`, `method`, `target`, `enctype`, `back`, `field`, `created`, `updated`, `status`) VALUES
@@ -457,7 +457,34 @@ INSERT INTO `form` (`id`, `key`, `title`, `descr`, `theme`, `template`, `action`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `human`
+-- Structure de la table `group`
+--
+
+CREATE TABLE `group` (
+  `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT COMMENT 'The unique identifier',
+  `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL COMMENT 'The key',
+  `title` mediumtext COLLATE utf8_unicode_ci NOT NULL COMMENT 'title',
+  `admin` tinyint(1) NOT NULL,
+  `created` datetime NOT NULL COMMENT 'Created Datetime',
+  `updated` datetime NOT NULL COMMENT 'Updated Datetime',
+  `status` varchar(32) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Status',
+  PRIMARY KEY (`id`),
+  KEY `key` (`key`),
+  KEY `status` (`status`),
+  KEY `version` (`admin`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `group`
+--
+
+INSERT INTO `group` (`id`, `key`, `title`, `admin`, `created`, `updated`, `status`) VALUES
+(1, 'admin', 'Administrateurs', 1, '2013-10-02 08:35:40', '2013-10-02 08:35:40', 'live');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `human`
 --
 
 CREATE TABLE `human` (
@@ -474,15 +501,15 @@ CREATE TABLE `human` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `key` (`key`),
   KEY `status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=24 ;
 
 --
--- Dumping data for table `human`
+-- Contenu de la table `human`
 --
 
 INSERT INTO `human` (`id`, `key`, `title`, `descr`, `profilepic`, `password`, `created`, `updated`, `status`, `system`) VALUES
 (1, 'anonymous', 'Anonymous User', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live', 1),
-(2, 'mvd@cafecentral.fr', 'Michaël V. Dandrieux', 'Michaël V. Dandrieux est directeur associé chez Eranos, au silo des innovations, des technologies et des usages. Free-lance depuis la fin du vingtième siècle et pendant 10 ans, il a exercé de nombreux métiers du digital. Formé à la sociologie de l''imaginaire et diplomé de l''université René Descartes-Sorbonne, il est chercheur au Centre d''Etude sur l''Actuel et le Quotidien. En 2008 il a reçu la direction éditoriale des Cahiers européens de l''imaginaire (CNRS éditions), où il a édité Zygmunt Bauman, Martin Parr, Chris Anderson ou Edgar Morin. Michaël est bilingue anglais, il a vécu couramment à Vienne, Munich et Rome dont il porte encore les langues, code pour plaisir et tire à l''argentique. Parmi ses dernières publications sur la ville et la mobilité figurent "Etre d''ici pour être d''ailleurs" (Influencia magazine, 2012) et La barbarie (CNRS édition, 2009).', '["\\/team\\/mvd.jpg"]', '$2a$12$nqK/dVP4XrzwWUP5iXi6MOq2xEL7ujnF.UCdrD0s8jOLRVPE3ZdYu', '0000-00-00 00:00:00', '2013-09-24 17:25:01', 'live', 0),
+(2, 'mvd@cafecentral.fr', 'Michaël V. Dandrieux', 'Michaël V. Dandrieux est directeur associé chez Eranos, au silo des innovations, des technologies et des usages. Free-lance depuis la fin du vingtième siècle et pendant 10 ans, il a exercé de nombreux métiers du digital. Formé à la sociologie de l''imaginaire et diplomé de l''université René Descartes-Sorbonne, il est chercheur au Centre d''Etude sur l''Actuel et le Quotidien. En 2008 il a reçu la direction éditoriale des Cahiers européens de l''imaginaire (CNRS éditions), où il a édité Zygmunt Bauman, Martin Parr, Chris Anderson ou Edgar Morin. Michaël est bilingue anglais, il a vécu couramment à Vienne, Munich et Rome dont il porte encore les langues, code pour plaisir et tire à l''argentique. Parmi ses dernières publications sur la ville et la mobilité figurent ', '["\\/team\\/mvd.jpg"]', '$2y$10$K9r2A7AoXtHOU6ZpoxYMH.utDV1xJkBfqMiDp1hoOrCrxRZ8LBVPq', '2013-10-02 12:09:22', '2013-10-02 12:14:34', 'live', 1),
 (3, 'sh@eranos.fr', 'Stéphane Hugon', 'Stéphane Hugon est docteur en sociologie, chercheur et enseignant au CeaQ (Centre d’Etude sur l’Actuel et le Quotidien), un laboratoire de sociologie de l’université Paris-Descartes à la Sorbonne dirigé par le professeur Michel Maffesoli. Il est responsable du GRETECH (Groupe de Recherche sur la Technologie et le Quotidien). Il enseigne également à l’IDN_Lab en post diplôme de l’ENSAD (Arts Décos, Paris). Il est visiting professor à la ECA de Sào Paulo, et à la UERJ à Rio de Janeiro au Brésil.', '["\\/team\\/sh.jpg"]', '$2a$12$jELAqANj8UgW0eyIsZtm1eA73Jzd0uyqDwdmhhw2XnM64q7So8wjy', '0000-00-00 00:00:00', '2013-09-24 17:32:24', 'live', 0),
 (4, 'rmd@eranos.fr', 'Rónán MacDubhghaill', 'Sociologue, consultant et auteur, Rónán MacDubhghaill est de ceux qui cherchent la justesse et la beauté sous ses divers artifices de forme. Né en Irlande, il a vécu en Autriche ; au Japon, il subit le “tohoku daishinsai”, le grand tremblement de terre ; il réside actuellement en France. Auteur de plusieurs fictions, il collabore aussi avec différentes revues et journaux, dont Le Monde Diplomatique. Esprit sans répit, il apprend ces années-ci la patience, et à reprendre l''avion sans craindre les secousses.', '["\\/team\\/rmd.jpg"]', '', '2013-09-19 15:30:20', '2013-09-23 16:11:13', '', 0),
 (5, 'vbarondeau@hotmail.com', 'Véronique Barondeau', '', '["\\/team\\/vb.jpg"]', '', '2013-09-19 15:31:41', '2013-09-20 13:21:15', 'live', 0),
@@ -497,12 +524,13 @@ INSERT INTO `human` (`id`, `key`, `title`, `descr`, `profilepic`, `password`, `c
 (14, 'spomeroy@mit.edu', 'Steve Pomeroy', '', '', '', '2013-09-19 15:55:05', '2013-09-19 15:55:05', 'live', 0),
 (15, 'amaury.bazalgette@gmail.com', 'Amaury Bazalgette', '', '["\\/team\\/ab.jpg"]', '', '2013-09-19 15:55:26', '2013-09-20 13:15:14', 'live', 0),
 (16, 'af@eranos.fr', 'Aurélien Fouillet', 'Aurélien Fouillet est docteur en sociologie, chercheur au Centre d''Etudes sur l''Actuel et le Quotidien où il coordonne l''étude MODELEC portant sur les questions liées aux smartgrids et aux nouveaux imaginaires et nouveaux usages de l''habitat. Il est directeur d''études à l''institut Eranos et travaille régulièment sur les problématiques de la ville et de la mobilité (Alstom Transport, Bouygues Immobilier, Direct Energie, etc.).', '["\\/team\\/af.jpg"]', '', '2013-09-19 16:02:51', '2013-09-23 16:24:15', 'live', 0),
-(17, 'mpd@eranos.fr', 'Marie-Pierre Dequier', '', '', '', '2013-09-23 21:20:41', '2013-09-23 21:20:41', '', 0);
+(17, 'mpd@eranos.fr', 'Marie-Pierre Dequier', '', '', '', '2013-09-23 21:20:41', '2013-09-23 21:20:41', '', 0),
+(23, 'sf@cafecentral.fr', 'Sylvain Frigui', '', 'null', '$2y$10$UP9vJVEN5TrivweAIuTPGeOANVCgXjb7rTe/dIzmLEBxpSKRu0omG', '2013-10-02 12:36:35', '2013-10-02 01:08:46', 'live', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `logbook`
+-- Structure de la table `logbook`
 --
 
 CREATE TABLE `logbook` (
@@ -523,7 +551,7 @@ CREATE TABLE `logbook` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `map`
+-- Structure de la table `map`
 --
 
 CREATE TABLE `map` (
@@ -540,7 +568,7 @@ CREATE TABLE `map` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `map`
+-- Contenu de la table `map`
 --
 
 INSERT INTO `map` (`id`, `title`, `descr`, `key`, `created`, `updated`, `status`) VALUES
@@ -549,7 +577,7 @@ INSERT INTO `map` (`id`, `title`, `descr`, `key`, `created`, `updated`, `status`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `page`
+-- Structure de la table `page`
 --
 
 CREATE TABLE `page` (
@@ -573,7 +601,7 @@ CREATE TABLE `page` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
 
 --
--- Dumping data for table `page`
+-- Contenu de la table `page`
 --
 
 INSERT INTO `page` (`id`, `key`, `title`, `descr`, `text`, `http_status`, `master`, `url`, `system`, `version`, `created`, `updated`, `status`) VALUES
@@ -589,7 +617,7 @@ INSERT INTO `page` (`id`, `key`, `title`, `descr`, `text`, `http_status`, `maste
 -- --------------------------------------------------------
 
 --
--- Table structure for table `region`
+-- Structure de la table `region`
 --
 
 CREATE TABLE `region` (
@@ -605,7 +633,7 @@ CREATE TABLE `region` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `region`
+-- Contenu de la table `region`
 --
 
 INSERT INTO `region` (`id`, `title`, `key`, `created`, `updated`, `status`) VALUES
@@ -614,7 +642,7 @@ INSERT INTO `region` (`id`, `title`, `key`, `created`, `updated`, `status`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `section`
+-- Structure de la table `section`
 --
 
 CREATE TABLE `section` (
@@ -633,7 +661,7 @@ CREATE TABLE `section` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `section`
+-- Contenu de la table `section`
 --
 
 INSERT INTO `section` (`id`, `key`, `title`, `descr`, `zone`, `app`, `created`, `updated`, `status`) VALUES
@@ -643,7 +671,7 @@ INSERT INTO `section` (`id`, `key`, `title`, `descr`, `zone`, `app`, `created`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `site`
+-- Structure de la table `site`
 --
 
 CREATE TABLE `site` (
@@ -660,7 +688,7 @@ CREATE TABLE `site` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `site`
+-- Contenu de la table `site`
 --
 
 INSERT INTO `site` (`id`, `key`, `title`, `created`, `updated`, `status`, `defaultversion`) VALUES
@@ -669,7 +697,7 @@ INSERT INTO `site` (`id`, `key`, `title`, `created`, `updated`, `status`, `defau
 -- --------------------------------------------------------
 
 --
--- Table structure for table `structure`
+-- Structure de la table `structure`
 --
 
 CREATE TABLE `structure` (
@@ -685,10 +713,10 @@ CREATE TABLE `structure` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `key` (`key`),
   KEY `status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=30 ;
 
 --
--- Dumping data for table `structure`
+-- Contenu de la table `structure`
 --
 
 INSERT INTO `structure` (`id`, `key`, `title`, `descr`, `system`, `attr`, `created`, `updated`, `status`) VALUES
@@ -696,7 +724,7 @@ INSERT INTO `structure` (`id`, `key`, `title`, `descr`, `system`, `attr`, `creat
 (2, 'site', 'Your websites', 'Manage your website basics, and the apps that will be opened at all time.', 1, '{"id":{"key":"id","title":"The unique identifier","type":"id"},"key":{"key":"key","title":"The key","type":"key"},"title":{"key":"title","title":"A short title","type":"string","min":"0","max":"255","required":"1"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"},"defaultversion":{"key":"defaultversion","type":"int","title":"Default Version"}}', '0000-00-00 00:00:00', '2013-04-05 12:41:29', 'live'),
 (3, 'page', 'Page', '', 1, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"A short title","min":"0","max":"255","required":"1"},"descr":{"key":"descr","type":"string","title":"A short description","min":"0","max":"500"},"text":{"key":"text","type":"string","title":"The text content","min":"0","max":"65035"},"http_status":{"key":"http_status","type":"string","title":"The http status","min":"0","max":"255"},"master":{"key":"master","type":"array","title":"The master"},"url":{"key":"url","type":"string","title":"The url","min":"0","max":"255","required":"1"},"system":{"key":"system","type":"bool","title":"System"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"},"version":{"key":"version","type":"version"},"child":{"key":"child","param":[{"item":"page"}],"min":"","max":"","type":"rel"},"section":{"key":"section","param":{"1":{"item":"section"}},"min":"","max":"","type":"rel"}}', '0000-00-00 00:00:00', '2013-08-20 18:57:03', 'live'),
 (4, 'version', 'Versions', '', 1, '{"id":{"key":"id","title":"The unique identifier","type":"id"},"key":{"key":"key","title":"The key","type":"key"},"title":{"key":"title","title":"A short title","type":"string","min":"0","max":"255","required":"1"},"lang":{"key":"lang","title":"Language","type":"string","min":"0","max":"32","required":"1"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"}}', '0000-00-00 00:00:00', '2013-04-05 12:43:36', 'live'),
-(5, 'human', 'Humans', '', 1, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"A short title","min":"0","max":"255","required":"1"},"descr":{"key":"descr","type":"string","title":"Short bio"},"password":{"key":"password","type":"string","title":"Password","min":"0","max":"255","required":"1"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status"},"system":{"key":"system","type":"bool"},"profilepic":{"key":"profilepic","type":"array","title":"Profile Picture"}}', '2013-09-25 09:16:34', '2013-09-25 09:16:34', 'live'),
+(5, 'human', 'Humans', '', 1, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"A short title","min":"0","max":"255","required":"1"},"descr":{"key":"descr","type":"string","title":"Short bio"},"password":{"key":"password","type":"password","title":"Password","min":"0","max":"255","required":"1"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status"},"system":{"key":"system","type":"bool"},"profilepic":{"key":"profilepic","type":"media","title":"Profile Picture"},"group":{"key":"group","param":{"0":{"item":"group"}},"min":"","max":"","type":"rel"}}', '2013-09-25 09:16:34', '2013-09-25 09:16:34', 'live'),
 (7, 'section', 'Sections', '', 1, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"A short title","min":"0","max":"255","required":"1"},"descr":{"key":"descr","type":"string","title":"A short description","min":"0","max":"500"},"zone":{"key":"zone","type":"string","title":"The zone","min":"0","max":"255"},"app":{"key":"app","type":"array","title":"The template","required":"1"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"},"version":{"key":"version","type":"version","title":"Version"}}', '2013-09-25 08:33:09', '2013-09-25 08:33:09', 'live'),
 (21, 'cast', 'Casts', 'A core sample of raw data sent by one of our investigators.', 0, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"Cast title","min":"","max":"","required":"1"},"descr":{"key":"descr","type":"string","title":"Description","min":"","max":""},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"},"lat":{"key":"lat","type":"string","title":"Latitude","min":"","max":"","required":"1"},"lng":{"key":"lng","type":"string","title":"Longitude","min":"","max":"","required":"1"},"address":{"key":"address","type":"string","title":"Address","min":"","max":""},"report":{"key":"report","type":"string","title":"Report","min":"","max":""},"locastid":{"key":"locastid","type":"int","title":"ID in Locast (for sync)","min":"","max":""},"significativity":{"key":"significativity","type":"array","title":"Significativity"},"media":{"key":"media","type":"array","title":"Media"},"version":{"key":"version","type":"version","title":"Version"},"map":{"key":"map","param":[{"item":"map"}],"min":"","max":"","type":"rel"},"casttype":{"key":"casttype","param":[{"item":"casttype"}],"min":"","max":"","type":"rel"},"typology":{"key":"typology","param":[{"item":"typology"}],"min":"","max":"","type":"rel"},"author":{"key":"author","param":{"1":{"item":"human"}},"min":"1","max":"1","required":"1","type":"rel"}}', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live'),
 (22, 'map', 'Maps', '', 0, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"Cast title","min":"","max":"","required":"1"},"descr":{"key":"descr","type":"string","title":"Description","min":"","max":""},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"}}', '2013-09-25 09:16:34', '2013-09-25 09:16:34', 'live'),
@@ -704,12 +732,13 @@ INSERT INTO `structure` (`id`, `key`, `title`, `descr`, `system`, `attr`, `creat
 (25, 'typology', 'Types in the typology', '', 0, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"Name of the type","min":"","max":""},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"}}', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live'),
 (26, 'region', 'Regions', '', 0, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"Title","min":"","max":"","required":"1"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"}}', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live'),
 (27, 'const', 'Text constants', '', 1, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"Title","min":"","max":"","required":"1"},"version":{"key":"version","type":"version"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"}}', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live'),
-(28, 'logbook', 'Logbook', '', 1, '{"id":{"key":"id","title":"The unique identifier","type":"id","min":"0","max":"0","index":"primary","auto_increment":"1"},"key":{"key":"key","title":"The key","type":"key","min":"0","max":"32","required":"1"},"subject":{"key":"subject","title":"Subject","type":"string","min":"","max":""},"subjectid":{"key":"subjectid","title":"Subject ID","type":"int","min":"","max":""},"item":{"key":"item","title":"item","type":"string","min":"","max":""},"itemid":{"key":"itemid","title":"item id","type":"int","min":"","max":""},\r\n"created":{"key":"created","type":"created","title":"Created Datetime"},\r\n"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},\r\n"status":{"key":"status","type":"status","title":"Status"}}', '0000-00-00 00:00:00', '2013-04-05 12:41:29', 'live');
+(28, 'logbook', 'Logbook', '', 1, '{"id":{"key":"id","title":"The unique identifier","type":"id","min":"0","max":"0","index":"primary","auto_increment":"1"},"key":{"key":"key","title":"The key","type":"key","min":"0","max":"32","required":"1"},"subject":{"key":"subject","title":"Subject","type":"string","min":"","max":""},"subjectid":{"key":"subjectid","title":"Subject ID","type":"int","min":"","max":""},"item":{"key":"item","title":"item","type":"string","min":"","max":""},"itemid":{"key":"itemid","title":"item id","type":"int","min":"","max":""},\r\n"created":{"key":"created","type":"created","title":"Created Datetime"},\r\n"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},\r\n"status":{"key":"status","type":"status","title":"Status"}}', '0000-00-00 00:00:00', '2013-04-05 12:41:29', 'live'),
+(29, 'group', 'Groups', '', 1, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"Title","min":"","max":"","required":"1"},"admin":{"key":"admin","type":"bool"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"}}', '2013-10-02 08:35:40', '2013-10-02 08:35:40', 'live');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `typology`
+-- Structure de la table `typology`
 --
 
 CREATE TABLE `typology` (
@@ -725,7 +754,7 @@ CREATE TABLE `typology` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19 ;
 
 --
--- Dumping data for table `typology`
+-- Contenu de la table `typology`
 --
 
 INSERT INTO `typology` (`id`, `title`, `key`, `created`, `updated`, `status`) VALUES
@@ -751,7 +780,7 @@ INSERT INTO `typology` (`id`, `title`, `key`, `created`, `updated`, `status`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `version`
+-- Structure de la table `version`
 --
 
 CREATE TABLE `version` (
@@ -768,7 +797,7 @@ CREATE TABLE `version` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `version`
+-- Contenu de la table `version`
 --
 
 INSERT INTO `version` (`id`, `key`, `title`, `lang`, `created`, `updated`, `status`) VALUES
@@ -777,7 +806,7 @@ INSERT INTO `version` (`id`, `key`, `title`, `lang`, `created`, `updated`, `stat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `_rel`
+-- Structure de la table `_rel`
 --
 
 CREATE TABLE `_rel` (
@@ -795,7 +824,7 @@ CREATE TABLE `_rel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Relations of page';
 
 --
--- Dumping data for table `_rel`
+-- Contenu de la table `_rel`
 --
 
 INSERT INTO `_rel` (`item`, `itemid`, `key`, `rel`, `relid`, `position`) VALUES
@@ -1562,7 +1591,8 @@ INSERT INTO `_rel` (`item`, `itemid`, `key`, `rel`, `relid`, `position`) VALUES
 ('cast', 305, 'author', 'human', 2, 0),
 ('cast', 306, 'map', 'map', 1, 0),
 ('cast', 306, 'author', 'human', 2, 0),
-('page', 1, 'section', 'section', 1, 0);
+('page', 1, 'section', 'section', 1, 0),
+('human', 23, 'group', 'group', 1, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
