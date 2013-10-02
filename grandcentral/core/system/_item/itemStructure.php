@@ -25,6 +25,17 @@ class itemStructure extends _items
 		$this->key = $data['key'];
 	}
 	
+/**
+ * Check if the items of this structure have an url and can be requested
+ *
+ * @param	array 	attributes array
+ * @access  public
+ */
+	public function has_url($data)
+	{
+		return (isset($this->attr->url)) ? true : false;
+	}
+	
 
 }
 ?>

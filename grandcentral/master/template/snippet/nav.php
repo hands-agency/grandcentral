@@ -82,7 +82,12 @@
 			'page' => 'list',
 		//	Subnav
 			'subnav' => array(
-				'everyday' => array(
+				'major' => array(
+					'display' => 'hive',
+					'link' => 'list',
+					'bunch' => cc('structure', array('system' => false, 'order()' => 'title'), $_SESSION['pref']['handled_env']),
+				),
+				'minor' => array(
 					'display' => 'hive',
 					'link' => 'list',
 					'bunch' => cc('structure', array('system' => false, 'order()' => 'title'), $_SESSION['pref']['handled_env']),
