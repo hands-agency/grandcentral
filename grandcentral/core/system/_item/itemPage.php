@@ -32,7 +32,8 @@ class itemPage extends _items
 	//	recherche de l'item
 		if (isset($url[1]) && !empty($url[1]))
 		{
-			$item = item::create($this['type']['item'], array('url' => '/'.$url[0]), $this->get_env());
+			$item = item::create($this['type']['item'], array('url' => '/'.$url[1]), $this->get_env());
+			
 			if ($item->exists())
 			{
 				registry::set(registry::current_index, $this['type']['item'], $item);
