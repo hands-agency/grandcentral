@@ -16,13 +16,33 @@ class itemPage extends _items
  */
 	public function guess()
 	{
-	//	recherche par urlr
-		$url = (URLR == '') ? '/' : URLR;
-		$this->get(array('url' => $url));
+		$url[0] = null;
+	//	analyse de l'url
+		if (URLR != null)
+		{
+			$url = explode('/', mb_substr(URLR, 1));
+		}
+	//	recherche de la page
+		$this->get(array('url' => '/'.$url[0]));
+	//	si la page n'existe pas
 		if (!$this->exists())
 		{
 			$this->get('error_404');
 		}
+	//	recherche de l'item
+		if (isset($url[1]) && !empty($url[1]))
+		{
+			$item = item::create($this['type']['item'], array('url' => '/'.$url[0]), $this->get_env());
+			if ($item->exists())
+			{
+				registry::set(registry::current_index, $this['type']['item'], $item);
+			}
+			else
+			{
+				$this->get('error_404');
+			}
+		}
+	//	error
 		if (!$this->exists())
 		{
 			trigger_error('No page found. Give me a 404.', E_USER_ERROR);
