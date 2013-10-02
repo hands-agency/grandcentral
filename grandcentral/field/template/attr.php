@@ -21,7 +21,7 @@
 /********************************************************************************************/
 //	Bind
 /********************************************************************************************/
-	$_VIEW->bind('css', '/css/addable.css');
+/*	$_VIEW->bind('css', '/css/addable.css');
 	$_VIEW->bind('css', '/css/attr.css');
 	$_VIEW->bind('script', '/js/addable.js');
 	$_VIEW->bind('script', '/js/attr.js');
@@ -98,6 +98,7 @@
 /********************************************************************************************/
 //	Somes specifics, field by field
 /********************************************************************************************/
+/*
 //	Int
 	$fields['int']['auto_increment'] = array(
 		'name' => 'auto_increment',
@@ -132,11 +133,13 @@
 /********************************************************************************************/
 //	The list of add buttons
 /********************************************************************************************/
+/*
 	foreach ($available as $field) $addbuttons .= '<li><button type="button" data-type="'.$field.'">'.$field.'</button></li>';
 
 /********************************************************************************************/
 //	Print the data from the Database
 /********************************************************************************************/
+/*
 	$values = $_ITEM->get_value();
 	foreach ((array) $values as $key => $value)
 	{
@@ -166,6 +169,7 @@
 /********************************************************************************************/
 //	Now we can build the templates used when creating new fields
 /********************************************************************************************/
+/*
 //	It's a template, these fields MUST be disabled (appending will enable them)
 	foreach ($fields as $name => $field)
 	{
@@ -192,4 +196,5 @@
 		$html = '<li style="display:none;"><ol>'.$li.'</ol><button type="button" class="delete"></button></li>';
 		$template[$key] = $html;
 	}
+	*/
 ?>
