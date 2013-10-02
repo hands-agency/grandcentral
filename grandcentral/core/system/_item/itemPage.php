@@ -36,7 +36,7 @@ class itemPage extends _items
 			
 			if ($item->exists())
 			{
-				registry::set(registry::current_index, $this['type']['item'], $item);
+				registry::set(registry::current_index, 'item', $item);
 			}
 			else
 			{
