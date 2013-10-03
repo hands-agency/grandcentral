@@ -3,8 +3,8 @@
 {
 	padding-left:5px; /* optical alignment */
 	list-style-type:disc;
-	color:#2a323a;
-	margin-left:12px;
+	color:#fff;
+	margin-left:60px;
 }
 #eventstream ul li
 {
@@ -12,6 +12,11 @@
 	font-size: 12px;
 	position:relative;
 /*	display:none;*/
+}
+#eventstream ul li a
+{
+	color:#fff;
+	border-bottom:1px solid rgba(255, 255, 255, 0.4);
 }
 #eventstream ul li:hover
 {
@@ -22,7 +27,7 @@
 	content:'';
 	width:1px;
 	position:absolute;
-	border-left:2px solid #2a323a;
+	border-left:2px solid rgba(255, 255, 255, 0.5);
 	height:7px;
 	bottom:10px;
 	left:-13px;

@@ -20,7 +20,7 @@ class attrCreated extends attrDate
 	{
 		if (empty($this->data) or $this->data == '0000-00-00 00:00:00')
 		{
-			$this->set(date('Y-m-d h:i:s'));
+			$this->set(date('Y-m-d H:i:s'));
 		}
 		return $this->get();
 	}

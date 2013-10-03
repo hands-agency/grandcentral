@@ -21,10 +21,10 @@
 /********************************************************************************************/
 //	Bind
 /********************************************************************************************/
-	$_VIEW->bind('css', '/css/wysiwyg.css');
-	$_VIEW->bind('script', '/js/wysiwyg/wysihtml5-0.3.0.min.js');
-	$_VIEW->bind('script', '/js/wysiwyg/advanced.js');
-	$_VIEW->bind('script', '/js/wysiwyg.js');
+	$_APP->bind_css('css/wysiwyg.css');
+	$_APP->bind_script('js/wysiwyg/wysihtml5-0.3.0.min.js');
+	$_APP->bind_script('js/wysiwyg/advanced.js');
+	$_APP->bind_script('js/wysiwyg.js');
 	
 	$value = $_ITEM->get_value();
 	$attrs = $_ITEM->get_attr();

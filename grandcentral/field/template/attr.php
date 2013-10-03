@@ -21,15 +21,18 @@
 /********************************************************************************************/
 //	Bind
 /********************************************************************************************/
-/*	$_VIEW->bind('css', '/css/addable.css');
-	$_VIEW->bind('css', '/css/attr.css');
-	$_VIEW->bind('script', '/js/addable.js');
-	$_VIEW->bind('script', '/js/attr.js');
-	$_VIEW->bind('script', '$(\'li[data-type="attr"]\').addable();');
+	$_APP->bind_css('css/addable.css');
+	$_APP->bind_css('css/attr.css');
+	$_APP->bind_script('js/addable.js');
+	$_APP->bind_script('js/attr.js');
+	$_APP->bind_code('script', '<script type="text/javascript" charset="utf-8">$(\'li[data-type="attr"]\').addable();</script>');
 	
 /********************************************************************************************/
 //	Some vars
 /********************************************************************************************/
+//	For easier access
+	$_FIELD = $_PARAM['field'];
+	
 //	Hide or show the nodata
 	$hideNodata = '';
 //	The data from the DB
@@ -43,7 +46,7 @@
 //	Set defaults
 /********************************************************************************************/
 //	List of available attr
-	$available = array('int', 'string', 'decimal', 'bool', 'date', 'array');
+	$available = array('array', 'bool', 'created', 'date', 'decimal', 'id', 'int', 'key', 'list', 'media', 'password', 'rel', 'status', 'string', 'updated', 'version');
 
 //	Default field attributes for all fields	
 	$params['key'] = array(
@@ -98,7 +101,6 @@
 /********************************************************************************************/
 //	Somes specifics, field by field
 /********************************************************************************************/
-/*
 //	Int
 	$fields['int']['auto_increment'] = array(
 		'name' => 'auto_increment',
@@ -129,18 +131,27 @@
 	
 //	Array
 	unset($fields['array']['min'], $fields['array']['max'], $fields['array']['index']);
+	
+//	Rel
+	unset($fields['rel']['index'], $fields['rel']['required']);
+	$fields['rel'][] = array(
+		'name' => 'item',
+		'type' => 'bunch',
+		'label' => 'Build your list of items',
+	//	'valuestype' => 'array',
+	//	'values' => $tables,
+	//	'required' => true
+	);
 		
 /********************************************************************************************/
 //	The list of add buttons
 /********************************************************************************************/
-/*
 	foreach ($available as $field) $addbuttons .= '<li><button type="button" data-type="'.$field.'">'.$field.'</button></li>';
 
 /********************************************************************************************/
 //	Print the data from the Database
 /********************************************************************************************/
-/*
-	$values = $_ITEM->get_value();
+	$values = $_FIELD->get_value();
 	foreach ((array) $values as $key => $value)
 	{
 		$li = '';
@@ -149,8 +160,8 @@
 		{
 		//	Field
 			if ($param['name'] == 'key') unset($param['customdata']);
-			$class = 'field_'.$param['type'];
-			$field = new $class($_ITEM->get_name().'['.$key.']['.$param['name'].']', $param);
+			$class = 'field'.ucfirst($param['type']);
+			$field = new $class($_FIELD->get_name().'['.$key.']['.$param['name'].']', $param);
 			if (isset($value[$param['name']])) $field->set_value($value[$param['name']]);
 		//	Label
 			if ($field->get_label()) $label = '<label for="'.$field->get_name().'">'.$field->get_label().'</label>';
@@ -169,8 +180,7 @@
 /********************************************************************************************/
 //	Now we can build the templates used when creating new fields
 /********************************************************************************************/
-/*
-//	It's a template, these fields MUST be disabled (appending will enable them)
+//	It's a template, these fields MUST be disabled otherwise they get through the POST (appending will enable them, don't worry)
 	foreach ($fields as $name => $field)
 	{
 		foreach ($field as $key => $param) $fields[$name][$key]['disabled'] = true;
@@ -183,8 +193,8 @@
 		{
 		//	Field
 			if ($param['name'] == 'type') $param['value'] = $key;
-			$class = 'field_'.$param['type'];
-			$field = new $class($_ITEM->get_name().'[]['.$param['name'].']', $param);
+			$class = 'field'.ucfirst($param['type']);
+			$field = new $class($_FIELD->get_name().'[]['.$param['name'].']', $param);
 		//	Label
 			if ($field->get_label()) $label = '<label for="'.$field->get_name().'">'.$field->get_label().'</label>';
 			else $label = null;
@@ -192,9 +202,8 @@
 		//	Li
 			$li .= '<li data-type="'.$field->get_type().'" data-key="'.$param['name'].'"><label for="'.$field->get_name().'">'.$label.'</label><div class="wrapper">'.$field.'</div></li>';
 		}
-	//	We store them in jscript vars, so that the addable.js plugin can retrieve them
+	//	We store them in a <pre> tag, so that the addable.js plugin can retrieve them
 		$html = '<li style="display:none;"><ol>'.$li.'</ol><button type="button" class="delete"></button></li>';
 		$template[$key] = $html;
 	}
-	*/
 ?>

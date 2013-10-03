@@ -63,7 +63,7 @@
 	foreach ($bunch as $item)
 	{
 	//	Ensure we have a title, otherwise use the ref
-		if (empty($item['title'])) $item['title'] = (empty($item['title'])) ? $item->get_ref() : $item['title'];
+		if (empty($item['title'])) $item['title'] = (empty($item['title'])) ? $item->get_nickname() : $item['title'];
 	//	Image preview TODO
 		if (isset($structure['attr']['photo']))
 		{

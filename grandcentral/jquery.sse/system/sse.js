@@ -24,7 +24,7 @@
 			source = new EventSource(sourceUrl);
 			
 		//	DEBUG
-			console.log(sourceUrl);
+		//	console.log(sourceUrl);
 
 		//	Listen to event source
 			source.addEventListener('message', function(e)

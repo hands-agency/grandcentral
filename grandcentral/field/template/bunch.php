@@ -21,12 +21,15 @@
 /********************************************************************************************/
 //	Bind
 /********************************************************************************************/
-	$_VIEW->bind('css', '/css/bunch.css');
-	$_VIEW->bind('script', '/js/bunch.js');
+//	$_APP->bind_css('css/bunch.css');
+	$_APP->bind_script('js/bunch.js');
 	
 /********************************************************************************************/
 //	Some vars
 /********************************************************************************************/
+//	For easier access
+	$_FIELD = $_PARAM['field'];
+
 //	Hide or show the nodata
 	$hideNodata = '';
 //	The data from the DB
@@ -42,24 +45,28 @@
 //	Callbacks
 /********************************************************************************************/
 //	On add
-	$_VIEW->bind('script', '$(\'li[data-type="bunch"]\').addable(
-	{
-	//	On add
-		onAdd:function(field)
+	$_APP->bind_code('script', '
+
+	<script type="text/javascript" charset="utf-8">
+		$(\'li[data-type="bunch"]\').addable(
 		{
-			data = field.find("> .wrapper > .field > .data")
-			li = data.find("li:last-child");
-			count = data.children().length;
-						
-			li.find("input, select, textarea").each(function()
+		//	On add
+			onAdd:function(field)
 			{
-				input = $(this);
-				name = input.attr("name").replace("'.$index.'", count);
-				input.attr("name", name);
-			});
+				data = field.find("> .wrapper > .field > .data")
+				li = data.find("li:last-child");
+				count = data.children().length;
+						
+				li.find("input, select, textarea").each(function()
+				{
+					input = $(this);
+					name = input.attr("name").replace("'.$index.'", count);
+					input.attr("name", name);
+				});
 		
-		}
-	});');
+			}
+		});
+	</script>');
 	
 /********************************************************************************************/
 //	Set defaults
@@ -91,7 +98,7 @@
 /********************************************************************************************/
 //	construction de la liste des relations reçues de la base
 /********************************************************************************************/
-	$values = $_ITEM->get_value();
+	$values = $_FIELD->get_value();
 	$i = 0;
 	foreach ((array) $values as $key => $value)
 	{
@@ -99,8 +106,8 @@
 		foreach ($params as $param)
 		{
 		//	Field
-			$class = 'field_'.$param['type'];
-			$field = new $class($_ITEM->get_name().'['.$i.']['.$param['name'].']', $param);
+			$class = 'field'.ucfirst($param['type']);
+			$field = new $class($_FIELD->get_name().'['.$i.']['.$param['name'].']', $param);
 			if (isset($value[$param['name']])) $field->set_value($value[$param['name']]);
 		//	Label
 			if ($field->get_label()) $label = '<label for="'.$field->get_name().'">'.$field->get_label().'</label>';
@@ -124,8 +131,8 @@
 	foreach ($params as $param)
 	{
 	//	Field
-		$class = 'field_'.$param['type'];
-		$field = new $class($_ITEM->get_name().'['.$index.']['.$param['name'].']', $param);
+		$class = 'field'.ucfirst($param['type']);
+		$field = new $class($_FIELD->get_name().'['.$index.']['.$param['name'].']', $param);
 	//	Label
 		if ($field->get_label()) $label = '<label for="'.$field->get_name().'">'.$field->get_label().'</label>';
 		else $label = null;

@@ -54,7 +54,7 @@
 			$param['labelbefore'] = true;
 		}
 		
-		$class = 'field_'.$param['type'];
+		$class = 'field'.ucfirst($param['type']);
 		$field = new $class($_POST['form'].'[param]['.$key.']', $param);
 		$label = $field->get_label();
 		$field->set_label('');

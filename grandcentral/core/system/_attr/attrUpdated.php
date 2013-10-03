@@ -18,7 +18,7 @@ class attrUpdated extends attrDate
  */
 	public function database_get()
 	{
-		$this->set(date('Y-m-d h:i:s'));
+		$this->set(date('Y-m-d H:i:s'));
 		
 		return $this->get();
 	}

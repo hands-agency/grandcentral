@@ -179,13 +179,17 @@ abstract class _items implements ArrayAccess, Iterator
 		{
 			$this->_update();
 			$db->flush_spooler();
+			$event = 'update';
 		}
 	//	insert
 		else
 		{
 			$this->_insert();
 			$this['id']->database_set($db->flush_spooler());
+			$event = 'insert';
 		}
+	//	Trigger event
+		event::trigger($this, $event);
 		// print'<pre>';print_r($db->_spooler);print'</pre>';
 	}
 /**

@@ -21,10 +21,10 @@
 /********************************************************************************************/
 //	Bind
 /********************************************************************************************/
-	$_VIEW->bind('css', '/css/addable.css');
-	$_VIEW->bind('script', '/js/addable.js');
+	$_APP->bind_css('css/addable.css');
+	$_APP->bind_script('js/addable.js');
 	$_VIEW->bind('script', '$(\'li[data-type="rel"]\').addable();');
-	$_VIEW->bind('script', '/js/rel.js');
+	$_APP->bind_script('js/rel.js');
 	
 /********************************************************************************************/
 //	Some vars
@@ -106,7 +106,7 @@
 		foreach ($params as $param)
 		{
 		//	Field
-			$class = 'field_'.$param['type'];
+			$class = 'field'.ucfirst($param['type']);
 			$field = new $class($_ITEM->get_name().'['.$key.']['.$param['name'].']', $param);
 			if (isset($value[$param['name']])) $field->set_value($value[$param['name']]);
 		//	Label
@@ -130,7 +130,7 @@
 	$li = '';
 	foreach ($params as $param)
 	{
-		$class = 'field_'.$param['type'];
+		$class = 'field'.ucfirst($param['type']);
 		$field = new $class($_ITEM->get_name().'[]['.$param['name'].']', $param);
 		$label = $field->get_label();
 		$field->set_label('');

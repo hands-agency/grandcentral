@@ -58,8 +58,8 @@
 	foreach ($logbooks as $logbook)
 	{
 	//	Fetch item
-		$item = cc($logbook['item'], $logbook['itemid'], $_SESSION['pref']['handled_env']);
-		$item['title'] = (empty($item['title'])) ? $item->get_ref() : $item['title'];
+		$item = cc((string)$logbook['item'], (string)$logbook['itemid'], $_SESSION['pref']['handled_env']);
+		$item['title'] = (empty($item['title'])) ? $item->get_nickname() : $item['title'];
 		
 	//	Aging
 		$date = new DateTime($logbook['updated']);
@@ -68,8 +68,8 @@
 		if (isset($_GET['delay'])) $opacity = $opacity-(($interval->format('%i.%s'))/($_GET['delay']*2));
 		
 	//	Author
-		$author = cc($logbook['subject'], $logbook['subjectid']);
-		$author['title'] = (empty($author['title'])) ? $author->get_ref() : $author['title'];
+		$author = cc((string)$logbook['subject'], (string)$logbook['subjectid']);
+		$author['title'] = (empty($author['title'])) ? $author->get_nickname() : $author['title'];
 		
 	//	Message
 		$msg = '{"id": "'.$logbook['id'].'", "event": "'.$logbook['key'].'", "opacity": "'.$opacity.'", "author": "'.$author['title'].'", "subject": "'.$logbook['subject'].'", "subjectid": "'.$logbook['subjectid'].'", "item": "'.$logbook['item'].'", "itemid": "'.$logbook['itemid'].'", "updated": "'.$logbook['updated'].'", "edit": "'.$item->edit().'", "editauthor": "'.$author->edit().'", "title": "'.$item['title'].'"}';
