@@ -12,6 +12,17 @@ class attrRel extends _attrs
 	const table = '_rel';
 	protected $env;
 /**
+ * Set array attribute
+ *
+ * @param	string	la variable
+ * @return	string	une string
+ * @access	public
+ */
+	public function get()
+	{
+		return (array) $this->data;
+	}
+/**
  * Ajouter une ou plusieurs relations
  *
  * @param	mixed	arrays or bunch of _items or nicknames

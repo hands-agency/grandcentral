@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Ven 04 Octobre 2013 à 09:07
+-- Généré le: Ven 04 Octobre 2013 à 21:04
 -- Version du serveur: 5.5.29
 -- Version de PHP: 5.4.10
 
@@ -432,13 +432,11 @@ CREATE TABLE `form` (
   `key` varchar(32) COLLATE utf8_unicode_ci NOT NULL COMMENT 'The key',
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'A short title',
   `descr` varchar(500) COLLATE utf8_unicode_ci NOT NULL COMMENT 'A short description',
-  `theme` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Theme',
   `template` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Template',
   `action` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Action / routine',
   `method` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Method',
   `target` varchar(32) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Target',
   `enctype` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Enctype',
-  `back` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Back URL',
   `field` mediumtext COLLATE utf8_unicode_ci NOT NULL COMMENT 'The fields',
   `created` datetime NOT NULL COMMENT 'Created Datetime',
   `updated` datetime NOT NULL COMMENT 'Updated Datetime',
@@ -452,8 +450,8 @@ CREATE TABLE `form` (
 -- Contenu de la table `form`
 --
 
-INSERT INTO `form` (`id`, `key`, `title`, `descr`, `theme`, `template`, `action`, `method`, `target`, `enctype`, `back`, `field`, `created`, `updated`, `status`) VALUES
-(1, 'login', 'Login', '', 'login', 'login', 'login', 'post', '', '', '', '{"login":{"type":"text","key":"login","label":"Login","placeholder":"Your login","required":true},"password":{"type":"password","key":"password","label":"Password","placeholder":"Password","required":true},"save":{"type":"button","buttontype":"submit","key":"save","label":"submit"}}', '2013-09-14 12:53:52', '2013-09-14 12:53:52', '');
+INSERT INTO `form` (`id`, `key`, `title`, `descr`, `template`, `action`, `method`, `target`, `enctype`, `field`, `created`, `updated`, `status`) VALUES
+(1, 'login', 'Login', '', 'login', 'login', 'post', '', '', '{"login":{"type":"text","key":"login","label":"Login","placeholder":"Your login","required":true},"password":{"type":"password","key":"password","label":"Password","placeholder":"Password","required":true},"save":{"type":"button","buttontype":"submit","key":"save","value":"submit"}}', '2013-09-14 12:53:52', '2013-09-14 12:53:52', '');
 
 -- --------------------------------------------------------
 
@@ -473,14 +471,15 @@ CREATE TABLE `group` (
   KEY `key` (`key`),
   KEY `status` (`status`),
   KEY `version` (`admin`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
 -- Contenu de la table `group`
 --
 
 INSERT INTO `group` (`id`, `key`, `title`, `admin`, `created`, `updated`, `status`) VALUES
-(1, 'admin', 'Administrateurs', 1, '2013-10-02 08:35:40', '2013-10-02 08:35:40', 'live');
+(1, 'admin', 'Administrateurs', 1, '2013-10-02 08:35:40', '2013-10-02 08:35:40', 'live'),
+(2, 'author', 'Authors', 0, '2013-10-04 06:41:04', '2013-10-04 06:41:04', 'live');
 
 -- --------------------------------------------------------
 
@@ -600,7 +599,7 @@ CREATE TABLE `page` (
   KEY `key` (`key`),
   KEY `status` (`status`),
   KEY `version` (`version`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
 -- Contenu de la table `page`
@@ -616,7 +615,9 @@ INSERT INTO `page` (`id`, `key`, `title`, `descr`, `text`, `http_status`, `maste
 (7, 'ajax.html', 'Ajax page for HTML content', '', '', '200 OK', '{"type":"html","key":"ajax"}', '/ajax.html', 1, 1, '0000-00-00 00:00:00', '2013-09-13 10:18:30', 'live', ''),
 (8, 'ajax.json', 'Ajax page for JSON content', '', '', '200 OK', '{"type":"json","key":"ajax"}', '/ajax.json', 1, 1, '0000-00-00 00:00:00', '2013-09-13 10:18:30', 'live', ''),
 (9, 'login.post', 'Login routine', '', '', '200 OK', '{"type":"routine","key":"login.post"}', '/login.post', 1, 1, '0000-00-00 00:00:00', '2013-09-13 10:18:30', 'live', '{"type":"feed","item":"cast"}'),
-(10, 'login', 'Login', '', '', '200 OK', '{"type":"html","key":"login"}', '/login', 1, 1, '0000-00-00 00:00:00', '2013-09-13 10:18:30', 'live', '');
+(10, 'login', 'Login', '', '', '200 OK', '{"type":"html","key":"login"}', '/login', 1, 1, '0000-00-00 00:00:00', '2013-09-13 10:18:30', 'live', ''),
+(11, 'logout.post', 'Logout routine', '', '', '200 OK', '{"type":"routine","key":"logout.post"}', '/logout.post', 1, 1, '0000-00-00 00:00:00', '2013-09-13 10:18:30', 'live', ''),
+(12, 'test', 'Test Page', '', '', '200 OK', '{"type":"html","key":"master"}', '/test', 0, 0, '2013-10-04 06:42:29', '2013-10-04 06:42:29', 'live', 'null');
 
 -- --------------------------------------------------------
 
@@ -696,7 +697,7 @@ CREATE TABLE `site` (
 --
 
 INSERT INTO `site` (`id`, `key`, `title`, `created`, `updated`, `status`, `defaultversion`) VALUES
-(1, 'yoga', 'ACSC Yoga', '2013-05-21 14:52:00', '2013-05-21 14:52:00', 'live', 1);
+(1, 'miranda', 'Miranda', '2013-05-21 14:52:00', '2013-05-21 14:52:00', 'live', 1);
 
 -- --------------------------------------------------------
 
@@ -718,7 +719,7 @@ CREATE TABLE `structure` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `key` (`key`),
   KEY `status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=30 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=31 ;
 
 --
 -- Contenu de la table `structure`
@@ -738,7 +739,8 @@ INSERT INTO `structure` (`id`, `key`, `title`, `descr`, `system`, `attr`, `creat
 (26, 'region', 'Regions', '', 0, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"Title","min":"","max":"","required":"1"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"}}', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live', 0),
 (27, 'const', 'Text constants', '', 1, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"Title","min":"","max":"","required":"1"},"version":{"key":"version","type":"version"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"}}', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live', 0),
 (28, 'logbook', 'Logbook', '', 1, '{"id":{"key":"id","title":"The unique identifier","type":"id","min":"0","max":"0","index":"primary","auto_increment":"1"},"key":{"key":"key","title":"The key","type":"key","min":"0","max":"32","required":"1"},"subject":{"key":"subject","title":"Subject","type":"string","min":"","max":""},"subjectid":{"key":"subjectid","title":"Subject ID","type":"int","min":"","max":""},"item":{"key":"item","title":"item","type":"string","min":"","max":""},"itemid":{"key":"itemid","title":"item id","type":"int","min":"","max":""},\r\n"created":{"key":"created","type":"created","title":"Created Datetime"},\r\n"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},\r\n"status":{"key":"status","type":"status","title":"Status"}}', '0000-00-00 00:00:00', '2013-04-05 12:41:29', 'live', 0),
-(29, 'group', 'Groups', '', 1, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"Title","min":"","max":"","required":"1"},"admin":{"key":"admin","type":"bool"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"}}', '2013-10-02 08:35:40', '2013-10-02 08:35:40', 'live', 0);
+(29, 'group', 'Groups', '', 1, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"Title","min":"","max":"","required":"1"},"admin":{"key":"admin","type":"bool"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"}}', '2013-10-02 08:35:40', '2013-10-02 08:35:40', 'live', 0),
+(30, 'form', 'Forms', '', 1, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"Title","min":"","max":"","required":"1"},"descr":{"key":"descr","title":"A short description","type":"string","min":"0","max":"500"},"template":{"key":"template","type":"string","title":"Template","min":"","max":"","required":"1"},"action":{"key":"action","type":"string","title":"Action","min":"","max":"","required":"1"},"method":{"key":"method","type":"list","option":"post,get","title":"Method","required":"1"},"target":{"key":"target","type":"string","title":"Target"},"enctype":{"key":"enctype","type":"list","option":"application/x-www-form-urlencoded,multipart/form-data","title":"Enctype","required":"1"},"field":{"key":"field","type":"array","title":"The Fields"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"}}', '2013-09-27 08:33:31', '2013-09-27 08:33:31', 'live', 0);
 
 -- --------------------------------------------------------
 
@@ -1597,7 +1599,9 @@ INSERT INTO `_rel` (`item`, `itemid`, `key`, `rel`, `relid`, `position`) VALUES
 ('cast', 306, 'map', 'map', 1, 0),
 ('cast', 306, 'author', 'human', 2, 0),
 ('page', 1, 'section', 'section', 1, 0),
-('human', 23, 'group', 'group', 1, 0);
+('human', 23, 'group', 'group', 1, 0),
+('page', 1, 'group', 'group', 2, 0),
+('page', 1, 'child', 'page', 12, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

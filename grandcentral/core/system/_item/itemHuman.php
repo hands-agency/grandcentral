@@ -82,7 +82,7 @@ class itemHuman extends _items
  * @return	bool	true ou false
  * @access	public
  */
-	public function can($action, $item)
+	public function can($action, itemPage $page)
 	{
 	//	Les admins peuvent tout voir
 		if ($this->is_admin())
@@ -94,7 +94,44 @@ class itemHuman extends _items
 		{
 			if (env == 'site')
 			{
-				return true;
+				// print'<pre>';print_r($this);print'</pre>';
+			//	si la page n'a pas de group associé, 
+				if ($page['group']->is_empty())
+				{
+				//	on cherche la page parente
+					$q = 'SELECT itemid FROM `_rel` WHERE `item`="page" AND `key`="child" AND `relid`=:id';
+					$d = array('id' => $page['id']->get());
+					$db = database::connect('site');
+					$r = $db->query($q, $d);
+				//	si on trouve une id
+					if ($r['count'] > 0)
+					{
+					//	on cherche la page parente
+						$parent = cc('page', $r['data'][0]['itemid']);
+					//	si la page parente existe dans la bdd, et qu'elle a des groupes, on copie ses groupes 
+						if ($parent->exists() && !$parent['group']->is_empty())
+						{
+							$page['group'] = $parent['group']->get();
+						}
+					}
+				//	sinon, on valide
+					else
+					{
+						return true;
+					}
+				}
+				
+				foreach ($page['group']->get() as $authorized_group)
+				{
+					if (in_array($authorized_group, $this['group']->get()))
+					{
+						return true;
+					}
+				}
+				
+				// print'<pre>page : ';print_r($this['group']);print'</pre>';
+				// print'<pre>page : ';print_r($_SESSION['user']['group']);print'</pre>';
+				
 			}
 		}
 		return false;
