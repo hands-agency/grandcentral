@@ -28,16 +28,17 @@
 	$_APP->bind_script('js/jquery-ui-1.9.1.custom.min.js');
 	
 //	Constants
-	$_APP->bind('script', "
+	$_APP->bind_code('script', "
+	<script type=\"text/javascript\" charset=\"utf-8\">
 		const SITE_URL = '".SITE_URL."';
 		const ADMIN_URL = '".ADMIN_URL."';
-	");
+	</script>");
 
 /********************************************************************************************/
 //	Local binding scripts & css files
 /********************************************************************************************/
 //	Script
-	$_APP->bind_script('js/login.js');
+	// $_APP->bind_script('js/login.js');
 //	css
 	$_APP->bind_css('css/login.css');
 	
@@ -54,5 +55,5 @@
 /********************************************************************************************/
 //	Sections liées à la page
 /********************************************************************************************/
-	$_ITEM->bind_section();
+	$_PARAM['page']->bind_section();
 ?>

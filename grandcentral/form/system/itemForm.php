@@ -24,14 +24,13 @@ class itemForm extends _items
 		$this->data['field'][$field][$param] = $value;
 		return $this;
 	}
-	
 /**
- * Retourne le html du formulaire définit par son theme et son template
+ * Retourne un objet de la classe form correspondant à l'itemForm
  * 
- * @return	string	le html du formulaire
+ * @return	form	un objet de la classe form
  * @access	public
  */
-	public function __tostring()
+	public function prepare()
 	{
 	//	paramètres du formulaire HTML
 		$params = array(
@@ -61,6 +60,18 @@ class itemForm extends _items
 				}
 			}
 		}
+	//	affichage
+		return $form;
+	}
+/**
+ * Retourne le html du formulaire définit par son theme et son template
+ * 
+ * @return	string	le html du formulaire
+ * @access	public
+ */
+	public function __tostring()
+	{
+		$form = $this->prepare();
 	//	affichage
 		return $form->__tostring();
 	}

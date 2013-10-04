@@ -10,8 +10,8 @@
 	</div>
 	<!-- ZONE:body -->
 
-		<iframe id="site" src="<?=SITE_URL?>"></iframe>
-		<iframe id="admin" src="" data-src="<?=ADMIN_URL?>?target=_parent"></iframe>
+		<!-- <iframe id="site" src="<?=SITE_URL?>"></iframe> -->
+		<!-- <iframe id="admin" src="" data-src="<?=ADMIN_URL?>?target=_parent"></iframe> -->
 		
 		<div id="content">
 			<!-- ZONE:content -->

@@ -199,7 +199,7 @@ class registry
 	protected function _prepare_current()
 	{
 	//	user
-		$human = item::create('human');
+		$human = item::create('human', 'site');
 		$human->guess();
 	//	Env
 		if (!isset($_SESSION['pref']['handled_env'])) $_SESSION['pref']['handled_env'] = 'site';

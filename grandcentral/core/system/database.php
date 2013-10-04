@@ -379,6 +379,7 @@ class database
 		{
 			$preparedQuery = 'SELECT COUNT(*) as count FROM `'.$table.'`'.$cJoin.$cWhere.$cGroupby.$cLimit;
 		}
+		// print'<hr /><pre>database env : ';print_r($env);print'</pre>';
 	//	requête
 		$db = database::connect($env);
 		$results = $db->query($preparedQuery, $preparedData);
@@ -393,7 +394,6 @@ class database
 			$attrClass = 'attr'.ucfirst($attrs[$key]['type']);
 			$model[$key] = new $attrClass(null, $value);
 		}
-		// print'<pre>';print_r($model);print'</pre>';
 	//	création du tableau de retour
 		$datas = array();
 		$ids = array();

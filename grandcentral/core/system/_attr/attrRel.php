@@ -117,7 +117,7 @@ class attrRel extends _attrs
  */
 	public function unfold()
 	{
-		$bunch = new bunch(null, $this->env);
+		$bunch = new bunch(null, null, $this->env);
 		$bunch->get_by_nickname($this->data);
 		
 		return $bunch;

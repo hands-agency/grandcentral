@@ -78,9 +78,9 @@ class attrPassword extends _attrs
  * @return	string	une string
  * @access	public
  */
-	public function is_valid($data)
+	public function is_valid($password)
 	{
-		return password_verify($data, $this->hash);
+		return password_verify($password, $this->hash);
 	}
 /**
  * Definition mysql

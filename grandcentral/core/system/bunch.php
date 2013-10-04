@@ -220,10 +220,14 @@ class bunch implements ArrayAccess, Iterator, Countable
 			$item->set_data($result);
 			$this->data[] = $item;
 		}
-		
 	//	count
 		$this->count();
-		
+	//	pour être sur de travailler dans le même environnement que l'objet cherché
+		if ($this->count > 0)
+		{
+			$this->env = $item->get_env();
+		}
+	//	return himself
 		return $this;
 	}
 /**

@@ -12,6 +12,8 @@
 			<li data-type="<?= $f->get_type(); ?>" <?= $key ?>><?= $f; ?></li>
 		<?php endforeach; ?>
 		</ol>
+		<label for=""></label><input type="submit" name="" value="go" id="">
+		
 		</fieldset>
 	<?php endforeach; ?>
 </form>

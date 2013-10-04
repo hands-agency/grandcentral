@@ -178,9 +178,15 @@ class app
 		$this->load();
 	//	les quelques variables
 		$_APP = &$this;
+	//	HACK pour test des fichiers d'initialisation des paramtres de l'app
+	//	pour exemple voir le fichier launcher de l'app form
+		if (is_file($this->get_systemroot().'/app.prepare.php'))
+		{
+			include($this->get_systemroot().'/app.prepare.php');
+		}
 		$_PARAM = &$this->param;
 	//	on prépare la vue
-		$content_type = (empty(master::$content_type)) ? 'html' : master::$content_type;
+		$content_type = master::get_content_type();
 		$root = $this->get_templateroot();
 		$_ROUTINE = $root.$this->template.'.php';
 		$_TEMPLATE = $root.$this->template.'.'.$content_type.'.php';

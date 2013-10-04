@@ -16,34 +16,43 @@ class itemPage extends _items
  */
 	public function guess()
 	{
-		$url[0] = null;
 	//	analyse de l'url
+		$url[0] = null;
 		if (URLR != null)
 		{
 			$url = explode('/', mb_substr(URLR, 1));
 		}
 	//	recherche de la page
 		$this->get(array('url' => '/'.$url[0]));
+		
+	//	recherche de l'item, si l'url est complexe
+		if ($this->exists())
+		{
+			if (isset($url[1]) && !empty($url[1]))
+			{
+				$item = item::create($this['type']['item'], array('url' => '/'.$url[1]), $this->get_env());
+		
+				if ($item->exists())
+				{
+					registry::set(registry::current_index, 'item', $item);
+				}
+				else
+				{
+					$this->get('error_404');
+				}
+			}
+		}
 	//	si la page n'existe pas
-		if (!$this->exists())
+		else
 		{
 			$this->get('error_404');
 		}
-	//	recherche de l'item
-		if (isset($url[1]) && !empty($url[1]))
+	//	application des droits
+		if ($this->exists() && !$_SESSION['user']->can('see', $this))
 		{
-			$item = item::create($this['type']['item'], array('url' => '/'.$url[1]), $this->get_env());
-			
-			if ($item->exists())
-			{
-				registry::set(registry::current_index, 'item', $item);
-			}
-			else
-			{
-				$this->get('error_404');
-			}
+			$this->get('login');
 		}
-	//	error
+	//	si pas de 404
 		if (!$this->exists())
 		{
 			trigger_error('No page found. Give me a 404.', E_USER_ERROR);

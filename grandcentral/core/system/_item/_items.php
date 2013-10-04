@@ -99,6 +99,7 @@ abstract class _items implements ArrayAccess, Iterator
 			if (isset($attrs[$key]))
 			{
 				$attrClass = 'attr'.ucfirst($attrs[$key]['type']);
+				// if ($attrs[$key]['type'] == 'rel') $attrs[$key]['env'] = $this->get_env();
 				$this->data[$key] = new $attrClass($value, $attrs[$key]);
 			}
 			else

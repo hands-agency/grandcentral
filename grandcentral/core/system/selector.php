@@ -26,6 +26,11 @@
 				// print '<pre>';print_r('all');print'</pre>';
 				return new bunch($table, null, $env);
 				break;
+		//	item de l'environnement
+			case $params == current:
+				// print '<pre>';print_r('current');print'</pre>';
+				return registry::get(current, $table);
+				break;
 		//	bunch d'items en fonction des paramètres
 			case is_array($params):
 				// print '<pre>';print_r('bunch');print'</pre>';
@@ -35,11 +40,6 @@
 			case is_null($params):
 				// print '<pre>';print_r('new');print'</pre>';
 				return item::create($table, null, $env);
-				break;
-		//	item de l'environnement
-			case $params == current:
-				// print '<pre>';print_r('current');print'</pre>';
-				return registry::get(current, $table);
 				break;
 		//	item
 			case is_string($params):

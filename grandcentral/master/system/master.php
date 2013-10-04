@@ -11,7 +11,7 @@
 class master
 {
 	protected $app;
-	public static $content_type;
+	protected static $content_type;
 //	Storing
 	protected static $instance;
 	protected static $zones;
@@ -30,7 +30,7 @@ class master
 		$page->header();
 		// print'<pre>';print_r($page);print'</pre>';
 	//	define the master content type
-		self::$content_type = $page['master']['type'];
+		self::$content_type = (empty($page['master']['type'])) ? 'html' : $page['master']['type'];
 	//	instanciate the app master
 		$params['page'] = $page;
 		$this->app = new app('master', $page['master']['key'], $params);
@@ -119,6 +119,16 @@ class master
 	public static function bind($zone, $data)
 	{
 		self::$zones[$zone]['data'] .= $data;
+	}
+/**
+ * 
+ *
+ * @return	string	la clé de l'app
+ * @access	public
+ */
+	public static function get_content_type()
+	{
+		return self::$content_type;
 	}
 }
 ?>

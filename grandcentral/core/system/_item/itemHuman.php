@@ -9,6 +9,7 @@
  */
 class itemHuman extends _items
 {
+	protected $_admin = -1;
 /**
  * Class constructor (Don't forget it is an abstract class)
  *
@@ -44,7 +45,7 @@ class itemHuman extends _items
 		session_start();
 		
 	//	si pas de session on log automatiquement l'utilisateur anonyme
-		if (!isset($_SESSION['user']))
+		if (!isset($_SESSION['user']) || (isset($_SESSION['user']) && !$_SESSION['user']->exists()))
 		{
 			$this->get('anonymous');
 			$this->login();
@@ -57,9 +58,46 @@ class itemHuman extends _items
  * @return	bool	true ou false
  * @access	public
  */
+	public function is_admin()
+	{
+		if ($this->_admin === -1)
+		{
+			foreach ($this['group']->unfold() as $group)
+			{
+				if ($group['admin']->get() === true)
+				{
+					$this->_admin = true;
+					return true;
+				}
+			}
+			$this->_admin = false;
+		}
+		// echo 'no';
+		return $this->_admin;
+	}
+/**
+ * Returns the right to perform an action on an item
+ *
+ * @param	mixed	le tag d'un objet ou un objet
+ * @return	bool	true ou false
+ * @access	public
+ */
 	public function can($action, $item)
 	{
-		return true;
+	//	Les admins peuvent tout voir
+		if ($this->is_admin())
+		{
+			return true;
+		}
+	//	site
+		else
+		{
+			if (env == 'site')
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 /**
  * Détermine en fonction du contexte quelle page afficher
@@ -77,7 +115,7 @@ class itemHuman extends _items
  */
 	public function logout()
 	{
-		session_destroy();
+		$_SESSION['user'] = null;
 	}
 /**
  * Get user's IP adress
