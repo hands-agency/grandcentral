@@ -221,5 +221,30 @@ class registry
 	//	constants
 		cc('const', array('version' => $version['id']->get()));
 	}
+/**
+ * Obtenir les classes disponibles
+ *
+ * @param	string	préfixe des classes recherchées
+ * @access	public
+ */
+	public static function get_class($prefix = null)
+	{
+		$classes = array_keys(self::get(self::class_index));
+		
+		if (!is_null($prefix))
+		{
+			$tmp = array();
+			foreach ($classes as $class)
+			{
+				if (mb_substr($class, 0, mb_strlen($prefix)) == $prefix)
+				{
+					$tmp[] = $class;
+				}
+			}
+			$classes = $tmp;
+		}
+		
+		return $classes;
+	}
 }
 ?>

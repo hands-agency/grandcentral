@@ -98,6 +98,7 @@ class itemHuman extends _items
 			//	si la page n'a pas de group associé, 
 				if ($page['group']->is_empty())
 				{
+				//	TODO : déplacer cette partie du code dans la class itemPage
 				//	on cherche la page parente
 					$q = 'SELECT itemid FROM `_rel` WHERE `item`="page" AND `key`="child" AND `relid`=:id';
 					$d = array('id' => $page['id']->get());
