@@ -104,7 +104,7 @@ class registry
 			}
 		}
 		return $return;
-	}	
+	}
 /**
  * Get the list of constants stored in the registry
  *

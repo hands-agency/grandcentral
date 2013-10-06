@@ -46,7 +46,6 @@
 /********************************************************************************************/
 //	On add
 	$_APP->bind_code('script', '
-
 	<script type="text/javascript" charset="utf-8">
 		$(\'li[data-type="bunch"]\').addable(
 		{

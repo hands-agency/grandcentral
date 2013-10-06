@@ -3,7 +3,7 @@
 	<span class="help"></span>
 </label>
 <div class="wrapper">
-	<?php if ($_FIELD->get_descr() != null) : ?><div class="help"><?= $_FIELD->get_descr(); ?></div><?php endif ?>
+	<? if ($_FIELD->get_descr() != null) : ?><div class="help"><?= $_FIELD->get_descr(); ?></div><? endif ?>
 	<div class="field">
 		
 		<div class="nodata" <?= $hideNodata ?>>

@@ -47,6 +47,7 @@
 /********************************************************************************************/
 //	List of available attr
 	$available = array('array', 'bool', 'created', 'date', 'decimal', 'id', 'int', 'key', 'list', 'media', 'password', 'rel', 'status', 'string', 'updated', 'version');
+//	$available = registry::get_class();
 
 //	Default field attributes for all fields	
 	$params['key'] = array(
