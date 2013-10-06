@@ -96,5 +96,28 @@ class attrDate extends _attrs
 	//	Return
 	    return $return;
 	}
+	
+/**
+ * Default field attributes for Date	
+ *
+ * @param	string	la variable
+ * @return	string	une string
+ * @access	public
+ */
+	public static function get_properties()
+	{
+	//	Start with the default for all properties
+		$params = parent::get_properties();
+	//	Somes specifics for this attr
+		$params['format'] = array(
+			'name' => 'format',
+			'type' => 'select',
+			'label' => 'Format',
+			'valuestype' => 'array',
+			'values' => array('datetime', 'date')
+		);
+	//	Return
+		return $params;
+	}
 }
 ?>

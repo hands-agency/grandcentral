@@ -127,5 +127,23 @@ class attrArray extends _attrs implements ArrayAccess, Iterator
 	{
 	    return key($this->data) !== null;
 	}
+	
+/**
+ * Default field attributes for Array	
+ *
+ * @param	string	la variable
+ * @return	string	une string
+ * @access	public
+ */
+	public static function get_properties()
+	{
+	//	Start with the default for all properties
+		$params = parent::get_properties();
+	//	Somes specifics for this attr
+		# $params['somefield'] = array();
+		unset($params['required']);
+	//	Return
+		return $params;
+	}
 }
 ?>

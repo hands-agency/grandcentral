@@ -64,10 +64,10 @@ class fieldButton extends _fields
  * @access	public
  * @static
  */
-	public static function get_defined_properties()
+	public static function get_properties()
 	{
 		
-		$properties = parent::get_defined_properties();
+		$properties = parent::get_properties();
 		unset($properties['label']);
 		unset($properties['descr']);
 		unset($properties['required']);

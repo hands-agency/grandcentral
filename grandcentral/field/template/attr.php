@@ -45,109 +45,15 @@
 /********************************************************************************************/
 //	Set defaults
 /********************************************************************************************/
-//	List of available attr
-	$available = array('array', 'bool', 'created', 'date', 'decimal', 'id', 'int', 'key', 'list', 'media', 'password', 'rel', 'status', 'string', 'updated', 'version');
-//	$available = registry::get_class();
-
-//	Default field attributes for all fields	
-	$params['key'] = array(
-		'name' => 'key',
-		'type' => 'text',
-		'label' => 'Key',
-		'max' => 32,
-		'required' => true,
-		'customdata' => array('associative' => 'attr'),
-	);
-	$params['type'] = array(
-		'name' => 'type',
-		'type' => 'text',
-		'required' => true,
-		'readonly' => true,
-	);
-	$params['title'] = array(
-		'name' => 'title',
-		'type' => 'text',
-		'label' => 'Title',
-		'max' => 255,
-		'required' => true
-	);
-	$params['min'] = array(
-		'name' => 'min',
-		'type' => 'number',
-		'label' => 'Min'
-	);
-	$params['max'] = array(
-		'name' => 'max',
-		'type' => 'number',
-		'label' => 'Max'
-	);
-	$params['required'] = array(
-		'name' => 'required',
-		'type' => 'bool',
-		'label' => 'Required',
-		'labelbefore' => true
-	);
-	$params['index'] = array(
-		'name' => 'index',
-		'type' => 'select',
-		'label' => 'Index',
-		'valuestype' => 'array',
-		'values' => array('index', 'unique', 'primary'),
-		'placeholder' => '...'
-	);
-
-//	Set defaults now
-	foreach ($available as $field) $fields[$field] = $params;
-	
-/********************************************************************************************/
-//	Somes specifics, field by field
-/********************************************************************************************/
-//	Int
-	$fields['int']['auto_increment'] = array(
-		'name' => 'auto_increment',
-		'type' => 'bool',
-		'label' => 'Auto increment',
-		'labelbefore' => true,
-	);
-
-//	Decimal
-	$fields['decimal']['round'] = array(
-		'name' => 'round',
-		'type' => 'number',
-		'label' => 'Round'
-	);
-
-//	Bool
-	unset($fields['bool']['min'], $fields['bool']['max']);
-
-//	Date
-	unset($fields['date']['min'], $fields['date']['max'], $fields['date']['index']);
-	$fields['date']['format'] = array(
-		'name' => 'format',
-		'type' => 'select',
-		'label' => 'Format',
-		'valuestype' => 'array',
-		'values' => array('datetime', 'date')
-	);
-	
-//	Array
-	unset($fields['array']['min'], $fields['array']['max'], $fields['array']['index']);
-	
-//	Rel
-	unset($fields['rel']['index'], $fields['rel']['required']);
-	$fields['rel'][] = array(
-		'name' => 'item',
-		'type' => 'bunch',
-		'label' => 'Build your list of items',
-	//	'valuestype' => 'array',
-	//	'values' => $tables,
-	//	'required' => true
-	);
+//	Get the list of available attr
+	$available = registry::get_class('attr');
+//	Get the properties for each attr
+	foreach ($available as $attr) $fields[mb_substr(mb_strtolower($attr), 4)] = $attr::get_properties();
 		
 /********************************************************************************************/
 //	The list of add buttons
 /********************************************************************************************/
-	foreach ($available as $field) $addbuttons .= '<li><button type="button" data-type="'.$field.'">'.$field.'</button></li>';
+	foreach ($available as $field) $addbuttons .= '<li><button type="button" data-type="'.mb_substr(mb_strtolower($field), 4).'">'.mb_substr(mb_strtolower($field), 4).'</button></li>';
 
 /********************************************************************************************/
 //	Print the data from the Database

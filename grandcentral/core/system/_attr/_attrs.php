@@ -140,5 +140,46 @@ abstract class _attrs
 	{
 		return (empty($this->data)) ? true : false;
 	}
+/**
+ * Default field attributes for all fields	
+ *
+ * @param	string	la variable
+ * @return	string	une string
+ * @access	public
+ */
+	public static function get_properties()
+	{
+		$params = array();
+		$params['key'] = array(
+			'name' => 'key',
+			'type' => 'text',
+			'label' => 'Key',
+			'max' => 32,
+			'required' => true,
+			'customdata' => array('associative' => 'attr'),
+		);
+		$params['type'] = array(
+			'name' => 'type',
+			'type' => 'text',
+			'required' => true,
+			'readonly' => true,
+			'value' => mb_substr(mb_strtolower(get_called_class()), 4),
+		);
+		$params['title'] = array(
+			'name' => 'title',
+			'type' => 'text',
+			'label' => 'Title',
+			'max' => 255,
+			'required' => true
+		);
+		$params['required'] = array(
+			'name' => 'required',
+			'type' => 'bool',
+			'label' => 'Required',
+			'labelbefore' => true
+		);
+	//	Return
+		return $params;
+	}
 }
 ?>

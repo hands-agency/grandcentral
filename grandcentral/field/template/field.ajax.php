@@ -26,7 +26,7 @@
 	// print '<pre>value';print_r($value);print'</pre>';
 	$class = 'field_'.$_POST['type'];
 	// print'<pre>';print_r($class);print'</pre>';
-	$properties = $class::get_defined_properties();
+	$properties = $class::get_properties();
 	// print '<pre>';print_r($properties);print'</pre>';
 	
 	$li = '';

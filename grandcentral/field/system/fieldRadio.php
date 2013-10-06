@@ -30,9 +30,9 @@ class fieldRadio extends _fieldsSelector
  * @access	public
  * @static
  */
-	public static function get_defined_properties()
+	public static function get_properties()
 	{
-		$properties = parent::get_defined_properties();
+		$properties = parent::get_properties();
 		unset($properties['min']);
 		unset($properties['max']);	
 		return $properties;

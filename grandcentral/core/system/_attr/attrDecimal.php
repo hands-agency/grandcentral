@@ -54,5 +54,26 @@ class attrDecimal extends _attrs
 	//	retour
 		return $definition;
 	}
+	
+/**
+ * Default field attributes for Decimal	
+ *
+ * @param	string	la variable
+ * @return	string	une string
+ * @access	public
+ */
+	public static function get_properties()
+	{
+	//	Start with the default for all properties
+		$params = parent::get_properties();
+	//	Somes specifics for this attr
+		$params['round'] = array(
+			'name' => 'round',
+			'type' => 'number',
+			'label' => 'Round'
+		);
+	//	Return
+		return $params;
+	}
 }
 ?>

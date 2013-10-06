@@ -31,9 +31,9 @@ class fieldPassword extends _fieldsInput
  * @access	public
  * @static
  */
-	public static function get_defined_properties()
+	public static function get_properties()
 	{
-		$properties = parent::get_defined_properties();
+		$properties = parent::get_properties();
 		$properties['regexp'] = 'text';
 		
 		return $properties;

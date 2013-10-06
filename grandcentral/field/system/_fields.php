@@ -378,7 +378,7 @@ abstract class _fields
  * @access	public
  * @static
  */
-	public static function get_defined_properties()
+	public static function get_properties()
 	{
 		
 	}

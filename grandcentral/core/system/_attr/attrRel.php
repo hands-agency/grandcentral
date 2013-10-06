@@ -133,5 +133,26 @@ class attrRel extends _attrs
 		
 		return $bunch;
 	}
+	
+/**
+ * Default field attributes for Rel	
+ *
+ * @param	string	la variable
+ * @return	string	une string
+ * @access	public
+ */
+	public static function get_properties()
+	{
+	//	Start with the default for all properties
+		$params = parent::get_properties();
+	//	Somes specifics for this attr
+		$params['rel'] = array(
+			'name' => 'param',
+			'type' => 'bunch',
+			'label' => 'Build your list of items',
+		);
+	//	Return
+		return $params;
+	}
 }
 ?>

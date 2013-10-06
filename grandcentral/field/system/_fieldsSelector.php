@@ -242,9 +242,9 @@ abstract class _fieldsSelector extends _fields
  * @access	public
  * @static
  */
-	public static function get_defined_properties()
+	public static function get_properties()
 	{
-		$properties = parent::get_defined_properties();
+		$properties = parent::get_properties();
 		$properties['valuestype'] = array(
 			'type' => 'select',
 			'valuestype' => 'array',
