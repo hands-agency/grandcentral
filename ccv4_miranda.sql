@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.7
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
--- Client: localhost
--- Généré le: Ven 04 Octobre 2013 à 21:04
--- Version du serveur: 5.5.29
--- Version de PHP: 5.4.10
+-- Host: localhost
+-- Generation Time: Oct 08, 2013 at 02:10 PM
+-- Server version: 5.5.25
+-- PHP Version: 5.4.4
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `ccv4_miranda`
+-- Database: `ccv4_miranda`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `cast`
+-- Table structure for table `cast`
 --
 
 CREATE TABLE `cast` (
@@ -49,7 +49,7 @@ CREATE TABLE `cast` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=307 ;
 
 --
--- Contenu de la table `cast`
+-- Dumping data for table `cast`
 --
 
 INSERT INTO `cast` (`id`, `title`, `descr`, `key`, `created`, `updated`, `status`, `lat`, `lng`, `address`, `report`, `locastid`, `significativity`, `media`, `version`, `url`) VALUES
@@ -376,7 +376,7 @@ INSERT INTO `cast` (`id`, `title`, `descr`, `key`, `created`, `updated`, `status
 -- --------------------------------------------------------
 
 --
--- Structure de la table `casttype`
+-- Table structure for table `casttype`
 --
 
 CREATE TABLE `casttype` (
@@ -392,7 +392,7 @@ CREATE TABLE `casttype` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
--- Contenu de la table `casttype`
+-- Dumping data for table `casttype`
 --
 
 INSERT INTO `casttype` (`id`, `title`, `key`, `created`, `updated`, `status`) VALUES
@@ -404,7 +404,7 @@ INSERT INTO `casttype` (`id`, `title`, `key`, `created`, `updated`, `status`) VA
 -- --------------------------------------------------------
 
 --
--- Structure de la table `const`
+-- Table structure for table `const`
 --
 
 CREATE TABLE `const` (
@@ -424,7 +424,7 @@ CREATE TABLE `const` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `form`
+-- Table structure for table `form`
 --
 
 CREATE TABLE `form` (
@@ -447,7 +447,7 @@ CREATE TABLE `form` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Contenu de la table `form`
+-- Dumping data for table `form`
 --
 
 INSERT INTO `form` (`id`, `key`, `title`, `descr`, `template`, `action`, `method`, `target`, `enctype`, `field`, `created`, `updated`, `status`) VALUES
@@ -456,7 +456,7 @@ INSERT INTO `form` (`id`, `key`, `title`, `descr`, `template`, `action`, `method
 -- --------------------------------------------------------
 
 --
--- Structure de la table `group`
+-- Table structure for table `group`
 --
 
 CREATE TABLE `group` (
@@ -474,7 +474,7 @@ CREATE TABLE `group` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Contenu de la table `group`
+-- Dumping data for table `group`
 --
 
 INSERT INTO `group` (`id`, `key`, `title`, `admin`, `created`, `updated`, `status`) VALUES
@@ -484,7 +484,7 @@ INSERT INTO `group` (`id`, `key`, `title`, `admin`, `created`, `updated`, `statu
 -- --------------------------------------------------------
 
 --
--- Structure de la table `human`
+-- Table structure for table `human`
 --
 
 CREATE TABLE `human` (
@@ -504,12 +504,12 @@ CREATE TABLE `human` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=24 ;
 
 --
--- Contenu de la table `human`
+-- Dumping data for table `human`
 --
 
 INSERT INTO `human` (`id`, `key`, `title`, `descr`, `profilepic`, `password`, `created`, `updated`, `status`, `system`) VALUES
 (1, 'anonymous', 'Anonymous User', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live', 1),
-(2, 'mvd@cafecentral.fr', 'Michaël V. Dandrieux', 'Michaël V. Dandrieux est directeur associé chez Eranos, au silo des innovations, des technologies et des usages. Free-lance depuis la fin du vingtième siècle et pendant 10 ans, il a exercé de nombreux métiers du digital. Formé à la sociologie de l''imaginaire et diplomé de l''université René Descartes-Sorbonne, il est chercheur au Centre d''Etude sur l''Actuel et le Quotidien. En 2008 il a reçu la direction éditoriale des Cahiers européens de l''imaginaire (CNRS éditions), où il a édité Zygmunt Bauman, Martin Parr, Chris Anderson ou Edgar Morin. Michaël est bilingue anglais, il a vécu couramment à Vienne, Munich et Rome dont il porte encore les langues, code pour plaisir et tire à l''argentique. Parmi ses dernières publications sur la ville et la mobilité figurent ', '["\\/team\\/mvd.jpg"]', '$2y$10$K9r2A7AoXtHOU6ZpoxYMH.utDV1xJkBfqMiDp1hoOrCrxRZ8LBVPq', '2013-10-02 12:09:22', '2013-10-02 12:14:34', 'live', 1),
+(2, 'mvd@cafecentral.fr', 'Michaël V. Dandrieux', 'Michaël V. Dandrieux est directeur associé chez Eranos, au silo des innovations, des technologies et des usages. Free-lance depuis la fin du vingtième siècle et pendant 10 ans, il a exercé de nombreux métiers du digital. Formé à la sociologie de l''imaginaire et diplomé de l''université René Descartes-Sorbonne, il est chercheur au Centre d''Etude sur l''Actuel et le Quotidien. En 2008 il a reçu la direction éditoriale des Cahiers européens de l''imaginaire (CNRS éditions), où il a édité Zygmunt Bauman, Martin Parr, Chris Anderson ou Edgar Morin. Michaël est bilingue anglais, il a vécu couramment à Vienne, Munich et Rome dont il porte encore les langues, code pour plaisir et tire à l''argentique. Parmi ses dernières publications sur la ville et la mobilité figurent ', '[""]', '$2y$10$9O372tlJGmWdlGSJ/O33fey9V6yFXtZ6uZCSEmZnYTBUkrrSqR/4W', '2013-10-02 12:09:22', '2013-10-06 20:28:25', 'live', 1),
 (3, 'sh@eranos.fr', 'Stéphane Hugon', 'Stéphane Hugon est docteur en sociologie, chercheur et enseignant au CeaQ (Centre d’Etude sur l’Actuel et le Quotidien), un laboratoire de sociologie de l’université Paris-Descartes à la Sorbonne dirigé par le professeur Michel Maffesoli. Il est responsable du GRETECH (Groupe de Recherche sur la Technologie et le Quotidien). Il enseigne également à l’IDN_Lab en post diplôme de l’ENSAD (Arts Décos, Paris). Il est visiting professor à la ECA de Sào Paulo, et à la UERJ à Rio de Janeiro au Brésil.', '["\\/team\\/sh.jpg"]', '$2a$12$jELAqANj8UgW0eyIsZtm1eA73Jzd0uyqDwdmhhw2XnM64q7So8wjy', '0000-00-00 00:00:00', '2013-09-24 17:32:24', 'live', 0),
 (4, 'rmd@eranos.fr', 'Rónán MacDubhghaill', 'Sociologue, consultant et auteur, Rónán MacDubhghaill est de ceux qui cherchent la justesse et la beauté sous ses divers artifices de forme. Né en Irlande, il a vécu en Autriche ; au Japon, il subit le “tohoku daishinsai”, le grand tremblement de terre ; il réside actuellement en France. Auteur de plusieurs fictions, il collabore aussi avec différentes revues et journaux, dont Le Monde Diplomatique. Esprit sans répit, il apprend ces années-ci la patience, et à reprendre l''avion sans craindre les secousses.', '["\\/team\\/rmd.jpg"]', '', '2013-09-19 15:30:20', '2013-09-23 16:11:13', '', 0),
 (5, 'vbarondeau@hotmail.com', 'Véronique Barondeau', '', '["\\/team\\/vb.jpg"]', '', '2013-09-19 15:31:41', '2013-09-20 13:21:15', 'live', 0),
@@ -530,7 +530,7 @@ INSERT INTO `human` (`id`, `key`, `title`, `descr`, `profilepic`, `password`, `c
 -- --------------------------------------------------------
 
 --
--- Structure de la table `logbook`
+-- Table structure for table `logbook`
 --
 
 CREATE TABLE `logbook` (
@@ -546,12 +546,21 @@ CREATE TABLE `logbook` (
   PRIMARY KEY (`id`),
   KEY `status` (`status`),
   KEY `key` (`key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `logbook`
+--
+
+INSERT INTO `logbook` (`id`, `key`, `subject`, `subjectid`, `item`, `itemid`, `created`, `updated`, `status`) VALUES
+(1, 'update', 'human', 23, 'human', 2, '2013-10-06 20:28:20', '2013-10-06 20:28:20', 'live'),
+(2, 'update', 'human', 23, 'human', 2, '2013-10-06 20:28:25', '2013-10-06 20:28:25', 'live'),
+(3, 'insert', 'human', 23, 'form', 25, '2013-10-08 14:08:21', '2013-10-08 14:08:21', 'live');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `map`
+-- Table structure for table `map`
 --
 
 CREATE TABLE `map` (
@@ -568,7 +577,7 @@ CREATE TABLE `map` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Contenu de la table `map`
+-- Dumping data for table `map`
 --
 
 INSERT INTO `map` (`id`, `title`, `descr`, `key`, `created`, `updated`, `status`) VALUES
@@ -577,7 +586,7 @@ INSERT INTO `map` (`id`, `title`, `descr`, `key`, `created`, `updated`, `status`
 -- --------------------------------------------------------
 
 --
--- Structure de la table `page`
+-- Table structure for table `page`
 --
 
 CREATE TABLE `page` (
@@ -602,27 +611,25 @@ CREATE TABLE `page` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
--- Contenu de la table `page`
+-- Dumping data for table `page`
 --
 
 INSERT INTO `page` (`id`, `key`, `title`, `descr`, `text`, `http_status`, `master`, `url`, `system`, `version`, `created`, `updated`, `status`, `type`) VALUES
 (1, 'home', 'Home', '', '', '200 OK', '{"type":"html","key":"master"}', '/', 1, 1, '2013-03-25 17:08:31', '2013-10-01 12:11:24', 'live', ''),
 (2, 'error_404', '404', '', '', '404 Not Found', '{"type":"html","key":"master"}', '/404', 1, 1, '2013-10-16 06:48:43', '2013-10-16 06:48:43', 'live', ''),
-(3, 'get.xml', 'The XML GET API', '', '', '200 OK', '{"type":"xml","key":"get"}', '/get.xml', 1, 1, '2013-03-25 17:08:31', '2013-08-26 13:54:05', 'live', ''),
+(3, 'api.xml', 'API (xml)', '', '', '200 OK', '{"type":"xml","key":"api"}', '/api.xml', 1, 1, '2013-03-25 17:08:31', '2013-08-26 13:54:05', 'live', ''),
 (4, 'post', 'The POST API', '', '', '200 OK', '{"type":"xml","key":"post"}', '/post', 1, 1, '2013-03-25 17:08:31', '2013-08-26 13:54:05', 'live', ''),
 (5, 'sync', 'Sync Locast & Miranda', '', '', '200 OK', '{"type":"routine","key":"sync"}', '/sync', 1, 1, '0000-00-00 00:00:00', '2013-08-21 15:03:07', 'live', ''),
-(6, 'get.json', 'The JSON GET API', '', '', '200 OK', '{"type":"json","key":"get"}', '/get.json', 1, 1, '2013-03-25 17:08:31', '2013-08-26 13:54:05', 'live', ''),
-(7, 'ajax.html', 'Ajax page for HTML content', '', '', '200 OK', '{"type":"html","key":"ajax"}', '/ajax.html', 1, 1, '0000-00-00 00:00:00', '2013-09-13 10:18:30', 'live', ''),
-(8, 'ajax.json', 'Ajax page for JSON content', '', '', '200 OK', '{"type":"json","key":"ajax"}', '/ajax.json', 1, 1, '0000-00-00 00:00:00', '2013-09-13 10:18:30', 'live', ''),
+(7, 'api.html', 'API (html)', '', '', '200 OK', '{"type":"html","key":"api"}', '/api.html', 1, 1, '0000-00-00 00:00:00', '2013-09-13 10:18:30', 'live', ''),
+(8, 'api.json', 'API (json)', '', '', '200 OK', '{"type":"json","key":"api"}', '/api.json', 1, 1, '0000-00-00 00:00:00', '2013-09-13 10:18:30', 'live', ''),
 (9, 'login.post', 'Login routine', '', '', '200 OK', '{"type":"routine","key":"login.post"}', '/login.post', 1, 1, '0000-00-00 00:00:00', '2013-09-13 10:18:30', 'live', '{"type":"feed","item":"cast"}'),
 (10, 'login', 'Login', '', '', '200 OK', '{"type":"html","key":"login"}', '/login', 1, 1, '0000-00-00 00:00:00', '2013-09-13 10:18:30', 'live', ''),
-(11, 'logout.post', 'Logout routine', '', '', '200 OK', '{"type":"routine","key":"logout.post"}', '/logout.post', 1, 1, '0000-00-00 00:00:00', '2013-09-13 10:18:30', 'live', ''),
-(12, 'test', 'Test Page', '', '', '200 OK', '{"type":"html","key":"master"}', '/test', 0, 0, '2013-10-04 06:42:29', '2013-10-04 06:42:29', 'live', 'null');
+(11, 'logout.post', 'Logout routine', '', '', '200 OK', '{"type":"routine","key":"logout.post"}', '/logout.post', 1, 1, '0000-00-00 00:00:00', '2013-09-13 10:18:30', 'live', '');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `region`
+-- Table structure for table `region`
 --
 
 CREATE TABLE `region` (
@@ -638,7 +645,7 @@ CREATE TABLE `region` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Contenu de la table `region`
+-- Dumping data for table `region`
 --
 
 INSERT INTO `region` (`id`, `title`, `key`, `created`, `updated`, `status`) VALUES
@@ -647,7 +654,7 @@ INSERT INTO `region` (`id`, `title`, `key`, `created`, `updated`, `status`) VALU
 -- --------------------------------------------------------
 
 --
--- Structure de la table `section`
+-- Table structure for table `section`
 --
 
 CREATE TABLE `section` (
@@ -666,7 +673,7 @@ CREATE TABLE `section` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Contenu de la table `section`
+-- Dumping data for table `section`
 --
 
 INSERT INTO `section` (`id`, `key`, `title`, `descr`, `zone`, `app`, `created`, `updated`, `status`) VALUES
@@ -676,7 +683,7 @@ INSERT INTO `section` (`id`, `key`, `title`, `descr`, `zone`, `app`, `created`, 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `site`
+-- Table structure for table `site`
 --
 
 CREATE TABLE `site` (
@@ -693,7 +700,7 @@ CREATE TABLE `site` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Contenu de la table `site`
+-- Dumping data for table `site`
 --
 
 INSERT INTO `site` (`id`, `key`, `title`, `created`, `updated`, `status`, `defaultversion`) VALUES
@@ -702,7 +709,7 @@ INSERT INTO `site` (`id`, `key`, `title`, `created`, `updated`, `status`, `defau
 -- --------------------------------------------------------
 
 --
--- Structure de la table `structure`
+-- Table structure for table `structure`
 --
 
 CREATE TABLE `structure` (
@@ -722,7 +729,7 @@ CREATE TABLE `structure` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=31 ;
 
 --
--- Contenu de la table `structure`
+-- Dumping data for table `structure`
 --
 
 INSERT INTO `structure` (`id`, `key`, `title`, `descr`, `system`, `attr`, `created`, `updated`, `status`, `hasurl`) VALUES
@@ -745,7 +752,7 @@ INSERT INTO `structure` (`id`, `key`, `title`, `descr`, `system`, `attr`, `creat
 -- --------------------------------------------------------
 
 --
--- Structure de la table `typology`
+-- Table structure for table `typology`
 --
 
 CREATE TABLE `typology` (
@@ -761,7 +768,7 @@ CREATE TABLE `typology` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19 ;
 
 --
--- Contenu de la table `typology`
+-- Dumping data for table `typology`
 --
 
 INSERT INTO `typology` (`id`, `title`, `key`, `created`, `updated`, `status`) VALUES
@@ -787,7 +794,7 @@ INSERT INTO `typology` (`id`, `title`, `key`, `created`, `updated`, `status`) VA
 -- --------------------------------------------------------
 
 --
--- Structure de la table `version`
+-- Table structure for table `version`
 --
 
 CREATE TABLE `version` (
@@ -804,7 +811,7 @@ CREATE TABLE `version` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Contenu de la table `version`
+-- Dumping data for table `version`
 --
 
 INSERT INTO `version` (`id`, `key`, `title`, `lang`, `created`, `updated`, `status`) VALUES
@@ -813,7 +820,7 @@ INSERT INTO `version` (`id`, `key`, `title`, `lang`, `created`, `updated`, `stat
 -- --------------------------------------------------------
 
 --
--- Structure de la table `_rel`
+-- Table structure for table `_rel`
 --
 
 CREATE TABLE `_rel` (
@@ -831,7 +838,7 @@ CREATE TABLE `_rel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Relations of page';
 
 --
--- Contenu de la table `_rel`
+-- Dumping data for table `_rel`
 --
 
 INSERT INTO `_rel` (`item`, `itemid`, `key`, `rel`, `relid`, `position`) VALUES
@@ -1601,7 +1608,8 @@ INSERT INTO `_rel` (`item`, `itemid`, `key`, `rel`, `relid`, `position`) VALUES
 ('page', 1, 'section', 'section', 1, 0),
 ('human', 23, 'group', 'group', 1, 0),
 ('page', 1, 'group', 'group', 2, 0),
-('page', 1, 'child', 'page', 12, 0);
+('page', 1, 'child', 'page', 12, 0),
+('human', 2, 'group', 'group', 1, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
