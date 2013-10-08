@@ -40,16 +40,14 @@ class attrDate extends _attrs
  * Definition mysql
  * ex : `datetimeinsert` datetime NOT NULL
  *
- * @param	array 	le tableau de paramètres
  * @return	string	la définition mysql
  * @access	public
- * @static
  */
-	public static function mysql_definition($attr)
+	public function mysql_definition()
 	{
-		if (!isset($attr['format']) || empty($attr['format'])) $attr['format'] = 'datetime';
+		if (!isset($this->params['format']) || empty($this->params['format'])) $this->params['format'] = 'datetime';
 	//	definition
-		$definition = '`'.$attr['key'].'` '.$attr['format'].' NOT NULL';
+		$definition = '`'.$this->params['key'].'` '.$this->params['format'].' NOT NULL';
 	//	retour
 		return $definition;
 	}

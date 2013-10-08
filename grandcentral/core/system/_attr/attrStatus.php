@@ -36,30 +36,14 @@ class attrStatus extends _attrs
 	}
 /**
  * Definition mysql
- * ex : `text` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
  *
- * @param	array 	le tableau de paramètres
  * @return	string	la définition mysql
  * @access	public
- * @static
  */
-	public static function mysql_definition($attr)
+	public function mysql_definition()
 	{
-	//	type mysql
-		switch ($attr['max'])
-		{
-			case 0:
-				$type = 'varchar(65535)';
-				break;
-			case $attr['max'] <= 65535:
-				$type = 'varchar('.$attr['max'].')';
-				break;
-			case $attr['max'] > 65535:
-				$type = 'mediumtext';
-				break;
-		}
 	//	definition
-		$definition = '`'.$attr['key'].'` '.$type.' CHARACTER SET '.database::charset.' COLLATE '.database::collation.' NOT NULL';
+		$definition = '`'.$this->params['key'].'` varchar(32) CHARACTER SET '.database::charset.' COLLATE '.database::collation.' NOT NULL, KEY `'.$this->params['key'].'` (`'.$this->params['key'].'`)';
 	//	retour
 		return $definition;
 	}

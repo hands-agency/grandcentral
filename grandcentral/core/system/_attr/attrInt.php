@@ -68,14 +68,14 @@ class attrInt extends _attrs
  * @access	public
  * @static
  */
-	public static function mysql_definition($attr)
+	public function mysql_definition()
 	{
-		if (!isset($attr['max'])) $attr['max'] = 0;
-		if (!isset($attr['min'])) $attr['min'] = 0;
+		if (!isset($this->params['max'])) $this->params['max'] = 0;
+		if (!isset($this->params['min'])) $this->params['min'] = 0;
 	//	type mysql unsigned (nombre entier positif)
-		if ($attr['min'] >= 0)
+		if ($this->params['min'] >= 0)
 		{
-			switch ($attr['max'])
+			switch ($this->params['max'])
 			{
 				case 0:
 					$type = 'mediumint(3)';
@@ -102,35 +102,30 @@ class attrInt extends _attrs
 	//	mysql signed (nombre entier positif et négatif)
 		else
 		{
-			switch ($attr['max'])
+			switch ($this->params['max'])
 			{
 				case 0:
 					$type = 'int(4)';
 					break;
-				case $attr['max'] <= 127 && $attr['min'] >= -128:
+				case $this->params['max'] <= 127 && $this->params['min'] >= -128:
 					$type = 'tinyint(1)';
 					break;
-				case $attr['max'] <= 32767 && $attr['min'] >= -32768:
+				case $this->params['max'] <= 32767 && $this->params['min'] >= -32768:
 					$type = 'smallint(2)';
 					break;
-				case $attr['max'] <= 8388607 && $attr['min'] >= -8388608:
+				case $this->params['max'] <= 8388607 && $this->params['min'] >= -8388608:
 					$type = 'mediumint(3)';
 					break;
-				case $attr['max'] <= 2147483647 && $attr['min'] >= -2147483648:
+				case $this->params['max'] <= 2147483647 && $this->params['min'] >= -2147483648:
 					$type = 'int(4)';
 					break;
-				case $attr['max'] > 2147483647 && $attr['min'] < -2147483648:
+				case $this->params['max'] > 2147483647 && $this->params['min'] < -2147483648:
 					$type = 'bigint(8)';
 					break;
 			}
 		}
 	//	definition
-		$definition = '`'.$attr['key'].'` '.$type.' NOT NULL';
-	//	auto increment
-		if (isset($attr['auto_increment']) && (bool) $attr['auto_increment'] === true)
-		{
-			$definition .= ' AUTO_INCREMENT';
-		}
+		$definition = '`'.$this->params['key'].'` '.$type.' NOT NULL';
 	//	retour
 		return $definition;
 	}

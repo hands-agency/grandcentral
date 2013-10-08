@@ -39,18 +39,16 @@ class attrDecimal extends _attrs
  * Definition mysql
  * ex : `salary` decimal(10,2) NOT NULL
  *
- * @param	array 	le tableau de paramètres
  * @return	string	la définition mysql
  * @access	public
- * @static
  */
-	public static function mysql_definition($attr)
+	public function mysql_definition()
 	{
-		if (empty($attr['max'])) $attr['max'] = 10000000;
-		if (empty($attr['round'])) $attr['round'] = 2;
+		if (empty($this->params['max'])) $this->params['max'] = 10000000;
+		if (empty($this->params['round'])) $this->params['round'] = 2;
 		
 	//	definition
-		$definition = '`'.$attr['key'].'` decimal('.strlen($attr['max']).','.$attr['round'].') NOT NULL';
+		$definition = '`'.$this->params['key'].'` decimal('.strlen($this->params['max']).','.$this->params['round'].') NOT NULL';
 	//	retour
 		return $definition;
 	}

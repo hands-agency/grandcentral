@@ -33,5 +33,18 @@ class attrKey extends _attrs
 		if (empty($this->data)) $this->data = md5(uniqid($_SESSION['user']['key'], true));
 		return $this->get();
 	}
+/**
+ * Definition mysql
+ *
+ * @return	string	la définition mysql
+ * @access	public
+ */
+	public function mysql_definition()
+	{
+	//	definition
+		$definition = '`'.$this->params['key'].'` varchar(32) CHARACTER SET '.database::charset.' COLLATE '.database::collation.' NOT NULL, KEY `'.$this->params['key'].'` (`'.$this->params['key'].'`)';
+	//	retour
+		return $definition;
+	}
 }
 ?>

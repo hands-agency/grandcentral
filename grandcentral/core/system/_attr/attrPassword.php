@@ -84,17 +84,14 @@ class attrPassword extends _attrs
 	}
 /**
  * Definition mysql
- * ex : `param` mediumtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
  *
- * @param	array 	le tableau de paramètres
  * @return	string	la définition mysql
  * @access	public
- * @static
  */
-	public static function mysql_definition($attr)
+	public function mysql_definition()
 	{
 	//	definition
-		$definition = '`'.$attr['key'].'` mediumtext CHARACTER SET '.database::charset.' COLLATE '.database::collation.' NOT NULL';
+		$definition = '`'.$this->params['key'].'` varchar(500) CHARACTER SET '.database::charset.' COLLATE '.database::collation.' NOT NULL';
 	//	retour
 		return $definition;
 	}

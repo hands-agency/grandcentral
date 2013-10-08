@@ -48,5 +48,18 @@ class attrId extends attrInt
 	{
 		return (empty($this->id)) ? false : true;
 	}
+/**
+ * Definition mysql
+ *
+ * @return	string	la définition mysql
+ * @access	public
+ */
+	public function mysql_definition()
+	{
+	//	definition
+		$definition = '`'.$this->params['key'].'` mediumint(3) unsigned NOT NULL AUTO_INCREMENT, PRIMARY KEY (`'.$this->params['key'].'`)';
+	//	retour
+		return $definition;
+	}
 }
 ?>

@@ -33,5 +33,18 @@ class attrVersion extends _attrs
 		if (empty($this->data)) $this->data = cc('version', current)['id'];
 		return $this->data;
 	}
+/**
+ * Definition mysql
+ *
+ * @return	string	la définition mysql
+ * @access	public
+ */
+	public function mysql_definition()
+	{
+	//	definition
+		$definition = '`'.$this->params['key'].'` mediumint(3) unsigned NOT NULL, KEY `'.$this->params['key'].'` (`'.$this->params['key'].'`)';
+	//	retour
+		return $definition;
+	}
 }
 ?>

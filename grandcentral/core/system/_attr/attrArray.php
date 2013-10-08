@@ -64,10 +64,10 @@ class attrArray extends _attrs implements ArrayAccess, Iterator
  * @access	public
  * @static
  */
-	public static function mysql_definition($attr)
+	public function mysql_definition()
 	{
 	//	definition
-		$definition = '`'.$attr['key'].'` mediumtext CHARACTER SET '.database::charset.' COLLATE '.database::collation.' NOT NULL';
+		$definition = '`'.$this->params['key'].'` varchar(5000) CHARACTER SET '.database::charset.' COLLATE '.database::collation.' NOT NULL';
 	//	retour
 		return $definition;
 	}

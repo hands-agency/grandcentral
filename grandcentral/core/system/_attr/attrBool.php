@@ -34,17 +34,14 @@ class attrBool extends _attrs
 	}
 /**
  * Definition mysql
- * ex : `datetimeinsert` datetime NOT NULL
  *
- * @param	array 	le tableau de paramètres
  * @return	string	la définition mysql
  * @access	public
- * @static
  */
-	public static function mysql_definition($attr)
+	public function mysql_definition()
 	{
 	//	definition
-		$definition = '`'.$attr['key'].'` tinyint(1) NOT NULL';
+		$definition = '`'.$this->params['key'].'` tinyint(1) NOT NULL';
 	//	retour
 		return $definition;
 	}
