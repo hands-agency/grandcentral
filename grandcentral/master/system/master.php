@@ -118,7 +118,15 @@ class master
  */
 	public static function bind($zone, $data)
 	{
-		self::$zones[$zone]['data'] .= $data;
+		if (isset(self::$zones[$zone]))
+		{
+			self::$zones[$zone]['data'] .= $data;
+		}
+		else
+		{
+			trigger_error('Zone <strong>'.$zone.'</strong> does not exists in the master. Try another one.', E_USER_WARNING);
+		}
+		
 	}
 /**
  * 

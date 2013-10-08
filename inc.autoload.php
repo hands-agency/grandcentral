@@ -57,7 +57,7 @@ class boot
 		$this->get_url();
 		$this->get_config();
 	//	chargement d'un coeur alternatif
-		if (empty($this->site)) $this->boot = (self::index_enabled === true) ? 'index' : $this->error('no-site');
+		if (empty($this->site)) $this->boot = (self::index_enabled === true) ? 'index' : trigger_error('Sorry, can\'t find your site definition in the <strong>inc.config.php</strong> file.', E_USER_ERROR);
 		elseif ($this->site['maintenance'] === true && $this->env == 'site') $this->boot = 'maintenance';
 	//	définition des constantes
 		$this->define_config();
@@ -291,6 +291,7 @@ class boot
 	{
 		$param['function'] = __METHOD__;
 		$param['error'] = $key;
+		print'<pre>';print_r($param);print'</pre>';
 		switch ($key)
 		{
 			case 'no-boot':

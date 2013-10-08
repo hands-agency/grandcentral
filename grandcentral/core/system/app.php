@@ -261,7 +261,7 @@ class app
 		ob_start();
 	//	on charge les données à afficher
 		if (is_file($routine)) include($routine);
-		(is_file($template)) ? require($template) : trigger_error('Bugger! The snippet file <strong>'.$template.'</strong> you are calling does not exist.', E_USER_NOTICE);
+		(is_file($template)) ? require($template) : trigger_error('Bugger! The snippet file <strong>'.$snippet_key.'.snippet.php</strong> you are calling does not exist.', E_USER_NOTICE);
 	//	on ferme le tampon
 		$content = ob_get_contents();
 		ob_end_clean();
