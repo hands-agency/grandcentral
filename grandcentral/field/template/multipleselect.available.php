@@ -48,6 +48,6 @@
 	
 //	Refine
 	if (isset($_POST['q'])) {
-		echo 'refined with '.$_POST['q'];
+		echo 'TODO refined with '.$_POST['q'];
 	}
 ?>

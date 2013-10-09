@@ -30,6 +30,9 @@
 /********************************************************************************************/
 //	Some vars
 /********************************************************************************************/
+//	For easier access
+	$_FIELD = $_PARAM['field'];
+
 //	Hide or show the nodata
 	$hideNodata = '';
 //	The data from the DB
@@ -38,6 +41,19 @@
 	$addbuttons = '';
 //	The html templates for jQuery
 	$template = '';
+	
+/********************************************************************************************/
+//	Nasty hack : if multidimentional array, display a textarea
+/********************************************************************************************/
+	if (!function_exists('countdim')) {
+		function countdim($array)
+		{
+		    if (is_array(reset($array))) return countdim(reset($array)) + 1;
+		    else return 1;
+		}
+	}
+	if (countdim((array)$_FIELD->get_value()) > 1) $hackToTextarea = true;
+	else {
 
 /********************************************************************************************/
 //	Set defaults
@@ -65,7 +81,6 @@
 /********************************************************************************************/
 //	Print the data from the Database
 /********************************************************************************************/
-	$_FIELD = $_PARAM['field'];
 	$values = $_FIELD->get_value();
 	foreach ((array) $values as $key => $value)
 	{
@@ -89,7 +104,7 @@
 			$label = $field->get_label();
 			$field->set_label('');
 		//	Li
-			$li .= '<li data-type="'.$field->get_type().'"><div class="wrapper">'.$field.'</div></li>';
+			$li .= '<li data-type="'.$field->get_type().'">'.$field.'</li>';
 		}
 		$data .= '<li><ol>'.$li.'</ol><button type="button" class="delete"></button></li>';
 	}
@@ -111,10 +126,12 @@
 		else $field = new $class($_FIELD->get_name().'[]', $param);
 	//	Label
 		$field->set_label('');
-		$li .= '<li data-type="'.$field->get_type().'"><div class="wrapper">'.$field.'</div></li>';
+		$li .= '<li data-type="'.$field->get_type().'">'.$field.'</li>';
 	}
 	
 //	We store them in jscript vars, so that the addable.js plugin can retrieve them
 	$html = '<li style="display:none;"><ol>'.$li.'</ol><button type="button" class="delete"></li>';
 	$template['array'] = $html;
+	
+	} /* end Nasty Hack */
 ?>

@@ -108,12 +108,8 @@
 			$class = 'field'.ucfirst($param['type']);
 			$field = new $class($_FIELD->get_name().'['.$i.']['.$param['name'].']', $param);
 			if (isset($value[$param['name']])) $field->set_value($value[$param['name']]);
-		//	Label
-			if ($field->get_label()) $label = '<label for="'.$field->get_name().'">'.$field->get_label().'</label>';
-			else $label = null;
-			$field->set_label('');
 		//	Li
-			$li .= '<li data-type="'.$field->get_type().'">'.$label.'<div class="wrapper">'.$field.'</div></li>';
+			$li .= '<li data-type="'.$field->get_type().'">'.$field.'</li>';
 		}
 		$data .= '<li><ol>'.$li.'</ol><button type="button" class="delete"></button></li>';
 		$i++;
@@ -132,12 +128,8 @@
 	//	Field
 		$class = 'field'.ucfirst($param['type']);
 		$field = new $class($_FIELD->get_name().'['.$index.']['.$param['name'].']', $param);
-	//	Label
-		if ($field->get_label()) $label = '<label for="'.$field->get_name().'">'.$field->get_label().'</label>';
-		else $label = null;
-		$field->set_label('');
 	//	Li
-		$li .= '<li data-type="'.$field->get_type().'">'.$label.'<div class="wrapper">'.$field.'</div></li>';
+		$li .= '<li data-type="'.$field->get_type().'">'.$field.'</li>';
 	}
 	
 //	We store them in jscript vars, so that the addable.js plugin can retrieve them

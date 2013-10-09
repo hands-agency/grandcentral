@@ -70,12 +70,8 @@
 			$class = 'field'.ucfirst($param['type']);
 			$field = new $class($_FIELD->get_name().'['.$key.']['.$param['name'].']', $param);
 			if (isset($value[$param['name']])) $field->set_value($value[$param['name']]);
-		//	Label
-			if ($field->get_label()) $label = '<label for="'.$field->get_name().'">'.$field->get_label().'</label>';
-			else $label = null;
-			$field->set_label('');
 		//	LI
-			$li .= '<li data-type="'.$field->get_type().'" data-key="'.$param['name'].'" '.$hideRows.'>'.$label.'<div class="wrapper">'.$field.'</div></li>';
+			$li .= '<li data-type="'.$field->get_type().'" data-key="'.$param['name'].'" '.$hideRows.'>'.$field.'</li>';
 			if (empty($hideRows)) $hideRows = 'style="display:none;"';
 		}
 		
@@ -102,12 +98,8 @@
 			if ($param['name'] == 'type') $param['value'] = $key;
 			$class = 'field'.ucfirst($param['type']);
 			$field = new $class($_FIELD->get_name().'[]['.$param['name'].']', $param);
-		//	Label
-			if ($field->get_label()) $label = '<label for="'.$field->get_name().'">'.$field->get_label().'</label>';
-			else $label = null;
-			$field->set_label('');
 		//	Li
-			$li .= '<li data-type="'.$field->get_type().'" data-key="'.$param['name'].'"><label for="'.$field->get_name().'">'.$label.'</label><div class="wrapper">'.$field.'</div></li>';
+			$li .= '<li data-type="'.$field->get_type().'" data-key="'.$param['name'].'">'.$field.'</li>';
 		}
 	//	We store them in a <pre> tag, so that the addable.js plugin can retrieve them
 		$html = '<li style="display:none;"><ol>'.$li.'</ol><button type="button" class="delete"></button></li>';
