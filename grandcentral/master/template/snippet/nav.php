@@ -36,7 +36,7 @@
 		'env' => array(
 			'title' => false,
 			'descr' => false,
-			'icon' => true,
+			'icon' => '&#xe02f;',
 			'flag' => false,
 			'page' => 'list',
 		//	Subnav
@@ -57,7 +57,7 @@
 		'me' => array(
 			'title' => null,
 			'descr' => null,
-			'icon' => true,
+			'icon' => '&#xe007;',
 			'flag' => false,
 			'page' => 'list',
 		//	Subnav
@@ -67,7 +67,7 @@
 		'search' => array(
 			'title' => null,
 			'descr' => null,
-			'icon' => false,
+			'icon' => '&#xe009;',
 			'flag' => null,
 			'page' => 'list',
 		//	Subnav
@@ -77,7 +77,7 @@
 		'item' => array(
 			'title' => true,
 			'descr' => true,
-			'icon' => true,
+			'icon' => '&#xe01e;',
 			'flag' => false,
 			'page' => 'list',
 		//	Subnav
@@ -103,7 +103,7 @@
 		'social' => array(
 			'title' => true,
 			'descr' => true,
-			'icon' => true,
+			'icon' => '&#xe014;',
 			'flag' => false,
 			'page' => 'list',
 		//	Subnav

@@ -13,31 +13,27 @@
  * @package		The package
  * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
  * @author		Sylvain Frigui <sf@cafecentral.fr>
- * @copyright	Copyright © 20042012, Café Central
+ * @copyright	Copyright © 2004-2012, Café Central
  * @license		http://www.cafecentral.fr/fr/licences GNU Public License
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	Some vars
+//	DEBUG
 /********************************************************************************************/
-	if (isset($_GET['item']))
+	if (isset($_GET['DEBUG']))
 	{
-	//	The item
-		$table = $_GET['item'];
-	//	The parameters
-		$param = (isset($_GET['param'])) ? $_GET['param'] : array();
-	//	The joker param
-		if (isset($_GET['q'])) $param['report'] = '%'.$_GET['q'].'%';
-	}
-	else
-	{
-		$table = 'page';
-		$param = 'error_404';
+		unset($_GET['DEBUG']);
+		sentinel::debug('AJAX debug ('.__FILE__.' line '.__LINE__.')', $_GET);
 	}
 
 /********************************************************************************************/
-//	Get items
+//	This API has the right content-type. Now Lets find the content
 /********************************************************************************************/
-	$items = cc($table, $param);
+//	Some vars
+	$app = $_GET['app'];
+	$key = $_GET['template'];
+		
+//	Call the right app
+	echo new app($app, $key);
 ?>

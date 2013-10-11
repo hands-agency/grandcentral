@@ -6,21 +6,24 @@
 </head>
 <body data-env="<?=$_SESSION['pref']['handled_env']?>">
 	<!-- ZONE:body -->
-	<div id="site"><iframe src=""></iframe></div>
-	<div id="admin">
-		<!-- ZONE:nav -->
 		
-		<div id="main" role="main" class="in2col">
+	<div id="main" class="navClosed">
+			
+		<nav id="grandCentralNav"><!-- ZONE:nav --></nav>
+		
+		<div id="grandCentralAdmin" class="in2col">
+		
+			<button type="button" class="close"></button>
 			
 			<header>
 				<!-- ZONE:header -->
 			</header>
-				
+			
 			<div id="tabs">
 				<!-- ZONE:tabs -->
 			</div>
 
-			<div id="content" class="locked instack">
+			<div id="content" class="locked">
 				<!-- ZONE:content|left -->
 				<? foreach($_PAGE['section']->unfold() as $section) : ?>
 				<? $app = $section['app'] ?>
@@ -28,19 +31,24 @@
 				<section id="section_<?= $section['key'] ?>" data-app="<?= $app['key'] ?>" data-template="<?= $app['template'] ?>" data-greenbutton='<?= $greenbutton ?>'></section>
 				<? endforeach; ?>
 			</div>
-		
+	
 			<div id="contextwrapper">
 				<div id="context">
 					<!-- ZONE:context|right -->
 					<div class="clear"><!-- Clearing floats --></div>
 				</div>
 			</div>
-			
+		
 			<footer>
 				<!-- ZONE:footer -->
 			</footer>
 		</div>
+	
+		<div id="grandCentralSite">
+			<iframe src="<?= SITE_URL ?>"></iframe>
+		</div>
 	</div>
+	
 	<!-- ZONE:script -->
 </body>
 </html>

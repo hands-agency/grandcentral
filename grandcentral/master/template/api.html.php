@@ -30,23 +30,20 @@
 /********************************************************************************************/
 //	This API has the right content-type. Now Lets find the content
 /********************************************************************************************/
-	if (!empty($_POST))
+//	Some vars
+	$app = $_POST['app'];
+	$key = $_POST['template'];
+	
+//	Reroute original $_GET passed as $_POST['_GET'] the $_GET
+	if (isset($_POST['_GET']))
 	{
-	//	Some vars
-		$app = $_POST['app'];
-		$key = $_POST['template'];
-		
-	//	Reroute original $_GET passed as $_POST['_GET'] the $_GET
-		if (isset($_POST['_GET']))
-		{
-			$_GET = $_POST['_GET'];
-			unset($_POST['_GET']);
-		}
-		
-	//	Call the right page
-		echo new app($app, $key);
-	//	Write down those 2 zones
-		echo '<!-- ZONE:css -->';
-		echo '<!-- ZONE:script -->';
+		$_GET = $_POST['_GET'];
+		unset($_POST['_GET']);
 	}
+		
+//	Call the right app
+	echo new app($app, $key);
+//	We wand the CSS and script zones soooo badly
+	echo '<!-- ZONE:css -->';
+	echo '<!-- ZONE:script -->';
 ?>

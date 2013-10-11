@@ -30,7 +30,6 @@
 	$item = null;
 	$title = null;
 	$icon = null;
-	$h1_nav = '<a class="nav">☰</a>';
 
 //	Edit: we got an item
 	if (isset($_GET['item']) && (isset($_GET['id'])))
@@ -60,5 +59,5 @@
 	}
 	
 //	Concaténer
-	$h1 = $h1_nav.' '.$h1_structure.' '.$h1_item;
+	$h1 = $h1_structure.' '.$h1_item;
 ?>

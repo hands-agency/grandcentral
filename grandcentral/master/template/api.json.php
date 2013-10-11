@@ -21,29 +21,19 @@
 /********************************************************************************************/
 //	DEBUG
 /********************************************************************************************/
-	if (isset($_POST['DEBUG']))
+	if (isset($_GET['DEBUG']))
 	{
-		unset($_POST['DEBUG']);
-		sentinel::debug('AJAX debug ('.__FILE__.' line '.__LINE__.')', $_POST);
+		unset($_GET['DEBUG']);
+		sentinel::debug('AJAX debug ('.__FILE__.' line '.__LINE__.')', $_GET);
 	}
 
 /********************************************************************************************/
 //	This API has the right content-type. Now Lets find the content
 /********************************************************************************************/
-	if (!empty($_POST))
-	{
-	//	Some vars
-		$app = $_POST['app'];
-		$key = $_POST['template'];
+//	Some vars
+	$app = $_GET['app'];
+	$key = $_GET['template'];
 		
-	//	Reroute original $_GET passed as $_POST['_GET'] the $_GET
-		if (isset($_POST['_GET']))
-		{
-			$_GET = $_POST['_GET'];
-			unset($_POST['_GET']);
-		}
-
-	//	Call the right page
-		echo new app($app, $key);
-	}
+//	Call the right app
+	echo new app($app, $key);
 ?>

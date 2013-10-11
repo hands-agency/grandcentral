@@ -3,22 +3,15 @@
 /********************************************************************************************/
 header
 {
-	padding:30px 60px;
-	background:#24A6B3;
+	padding:30px 30px 10px 30px;
 }
 header h1
 {
-	font-size:2.5em;
+	font-size:2em;
 }
 header h1 a
 {
-	color:#fff;
-}
-header h1 i
-{
-
-	color:#fff;
-	font-size:0.85em;
+	color:#000;
 }
 header h1 .structure
 {

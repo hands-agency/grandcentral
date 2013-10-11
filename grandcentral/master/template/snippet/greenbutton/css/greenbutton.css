@@ -2,7 +2,7 @@
 /* greenbutton
 /********************************************************************************************/
 #greenbutton {
-	position:fixed;
+	position:absolute;
 	top:30px;
 	right:30px;
 }
@@ -38,7 +38,7 @@
 	margin:0 10px 0 0;
 	text-shadow:0px 1px 1px rgba(0, 0, 0, 0.5);
 	border:3px solid transparent;
-	background:#B7DA72;
+	background:#26ae5f;
 	font-family:"Raleway-Thin";
 }
 #greenbutton #greenbutton-default:hover

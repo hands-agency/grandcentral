@@ -7,7 +7,7 @@
 	font-size:0.9em;
 	color:#2a323a;
 	background:#F0F0F0;
-	padding:20px 60px;
+	padding:20px 30px;
 }
 #options li
 {
@@ -17,7 +17,7 @@
 	border-radius:3px;
 	margin:0 10px 0 0;
 	height:25px;
-	line-height:25px;
+	line-height:27px;
 	font-size:14px;
 	padding:0 10px;
 	float:left;
@@ -57,7 +57,13 @@
 /* Lock / unlock */
 #lock
 {
-	height:25px;
+	width:25px;
+	padding:0 !important;
+}
+
+/* Filter */
+#filter
+{
 	width:25px;
 	padding:0 !important;
 }
@@ -65,7 +71,7 @@
 /* Local search */
 #options #refine
 {
-	padding:0px;
+	padding:0 0 0 5px;
 }
 #options #refine input
 {

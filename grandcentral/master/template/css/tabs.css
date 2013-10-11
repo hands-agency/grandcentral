@@ -3,12 +3,11 @@
 /********************************************************************************************/
 #tabs
 {
-	background:#24A6B3;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
 	box-shadow: 0px 0 6px -6px hsla(0,0%,0%,1);
-	padding:0 45px;
+	padding:0 15px;
 }
 #tabs>ul
 {
@@ -39,7 +38,7 @@
 #tabs>ul>li>a .title
 {
 	font-family:"Raleway-Thin";
-	color:#fff;
+	color:#555;
 }
 #tabs>ul>li>a .descr
 {
@@ -58,10 +57,10 @@
 	content:'';
 	position:absolute;
 	border-style: solid;
-	border-width: 15px 15px 0px 15px;
-	border-color: #24A6B3 transparent transparent transparent;
-	bottom:-15px;
-	margin-left:-15px;
+	border-width: 10px 10px 0px 10px;
+	border-color: #fff transparent transparent transparent;
+	bottom:-10px;
+	margin-left:-10px;
 	left:50%;
 }
 

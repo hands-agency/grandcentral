@@ -39,6 +39,6 @@
 	$app = $_GET['app'];
 	$key = $_GET['template'];
 		
-//	Call the right page
+//	Call the right app
 	echo new app($app, $key);
 ?>
