@@ -13,7 +13,6 @@ class master
 	protected $app;
 	protected static $content_type;
 //	Storing
-	protected static $instance;
 	protected static $zones;
 	
 /**
@@ -22,38 +21,17 @@ class master
  * @return	object	object master
  * @access	protected
  */
-	protected function __construct()
+	public function __construct(itemPage $page)
 	{
-	//	get the page to display
-		$page = cc('page', current);
-	//	Give the page the header
-		$page->header();
-		// print'<pre>';print_r($page);print'</pre>';
 	//	define the master content type
-		self::$content_type = (empty($page['master']['type'])) ? 'html' : $page['master']['type'];
+		self::$content_type = (empty($page['type']['content_type'])) ? 'html' : $page['type']['content_type'];
 	//	instanciate the app master
 		$params['page'] = $page;
-		$this->app = new app('master', $page['master']['key'], $params);
+		$this->app = new app('master', $page['type']['master'], $params);
 	//	retreive the template root
-		$root = $this->app->get_templateroot().$page['master']['key'].'.'.$page['master']['type'].'.php';
+		$root = $this->app->get_templateroot().$page['type']['master'].'.'.$page['type']['content_type'].'.php';
 	//	parse the template and parse zones
 		self::$zones = self::get_zones($root);
-	//	display
-		echo $this;
-	}
-/**
- * Create only one instance of the master
- *
- * @return	object	object master
- * @access	public
- */
-	public static function getInstance()
-	{
-		if(is_null(self::$instance))
-		{
-			self::$instance = new master();
-		}
-		return self::$instance;
 	}
 /**
  * Parse a template and extract zones

@@ -166,7 +166,7 @@ abstract class _items implements ArrayAccess, Iterator
 		return ($this->data['id']->exists()) ? true : false;
 	}
 /**
- * Save item
+ * Save item into database
  *
  * @access  public
  */
@@ -193,7 +193,7 @@ abstract class _items implements ArrayAccess, Iterator
 		// print'<pre>';print_r($db->_spooler);print'</pre>';
 	}
 /**
- * Updata item
+ * Build queries to update an item
  *
  * @access  protected
  */
@@ -249,7 +249,7 @@ abstract class _items implements ArrayAccess, Iterator
 		}
 	}
 /**
- * Insert item
+ * Build queries to insert an item
  *
  * @access  protected
  */
@@ -311,16 +311,26 @@ abstract class _items implements ArrayAccess, Iterator
 	//	build the queries
 		if ($this->exists())
 		{
-			$preparedData['id'] = $this['id']->get();
-		//	delete main table entry
-			$db->spool('DELETE FROM `'.$this->get_table().'` WHERE `id` = :id LIMIT 1', $preparedData);
-		//	delete relations
-			$db->spool('DELETE FROM `'.attrRel::table.'` WHERE `item` = "'.$this->get_table().'" AND `itemid` = :id', $preparedData);
+			$this->_delete();
 		}
 	//	execute all queries
 		$db->flush_spooler();
     }
-
+/**
+ * Build queries to delete an item
+ *
+ * @access  protected
+ */
+	protected function _delete()
+	{
+	//	conect to db
+		$db = database::connect($this->get_env());
+		$preparedData['id'] = $this['id']->get();
+	//	delete main table entry
+		$db->spool('DELETE FROM `'.$this->get_table().'` WHERE `id` = :id LIMIT 1', $preparedData);
+	//	delete relations
+		$db->spool('DELETE FROM `'.attrRel::table.'` WHERE `item` = "'.$this->get_table().'" AND `itemid` = :id', $preparedData);
+    }
 /**
  * Returns the front-end URL of an item
  *
@@ -328,19 +338,18 @@ abstract class _items implements ArrayAccess, Iterator
  * @return	string	The URL of the object
  * @access	public
  */
-	public function link($arg = null)
-	{
-	//	Return
-		if (isset($this['url']))
-		{
-		//	Args?
-			if (isset($arg)) $arg = '?'.http_build_query($arg);
-		//	Return
-			return constant(mb_strtoupper($this->get_env()).'_URL').$this['url'].$arg;
-		}
-		else return false;
-	}
-	
+  public function link($arg = null)
+  {
+  //	Return
+  	if (isset($this['url']))
+  	{
+  	//	Args?
+  		if (isset($arg)) $arg = '?'.http_build_query($arg);
+  	//	Return
+  		return constant(mb_strtoupper($this->get_env()).'_URL').$this['url'].$arg;
+  	}
+  	else return false;
+  }
 /**
  * Returns the link to the back-end listing of these items
  *
@@ -362,7 +371,7 @@ abstract class _items implements ArrayAccess, Iterator
 	{
 		return '/admin/edit?item='.$this->get_table().'&id='.$this['id']->get();
 	}
-	
+
 /**
  * Serialize this item in JSON
  *

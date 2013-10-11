@@ -57,7 +57,20 @@ class attrId extends attrInt
 	public function mysql_definition()
 	{
 	//	definition
-		$definition = '`'.$this->params['key'].'` mediumint(3) unsigned NOT NULL AUTO_INCREMENT, PRIMARY KEY (`'.$this->params['key'].'`)';
+		$definition = '`'.$this->params['key'].'` mediumint(3) unsigned NOT NULL AUTO_INCREMENT';
+	//	retour
+		return $definition;
+	}
+/**
+ * Definition index mysql
+ *
+ * @return	string	la définition mysql
+ * @access	public
+ */
+	public function mysql_index_definition()
+	{
+	//	definition
+		$definition = 'PRIMARY KEY (`'.$this->params['key'].'`)';
 	//	retour
 		return $definition;
 	}

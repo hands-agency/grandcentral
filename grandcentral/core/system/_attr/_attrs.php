@@ -9,6 +9,7 @@
  */
 abstract class _attrs
 {
+	protected $env;
 	protected $data;
 	protected $params;
 
@@ -18,8 +19,10 @@ abstract class _attrs
  * @return	string	une string
  * @access	public
  */
-	public function __construct($data = null, $params = null)
+	public function __construct($data = null, $params = null, $env = env)
 	{
+	//	env
+		$this->env = $env;
 	//	data
 		if (!is_null($data)) $this->set($data);
 	//	params
@@ -81,7 +84,7 @@ abstract class _attrs
  * @return	string	une string
  * @access	public
  */
-	public function __toString()
+	public function __tostring()
 	{
 		return (string) $this->get();
 	}
@@ -139,6 +142,23 @@ abstract class _attrs
 	public function is_empty()
 	{
 		return (empty($this->data)) ? true : false;
+	}
+/**
+ * get mysql definition
+ *
+ * @return	string	une string
+ * @access	public
+ */
+	abstract public function mysql_definition();
+/**
+ * get mysql definition
+ *
+ * @return	string	une string
+ * @access	public
+ */
+	public function mysql_index_definition()
+	{
+		return null;
 	}
 /**
  * Default field attributes for all fields	

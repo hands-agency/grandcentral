@@ -36,6 +36,12 @@
 				// print '<pre>';print_r('bunch');print'</pre>';
 				return new bunch($table, $params, $env);
 				break;
+		//	nickname
+			case is_null($params) && mb_strpos($table, '_'):
+				list($table, $id) = explode('_', $table);
+				// print'<pre>';print_r($table);print'</pre>';
+				return item::create($table, $id, $env);
+				break;
 		//	nouvel item
 			case is_null($params):
 				// print '<pre>';print_r('new');print'</pre>';

@@ -25,7 +25,7 @@ class database
 	private static $transactions;
 	
 	private $_pdo;
-	private $_spooler = array();
+	public $_spooler = array();
 
 /**
  * Configure l'objet PDO et crée la connexion à la base de données
@@ -221,6 +221,19 @@ class database
 		
 		return $tables;
 	}
+/**
+ * Return active bdd name
+ *
+ * @param	string	l'environnement désiré. "admin" ou "site"
+ * @return	array	la liste des tables
+ * @access	public
+ * @static
+ */
+	public function get_name()
+	{
+		$prefix = strtoupper(self::$env);
+		return constant($prefix.'_DB_NAME');
+	}
 	
 /**
  * Query database for items data
@@ -387,12 +400,8 @@ class database
 		$model = array();
 		foreach ($attrs as $key => $value)
 		{
-			if ($attrs[$key]['type'] == 'rel')
-			{
-				$value['env'] = $env;
-			}
 			$attrClass = 'attr'.ucfirst($attrs[$key]['type']);
-			$model[$key] = new $attrClass(null, $value);
+			$model[$key] = new $attrClass(null, $value, $env);
 		}
 	//	création du tableau de retour
 		$datas = array();

@@ -76,12 +76,9 @@ class attrString extends _attrs
  * @return	string	une string
  * @access	public
  */
-	public function set_index($value)
+	public function __tostring()
 	{
-		if (in_array($value, array('primary', 'unique', 'index')))
-		{
-			$this->params['index'] = $value;
-		}
+		return htmlspecialchars($this->get());
 	}
 /**
  * Definition mysql
@@ -91,16 +88,17 @@ class attrString extends _attrs
  */
 	public function mysql_definition()
 	{
+		if (!isset($this->params['max'])) $this->params['max'] = 0;
 	//	type mysql
 		switch ($this->params['max'])
 		{
 			case 0:
-				$type = 'varchar(65535)';
+				$type = 'varchar(5000)';
 				break;
-			case $this->params['max'] <= 65535:
+			case $this->params['max'] <= 21800:
 				$type = 'varchar('.$this->params['max'].')';
 				break;
-			case $this->params['max'] > 65535:
+			case $this->params['max'] > 21800:
 				$type = 'mediumtext';
 				break;
 		}

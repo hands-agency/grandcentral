@@ -103,5 +103,75 @@ class itemPage extends _items
 			$section->__tostring();
 		}
 	}
+/**
+ * Display the page
+ *
+ * @return	string	le code html de la page
+ * @access	public
+ */
+	public function __tostring()
+	{
+	//	headers
+		$this->header();
+	//	prepare page display
+		$prepareFunction = '_prepare_'.$this['type']['key'];
+	//	display
+		return $this->$prepareFunction();
+	}
+/**
+ * Prepare display of a feed page
+ *
+ * @access	public
+ */
+	private function _prepare_feed()
+	{
+		$master = new master($this);
+		
+		return $master->__tostring();
+	}
+/**
+ * Prepare display of a content page
+ *
+ * @access	public
+ */
+	private function _prepare_content()
+	{
+		$master = new master($this);
+		
+		return $master->__tostring();
+	}
+/**
+ * Prepare display of a header page
+ *
+ * @access	public
+ */
+	private function _prepare_header()
+	{
+	//	recherche du premier enfant
+		$child = $this['child']->get();
+	//	redirection
+		if (count($child) > 0)
+		{
+			$child = cc($child[0]);
+			header('Location:'.$child->link());
+		}
+	//	erreur
+		trigger_error('This header page needs a valid <strong>child</strong> to work properly.', E_USER_ERROR);
+	}
+/**
+ * Prepare display of a link page
+ *
+ * @access	public
+ */
+	private function _prepare_link()
+	{
+	//	redirection
+		if (filter_var($this['type']['url'], FILTER_VALIDATE_URL))
+		{
+			header('Location:'.$this['type']['url']);
+		}
+	//	erreur
+		trigger_error('This link page needs a valid <strong>url</strong> to work properly.', E_USER_ERROR);
+	}
 }
 ?>

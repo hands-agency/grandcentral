@@ -97,18 +97,6 @@ class attrRel extends _attrs
 		return $this;
 	}
 /**
- * Set attribute
- *
- * @param	string	la variable
- * @return	string	une string
- * @access	public
- */
-	public function set_env($value)
-	{
-		$this->env = $value;
-		return $this;
-	}
-/**
  * xxxx
  *
  * @param	string	la variable
@@ -133,7 +121,16 @@ class attrRel extends _attrs
 		
 		return $bunch;
 	}
-	
+/**
+ * Definition mysql
+ *
+ * @return	string	la définition mysql
+ * @access	public
+ */
+	public function mysql_definition()
+	{
+		return null;
+	}
 /**
  * Default field attributes for Rel	
  *
