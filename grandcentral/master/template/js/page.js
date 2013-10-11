@@ -132,6 +132,7 @@
 	{
 		
 	});
+	$('#grandCentralSite').html('<iframe src="http://miranda.local"></iframe>');
 	
 /*********************************************************************************************
 /**	* Make the bubbles with the .warn class jump
@@ -162,6 +163,19 @@
 			}, time);
 		};
 	})( jQuery );
+	
+/*********************************************************************************************
+/**	* Resize the main view to fit viewport
+ 	* @author	mvd@cafecentral.fr
+**#******************************************************************************************/
+	resize = function()
+	{
+		$('#main').height($(window).height());
+	}
+//	Resize now
+	resize();
+//	And when the window resizes
+	$(window).resize(function(){resize()});
 
 /*********************************************************************************************
 /**	* Make the bubbles with the .warn class jump

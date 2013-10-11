@@ -23,7 +23,7 @@
 				<!-- ZONE:tabs -->
 			</div>
 
-			<div id="content" class="locked">
+			<div id="content" class="locked instack">
 				<!-- ZONE:content|left -->
 				<? foreach($_PAGE['section']->unfold() as $section) : ?>
 				<? $app = $section['app'] ?>
@@ -44,9 +44,7 @@
 			</footer>
 		</div>
 	
-		<div id="grandCentralSite">
-			<iframe src="<?= SITE_URL ?>"></iframe>
-		</div>
+		<div id="grandCentralSite"></div>
 	</div>
 	
 	<!-- ZONE:script -->

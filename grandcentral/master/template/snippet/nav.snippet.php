@@ -8,9 +8,7 @@
 	<? $descr = (is_string($config['descr'])) ? $config['descr'] : $page['descr'] ?>
 	
 	<li class="<?=$page['key']?>" title="<?=$page['title']?>">
-		<? if ($config['icon'] != false) : ?><div class="icon" data-icon="<?=$config['icon']?>"></div><? endif ?>
-		<? if ($config['title'] != false) : ?><div class="title"><a href="/admin<?=$page['url']?>"><?=$title?></a><? if ($config['flag'] === true) : ?> <a href="/admin/en" class="flag">fr</a><? endif ?></div><? endif ?>
-		<? if ($config['descr'] != false) : ?><div class="descr"><?=$page['descr']?></div><? endif ?>
+		<div class="title" data-icon="<?=$config['icon']?>"><a href="/admin<?=$page['url']?>"><?=$title?></a><? if ($config['flag'] === true) : ?> <a href="/admin/en" class="flag">fr</a><? endif ?></div>
 		<div class="sub">
 
 			<? foreach ($level2 as $key => $level2): ?>

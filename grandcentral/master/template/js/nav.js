@@ -12,22 +12,20 @@
 			//	Shortcut
 				var $nav = $(this);
 				
-				$nav.on('click', function()
+				$nav.on('click', '>ul>li', function()
 				{
+				//	Open the drawer
 					$('#main').switchClass('navClosed', 'navOpened');
 					
 				//	Some vars
 					subnav = $(this).find('.sub');
 					subnavs = $nav.find('ul li .sub');
-				//	width = originalwidth+subnav.outerWidth(true);
 
 				//	We're on!
 					$(this).parent().find('li').removeClass('on');
 				//	Hide all sub navs
 					subnavs.hide();
 
-				//	Open the drawer
-				//	if (originalwidth != width) $nav.animate({width:width+'px'}, 70);
 				//	Show this nav
 					$(subnav).show();
 					$(this).addClass('on');
@@ -62,28 +60,23 @@
 					out: function()
 					{
 						
-					$('#main').switchClass('navOpened', 'navClosed');
-						
 					//	Close the drawer
-					//	$nav.animate({width:originalwidth+'px'}, 100);
+						$('#main').switchClass('navOpened', 'navClosed');
+						
 						$nav.find('li').removeClass('on');
 					//	Hide all sub navs
 						$nav.find('ul li .sub').hide();
 					//	Fade-in UI useful elements
 						$nav.find('> ul > li').fadeTo('fast', 1);
-					//	$('#main').fadeTo(null, 1);
-					//	$('#context').show();
-					//	$nav.hide('fast');
 					}
 				};
 				this.hoverIntent( config );
 				
 			//	Close the nav by click
-			/*	this.find('button').click(function()
+				this.find('button.close').click(function()
 				{
 					$nav.trigger('mouseleave');
 				});
-			*/
 				
 			//	Global Search
 				$('#globalsearch').searchasyoutype(
