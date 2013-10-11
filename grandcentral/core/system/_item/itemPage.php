@@ -68,10 +68,10 @@ class itemPage extends _items
 	//	Content types
 		$mime = $this->get_authorised_mime();
 	//	Convert the GC content type to MIME content types
-		$content_type = $mime[$this['master']['type']];
+		$content_type = $mime[$this['type']['content_type']];
 		
 	//	Print the header
-		header('HTTP/1.0 '.$this['http_status']);
+		header('HTTP/1.0 '.$this['type']['http_status']);
 		header('Content-Type: '.$content_type.'; charset=utf-8');
 	}
 /**
@@ -125,8 +125,21 @@ class itemPage extends _items
  */
 	private function _prepare_feed()
 	{
+	//	call master
 		$master = new master($this);
+	//	add section content
+		if (cc('item', current)->exists())
+		{
+			# code...
+		}
+	//	add section list
+		else
+		{
+			
+		}
+	//	add section to the page
 		
+	//	display master
 		return $master->__tostring();
 	}
 /**
@@ -136,8 +149,10 @@ class itemPage extends _items
  */
 	private function _prepare_content()
 	{
+	//	call master
 		$master = new master($this);
-		
+		// print'<pre>';print_r($master);print'</pre>';
+	//	display master
 		return $master->__tostring();
 	}
 /**
@@ -153,7 +168,7 @@ class itemPage extends _items
 		if (count($child) > 0)
 		{
 			$child = cc($child[0]);
-			header('Location:'.$child->link());
+			header('Location:'.$child->link(), false);
 		}
 	//	erreur
 		trigger_error('This header page needs a valid <strong>child</strong> to work properly.', E_USER_ERROR);
@@ -168,7 +183,7 @@ class itemPage extends _items
 	//	redirection
 		if (filter_var($this['type']['url'], FILTER_VALIDATE_URL))
 		{
-			header('Location:'.$this['type']['url']);
+			header('Location:'.$this['type']['url'], false);
 		}
 	//	erreur
 		trigger_error('This link page needs a valid <strong>url</strong> to work properly.', E_USER_ERROR);
