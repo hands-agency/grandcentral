@@ -34,7 +34,7 @@
 			
 			<? if ($bunch->count()): ?>
 
-			<? if (isset($h1)) : ?><h1><?=$h1;?></h1><? endif ?>
+			<? if (isset($h1) && count($level2Bunch) > 1) : ?><h1><?=$h1;?></h1><? endif ?>
 			<ul class="<?=$key?> <?=$display?>">
 				<? foreach ($bunch as $subpage): ?>
 				<? if ($link == 'edit') $url = '/admin/edit?item='.$subpage->get_table().'&id='.$subpage['id'] ?>

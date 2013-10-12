@@ -136,7 +136,7 @@
 	{
 		
 	});
-	$('#grandCentralSite').append('<iframe src="http://miranda.local"></iframe>');
+	$('#grandCentralSite').append('<iframe src="'+SITE_URL+'"></iframe>');
 	
 /*********************************************************************************************
 /**	* Make the bubbles with the .warn class jump

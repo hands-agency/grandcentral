@@ -104,6 +104,7 @@
 			'subnav' => array(),
 		),
 	);
+//	$app = registry::get(registry::app_index);
 
 /********************************************************************************************/
 //	Get the list of level1 pages
