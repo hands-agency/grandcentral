@@ -466,7 +466,7 @@ class database
  * @access	public
  * @static
  */
-	public function spool($query, $params = null, $lastid = false)
+	public function stack($query, $params = null, $lastid = false)
 	{
 		$query = array(
 			'query' => $query,
@@ -490,7 +490,7 @@ class database
  * @access	public
  * @static
  */
-	public function flush_spooler()
+	public function flush_querystack()
 	{
 		try
 		{

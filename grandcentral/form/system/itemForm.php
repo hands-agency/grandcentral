@@ -50,13 +50,20 @@ class itemForm extends _items
 		{
 			foreach ($this['field'] as $data)
 			{
-				if ($data['type'] == 'fieldset')
+				if (!isset($data['type']))
 				{
-					$form->set_fieldset($data);
+					trigger_error('Empty type in form '.$this['key'].'.', E_USER_WARNING);
 				}
 				else
 				{
-					$form->set_field($data['type'], $this['key'].'['.$data['key'].']', $data);
+					if ($data['type'] == 'fieldset')
+					{
+						$form->set_fieldset($data);
+					}
+					else
+					{
+						$form->set_field($data['type'], $this['key'].'['.$data['key'].']', $data);
+					}
 				}
 			}
 		}

@@ -291,7 +291,6 @@ class boot
 	{
 		$param['function'] = __METHOD__;
 		$param['error'] = $key;
-		print'<pre>';print_r($param);print'</pre>';
 		switch ($key)
 		{
 			case 'no-boot':

@@ -9,6 +9,7 @@
  */
 class itemPage extends _items
 {
+	protected $child = false;
 /**
  * Détermine en fonction du contexte quelle page afficher
  *
@@ -24,7 +25,7 @@ class itemPage extends _items
 		}
 	//	recherche de la page
 		$this->get(array('url' => '/'.$url[0]));
-		
+		// print'<pre>';print_r($this);print'</pre>';
 	//	recherche de l'item, si l'url est complexe
 		if ($this->exists())
 		{
@@ -35,6 +36,7 @@ class itemPage extends _items
 				if ($item->exists())
 				{
 					registry::set(registry::current_index, 'item', $item);
+					$this->child = true;
 				}
 				else
 				{
@@ -128,17 +130,18 @@ class itemPage extends _items
 	//	call master
 		$master = new master($this);
 	//	add section content
-		if (cc('item', current)->exists())
+		$sections = $this['section']->get();
+		if ($this->child === true)
 		{
-			# code...
+			array_unshift($sections, $this['type']['content']);
 		}
 	//	add section list
 		else
 		{
-			
+			array_unshift($sections, $this['type']['list']);
 		}
 	//	add section to the page
-		
+		$this['section']->set($sections);
 	//	display master
 		return $master->__tostring();
 	}

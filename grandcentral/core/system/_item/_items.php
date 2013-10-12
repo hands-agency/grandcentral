@@ -88,6 +88,7 @@ abstract class _items implements ArrayAccess, Iterator
  */
 	public function set_attr($key, $value)
 	{
+	//	on remplit un attr existant
 		if (isset($this->data[$key]))
 		{
 			$this->data[$key]->set($value);
@@ -95,13 +96,13 @@ abstract class _items implements ArrayAccess, Iterator
 		else
 		{
 			$attrs = registry::get($this->get_env(), registry::structure_index, $this->get_table(), 'attr');
-			
+		//	on crée un nouvel attribut à l'objet
 			if (isset($attrs[$key]))
 			{
 				$attrClass = 'attr'.ucfirst($attrs[$key]['type']);
-				// if ($attrs[$key]['type'] == 'rel') $attrs[$key]['env'] = $this->get_env();
-				$this->data[$key] = new $attrClass($value, $attrs[$key]);
+				$this->data[$key] = new $attrClass($value, $attrs[$key], $this->get_env());
 			}
+		//	on ajoute de la data non typée
 			else
 			{
 				$this->data[$key] = $value;
@@ -178,14 +179,14 @@ abstract class _items implements ArrayAccess, Iterator
 		if ($this->exists())
 		{
 			$this->_update();
-			$db->flush_spooler();
+			$db->flush_querystack();
 			$event = 'update';
 		}
 	//	insert
 		else
 		{
 			$this->_insert();
-			$this['id']->database_set($db->flush_spooler());
+			$this['id']->database_set($db->flush_querystack());
 			$event = 'insert';
 		}
 	//	Trigger event
@@ -236,16 +237,16 @@ abstract class _items implements ArrayAccess, Iterator
 			}
 		}
 	//	update table entry
-		$db->spool('UPDATE `'.$this->get_table().'` SET '.implode(',', $mainQuery).' WHERE `id`=:id', $mainData);
+		$db->stack('UPDATE `'.$this->get_table().'` SET '.implode(',', $mainQuery).' WHERE `id`=:id', $mainData);
 	//	delete previous relations
 		$preparedData = array(
 			'id' => $id
 		);
-		$db->spool('DELETE FROM `'.attrRel::table.'` WHERE `item`="'.$this->get_table().'" AND `itemid`=:id', $preparedData);
+		$db->stack('DELETE FROM `'.attrRel::table.'` WHERE `item`="'.$this->get_table().'" AND `itemid`=:id', $preparedData);
 	//	create relations
 		if (isset($relData))
 		{
-			$db->spool('INSERT INTO `'.attrRel::table.'` (`item`,`itemid`,`key`,`rel`,`relid`,`position`) VALUES '.implode(',', $relQuery), $relData);
+			$db->stack('INSERT INTO `'.attrRel::table.'` (`item`,`itemid`,`key`,`rel`,`relid`,`position`) VALUES '.implode(',', $relQuery), $relData);
 		}
 	}
 /**
@@ -292,11 +293,11 @@ abstract class _items implements ArrayAccess, Iterator
 			}
 		}
 	//	insert table entry
-		$db->spool('INSERT INTO `'.$this->get_table().'` ('.implode(',', $mainQueryCols).') VALUES ('.implode(',', $mainQueryValues).')', $mainData, true);
+		$db->stack('INSERT INTO `'.$this->get_table().'` ('.implode(',', $mainQueryCols).') VALUES ('.implode(',', $mainQueryValues).')', $mainData, true);
 	//	create relations
 		if (isset($relData))
 		{
-			$db->spool('INSERT INTO `'.attrRel::table.'` (`item`,`itemid`,`key`,`rel`,`relid`,`position`) VALUES '.implode(',', $relQuery), $relData);
+			$db->stack('INSERT INTO `'.attrRel::table.'` (`item`,`itemid`,`key`,`rel`,`relid`,`position`) VALUES '.implode(',', $relQuery), $relData);
 		}
 	}
 /**
@@ -314,7 +315,7 @@ abstract class _items implements ArrayAccess, Iterator
 			$this->_delete();
 		}
 	//	execute all queries
-		$db->flush_spooler();
+		$db->flush_querystack();
     }
 /**
  * Build queries to delete an item
@@ -327,9 +328,9 @@ abstract class _items implements ArrayAccess, Iterator
 		$db = database::connect($this->get_env());
 		$preparedData['id'] = $this['id']->get();
 	//	delete main table entry
-		$db->spool('DELETE FROM `'.$this->get_table().'` WHERE `id` = :id LIMIT 1', $preparedData);
+		$db->stack('DELETE FROM `'.$this->get_table().'` WHERE `id` = :id LIMIT 1', $preparedData);
 	//	delete relations
-		$db->spool('DELETE FROM `'.attrRel::table.'` WHERE `item` = "'.$this->get_table().'" AND `itemid` = :id', $preparedData);
+		$db->stack('DELETE FROM `'.attrRel::table.'` WHERE `item` = "'.$this->get_table().'" AND `itemid` = :id', $preparedData);
     }
 /**
  * Returns the front-end URL of an item

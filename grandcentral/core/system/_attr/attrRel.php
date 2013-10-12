@@ -30,7 +30,11 @@ class attrRel extends _attrs
  */
 	public function set($rel)
 	{
-		if (empty($rel)) return $this;
+		if (empty($rel))
+		{
+			$this->data = null;
+			return $this;
+		}
 	//	mise en conformité de l'objet
 		if (!is_array($rel) && !is_a($rel, 'bunch')) $rel = array($rel);
 	//	on vide

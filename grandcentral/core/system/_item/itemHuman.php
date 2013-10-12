@@ -114,6 +114,10 @@ class itemHuman extends _items
 						{
 							$page['group'] = $parent['group']->get();
 						}
+						else
+						{
+							return true;
+						}
 					}
 				//	sinon, on valide
 					else
