@@ -10,6 +10,19 @@
 class attrId extends attrInt
 {
 	protected $id;
+
+/**
+ * Set id attribute
+ *
+ * @param	string	la variable
+ * @return	string	une string
+ * @access	public
+ */
+	public function set($data)
+	{
+		$this->data = null;
+		return $this;
+	}
 	
 /**
  * Set id attribute

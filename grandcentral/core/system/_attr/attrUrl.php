@@ -9,6 +9,8 @@
  */
 class attrUrl extends _attrs
 {
+	const table = '_url';
+	
 /**
  * Set string attribute
  *

@@ -9,6 +9,7 @@
  */
 class itemPage extends _items
 {
+	const child = 'child';
 	protected $child = false;
 /**
  * Détermine en fonction du contexte quelle page afficher
@@ -166,7 +167,7 @@ class itemPage extends _items
 	private function _prepare_header()
 	{
 	//	recherche du premier enfant
-		$child = $this['child']->get();
+		$child = $this[self::child]->get();
 	//	redirection
 		if (count($child) > 0)
 		{
@@ -174,7 +175,7 @@ class itemPage extends _items
 			header('Location:'.$child->link(), false);
 		}
 	//	erreur
-		trigger_error('This header page needs a valid <strong>child</strong> to work properly.', E_USER_ERROR);
+		trigger_error('This header page needs a valid <strong>'.self::child.'</strong> relation to work properly.', E_USER_ERROR);
 	}
 /**
  * Prepare display of a link page
