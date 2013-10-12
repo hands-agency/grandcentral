@@ -23,7 +23,7 @@
 		{
 		//	Option
 			if (!option) option = Array;
-			debug = option['debug'] || false;
+			debug = option['debug'] || false
 			async = option['async'] || true;
 			print = option['print'] || true;
 			mime = option['mime'] || 'html';
@@ -56,7 +56,7 @@
 			//	Execute callback (make sure the callback is a function)
 				if (typeof callback['done'] == 'function')
 				{
-					callback['done'].call(this); // brings the scope to the callback
+					callback['done'].call(this, html); // brings the scope to the callback
 				}
 				
 			})

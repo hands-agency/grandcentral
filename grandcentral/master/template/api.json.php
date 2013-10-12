@@ -19,7 +19,7 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 //	So, GET or POST ?
-	if ($_GET) $_POST = $_GET;
+//	if (isset($_GET)) $_POST = $_GET;
 	
 /********************************************************************************************/
 //	DEBUG

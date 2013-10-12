@@ -72,7 +72,7 @@
 		$author['title'] = (empty($author['title'])) ? $author->get_nickname() : $author['title'];
 		
 	//	Message
-		$msg = '{"id": "'.$logbook['id'].'", "event": "'.$logbook['key'].'", "opacity": "'.$opacity.'", "author": "'.$author['title'].'", "subject": "'.$logbook['subject'].'", "subjectid": "'.$logbook['subjectid'].'", "item": "'.$logbook['item'].'", "itemid": "'.$logbook['itemid'].'", "updated": "'.$logbook['updated'].'", "edit": "'.$item->edit().'", "editauthor": "'.$author->edit().'", "title": "'.$item['title'].'"}';
+		$msg = '{"id": "'.$logbook['id'].'", "event": "'.$logbook['key'].'", "opacity": "'.$opacity.'", "author": "'.$author['title'].'", "subject": "'.$logbook['subject'].'", "subjectid": "'.$logbook['subjectid'].'", "item": "'.$logbook['item'].'", "itemid": "'.$logbook['itemid'].'", "updated": "'.$logbook['updated'].'", "edit": "'.$item->edit().'", "editauthor": "'.$author->edit().'", "title": "'.$item['title'].'", "timeSince": "TODOmn ago"}';
 		
 	//	Send message
 		sendMsg($logbook['id'], $msg);

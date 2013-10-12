@@ -19,7 +19,7 @@
 	{
 		
 		$appMedia = new app('media');
-		$root = $appMedia->get_templateroot();
+		$root = $appMedia->get_templateroot('site');
 		$media = new file($root.$file);
 		
 		switch ($media->get_mime())

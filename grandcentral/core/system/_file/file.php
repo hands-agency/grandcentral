@@ -162,7 +162,8 @@ class file
  */
 	public function minify($type = null)
 	{
-		switch ($type) {
+		switch ($type)
+		{
 			case 'js':
 				$this->data = JSMin::minify($this->data);
 				break;

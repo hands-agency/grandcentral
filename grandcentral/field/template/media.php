@@ -45,16 +45,17 @@
 	foreach ((array) $values as $key => $value)
 	{
 	//	Fetch media
-		$media = new image($value);
+		$media = media($value);
+		$path = mb_substr($media->get_root(), mb_strpos($media->get_root(), '/media/') + 7); /* Make a method out of this*/
 		$data .= '
 		<li>
 			<button class="delete"></button>
 			<a>
-				<span class="preview"><img src="'.$media->thumbnail(120, null).'" /></span>
+				<span class="preview">'.$media->thumbnail(120, null).'</span>
 				<span class="title">'.$media->get_key().'</span>
 				<span class="info">'.strtoupper($media->get_extension()).' • '.$media->get_size().'</span>
 			</a>
-			<input type="hidden" name="'.$_FIELD->get_name().'[]" value="'.$media->get_url().'" />
+			<input type="hidden" name="'.$_FIELD->get_name().'[]" value="'.$path.'" />
 		</li>';
 	}
 	
