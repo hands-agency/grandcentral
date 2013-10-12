@@ -15,9 +15,12 @@
 			if (filter_var(($config['icon']), FILTER_VALIDATE_URL)) $image = '<img src="'.$config['icon'].'" />';
 			else $icon = 'data-icon="'.$config['icon'].'"';
 		}
+	//	On / off ?
+		$on = null;
 	?>
 	
-	<li class="<?=$page['key']?>" title="<?=$page['title']?>">
+	
+	<li class="<?=$page['key']?> <?=$on?>" title="<?=$page['title']?>">
 		<? if ($title): ?><div class="title" <?=$icon?>><?=$image?><span><?=$title?></span></div><? endif ?>
 		
 		<? if ($level2Bunch OR $level2Content): ?>

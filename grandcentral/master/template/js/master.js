@@ -27,6 +27,7 @@
 			async = option['async'] || true;
 			print = option['print'] || true;
 			mime = option['mime'] || 'html';
+			if (!callback) callback = Array;
 		
 		//	Params
 			var url = ADMIN_URL+'/api.'+mime;
@@ -52,21 +53,17 @@
 			//	Return HTML
 			/* bug : option is global and must be reset !*/
 				if (print === true) $(this).html(html);
-			//	Execute callback
-				done(html);
+			//	Execute callback (make sure the callback is a function)
+				if (typeof callback['done'] == 'function')
+				{
+					callback['done'].call(this); // brings the scope to the callback
+				}
+				
 			})
-			.fail(function( jqXHR, textStatus ) {
+			.fail(function( jqXHR, textStatus )
+			{
 				console.log( "Request failed: " + textStatus );
 			});
-	
-		//	Callback
-			if (!callback) callback = Array;
-	
-		//	Call back functions
-			done = function(html)
-			{
-				if (callback['done']) callback['done'](html);
-			}
 		};
 	})( jQuery );
 

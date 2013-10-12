@@ -92,7 +92,7 @@
 				'social' => array(
 					'display' => 'big',
 					'link' => 'list',
-					'bunch' => cc('structure', array('key' => array('human', 'machine', 'group'), 'order()' => 'title'), 'site'),
+					'bunch' => cc('structure', array('key' => array('human', 'machine', 'group'), 'order()' => 'inherit(key)'), 'site'),
 				),
 			),
 		),

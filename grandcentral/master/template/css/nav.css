@@ -45,7 +45,7 @@
 	background:#26ae5f;
 	color:#fff;
 }
-#grandCentralNav>ul>li.on:after
+.navClosed #grandCentralNav>ul>li.on:after
 {
 	content:'';
 	position:absolute;
@@ -256,7 +256,7 @@
 	color:#ccc;
 	font-size:0.75em;
 	padding:5px;
-	border-bottom:1px solid #555;
+	border-bottom:1px solid #444;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
@@ -315,7 +315,7 @@
 	font-size:0.85em;
 	width:100%;
 	position:absolute;
-	top:45px;
+	top:40px;
 	z-index:1;
 }
 #grandCentralNav>ul .sub ul.hive li .descr

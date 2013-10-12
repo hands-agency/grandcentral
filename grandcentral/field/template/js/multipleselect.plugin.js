@@ -93,7 +93,11 @@
 			$element.find('.available ul.choices').ajx(param,
 			{
 			//	Callback
-				done:function() {plugin.resort()},
+				done:function()
+				{
+					field = $(this).closest('li[data-type]');
+					plugin.resort(field)
+				},
 			},{
 			//	Option
 				debug:false,
@@ -117,7 +121,11 @@
 			$element.find('.refine input[type="search"]').searchasyoutype(param, $element.find('ul.choices'),
 			{
 			//	Callback
-				done:function(){plugin.resort()},
+				done:function()
+				{
+					field = $(this).closest('li[data-type]');
+					plugin.resort(field)
+				},
 			});
 		}
 
@@ -136,7 +144,6 @@
 	//	Make the available choices draggable and connected to the sortable
 		plugin.resort = function(field)
 		{
-			field = $element;
 			field.find('.available ul li').draggable(
 			{
 				connectToSortable:field.find('.selected ol'),
