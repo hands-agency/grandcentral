@@ -57,9 +57,9 @@
 //	Local binding scripts & css files
 /********************************************************************************************/
 //	Script
-	$_APP->bind_script('js/page.js');
+	$_APP->bind_script('js/master.js');
 //	css
-	$_APP->bind_css('css/page.css');
+	$_APP->bind_css('css/master.css');
 	
 /********************************************************************************************/
 //	Apps
@@ -129,7 +129,7 @@
 //	Context
 /********************************************************************************************/
 //	Preview
-	$_APP->bind_snippet('context', 'snippet/preview');
+//	$_APP->bind_snippet('context', 'snippet/preview');
 //	Trashbin
 	$_APP->bind_snippet('content', 'snippet/trashbin/trashbin');
 	

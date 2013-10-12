@@ -13,3 +13,7 @@
 {
 	width:100% !important;
 }
+li[data-type="array"] .wrapper pre
+{
+	white-space:pre-wrap;
+}

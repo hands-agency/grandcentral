@@ -26,6 +26,6 @@
 	$_APP->bind_script('js/wysiwyg/advanced.js');
 	$_APP->bind_script('js/wysiwyg.js');
 	
-	$value = $_ITEM->get_value();
-	$attrs = $_ITEM->get_attr();
+	$value = $_APP->get_value();
+	$attrs = $_APP->get_attr();
 ?>

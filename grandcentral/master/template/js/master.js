@@ -37,7 +37,7 @@
 			param['_GET'] = _GET;
 		//	Pass DEBUG via post
 			if (debug === true) param['DEBUG'] = 'true';
-			
+
 		//	Call
 			$.ajax(
 			{
@@ -120,19 +120,23 @@
 	
 	
 /*********************************************************************************************
-/**	* Hide the content
+/**	* Open / close lanes
  	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
 	$('#grandCentralAdmin>button.close').on('click', function()
 	{
-		$('#grandCentralAdmin').hide('fast');
-		$('nav').show('fast');
+		$('#main').removeClass('adminOpened').addClass('adminClosed');
 	});
+	$('#grandCentralSite>.overlay').on('click', function()
+	{
+		$('#main').removeClass('adminOpened').addClass('adminClosed').removeClass('navOpened').addClass('navClosed');
+	});
+	
 	$('#grandCentralSite').on('click', function()
 	{
 		
 	});
-	$('#grandCentralSite').html('<iframe src="http://miranda.local"></iframe>');
+	$('#grandCentralSite').append('<iframe src="http://miranda.local"></iframe>');
 	
 /*********************************************************************************************
 /**	* Make the bubbles with the .warn class jump

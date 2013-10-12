@@ -44,7 +44,9 @@
 			</footer>
 		</div>
 	
-		<div id="grandCentralSite"></div>
+		<div id="grandCentralSite">
+			<div class="overlay"><span data-icon="&#xe013;"></span></div>
+		</div>
 	</div>
 	
 	<!-- ZONE:script -->

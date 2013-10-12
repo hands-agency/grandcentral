@@ -13,7 +13,7 @@
 			
 			<div class="icon small"><? if (isset($structure['icon'])): ?><i class="icon-<?=$structure['icon']?>"></i><? endif ?></div>
 		
-			<div class="title"><a href="<?=$item->edit()?>"><?=$item['title']?></a> <a href="<?=$item->link()?>" class="reach">➚</a></div>
+			<div class="title"><a href="<?=$item->edit()?>"><?=$item['title']?></a></div>
 		
 			<? if (isset($item['descr'])): ?><div class="descr"><?=$item['descr']->cut(350)?></div><? endif ?>
 		</div>

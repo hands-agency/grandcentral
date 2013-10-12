@@ -27,7 +27,7 @@
 /********************************************************************************************/
 //	Construction du premier niveau (la suite dans field.ajax)
 /********************************************************************************************/
-	$value = $_ITEM->get_value();
+	$value = $_APP->get_value();
 	$param = array(
 		'cssclass' => 'fieldEdit',
 		'label' => 'type : ',
@@ -37,7 +37,7 @@
 		'value' => $value['type'],
 		'required' => true
 	);
-	$field = new field_select($_ITEM->get_name().'[type]', $param);
+	$field = new field_select($_APP->get_name().'[type]', $param);
 	$label = $field->get_label();
 	$field->set_label('');
 	$selector = '<li data-type="'.$field->get_type().'"><div class="wrapper">'.$field.'</div></li>';
@@ -48,5 +48,5 @@
 		'value' => json_encode($value),
 		'required' => true
 	);
-	$inheritedValue = new field_hidden($_ITEM->get_name().'[inheritedValue]', $param);
+	$inheritedValue = new field_hidden($_APP->get_name().'[inheritedValue]', $param);
 ?>

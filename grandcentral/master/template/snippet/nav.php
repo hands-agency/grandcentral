@@ -32,19 +32,26 @@
 
 //	Build nav
 	$nav = array(
+	//	User
+		'me' => array(
+			'title' => $_SESSION['user']['key'],
+			'descr' => null,
+			'icon' => 'http://placehold.it/50x50',
+			'page' => 'list',
+		//	Subnav
+			'subnav' => '<input type="search" name="" placeholder="Search '.cc('site', current)['title'].' " />',
+		),
 	//	Environment
 		'env' => array(
-			'title' => false,
-			'descr' => false,
+			'title' => cc('site', current)['title'],
 			'icon' => '&#xe02f;',
-			'flag' => false,
 			'page' => 'list',
 		//	Subnav
 			'subnav' => array(
 				'structure' =>  array(
-					'display' => 'hive',
+					'display' => 'big',
 					'link' => 'list',
-					'bunch' => cc('structure', array('key' => array('structure', 'page', 'version', 'site')), $_SESSION['pref']['handled_env']),
+					'bunch' => cc('structure', array('key' => array('page', 'structure', 'version', 'site'), 'order()' => 'inherit(key)'), $_SESSION['pref']['handled_env']),
 				),
 				'support' =>  array(
 					'display' => 'hive',
@@ -53,32 +60,9 @@
 				),
 			),
 		),
-	//	User
-		'me' => array(
-			'title' => null,
-			'descr' => null,
-			'icon' => '&#xe007;',
-			'flag' => false,
-			'page' => 'list',
-		//	Subnav
-			'subnav' => array(),
-		),
-	//	Search
-		'search' => array(
-			'title' => null,
-			'descr' => null,
-			'icon' => '&#xe009;',
-			'flag' => null,
-			'page' => 'list',
-		//	Subnav
-			'subnav' => array(),
-		),
 	//	Items
 		'item' => array(
-			'title' => true,
-			'descr' => true,
 			'icon' => '&#xe01e;',
-			'flag' => false,
 			'page' => 'list',
 		//	Subnav
 			'subnav' => array(
@@ -101,37 +85,24 @@
 		),
 	//	Social
 		'social' => array(
-			'title' => true,
-			'descr' => true,
 			'icon' => '&#xe014;',
-			'flag' => false,
 			'page' => 'list',
 		//	Subnav
 			'subnav' => array(
 				'social' => array(
-					'display' => 'hive',
+					'display' => 'big',
 					'link' => 'list',
 					'bunch' => cc('structure', array('key' => array('human', 'machine', 'group'), 'order()' => 'title'), 'site'),
 				),
 			),
 		),
 	//	Apps
-	/*	'app' => array(
-			'title' => true,
-			'descr' => true,
-			'icon' => true,
-			'flag' => false,
+		'app' => array(
+			'icon' => '&#xe00e;',
 			'page' => 'edit',
 		//	Subnav
-			'subnav' => array(
-				'general' => array(
-					'display' => 'hive',
-					'link' => 'edit',
-					'bunch' => cc('app', array('order()' => 'title'), 'admin'),
-				),
-			),
+			'subnav' => array(),
 		),
-		*/
 	);
 
 /********************************************************************************************/

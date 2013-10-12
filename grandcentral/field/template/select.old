@@ -27,14 +27,14 @@
 /********************************************************************************************/
 //	The rel
 /********************************************************************************************/
-	$attrs = $_ITEM->get_attr();
+	$attrs = $_APP->get_attr();
 	
 //	Get the selected value
-	$selected = $_ITEM->get_value();
+	$selected = $_APP->get_value();
 	if (empty($selected)) $selected[] = array('title' => 'nodata');
 	
 //	Get the available values
-	$available = $_ITEM->prepare_values();
+	$available = $_APP->prepare_values();
 	
 /********************************************************************************************/
 //	Ajax
@@ -45,12 +45,12 @@
 		'required' => true,
 		'css_class' => 'values',
 	);
-	$values = new field_hidden($_ITEM->get_name().'[values]', $param);
+	$values = new field_hidden($_APP->get_name().'[values]', $param);
 //	Valuestypes
 	$param = array(
 		'value' => $attrs['valuestype'],
 		'required' => true,
 		'css_class' => 'valuestype',
 	);
-	$valuestype = new field_hidden($_ITEM->get_name().'[valuestype]', $param);
+	$valuestype = new field_hidden($_APP->get_name().'[valuestype]', $param);
 ?>

@@ -3,7 +3,7 @@
 	<span class="help"></span>
 </label>
 <div class="wrapper">
-	<?php if (isset($hackToTextarea)): ?>This array format is not currently supported for edition<pre><?= json_encode($_FIELD->get_value()) ?></pre><?php else : ?>
+	<?php if (isset($hackToTextarea)): ?>This array format has more than one level and is not currently supported for edition<pre><?= json_encode($_FIELD->get_value()) ?></pre><?php else : ?>
 	<? if ($_FIELD->get_descr() != null) : ?><div class="help"><?= $_FIELD->get_descr() ?></div><? endif ?>
 	<div class="field">
 		

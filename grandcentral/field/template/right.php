@@ -21,7 +21,7 @@
 /********************************************************************************************/
 //	GO
 /********************************************************************************************/
-	$attrs = $_ITEM->get_attr();
+	$attrs = $_APP->get_attr();
 	
 	$admin_structures = cc('structure', all, 'admin');
 	// print '<pre>admin : ';print_r($admin_structures->get_attr('title'));print'</pre>';

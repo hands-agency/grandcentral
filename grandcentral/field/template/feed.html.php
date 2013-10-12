@@ -11,7 +11,7 @@
 			<div class="icon"></div>
 			<div class="title"><?=$li['title']?></div>
 			<?if (isset($li['descr'])): ?><div class="descr"><?=$li['descr']?></div><? endif ?>
-			<input type="hidden" name="<?=$_ITEM->get_name()?>[]" value="<?=$li->get_nickname()?>" />
+			<input type="hidden" name="<?=$_APP->get_name()?>[]" value="<?=$li->get_nickname()?>" />
 		</li>
 		<? endforeach ?>
 	</ol>
@@ -35,7 +35,7 @@
 			<div class="icon"></div>
 			<div class="title"><?=$li['title']?></div>
 			<?if (isset($li['descr'])): ?><div class="descr"><?=$li['descr']?></div><? endif ?>
-			<input type="hidden" name="<?=$_ITEM->get_name()?>[]" value="<?=$li->get_nickname()?>" />
+			<input type="hidden" name="<?=$_APP->get_name()?>[]" value="<?=$li->get_nickname()?>" />
 		</li>
 		<? endforeach ?>
 	</ol>

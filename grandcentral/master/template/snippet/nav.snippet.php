@@ -1,40 +1,57 @@
 <button type="button" class="close"></button>
 <ul>
 	<? foreach ($level1 as $page): ?>
+	
 	<? $truc = (string)$page['key'];?>
 	<? $config = $nav[$truc] ?>
-	<? $level2 = $config['subnav'] ?>
-	<? $title = (is_string($config['title'])) ? $config['title'] : $page['title'] ?>
-	<? $descr = (is_string($config['descr'])) ? $config['descr'] : $page['descr'] ?>
+	<? $title = (isset($config['title'])) ? $config['title'] : $page['title'] ?>
+	<? $content = (isset($config['content'])) ? $config['content'] : null ?>
+	<? $level2Bunch = (isset($config['subnav']) && is_array($config['subnav'])) ? $config['subnav'] : null ?>
+	<? $level2Content = (isset($config['subnav']) && is_string($config['subnav'])) ? $config['subnav'] : null ?>
+	<?
+		if (isset($config['icon']))
+		{
+			$image = $icon = null;
+			if (filter_var(($config['icon']), FILTER_VALIDATE_URL)) $image = '<img src="'.$config['icon'].'" />';
+			else $icon = 'data-icon="'.$config['icon'].'"';
+		}
+	?>
 	
 	<li class="<?=$page['key']?>" title="<?=$page['title']?>">
-		<div class="title" data-icon="<?=$config['icon']?>"><a href="/admin<?=$page['url']?>"><?=$title?></a><? if ($config['flag'] === true) : ?> <a href="/admin/en" class="flag">fr</a><? endif ?></div>
+		<? if ($title): ?><div class="title" <?=$icon?>><?=$image?><span><?=$title?></span></div><? endif ?>
+		
+		<? if ($level2Bunch OR $level2Content): ?>
 		<div class="sub">
+			
+			<? if ($level2Content) echo $level2Content; ?>
 
-			<? foreach ($level2 as $key => $level2): ?>
+			<? if ($level2Bunch) : foreach ($level2Bunch as $key => $level2): ?>
+			
 			<? $bunch = $level2['bunch'] ?>
-
+			<? $h1 = (isset($key)) ? $key : null ?>
 			<? $link = $level2['link'] ?>
 			<? $display = $level2['display'] ?>
+			
 			<? if ($bunch->count()): ?>
 
-			<h1><?=$key;?></h1>
+			<? if (isset($h1)) : ?><h1><?=$h1;?></h1><? endif ?>
 			<ul class="<?=$key?> <?=$display?>">
 				<? foreach ($bunch as $subpage): ?>
 				<? if ($link == 'edit') $url = '/admin/edit?item='.$subpage->get_table().'&id='.$subpage['id'] ?>
 				<? if ($link == 'list') $url = '/admin/list?item='.$subpage['key'] ?>
 				<li>
 					<a href="<?=$url ?>">
-						<span class="icon"><? if (isset($subpage['icon'])): ?><i class="icon-<?=$subpage['icon']?>"></i><? endif ?></span>
+						<span class="icon" <? if (isset($subpage['icon'])): ?>data-icon="<?=$subpage['icon']?>"<? endif ?>></span>
 						<span class="title"><?=$subpage['title']?></span>
 						<span class="descr"><?=$subpage['descr']->cut(200)?></span>
 					</a>
 				</li>
 				<? endforeach ?>
 			</ul>	
-			<? endif ; endforeach ?>
+			<? endif ; endforeach ; endif; ?>
 		
 		</div>
+		<? endif ?>
 	</li>
 	<? endforeach ?>
 </ul>

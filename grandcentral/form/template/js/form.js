@@ -130,7 +130,7 @@ $(document).ready(function ()
 	$('section input[name$="[title]"]').live('input', function()
 	{
 		title = $(this).val();
-		maxlength = 40;
+		maxlength = 55;
 		change = $('h1 .item');
 		if (title && title.length<maxlength) change.html(title);
 		else if (title) change.html(title.substr(0, maxlength)+'...');

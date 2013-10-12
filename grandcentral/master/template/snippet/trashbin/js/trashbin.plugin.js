@@ -44,7 +44,8 @@
 				//	Our item's nickname
 					item = $(ui.draggable).data('item');
 				//	Go to trash
-					$element.ajx({
+					$element.ajx(
+					{
 						app: 'page',
 						template: 'status',
 						type: 'routine',

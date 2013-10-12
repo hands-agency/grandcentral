@@ -6,6 +6,7 @@
 	width:40px;
 	height:40px;
 	left:50%;
+	margin-left:-20px;
 	position:fixed;
 	padding:20px;
 	z-index:3;
@@ -18,10 +19,8 @@
 	color:#fff;
 	text-align:center;
 	opacity:0.8;
-	-webkit-transition: all .15s ease-out; 
-	-moz-transition: all .15s ease-out; 
-	-o-transition: all .15s ease-out; 
-	transition: all .15s ease-out;
+	-webkit-transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	transition:         all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275); 
     -webkit-box-shadow: 0 4px 5px rgba(0, 0, 0, .15);
     -moz-box-shadow: 0 4px 5px rgba(0, 0, 0, .15);
     -o-box-shadow: 0 4px 5px rgba(0, 0, 0, .15);

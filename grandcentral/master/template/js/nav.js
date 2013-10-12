@@ -15,7 +15,7 @@
 				$nav.on('click', '>ul>li', function()
 				{
 				//	Open the drawer
-					$('#main').switchClass('navClosed', 'navOpened');
+					$('#main').removeClass('navClosed').addClass('navOpened');
 					
 				//	Some vars
 					subnav = $(this).find('.sub');
@@ -61,7 +61,7 @@
 					{
 						
 					//	Close the drawer
-						$('#main').switchClass('navOpened', 'navClosed');
+						$('#main').removeClass('navOpened').addClass('navClosed');
 						
 						$nav.find('li').removeClass('on');
 					//	Hide all sub navs
@@ -82,7 +82,7 @@
 				$('#globalsearch').searchasyoutype(
 				{
 					app:'page',
-					template:'inc/cc-search',
+					template:'snippet/cc-search',
 				}, '#globalsearch-container');
 			};
 		})( jQuery );

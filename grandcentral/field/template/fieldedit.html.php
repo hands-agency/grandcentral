@@ -1,4 +1,4 @@
-<div class="fieldParamContainer" data-form="<?= $_ITEM->get_name(); ?>">
+<div class="fieldParamContainer" data-form="<?= $_APP->get_name(); ?>">
 	<ol>
 		<li><?= $selector; ?></li>
 	</ol>

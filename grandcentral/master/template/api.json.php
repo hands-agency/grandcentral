@@ -18,21 +18,24 @@
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
  */
+//	So, GET or POST ?
+	if ($_GET) $_POST = $_GET;
+	
 /********************************************************************************************/
 //	DEBUG
 /********************************************************************************************/
-	if (isset($_GET['DEBUG']))
+	if (isset($_POST['DEBUG']))
 	{
-		unset($_GET['DEBUG']);
-		sentinel::debug('AJAX debug ('.__FILE__.' line '.__LINE__.')', $_GET);
+		unset($_POST['DEBUG']);
+		sentinel::debug('AJAX debug ('.__FILE__.' line '.__LINE__.')', $_POST);
 	}
 
 /********************************************************************************************/
 //	This API has the right content-type. Now Lets find the content
 /********************************************************************************************/
 //	Some vars
-	$app = $_GET['app'];
-	$key = $_GET['template'];
+	$app = $_POST['app'];
+	$key = $_POST['template'];
 		
 //	Call the right app
 	echo new app($app, $key);

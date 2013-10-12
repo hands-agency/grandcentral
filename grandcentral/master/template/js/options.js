@@ -50,9 +50,9 @@ jQuery(document).ready(function($)
 			//	Load the options drop
 				$drop.ajx(
 				{
-					app:'page',
-					template:'inc/options.unlocked',
-					sectiontype:$('#content section:visible').attr('class'),
+					app:'master',
+					template:'snippet/options.unlocked',
+					section:$('#content section:visible').data('template'),
 				},{
 					done:function()
 					{
@@ -89,7 +89,7 @@ jQuery(document).ready(function($)
 		{
 			app:'page',
 			theme:'default',
-			template:'inc/options.filters',
+			template:'snippet/options.filters',
 			sectiontype:$('#content section:visible').attr('class'),
 		},{
 			done:function()
