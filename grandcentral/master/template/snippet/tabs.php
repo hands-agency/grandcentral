@@ -28,7 +28,7 @@
 //	Some vars
 /********************************************************************************************/
 	$page = cc('page', current);
-	if (isset($_GET['item'])) $handled_item = $_GET['item'];
+	$handled_item = (isset($_GET['item'])) ? $_GET['item'] : null;
 
 /********************************************************************************************/
 //	Fetch the original sections

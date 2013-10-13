@@ -20,7 +20,7 @@
 	?>
 	
 	
-	<li class="<?=$page['key']?> <?=$on?>" title="<?=$page['title']?>">
+	<li class="<?=$page['key']?> <?=$on?>">
 		<? if ($title): ?><div class="title" <?=$icon?>><?=$image?><span><?=$title?></span></div><? endif ?>
 		
 		<? if ($level2Bunch OR $level2Content): ?>

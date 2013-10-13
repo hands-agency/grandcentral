@@ -27,7 +27,7 @@
 				<!-- ZONE:content|left -->
 				<? foreach($_PAGE['section']->unfold() as $section) : ?>
 				<? $app = $section['app'] ?>
-				<? $greenbutton = $section['greenbutton']->unfold()->json() ?>
+				<? $greenbutton = ($section['greenbutton']) ? $section['greenbutton']->unfold()->json() : null ?>
 				<section id="section_<?= $section['key'] ?>" data-app="<?= $app['key'] ?>" data-template="<?= $app['template'] ?>" data-greenbutton='<?= $greenbutton ?>'></section>
 				<? endforeach; ?>
 			</div>

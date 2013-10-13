@@ -16,9 +16,8 @@
 .instack section[data-template="list/list"]>ol>li>div:not(.icon),
 .instack section[data-template="list/list"]>ol>li>ul
 {
-	margin-left:30px;
+	margin-left:50px;
 	margin-bottom:5px;
-	border:1px dashed rgba(0, 0, 0, .2);
 }
 .instack section[data-template="list/list"]>ol>li>.padding
 {
@@ -35,6 +34,13 @@
 	width:100%;
 	margin:0 !important;
 }
+.instack section[data-template="list/list"]>ol>li>.icon
+{
+	border:1px dashed rgba(0, 0, 0, .2);
+	height:40px;
+	width:40px;
+}
+
 /* Title */
 .instack section[data-template="list/list"]>ol>li>.title
 {
