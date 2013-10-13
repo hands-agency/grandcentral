@@ -65,6 +65,25 @@ class attrRel extends _attrs
 		return $this;
 	}
 /**
+ * Delete a rel
+ *
+ * @param	string	la variable
+ * @return	string	une string
+ * @access	public
+ */
+	public function delete($rel)
+	{
+	//	Check if the rel exists
+		$i = array_search($rel, $this->data);
+	//	Delete it
+		if ($i !== false)
+		{
+			unset($this->data[$i]);
+			array_keys($this->data);
+		}
+		return $this;
+	}
+/**
  * Set attribute
  *
  * @param	string	la variable

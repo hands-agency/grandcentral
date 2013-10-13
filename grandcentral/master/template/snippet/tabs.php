@@ -33,14 +33,14 @@
 /********************************************************************************************/
 //	Fetch the original sections
 /********************************************************************************************/
-	$sections = $page['section'];
+	$sections = $page['section']->unfold();
 	
 /********************************************************************************************/
 //	Remove sections on the fly
 /********************************************************************************************/
 //	List
 	$onlyfor['list'] = array(
-		'treemap' => array('page'),
+		'tree' => array('page'),
 	);
 	$stripfrom['list'] = array(
 		'live' => array('page'),
@@ -59,19 +59,19 @@
 	{
 		if (
 		//	Some sections are only for some pages
-			(isset($onlyfor[$page['key']][$section['key']]) && !in_array($handled_item, $onlyfor[$page['key']][$section['key']])) OR
+			(isset($onlyfor[(string)$page['key']][(string)$section['key']]) && !in_array($handled_item, $onlyfor[(string)$page['key']][(string)$section['key']])) OR
 		//	Some sections must be striped from some pages
-			(isset($stripfrom[$page['key']][$section['key']]) && in_array($handled_item, $stripfrom[$page['key']][$section['key']]))
+			(isset($stripfrom[(string)$page['key']][(string)$section['key']]) && in_array($handled_item, $stripfrom[(string)$page['key']][(string)$section['key']]))
 		) {
-			$page->delete_rel($section->get_nickname());
+		//	Delete relation
+			$i = array_search($section->get_nickname(), $page['section']->get());
+			unset($sections[$i]);
 		}
 	}
 
 /********************************************************************************************/
 //	Fetch the altered sections
-/********************************************************************************************/
-	$sections = $page['section']->unfold();
-	
+/********************************************************************************************/	
 //	Find the default section
 	if ($defaults = $page['sectiondefault'])
 	{

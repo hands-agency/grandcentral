@@ -30,12 +30,23 @@
 
 			<? if ($level2Bunch) : foreach ($level2Bunch as $key => $level2): ?>
 			
-			<? $bunch = $level2['bunch'] ?>
+			<?
+				if (isset($level2['bunch']))
+				{
+					$bunch = $level2['bunch'];
+					$count = $bunch->count();
+				}
+				if (isset($level2['array']))
+				{
+					$bunch = $level2['array'];
+					$count = count($bunch);
+				}
+			?>
 			<? $h1 = (isset($key)) ? $key : null ?>
 			<? $link = $level2['link'] ?>
 			<? $display = $level2['display'] ?>
 			
-			<? if ($bunch->count()): ?>
+			<? if ($count > 0): ?>
 
 			<? if (isset($h1) && count($level2Bunch) > 1) : ?><h1><?=$h1;?></h1><? endif ?>
 			<ul class="<?=$key?> <?=$display?>">

@@ -19,6 +19,10 @@
 {
 	color:#666;
 }
+#eventstream ul li span
+{
+	color:#ccc;
+}
 #eventstream ul li:hover
 {
 	opacity:1;

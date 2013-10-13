@@ -81,8 +81,10 @@
 					{
 					//	Hide eventual Nodata
 						plugin.nodata($(this).data().sortable.currentItem);
+					//	Find the name
+						name = $(this).closest('[data-type]').find('.available').data('name');
 					//	Add the hidden input which contains the value
-						input = '<input type="hidden" name="'+param["name"]+'[]" value="'+value+'" />';
+						input = '<input type="hidden" name="'+name+'[]" value="'+value+'" />';
 						li.append(input);
 						received = true;
 					}

@@ -177,6 +177,7 @@
 #grandCentralNav>ul .sub h1
 {
 	font-family:"Raleway-Thin";
+	text-transform:uppercase;
 	clear:both;
 	color:#ccc;
 	text-align:center;
@@ -223,10 +224,6 @@
 	padding-top:15px;
 	display:block;
 }
-#grandCentralNav>ul .sub ul li a:hover
-{
-	background:#3eb4d6 !important;
-}
 
 /* In big */
 #grandCentralNav>ul .sub ul.big li a
@@ -234,6 +231,10 @@
 	display:block;
 	padding:10px;
 	border-bottom:1px solid #555;
+}
+#grandCentralNav>ul .sub ul.big li a:hover
+{
+	color:#3eb4d6 !important;
 }
 #grandCentralNav>ul .sub ul.big li .title
 {
@@ -283,6 +284,10 @@
 	background:#eee;
 	position: relative;
 	color:#333;
+}
+#grandCentralNav>ul .sub ul.hive li a:hover
+{
+	background:#3eb4d6 !important;
 }
 #grandCentralNav>ul .sub ul.hive li:nth-child(even) a
 {

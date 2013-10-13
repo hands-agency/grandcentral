@@ -54,9 +54,9 @@
 					'bunch' => cc('structure', array('key' => array('page', 'structure', 'version', 'site'), 'order()' => 'inherit(key)'), $_SESSION['pref']['handled_env']),
 				),
 				'support' =>  array(
-					'display' => 'hive',
+					'display' => 'big',
 					'link' => 'list',
-					'bunch' => cc('page', 'env', 'admin')['child']->unfold(),
+					'bunch' => cc('page', array('key' => array('doc')), 'admin'),
 				),
 			),
 		),
@@ -101,10 +101,15 @@
 			'icon' => '&#xe00e;',
 			'page' => 'edit',
 		//	Subnav
-			'subnav' => array(),
+			'subnav' => array(
+				'apps' => array(
+					'display' => 'hive',
+					'link' => 'list',
+				//	'array' => registry::get(registry::app_index),
+				),
+			),
 		),
 	);
-//	$app = registry::get(registry::app_index);
 
 /********************************************************************************************/
 //	Get the list of level1 pages

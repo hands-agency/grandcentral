@@ -133,7 +133,10 @@
 	{
 		
 	});
-	$('#grandCentralSite').append('<iframe src="'+SITE_URL+'"></iframe>');
+	(function($)
+	{
+		$('#grandCentralSite').append('<iframe src="'+SITE_URL+'"></iframe>');
+	})( jQuery );
 	
 /*********************************************************************************************
 /**	* Make the bubbles with the .warn class jump

@@ -100,7 +100,7 @@ button.delete
 	height:15px;
 	line-height:15px;
 	width:15px;
-	font-size:12px;
+	font-size:14px;
 	padding:0 !important;
 	background:transparent;
 	border:none;
@@ -628,7 +628,6 @@ progress::-webkit-progress-value {
 {
 	text-align:center;
 	color:#fff;
-	background-color:#ccc;
 	/*
 	text-shadow: 0 1px 0 rgba(0,0,0,0.1);
 	-webkit-box-shadow: 0px 1px 1px rgba(0,0,0,0.2);
@@ -1071,7 +1070,7 @@ footer
 #content section h5
 {
 	font-family: "Raleway-Thin";
-	margin:0 0 5px 0;
+	margin:0 0 5px;
 	font-weight:normal;
 	clear:left;
 }
@@ -1087,9 +1086,9 @@ footer
 #content section>h2
 {
 	margin:0px 0 10px 0;
-	font-size:1.7em;
-	border-bottom:1px solid #e2e4e6;
-	padding:0 0 5px 0;
+	font-size:2em;
+	border-bottom:1px solid #eee;
+	padding:0 0 5px 5px;
 }
 #content section>h2 span
 {
@@ -1235,80 +1234,10 @@ footer
 	color:#aaaaaa;
 }
 
-/* Actions */
-section>*>li ul.action
-{
-	color:#ddd;
-	border-top:1px solid #eee;
-	padding:10px;
-	background:#F9F9F9;
-}
-section>*>li ul.action li
-{
-	display:inline;
-}
-section>*>li ul.action li:before
-{
-	margin-right:3px;
-}
-section>*>li ul.action li:after
-{
-	content:'•';
-	margin-left:4px;
-}
-section>*>li ul.action li:last-child:after
-{
-	content:'';
-}
-section>*>li ul.action li a:not(:hover)
-{
-	color:#bbb;
-}
-
 /* Comments */
 section>ol>li ul.comments
 {
 	display:none;
-}
-
-/* Show all sections */
-#showall
-{
-	clear:both;
-	display:block;
-	text-align:center;
-	text-transform:uppercase;
-	font-size:9px;
-	color:#fff;
-	background:#ccc;
-	-moz-border-radius:20px;
-	-webkit-border-radius:20px;
-	border-radius:20px;
-	width:40px;
-	height:20px;
-	line-height:10px;
-	padding:10px 0;
-	margin:0 auto 30px auto;
-}
-
-/********************************************************************************************/
-/*////////////////////////////////////////////////////////////////////////////////////////////
-/* Tools
-/////////////////////////////////////////////////////////////////////////////////////////////
-/********************************************************************************************/
-#tool
-{
-	display:none;
-}
-#toolcontent
-{
-	font-size:0.8em;
-}
-#toolcontent ul li
-{
-}
-#toolcontent ul li.on
-{
 }
 
 /********************************************************************************************/

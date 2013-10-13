@@ -21,10 +21,10 @@
 /********************************************************************************************/
 //	Bind
 /********************************************************************************************/	
-	$_APP->bind_css('css/tree.css');
-	$_APP->bind_script('js/nestedSortable/jquery.mjs.nestedSortable.js');
+	$_APP->bind_css('tree/css/tree.css');
+	$_APP->bind_script('tree/js/nestedSortable/jquery.mjs.nestedSortable.js');
 	// $_APP->bind_script('js/nestedSortable/jquery.ui.touch-punch.js');
-	$_APP->bind_script('js/nestedSortable/treemap.js');
+	$_APP->bind_script('tree/js/nestedSortable/tree.js');
 
 /********************************************************************************************/
 //	Make the tree
@@ -49,14 +49,11 @@
 		
 		private function get_pages()
 		{
-
-		//	Get the list of those items
-			$p = array('fitsintree' => true);
-			$fitsinthetree = cc('structure', $p);
 		//	This will be the bunch of items that fit in the site tree
-			$this->pages = new bunch(null, null, $_SESSION['pref']['handled_env']);
-			$p = array('system' => false);
-			foreach ($fitsinthetree as $item) $this->pages->get($item['key'], $p);
+			$this->pages = cc('page', array
+			(
+				'system' => false,
+			), $_SESSION['pref']['handled_env']);
 		
 		//	DEBUG: our pages
 		//	sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $this->pages);

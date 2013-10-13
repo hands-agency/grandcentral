@@ -21,8 +21,8 @@
 /********************************************************************************************/
 //	Bind
 /********************************************************************************************/
-	$_APP->bind_script('js/notes.js');
-	$_APP->bind_css('css/notes.css');
+	$_APP->bind_script('notes/js/notes.js');
+	$_APP->bind_css('notes/css/notes.css');
 
 /********************************************************************************************/
 //	Some vars
@@ -52,14 +52,14 @@
 /********************************************************************************************/
 	if (isset($item) && isset($id))
 	{
-		$p = array(
+		$notes = cc('note', array
+		(
 			'item' => $item,
 			'itemid' => $id,
 			'status' => 'live',
 			'order()' => 'created DESC',
 			'limit()' => $displayNotes,
-		);
-		$notes = cc('note', $p, $_SESSION['pref']['handled_env']);
+		), $_SESSION['pref']['handled_env']);
 		
 	//	Reverse order
 		$notes->data = array_reverse($notes->data);
@@ -105,11 +105,11 @@
 /********************************************************************************************/
 //	Event Source
 /********************************************************************************************/
-		$arg = array(
+		$EventSource = 	cc('page', 'api-eventstream')->link(array
+		(
 			'app' => 'section',
 			'theme' => 'notes',
 			'template' => 'notes',
-		);
-		$EventSource = 	cc('page', 'api-eventstream')->link($arg);
+		));
 	}
 ?>

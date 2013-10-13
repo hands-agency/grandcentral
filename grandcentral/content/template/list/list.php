@@ -43,13 +43,11 @@
 //	Fetch the structure
 /********************************************************************************************/
 	$structure = cc('structure', $handled_item, $handled_env);
-	
+
 /********************************************************************************************/
 //	Fetch the bunch of items
 /********************************************************************************************/
-	$param = array(
-		'status' => $param['status'],
-	);
+	$param['order()'] = 'title';
 //	Order
 	if (isset($_POST['filter'])) $param[$_POST['filter'].'()'] = $_POST['value'];
 //	Refine ?
