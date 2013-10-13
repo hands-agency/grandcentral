@@ -43,28 +43,39 @@
 			$this->get_pages();
 		//	build the tree
 			$this->tree[0] = $this->prepare_tree($this->start, 0);
-		//	add pages with no relation
-		//	$this->add_norel();
 		}
 		
 		private function get_pages()
 		{
+			$q = 'SELECT id FROM `page` WHERE `key` = "home" OR `system` = false';
+			$db = database::connect($_SESSION['pref']['handled_env']);
+			$r = $db->query($q);
+			foreach ($r['data'] as $data)
+			{
+				$ids[] = $data['id'];
+			}
 		//	This will be the bunch of items that fit in the site tree
 			$this->pages = cc('page', array
 			(
-				'system' => false,
+				'id' => $ids,
 			), $_SESSION['pref']['handled_env']);
-		
 		//	DEBUG: our pages
-		//	sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $this->pages);
-
-		//	Find the home page
-			$this->pages->set_index('key');
-			$this->start = $this->pages[$this->start]->get_nickname();
-		//	set_index
-			$this->pages->set_index('id');
-		//	create the reference bunch
-			$this->ref = clone $this->pages;
+			// sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $this->pages);
+			
+			if ($this->pages->count > 0)
+			{
+			//	Find the home page
+				$this->pages->set_index('key');
+				$this->start = $this->pages[$this->start]->get_nickname();
+			//	set_index
+				$this->pages->set_index('id');
+			//	create the reference bunch
+				$this->ref = clone $this->pages;
+			}
+			else
+			{
+				trigger_error('No page. No tree. What else ?', E_USER_NOTICE);
+			}
 		}
 		
 		private function prepare_tree($start, $key)
@@ -75,16 +86,17 @@
 					'id' => $start,
 					'key' => $key
 				);
-				if (isset($this->pages[$start]->rel['child']))
+				if (!$this->pages[$start]['child']->is_empty())
 				{
 					$base = ($key != 0) ? $key.'.' : null;
-					foreach ($this->pages[$start]->rel['child'] as $child)
+					$position = 1;
+					foreach ($this->pages[$start]['child'] as $ref)
 					{
-						$ref = $child->data['rel'].'_'.$child->data['relid'];
-						if (isset($this->pages->data[$ref]))
+						if (isset($this->pages[$ref]))
 						{
-							$tmp['children'][] = $this->prepare_tree($ref, $base.$child->data['position']);
+							$tmp['children'][] = $this->prepare_tree($ref, $base.$position);
 						}
+						$position++;
 					}
 				}
 				$tree = $tmp;

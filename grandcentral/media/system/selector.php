@@ -44,6 +44,10 @@
 			case 'video/x-flv':
 				$media = new video($media->get_root());
 				break;
+		//	HACK rapide. Il faut trouver une meilleure manière de gérer les fichiers qui n'existent pas
+			default:
+				$media = new image($media->get_root());
+				break;
 		}
 		
 		return $media;

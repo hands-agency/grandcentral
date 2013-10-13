@@ -129,7 +129,7 @@
 //	Context
 /********************************************************************************************/
 //	Preview
-//	$_APP->bind_snippet('context', 'snippet/preview');
+	$_APP->bind_snippet('context', 'snippet/preview');
 //	Trashbin
 	$_APP->bind_snippet('content', 'snippet/trashbin/trashbin');
 	

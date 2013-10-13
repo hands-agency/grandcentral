@@ -7,7 +7,7 @@
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
  */
-class attrRel extends _attrs
+class attrRel extends _attrs implements Iterator
 {
 	const table = '_rel';
 	protected $env;
@@ -173,6 +173,27 @@ class attrRel extends _attrs
 		);
 	//	Return
 		return $params;
+	}
+//	Iterator
+	function rewind()
+	{
+		reset($this->data);
+	}
+	function current()
+	{
+		return current($this->data);
+	}
+	function key()
+	{
+		return key($this->data);
+	}
+	function next()
+	{
+		next($this->data);
+	}
+	function valid()
+	{
+	    return key($this->data) !== null;
 	}
 }
 ?>
