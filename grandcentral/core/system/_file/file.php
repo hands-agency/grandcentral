@@ -331,5 +331,16 @@ class file
 		}
 		return $this->mimeSubtype;
 	}
+	
+/**
+ * Display a file
+ *
+ * @return	string	le nom du fichier
+ * @access	private
+ */
+	public function __tostring()
+	{
+		return '<a href="'.$this->get_url().'">'.$this->get_key().'</a>';
+	}
 }
 ?>
