@@ -1,7 +1,7 @@
-section.timeline ul
+section[data-template="timeline/timeline"] ul
 {
 }
-section.timeline>ol>li:not(.divider)
+section[data-template="timeline/timeline"]>ol>li:not(.divider)
 {
 	font-size: 12px;
 	position:relative;
@@ -18,17 +18,17 @@ section.timeline>ol>li:not(.divider)
 	float:left;
 */
 }
-section.timeline>ol>li>.padding
+section[data-template="timeline/timeline"]>ol>li>.padding
 {
 	padding:10px;
 }
 
 /* Divider */
-section.timeline ol>li.divider
+section[data-template="timeline/timeline"] ol>li.divider
 {
 	text-align:center;
 }
-section.timeline ol>li.divider h2
+section[data-template="timeline/timeline"] ol>li.divider h2
 {
 	background:#fff;
 	padding:0 10px;
@@ -40,12 +40,12 @@ section.timeline ol>li.divider h2
 }
 
 /* Fields */
-section.timeline>ol>li>.padding>*:not(.icon):not(h2)
+section[data-template="timeline/timeline"]>ol>li>.padding>*:not(.icon):not(h2)
 {
 	margin-left:57px;
 	margin-bottom:5px;
 }
-section.timeline>ol>li>.padding>.icon
+section[data-template="timeline/timeline"]>ol>li>.padding>.icon
 {
 	float:left;
 	width:40px;
@@ -57,21 +57,25 @@ section.timeline>ol>li>.padding>.icon
 	position:relative;
 	z-index:1;
 }
-section.timeline>ol>li>.padding>.title
+section[data-template="timeline/timeline"]>ol>li>.padding>.title
 {
 	font-size:14px;
 	color:#333;
 }
-section.timeline>ol>li>.padding>.title .user
+section[data-template="timeline/timeline"]>ol>li>.padding>.title .user
 {
 	font-weight:bold;
 }
-section.timeline>ol>li>.padding>.thumbnails
+section[data-template="timeline/timeline"]>ol>li>.padding>.thumbnails
 {
 	overflow:auto;
 }
-section.timeline>ol>li>.padding>.thumbnails li
+section[data-template="timeline/timeline"]>ol>li>.padding>.thumbnails li
 {
 	float:left;
 	margin:0 10px 10px 0;
+}
+section[data-template="timeline/timeline"]>ol>li>.action
+{
+	display:none;
 }

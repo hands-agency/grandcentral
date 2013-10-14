@@ -32,15 +32,6 @@
 
 //	Build nav
 	$nav = array(
-	//	User
-		'me' => array(
-			'title' => $_SESSION['user']['key'],
-			'descr' => null,
-			'icon' => 'http://placehold.it/50x50',
-			'page' => 'list',
-		//	Subnav
-			'subnav' => '<input type="search" name="" placeholder="Search '.cc('site', current)['title'].' " />',
-		),
 	//	Environment
 		'env' => array(
 			'title' => cc('site', current)['title'],
@@ -55,7 +46,7 @@
 				),
 				'support' =>  array(
 					'display' => 'big',
-					'link' => 'list',
+					'link' => 'page',
 					'bunch' => cc('page', array('key' => array('doc')), 'admin'),
 				),
 			),

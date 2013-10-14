@@ -1,5 +1,9 @@
 <button type="button" class="close"></button>
 <ul>
+	<li class="me">
+		<div class="title"><?=media($_SESSION['user']['profilepic'][0])?><span>Prénom</span></div>
+		<div class="sub"></div>
+	</li>
 	<? foreach ($level1 as $page): ?>
 	
 	<? $truc = (string)$page['key'];?>
@@ -9,19 +13,12 @@
 	<? $level2Bunch = (isset($config['subnav']) && is_array($config['subnav'])) ? $config['subnav'] : null ?>
 	<? $level2Content = (isset($config['subnav']) && is_string($config['subnav'])) ? $config['subnav'] : null ?>
 	<?
-		if (isset($config['icon']))
-		{
-			$image = $icon = null;
-			if (filter_var(($config['icon']), FILTER_VALIDATE_URL)) $image = '<img src="'.$config['icon'].'" />';
-			else $icon = 'data-icon="'.$config['icon'].'"';
-		}
+		$icon = (isset($config['icon'])) ? $config['icon'] : null;
 	//	On / off ?
 		$on = null;
 	?>
-	
-	
-	<li class="<?=$page['key']?> <?=$on?>" title="<?=$page['title']?>">
-		<? if ($title): ?><div class="title" <?=$icon?>><?=$image?><span><?=$title?></span></div><? endif ?>
+	<li class="<?=$page['key']?> <?=$on?>">
+		<? if ($title): ?><div class="title" data-icon="<?=$icon?>"><span><?=$title?></span></div><? endif ?>
 		
 		<? if ($level2Bunch OR $level2Content): ?>
 		<div class="sub">
@@ -48,16 +45,24 @@
 			
 			<? if ($count > 0): ?>
 
-			<? if (isset($h1) && count($level2Bunch) > 1) : ?><h1><?=$h1;?></h1><? endif ?>
+			<? if (isset($h1) && count($level2Bunch) > 1) : ?>			
+			<h1><?= cst('NAV_SUB_H1_'.$h1, $h1) ?></h1>
+			<? endif ?>
 			<ul class="<?=$key?> <?=$display?>">
 				<? foreach ($bunch as $subpage): ?>
+				<?
+				//	Title & descr
+					$title = cst('ITEM_'.$subpage['key'].'_TITLE', $subpage['title']);
+					$descr = cst('ITEM_'.$subpage['key'].'_DESCR', $subpage['descr']);
+				?>
 				<? if ($link == 'edit') $url = '/admin/edit?item='.$subpage->get_table().'&id='.$subpage['id'] ?>
 				<? if ($link == 'list') $url = '/admin/list?item='.$subpage['key'] ?>
+				<? if ($link == 'page') $url = $subpage->link() ?>
 				<li>
 					<a href="<?=$url ?>">
 						<span class="icon" <? if (isset($subpage['icon'])): ?>data-icon="<?=$subpage['icon']?>"<? endif ?>></span>
-						<span class="title"><?=$subpage['title']?></span>
-						<span class="descr"><?=$subpage['descr']->cut(200)?></span>
+						<span class="title"><?=$title?></span>
+						<span class="descr"><?=$descr->cut(200)?></span>
 					</a>
 				</li>
 				<? endforeach ?>

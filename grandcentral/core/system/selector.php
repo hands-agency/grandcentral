@@ -68,9 +68,8 @@
 	{
 		return cc($table, $params, $env);
 	}
-	
 /**
- * Attr factory
+ * Constant handling
  *
  * @param	string	table
  * @param	mixed	parameter or array of parameters
@@ -78,10 +77,10 @@
  * @return	mixed	an item or a bunch
  * @access	public
  */
-	// function attr($type, $value = null, $params = null)
-	// {
-	// 	$class = 'attr'.ucfirst($type);
-	// 	$attr = new $class($value, $params);
-	// 	return $attr;
-	// }
+	function cst($const, $label)
+	{
+		$const = strtoupper($const);
+		$return = (defined($const)) ? constant($const) : $label;
+		return $return;
+	}
 ?>

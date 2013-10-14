@@ -41,14 +41,14 @@ section[data-template="tree/tree"] ol:before
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
-	width:3px;
+	width:1px;
 	background:#eee;
-	border-bottom:26px solid #fff;
+	border-bottom:1px solid #fff;
 }
 section[data-template="tree/tree"] li ol li *:first-child:before
 {
 	content:'';
-	border-top:4px solid #eee;
+	border-top:1px solid #eee;
 	width:30px;
 	height:50px;
 	position:absolute;
@@ -92,7 +92,6 @@ section[data-template="tree/tree"] li * .url
 {
 	font-size:1em;
 	color:#ccc;
-	font-family: "proximanovalight";
 }
 
 /* Action */
@@ -167,10 +166,16 @@ section[data-template="tree/tree"] li .page .icon
 	border-radius: 40px;
 	background:#fff;
 	color:#666;
-	font-family: "proximanovalight";
+	font-family: "Raleway-Thin";
 	font-size:20px;
 	line-height:50px;
-	border:1px solid #ccc;
+	border:1px dashed rgba(0, 0, 0, .2);
+	font-feature-settings: 'lnum';
+/* vendor-prefixes */
+-moz-font-feature-settings: 'lnum=1';
+-ms-font-feature-settings: 'lnum';
+-webkit-font-feature-settings: 'lnum';
+-o-font-feature-settings: 'lnum';
 }
 section[data-template="tree/tree"] li .page .title
 {

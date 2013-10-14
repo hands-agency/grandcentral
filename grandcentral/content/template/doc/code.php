@@ -21,15 +21,12 @@
 /********************************************************************************************/
 //	Bind
 /********************************************************************************************/
-	$_APP->bind_css('css/doc.css');
+	$_APP->bind_css('doc/css/doc.css');
 
 /********************************************************************************************/
 //	Get the app list
 /********************************************************************************************/
-	$param = array();
-//	Refine ?
-	if (isset($_POST['q'])) $param['title'] = '%'.$_POST['q'].'%';
-	$apps = cc('app', $param);
+	$apps = registry::get(registry::app_index);
 	
 /********************************************************************************************/
 //	Loop throught the apps and build the doc
@@ -40,7 +37,7 @@
 	foreach($apps as $app)
 	{
 	//	Get the ini file
-		$ini = $app->ini();
+		$ini = $app->get_ini();
 		
 	//	General intel
 		$html[$i] = array(
@@ -52,9 +49,9 @@
 		$files = array('class', 'lib', 'routine');
 		foreach($files as $file)
 		{
-			if (isset($ini['php'][$file]))
+			if (isset($ini['system'][$file]))
 			{
-				foreach($ini['php'][$file] as $name)
+				foreach($ini['system'][$file] as $name)
 				{
 					$name = strtolower(basename($name, '.php'));
 					$html[$i][$file][$name] = array();

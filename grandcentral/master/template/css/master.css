@@ -222,6 +222,14 @@ a:visited
 	font-weight:normal;
 	font-style:normal;
 }
+/* Raleway Extra bold */
+@font-face
+{
+	font-family:'Raleway-SemiBold';
+	src:url('../font/Raleway/Raleway-SemiBold.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
 
 /* Icons */
 @font-face

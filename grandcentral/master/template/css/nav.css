@@ -26,12 +26,8 @@
 #grandCentralNav>ul>li
 {
 	padding:15px;
-	border-bottom:1px solid #333;
 	cursor:pointer;
-	-moz-box-sizing:border-box;
-	-webkit-box-sizing:border-box;
-	box-sizing:border-box;
-	width:100%;
+	border-bottom:1px solid #333;
 }
 .navOpened #grandCentralNav>ul>li>div
 {
@@ -91,6 +87,13 @@
 	padding-left:10px;
 	position:relative;
 	top:-4px;
+}
+#grandCentralNav>ul>li>.title img
+{
+	height:100%;
+	float:left;
+	display:block;
+	border-radius:100px;
 }
 .navOpened #grandCentralNav>ul>li>.title span
 {
@@ -169,20 +172,24 @@
 	right:0;
 	padding:15px 30px;
 	margin:0;
-	width:60% !important;
+	width:70% !important;
 	background:#222;
 	overflow:auto;
 	z-index:2;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
 }
 #grandCentralNav>ul .sub h1
 {
-	font-family:"Raleway-Thin";
+	font-family:"Raleway-SemiBold";
 	text-transform:uppercase;
 	clear:both;
-	color:#ccc;
+	color:#666;
 	text-align:center;
 	margin:10px;
 	padding:0 0 10px 0;
+	letter-spacing:1px;
 }
 #grandCentralNav>ul .sub ul
 {
@@ -230,9 +237,12 @@
 {
 	display:block;
 	padding:10px;
-	border-bottom:1px solid #555;
 }
-#grandCentralNav>ul .sub ul.big li a:hover
+#grandCentralNav>ul .sub ul.big li:not(:last-child)
+{
+	border-bottom:1px solid #333;
+}
+#grandCentralNav>ul .sub ul.big li a:hover .title
 {
 	color:#3eb4d6 !important;
 }
@@ -322,6 +332,7 @@
 	position:absolute;
 	top:40px;
 	z-index:1;
+	font-family:'Raleway-SemiBold';
 }
 #grandCentralNav>ul .sub ul.hive li .descr
 {
