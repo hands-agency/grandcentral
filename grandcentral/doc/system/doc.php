@@ -180,8 +180,11 @@ class doc
 				if (isset($comment_params[$key]))
 				{
 					preg_match("/([a-z]*)[\s]+(.*)/", $comment_params[$key], $tmp);
-					$data['param'][$key]['type'] = $tmp[1];
-					$data['param'][$key]['descr'] = $tmp[2];
+					if (!empty($tmp))
+					{
+						$data['param'][$key]['type'] = $tmp[1];
+						$data['param'][$key]['descr'] = $tmp[2];
+					}
 				}
 			}
 		}
