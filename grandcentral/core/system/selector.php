@@ -84,4 +84,20 @@
 		$attr = new $class($value, $params);
 		return $attr;
 	}
+	
+/**
+ * Constant handling
+ *
+ * @param	string	table
+ * @param	mixed	parameter or array of parameters
+ * @param	string	admin ou site
+ * @return	mixed	an item or a bunch
+ * @access	public
+ */
+	function cst($const, $label)
+	{
+		$const = strtoupper($const);
+		$return = (defined($const)) ? constant($const) : $label;
+		return $return;
+	}
 ?>

@@ -23,10 +23,11 @@
 						<div class="icon medium icon-<?=$structure['icon']?>"></div>
 					
 						<div class="title">
-							<a href="<?=$user->edit() ?>#timeline" class="user"><?=$user['title'] ?></a> <?=constant(strtoupper('TIMELINE_EVENT_'.$event))?> <? if (!isset($_GET['item'])): ?><a href="<?=cc('structure', $structure, $_SESSION['pref']['handled_env'])->edit()?>"><?=cc('structure', $structure, $_SESSION['pref']['handled_env'])['title'] ?></a> :<? endif ?>
+							<a href="<?=$user->edit() ?>#timeline" class="user"><?=$user['title'] ?></a> <?=cst('TIMELINE_EVENT_'.$event, $event)?> <? if (!isset($_GET['item'])): ?><a href="<?=cc('structure', $structure, $_SESSION['pref']['handled_env'])->edit()?>"><?=cc('structure', $structure, $_SESSION['pref']['handled_env'])['title'] ?></a> :<? endif ?>
 							<? $i = $and = 0 ?>
 							<? foreach ($items as $item): ?>
-								<? $item = cc($item['item'], $item['itemid'], $_SESSION['pref']['handled_env']) ?>
+								<? $item = cc($item['item']->get(), $item['itemid']->get(), $_SESSION['pref']['handled_env']) ?>
+
 								<? if (($item->exists()) && ($i < $displayItems)) : ?>
 									<a href="<?= $item->edit()?>"><?= ($item['title']) ? $item['title'] : $item['key']; ?></a><? if ($i != count($items)-1): ?>, <? else : ?>.<? endif ?>
 								<? else : $and++; endif ?>
@@ -42,7 +43,7 @@
 							<? foreach ($items as $item): ?>
 							<? if ($i < $displayThumbnails): ?>
 								<li>
-									<div class="descr"><?=cc($item['item'], $item['itemid'], $_SESSION['pref']['handled_env'])['descr']?></div>
+									<div class="descr"><?=cc($item['item']->get(), $item['itemid']->get(), $_SESSION['pref']['handled_env'])['descr']?></div>
 								</li>
 							<? endif ?>
 							<? $i++ ?>
@@ -58,7 +59,7 @@
 							<li>
 								<div class="thumbnail small">
 									<!--iframe src="<?=cc($item['item'], $item['itemid'])->link()?>"></iframe-->
-									<a class="thumbnailPlaceholder" href="<?=cc($item['item'], $item['itemid'])->link()?>"></a>
+									<a class="thumbnailPlaceholder" href="<?=cc($item['item']->get(), $item['itemid']->get())->link()?>"></a>
 								</div>
 							</li>
 						<? endif ?>
@@ -70,8 +71,7 @@
 					<ul class="action">
 						<li><a href="" class="notes">Discussion</a></li>
 						<? if ($event == 'update' && count($items) == 1): ?><li><a href="" class="compare">What's new</a></li><? endif ?>
-						<? $date = new date($logbook['created']); ?>
-						<li class="icon-time"><?=$date->time_since() ?></li>
+						<li class="icon-time"><?=$logbook['created']->time_since() ?></li>
 					</ul>
 					
 					<div class="notes"></div>

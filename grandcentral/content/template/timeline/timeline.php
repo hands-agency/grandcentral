@@ -135,17 +135,17 @@
 	//	Reorder by user and actions
 		foreach ($logbook as $e)
 		{
-			$events[$period][$e['subjectid']][$e['key']][$e['item']][$e['itemid']] = $e;
+			$events[$period][$e['subjectid']->get()][$e['key']->get()][$e['item']->get()][$e['itemid']->get()] = $e;
 		}
 	}
 
 /********************************************************************************************/
 //	Event Source
 /********************************************************************************************/
-	$arg = array(
+	$EventSource = cc('page', 'api-eventstream')->link(array
+	(
 		'app' => 'section',
 		'theme' => 'timeline',
 		'template' => 'timeline',
-	);
-	$EventSource = cc('page', 'api-eventstream')->link($arg);
+	));
 ?>
