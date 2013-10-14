@@ -41,6 +41,7 @@
 		
 	//	General intel
 		$html[$i] = array(
+			'key' => $app->get_key(),
 			'title' => $ini['about']['title'],
 			'descr' => $ini['about']['descr'],
 		);

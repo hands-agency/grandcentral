@@ -1,5 +1,5 @@
 <? foreach($html as $app) : ?>
-	<h2><?=ucfirst($app['title'])?></h2>
+	<h2><span class="flag"><?=$app['key']?></span><?=ucfirst($app['title'])?></h2>
 	<div class="descr"><?=$app['descr']?></div>
 	
 	<? if (isset($app['class'])): ?>		

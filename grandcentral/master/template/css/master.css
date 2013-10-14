@@ -1098,7 +1098,19 @@ footer
 	border-bottom:1px solid #eee;
 	padding:0 0 5px 5px;
 }
-#content section>h2 span
+#content section>h2 span.flag
+{
+	font-family:"Raleway-SemiBold";
+	text-transform:uppercase;
+	background:#eee;
+	border-radius:4px;
+	padding:4px 5px;
+	margin-right:10px;
+	font-size:10px;
+	position:relative;
+	top:-5px;
+}
+#content section>h2 span.centered
 {
 	padding:0 10px;
 	background:#ffffff;
