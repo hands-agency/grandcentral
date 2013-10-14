@@ -2,15 +2,17 @@
 	<h2><span class="flag"><?=$app['key']?></span><?=ucfirst($app['title'])?></h2>
 	<div class="padding">
 		<div class="descr"><?=$app['descr']?></div>
-	
+
 		<? if (isset($app['class'])): ?>		
 			<h3>Classes</h3>
 			<? foreach($app['class'] as $class) : ?>
 				<h4><a href="?class=<?=$class['key']?>#doc"><?=ucfirst($class['key'])?></a></h4>
 				<div class="descr"><?=$class['descr']?></div>
+				<?php if (!empty($class['method'])): ?>
 				<ul class="in4col">
 				<? foreach($class['method'] as $method) : ?><li><a href="?method=<?=$class['key']?>::<?=$method['key']?>#doc"><?=$method['key']?></a></li><? endforeach ?>
 				</ul>
+				<?php endif ?>
 			<? endforeach ?>
 		<? endif ?>
 	

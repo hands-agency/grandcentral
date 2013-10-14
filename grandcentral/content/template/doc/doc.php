@@ -47,7 +47,7 @@
 		{
 		//	Apps
 			case 'app':
-				$app = cc('app', $name);
+				$app = registry::get(registry::app_index, $name);
 				$ini = $app->get_ini();
 				if (isset($ini['php']['class'])) $classes = $ini['php']['class'];
 				if (isset($ini['php']['lib'])) $libs = $ini['php']['lib'];
@@ -57,20 +57,24 @@
 				//	Get the class name
 					$name = basename($class, '.php');
 				//	Produce the doc
-					$doc = new doc($name);
-					$html = new html($doc);
+					$params['doc'] = new doc($name);
+					$html = new app('doc', 'class', $params);
+					
 				}
 				break;
 		//	Classes & functions
 			case 'class':
+				$params['doc'] = new doc($name);
+				$html = new app('doc', 'class', $params);
+				break;
 			case 'function':
-				$doc = new doc($name);
-				$html = new html($doc);
+				$params['doc'] = new doc($name);
+				$html = new app('doc', 'function', $params);
 				break;
 		//	Methods
 			case 'method':
-				$doc = new doc($name);
-				$html = new html($doc);
+				$params['doc'] = new doc($name);
+				$html = new app('doc', 'method', $params);
 				break;
 		
 		//	Nothing

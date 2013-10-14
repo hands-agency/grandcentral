@@ -19,8 +19,10 @@ class doc
  */
 	public function __construct($expression)
 	{
-		if ((is_object($expression) && get_class($expression)) || (is_string($expression) && class_exists($expression)))
+		// print'<pre>';var_dump(registry::get(registry::class_index, $expression));print'</pre>';
+		if ((is_object($expression) && get_class($expression)) || (is_string($expression) && registry::get(registry::class_index, $expression)))
 		{
+			// print'<pre>';print_r($expression);print'</pre>';
 			$this->_prepare_class($expression);
 		}
 		elseif (mb_strpos($expression, '::'))
