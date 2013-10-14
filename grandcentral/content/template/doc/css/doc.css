@@ -1,6 +1,17 @@
 /********************************************************************************************/
 /* Common
 /********************************************************************************************/
+section[data-template="doc/code"] h2
+{
+	border:none !important;
+	margin-bottom:0 !important;
+}
+section[data-template="doc/code"] .padding
+{
+	padding:15px;
+	border:1px solid #eee;
+	margin-bottom:40px;
+}
 section[data-template="doc/code"] .descr
 {
 	color:#888;
