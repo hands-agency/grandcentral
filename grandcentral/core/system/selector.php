@@ -78,10 +78,10 @@
  * @return	mixed	an item or a bunch
  * @access	public
  */
-	function attr($type, $value = null, $params = null)
-	{
-		$class = 'attr'.ucfirst($type);
-		$attr = new $class($value, $params);
-		return $attr;
-	}
+	// function attr($type, $value = null, $params = null)
+	// {
+	// 	$class = 'attr'.ucfirst($type);
+	// 	$attr = new $class($value, $params);
+	// 	return $attr;
+	// }
 ?>
