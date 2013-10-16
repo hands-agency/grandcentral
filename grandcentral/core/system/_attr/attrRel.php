@@ -10,7 +10,7 @@
 class attrRel extends _attrs implements Iterator
 {
 	const table = '_rel';
-	protected $env;
+	protected $item;
 /**
  * Set array attribute
  *

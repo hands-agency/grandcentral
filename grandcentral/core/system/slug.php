@@ -54,7 +54,7 @@ class Slug
 		$tab = null ;
 	   	$stringTab=str_split(strtolower($this->noDiacritics($string)));
 	   	$authorizedArray=array_merge(range('a', 'z'), array('0','1','2','3','4','5','6','7','8','9','-'));
-		print'<pre>';print_r($this->noDiacritics($string));print'</pre>';
+		// print'<pre>';print_r($this->noDiacritics($string));print'</pre>';
 	   	foreach($stringTab as $letter)
 	      	if(in_array($letter, $authorizedArray))
 			{

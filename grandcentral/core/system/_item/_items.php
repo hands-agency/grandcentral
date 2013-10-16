@@ -261,6 +261,9 @@ abstract class _items implements ArrayAccess, Iterator
 		{
 			switch (true)
 			{
+				case !is_a($attr, '_attrs'):
+					
+					break;
 				case is_a($attr, 'attrId'):
 					$id = $attr->get();
 					break;
@@ -271,7 +274,6 @@ abstract class _items implements ArrayAccess, Iterator
 					break;
 				case is_a($attr, 'attrRel'):
 					$rels = $attr->get();
-					// print'<pre>';print_r($rels);print'</pre>';
 					$i = 0;
 					foreach ((array) $rels as $rel)
 					{
