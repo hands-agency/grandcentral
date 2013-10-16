@@ -27,15 +27,21 @@ abstract class _items implements ArrayAccess, Iterator
 		$this->table = mb_substr(mb_strtolower(get_called_class()), 4);
 		$this->env = $env;
 		
-	//	création de la liste des attributs
-		$attrs = registry::get($this->get_env(), registry::structure_index, $this->get_table(), 'attr');
+	//	création de la liste des attributs vide
+		$attrs = registry::get($this->get_env(), registry::attr_index, $this->get_table(), 'attr');
 		if (empty($attrs))
 		{
 			trigger_error('Can not find <strong>'.$this->get_table().'</strong> structure', E_USER_ERROR);
 		}
-		foreach ($attrs as $key => $value)
+		foreach ($attrs as $key => $attr)
 		{
-			$this->set_attr($key, null);
+			$attrClass = 'attr'.ucfirst($attr['type']);
+			$this->data[$key] = new $attrClass(null, $attr);
+			if (method_exists($attrClass, 'attach'))
+			{
+				// print'<pre>';print_r($key);print'</pre>';
+				$this[$key]->attach($this);
+			}
 		}
 	}
 
@@ -95,18 +101,7 @@ abstract class _items implements ArrayAccess, Iterator
 		}
 		else
 		{
-			$attrs = registry::get($this->get_env(), registry::structure_index, $this->get_table(), 'attr');
-		//	on crée un nouvel attribut à l'objet
-			if (isset($attrs[$key]))
-			{
-				$attrClass = 'attr'.ucfirst($attrs[$key]['type']);
-				$this->data[$key] = new $attrClass($value, $attrs[$key], $this->get_env());
-			}
-		//	on ajoute de la data non typée
-			else
-			{
-				$this->data[$key] = $value;
-			}
+			$this->data[$key] = $value;
 		}
 		return $this;
 	}
@@ -141,7 +136,7 @@ abstract class _items implements ArrayAccess, Iterator
 	//	affectation
 		if (isset($result[0]))
 		{
-			$this->set_data($result[0]);
+			$this->database_set($result[0]);
 		}
 	//	retour
 		return $this;
@@ -152,9 +147,12 @@ abstract class _items implements ArrayAccess, Iterator
  * @param	array 	attributes array
  * @access  public
  */
-	public function set_data($data)
+	public function database_set($datas)
 	{
-		$this->data = $data;
+		foreach ($datas as $attr => $data)
+		{
+			$this->data[$attr]->database_set($data);
+		}
 	}
 /**
  * Check whether an item exists in base or not
@@ -164,7 +162,7 @@ abstract class _items implements ArrayAccess, Iterator
  */
 	public function exists()
 	{
-		return ($this->data['id']->exists()) ? true : false;
+		return (!$this->data['id']->is_empty()) ? true : false;
 	}
 /**
  * Save item into database
@@ -332,25 +330,6 @@ abstract class _items implements ArrayAccess, Iterator
 	//	delete relations
 		$db->stack('DELETE FROM `'.attrRel::table.'` WHERE `item` = "'.$this->get_table().'" AND `itemid` = :id', $preparedData);
     }
-/**
- * Returns the front-end URL of an item
- *
- * @param	array	An associative array of arguments added to the URL
- * @return	string	The URL of the object
- * @access	public
- */
-  public function link($arg = null)
-  {
-  //	Return
-  	if (isset($this['url']))
-  	{
-  	//	Args?
-  		if (isset($arg)) $arg = '?'.http_build_query($arg);
-  	//	Return
-  		return constant(mb_strtoupper($this->get_env()).'_URL').$this['url'].$arg;
-  	}
-  	else return false;
-  }
 /**
  * Returns the link to the back-end listing of these items
  *

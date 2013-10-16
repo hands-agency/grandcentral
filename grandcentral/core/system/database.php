@@ -267,7 +267,7 @@ class database
 		}
 	//	recherche de la définition des attributs dans le registre
 		// print'<pre>';print_r($params);print'</pre>';
-		$attrs = registry::get($env, registry::structure_index, $table, 'attr');
+		$attrs = registry::get($env, registry::attr_index, $table, 'attr');
 		if (empty($attrs)) trigger_error('Sorry, can\'t find the structure of <strong>'.$table.'</strong>.', E_USER_ERROR);
 		$attrsKey = array_keys($attrs);
 		$rels = array();
@@ -396,41 +396,17 @@ class database
 	//	requête
 		$db = database::connect($env);
 		$results = $db->query($preparedQuery, $preparedData);
-	//	créations d'un item vide
-		$model = array();
-		foreach ($attrs as $key => $value)
-		{
-			$attrClass = 'attr'.ucfirst($attrs[$key]['type']);
-			$model[$key] = new $attrClass(null, $value, $env);
-		}
 	//	création du tableau de retour
 		$datas = array();
 		$ids = array();
 	//	si SELECT
 		if ($counter === false)
 		{
+		//	affectation des résultats dans le tableau de retour
 			foreach ($results['data'] as $data)
 			{
-			//	copie du modèle
-				foreach ($model as $k => $v)
-				{
-					$tmp[$k] = clone $v;
-				}
-			//	affectation des valeurs
-				foreach ($data as $key => $value)
-				{
-					if (isset($tmp[$key]))
-					{
-						$tmp[$key]->database_set($value);
-					}
-					else
-					{
-						trigger_error('Attributes <strong>'.$key.'</strong> is missing in <strong>'.$table.'</strong> structure. What did you expect ?', E_USER_ERROR);
-					}
-				}
-				$id = $tmp['id']->get();
-				$datas[$id] = $tmp;
-				$ids[] = $id;
+				$ids[] = $data['id'];
+				$datas[$data['id']] = $data;
 			}
 		//	recherche des relations
 			if (count($ids) > 0)
@@ -438,12 +414,9 @@ class database
 				$relationQuery = 'SELECT * FROM `'.attrRel::table.'` WHERE `item` = "'.$table.'" AND `itemid` IN ('.implode(',', $ids).') ORDER BY position';
 				$results = $db->query($relationQuery);
 			//	affectation des résultats
-				foreach ($results['data'] as $value)
+				foreach ($results['data'] as $rel)
 				{
-					if (isset($datas[$value['itemid']][$value['key']]))
-					{
-						$datas[$value['itemid']][$value['key']]->add($value['rel'].'_'.$value['relid']);
-					}
+					$datas[$rel['itemid']][$rel['key']][] = $rel['rel'].'_'.$rel['relid'];
 				}
 			}
 		}

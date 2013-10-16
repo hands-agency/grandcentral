@@ -172,7 +172,7 @@ class itemPage extends _items
 		if (count($child) > 0)
 		{
 			$child = cc($child[0]);
-			header('Location:'.$child->link(), false);
+			header('Location:'.$child['url'], false);
 		}
 	//	erreur
 		trigger_error('This header page needs a valid <strong>'.self::child.'</strong> relation to work properly.', E_USER_ERROR);

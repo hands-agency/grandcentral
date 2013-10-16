@@ -130,7 +130,7 @@
 					<div class="icon">'.$node['key'].'</div>
 					
 					<div class="title"><a href="'.$page->edit().'">'.$page['title'].'</a></div>
-					<div class="url"><a href="'.$page->link().'">'.$page['url'].'</a></div>
+					<div class="url"><a href="'.$page['url'].'">'.$page['url'].'</a></div>
 					
 					<div class="clear"><!-- Clearing floats --></div>
 

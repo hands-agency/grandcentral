@@ -42,7 +42,7 @@
 			'template' => 'eventstream',
 			'item' => $_GET['item'],
 		);
-		$EventSource = 	cc('page', 'api.eventstream')->link($arg);
+		$EventSource = 	cc('page', 'api.eventstream')['url']->args($arg);
 
 	//	Bind script
 		$script = "

@@ -140,6 +140,7 @@ class form
  */
 	public function set_action($action)
 	{
+		if (is_a($action, 'attrUrl')) $action = $action->__tostring();
 		$this->attrs['action'] = $action;
 		return $this;
 	}

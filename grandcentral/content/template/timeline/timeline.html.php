@@ -58,8 +58,8 @@
 						<? if ($i < $displayThumbnails): ?>
 							<li>
 								<div class="thumbnail small">
-									<!--iframe src="<?=cc($item['item'], $item['itemid'])->link()?>"></iframe-->
-									<a class="thumbnailPlaceholder" href="<?=cc($item['item']->get(), $item['itemid']->get())->link()?>"></a>
+									<!--iframe src="<?=cc($item['item'], $item['itemid'])['url']?>"></iframe-->
+									<a class="thumbnailPlaceholder" href="<?=cc($item['item']->get(), $item['itemid']->get())['url']?>"></a>
 								</div>
 							</li>
 						<? endif ?>

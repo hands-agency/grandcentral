@@ -26,6 +26,6 @@
 //	on change la routine du formulaire
 /********************************************************************************************/
 	$routine = cc('page', 'login.post', 'site');
-	$_FORM->set_action($routine->link());
+	$_FORM->set_action($routine['url']);
 	
 ?> 

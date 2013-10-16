@@ -9,7 +9,6 @@
  */
 abstract class _attrs
 {
-	protected $env;
 	protected $data;
 	protected $params;
 
@@ -19,10 +18,8 @@ abstract class _attrs
  * @return	string	une string
  * @access	public
  */
-	public function __construct($data = null, $params = null, $env = env)
+	public function __construct($data = null, $params = null)
 	{
-	//	env
-		$this->env = $env;
 	//	data
 		if (!is_null($data)) $this->set($data);
 	//	params
