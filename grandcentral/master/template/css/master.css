@@ -751,6 +751,10 @@ progress::-webkit-progress-value {
 }
 
 /* The Nav */
+#grandCentralNav
+{
+	background:#222;	
+}
 .navClosed #grandCentralNav
 {
 	width:5%;
@@ -758,6 +762,12 @@ progress::-webkit-progress-value {
 .navOpened #grandCentralNav
 {
 	width:45%;
+}
+.adminClosed #grandCentralNav
+{
+	-webkit-box-shadow: 5px 0px 0px rgba(50, 50, 50, 0.3);
+	-moz-box-shadow:    5px 0px 0px rgba(50, 50, 50, 0.3);
+	box-shadow:         5px 0px 0px rgba(50, 50, 50, 0.3);
 }
 #grandCentralNav>button.close
 {

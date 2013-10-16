@@ -110,8 +110,6 @@
 	$_APP->bind_snippet('header', 'snippet/header');
 	$truc = '<div id="eventstream"><ul class="mine"></ul><ul class="everybodyelses"></ul></div>';
 	$_APP->bind_code('header', $truc);
-//	Green button
-	$_APP->bind_snippet('header', 'snippet/greenbutton/greenbutton');
 //	Even stream
 	$_APP->bind_snippet('header', 'snippet/eventstream');	
 	
@@ -128,6 +126,8 @@
 /********************************************************************************************/
 //	Context
 /********************************************************************************************/
+//	Green button
+	$_APP->bind_snippet('context', 'snippet/greenbutton/greenbutton');
 //	Preview
 	$_APP->bind_snippet('context', 'snippet/preview');
 //	Trashbin

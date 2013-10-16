@@ -33,12 +33,20 @@
 		const SITE_URL = '".SITE_URL."';
 		const ADMIN_URL = '".ADMIN_URL."';
 	</script>");
+	
+/********************************************************************************************/
+//	Local binding scripts & css files
+/********************************************************************************************/
+//	Script
+	$_APP->bind_script('js/master.js');
+//	css
+	$_APP->bind_css('css/master.css');
 
 /********************************************************************************************/
 //	Local binding scripts & css files
 /********************************************************************************************/
 //	Script
-	// $_APP->bind_script('js/login.js');
+	$_APP->bind_script('js/login.js');
 //	css
 	$_APP->bind_css('css/login.css');
 	

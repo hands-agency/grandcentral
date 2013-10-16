@@ -4,11 +4,10 @@
 **#******************************************************************************************/
 $(document).ready(function ()
 {
-//	var form = $('form');
-//	var top = ($(window).height() / 2) - (form.outerHeight(true) / 2);
-//	$(form).css('top', top);
+	$('#main').toggleClass('navClosed navOpened');
+
 //	Resize and zoom out iframes
-	$('iframe').addClass('zoomout');
+//	$('iframe').addClass('zoomout');
 	
 //	When submitting
 	$('form').on('submit', function(e)

@@ -5,17 +5,26 @@
 	<!-- ZONE:css -->
 </head>
 <body data-env="<?=$_SESSION['pref']['handled_env']?>">
-	<div id="popup_overlay">
-		
-	</div>
 	<!-- ZONE:body -->
-
-		<!-- <iframe id="site" src="<?=SITE_URL?>"></iframe> -->
-		<!-- <iframe id="admin" src="" data-src="<?=ADMIN_URL?>?target=_parent"></iframe> -->
 		
-		<div id="content">
-			<!-- ZONE:content -->
+	<div id="main" class="navClosed adminClosed">
+			
+		<nav id="grandCentralNav"><!-- ZONE:nav --></nav>
+		
+		<div id="grandCentralAdmin" class="in2col">
+		
+			<button type="button" class="close"></button>
+
+			<div id="content" class="locked instack">
+				<!-- ZONE:content -->
+			</div>
 		</div>
+	
+		<div id="grandCentralSite">
+			<div class="overlay"><span data-icon="&#xe013;"></span></div>
+		</div>
+	</div>
+	
 	<!-- ZONE:script -->	
 </body>
 </html>
