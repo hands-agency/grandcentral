@@ -6,7 +6,9 @@
 	top:30px;
 	right:30px;
 }
-#greenbutton>a
+#greenbutton>a,
+#greenbuttonchoices .title,
+#greenbuttonchoices .title:hover
 {
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
@@ -15,7 +17,7 @@
 	color:#ffffff;
 	display:inline-block;
 	line-height:25px;
-	font-size:16px;
+	font-size:20px;
 	-moz-user-select:none;
 	-webkit-user-select:none;
 	cursor:pointer;
@@ -28,6 +30,9 @@
 	-moz-transition: all .15s ease-out; 
 	-o-transition: all .15s ease-out; 
 	transition: all .15s ease-out;
+	font-family:"Raleway-SemiBold";
+	border:3px solid transparent;
+	background:#26ae5f;
 }
 
 /********************************************************************************************/
@@ -37,9 +42,6 @@
 {
 	margin:0 10px 0 0;
 	text-shadow:0px 1px 1px rgba(0, 0, 0, 0.5);
-	border:3px solid transparent;
-	background:#26ae5f;
-	font-family:"Raleway-Thin";
 }
 #greenbutton #greenbutton-default:hover
 {
@@ -83,40 +85,4 @@
 	color:#F2F2F2;
 	position:relative;
     -webkit-transition-duration: 0.3s;
-}
-#greenbutton #greenbutton-or.on:after
-{
-	position:absolute;
-	bottom:-15px;
-	left:50%;
-	margin-left:-10px;
-	content:'';
-	border-style: solid;
-	border-width: 10 10px 10px 10px;
-	border-width: 0 10px 10px 10px;
-	border-color: transparent transparent #363f48 transparent;
-}
-
-/********************************************************************************************/
-/* Choices
-/********************************************************************************************/
-#greenbutton-choices
-{
-	margin:10px 0 0 0;
-	clear:both;
-	font-size:1em;
-}
-
-/********************************************************************************************/
-/* In landscape mode
-/********************************************************************************************/
-.inlandscape #greenbutton
-{
-	float:right;
-	margin-left:30px;
-}
-.inlandscape #ctx .box li#greenbutton
-{
-	border-left:1px solid #dddddd;
-	padding-left:30px;
 }

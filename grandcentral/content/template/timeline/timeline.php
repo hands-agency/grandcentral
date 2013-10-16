@@ -142,10 +142,9 @@
 /********************************************************************************************/
 //	Event Source
 /********************************************************************************************/
-	$EventSource = cc('page', 'api-eventstream')->link(array
+	$EventSource = cc('page', 'api.eventstream')->link(array
 	(
-		'app' => 'section',
-		'theme' => 'timeline',
+		'app' => 'content',
 		'template' => 'timeline',
 	));
 ?>

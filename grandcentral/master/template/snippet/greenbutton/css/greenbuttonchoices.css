@@ -1,0 +1,21 @@
+/********************************************************************************************/
+/* Choices
+/********************************************************************************************/
+#greenbuttonchoices
+{
+}
+#greenbuttonchoices ul li
+{
+	padding:15px;
+	border-bottom:1px solid #eee;
+}
+#greenbuttonchoices ul li .title
+{
+	background:#999;
+	border:transparent !important;
+}
+#greenbuttonchoices ul li .descr
+{
+	color:#ccc;
+	font-size:0.8em;
+}

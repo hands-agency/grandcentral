@@ -18,7 +18,7 @@ section[data-template="edit/edit"]>form>fieldset>.descr
 }
 
 /* Lines */
-.in2col section[data-template="edit/edit"]>form>fieldset>ol>li
+section[data-template="edit/edit"]>form>fieldset>ol>li
 {
 	background:#eee;
 	-moz-border-radius:5px;
@@ -45,7 +45,7 @@ section[data-template="edit/edit"]>form>fieldset ol>li>label
 }
 
 /* Field */
-.in2col section[data-template="edit/edit"]>form>fieldset ol>li .wrapper
+section[data-template="edit/edit"]>form>fieldset ol>li .wrapper
 {
 	width:75%;
 	display:inline-block;
@@ -56,7 +56,7 @@ section[data-template="edit/edit"]>form>fieldset ol>li>label
 	-webkit-border-radius:3px;
 	border-radius:3px;
 }
-.in2col section[data-template="edit/edit"]>form>fieldset ol>li .wrapper .field
+section[data-template="edit/edit"]>form>fieldset ol>li .wrapper .field
 {
 	position:relative;
 	display: block;
@@ -67,11 +67,11 @@ section[data-template="edit/edit"]>form>fieldset ol>li>label
 	-o-transition:border-color .3s ease-in;
 	transition:border-color .3s ease-in;
 }
-.in2col section[data-template="edit/edit"]>form>fieldset ol>li.number .wrapper .field,
-.in2col section[data-template="edit/edit"]>form>fieldset ol>li.text .wrapper .field,
-.in2col section[data-template="edit/edit"]>form>fieldset ol>li.textarea .wrapper .field,
-.in2col section[data-template="edit/edit"]>form>fieldset ol>li.wysiwyg .wrapper .field,
-.in2col section[data-template="edit/edit"]>form>fieldset ol>li.multipleselect .wrapper .field
+section[data-template="edit/edit"]>form>fieldset ol>li.number .wrapper .field,
+section[data-template="edit/edit"]>form>fieldset ol>li.text .wrapper .field,
+section[data-template="edit/edit"]>form>fieldset ol>li.textarea .wrapper .field,
+section[data-template="edit/edit"]>form>fieldset ol>li.wysiwyg .wrapper .field,
+section[data-template="edit/edit"]>form>fieldset ol>li.multipleselect .wrapper .field
 {
 }
 

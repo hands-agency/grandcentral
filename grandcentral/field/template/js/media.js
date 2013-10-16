@@ -12,7 +12,7 @@
 	media.find('.preview').on('click', function()
 	{
 	//	Launch
-		$(this).popup(
+		openContext(
 		{
 			app:'media',
 			theme:'admin',
@@ -27,7 +27,7 @@
 //	Add media
 	upload.on('click', function()
 	{
-		$(this).popup(
+		openContext(
 		{
 			app:'media',
 			theme:'admin',

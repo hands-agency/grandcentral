@@ -18,6 +18,14 @@
 {
 	position:relative;
 }
+#grandCentralNav>button.close
+{
+	position:absolute;
+	top:15px;
+	right:15px;
+	z-index:2;
+	color:#fff;
+}
 
 /********************************************************************************************/
 /* First-level

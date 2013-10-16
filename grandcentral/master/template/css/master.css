@@ -106,11 +106,17 @@ button.delete
 	border:none;
 	box-shadow:none;
 	text-shadow:none;
+	opacity:0.2;
 }
 button.close:before,
 button.delete:before
 {
 	content:'×';
+}
+button.close:hover,
+button.delete:hover
+{
+	opacity:1;
 }
 
 .ie7 img
@@ -769,14 +775,6 @@ progress::-webkit-progress-value {
 	-moz-box-shadow:    5px 0px 0px rgba(50, 50, 50, 0.3);
 	box-shadow:         5px 0px 0px rgba(50, 50, 50, 0.3);
 }
-#grandCentralNav>button.close
-{
-	position:absolute;
-	top:10px;
-	right:10px;
-	z-index:2;
-	color:#fff;
-}
 
 /* The admin */
 #grandCentralAdmin
@@ -800,12 +798,9 @@ progress::-webkit-progress-value {
 {
 	width:50%;
 }
-#grandCentralAdmin>button.close
+.contextOpened.navClosed #grandCentralAdmin
 {
-	position:absolute;
-	top:10px;
-	right:10px;
-	z-index:2;
+	width:90%;
 }
 .navOpened #grandCentralAdmin>button.close
 {
@@ -823,6 +818,10 @@ progress::-webkit-progress-value {
 	width:15%;
 }
 .navOpened #grandCentralSite
+{
+	width:5%;
+}
+.contextOpened #grandCentralSite
 {
 	width:5%;
 }
@@ -884,96 +883,15 @@ progress::-webkit-progress-value {
 	min-width:800px;
 }
 
-#content
+/* The content & context */
+.contextOpened #context
 {
-	padding:0 0px 30px 0px;
-	float:left;
-	-moz-box-sizing:border-box;
-	-webkit-box-sizing:border-box;
-	box-sizing:border-box;
+	width:45%;
+	padding:15px;
 }
-#context
+.contextOpened #content
 {
-	height:100%;
-}
-/* Footer */
-footer
-{
-}
-
-/********************************************************************************************/
-/* Responsive
-/********************************************************************************************/
-/* All */
-.responsive-width
-{
-	margin:auto;
-}
-/* 1024 screens */
-@media screen and (max-width: 1024px) and (min-width: 769px) {
-	.responsive-width
-	{
-		width:93.75%;
-	}
-}
-/* 1024 screens */
-@media screen and (min-width: 1024px) {
-	.responsive-width
-	{
-		width:80%;
-	}
-}
-
-/********************************************************************************************/
-/* The structure in two cols
-/********************************************************************************************/
-/* Content */
-.in2col #content
-{
-	width:75%;
-}
-/* Context */
-.in2col #contextwrapper
-{
-	float:right;
-	width:25%;
-}
-.in2col #context
-{
-	border-left:1px solid #e2e4e6;
-}
-.in2col #context
-{
-	/* todo : sticky navigation */
-}
-.in2col #context section
-{
-	border-bottom:1px solid #e2e4e6;
-	padding:30px;
-}
-
-/********************************************************************************************/
-/* The structure in landscape
-/********************************************************************************************/
-/* Content */
-.inlandscape #content
-{
-	width:100%;
-}
-/* Context */
-.inlandscape #contextwrapper
-{
-	border-top:3px double #eee;
-	clear:both;
-}
-.inlandscape #context
-{
-	padding:20px 0;
-}
-.inlandscape #context section
-{
-	border-right:1px solid #eee;
-	width:33%;
+	width:55% !important;
 }
 
 /********************************************************************************************/
@@ -981,35 +899,25 @@ footer
 /* Content
 /////////////////////////////////////////////////////////////////////////////////////////////
 /********************************************************************************************/
-
-/********************************************************************************************/
-/* mn3
-/********************************************************************************************/
-#mn3
+#content
 {
-	position:absolute;
-	width:100%;
-	z-index:3;
-	background:#ffffff;
-	padding-top:20px;
-}
-#mn3 li a
-{
+	padding:0 0px 30px 0px;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
 	position:relative;
 }
-#mn3.fixed
+#content>button.close
 {
-	position:fixed;
-	top:0;
+	position:absolute;
+	top:15px;
+	right:15px;
+	z-index:2;
 }
 
-/* Help drops */
-#mn3 .cc-drop
+/* Footer */
+footer
 {
-	width:120px;
-	position:absolute;
-	left:0;
-	top:30px;
 }
 
 /********************************************************************************************/
@@ -1017,30 +925,28 @@ footer
 /* Context
 /////////////////////////////////////////////////////////////////////////////////////////////
 /********************************************************************************************/
-#context .box li{
-	margin-bottom:20px;
-	overflow:hidden;
-}
-
-
-/********************************************************************************************/
-/* descr
-/********************************************************************************************/
-#descr
+#context
 {
-	color:#ccc;
-	font-size:0.8em;
-	line-height:1.4em;
-	margin-bottom:20px;
+	position:absolute;
+	z-index:2;
+	width:0%;
+	height:100%;
+	top:0;
+	right:0;
+	border-left:1px solid #F2F2F2;
+	background:#fcfcfc;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	-webkit-transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	transition:         all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275); 
 }
-#descr a
+#context>button.close
 {
-	border-bottom:1px solid;
-	color:#ccc;
-}
-#descr span
-{
-	color:#888;
+	position:absolute;
+	top:15px;
+	right:15px;
+	z-index:2;
 }
 
 /********************************************************************************************/

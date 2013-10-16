@@ -64,16 +64,14 @@
 /********************************************************************************************/
 //	Apps
 /********************************************************************************************/
-//	Progressive search
-	$app = new app('searchasyoutype');
-	$app->load();
-//	Server-Side Events
-	$app = new app('jquery.sse');
-	$app->load();
-	
+	$apps = array('searchasyoutype', 'jquery.masonry', 'jquery.imagesloaded', 'jquery.hoverintent', 'jquery.sse');
+	foreach ($apps as $app)
+	{
+		$app = new app($app);
+		$app->load();
+	}
 	
 /*
-	$_APP->bind_app('jquery.sse');
 	$_APP->bind_app('font-awesome');
 	
 	echo new html('popup', 'default', 'popup');
@@ -83,14 +81,6 @@
 	
 	$html = new html('notification', 'default', 'eventstream');
 	$_APP->bind('header', $html);
-*/
-/*
-	$app = new app('searchasyoutype');
-	$app->load();
-	$app = new app('jquery.sse');
-	$app->load();
-	$app = new app('font-awesome');
-	$app->load();
 */
 
 /********************************************************************************************/
@@ -108,28 +98,22 @@
 /********************************************************************************************/
 //	Header
 	$_APP->bind_snippet('header', 'snippet/header');
-	$truc = '<div id="eventstream"><ul class="mine"></ul><ul class="everybodyelses"></ul></div>';
-	$_APP->bind_code('header', $truc);
 //	Even stream
+	$_APP->bind_code('header', '<div id="eventstream"><ul class="mine"></ul><ul class="everybodyelses"></ul></div>');
 	$_APP->bind_snippet('header', 'snippet/eventstream');	
+//	Green button
+	$_APP->bind_snippet('header', 'snippet/greenbutton/greenbutton');
 	
 /********************************************************************************************/
-//	Tabs
+///Users/mvd/Desktop/Airfoil.app	Tabs
 /********************************************************************************************/
 	$_APP->bind_snippet('tabs', 'snippet/tabs');
 	
 /********************************************************************************************/
 //	Content
 /********************************************************************************************/
+//	Options
 	$_APP->bind_snippet('content', 'snippet/options');
-	
-/********************************************************************************************/
-//	Context
-/********************************************************************************************/
-//	Green button
-	$_APP->bind_snippet('context', 'snippet/greenbutton/greenbutton');
-//	Preview
-	$_APP->bind_snippet('context', 'snippet/preview');
 //	Trashbin
 	$_APP->bind_snippet('content', 'snippet/trashbin/trashbin');
 	

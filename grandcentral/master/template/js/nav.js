@@ -15,7 +15,7 @@
 				$nav.on('click', '>ul>li', function()
 				{
 				//	Open the drawer
-					$('#main').removeClass('navClosed').addClass('navOpened');
+					openNav();
 					
 				//	Some vars
 					subnav = $(this).find('.sub');
@@ -61,7 +61,7 @@
 					{
 						
 					//	Close the drawer
-						$('#main').removeClass('navOpened').addClass('navClosed');
+						closeNav();
 						
 						$nav.find('li').removeClass('on');
 					//	Hide all sub navs

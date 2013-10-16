@@ -31,47 +31,42 @@
 				link = $(this).find('a');
 				section = link.data('section');
 			//	The different choices
-				choices = $('#section_'+section).data('greenbutton');
+				dflt = $('#section_'+section).data('greenbutton');
 
 			//	If you have choices
-				if (choices.length > 0)
+				if (dflt)
 				{
-				//	Default choices
-					dflt = choices.shift();
-
-				//	Other choices
-					var li = '';
-					for (var i=0; i<choices.length ; i++)
-					{
-						choice = choices[i];
-						li += '<li class="'+choice['key']+'"><a data-action="'+choice['key']+'">'+choice['title']+'</a></li>';
-					}
-
-				//	Go
 					$('#greenbutton-default')
 						.html(dflt['title'])
 						.data('action', dflt['key']);
-					$('#greenbutton-choices').html(li);
 				}
 			//	No choices
 				else $('#greenbutton').hide();
 			});
 
 		//	Trigger main action
-			$('#greenbutton-default').live('click', function()
+			$(document).on('click', '#greenbutton-default', function()
 			{
 				$(this).toggleClass('on');
 			});
 
 		//	Show the minor actions
-			$('#greenbutton-or').live('click', function()
+			$(document).on('click', '#greenbutton-or', function()
 			{
 				$(this).toggleClass('on');
-				$('#greenbutton-choices').toggle('fast');
+			//	Fetch the right section
+				sectionid = $('#content section:visible').attr('id').replace('section_', '');
+			//	Open the context
+				openContext(
+				{
+					app:'master',
+					template:'snippet/greenbutton/greenbuttonchoices',
+					sectionid:sectionid,
+				});
 			});
 
 		//	A click a button triggers a method
-			$('#greenbutton-default, #greenbutton-choices a').live('click', function()
+			$(document).on('click', '#greenbutton-default, #greenbutton-choices a', function()
 			{
 				method = $(this).data('action');
 			//	Create & execute the method

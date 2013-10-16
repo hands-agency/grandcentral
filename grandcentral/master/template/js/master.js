@@ -1,10 +1,4 @@
 /*********************************************************************************************
-/**	* Move to an app
- 	* @author	mvd@cafecentral.fr
-**#******************************************************************************************/
-(function($){$.fn.hoverIntent=function(f,g){var cfg={sensitivity:7,interval:100,timeout:0};cfg=$.extend(cfg,g?{over:f,out:g}:f);var cX,cY,pX,pY;var track=function(ev){cX=ev.pageX;cY=ev.pageY};var compare=function(ev,ob){ob.hoverIntent_t=clearTimeout(ob.hoverIntent_t);if((Math.abs(pX-cX)+Math.abs(pY-cY))<cfg.sensitivity){$(ob).unbind("mousemove",track);ob.hoverIntent_s=1;return cfg.over.apply(ob,[ev])}else{pX=cX;pY=cY;ob.hoverIntent_t=setTimeout(function(){compare(ev,ob)},cfg.interval)}};var delay=function(ev,ob){ob.hoverIntent_t=clearTimeout(ob.hoverIntent_t);ob.hoverIntent_s=0;return cfg.out.apply(ob,[ev])};var handleHover=function(e){var ev=jQuery.extend({},e);var ob=this;if(ob.hoverIntent_t){ob.hoverIntent_t=clearTimeout(ob.hoverIntent_t)}if(e.type=="mouseenter"){pX=ev.pageX;pY=ev.pageY;$(ob).bind("mousemove",track);if(ob.hoverIntent_s!=1){ob.hoverIntent_t=setTimeout(function(){compare(ev,ob)},cfg.interval)}}else{$(ob).unbind("mousemove",track);if(ob.hoverIntent_s==1){ob.hoverIntent_t=setTimeout(function(){delay(ev,ob)},cfg.timeout)}}};return this.bind('mouseenter',handleHover).bind('mouseleave',handleHover)}})(jQuery);
-
-/*********************************************************************************************
 /**	* Café Central ajax call (everything goes in POST)
  	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
@@ -120,19 +114,20 @@
 /**	* Open / close lanes
  	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
-	$('#grandCentralAdmin>button.close').on('click', function()
+	$('#grandCentralAdmin>#content>button.close').on('click', function()
 	{
-		$('#main').removeClass('adminOpened').addClass('adminClosed');
+		closeAdmin();
+	});
+	$('#grandCentralAdmin>#context>button.close').on('click', function()
+	{
+		closeContext();
 	});
 	$('#grandCentralSite>.overlay').on('click', function()
 	{
-		$('#main').removeClass('adminOpened').addClass('adminClosed').removeClass('navOpened').addClass('navClosed');
+		closeAdmin();
+		closeNav();
 	});
 	
-	$('#grandCentralSite').on('click', function()
-	{
-		
-	});
 	(function($)
 	{
 		$('#grandCentralSite').append('<iframe src="'+SITE_URL+'"></iframe>');
@@ -167,6 +162,40 @@
 			}, time);
 		};
 	})( jQuery );
+	
+/*********************************************************************************************
+/**	* Opening and closing Lanes
+ 	* @author	mvd@cafecentral.fr
+**#******************************************************************************************/
+//	Admin
+	openNav = function(param)
+	{
+		$('#main').removeClass('navClosed').addClass('navOpened');
+	}
+	closeNav = function(param)
+	{
+		$('#main').removeClass('navOpened').addClass('navClosed');
+	}
+//	Admin
+	openAdmin = function(param)
+	{
+		$('#main').removeClass('adminClosed').addClass('adminOpened');
+	}
+	closeAdmin = function(param)
+	{
+		$('#main').removeClass('adminOpened').addClass('adminClosed');
+	}
+//	Context
+	openContext = function(param)
+	{
+		$('#main').removeClass('contextClosed').addClass('contextOpened');
+		$('#context>div').ajx(param);
+	}
+	closeContext = function()
+	{
+		$('#main').removeClass('contextOpened').addClass('contextClosed');
+		$('#context>div').html('');
+	}
 	
 /*********************************************************************************************
 /**	* Resize the main view to fit viewport

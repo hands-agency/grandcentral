@@ -10,16 +10,16 @@
 	display:inline-block;
 	line-height:25px;
 }
-.in2col section[data-template="edit/edit"]>form>fieldset ol>li.app .wrapper span>label
+section[data-template="edit/edit"]>form>fieldset ol>li.app .wrapper span>label
 {
 	display:inline-block;
 }
-.in2col section[data-template="edit/edit"]>form>fieldset ol>li.app>.wrapper .field .field
+section[data-template="edit/edit"]>form>fieldset ol>li.app>.wrapper .field .field
 {
 	display:inline-block;
 }
 /* config */
-.in2col section[data-template="edit/edit"]>form>fieldset ol>li.app li label
+section[data-template="edit/edit"]>form>fieldset ol>li.app li label
 {
 	color:#333333;
 	width:120px;
@@ -52,7 +52,7 @@
 	border-color: transparent transparent #FCFCFC transparent;
 }
 /* Sub fields */
-.in2col section[data-template="edit/edit"]>form>fieldset ol>li.app li .wrapper
+section[data-template="edit/edit"]>form>fieldset ol>li.app li .wrapper
 {
 
 }

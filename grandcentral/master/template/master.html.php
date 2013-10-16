@@ -7,41 +7,30 @@
 <body data-env="<?=$_SESSION['pref']['handled_env']?>">
 	<!-- ZONE:body -->
 		
-	<div id="main" class="navClosed">
+	<div id="main" class="navClosed contextClosed">
 			
 		<nav id="grandCentralNav"><!-- ZONE:nav --></nav>
 		
-		<div id="grandCentralAdmin" class="in2col">
-		
-			<button type="button" class="close"></button>
-			
-			<header>
-				<!-- ZONE:header -->
-			</header>
-			
-			<div id="tabs">
-				<!-- ZONE:tabs -->
-			</div>
+		<div id="grandCentralAdmin">
+	
+			<aside id="context">
+				<button type="button" class="close"></button>
+				<div><!-- Welcome Ajax --></div>
+			</aside>
 
 			<div id="content" class="locked instack">
+				<button type="button" class="close"></button>
+				<header><!-- ZONE:header --></header>
+				<div id="tabs"><!-- ZONE:tabs --></div>
 				<!-- ZONE:content|left -->
 				<? foreach($_PAGE['section']->unfold() as $section) : ?>
 				<? $app = $section['app'] ?>
-				<? $greenbutton = ($section['greenbutton']) ? $section['greenbutton']->unfold()->json() : null ?>
+				<? $greenbutton = ($section['greenbutton']->get()) ? cc($section['greenbutton']->get()[0])->json() : null ?>
 				<section id="section_<?= $section['key'] ?>" data-app="<?= $app['key'] ?>" data-template="<?= $app['template'] ?>" data-greenbutton='<?= $greenbutton ?>'></section>
 				<? endforeach; ?>
+				<footer><!-- ZONE:footer --></footer>
 			</div>
-	
-			<div id="contextwrapper">
-				<div id="context">
-					<!-- ZONE:context|right -->
-					<div class="clear"><!-- Clearing floats --></div>
-				</div>
-			</div>
-		
-			<footer>
-				<!-- ZONE:footer -->
-			</footer>
+			
 		</div>
 	
 		<div id="grandCentralSite">
