@@ -39,6 +39,10 @@
 	foreach ($_POST as $key => $value)
 	{
 		$i[$key] = $value;
+		if ('id' == $key)
+		{
+			$i[$key]->database_set($value);
+		}
 	}
 	// print'<pre>';print_r($i);print'</pre>';
 	$i->save();
