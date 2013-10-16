@@ -11,8 +11,7 @@
 }
 #greenbuttonchoices ul li .title
 {
-	background:#999;
-	border:transparent !important;
+	font-family:'Raleway-Thin';
 }
 #greenbuttonchoices ul li .descr
 {

@@ -6,9 +6,7 @@
 	top:30px;
 	right:30px;
 }
-#greenbutton>a,
-#greenbuttonchoices .title,
-#greenbuttonchoices .title:hover
+#greenbutton>a
 {
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;

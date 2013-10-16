@@ -37,12 +37,12 @@
 /********************************************************************************************/
 	if (isset($_GET['item']))
 	{
-		$arg = array(
+		$EventSource = cc('page', 'api.eventstream')['url']->args(array
+		(
 			'app' => 'master',
 			'template' => 'eventstream',
 			'item' => $_GET['item'],
-		);
-		$EventSource = 	cc('page', 'api.eventstream')['url']->args($arg);
+		));
 
 	//	Bind script
 		$script = "

@@ -118,10 +118,10 @@
 		function initList()
 		{
 		//	Masonry					
-			var $container = $ccLibrary.find('.files ul');
-			$container.imagesLoaded(function()
+			var files = $ccLibrary.find('.files ul');
+			files.imagesLoaded(function()
 			{
-				$container.masonry(
+				files.masonry(
 				{
 					itemSelector : 'li',
   					columnWidth: 120,
@@ -134,6 +134,16 @@
 			{
 				revert: 'invalid',
 				revertDuration: 100,
+				start:function()
+				{
+				//	Show trashbin
+					$('#trashbin').data('trashbin').toggle();
+				},
+				stop:function()
+				{
+				//	Hide trashbin
+					$('#trashbin').data('trashbin').toggle();
+				}
 			});
 
 		//	Slide titles

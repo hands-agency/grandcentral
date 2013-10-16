@@ -41,7 +41,8 @@
 						.data('action', dflt['key']);
 				}
 			//	No choices
-				else $('#greenbutton').hide();
+			//	else $('#greenbutton').hide();
+				else console.log('No choices for green button, not good');
 			});
 
 		//	Trigger main action
@@ -130,7 +131,7 @@
 		plugin.live = function()
 		{
 		//	Validate before go live
-			$('#section_form form').data('validate').now(
+			$('#section_edit form').data('validate').now(
 			{
 				success:function()
 				{

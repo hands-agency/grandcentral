@@ -60,12 +60,12 @@
 /********************************************************************************************/
 	foreach ($bunch as $item)
 	{
-	//	Ensure we have a title, otherwise use the ref
+	//	Ensure we have a title, otherwise use the nickname
 		if (empty($item['title'])) $item['title'] = (empty($item['title'])) ? $item->get_nickname() : $item['title'];
 	//	Image preview TODO
-		if (isset($structure['attr']['photo']))
+		if (isset($structure['attr']['media']))
 		{
-			
+			$icon = $structure['attr']['media']['key'];
 		}
 	}
 

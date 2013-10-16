@@ -252,8 +252,38 @@
 #mediaLibrary .folder
 {
 	clear:both;
-	padding:10px;
-
+}
+#mediaLibrary .folder>ul>li
+{
+	margin:5px;
+	width:47%;
+	float:left;
+	border:1px solid #ddd;
+	border-radius:3px;
+}
+#mediaLibrary .folder>ul>li .title
+{
+	text-align:center;
+	padding:5px;
+	font-size:14px;
+	font-family:'Raleway-SemiBold';
+}
+#mediaLibrary .folder>ul>li .preview
+{
+	height:50px;
+	overflow:hidden;
+}
+#mediaLibrary .folder>ul>li .preview li
+{
+	float:left;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	width:33.33%;
+}
+#mediaLibrary .folder>ul>li .preview li img
+{
+	width:100%;
 }
 
 /********************************************************************************************/

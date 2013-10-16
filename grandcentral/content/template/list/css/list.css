@@ -36,9 +36,18 @@
 }
 .instack section[data-template="list/list"]>ol>li>.icon
 {
-	border:1px dashed rgba(0, 0, 0, .2);
+	border:1px dashed transparent;
 	height:40px;
 	width:40px;
+	overflow:hidden;
+}
+.instack section[data-template="list/list"]>ol>li>.icon.empty
+{
+	border-color:rgba(0, 0, 0, .2);
+}
+.instack section[data-template="list/list"]>ol>li>.icon img
+{
+	width:100%;
 }
 
 /* Title */

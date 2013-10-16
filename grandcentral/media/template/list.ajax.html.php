@@ -33,21 +33,27 @@
 		<? endforeach ?>
 		<? endif;?>
 	</ul>
-</div>	
-<ul class="folder">
-	<? if (isset($directories)): ?>
-	<? foreach ($directories as $dir): ?>
-	<li>
-		<div class="title">
-			<a href="#" class="dir"><?= $dir->get_key() ?></a>
-		</div>
-		<div class="preview">
-			previewz
-		</div>
-	</li>
-	<? endforeach ?>
-	<? endif ?>
-</ul>
+</div>
+<div class="folder">
+	<ul>
+		<? if (isset($directories)): ?>
+		<? foreach ($directories as $dir): ?>
+		<?
+		$files = scandir($dir->get_root(), SCANDIR_SORT_DESCENDING);
+		$previews = array($files[0], $files[1], $files[3]);
+		?>
+		<li>
+			<div class="title">
+				<a href="#" class="dir"><?= $dir->get_key() ?></a>
+			</div>
+			<ul class="preview">
+				<?php foreach ($previews as $preview): ?><li><?= media($dir->get_key().'/'.$preview)->thumbnail(100, null) ?></li><?php endforeach ?>
+			</ul>
+		</li>
+		<? endforeach ?>
+		<? endif ?>
+	</ul>
+</div>
 <div class="clear"><!-- Clearing floats --></div>
 
 <script>
