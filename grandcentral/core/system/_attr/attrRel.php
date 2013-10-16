@@ -10,7 +10,7 @@
 class attrRel extends _attrs implements Iterator
 {
 	const table = '_rel';
-	protected $env;
+	protected $item;
 /**
  * Set array attribute
  *
@@ -84,6 +84,16 @@ class attrRel extends _attrs implements Iterator
 		return $this;
 	}
 /**
+ * Get complete item url
+ *
+ * @return	string	url
+ * @access	public
+ */
+	public function attach(_items $item)
+	{
+		$this->item = $item;
+	}
+/**
  * Set attribute
  *
  * @param	string	la variable
@@ -139,7 +149,7 @@ class attrRel extends _attrs implements Iterator
  */
 	public function unfold()
 	{
-		$bunch = new bunch(null, null, $this->env);
+		$bunch = new bunch(null, null, $this->item->get_env());
 		$bunch->get_by_nickname($this->data);
 		
 		return $bunch;

@@ -14,11 +14,11 @@ class registry
 //	const
 	const all_index = '__all__';
 	const current_index = '__current__';
-	// const attr_index = '__attribute__';
+	const attr_index = '__attribute__';
 	const dbtable_index = '__dbtable__';
 	const class_index = '__class__';
-	const structure_index = '__structure__';
 	const app_index = '__app__';
+	const reader_index = '__reader__';
 //	Storing
 	protected static $instance;
 	protected static $data;
@@ -36,6 +36,8 @@ class registry
 		$this->_prepare_structure();
 	//	load apps into registry
 		$this->_prepare_app();
+	//	load page readers into registry
+		$this->_prepare_reader();
 	//	prepare environment
 		$this->_prepare_current();
 	}
@@ -143,8 +145,8 @@ class registry
 			foreach ($results['data'] as $result)
 			{
 				$result['attr'] = json_decode($result['attr'], true);
-				self::set($env, self::structure_index, $result['key'], $result);
-				self::set($env, self::structure_index, 'structure_'.$result['id'], $result['key']);
+				self::set($env, self::attr_index, $result['key'], $result);
+				self::set($env, self::attr_index, 'structure_'.$result['id'], $result['key']);
 			}
 		}
 	}
@@ -199,7 +201,7 @@ class registry
 	protected function _prepare_current()
 	{
 	//	user
-		$human = item::create('human', 'site');
+		$human = item::create('human', null, 'site');
 		$human->guess();
 	//	Env
 		if (!isset($_SESSION['pref']['handled_env'])) $_SESSION['pref']['handled_env'] = 'site';
@@ -245,6 +247,23 @@ class registry
 		}
 		
 		return $classes;
+	}
+/**
+ * On charge toutes les url et les types de pages
+ *
+ * @access	protected
+ */
+	protected function _prepare_reader()
+	{
+		$db = database::connect();
+		$q = 'SELECT `id`, `url`, `type` FROM `page` WHERE `type` LIKE "%\"item\":%"';
+		$r = $db->query($q);
+		
+		foreach ($r['data'] as $reader)
+		{
+			$reader['type'] = json_decode($reader['type'], true);
+			self::set(self::reader_index, $reader['type']['item'], $reader);
+		}
 	}
 }
 ?>

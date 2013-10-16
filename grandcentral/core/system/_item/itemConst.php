@@ -15,9 +15,9 @@ class itemConst extends _items
  * @param	array 	attributes array
  * @access  public
  */
-	public function set_data($data)
+	public function database_set($data)
 	{
-		parent::set_data($data);
+		parent::database_set($data);
 		$this->define();
 	}
 /**

@@ -27,15 +27,21 @@ class item extends _items
 		$this->table = $table;
 		$this->env = $env;
 		
-	//	création de la liste des attributs
-		$attrs = registry::get($this->get_env(), registry::structure_index, $this->get_table(), 'attr');
+	//	création de la liste des attributs vide
+		$attrs = registry::get($this->get_env(), registry::attr_index, $this->get_table(), 'attr');
 		if (empty($attrs))
 		{
 			trigger_error('Can not find <strong>'.$this->get_table().'</strong> structure', E_USER_ERROR);
 		}
-		foreach ($attrs as $key => $value)
+		foreach ($attrs as $key => $attr)
 		{
-			$this->set_attr($key, null);
+			$attrClass = 'attr'.ucfirst($attr['type']);
+			$this->data[$key] = new $attrClass(null, $attr);
+			if (method_exists($attrClass, 'attach'))
+			{
+				// print'<pre>';print_r($key);print'</pre>';
+				$this[$key]->attach($this);
+			}
 		}
 	}
 /** 

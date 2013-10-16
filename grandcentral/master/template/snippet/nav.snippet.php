@@ -57,7 +57,7 @@
 				?>
 				<? if ($link == 'edit') $url = '/admin/edit?item='.$subpage->get_table().'&id='.$subpage['id'] ?>
 				<? if ($link == 'list') $url = '/admin/list?item='.$subpage['key'] ?>
-				<? if ($link == 'page') $url = $subpage->link() ?>
+				<? if ($link == 'page') $url = $subpage['url'] ?>
 				<li>
 					<a href="<?=$url ?>">
 						<span class="icon" <? if (isset($subpage['icon'])): ?>data-icon="<?=$subpage['icon']?>"<? endif ?>></span>

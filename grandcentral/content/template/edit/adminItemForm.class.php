@@ -68,7 +68,7 @@ class adminItemForm
 	private function _create_form()
 	{
 	//	structure de référence
-		$attrs = registry::get($this->env, registry::structure_index, $this->table, 'attr');;
+		$attrs = registry::get($this->env, registry::attr_index, $this->table, 'attr');;
 	//	mise en conformité des attributs
 		foreach ($attrs as $key => $attr)
 		{

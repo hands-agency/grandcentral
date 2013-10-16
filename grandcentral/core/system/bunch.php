@@ -24,7 +24,7 @@
  */
 class bunch implements ArrayAccess, Iterator, Countable
 {	
-	private $_env;
+	private $env;
 	private $_cIndex = false;
 	private $_sIndex;
 	public $count = 0;
@@ -42,10 +42,10 @@ class bunch implements ArrayAccess, Iterator, Countable
 	{
 		if (!in_array($env, array('admin', 'site')))
 		{
-			trigger_error('Environment should be admin or site, not '.$env);
+			trigger_error('Environment should be admin or site, not '.$env, E_USER_ERROR);
 			$env = env;
 		}
-		$this->_env = $env;
+		$this->env = $env;
 		if ($table !== null) $this->get($table, $params);
 	}
 
@@ -57,7 +57,7 @@ class bunch implements ArrayAccess, Iterator, Countable
  */
 	public function get_env()
 	{
-		return $this->_env;
+		return $this->env;
 	}
 
 /**
@@ -217,7 +217,7 @@ class bunch implements ArrayAccess, Iterator, Countable
 		foreach ($results as $result)
 		{
 			$item = item::create($table, null, $this->get_env());
-			$item->set_data($result);
+			$item->database_set($result);
 			$this->data[] = $item;
 		}
 	//	count

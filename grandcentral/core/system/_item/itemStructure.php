@@ -18,9 +18,9 @@ class itemStructure extends _items
  * @param	array 	attributes array
  * @access  public
  */
-	public function set_data($data)
+	public function database_set($data)
 	{
-		$this->data = $data;
+		parent::database_set($data);
 		$this->_attr = $data['attr'];
 		$this->_key = $data['key'];
 	}

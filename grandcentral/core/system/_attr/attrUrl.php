@@ -9,8 +9,22 @@
  */
 class attrUrl extends _attrs
 {
-	const table = '_url';
-	
+	protected $item;
+/**
+ * Set string attribute
+ *
+ * @param	string	la variable
+ * @return	string	une string
+ * @access	public
+ */
+	public function database_get()
+	{
+		if (empty($this->data))
+		{
+			$this->data = $this->item['title']->get();
+		}
+		return $this->_slugify($this->data);
+	}
 /**
  * Set string attribute
  *
@@ -29,19 +43,23 @@ class attrUrl extends _attrs
  * @return	string	url
  * @access	public
  */
-	// public function link($args = null)
-	// {
-	// 	//	Return
-	// 	if (!empty($this->data))
-	// 	{
-	// 		$arg = null;
-	// 	//	Args?
-	// 		if (!is_null($arg)) $arg = '?'.http_build_query($arg);
-	// 	//	Return
-	// 		return constant(mb_strtoupper($this->env).'_URL').$this->get().$arg;
-	// 	}
-	// 	else return false;
-	// }
+	public function attach(_items $item)
+	{
+		$this->item = $item;
+	}
+/**
+ * php http_build_query() on url
+ *
+ * @param	array	get arguments
+ * @return	string	url
+ * @access	public
+ */
+	public function args($arg)
+	{
+		$url = $this->__tostring();
+		$url .= (!empty($arg)) ? '?'.http_build_query($arg) : '';
+		return $url;
+	}
 /**
  * xxxx
  *
@@ -51,7 +69,8 @@ class attrUrl extends _attrs
  */
 	public function __tostring()
 	{
-		return htmlspecialchars($this->get());
+		$readerUrl = ($this->item->get_table() == 'page') ? '' : registry::get(registry::reader_index, $this->item->get_table(), 'url');
+		return constant(mb_strtoupper($this->item->get_env()).'_URL').$readerUrl.$this->get();
 	}
 /**
  * Definition mysql
@@ -65,6 +84,18 @@ class attrUrl extends _attrs
 		$definition = '`'.$this->params['key'].'` varchar(255) CHARACTER SET '.database::charset.' COLLATE '.database::collation.' NOT NULL';
 	//	retour
 		return $definition;
+	}
+/**
+ * 
+ *
+ * @param	string	la variable
+ * @return	string	une string
+ * @access	public
+ */
+	protected function _slugify($string)
+	{
+		$slug = new slug();
+		return '/'.$slug->makeSlugs($string);
 	}
 }
 ?>
