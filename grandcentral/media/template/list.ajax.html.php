@@ -39,8 +39,8 @@
 		<? if (isset($directories)): ?>
 		<? foreach ($directories as $dir): ?>
 		<?
-		$files = scandir($dir->get_root(), SCANDIR_SORT_DESCENDING);
-		$previews = array($files[0], $files[1], $files[3]);
+			$files = scandir($dir->get_root(), SCANDIR_SORT_DESCENDING);
+			$previews = array($files[0], $files[1], $files[3]);
 		?>
 		<li>
 			<div class="title">

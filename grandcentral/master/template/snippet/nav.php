@@ -70,7 +70,7 @@
 				'system' => array(
 					'display' => 'col',
 					'link' => 'list',
-					'bunch' => cc('structure', array('system' => true, 'order()' => 'title'), $_SESSION['pref']['handled_env']),
+					'bunch' => cc('structure', array('system' => true, 'key' => array('!=human', '!=group', '!=version', '!=logbook', '!=structure', '!=page', '!=site'), 'order()' => 'title'), $_SESSION['pref']['handled_env']),
 				),
 			),
 		),

@@ -45,7 +45,7 @@
 	foreach ((array) $values as $key => $value)
 	{
 	//	Fetch media
-		$media = media($value);
+		$media = media($value['url']);
 		$path = mb_substr($media->get_root(), mb_strpos($media->get_root(), '/media/') + 7); /* Make a method out of this*/
 		$data .= '
 		<li>
