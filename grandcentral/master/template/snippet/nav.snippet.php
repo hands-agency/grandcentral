@@ -6,7 +6,7 @@
 	</li>
 	<? foreach ($level1 as $page): ?>
 	
-	<? $truc = (string)$page['key'];?>
+	<? $truc = $page['key']->get();?>
 	<? $config = $nav[$truc] ?>
 	<? $title = (isset($config['title'])) ? $config['title'] : $page['title'] ?>
 	<? $content = (isset($config['content'])) ? $config['content'] : null ?>

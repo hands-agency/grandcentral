@@ -51,8 +51,6 @@
 	//print '<pre>';print_r($value);print'</pre>';
 //	app
 	if (isset($value['app']) && !empty($value['app'])) $field->set_value($value['app']);
-//	theme
-	$theme = (isset($value['theme']) & !empty($value['theme'])) ? $value['theme'] : null;
 //	template
 	$template = (isset($value['template']) & !empty($value['template'])) ? $value['template'] : null;
 //	param

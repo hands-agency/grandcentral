@@ -7,7 +7,7 @@
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
  */
-class image extends file
+class image extends _medias
 {
 	protected $width;
 	protected $height;

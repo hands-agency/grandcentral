@@ -21,29 +21,29 @@
 /********************************************************************************************/
 //	Ajax
 /********************************************************************************************/
-	// print '<pre>';print_r($_POST);print'</pre>';
+	print '<pre>';print_r($_POST);print'</pre>';
 	switch ($_POST['search'])
 	{
 /********************************************************************************************/
 //	construction du champ theme
 /********************************************************************************************/
-		case 'theme':
-		//	récupération des themes
-			$themes = cc('app', $_POST['appkey'])->get_themes($_SESSION['pref']['handled_env']);
-		//	construction du select
-			$field = 'theme : nodata';
-			if (!empty($themes))
-			{
-				$params = array(
-					'label' => 'theme : ',
-					'values' => $themes,
-					'valuestype' => 'array',
-					'customdata' => array('app' => $_POST['appkey'])
-				);
-				$field = new field_select($_POST['name'].'[theme]', $params);
-				if (!empty($_POST['value'])) $field->set_value($_POST['value']);
-			}
-			break;
+		// case 'theme':
+		// //	récupération des themes
+		// 	$themes = cc('app', $_POST['appkey'])->get_themes($_SESSION['pref']['handled_env']);
+		// //	construction du select
+		// 	$field = 'theme : nodata';
+		// 	if (!empty($themes))
+		// 	{
+		// 		$params = array(
+		// 			'label' => 'theme : ',
+		// 			'values' => $themes,
+		// 			'valuestype' => 'array',
+		// 			'customdata' => array('app' => $_POST['appkey'])
+		// 		);
+		// 		$field = new field_select($_POST['name'].'[theme]', $params);
+		// 		if (!empty($_POST['value'])) $field->set_value($_POST['value']);
+		// 	}
+		// 	break;
 /********************************************************************************************/
 //	construction du champ template
 /********************************************************************************************/
