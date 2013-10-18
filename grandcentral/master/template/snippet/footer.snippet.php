@@ -1,7 +1,4 @@
 <ul id="mnsys">
-	<?php foreach ($page as $page): ?>
-		<li><a href="<?=$page['url']?>" title="<?=$page['title']?>"><?=$page['title']?></a></li>
-	<?php endforeach ?>
 	<li>Env: <a href="/admin?env=site" title="Help">Site</a> / <a href="/admin?env=admin" title="Help">Admin</a></li>
 </ul>
 <ul id="mnflags">

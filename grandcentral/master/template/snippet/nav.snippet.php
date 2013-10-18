@@ -1,7 +1,7 @@
 <button type="button" class="close"></button>
 <ul>
 	<li class="me">
-		<div class="title"><?=media($_SESSION['user']['profilepic'][0])?><span>Prénom</span></div>
+		<div class="title"><?=media($_SESSION['user']['profilepic'][0]['url'])?><span>Prénom</span></div>
 		<div class="sub"></div>
 	</li>
 	<? foreach ($level1 as $page): ?>

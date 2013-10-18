@@ -132,7 +132,7 @@
 		//	Make li draggable
 			$ccLibrary.find('.files ul li:not(.upload)').draggable(
 			{
-				revert: 'invalid',
+				revert: true,
 				revertDuration: 100,
 				start:function()
 				{

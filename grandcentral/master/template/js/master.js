@@ -124,8 +124,7 @@
 	});
 	$('#grandCentralSite>.overlay').on('click', function()
 	{
-		closeAdmin();
-		closeNav();
+		openSite();
 	});
 	
 	(function($)
@@ -167,7 +166,7 @@
 /**	* Opening and closing Lanes
  	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
-//	Admin
+//	Nav
 	openNav = function(param)
 	{
 		$('#main').removeClass('navClosed').addClass('navOpened');
@@ -175,6 +174,10 @@
 	closeNav = function(param)
 	{
 		$('#main').removeClass('navOpened').addClass('navClosed');
+	}
+	broadenNav = function(param)
+	{
+		$('#main').removeClass('navClosed').addClass('navBroadened');
 	}
 //	Admin
 	openAdmin = function(param)
@@ -196,6 +199,13 @@
 		$('#main').removeClass('contextOpened').addClass('contextClosed');
 		$('#context>div').html('');
 	}
+	openSite = function()
+	{
+		closeAdmin();
+		closeNav();
+		window.history.pushState('string', 'chose', '/');
+	}
+	
 	
 /*********************************************************************************************
 /**	* Resize the main view to fit viewport

@@ -13,10 +13,8 @@
 ?>
 		
 	<li data-item="<?=$item->get_nickname()?>">
-		
-		<!--div class="media"><a href="<?=$item->edit()?>"></a></div-->
 			
-		<div class="icon small"><?=media($item[$icon][0]['url'])?></div>
+		<div class="icon"><?=media($item[$icon][0]['url'])?></div>
 		
 		<div class="title"><a href="<?=$item->edit()?>"><?= (!empty($item['title'])) ? $item['title'] : $item['key'] ?></a></div>
 		

@@ -102,7 +102,7 @@ ol>li[data-type="multipleselect"] .field .selected ol
 ol>li[data-type="multipleselect"] .field .available
 {
 	float:right;
-	background:#FCFCFC;
+	background:#F3F3F3;
 }
 ol>li[data-type="multipleselect"] .field .available ul
 {

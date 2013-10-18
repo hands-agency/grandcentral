@@ -1,4 +1,5 @@
 <form <?= $_FORM->get_attrs(); ?>>
+	<div id="grandCentralLogo"></div>
 	<?php foreach($_FORM->get_hiddens() as $hidden) : ?>
 		<?= $_FORM->get_field($hidden); ?>
 	<?php endforeach; ?>
@@ -12,7 +13,7 @@
 			<li data-type="<?= $f->get_type(); ?>" <?= $key ?>><?= $f; ?></li>
 		<?php endforeach; ?>
 		</ol>
-		<label for=""></label><input type="submit" name="" value="go" id="">
+		<label for=""></label><button type="submit">Go</button>
 		
 		</fieldset>
 	<?php endforeach; ?>

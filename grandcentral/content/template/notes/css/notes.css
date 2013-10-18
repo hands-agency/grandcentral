@@ -93,7 +93,7 @@ section .noteList>li>.descr
 /* Form */
 section .noteForm
 {
-	background:#FCFCFC;
+	background:#F3F3F3;
 }
 section .noteForm form textarea
 {

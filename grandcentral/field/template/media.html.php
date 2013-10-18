@@ -8,7 +8,7 @@
 
 		<ol class="data">
 			<?= $data; ?>
-			<li class="upload icon-plus-sign"></li>
+			<li class="upload" data-icon="&#xe01b;"></li>
 		</ol>
 		<pre class="template">
 			<?=$template; ?>

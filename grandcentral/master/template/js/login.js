@@ -4,7 +4,7 @@
 **#******************************************************************************************/
 $(document).ready(function ()
 {
-	$('#main').toggleClass('navClosed navOpened');
+	broadenNav();
 
 //	Resize and zoom out iframes
 //	$('iframe').addClass('zoomout');

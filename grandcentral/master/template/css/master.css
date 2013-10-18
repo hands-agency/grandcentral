@@ -86,9 +86,9 @@ button
 }
 button:hover
 {
-	background-image: -moz-linear-gradient(#FCFCFC, #ddd);
-	background-image: -webkit-linear-gradient(#FCFCFC, #ddd);
-	background-image: linear-gradient(#FCFCFC, #ddd);
+	background-image: -moz-linear-gradient(#F3F3F3, #ddd);
+	background-image: -webkit-linear-gradient(#F3F3F3, #ddd);
+	background-image: linear-gradient(#F3F3F3, #ddd);
 }
 button:active
 {
@@ -769,6 +769,10 @@ progress::-webkit-progress-value {
 {
 	width:45%;
 }
+.navBroadened #grandCentralNav
+{
+	width:65%;
+}
 .adminClosed #grandCentralNav
 {
 	-webkit-box-shadow: 5px 0px 0px rgba(50, 50, 50, 0.3);
@@ -798,6 +802,10 @@ progress::-webkit-progress-value {
 {
 	width:50%;
 }
+.navBroadened #grandCentralAdmin
+{
+	width:0%;
+}
 .contextOpened.navClosed #grandCentralAdmin
 {
 	width:90%;
@@ -820,6 +828,10 @@ progress::-webkit-progress-value {
 .navOpened #grandCentralSite
 {
 	width:5%;
+}
+.navBroadened #grandCentralSite
+{
+	width:35%;
 }
 .contextOpened #grandCentralSite
 {
@@ -886,8 +898,10 @@ progress::-webkit-progress-value {
 /* The content & context */
 .contextOpened #context
 {
-	width:45%;
-	padding:15px;
+	padding:30px;
+	/* Context is fixed, so % are for the full page */
+	width:41%;
+	right:5%;
 }
 .contextOpened #content
 {
@@ -927,14 +941,14 @@ footer
 /********************************************************************************************/
 #context
 {
-	position:absolute;
+	position:fixed;
 	z-index:2;
 	width:0%;
 	height:100%;
 	top:0;
 	right:0;
 	border-left:1px solid #F2F2F2;
-	background:#fcfcfc;
+	background:#F3F3F3;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
@@ -947,6 +961,12 @@ footer
 	top:15px;
 	right:15px;
 	z-index:2;
+}
+#context h1
+{
+	font-family:"Raleway-SemiBold";
+	font-size:45px;
+	margin:0 0 20px 0;
 }
 
 /********************************************************************************************/
