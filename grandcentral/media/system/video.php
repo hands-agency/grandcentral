@@ -21,5 +21,15 @@ class video extends _medias
 		{
 			return '<video><source src="'.$this->get_url().'" type="video/mp4"><source src="'.$this->get_url().'" type="video/ogg">Your browser does not support the video tag.</video>';
 		}
+	
+/**
+ * Retourne le chemin vers le thumbnail
+ *
+ * @access	public
+ */
+	public function thumbnail($width, $height, $quality = 75)
+	{
+		return null;
+	}
 }
 ?>

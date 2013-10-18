@@ -1,3 +1,4 @@
+<input type="hidden" name="<?=$_FIELD->get_name()?>" value="" />
 <label for="<?= $_FIELD->get_name(); ?>">
 	<?= $_FIELD->get_label(); ?>
 	<span class="help"></span>

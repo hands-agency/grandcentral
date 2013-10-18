@@ -6,7 +6,7 @@
 	<!--h2><?=$period?></h2-->
 	<?
 	//	Divider
-		if (isset($lastPeriod) && $lastPeriod != $period) echo '<li class="divider"><h2>'.constant('TIMELINE_PERIOD_'.strtoupper($period)).'</h2></li>';
+		if (!isset($lastPeriod) OR $lastPeriod != $period) echo '<li class="divider"><h2>'.constant('TIMELINE_PERIOD_'.strtoupper($period)).'</h2></li>';
 		$lastPeriod = $period;
 	?>
 	<? foreach ($subject as $subject => $event): ?>

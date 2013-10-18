@@ -189,7 +189,7 @@
 }
 #grandCentralNav>ul .sub h1
 {
-	font-family:"Raleway-SemiBold";
+	font-family:"Raleway-Regular";
 	text-transform:uppercase;
 	clear:both;
 	color:#666;
@@ -339,7 +339,7 @@
 	position:absolute;
 	top:40px;
 	z-index:1;
-	font-family:'Raleway-SemiBold';
+	font-family:'Raleway-Regular';
 }
 #grandCentralNav>ul .sub ul.hive li .descr
 {

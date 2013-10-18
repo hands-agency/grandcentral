@@ -28,7 +28,7 @@ li[data-type="media"] .wrapper ol.data li .delete
 	position:absolute;
 	top:5px;
 	right:5px;
-	display:none;
+	z-index:3;
 }
 li[data-type="media"] .wrapper ol.data li:hover .delete
 {

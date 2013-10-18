@@ -170,12 +170,12 @@ section[data-template="tree/tree"] li .page .icon
 	font-size:20px;
 	line-height:50px;
 	border:1px dashed rgba(0, 0, 0, .2);
+	/* Linin numerals for Raleway */
 	font-feature-settings: 'lnum';
-/* vendor-prefixes */
--moz-font-feature-settings: 'lnum=1';
--ms-font-feature-settings: 'lnum';
--webkit-font-feature-settings: 'lnum';
--o-font-feature-settings: 'lnum';
+	-moz-font-feature-settings: 'lnum=1';
+	-ms-font-feature-settings: 'lnum';
+	-webkit-font-feature-settings: 'lnum';
+	-o-font-feature-settings: 'lnum';
 }
 section[data-template="tree/tree"] li .page .title
 {

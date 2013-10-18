@@ -11,17 +11,41 @@ header
 }
 header h1
 {
-	font-size:2.4em;
 }
-header h1 a
+header h1 span
+{
+	font-size:40px;
+	font-family: "Raleway-Thin";
+	display:block;
+	float:left;
+}
+/* Back */
+header h1 .back
+{
+	border-radius:3px;
+	padding-right:20px;
+	margin-left:-100%;
+	-webkit-transition: all .1s ease-out; 
+	-moz-transition: all .1s ease-out; 
+	-o-transition: all .1s ease-out; 
+	transition: all .1s ease-out;
+}
+header h1:hover .back
+{
+	margin-left:0;
+}
+header h1:hover .back:before
+{
+	content:'⇠';
+	font-size:34px;
+	margin-right:5px;
+}
+/* Current */
+header h1 .current
 {
 	color:#000;
 }
-header h1 .structure
+header h1:hover .current
 {
-	font-family: "Raleway-Thin";
-}
-header h1 .item
-{
-	font-family: "Raleway-Thin";
+	color:#ddd;
 }

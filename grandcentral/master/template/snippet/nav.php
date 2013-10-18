@@ -23,13 +23,20 @@
 /********************************************************************************************/
 	$_APP->bind_script('js/nav.js');
 	$_APP->bind_css('css/nav.css');
+	
+/********************************************************************************************/
+//	Some vars
+/********************************************************************************************/
+	foreach (registry::get(registry::app_index) as $app)
+	{
+		$array = $app->get_ini()['about'];
+		$array['key'] = $app->get_key();
+		$apps[] = $array;
+	}
 
 /********************************************************************************************/
 //	Config
 /********************************************************************************************/
-//	Current env
-	$env = cc($_SESSION['pref']['handled_env'], current);
-
 //	Build nav
 	$nav = array(
 	//	Environment
@@ -42,7 +49,7 @@
 				'structure' =>  array(
 					'display' => 'big',
 					'link' => 'list',
-					'bunch' => cc('structure', array('key' => array('page', 'structure', 'version', 'site'), 'order()' => 'inherit(key)'), $_SESSION['pref']['handled_env']),
+					'bunch' => cc('structure', array('key' => array('page', 'structure', 'version'), 'order()' => 'inherit(key)'), $_SESSION['pref']['handled_env']),
 				),
 				'support' =>  array(
 					'display' => 'big',
@@ -95,8 +102,8 @@
 			'subnav' => array(
 				'apps' => array(
 					'display' => 'hive',
-					'link' => 'list',
-				//	'array' => registry::get(registry::app_index),
+					'link' => cc('page', 'app')['url'],
+					'array' => $apps,
 				),
 			),
 		),

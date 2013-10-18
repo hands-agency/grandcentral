@@ -14,7 +14,11 @@
 		
 	<li data-item="<?=$item->get_nickname()?>">
 			
-		<div class="icon"><?=media($item[$icon][0]['url'])?></div>
+		<?
+			if (isset($icon)) $thumbnail = media($item[$icon][0]['url'])->thumbnail(120, null);
+			$empty = (!isset($thumbnail)) ? 'empty' : null;
+		?>
+		<div class="icon <?=$empty?>"><?=$thumbnail?></div>
 		
 		<div class="title"><a href="<?=$item->edit()?>"><?= (!empty($item['title'])) ? $item['title'] : $item['key'] ?></a></div>
 		

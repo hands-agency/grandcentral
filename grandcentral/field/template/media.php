@@ -55,7 +55,7 @@
 				<span class="title">'.$media->get_key().'</span>
 				<span class="info">'.strtoupper($media->get_extension()).' • '.$media->get_size().'</span>
 			</a>
-			<input type="hidden" name="'.$_FIELD->get_name().'[]" value="'.$path.'" />
+			<input type="hidden" name="'.$_FIELD->get_name().'[][url]" value="'.$path.'" />
 		</li>';
 	}
 	
@@ -70,6 +70,6 @@
 			<span class="title"></span>
 			<span class="info"></span>
 		</a>
-		<input type="hidden" name="'.$_FIELD->get_name().'[]" value="" disabled="disabled" />
+		<input type="hidden" name="'.$_FIELD->get_name().'[][url]" value="" disabled="disabled" />
 	</li>';
 ?>

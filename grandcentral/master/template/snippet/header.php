@@ -27,37 +27,57 @@
 /********************************************************************************************/
 //	The title
 /********************************************************************************************/
-	$item = null;
-	$title = null;
-	$icon = null;
+	$current = null;
+	$back = null;
+	$link = null;
 
 //	Edit: we got an item
 	if (isset($_GET['item']) && (isset($_GET['id'])))
 	{
 		$structure = cc('structure', $_GET['item'], $_SESSION['pref']['handled_env']);
-	//	if (isset($structure['icon'])) $icon = '<i class="icon-'.$structure['icon'].'"></i>';
 		$item = cc($_GET['item'], $_GET['id'], $_SESSION['pref']['handled_env']);
+		$link = $item->listing();
 	//	Go
-		$h1_structure = null;
-		$h1_item = '<a href="'.$item->listing().'" class="item">'.$icon.' '.$item['title'].'</a>';
+		$back = $structure['title'];
+		$current = $item['title'];
 	}
 //	Listing : we got a structure
 	else if (isset($_GET['item']))
 	{
 		$structure = cc('structure', $_GET['item'], $_SESSION['pref']['handled_env']);
-	//	if (isset($structure['icon'])) $icon = '<i class="icon-'.$structure['icon'].'"></i>';
+		$item = cc('page', 'home');
+		$link = $item['url'];
 	//	Go
-		$h1_structure = '<a href="'.ADMIN_URL.'" class="structure">'.$icon.$structure['title'].'</a>';
-		$h1_item = null;
+		$back = $item['title'];
+		$current = $structure['title'];
+	}
+//	Listing : we got a structure
+	else if (isset($_GET['app']))
+	{
+		$app = new app($_GET['app']);
+		$ini = $app->get_ini();
+		$page = cc('page', 'app');
+		$link = $page['url'];
+	//	Go
+		$back = $page['title'];
+		$current = $ini['about']['title'];
+	}
+//	Else, default page title
+	else if (cc('page', current)['key'] == 'home')
+	{
+		$item = cc('page', 'home');
+		$link = 'javascript:openSite();';
+	//	Go
+		$back = cc('site', current)['title'];
+		$current = cc('page', current)->get_attr('title');
 	}
 //	Else, default page title
 	else
 	{
+		$item = cc('page', 'home');
+		$link = $item['url'];
 	//	Go
-		$h1_structure = '<a href="'.ADMIN_URL.'" class="structure">'.cc('page', current)->get_attr('title').'</a>';
-		$h1_item = null;
+		$back = $item['title'];
+		$current = cc('page', current)->get_attr('title');
 	}
-	
-//	Concaténer
-	$h1 = $h1_structure.' '.$h1_item;
 ?>

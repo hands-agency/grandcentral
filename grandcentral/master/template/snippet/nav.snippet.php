@@ -54,15 +54,29 @@
 				//	Title & descr
 					$title = cst('ITEM_'.$subpage['key'].'_TITLE', $subpage['title']);
 					$descr = cst('ITEM_'.$subpage['key'].'_DESCR', $subpage['descr']);
-				?>
-				<? if ($link == 'edit') $url = '/admin/edit?item='.$subpage->get_table().'&id='.$subpage['id'] ?>
-				<? if ($link == 'list') $url = '/admin/list?item='.$subpage['key'] ?>
-				<? if ($link == 'page') $url = $subpage['url'] ?>
+					
+					switch ($link)
+					{
+						case 'edit':
+							$url = '/admin/edit?item='.$subpage->get_table().'&id='.$subpage['id'];
+							break;
+						case 'list':
+							$url = '/admin/list?item='.$subpage['key'];
+							break;
+						case 'page':
+							$url = $subpage['url'];
+							break;
+						
+						default:
+							$url = $link.'?app='.$subpage['key'];
+							break;
+					}
+					?>
 				<li>
 					<a href="<?=$url ?>">
 						<span class="icon" <? if (isset($subpage['icon'])): ?>data-icon="<?=$subpage['icon']?>"<? endif ?>></span>
 						<span class="title"><?=$title?></span>
-						<span class="descr"><?=$descr->cut(200)?></span>
+						<span class="descr"><?=$descr?></span>
 					</a>
 				</li>
 				<? endforeach ?>

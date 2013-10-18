@@ -22,16 +22,16 @@
 		},
 		drop:function(event, ui)
 		{
-			console.log(ui.helper.data('path'));
 			code = $(template.html());
 		//	Append and enable
 			data.prepend(code);
 			$(code).show('fast').find('*:disabled').prop('disabled', false);
 		//	Add data
-		//	$(code).find('.preview img').attr('src', params.thumbnail);
-		//	$(code).find('input').val(params.path);
-		//	$(code).find('.title').html(params.file);
-			$(code).find('.info').html('truc machin');
+			media = ui.helper;
+			$(code).find('.preview img').attr('src', media.find('.preview img').attr('src'));
+			$(code).find('input').val(media.data('path'));
+			$(code).find('.title').html(media.data('title'));
+			$(code).find('.info').html(media.data('info'));
 		}
 	});
 

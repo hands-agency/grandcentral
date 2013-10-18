@@ -126,8 +126,8 @@
 		$p['order()'] = 'updated DESC';
 		
 	//	Only for one item
-		$only = array('item', 'itemid', 'subject', 'subjectid');
-		foreach ($only as $only) if (isset($_GET[$only])) $p[$only] = $_GET[$only];
+		$only = array('item' => 'item', 'id' => 'itemid', 'subject' => 'subject', 'subjectid' => 'subjectid');
+		foreach ($only as $get => $only) if (isset($_GET[$get])) $p[$only] = $_GET[$get];
 
 	//	Fetch the logbook
 		$logbook = cc('logbook', $p, $_SESSION['pref']['handled_env']);

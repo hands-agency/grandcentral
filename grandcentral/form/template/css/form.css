@@ -4,6 +4,10 @@
 /////////////////////////////////////////////////////////////////////////////////////////////
 /********************************************************************************************/
 /* Fieldsets */
+section[data-template="edit/edit"]
+{
+	background:#F0F0F0;
+}
 section[data-template="edit/edit"]>form>fieldset
 {
 }
@@ -20,13 +24,14 @@ section[data-template="edit/edit"]>form>fieldset>.descr
 /* Lines */
 section[data-template="edit/edit"]>form>fieldset>ol>li
 {
-	background:#eee;
+	background:#fff;
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
 	border-radius:5px;
-	padding:10px;
+	padding:5px;
 	position:relative;
 	margin:0 50px 10px 0;
+	border:1px solid #eee;
 }
 
 /* Labels */
@@ -66,6 +71,7 @@ section[data-template="edit/edit"]>form>fieldset ol>li .wrapper .field
 	-moz-transition:border-color .3s ease-in;
 	-o-transition:border-color .3s ease-in;
 	transition:border-color .3s ease-in;
+	border-left:1px solid #eee;
 }
 section[data-template="edit/edit"]>form>fieldset ol>li.number .wrapper .field,
 section[data-template="edit/edit"]>form>fieldset ol>li.text .wrapper .field,
@@ -104,7 +110,7 @@ section[data-template="edit/edit"] fieldset ol>li [data-control]
 {
 	position:absolute;
 	right:-50px;
-	top:14px;
+	top:10px;
 	height:35px;
 	line-height:35px;
 	width:35px;
@@ -206,7 +212,7 @@ section[data-template="edit/edit"] fieldset ol>li.ko [data-control]:after {
 section[data-template="edit/edit"]>form>fieldset ol>li .wrapper .todo
 {
 	list-style-type:square;
-	padding:10px 0 0 20px;
+	padding:10px 0 5px 20px;
 }
 
 /********************************************************************************************/

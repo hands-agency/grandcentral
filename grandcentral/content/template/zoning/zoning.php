@@ -32,6 +32,6 @@
 /********************************************************************************************/	
 //	Create the new form if not already existing
 /********************************************************************************************/	
-	require ADMIN_THEME_ROOT.'/section/edit/admin_item_form.php';
-	$form = new admin_item_form($handled_env, $handled_item, $section, $handled_id);
+	require ADMIN_ROOT.'/content/template/edit/adminItemForm.class.php';
+	$form = new adminItemForm($handled_env, $handled_item, $section, $handled_id);
 ?>

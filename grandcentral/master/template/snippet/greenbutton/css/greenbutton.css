@@ -28,7 +28,7 @@
 	-moz-transition: all .15s ease-out; 
 	-o-transition: all .15s ease-out; 
 	transition: all .15s ease-out;
-	font-family:"Raleway-SemiBold";
+	font-family:"Raleway-Regular";
 	border:3px solid transparent;
 	background:#26ae5f;
 }

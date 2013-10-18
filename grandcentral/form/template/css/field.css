@@ -48,9 +48,15 @@ textarea
 	padding:7px;
 	margin:0;
 	resize:none;
-	font-family:arial;
+	font-family: "Raleway-Regular";
 	color:#666666;
 	font-size:1em;
+	/* Linin numerals for Raleway */
+	font-feature-settings: 'lnum';
+	-moz-font-feature-settings: 'lnum=1';
+	-ms-font-feature-settings: 'lnum';
+	-webkit-font-feature-settings: 'lnum';
+	-o-font-feature-settings: 'lnum';
 }
 
 /********************************************************************************************/
@@ -166,28 +172,12 @@ ol>li[data-type="media"] .field ul
 /********************************************************************************************/
 /* Date & time */
 /********************************************************************************************/
-ol>li .field .day
-{width:50px;}
-ol>li .field .month
-{width:90px;}
-ol>li .field .year
-{width:70px;}
-ol>li .field .hour
-{width:60px;}
-ol>li .field .minute
-{width:50px;}
+
 
 /********************************************************************************************/
 /* Date & time picker */
 /********************************************************************************************/
-.datepicker .pick,
-.datetimepicker .pick
-{
-	background:#333333 url('../image/icon/icon_action_unlock_white.png') no-repeat 50% 50%;
-	width:20px;
-	height:20px;
-	display:inline-block;
-}
+
 
 /********************************************************************************************/
 /* Apps
@@ -244,9 +234,10 @@ ol>li[data-type="media"]>label
 	float:none !important;
 	display:block !important;
 	width:auto !important;
-	padding:10px 0 !important;
+	padding:10px 0 15px 0 !important;
 	margin:0 0 10px 0 !important;
 	text-align:center !important;
+	border-bottom:1px solid #eee;
 }
 ol>li[data-type="wysiwyg"]>.wrapper,
 ol>li[data-type="multipleselect"]>.wrapper,

@@ -5,12 +5,12 @@ footer
 {
 	font-size:0.75em;
 	overflow:auto;
-	color:#a7abb1;
+	color:#ddd;
 	padding:50px 30px 30px 30px;
 }
 footer a
 {
-	color:#666;
+	color:#ccc;
 }
 /* mnsys */
 #mnsys
@@ -25,7 +25,7 @@ footer a
 {
 	content:'•';
 	margin:0 3px 0 5px;
-	color:#999;
+	color:#ddd;
 }
 #mnsys li:last-child:after
 {

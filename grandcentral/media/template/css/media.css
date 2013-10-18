@@ -260,13 +260,14 @@
 	float:left;
 	border:1px solid #ddd;
 	border-radius:3px;
+	background:#fff;
 }
 #mediaLibrary .folder>ul>li .title
 {
 	text-align:center;
-	padding:5px;
+	padding:10px;
 	font-size:14px;
-	font-family:'Raleway-SemiBold';
+	font-family:'Raleway-Regular';
 }
 #mediaLibrary .folder>ul>li .preview
 {

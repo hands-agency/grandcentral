@@ -56,7 +56,7 @@
 /********************************************************************************************/
 //	First day at work ?
 /********************************************************************************************/
-	$p = array('subject' => 'human', 'subjectid' => ''.$_SESSION['user']['id'].'');
+	$p = array('subject' => 'human', 'subjectid' => $_SESSION['user']['id']->get());
 	if (!cc('logbook', $p)->count()) $_APP->bind_code("script", '<script type="text/javascript" charset="utf-8">$(document).ready(function () {openContext({app:"master",template:"welcome"})});</script>');
 	
 /********************************************************************************************/

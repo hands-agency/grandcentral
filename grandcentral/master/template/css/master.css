@@ -106,7 +106,7 @@ button.delete
 	border:none;
 	box-shadow:none;
 	text-shadow:none;
-	opacity:0.2;
+	opacity:0.5;
 }
 button.close:before,
 button.delete:before
@@ -228,11 +228,11 @@ a:visited
 	font-weight:normal;
 	font-style:normal;
 }
-/* Raleway Extra bold */
+/* Raleway Regular */
 @font-face
 {
-	font-family:'Raleway-SemiBold';
-	src:url('../font/Raleway/Raleway-SemiBold.ttf') format('truetype');
+	font-family:'Raleway-Regular';
+	src:url('../font/Raleway/Raleway-Regular.ttf') format('truetype');
 	font-weight:normal;
 	font-style:normal;
 }
@@ -903,7 +903,13 @@ progress::-webkit-progress-value {
 	width:41%;
 	right:5%;
 }
-.contextOpened #content
+.navOpened.contextOpened #context
+{
+	/* Context is fixed, so % are for the full page */
+	width:0%;
+	padding:0;
+}
+.navClosed.contextOpened #content
 {
 	width:55% !important;
 }
@@ -948,7 +954,7 @@ footer
 	top:0;
 	right:0;
 	border-left:1px solid #F2F2F2;
-	background:#F3F3F3;
+	background:#E9E9E9;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
@@ -964,7 +970,7 @@ footer
 }
 #context h1
 {
-	font-family:"Raleway-SemiBold";
+	font-family:"Raleway-Regular";
 	font-size:45px;
 	margin:0 0 20px 0;
 }
@@ -982,7 +988,6 @@ footer
 	font-size:0.8em;
 	display:none;
 	position:relative;
-
 }
 #content section>p,
 #content section>ul,
@@ -1036,7 +1041,7 @@ footer
 }
 #content section>h2 span.flag
 {
-	font-family:"Raleway-SemiBold";
+	font-family:"Raleway-Regular";
 	text-transform:uppercase;
 	background:#eee;
 	border-radius:4px;
