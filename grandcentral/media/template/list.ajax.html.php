@@ -22,6 +22,7 @@
 		<? if (isset($files)) : ?>
 		<? foreach ($files as $file): ?>
 		<li data-path="<?=$file->get_key()?>">
+			<?=$file->get_path()?>
 			<a href="#" class="file">
 				<? if (is_a($file, 'image')): ?>
 					<span class="preview"><?= $file->thumbnail(120, null); ?></span>
