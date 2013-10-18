@@ -42,7 +42,7 @@ class attrArray extends _attrs implements ArrayAccess, Iterator
  */
 	public function database_get()
 	{
-		return json_encode($this->data, JSON_UNESCAPED_UNICODE);
+		return = (!empty($this->data)) ? json_encode($this->data, JSON_UNESCAPED_UNICODE) : '';
 	}
 /**
  * xxxx
