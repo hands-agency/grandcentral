@@ -67,7 +67,7 @@
 	$appSelect.change(function()
 	{
 		$mainContainer = $appSelect.closest('.fieldAppContainer');
-		$themeContainer = ;
+		$themeContainer = null ;
 		appkey = $appSelect.attr('value');
 		
 		if (!appkey)

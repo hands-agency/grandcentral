@@ -1,19 +1,20 @@
 /********************************************************************************************/
 /* Choices
 /********************************************************************************************/
-#greenbuttonchoices
+#greenbutton-choices
 {
 }
-#greenbuttonchoices ul li
+#greenbutton-choices ul li
 {
 	padding:15px;
-	border-bottom:1px solid #eee;
+	border-bottom:1px solid #ccc;
 }
-#greenbuttonchoices ul li .title
+#greenbutton-choices ul li .title
 {
 	font-family:'Raleway-Thin';
+	color:#000;
 }
-#greenbuttonchoices ul li .descr
+#greenbutton-choices ul li .descr
 {
 	color:#ccc;
 	font-size:0.8em;

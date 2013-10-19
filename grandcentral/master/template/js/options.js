@@ -87,10 +87,9 @@ jQuery(document).ready(function($)
 	//	Load the options drop
 		$drop.ajx(
 		{
-			app:'page',
-			theme:'default',
+			app:'master',
 			template:'snippet/options.filters',
-			sectiontype:$('#content section:visible').attr('class'),
+			sectiontype:$('#content section:visible').data('template'),
 		},{
 			done:function()
 			{

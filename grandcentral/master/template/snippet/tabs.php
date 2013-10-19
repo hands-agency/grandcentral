@@ -71,11 +71,11 @@
 
 /********************************************************************************************/
 //	Fetch the altered sections
-/********************************************************************************************/	
+/********************************************************************************************/
 //	Find the default section
-	if ($defaults = $page['sectiondefault'])
+	if (!$page['sectiondefault']->is_empty())
 	{
-		foreach ($defaults as $key => $default)
+		foreach ($page['sectiondefault']->unfold() as $key => $default)
 		{
 			foreach ($sections as $key => $section)
 			{

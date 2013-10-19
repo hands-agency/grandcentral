@@ -128,17 +128,17 @@
 		}
 
 	//	Go live
-		plugin.live = function()
+		plugin.live = function(callback)
 		{
 		//	Validate before go live
 			$('#section_edit form').data('validate').now(
 			{
-				success:function()
+				success:function(html)
 				{
 				//	Submit all forms	
 					plugin.save('live');
-				//	Back to the list
-				//	console.log('success');
+				//	Execute callback
+					if (typeof callback['success'] == 'function') callback['success'].call(this, html);
 				},
 				error:function()
 				{
@@ -169,7 +169,14 @@
 	//	Save and start anew
 		plugin.save_new = function()
 		{
-			plugin.save();
+			plugin.live(
+			{
+				success:function()
+				{
+				//	Go to the form page
+					document.location.href = ADMIN_URL+'/edit?item='+_GET['item'];
+				}
+			});
 		}
 
 	//	Delete

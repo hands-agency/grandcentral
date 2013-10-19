@@ -55,7 +55,7 @@
 {
 	font-size:1.2em;
 	padding-top:2px; /* optical alignement */
-	font-family:"Raleway-Thin";
+	font-family:"Raleway-Regular";
 }
 .instack section[data-template="list/list"]>ol>li>.title .reach
 {
@@ -98,6 +98,7 @@
 {
 	color:#777;
 	font-size:0.9em;
+	font-family:"Raleway-Thin";
 }
 .instack section[data-template="list/list"]>ol>li>.fork
 {

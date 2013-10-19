@@ -33,11 +33,11 @@
 	$filter = array();
 	switch ($sectiontype)
 	{
-	//	Listing
-		case 'listing':
+	//	List
+		case 'list/list':
 		
 		//	Order
-			$structure = cc($_GET['item'], null, $_SESSION['pref']['handled_env'])->get_structure();
+			$structure = cc($_GET['item'], null, $_SESSION['pref']['handled_env']);
 			$filter['order'] = $structure['attr'];
 
 		//	Author
@@ -62,8 +62,8 @@
 			$filter['display'] = $display;	
 			break;
 		
-	//	form
-		case 'edit':
+	//	Form
+		case 'edit/edit':
 		
 		//	Importance
 			$importance = array(			
