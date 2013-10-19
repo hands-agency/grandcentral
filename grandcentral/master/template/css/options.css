@@ -8,7 +8,7 @@
 	background:#F0F0F0;
 	padding:20px 30px;
 }
-#options li
+#options>ul:first-child>li
 {
 	background:#fff;
 	-moz-border-radius:3px;
@@ -28,12 +28,12 @@
 	-webkit-transition: 0.5s;
 	border:1px solid #e2e4e6;
 }
-#options li.right
+#options>ul:first-child>li.right
 {
 	float:right;
 	margin:0 0 0 10px;
 }
-#options li.on
+#options>ul:first-child>li.on
 {
 	background:#3eb4d6;
 	border-color:#3eb4d6;
@@ -41,7 +41,7 @@
 	/* 3D flip */
 	-webkit-transform: rotatey(180deg);
 }
-#options li.on:after
+#options>ul:first-child>li.on:after
 {
 	position:absolute;
 	bottom:-15px;
@@ -80,11 +80,15 @@
 }
 
 /********************************************************************************************/
-/* Options
+/* Options drop
 /********************************************************************************************/
 #options_drop
 {
 	margin-top:10px;
+	border-radius:3px;
+	background:#555;
+	padding:15px;
+	display:none;
 }
 #options_drop ul
 {

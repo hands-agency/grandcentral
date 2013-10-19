@@ -5,5 +5,5 @@
 		<li id="refine" class="right" data-icon="&#xe009;"><input type="text" placeholder="<?=OPTION_FILTER_REFINE?>" /></li>
 	</ul>
 	<div class="clear"><!-- Clearing floats --></div>
-	<ul id="options_drop" class="cc-drop small masoned cumulative"><!-- Welcome Ajax --></ul>
+	<ul id="options_drop"><!-- Welcome Ajax --></ul>
 </div>

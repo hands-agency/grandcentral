@@ -44,7 +44,6 @@ jQuery(document).ready(function($)
 			if ($('#content').hasClass('locked'))
 			{				
 			//	Hide all the drops, so you can see what you're doing
-			//	$('.cc-drop').hide('fast');
 				$('.help').hide('fast');
 	
 			//	Load the options drop

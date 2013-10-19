@@ -126,26 +126,6 @@
 	transform: scale(1.5);
 }
 
-/* Drops */
-#tabs>ul>li .cc-drop
-{
-	left:-59px;
-	top:30px;
-	position:absolute;
-	width:150px;
-}
-#tabs>ul>li .cc-drop:after
-{
-	position:absolute;
-	top:-10px;
-	left:75px;
-	content:'';
-	border-style: solid;
-	border-width: 10 10px 10px 10px;
-	border-width: 0 10px 10px 10px;
-	border-color: transparent transparent #333 transparent;
-}
-
 /* You can have some tabs on the right side as well */
 #tabs>ul>li.right
 {
