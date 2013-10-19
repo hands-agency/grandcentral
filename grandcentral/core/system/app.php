@@ -387,29 +387,56 @@ class app
  * @param	string	le nom du theme
  * @param	string	le type de template (html, routine, json...)
  * @param	string	l'environnement, site ou admin
- * @return	array	le tableau des templates
+ * @return	array	le tableau des templates ou false
  * @access	public
  */
-	public function get_templates($type, $env)
+	public function get_templates($type = null, $env = null)
 	{
-		$root = $this->get_templateroot($env);
-		$dir = new dir($root);
-		$templates = array();
-		if ($dir->exists())
+		if (!is_null($type))
 		{
-			$dir->get();
-			$templates = array();
-			foreach ((array) $dir->data as $item)
-			{
-				$key = $item->get_key();
-				if (mb_strpos($key, '.'.$type.'.php') !== false)
-				{
-					$templates[] = mb_substr($key, 0, -mb_strlen('.'.$type.'.php'));
-				}
-			
-			}
+			$mime = $type;
 		}
-		return $templates;
+		else
+		{
+			$page = item::create('page');
+			$mime = array_keys($page->get_authorised_mime());
+		}
+		$pattern = '/^(.*).('.implode('|', (array) $mime).').php$/';
+		// print'<pre>';print_r($pattern);print'</pre>';
+	//	recusive function
+		$filterFile = function($dirroot, $basename = null) use (&$filterFile, $mime, $pattern)
+		{
+			$tpls = array();
+		//	pattern
+			// echo $this->get_key().'<br />';
+		//	crawl dir
+			$dir = new dir($dirroot);
+			if ($dir->exists())
+			{
+				$dir->get();
+				// print'<pre>';print_r($dir);print'</pre>';
+				foreach ((array) $dir->data as $item)
+				{
+					if (is_a($item, 'file'))
+					{
+						if (preg_match($pattern, $item->get_key(), $matches))
+						{
+							$tpls[] = empty($basename) ? $matches[1] : $basename.'/'.$matches[1];
+							// print'<pre>';print_r('SUCCESS');print'</pre>';
+						}
+					}
+					else
+					{
+						$tmp = $filterFile($item->get_root(), $item->get_key());
+						$tpls = array_merge($tpls, $tmp);
+					}
+				}
+			}
+			return $tpls;
+		};
+	//	call
+		$templates = $filterFile($this->get_templateroot($env));
+		return (empty($templates)) ? false : $templates;
 	}
 }
 ?>

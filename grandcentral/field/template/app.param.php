@@ -21,21 +21,12 @@
 /********************************************************************************************/
 //	Champ paramètres des apps
 /********************************************************************************************/
+	$APP = $_PARAM['app'];
 	// print '<pre>';print_r($_POST['value']);print'</pre>';
 //	récupération des paramètres de l'app
-	$params = cc('app', $_POST['appkey'])->ini('param');
-	// print '<pre>';print_r($params);print'</pre>';
+	$params = $APP->get_param();
+	// print '<pre>';print_r($APP);print'</pre>';
 	$fields = array();
-//	champ data
-	if (isset($params['data']) && class_exists('field_'.$params['data']))
-	{
-		$class = 'field_'.$params['data'];
-		$p = array(
-			'label' => 'data : '
-		);
-		$fields['data'] = new $class($_POST['name'].'[param][data]', $p);
-		unset($params['data']);
-	}
 //	construction de la liste des champs
 	foreach ((array) $params as $key => $value)
 	{
@@ -53,9 +44,9 @@
 				'value' => $value
 			);
 		//	number
-			if (is_numeric($value)) $fields[$key] = new field_number($_POST['name'].'[param]['.$key.']', $p);
+			if (is_numeric($value)) $fields[$key] = new fieldNumber($_POST['name'].'[param]['.$key.']', $p);
 		//	text
-			else $fields[$key] = new field_text($_POST['name'].'[param]['.$key.']', $p);
+			else $fields[$key] = new fieldText($_POST['name'].'[param]['.$key.']', $p);
 		}
 	//	champ bool et select
 		else
@@ -68,7 +59,7 @@
 					'labelbefore' => true
 				);
 				if (isset($matches[1]) && $matches[1] == 'true') $p['value'] = $matches[1];
-				$fields[$key] = new field_bool($_POST['name'].'[param]['.$key.']', $p);
+				$fields[$key] = new fieldBool($_POST['name'].'[param]['.$key.']', $p);
 			}
 		//	select
 			else
@@ -79,22 +70,8 @@
 					'valuestype' => 'array'
 				);
 				if (isset($matches[1])) $p['value'] = $matches[1];
-				$fields[$key] = new field_select($_POST['name'].'[param]['.$key.']', $p);
+				$fields[$key] = new fieldSelect($_POST['name'].'[param]['.$key.']', $p);
 			}
 		}
-	}
-/********************************************************************************************/
-//	Chargement des valeurs en base
-/********************************************************************************************/
-	$values = array();
-//	récupération de la valeur des params
-	if (isset($_POST['value']) && !empty($_POST['value']))
-	{
-		$values = json_decode(stripslashes(htmlspecialchars_decode($_POST['value'], ENT_COMPAT)), true);
-	}
-//	affectation des valeurs
-	foreach ((array) $values as $key => $value)
-	{
-		if (isset($fields[$key])) $fields[$key]->set_value($value);
 	}
 ?>

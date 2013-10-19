@@ -1,123 +1,43 @@
-// (function($){
-// //	app
-// 	$appSelect = $('.fieldAppContainer .fieldAppSelect select');
-// 	$appSelect.change(function()
-// 	{
-// 		$mainContainer = $appSelect.closest('.fieldAppContainer');
-// 		$themeContainer = $mainContainer.find('.fieldAppThemeSelect');
-// 		appkey = $appSelect.attr('value');
-// 		
-// 		if (!appkey)
-// 		{
-// 			$themeContainer.html('');
-// 			$mainContainer.find('.fieldAppTemplateSelect').html('');
-// 			return false;
-// 		}
-// 		
-// 		$themeContainer.ajx({
-// 			app: 'field',
-// 			theme: 'default',
-// 			template: 'app.template',
-// 			search: 'theme',
-// 			name: $mainContainer.attr('data-name'),
-// 			appkey: appkey,
-// 			value: $themeContainer.attr('data-value')
-// 		}, {'done':function(){
-// 			$mainContainer.find('.fieldAppTemplateSelect').html('');
-// 			$themeContainer.find('select').trigger('change');}
-// 		});
-// 		
-// 		$mainContainer.find('.fieldAppParamArray').ajx({
-// 			app: 'field',
-// 			theme: 'default',
-// 			template: 'app.param',
-// 			name: $mainContainer.attr('data-name'),
-// 			appkey: appkey,
-// 			value: $mainContainer.find('.fieldAppParamArray').attr('data-value')
-// 		});
-// 	});
-// 	
-// 	if ($appSelect.attr('value')) {$appSelect.trigger('change');};
-// //	theme 
-// 	$(document).on('change', '.fieldAppContainer .fieldAppThemeSelect select', function()
-// 	{
-// 		$this = $(this);
-// 		$mainContainer = $this.closest('.fieldAppContainer');
-// 		$templateContainer = $mainContainer.find('.fieldAppTemplateSelect');
-// 		appkey = $this.attr('data-app');
-// 		themekey = $this.attr('value');
-// 		// console.log('theme : '+$this.attr('value'))
-// 		
-// 		$templateContainer.ajx({
-// 			app: 'field',
-// 			theme: 'default',
-// 			template: 'app.template',
-// 			search: 'template',
-// 			name: $mainContainer.attr('data-name'),
-// 			appkey: appkey,
-// 			themekey: themekey,
-// 			value: $templateContainer.attr('data-value')
-// 		});
-// 	});
-// })(jQuery);
-
 (function($){
 //	app
-	$appSelect = $('.fieldAppContainer .fieldAppSelect select');
-	$appSelect.change(function()
+	$fieldAppSelect = $('.fieldAppContainer .fieldAppSelect select');
+	$fieldAppSelect.change(function()
 	{
-		$mainContainer = $appSelect.closest('.fieldAppContainer');
-		$themeContainer = null ;
-		appkey = $appSelect.attr('value');
-		
-		if (!appkey)
+	//	
+		$fieldContainer = $fieldAppSelect.closest('.fieldAppContainer');
+		$templateContainer = $fieldContainer.find('.fieldTemplateContainer');
+	//	remise à zéro
+		$templateContainer.empty();
+	//	chargement des templates et paramètres
+		var value = $fieldAppSelect.attr('value')
+		var params = $templateContainer.attr('data-param');
+		if ($templateContainer.data('appkey') != value)
 		{
-			$themeContainer.html('');
-			$mainContainer.find('.fieldAppTemplateSelect').html('');
-			return false;
+			params = null;
+		};
+		if (value)
+		{
+			$templateContainer.ajx({
+				app: 'field',
+				template: 'app.template',
+				env: $fieldContainer.attr('data-env'),
+				name: $fieldContainer.attr('data-name'),
+				appkey: value,
+				valueTemplate: $templateContainer.attr('data-template'),
+				valueParam: params
+			},{
+			//	Callback
+				done:function()
+				{
+					
+				},
+			},{
+			//	Option
+				debug:false,
+				async:true,
+			});
 		}
-		
-		$themeContainer.ajx({
-			app: 'field',
-			template: 'app.template',
-			name: $mainContainer.attr('data-name'),
-			appkey: appkey,
-			value: $mainContainer.find('.fieldAppThemeSelect').attr('data-value')
-		}, {'done':function(){
-			$mainContainer.find('.fieldAppTemplateSelect').html('');
-			$themeContainer.find('select').trigger('change');}
-		});
-		
-		$mainContainer.find('.fieldAppParamArray').ajx({
-			app: 'field',
-			theme: 'default',
-			template: 'app.param',
-			name: $mainContainer.attr('data-name'),
-			appkey: appkey,
-			value: $mainContainer.find('.fieldAppParamArray').attr('data-value')
-		});
 	});
-	
-	if ($appSelect.attr('value')) {$appSelect.trigger('change');};
-//	theme 
-	$(document).on('change', '.fieldAppContainer .fieldAppThemeSelect select', function()
-	{
-		$this = $(this);
-		$mainContainer = $this.closest('.fieldAppContainer');
-		$templateContainer = $mainContainer.find('.fieldAppTemplateSelect');
-		appkey = $this.attr('data-app');
-		themekey = $this.attr('value');
-		// console.log('theme : '+$this.attr('value'))
-		
-		$templateContainer.ajx({
-			app: 'field',
-			theme: 'default',
-			template: 'app.template',
-			search: 'template',
-			name: $mainContainer.attr('data-name'),
-			appkey: appkey,
-			themekey: themekey,
-			value: $templateContainer.attr('data-value')
-		});
-	});
+//	trigger à l'ouverture
+	if ($fieldAppSelect.attr('value')) {$fieldAppSelect.trigger('change');};
 })(jQuery);  

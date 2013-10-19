@@ -112,7 +112,6 @@ class dir implements Iterator
 		}
 		rmdir($this->root);
 	}
-	
 /**
  * Déplacer un répertoire et son contenu
  *

@@ -21,48 +21,22 @@
 /********************************************************************************************/
 //	Ajax
 /********************************************************************************************/
-	print '<pre>';print_r($_POST);print'</pre>';
-	switch ($_POST['search'])
-	{
+	// print '<pre>';print_r($_POST);print'</pre>';
 /********************************************************************************************/
-//	construction du champ theme
+//	Template list
 /********************************************************************************************/
-		// case 'theme':
-		// //	récupération des themes
-		// 	$themes = cc('app', $_POST['appkey'])->get_themes($_SESSION['pref']['handled_env']);
-		// //	construction du select
-		// 	$field = 'theme : nodata';
-		// 	if (!empty($themes))
-		// 	{
-		// 		$params = array(
-		// 			'label' => 'theme : ',
-		// 			'values' => $themes,
-		// 			'valuestype' => 'array',
-		// 			'customdata' => array('app' => $_POST['appkey'])
-		// 		);
-		// 		$field = new field_select($_POST['name'].'[theme]', $params);
-		// 		if (!empty($_POST['value'])) $field->set_value($_POST['value']);
-		// 	}
-		// 	break;
+	$app = new app($_POST['appkey'], null, json_decode($_POST['valueParam'], true));
+	$templates = $app->get_templates(null, $_POST['env']);
+	$fparams = array(
+		'label' => 'template : ',
+		'values' => $templates,
+		'valuestype' => 'array',
+		'value' => $_POST['valueTemplate']
+	);
+	$fieldTemplate = new fieldSelect($_POST['name'].'[template]', $fparams);
 /********************************************************************************************/
-//	construction du champ template
+//	Params
 /********************************************************************************************/
-		case 'template':
-		//	récupération des templates
-			$templates = cc('app', $_POST['appkey'])->get_templates($_POST['themekey'], 'html', $_SESSION['pref']['handled_env']);
-		//	construction du select
-			$field = 'template : nodata';
-			if (!empty($templates))
-			{
-				$params = array(
-					'label' => 'template : ',
-					'values' => $templates,
-					'valuestype' => 'array'
-				);
-				$field = new field_select($_POST['name'].'[template]', $params);
-				if (!empty($_POST['value'])) $field->set_value($_POST['value']);
-			}
-			break;
-	}
-	
+	$params['app'] = $app;
+	$fieldParam = new app('field', 'app.param', $params);
 ?>

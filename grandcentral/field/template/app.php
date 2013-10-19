@@ -29,28 +29,33 @@
 /********************************************************************************************/
 	$_FIELD = $_PARAM['field'];
 	$apps = registry::get(registry::app_index);
+	// print'<pre>';print_r();print'</pre>';
+//	look for apps with template
 	foreach ($apps as $app)
 	{
-		$about = $app->get_ini('about');
-		$values[$app->get_key()] = $about['title'];
+		if ($t = $app->get_templates(null, $_SESSION['pref']['handled_env']))
+		{
+			$about = $app->get_ini('about');
+			$values[$app->get_key()] = $app->get_key();//$about['title'];
+		}
 	}
-	
+//	sort
 	natcasesort($values);
+//	field
 	$p = array(
 		'label' => 'App :',
 		'placeholder' => '...',
 		'values' => $values,
 		'valuestype' => 'array'
 	);
-	$field = new fieldSelect($_FIELD->get_name().'[app]', $p);
+	$field = new fieldSelect($_FIELD->get_name().'[key]', $p);
 	
 /********************************************************************************************/
-//	Préchargement auto
+//	Autoload values
 /********************************************************************************************/
 	$value = $_FIELD->get_value();
-	//print '<pre>';print_r($value);print'</pre>';
 //	app
-	if (isset($value['app']) && !empty($value['app'])) $field->set_value($value['app']);
+	if (isset($value['key']) && !empty($value['key'])) $field->set_value($value['key']);
 //	template
 	$template = (isset($value['template']) & !empty($value['template'])) ? $value['template'] : null;
 //	param
