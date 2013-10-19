@@ -71,6 +71,10 @@ section[data-template="edit/edit"]>form>fieldset ol>li .wrapper .field
 	-moz-transition:border-color .3s ease-in;
 	-o-transition:border-color .3s ease-in;
 	transition:border-color .3s ease-in;
+	font-family:'Raleway-Regular';
+}
+section[data-template="edit/edit"]>form>fieldset ol>li>.wrapper>.field
+{
 	border-left:1px solid #eee;
 }
 section[data-template="edit/edit"]>form>fieldset ol>li.number .wrapper .field,

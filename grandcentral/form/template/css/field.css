@@ -220,7 +220,8 @@ ol>li[data-type="multipleselect"],
 ol>li[data-type="attr"],
 ol>li[data-type="rel"],
 ol>li[data-type="app"],
-ol>li[data-type="media"]
+ol>li[data-type="media"],
+ol>li[data-type="pagetype"]
 {
 	padding:10px 0px 3px 0px !important;
 }
@@ -229,7 +230,8 @@ ol>li[data-type="multipleselect"]>label,
 ol>li[data-type="attr"]>label,
 ol>li[data-type="rel"]>label,
 ol>li[data-type="app"]>label,
-ol>li[data-type="media"]>label
+ol>li[data-type="media"]>label,
+ol>li[data-type="pagetype"]>label
 {
 	float:none !important;
 	display:block !important;
@@ -244,7 +246,8 @@ ol>li[data-type="multipleselect"]>.wrapper,
 ol>li[data-type="attr"]>.wrapper,
 ol>li[data-type="rel"]>.wrapper,
 ol>li[data-type="app"]>.wrapper,
-ol>li[data-type="media"]>.wrapper
+ol>li[data-type="media"]>.wrapper,
+ol>li[data-type="pagetype"]>.wrapper
 {
 	width:auto !important;
 	display:block !important;
@@ -258,7 +261,8 @@ ol>li[data-type="multipleselect"]>.wrapper>.field,
 ol>li[data-type="attr"]>.wrapper>.field,
 ol>li[data-type="rel"]>.wrapper>.field,
 ol>li[data-type="app"]>.wrapper>.field,
-ol>li[data-type="media"]>.wrapper>.field
+ol>li[data-type="media"]>.wrapper>.field,
+ol>li[data-type="pagetype"]>.wrapper>.field
 {
-	background:#fff !important;
+	border:none !important;
 }

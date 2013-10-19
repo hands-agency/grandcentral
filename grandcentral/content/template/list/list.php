@@ -39,17 +39,35 @@
 	if (!isset($_GET['item'])) trigger_error('You should have an Item by now', E_USER_WARNING);
 	else $handled_item = $_GET['item'];
 
+//	Falling from the sky
+	$order = (isset($_POST['filter']) && $_POST['filter'] == 'order') ? $_POST['value'] : 'title';
+	
 /********************************************************************************************/
-//	Fetch the structure
+//	Some functions
 /********************************************************************************************/
-	$structure = cc('structure', $handled_item, $handled_env);
+	switch ($order)
+	{
+		case 'title':
+			function formatSeparator($val) {return strtoupper(substr($val, 0, 1));}
+			break;
+		case 'key':
+			function formatSeparator($val) {return explode('_', $val)[0];}
+			break;
+		case 'created':
+		case 'updated':
+			function formatSeparator($val) {return $val->format('d m Y');}
+			break;
+		
+		default:
+			function formatSeparator($val) {return $val;}
+			break;
+	}
 
 /********************************************************************************************/
 //	Fetch the bunch of items
 /********************************************************************************************/
-	$param['order()'] = 'title';
 //	Order
-	if (isset($_POST['filter'])) $param[$_POST['filter'].'()'] = $_POST['value'];
+	$param['order()'] = $order;
 //	Refine ?
 	if (isset($_POST['q'])) $param['title'] = '%'.$_POST['q'].'%';
 //	Fetch the bunch
@@ -58,15 +76,21 @@
 /********************************************************************************************/
 //	Some prepross
 /********************************************************************************************/
+//	Find the first media attr
+	$iconField = null;
+	foreach($bunch[0] as $attr)
+	{
+		if(is_a($attr, 'attrMedia'))
+		{
+			$iconField = $attr->get_key();
+			break;
+		}
+	}
 	foreach ($bunch as $item)
 	{
 	//	Ensure we have a title, otherwise use the nickname
 		if (empty($item['title'])) $item['title'] = (empty($item['title'])) ? $item->get_nickname() : $item['title'];
-	//	Image preview TODO
-		if (isset($structure['attr']['media']))
-		{
-			$icon = $structure['attr']['media']['key'];
-		}
+	
 	}
 
 /********************************************************************************************/

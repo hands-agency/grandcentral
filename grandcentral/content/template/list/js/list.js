@@ -48,6 +48,25 @@ $(document).bind('unlock', function()
 	});
 
 /*********************************************************************************************
+/**	* On unlock
+ 	* @author	mvd@cafecentral.fr
+**#******************************************************************************************/
+	$(document).ready(function()
+	{
+		var $container = $('.inmasonry section[data-template="list/list"]>ol');
+	//	initialize Masonry after all images have loaded  
+		$container.imagesLoaded( function()
+		{
+			$container.masonry(
+			{
+				itemSelector: 'li[data-item]',
+				gutter: 10,
+				isAnimated: true
+			});
+		});
+	});
+
+/*********************************************************************************************
 /**	* Display the archives
  	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/

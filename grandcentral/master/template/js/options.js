@@ -108,19 +108,32 @@ jQuery(document).ready(function($)
 	//	Some vars
 		panel = $('#content section:visible');
 		filter = $(this).parent('ul').data('filter');
-		
-		section = panel.data('status');
+		section = panel.attr('id').replace('section_', '');
 		value = $(this).data('value');
 		template = panel.data('template');
+		
 	//	Toggle
 		$(this).toggleClass('on off');
-	//	Refresh
-		panel.ajx(
+		
+	//	Go
+		switch(filter)
 		{
-			app:'section',
-			template:template,
-			section:section,
-			filter:filter,
-			value:value,
-		}, false);
+		//	Reorder
+			case 'order':
+				panel.ajx(
+				{
+					app:'content',
+					template:template,
+					section:section,
+					filter:filter,
+					value:value,
+				});
+				break;
+		//	Change display
+			case 'display':
+			  $('#content').attr('class', value);
+			  break;
+		}
+		
+	//	Refresh
 	});
