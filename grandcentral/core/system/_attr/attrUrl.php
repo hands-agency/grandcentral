@@ -94,6 +94,11 @@ class attrUrl extends _attrs
  */
 	protected function _slugify($string)
 	{
+		$string = trim($string, '- \t\n\r\0\x0B');
+		if (mb_substr($string, 0, 1) == '/')
+		{
+			$string = mb_substr($string, 1);
+		}
 		$slug = new slug();
 		return '/'.$slug->makeSlugs($string);
 	}
