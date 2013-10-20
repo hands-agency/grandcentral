@@ -65,17 +65,7 @@ section[data-template="list/list"]>ol>li>.action li a:not(:hover)
 {
 	padding:10px;
 }
-/* Media */
-.instack section[data-template="list/list"]>ol>li>.media
-{
-	margin:0 0 5px 0 !important;
-	border-bottom:1px solid #ddd;
-}
-.instack section[data-template="list/list"]>ol>li>.media img
-{
-	width:100%;
-	margin:0 !important;
-}
+/* Icon */
 .instack section[data-template="list/list"]>ol>li>.icon
 {
 	border:1px dashed transparent;

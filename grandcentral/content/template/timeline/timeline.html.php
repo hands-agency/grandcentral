@@ -6,7 +6,7 @@
 	<!--h2><?=$period?></h2-->
 	<?
 	//	Divider
-		if (!isset($lastPeriod) OR $lastPeriod != $period) echo '<li class="divider"><h2>'.constant('TIMELINE_PERIOD_'.strtoupper($period)).'</h2></li>';
+		if (!isset($lastPeriod) OR $lastPeriod != $period) echo '<li class="divider"><h2>'.cst('TIMELINE_PERIOD_'.$period, $period).'</h2></li>';
 		$lastPeriod = $period;
 	?>
 	<? foreach ($subject as $subject => $event): ?>
@@ -18,12 +18,17 @@
 				<? $logbook = current($items) ?>
 				<? $user = cc('human', $subject, 'site') ?>
 				<? $structure = cc('structure', $logbook['item'], 'site') ?>
-				<li data-item="<?=$logbook->get_table().'_'.$logbook['id']?>">
-					<div class="padding">
-						<div class="icon medium icon-<?=$structure['icon']?>"></div>
+				<li data-item="<?=$logbook->get_nickname()?>">
+					<?
+						$thumbnail = (isset($user['profilepic'])) ? media($user['profilepic'][0]['url'])->thumbnail(100, null) : null;
+						$empty = (!isset($thumbnail)) ? 'empty' : null;
+					?>
+					<div class="icon <?=$empty?>"><a href="<?=$user->edit()?>"><?=$thumbnail?></a></div>
 					
+					<div class="padding">
+
 						<div class="title">
-							<a href="<?=$user->edit() ?>#timeline" class="user"><?=$user['title'] ?></a> <?=cst('TIMELINE_EVENT_'.$event, $event)?> <? if (!isset($_GET['item'])): ?><a href="<?=cc('structure', $structure, $_SESSION['pref']['handled_env'])->edit()?>"><?=cc('structure', $structure, $_SESSION['pref']['handled_env'])['title'] ?></a> :<? endif ?>
+							<a href="<?=$user->edit() ?>" class="user"><?=$user['title'] ?></a> <?=cst('TIMELINE_EVENT_'.$event, $event)?> <? if (!isset($_GET['item'])): ?><a href="<?=cc('structure', $structure, $_SESSION['pref']['handled_env'])->edit()?>"><?=cc('structure', $structure, $_SESSION['pref']['handled_env'])['title'] ?></a> :<? endif ?>
 							<? $i = $and = 0 ?>
 							<? foreach ($items as $item): ?>
 								<? $item = cc($item['item']->get(), $item['itemid']->get(), $_SESSION['pref']['handled_env']) ?>
@@ -37,7 +42,7 @@
 								and <a href=""><?=$and?> others</a>.
 							<? endif ?>
 						</div>
-						
+					
 						<ul class="descr">
 							<? $i = 0 ?>
 							<? foreach ($items as $item): ?>
@@ -48,33 +53,34 @@
 							<? endif ?>
 							<? $i++ ?>
 							<? endforeach ?>
-						</ul>					
-					</div>
+						</ul>
 					
-					<? if (isset($current['url'])): ?>
-					<ul class="thumbnails">
-						<? $i = 0 ?>
-						<? foreach ($items as $item): ?>
-						<? if ($i < $displayThumbnails): ?>
-							<li>
-								<div class="thumbnail small">
-									<!--iframe src="<?=cc($item['item'], $item['itemid'])['url']?>"></iframe-->
-									<a class="thumbnailPlaceholder" href="<?=cc($item['item']->get(), $item['itemid']->get())['url']?>"></a>
-								</div>
-							</li>
+						<? if (isset($current['url'])): ?>
+						<ul class="thumbnails">
+							<? $i = 0 ?>
+							<? foreach ($items as $item): ?>
+							<? if ($i < $displayThumbnails): ?>
+								<li>
+									<div class="thumbnail small">
+										<!--iframe src="<?=cc($item['item'], $item['itemid'])['url']?>"></iframe-->
+										<a class="thumbnailPlaceholder" href="<?=cc($item['item']->get(), $item['itemid']->get())['url']?>"></a>
+									</div>
+								</li>
+							<? endif ?>
+							<? $i++ ?>
+							<? endforeach ?>
+						</ul>
 						<? endif ?>
-						<? $i++ ?>
-						<? endforeach ?>
-					</ul>
-					<? endif ?>
 					
-					<ul class="action">
-						<li><a href="" class="notes">Discussion</a></li>
-						<? if ($event == 'update' && count($items) == 1): ?><li><a href="" class="compare">What's new</a></li><? endif ?>
-						<li class="icon-time"><?=$logbook['created']->time_since() ?></li>
-					</ul>
+						<ul class="action">
+							<li><a href="" class="notes">Discussion</a></li>
+							<? if ($event == 'update' && count($items) == 1): ?><li><a href="" class="compare">What's new</a></li><? endif ?>
+							<li class="icon-time"><?=$logbook['created']->time_since() ?></li>
+						</ul>
 					
-					<div class="notes"></div>
+						<div class="notes"></div>
+											
+					</div>
 				</li>
 			<? endforeach ?>
 		<? endforeach ?>
@@ -109,7 +115,7 @@
 				else descr = '';
 				
 			//	LI
-				li = '<li data-item="'+item+'" style="display:none"><div class="icon"></div>'+author+descr+'<div class="date">'+data['created']+'</div></li>';
+				li = '<li data-item="'+item+'" style="display:none"><div class="icon"></div><div class="padding">'+author+descr+'<div class="date">'+data['created']+'</div></div></li>';
 				$(li).prependTo('.logbookList').show('fast');
 				
 			//	No data ?

@@ -107,8 +107,11 @@
 		'yesterday_dawn' => array(
 			'updated' => array('> '.$yesterday_dawn, '< '.$yesterday_morning),
 		),
+	//	Days of this week if we're not tuesday
+		'before' => array(
+			'updated' => '< '.$yesterday_dawn,
+		),
 	);
-//	Days of this week if we're not tuesday
 	
 //	Last week
 
@@ -128,7 +131,7 @@
 	//	Only for one item
 		$only = array('item' => 'item', 'id' => 'itemid', 'subject' => 'subject', 'subjectid' => 'subjectid');
 		foreach ($only as $get => $only) if (isset($_GET[$get])) $p[$only] = $_GET[$get];
-
+		
 	//	Fetch the logbook
 		$logbook = cc('logbook', $p, $_SESSION['pref']['handled_env']);
 
@@ -145,6 +148,6 @@
 	$EventSource = cc('page', 'api.eventstream')['url']->args(array
 	(
 		'app' => 'content',
-		'template' => 'timeline',
+		'template' => 'timeline/timeline',
 	));
 ?>

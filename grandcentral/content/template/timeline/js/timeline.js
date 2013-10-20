@@ -4,10 +4,9 @@
 **#******************************************************************************************/
 	$('ul.action a.compare').on('click', function()
 	{
-		$(this).popup(
+		openContext(
 		{
 			app:'media',
-			theme:'admin',
 			template:'admin',
 			width:'300px',
 		});

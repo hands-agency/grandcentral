@@ -6,61 +6,86 @@ section[data-template="timeline/timeline"]>ol>li:not(.divider)
 	font-size: 12px;
 	position:relative;
 	clear:left;
-	border:1px solid #eee;
-	background:#fff;
-	margin-bottom:10px;
-	border-radius:3px;
+	margin-bottom:15px;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
-/*
-	width:50%;
-	float:left;
-*/
+	width:70%;
 }
 section[data-template="timeline/timeline"]>ol>li>.padding
 {
-	padding:10px;
+	background:#F2F2F2;
+	padding:15px;
+	margin:0 0px 0 65px;
+	border-radius:3px;
+	position:relative;
+}
+section[data-template="timeline/timeline"]>ol>li>.padding:before
+{
+	content:'';
+	position:absolute;
+	left:-10px;
+	top:50%;
+	margin-top:-10px;
+	width: 0; 
+	height: 0; 
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent; 
+	border-right:10px solid #F2F2F2; 
 }
 
 /* Divider */
 section[data-template="timeline/timeline"] ol>li.divider
 {
 	text-align:center;
+	border-bottom:1px solid #eee;
+	margin:0 0 25px 0;
 }
 section[data-template="timeline/timeline"] ol>li.divider h2
 {
 	background:#fff;
 	padding:0 10px;
-	display:inline;
-	position:relative;
-	top:7px;
 	color:#cecece;
-	z-index:2;
+	position:relative;
+	bottom:-7px;
+	display:inline;
 }
 
 /* Fields */
-section[data-template="timeline/timeline"]>ol>li>.padding>*:not(.icon):not(h2)
+section[data-template="timeline/timeline"]>ol>li>.padding>*:not(h2)
 {
-	margin-left:57px;
 	margin-bottom:5px;
 }
-section[data-template="timeline/timeline"]>ol>li>.padding>.icon
+
+/* Icon */
+section[data-template="timeline/timeline"]>ol>li>.icon
 {
-	float:left;
-	width:40px;
+	border:1px dashed transparent;
 	height:40px;
-	-moz-border-radius:30px;
-	-webkit-border-radius:30px;
-	border-radius:30px;
-	border-width:3px;
-	position:relative;
-	z-index:1;
+	width:40px;
+	overflow:hidden;
+	-moz-border-radius:100px;
+	-webkit-border-radius:100px;
+	border-radius:100px;
+
+	margin-top:-20px;
+	position:absolute;
+	top:50%;
+}
+section[data-template="timeline/timeline"]>ol>li>.icon.empty
+{
+	border-color:rgba(0, 0, 0, .2);
 }
 section[data-template="timeline/timeline"]>ol>li>.padding>.title
 {
 	font-size:14px;
+	line-height:1.4em;
 	color:#333;
+	font-family:"Raleway-Regular";
+}
+section[data-template="timeline/timeline"]>ol>li>.padding>.descr
+{
+	font-family:"Raleway-Thin";
 }
 section[data-template="timeline/timeline"]>ol>li>.padding>.title .user
 {
@@ -75,7 +100,7 @@ section[data-template="timeline/timeline"]>ol>li>.padding>.thumbnails li
 	float:left;
 	margin:0 10px 10px 0;
 }
-section[data-template="timeline/timeline"]>ol>li>.action
+section[data-template="timeline/timeline"]>ol>li>.padding>.action
 {
 	display:none;
 }
