@@ -74,7 +74,7 @@ class database
  */
 	public static function connect($env = env)
 	{
-		self::$env = $env;
+		self::$env = (in_array($env, array('site', 'admin'))) ? $env : trigger_error('Environnement should be <strong>admin</strong> or <strong>site</strong>.Not '.$env.'.', E_USER_ERROR);
 	//	à la manière du singleton
 		if (empty(self::$instance[self::$env]))
 		{

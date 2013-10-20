@@ -140,7 +140,7 @@ class form
  */
 	public function set_action($action)
 	{
-		if (is_a($action, 'attrUrl')) $action = $action->__tostring();
+		$action = (is_a($action, 'attrUrl') && !$action->is_empty()) ? $action->__tostring() : '';
 		$this->attrs['action'] = $action;
 		return $this;
 	}

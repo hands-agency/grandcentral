@@ -22,7 +22,6 @@
 //	We start from the form and the field
 /********************************************************************************************/
 	// print'<pre>';print_r($_POST);print'</pre>';
-	echo json_encode($_POST, JSON_UNESCAPED_UNICODE);
 //	The form
 	$form = cc('form', $_POST['form']);
 //	The field

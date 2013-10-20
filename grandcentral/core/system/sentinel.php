@@ -128,10 +128,10 @@ class sentinel
 		if ($trace === true)
 		{
 			ob_start();
-	        debug_print_backtrace();
+			debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
 			// print '<pre style="width:2000px">';print_r(debug_backtrace());print'</pre>';
-		    $trace = ob_get_contents();
-		    ob_end_clean();
+			$trace = ob_get_contents();
+			ob_end_clean();
 			$param['trace'] = '<pre>'.print_r($trace, true).'</pre>';
 		}
 	//	Write down the error
