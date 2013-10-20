@@ -78,14 +78,18 @@
 /********************************************************************************************/
 //	Find the first media attr
 	$iconField = null;
-	foreach($bunch[0] as $attr)
+	if ($bunch->count > 0)
 	{
-		if(is_a($attr, 'attrMedia'))
+		foreach($bunch[0] as $attr)
 		{
-			$iconField = $attr->get_key();
-			break;
+			if(is_a($attr, 'attrMedia'))
+			{
+				$iconField = $attr->get_key();
+				break;
+			}
 		}
 	}
+	
 	foreach ($bunch as $item)
 	{
 	//	Ensure we have a title, otherwise use the nickname

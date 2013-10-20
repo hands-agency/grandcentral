@@ -118,7 +118,7 @@ class app
 		if (empty($this->ini))
 		{
 			$file = ADMIN_ROOT.'/'.$this->key.'/'.boot::app_ini_file;
-			$this->ini = (file_exists($file)) ? parse_ini_file($file, true) : trigger_error('Can\'t find <strong>"'.$this->get_key().'" app</strong> config.ini file.', E_USER_WARNING);
+			$this->ini = (file_exists($file)) ? parse_ini_file($file, true) : trigger_error('Can\'t find <strong>"'.$this->get_key().'" app</strong> config.ini file.', E_USER_ERROR);
 		}
 		
 		return (!is_null($cat) && isset($this->ini[$cat])) ? $this->ini[$cat] : $this->ini;

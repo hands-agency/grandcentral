@@ -28,13 +28,14 @@ class adminItemForm
 		$this->env = $env;
 		$this->table = $table;
 	//	recherche du formulaire
-		$key = $env.'_'.$table;
-		$this->form = cc('form', $key, 'admin');
+		$key = 'admin'.$table;
+		$this->form = cc('form', $key, $env);
 		$this->form['key'] = $key;
 		$this->form['title'] = $key;
 		$this->form['template'] = 'default';
 		$this->form['action'] = 'item';
 		$this->form['method'] = 'post';
+		$this->form['system'] = true;
 	//	recherche de l'objet
 		$this->item = cc($table, $id, $env);
 	}
