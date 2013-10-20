@@ -3,7 +3,8 @@
 	<span class="help"></span>
 </label>
 <div class="wrapper">
-	<div class="field">	
+	<div class="field">
+		<input  type="hidden" name="<?= $_FIELD->get_name(); ?>" <?php if ($_FIELD->is_disabled()): ?>disabled="disabled"<?php endif ?>value="">
 		<div class="selected">
 			<div class="h3-wrapper"><h3><?=MULTIPLESELECT_SELECTED_LABEL?></h3></div>
 			<ol>

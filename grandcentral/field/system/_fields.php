@@ -219,6 +219,29 @@ abstract class _fields
 		return $this;
 	}
 /**
+ * Affecte une série de data personnalisée (format HTML5) au champ
+ * 
+ * ex :
+ * $field = new field_text('title');
+ * $field->customdata(array('key' => 'jquery'))
+ * 
+ * rendu html = <input type="text" name="title" data-key="jquery" />
+ * 
+ * @param	array	le tableau de données personnalisées à ajouter
+ * @access	public
+ */
+	public function set_customdata($array)
+	{
+		if (is_array($array))
+		{
+			foreach ($array as $key => $value)
+			{
+				$this->attrs['data-'.$key] = $value;
+			}
+		}
+		return $this;
+	}
+/**
  * Déclare le champ en lecture seule
  * 
  * @param	bool	true (par défaut) ou false
@@ -353,6 +376,16 @@ abstract class _fields
 	public function is_required()
 	{
 		return $this->required;
+	}
+/**
+ * Know whether is field is required or not
+ * 
+ * @return	string	la valeur du champ
+ * @access	public
+ */
+	public function is_disabled()
+	{
+		return $this->disabled;
 	}
 /**
  * Construit le code html du champ

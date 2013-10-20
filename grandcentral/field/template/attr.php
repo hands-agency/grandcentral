@@ -49,7 +49,7 @@
 	$available = registry::get_class('attr');
 //	Get the properties for each attr
 	foreach ($available as $attr) $fields[mb_substr(mb_strtolower($attr), 4)] = $attr::get_properties();
-		
+	// print'<pre>';print_r($fields);print'</pre>';
 /********************************************************************************************/
 //	The list of add buttons
 /********************************************************************************************/
@@ -66,7 +66,6 @@
 		foreach ($fields[$value['type']] as $param)
 		{
 		//	Field
-			if ($param['name'] == 'key') unset($param['customdata']);
 			$class = 'field'.ucfirst($param['type']);
 			$field = new $class($_FIELD->get_name().'['.$key.']['.$param['name'].']', $param);
 			if (isset($value[$param['name']])) $field->set_value($value[$param['name']]);

@@ -54,8 +54,8 @@ class adminItemForm
 	//	modification du formaulaire seulement si la structure de l'objet a été modifiée
 		else
 		{
-			$structure = cc('structure', $this->table);
-			if ($structure['updated'] > $this->form['updated'])
+			$structure = cc('structure', $this->table, $this->env);
+			if ($structure['updated']->get() > $this->form['updated']->get())
 			{
 				$this->_update_form();
 			}
@@ -75,9 +75,8 @@ class adminItemForm
 		{
 			if (isset($attr['key'])) $fields[$attr['key']] = $this->_attr_to_field($attr);
 		}
-		
 		$this->form['field'] = $fields;
-		
+	//	sauvegarde du formulaire généré
 		$this->form->save();
 	}
 /**
@@ -135,6 +134,7 @@ class adminItemForm
 		//	key
 			case $attr['type'] == 'key':
 				$field['type'] = 'text';
+				if ($this->item->get_table() == 'structure') $field['required'] = true;
 				break;
 		//	bool
 			case $attr['type'] == 'bool':

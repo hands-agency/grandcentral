@@ -173,7 +173,7 @@ abstract class _attrs
 			'label' => 'Key',
 			'max' => 32,
 			'required' => true,
-			'customdata' => array('associative' => 'attr'),
+			'customdata' => array('associative' => 'attr')
 		);
 		$params['type'] = array(
 			'name' => 'type',

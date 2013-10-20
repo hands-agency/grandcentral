@@ -21,7 +21,7 @@
 		$appMedia = new app('media');
 		$root = $appMedia->get_templateroot('site');
 	//	Accept media with the full serveur root
-		if (strstr($file, $root)) $root = null;
+		if (strstr((string) $file, $root)) $root = null;
 		
 		$media = new file($root.$file);
 		
