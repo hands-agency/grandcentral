@@ -15,7 +15,7 @@
 		if (is_array($cell) OR is_object($cell))
 		{
 			$key = $cell['key'];
-			$title = $cell['title'];
+			$title = isset($cell['title']) ? $cell['title'] : $cell['key'];
 			$descr = isset($cell['descr']) ? $cell['descr'] : null;
 		}
 		
