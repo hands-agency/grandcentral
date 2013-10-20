@@ -59,5 +59,23 @@ class attrKey extends _attrs
 	//	retour
 		return $definition;
 	}
+/**
+ * Default field attributes for key	
+ *
+ * @param	string	la variable
+ * @return	string	une string
+ * @access	public
+ */
+	public static function get_properties()
+	{
+	//	Start with the default for all properties
+		$params = parent::get_properties();
+	//	Somes specifics for this attr
+		# $params['somefield'] = array();
+		$params['key']['readonly'] = true;
+		unset($params['required']);
+	//	Return
+		return $params;
+	}
 }
 ?>

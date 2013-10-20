@@ -9,6 +9,18 @@
  */
 class attrArray extends _attrs implements ArrayAccess, Iterator
 {
+	protected $data = array();
+/**
+ * Get array attribute
+ *
+ * @param	string	la variable
+ * @return	string	une string
+ * @access	public
+ */
+	// public function get()
+	// {
+	// 	return (array) $this->data;
+	// }
 /**
  * Set array attribute
  *

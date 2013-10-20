@@ -22,5 +22,23 @@ class attrUpdated extends attrDate
 		
 		return $this->get();
 	}
+/**
+ * Default field attributes for updated	
+ *
+ * @param	string	la variable
+ * @return	string	une string
+ * @access	public
+ */
+	public static function get_properties()
+	{
+	//	Start with the default for all properties
+		$params = parent::get_properties();
+	//	Somes specifics for this attr
+		# $params['somefield'] = array();
+		$params['key']['readonly'] = true;
+		unset($params['required'], $params['format']);
+	//	Return
+		return $params;
+	}
 }
 ?>
