@@ -16,6 +16,26 @@ class attrMedia extends attrArray
  * @return	string	une string
  * @access	public
  */
+	public function unfold()
+	{
+		$return = array();
+		if (!empty($this->data))
+		{
+			foreach ($this->data as $file)
+			{
+				// print'<pre>';print_r($file);print'</pre>';
+				$return[] = media($file['url']);
+			}
+		}
+		return $return;
+	}
+/**
+ * xxxx
+ *
+ * @param	string	la variable
+ * @return	string	une string
+ * @access	public
+ */
 	public function __toString()
 	{
 		$return = '';

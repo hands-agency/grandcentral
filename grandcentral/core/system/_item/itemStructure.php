@@ -175,7 +175,11 @@ class itemStructure extends _items
 	{
 		// print'<pre>';print_r($_POST);print'</pre>';
 	//	création de l'index des colonnes
-		$this->columns = array_keys($this['attr']->get());
+		$this->columns = array();
+		foreach ($this['attr']->get() as $key => $attr)
+		{
+			if ($attr['type'] != 'rel') $this->columns[] = $key;
+		}
 	//	insert data into table structure
 		parent::_update();
 	//	conect to db

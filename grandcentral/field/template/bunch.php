@@ -22,7 +22,7 @@
 //	Bind
 /********************************************************************************************/
 //	$_APP->bind_css('css/bunch.css');
-	$_APP->bind_script('js/bunch.js');
+	// $_APP->bind_script('js/bunch.js');
 	
 /********************************************************************************************/
 //	Some vars
@@ -73,14 +73,23 @@
 //	List of available bunches
 	$available = array('bunch');
 	
+	$structures = cc('structure', all, $_SESSION['pref']['handled_env']);
+	// $items = cc($_POST['table'], all);
+	// $s[''] = '...';
+	$values = array();
+	foreach ($structures as $structure)
+	{
+		$values[$structure['key']->get()] = $structure['title']->get();
+	}
+	// print'<pre>';print_r($values);print'</pre>';
 //	Default field attributes
 	$params[] = array(
 		'name' => 'item',
 		'type' => 'select',
 		'label' => 'Item',
 		'required' => true,
-		'valuestype' => 'bunch',
-		'values' => 'structure',
+		'valuestype' => 'array',
+		'values' => $values
 	);
 	$params[] = array(
 		'name' => 'property',
