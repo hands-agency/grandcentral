@@ -22,84 +22,29 @@
 //	Bind
 /********************************************************************************************/
 	$_APP->bind_script('list/js/list.js');
+	$_APP->bind_script('list/js/infinitescroll.plugin.js');
 	$_APP->bind_css('list/css/list.css');
-
-/********************************************************************************************/
-//	Fetch the section
-/********************************************************************************************/
-	$section = cc('section', $_POST['section']);
-	$param = $section['app']['param'];
 
 /********************************************************************************************/
 //	Some vars
 /********************************************************************************************/
 //	Env
 	$handled_env = $_SESSION['pref']['handled_env'];
+//	Amount of items to be displayed at one time
+	$limit = 10;
 //	Object
-	if (!isset($_GET['item'])) trigger_error('You should have an Item by now', E_USER_WARNING);
-	else $handled_item = $_GET['item'];
-
-//	Falling from the sky
-	$order = (isset($_POST['filter']) && $_POST['filter'] == 'order') ? $_POST['value'] : 'title';
+	$handled_item = (isset($_GET['item'])) ? $_GET['item'] : trigger_error('You should have an Item by now', E_USER_WARNING);
 	
-/********************************************************************************************/
-//	Some functions
-/********************************************************************************************/
-	switch ($order)
-	{
-		case 'title':
-			function formatSeparator($val) {return strtoupper(substr($val, 0, 1));}
-			break;
-		case 'key':
-			function formatSeparator($val) {return explode('_', $val)[0];}
-			break;
-		case 'created':
-		case 'updated':
-			function formatSeparator($val) {return $val->format('d m Y');}
-			break;
-		
-		default:
-			function formatSeparator($val) {return $val;}
-			break;
-	}
 
-/********************************************************************************************/
-//	Fetch the bunch of items
-/********************************************************************************************/
-//	Order
-	$param['order()'] = $order;
-//	Refine ?
-	if (isset($_POST['q'])) $param['title'] = '%'.$_POST['q'].'%';
-//	Fetch the bunch
-	$bunch = cc($handled_item, $param, $handled_env);
-	
-/********************************************************************************************/
-//	Some prepross
-/********************************************************************************************/
-//	Find the first media attr
-	$iconField = null;
-	if ($bunch->count > 0)
-	{
-		foreach($bunch[0] as $attr)
-		{
-			if(is_a($attr, 'attrMedia'))
+	$_APP->bind_code('script', '
+	<script type="text/javascript" charset="utf-8">
+		$(".infiniteScroll").infinitescroll({
+			param:
 			{
-				$iconField = $attr->get_key();
-				break;
+				app:"content",
+				template:"list/list.lines",
+				limit:'.$limit.',
 			}
-		}
-	}
-	
-	foreach ($bunch as $item)
-	{
-	//	Ensure we have a title, otherwise use the nickname
-		if (empty($item['title'])) $item['title'] = (empty($item['title'])) ? $item->get_nickname() : $item['title'];
-	
-	}
-
-/********************************************************************************************/
-//	Abstract
-/********************************************************************************************/
-	$abstract = $bunch->count().' '.$handled_item.' ordered by this, edited by him, displayed in stack';
-	$abstract = null;
+		});
+	</script>');
 ?>

@@ -9,7 +9,7 @@
 		//	Don't print the return
 			if (!option) option = Array;
 			option['print'] = false;
-			option['mime'] = 'json';
+			if (!option['mime']) option['mime'] = 'json';
 			$.fn.ajx(param, callback, option);
 		}
 
