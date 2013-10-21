@@ -134,13 +134,17 @@
 			{
 				revert: true,
 				revertDuration: 100,
+				appendTo:'body',
+				helper: 'clone',
 				start:function()
 				{
+        			$(this).hide();
 				//	Show trashbin
 					$('#trashbin').data('trashbin').toggle();
 				},
 				stop:function()
 				{
+        			$(this).show();
 				//	Hide trashbin
 					$('#trashbin').data('trashbin').toggle();
 				}

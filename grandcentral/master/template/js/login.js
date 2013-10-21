@@ -4,10 +4,8 @@
 **#******************************************************************************************/
 $(document).ready(function ()
 {
+//	Ouvrir grand la nav
 	broadenNav();
-
-//	Resize and zoom out iframes
-//	$('iframe').addClass('zoomout');
 	
 //	When submitting
 	$('form').on('submit', function(e)
@@ -19,29 +17,17 @@ $(document).ready(function ()
 		$.post(form.attr('action'), form.serialize(), function(response)
 		{
 		//	DEBUG
-		//	console.log(response);
+			console.log(response);
 			
 		//	What should i do know?
 			switch(response)
 			{
 			//	OK
-				case 'ok':
-				//	Load content of admin
-					$('iframe#admin').attr('src', $('iframe#admin').data('src'));
-				//	Move iframes
-					$('iframe')
-						.addClass('final')
-						.delay('900')
-						.queue(function()
-						{
-							$('iframe').removeClass('zoomout');
-							$('#content, #popup_overlay').fadeOut('fast');
-						//	Rewrite URL
-							window.history.pushState('string', 'Admin', ADMIN_URL);
-						});
+				case 'success':
+					window.location = document.URL;
 					break;
 			//	KO
-				case 'ko':	
+				case 'fail':
 				//	And shake your head to say No, No, No...
 					form.effect('shake', { times:3 }, 300);
 					break;

@@ -104,7 +104,7 @@ class itemStructure extends _items
 			);
 		}
 	//	add Version attribute
-		if (!isset($attrs['version']) && $this['hasversion']->get() === true)
+/*		if (!isset($attrs['version']) && $this['hasversion']->get() === true)
 		{
 			$attrs['version'] = array(
 				'key' => 'version',
@@ -112,6 +112,7 @@ class itemStructure extends _items
 				'title' => 'Version'
 			);
 		}
+*/
 	//	add Created attribute
 		if (!isset($attrs['created']))
 		{

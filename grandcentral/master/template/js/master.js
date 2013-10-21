@@ -167,27 +167,29 @@
  	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
 //	Nav
-	openNav = function(param)
+	openNav = function()
 	{
 		$('#main').removeClass('navClosed').addClass('navOpened');
 	}
-	closeNav = function(param)
+	closeNav = function()
 	{
 		$('#main').removeClass('navOpened').addClass('navClosed');
 	}
-	broadenNav = function(param)
+	broadenNav = function()
 	{
 		$('#main').removeClass('navClosed').addClass('navBroadened');
 	}
+
 //	Admin
-	openAdmin = function(param)
+	openAdmin = function()
 	{
 		$('#main').removeClass('adminClosed').addClass('adminOpened');
 	}
-	closeAdmin = function(param)
+	closeAdmin = function()
 	{
 		$('#main').removeClass('adminOpened').addClass('adminClosed');
 	}
+
 //	Context
 	openContext = function(param)
 	{

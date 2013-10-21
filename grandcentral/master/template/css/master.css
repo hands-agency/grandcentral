@@ -799,6 +799,7 @@ footer
 #context
 {
 	position:fixed;
+	overflow:auto;
 	z-index:2;
 	width:0%;
 	height:100%;

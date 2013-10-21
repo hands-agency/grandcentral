@@ -12,9 +12,7 @@
 			<? if ($f->get_key()) $key = 'data-key="'.$f->get_key().'"' ; else $key = '';?>
 			<li data-type="<?= $f->get_type(); ?>" <?= $key ?>><?= $f; ?></li>
 		<?php endforeach; ?>
-		</ol>
-		<label for=""></label><button type="submit">Go</button>
-		
+		</ol>		
 		</fieldset>
 	<?php endforeach; ?>
 </form>
