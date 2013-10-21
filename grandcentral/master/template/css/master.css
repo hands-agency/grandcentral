@@ -759,6 +759,11 @@ progress::-webkit-progress-value {
 {
 	width:55% !important;
 }
+.contextClosed #context>button.close
+{
+	/* weird, weird... */
+	display:none;
+}
 
 /********************************************************************************************/
 /*////////////////////////////////////////////////////////////////////////////////////////////
@@ -1007,45 +1012,6 @@ footer
 	width:auto !important;
 }
 
-/* Icons */
-#content section>ol>li .icon
-{
-}
-.locked #content section>ol>li .icon
-{}
-.unlocked #content section>ol>li .icon
-{}
-
-/* Titles */
-.unlocked #content section>ol>li .title a
-{
-	color:#999;
-}
-#content section>ol>li .title a:hover
-{
-	border-bottom:1px solid;
-}
-
-/* Forks */
-#content section>ol>li .fork
-{
-	color:#aaaaaa;
-	margin:3px 0 0 37px;
-	padding-left:7px;
-	border-left:3px solid #eee;
-	font-size:0.85em;
-}
-#content section>ol>li .fork a
-{
-	color:#aaaaaa;
-}
-
-/* Comments */
-section>ol>li ul.comments
-{
-	display:none;
-}
-
 /********************************************************************************************/
 /* Build the admin
 /********************************************************************************************/
@@ -1077,35 +1043,4 @@ body[data-env="admin"]:before
 	background-image: linear-gradient(-45deg, rgba(255, 255, 255, .7) 25%, transparent 25%,
 		transparent 50%, rgba(255, 255, 255, .7) 50%, rgba(255, 255, 255, .7) 75%,
 		transparent 75%, transparent);	
-}
-
-/********************************************************************************************/
-/*////////////////////////////////////////////////////////////////////////////////////////////
-/* Print
-/////////////////////////////////////////////////////////////////////////////////////////////
-/********************************************************************************************/
-@media print
-{
-  *
-{ background: transparent !important; color: black !important; text-shadow: none !important; filter:none !important;
-  -ms-filter: none !important; } 
-  a, a:visited
-{ color: #444 !important; text-decoration: underline; }
-  a[href]:after
-{ content: " (" attr(href) ")"; }
-  abbr[title]:after
-{ content: " (" attr(title) ")"; }
-  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after
-{ content: ""; }  
-  pre, blockquote
-{ border: 1px solid #999; page-break-inside: avoid; }
-  thead
-{ display: table-header-group; } 
-  tr, img
-{ page-break-inside: avoid; }
-  @page
-{ margin: 0.5cm; }
-  p, h2, h3
-{ orphans: 3; widows: 3; }
-  h2, h3{ page-break-after: avoid; }
 }

@@ -54,12 +54,14 @@
 /********************************************************************************************/
 //	Fetch the bunch of items
 /********************************************************************************************/
+	$param = (isset($_POST['param'])) ? $_POST['param'] : null;
 //	Order
 	$param['order()'] = $order;
 //	Limit
 	$param['limit()'] = $limit;
 //	Refine ?
 	if (isset($_POST['q'])) $param['title'] = '%'.$_POST['q'].'%';
+
 //	Fetch the bunch
 	$bunch = cc($handled_item, $param, $handled_env);
 	

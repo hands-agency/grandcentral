@@ -45,7 +45,7 @@
 			plugin.settings.rangeFrom = plugin.settings.range * plugin.settings.round;
 			plugin.settings.rangeTo = plugin.settings.rangeFrom + plugin.settings.range;
 			plugin.settings.param.limit = plugin.settings.rangeFrom+', '+plugin.settings.rangeTo;
-
+			
 		//	Load
 			$.ajx(
 				plugin.settings.param,

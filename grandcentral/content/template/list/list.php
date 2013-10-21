@@ -34,15 +34,16 @@
 	$limit = 10;
 //	Object
 	$handled_item = (isset($_GET['item'])) ? $_GET['item'] : trigger_error('You should have an Item by now', E_USER_WARNING);
-	
 
 	$_APP->bind_code('script', '
 	<script type="text/javascript" charset="utf-8">
-		$(".infiniteScroll").infinitescroll({
+		$(".infiniteScroll").infinitescroll(
+		{
 			param:
 			{
 				app:"content",
 				template:"list/list.lines",
+				param:"'.addslashes(json_encode($_PARAM)).'",
 				limit:'.$limit.',
 			}
 		});

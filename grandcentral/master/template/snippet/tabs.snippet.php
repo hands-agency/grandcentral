@@ -8,7 +8,7 @@
 		$descr = (defined($const.'_DESCR')) ? constant($const.'_DESCR') : $section['descr'];
 	?>
 		<li title="<?=$section['descr']?>" data-status="<?=$section['key']?>">
-			<a href="<?='#'.$section['key']?>" data-section="<?=$section['key']?>" data-app="<?=$app['key']?>" data-template="<?=$app['template']?>">
+			<a href="<?='#'.$section['key']?>" data-section="<?=$section['key']?>" data-app="<?=$app['key']?>" data-template="<?=$app['template']?>" data-param="<?=htmlspecialchars(json_encode($app['param']))?>">
 				<span class="title"><?=$title?></span>
 				<span class="descr"><?=$descr?></span>
 			</a>

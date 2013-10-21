@@ -17,7 +17,7 @@ $(document).ready(function ()
 		template = link.data('template');
 
 	//	Target section...
-		section = link.data('section');
+		param = link.attr('data-param'); /* We want the string, not the object */
 		panel = $('#section_'+section);
 		panels = $(panel).get(0).tagName;
 
@@ -32,7 +32,9 @@ $(document).ready(function ()
 				{
 					app:app,
 					template:template,
-					section:section
+					param:param
+				},{},{
+					
 				});
 		//	Updated
 			$(this).removeClass('updateMe');

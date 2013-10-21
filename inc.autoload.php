@@ -29,8 +29,8 @@ class boot
    	const index_enabled		= false;			//	pour afficher la page index si on ne trouve pas de site
 	
 	private $boot 			= 'core';			//	l'app à charger par défaut
-	private $buffer_callback= 'ob_gzhandler';	//	le paramètre du tampon
-	// private $buffer_callback= null;
+	// private $buffer_callback= 'ob_gzhandler';	//	le paramètre du tampon
+	private $buffer_callback= null;
 	private $root;
 	// private $directory;
 	private $relative_root;

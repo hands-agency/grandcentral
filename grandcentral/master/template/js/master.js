@@ -129,7 +129,7 @@
 	
 	(function($)
 	{
-	//	$('#grandCentralSite').append('<iframe src="'+SITE_URL+'"></iframe>');
+		$('#grandCentralSite').append('<iframe src="'+SITE_URL+'"></iframe>');
 	})( jQuery );
 	
 /*********************************************************************************************

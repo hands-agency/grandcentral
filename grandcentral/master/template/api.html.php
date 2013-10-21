@@ -33,6 +33,7 @@
 //	Some vars
 	$app = $_POST['app'];
 	$key = $_POST['template'];
+	$param = isset($_POST['param']) ? json_decode($_POST['param'], true) : null;
 	
 //	Reroute original $_GET passed as $_POST['_GET'] the $_GET
 	if (isset($_POST['_GET']))
@@ -40,10 +41,10 @@
 		$_GET = $_POST['_GET'];
 		unset($_POST['_GET']);
 	}
-		
-//	Call the right app
-	echo new app($app, $key);
 //	We wand the CSS and script zones soooo badly
 	echo '<!-- ZONE:css -->';
 	echo '<!-- ZONE:script -->';
+		
+//	Call the right app
+	echo new app($app, $key, $param);
 ?>
