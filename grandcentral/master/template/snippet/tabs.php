@@ -59,9 +59,9 @@
 	{
 		if (
 		//	Some sections are only for some pages
-			(isset($onlyfor[(string)$page['key']][(string)$section['key']]) && !in_array($handled_item, $onlyfor[(string)$page['key']][(string)$section['key']])) OR
+			(isset($onlyfor[$page['key']->get()][$section['key']->get()]) && !in_array($handled_item, $onlyfor[$page['key']->get()][$section['key']->get()])) OR
 		//	Some sections must be striped from some pages
-			(isset($stripfrom[(string)$page['key']][(string)$section['key']]) && in_array($handled_item, $stripfrom[(string)$page['key']][(string)$section['key']]))
+			(isset($stripfrom[$page['key']->get()][$section['key']->get()]) && in_array($handled_item, $stripfrom[$page['key']->get()][$section['key']->get()]))
 		) {
 		//	Delete relation
 			$i = array_search($section->get_nickname(), $page['section']->get());

@@ -26,6 +26,7 @@
 				<? foreach($_PAGE['section']->unfold() as $section) : ?>
 				<? $app = $section['app'] ?>
 				<? $greenbutton = ($section['greenbutton']->get()) ? cc($section['greenbutton']->get()[0])->json() : null ?>
+				<? /* cst('GREENBUTTON_SECTION_NEW_TITLE') */ ?>
 				<section id="section_<?= $section['key'] ?>" data-app="<?= $app['key'] ?>" data-template="<?= $app['template'] ?>" data-greenbutton='<?= $greenbutton ?>'></section>
 				<? endforeach; ?>
 				<footer><!-- ZONE:footer --></footer>
