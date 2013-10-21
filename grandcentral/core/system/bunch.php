@@ -303,52 +303,52 @@ class bunch implements ArrayAccess, Iterator, Countable
  *
  * @access	public
  */
-	public function save()
-	{
-		foreach ($this->data as $item)
-		{
-		//	préchargement automatique de la version
-			if ($item->is_versionable() && !isset($item->rel['version']))
-			{
-		        $item->set_rel('version', registry::get(current, 'version')->get_attr('id'));
-			}
-			
-			$item->prepare_save();
-		//	sauvegarde des attributs
-			$item->data->prepare_save();
-		//	sauvegarde des relations
-			if ($item->get_structure()->has_rel())
-			{
-				foreach ((array) $item->rel as $rels)
-				{
-					foreach ($rels as $rel)
-					{
-						// $rel->prepare_delete();
-						$rel->prepare_save();
-					}
-				}
-			}
-		}
-		
-	//	éxécution des requêtes
-		reset($this->data);
-		current($this->data)->data->execute();
-		
-		
-		$lastid = $item->data->get_last_inserted_id();
-		return $this;
-	}
+	// public function save()
+	// {
+	// 	foreach ($this->data as $item)
+	// 	{
+	// 	//	préchargement automatique de la version
+	// 		if ($item->is_versionable() && !isset($item->rel['version']))
+	// 		{
+	// 	        $item->set_rel('version', registry::get(current, 'version')->get_attr('id'));
+	// 		}
+	// 		
+	// 		$item->prepare_save();
+	// 	//	sauvegarde des attributs
+	// 		$item->data->prepare_save();
+	// 	//	sauvegarde des relations
+	// 		if ($item->get_structure()->has_rel())
+	// 		{
+	// 			foreach ((array) $item->rel as $rels)
+	// 			{
+	// 				foreach ($rels as $rel)
+	// 				{
+	// 					// $rel->prepare_delete();
+	// 					$rel->prepare_save();
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+	// 	
+	// //	éxécution des requêtes
+	// 	reset($this->data);
+	// 	current($this->data)->data->execute();
+	// 	
+	// 	
+	// 	$lastid = $item->data->get_last_inserted_id();
+	// 	return $this;
+	// }
 
 /**
  * Delete from database all the items of the bunch
  *
  * @access	public
  */
-	public function delete()
-	{
-		foreach ($this->data as $item) $item->delete();
-		return $this;
-	}
+	// public function delete()
+	// {
+	// 	foreach ($this->data as $item) $item->delete();
+	// 	return $this;
+	// }
 
 /**
  * Serialize this bunch in Json

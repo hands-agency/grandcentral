@@ -301,7 +301,8 @@ class app
 				}
 				else
 				{
-		
+					$refresh = '?'.time();
+					$data = '<link rel="stylesheet" href="'.$url.$file.$refresh.'" type="text/css" charset="utf-8">';
 				}
 				master::bind('css', $data);
 				self::$loaded_file[] = $key;
@@ -353,7 +354,8 @@ class app
 				}
 				else
 				{
-		
+					$refresh = '?'.time();
+					$data = '<script src="'.$urlscript.'" type="text/javascript" charset="utf-8"></script>';
 				}
 				master::bind('script', $data);
 				self::$loaded_file[] = $urlscript;

@@ -103,6 +103,15 @@ class itemStructure extends _items
 				'title' => 'Url'
 			);
 		}
+	//	add Version attribute
+		if (!isset($attrs['version']) && $this['hasversion']->get() === true)
+		{
+			$attrs['version'] = array(
+				'key' => 'version',
+				'type' => 'version',
+				'title' => 'Version'
+			);
+		}
 	//	add Created attribute
 		if (!isset($attrs['created']))
 		{
