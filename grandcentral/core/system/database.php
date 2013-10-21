@@ -280,9 +280,15 @@ class database
 	//	tri attributs / relations
 		foreach ((array) $params as $key => $value)
 		{
+		//	tri sur les rels
 			if (isset($attrs[$key]) && $attrs[$key]['type'] == 'rel')
 			{
 				$rels[$key] = $value;
+				unset($params[$key]);
+			}
+		//	suppression des params inconnus
+			elseif (!isset($attrs[$key]))
+			{
 				unset($params[$key]);
 			}
 		}
