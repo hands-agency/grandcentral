@@ -25,7 +25,7 @@
 class bunch implements ArrayAccess, Iterator, Countable
 {	
 	private $env;
-	private $_cIndex = false;
+	private $order = false;
 	private $_sIndex;
 	public $count = 0;
 	public $data = array();
@@ -141,19 +141,32 @@ class bunch implements ArrayAccess, Iterator, Countable
  * @return	array	le tableau des valeurs du champ demandé
  * @access	public
  */
-	public function get_column($index, $table = null)
+	public function get_column($column, $assoc = true)
 	{
-		foreach ($this->data as $data)
+		$columns = array();
+		foreach ($this->data as $item)
 		{
-			if (is_object($data)) $column[$data->get_table()][] = $data[$index];
-			else $column[] = $data[$index];
-		}
-		if (!empty($table))
-		{
-			$column = $column[$table];
+			if (!is_a($item, '_items') || !isset($item[$column]))
+			{
+				$c = '';
+				$assoc = true;
+			}
+			else
+			{
+				$c = is_a($item[$column], '_attrs') ? $item[$column]->get() : '';
+			}
+			
+			if ($assoc === true)
+			{
+				$columns[] = $c;
+			}
+			else
+			{
+				$columns[$item->get_nickname()] = $c;
+			}
 		}
 	//	retour
-		return $column;
+		return $columns;
 	}
 	
 /**

@@ -31,6 +31,17 @@ class attrDate extends _attrs
  * @return	string	une string
  * @access	public
  */
+	public function is_empty()
+	{
+		return (empty($this->data) || $this->data == '0000-00-00 00:00:00') ? true : false;
+	}
+/**
+ * xxxx
+ *
+ * @param	string	la variable
+ * @return	string	une string
+ * @access	public
+ */
 	public function format($format)
 	{
 		$date = new DateTime($this->data);
