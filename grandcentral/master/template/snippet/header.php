@@ -69,7 +69,7 @@
 			$page = cc('page', 'app');
 			$link = $page['url'];
 			$back = $page['title'];
-			$current = $ini['about']['title'];
+			$current = new attrString($ini['about']['title']);
 			break;
 			
 	//	Home
