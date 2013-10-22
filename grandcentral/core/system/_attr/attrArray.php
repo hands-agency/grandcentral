@@ -30,7 +30,7 @@ class attrArray extends _attrs implements ArrayAccess, Iterator
  */
 	public function set($data)
 	{
-		$this->data = (array) $data;
+		$this->data = (empty($data)) ? array() : (array) $data;
 		return $this;
 	}
 /**
