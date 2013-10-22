@@ -138,7 +138,7 @@
 				//	Submit all forms	
 					plugin.save('live');
 				//	Execute callback
-					if (typeof callback['success'] == 'function') callback['success'].call(this, html);
+					if ((typeof(callback) != 'undefined') && (typeof(callback['success']) == "function")) callback['success'].call(this, html);
 				},
 				error:function()
 				{

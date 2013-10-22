@@ -131,7 +131,7 @@ $(document).ready(function ()
 	{
 		title = $(this).val();
 		maxlength = 55;
-		change = $('h1 .item');
+		change = $('h1 .current');
 		if (title && title.length<maxlength) change.html(title);
 		else if (title) change.html(title.substr(0, maxlength)+'...');
 		else change.html($('h1').attr('title'));

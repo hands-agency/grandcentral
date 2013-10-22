@@ -8,6 +8,7 @@
 {
 	padding:15px;
 	border-bottom:1px solid #ccc;
+	cursor:pointer;
 }
 #greenbutton-choices ul li .title
 {

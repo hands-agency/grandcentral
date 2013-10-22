@@ -48,10 +48,7 @@
 			/* bug : option is global and must be reset !*/
 				if (print === true) $(this).html(html);
 			//	Execute callback (make sure the callback is a function)
-				if (typeof callback['done'] == 'function')
-				{
-					callback['done'].call(this, html); // brings the scope to the callback
-				}
+				if ((typeof(callback) != 'undefined') && (typeof(callback['done']) == "function")) callback['done'].call(this, html);
 				
 			})
 			.fail(function( jqXHR, textStatus )
@@ -129,7 +126,7 @@
 	
 	(function($)
 	{
-		$('#grandCentralSite').append('<iframe src="'+SITE_URL+'"></iframe>');
+		$('#grandCentralSite').append('<iframe src="'+CURRENTEDITED_URL+'"></iframe>');
 	})( jQuery );
 	
 /*********************************************************************************************

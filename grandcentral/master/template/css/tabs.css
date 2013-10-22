@@ -22,7 +22,7 @@
 }
 #tabs>ul>li a
 {
-	opacity:0.3;
+	opacity:0.5;
 	-webkit-transition: all 0.1s ease-out;
 	-moz-transition: all 0.1s ease-out;
 	-o-transition: all 0.1s ease-out;

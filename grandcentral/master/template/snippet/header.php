@@ -30,54 +30,61 @@
 	$current = null;
 	$back = null;
 	$link = null;
-
-//	Edit: we got an item
-	if (isset($_GET['item']) && (isset($_GET['id'])))
-	{
-		$structure = cc('structure', $_GET['item'], $_SESSION['pref']['handled_env']);
-		$item = cc($_GET['item'], $_GET['id'], $_SESSION['pref']['handled_env']);
-		$link = $item->listing();
-	//	Go
-		$back = $structure['title'];
-		$current = $item['title'];
-	}
-//	Listing : we got a structure
-	else if (isset($_GET['item']))
-	{
-		$structure = cc('structure', $_GET['item'], $_SESSION['pref']['handled_env']);
-		$item = cc('page', 'home');
-		$link = $item['url'];
-	//	Go
-		$back = $item['title'];
-		$current = $structure['title'];
-	}
-//	Listing : we got a structure
-	else if (isset($_GET['app']))
-	{
-		$app = new app($_GET['app']);
-		$ini = $app->get_ini();
-		$page = cc('page', 'app');
-		$link = $page['url'];
-	//	Go
-		$back = $page['title'];
-		$current = $ini['about']['title'];
-	}
-//	Else, default page title
-	else if (cc('page', current)['key'] == 'home')
-	{
-		$item = cc('page', 'home');
-		$link = 'javascript:openSite();';
-	//	Go
-		$back = cc('site', current)['title'];
-		$current = cc('page', current)->get_attr('title');
-	}
-//	Else, default page title
-	else
-	{
-		$item = cc('page', 'home');
-		$link = $item['url'];
-	//	Go
-		$back = $item['title'];
-		$current = cc('page', current)->get_attr('title');
+	
+	switch (cc('page', current)['key'])
+	{	
+	//	Edit
+		case 'edit':
+			$structure = cc('structure', $_GET['item'], $_SESSION['pref']['handled_env']);
+		//	We have an item already
+			if (isset($_GET['id']))
+			{
+				$item = cc($_GET['item'], $_GET['id'], $_SESSION['pref']['handled_env']);
+				$link = $item->listing();
+				$current = $item['title'];
+			}
+		//	New item
+			else
+			{
+				$link = cc($_GET['item'], null, $_SESSION['pref']['handled_env'])->listing();
+				$current = '[So new i don\'t even have a title]';
+			}
+		//	Go
+			$back = $structure['title'];
+			break;
+			
+	//	List
+		case 'list':
+			$structure = cc('structure', $_GET['item'], $_SESSION['pref']['handled_env']);
+			$item = cc('page', 'home');
+			$link = $item['url'];
+			$back = $item['title'];
+			$current = $structure['title'];
+			break;
+			
+	//	App
+		case 'app':
+			$app = new app($_GET['app']);
+			$ini = $app->get_ini();
+			$page = cc('page', 'app');
+			$link = $page['url'];
+			$back = $page['title'];
+			$current = $ini['about']['title'];
+			break;
+			
+	//	Home
+		case 'home':
+			$item = cc('page', 'home');
+			$link = 'javascript:openSite();';
+			$back = cc('site', current)['title'];
+			$current = cc('page', current)['title'];
+			break;
+		
+		default:
+			$item = cc('page', 'home');
+			$link = $item['url'];
+			$back = $item['title'];
+			$current = cc('page', current)['title'];
+			break;
 	}
 ?>

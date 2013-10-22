@@ -31,7 +31,7 @@
 //	Env
 	$handled_env = $_SESSION['pref']['handled_env'];
 //	Amount of items to be displayed at one time
-	$limit = 10;
+	$limit = 50;
 //	Object
 	$handled_item = (isset($_GET['item'])) ? $_GET['item'] : trigger_error('You should have an Item by now', E_USER_WARNING);
 

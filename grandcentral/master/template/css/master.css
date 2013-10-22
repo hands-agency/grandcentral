@@ -458,7 +458,7 @@ progress::-webkit-progress-value {
 	color:#e2e4e6;
 	font-family: "Raleway-Thin";
 	text-align:center;
-	padding:30px !important;
+	padding:30px;
 	position:relative;
 }
 .nodata a
@@ -884,7 +884,8 @@ footer
 }
 
 /* #content section h2 */
-#content section>h2
+#content section>h2,
+#content section>div>h2
 {
 	margin:0px 0 10px 0;
 	font-size:2em;

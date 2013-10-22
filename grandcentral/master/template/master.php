@@ -18,11 +18,11 @@
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
  */
-
 /********************************************************************************************/
-//	Vars
+//	Some vars
 /********************************************************************************************/
 	$_PAGE = $_PARAM['page'];
+	$currentEditedUrl = (isset($_GET['item']) && isset($_GET['id'])) ? cc($_GET['item'], $_GET['id'], 'site')['url'] : SITE_URL;
 
 /********************************************************************************************/
 //	Test mail
@@ -38,7 +38,7 @@
 //	$_APP->bind_script('https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js');
 	$_APP->bind_script('js/jquery-1.8.2.min.js');
 	$_APP->bind_script('js/jquery-ui-1.9.1.custom.min.js');
-	
+
 //	Reroot get in ajax
 	$_APP->bind_code("script", "
 	<script type='text/javascript' charset='utf-8'>
@@ -50,6 +50,8 @@
 		const SITE_URL = '".SITE_URL."';
 		const ADMIN_URL = '".ADMIN_URL."';
 		const ENV = $('body').data('env');
+		const CURRENTEDITED_URL = '".$currentEditedUrl."';
+		console.log(CURRENTEDITED_URL);
 	</script>
 	");
 	
@@ -77,18 +79,6 @@
 		$app->load();
 	}
 	
-/*
-	$_APP->bind_app('font-awesome');
-	
-	echo new html('popup', 'default', 'popup');
-	echo new html('itemcards', 'default', 'itemcards');
-	echo new html('jquery.autoresize', 'default', 'autoresize');
-	echo new html('jquery.mentionsInput', 'default', 'mentions');
-	
-	$html = new html('notification', 'default', 'eventstream');
-	$_APP->bind('header', $html);
-*/
-
 /********************************************************************************************/
 //	Meta
 /********************************************************************************************/
@@ -111,7 +101,7 @@
 	$_APP->bind_snippet('header', 'snippet/greenbutton/greenbutton');
 	
 /********************************************************************************************/
-///Users/mvd/Desktop/Airfoil.app	Tabs
+//	Tabs
 /********************************************************************************************/
 	$_APP->bind_snippet('tabs', 'snippet/tabs');
 	
@@ -126,6 +116,5 @@
 /********************************************************************************************/
 //	Footer
 /********************************************************************************************/
-	$_APP->bind_snippet('footer', 'snippet/footer');
-	
+	$_APP->bind_snippet('footer', 'snippet/footer');	
 ?>
