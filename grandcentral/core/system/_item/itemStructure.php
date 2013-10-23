@@ -150,8 +150,6 @@ class itemStructure extends _items
  */
 	protected function _insert()
 	{
-	//	insert data into table structure
-		parent::_insert();
 	//	conect to db
 		$db = database::connect($this->get_env());
 	//	create database
@@ -175,6 +173,9 @@ class itemStructure extends _items
 		
 		// print'<pre>';print_r($db->_spooler);print'</pre>';
 		// exit;
+	
+	//	insert data into table structure
+		parent::_insert();
 	}
 /**
  * Build queries to update an item
@@ -190,8 +191,6 @@ class itemStructure extends _items
 		{
 			if ($attr['type'] != 'rel') $this->columns[] = $key;
 		}
-	//	insert data into table structure
-		parent::_update();
 	//	conect to db
 		$db = database::connect($this->get_env());
 	//	on détermine ce qui change
@@ -215,6 +214,7 @@ class itemStructure extends _items
 				}
 				else
 				{
+					$this->columns[] = $this['attr'][$key]['key'];
 					$columns[] = 'ADD '.$attr->mysql_definition().$this->_column_position($this['attr'][$key]['key']);
 					if ($attr->mysql_index_definition() !== null)
 					{
@@ -240,6 +240,9 @@ class itemStructure extends _items
 		// $db->stack('ALTER TABLE `'.$db->get_name().'`.`'.$this->_key.'` '.PHP_EOL.'	'.implode(','.PHP_EOL.'	', $columns).','.PHP_EOL.'	'.implode(','.PHP_EOL.'	', $indexes).''.PHP_EOL.'');
 		$db->stack('ALTER TABLE `'.$db->get_name().'`.`'.$this->_key.'` '.PHP_EOL.'	'.implode(','.PHP_EOL.'	', $columns));
 		
+		
+	//	insert data into table structure
+		parent::_update();
 		// print'<pre>';print_r($db->_spooler);print'</pre>';
 		// exit;
 	}
