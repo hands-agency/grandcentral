@@ -4,6 +4,9 @@
 		<div class="title"><?=media($_SESSION['user']['profilepic'][0]['url'])?><span>Prénom</span></div>
 		<div class="sub"></div>
 	</li>
+	<li class="editing">
+		<a href="javascript:openAdmin();">editing</a>
+	</li>
 	<? foreach ($level1 as $page): ?>
 	
 	<? $truc = $page['key']->get();?>

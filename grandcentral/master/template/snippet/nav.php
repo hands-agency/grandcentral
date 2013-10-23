@@ -64,6 +64,11 @@
 			'page' => 'list',
 		//	Subnav
 			'subnav' => array(
+				'structure' =>  array(
+					'display' => 'big',
+					'link' => 'list',
+					'bunch' => cc('structure', array('key' => array('page'), 'order()' => 'inherit(key)'), $_SESSION['pref']['handled_env']),
+				),
 				'major' => array(
 					'display' => 'hive',
 					'link' => 'list',

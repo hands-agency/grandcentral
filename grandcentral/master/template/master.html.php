@@ -7,7 +7,7 @@
 <body data-env="<?=$_SESSION['pref']['handled_env']?>">
 	<!-- ZONE:body -->
 		
-	<div id="main" class="navClosed contextClosed">
+	<div id="main" class="navClosed adminOpened contextClosed">
 			
 		<nav id="grandCentralNav"><!-- ZONE:nav --></nav>
 		

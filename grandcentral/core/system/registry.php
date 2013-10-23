@@ -255,7 +255,7 @@ class registry
  */
 	protected function _prepare_reader()
 	{
-		$db = database::connect();
+		$db = database::connect('site');
 		$q = 'SELECT `id`, `url`, `type` FROM `page` WHERE `type` LIKE "%\"item\":%"';
 		$r = $db->query($q);
 		

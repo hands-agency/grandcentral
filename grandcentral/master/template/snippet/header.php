@@ -47,7 +47,7 @@
 			else
 			{
 				$link = cc($_GET['item'], null, $_SESSION['pref']['handled_env'])->listing();
-				$current = '[So new i don\'t even have a title]';
+				$current = new attrString('[So new i don\'t even have a title]');
 			}
 		//	Go
 			$back = $structure['title'];

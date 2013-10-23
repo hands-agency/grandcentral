@@ -124,9 +124,19 @@
 		openSite();
 	});
 	
+/*********************************************************************************************
+/**	* Load the site
+ 	* @author	mvd@cafecentral.fr
+**#******************************************************************************************/
 	(function($)
 	{
-		$('#grandCentralSite').append('<iframe src="'+CURRENTEDITED_URL+'"></iframe>');
+		document.onreadystatechange = function()
+		{
+		    if (document.readyState === 'complete') 
+			{
+				$('#grandCentralSite').append('<iframe src="'+CURRENTEDITED_URL+'"></iframe>');
+			}
+		}
 	})( jQuery );
 	
 /*********************************************************************************************

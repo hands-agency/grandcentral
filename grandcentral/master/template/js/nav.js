@@ -15,7 +15,7 @@
 				$nav.on('click', '>ul>li', function()
 				{
 				//	Open the drawer
-					openNav();
+					if (!$(this).hasClass('editing')) openNav();
 					
 				//	Some vars
 					subnav = $(this).find('.sub');

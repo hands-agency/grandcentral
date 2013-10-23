@@ -21,8 +21,15 @@
 /********************************************************************************************/
 //	Some vars
 /********************************************************************************************/
+//	The current page
 	$_PAGE = $_PARAM['page'];
-	$currentEditedUrl = (isset($_GET['item']) && isset($_GET['id'])) ? cc($_GET['item'], $_GET['id'], 'site')['url'] : SITE_URL;
+//	Fetch the currently edited page
+	$currentEditedItemUrl = SITE_URL;
+	if (isset($_GET['item']) && isset($_GET['id']))
+	{
+		$currentEditedItem = cc($_GET['item'], $_GET['id'], 'site');
+		if (isset($currentEditedItem['url'])) $currentEditedItemUrl = $currentEditedItem['url'];
+	}
 
 /********************************************************************************************/
 //	Test mail
@@ -50,7 +57,7 @@
 		const SITE_URL = '".SITE_URL."';
 		const ADMIN_URL = '".ADMIN_URL."';
 		const ENV = $('body').data('env');
-		const CURRENTEDITED_URL = '".$currentEditedUrl."';
+		const CURRENTEDITED_URL = '".$currentEditedItemUrl."';
 		console.log(CURRENTEDITED_URL);
 	</script>
 	");
