@@ -19,11 +19,10 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	Bind
+//	Change the status of an item
 /********************************************************************************************/
-//	Get the structures linkable
-	$p = array(
-		'order()' => 'title',
-	);
-	$structure = cc('structure', $p);
+	list($item, $id) = explode('_', $_POST['item']);
+	$item = cc($item, $id, $_SESSION['pref']['handled_env']);
+	$item['status'] = $_POST['status'];
+	$item->save();
 ?>

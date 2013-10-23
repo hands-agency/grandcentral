@@ -25,7 +25,14 @@
 	$_APP->bind_script('js/wysiwyg/wysihtml5-0.3.0.min.js');
 	$_APP->bind_script('js/wysiwyg/advanced.js');
 	$_APP->bind_script('js/wysiwyg.js');
+
+/********************************************************************************************/
+//	Some vars
+/********************************************************************************************/
+	$_FIELD = $_PARAM['field'];
+//	$values = $_FIELD->prepare_values();
+//	$placeholder = $_FIELD->get_placeholder();
 	
-	$value = $_APP->get_value();
-	$attrs = $_APP->get_attr();
+//	$value = $_APP->get_value();
+//	$attrs = $_APP->get_attr();
 ?>

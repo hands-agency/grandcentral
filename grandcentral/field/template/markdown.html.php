@@ -6,9 +6,9 @@
 	<?php if ($_FIELD->get_descr() != null) : ?><div class="help"><?= $_FIELD->get_descr(); ?></div><?php endif ?>
 	<span class="field">
 			
-		<p>Implement http://jhollingworth.github.io/bootstrap-wysihtml5/</p>
+		<p>Implement http://hallojs.org/demo/markdown/</p>
 	
-		<textarea id="wysihtml5-textarea" <?=$_FIELD->get_attrs();?>><?=$_FIELD->get_cleaned_value();?></textarea>
+		<textarea <?=$_FIELD->get_attrs();?>><?=$_FIELD->get_cleaned_value();?></textarea>
 		
 	</span>
 </div>

@@ -44,17 +44,17 @@
 				//	Our item's nickname
 					item = $(ui.draggable).data('item');
 				//	Go to trash
-					$element.ajx(
+					$.ajx(
 					{
-						app: 'page',
+						app: 'master',
 						template: 'status',
-						type: 'routine',
 						item:item,
 						status:$element.data('status'),
 					}, {
 					//	Done
-						done:function()
-						{	
+						done:function(html)
+						{
+							console.log(html);
 						//	Confirm trash
 						//	$element.effect('bounce', {distance:'30', times:'2'}, 250);
 						//	Get rid of the objet, whether it's an icon or not

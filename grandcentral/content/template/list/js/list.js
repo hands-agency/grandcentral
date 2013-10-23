@@ -16,9 +16,9 @@
 $(document).bind('unlock', function()
 {
 //	Bounce the icons
-	$('section>ol>li .icon').effect('bounce', {distance:'10', times:'2'}, 550);
+	$('section>div>ol>li .icon').effect('bounce', {distance:'10', times:'2'}, 550);
 //	DRAGGABLE : Make the line draggable
-	$('section>ol>li')
+	$('section>div>ol>li')
 		.draggable(
 		{
 			revert: 'invalid',

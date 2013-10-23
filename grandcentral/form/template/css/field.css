@@ -51,6 +51,7 @@ textarea
 	font-family: "Raleway-Regular";
 	color:#666666;
 	font-size:1em;
+	line-height:1.4em;
 	/* Linin numerals for Raleway */
 	font-feature-settings: 'lnum';
 	-moz-font-feature-settings: 'lnum=1';

@@ -19,9 +19,20 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	Change the status of an item
+//	Bind
 /********************************************************************************************/
-	list($item, $id) = explode('_', $_POST['item']);
-	$item = cc($item, $id, $_SESSION['pref']['handled_env'])->set_attr('status', $_POST['status']);
-	$item->save();
+	$_APP->bind_css('css/wysiwyg.css');
+	$_APP->bind_script('js/wysiwyg/wysihtml5-0.3.0.min.js');
+	$_APP->bind_script('js/wysiwyg/advanced.js');
+	$_APP->bind_script('js/wysiwyg.js');
+
+/********************************************************************************************/
+//	Some vars
+/********************************************************************************************/
+	$_FIELD = $_PARAM['field'];
+//	$values = $_FIELD->prepare_values();
+//	$placeholder = $_FIELD->get_placeholder();
+	
+//	$value = $_APP->get_value();
+//	$attrs = $_APP->get_attr();
 ?>
