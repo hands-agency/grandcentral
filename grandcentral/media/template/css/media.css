@@ -128,6 +128,22 @@
 {
 	display:block;
 }
+
+/* Draggable TODO (it's binded to the document..) */
+li.ui-draggable-dragging
+{
+	display:block;
+	width:80px !important;
+	height:80px !important;
+	border-radius:100px;
+	overflow:hidden;
+	opacity:0.8;
+}
+li.ui-draggable-dragging *
+{
+	white-space:nowrap;
+}
+
 /* fields*/
 #mediaLibrary .files li .preview
 {

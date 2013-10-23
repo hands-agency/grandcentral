@@ -40,7 +40,9 @@
 		<? foreach ($directories as $dir): ?>
 		<?
 			$files = scandir($dir->get_root(), SCANDIR_SORT_DESCENDING);
-			$previews = array($files[0], $files[1], $files[3]);
+			$count = 3;
+			$previews = array();
+			for ($i=0; $i < $count ; $i++) if (isset($files[$i])) $previews[] = $files[$i];
 		?>
 		<li>
 			<div class="title">

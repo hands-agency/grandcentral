@@ -42,15 +42,23 @@ li[data-type="media"] .wrapper ol.data li.upload
 	line-height:120px;
 	border:1px dashed #ddd;
 	font-size:4em;
-	-webkit-transition: all .15s ease-in; 
-	-moz-transition: all .15s ease-in; 
-	-o-transition: all .15s ease-in; 
-	transition: all .15s ease-in;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
 }
 li[data-type="media"] .wrapper ol.data li.upload:hover
 {
 	color:#3eb4d6;
 	cursor:pointer;
+}
+li[data-type="media"] .wrapper ol.data li.upload.hover
+{
+	color:#FE9400;
+	border-color:#FE9400;
+	-moz-transform: scale(1.2);
+	-webkit-transform: scale(1.2);
+	transform: scale(1.2);
 }
 
 /********************************************************************************************/

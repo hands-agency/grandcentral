@@ -11,11 +11,11 @@
 //	Upload droppable
 	upload.droppable(
 	{
-		tolerance: 'pointer',
-		activeClass: 'ui-droppable-active',
-		hoverClass: 'ui-droppable-hover',
+		hoverClass:'hover',
+		tolerance:'pointer',
 		activate:function(event, ui)
 		{
+			
 		},
 		deactivate:function(event, ui)
 		{
