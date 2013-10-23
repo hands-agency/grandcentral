@@ -221,7 +221,7 @@ class registry
 		$page->guess();
 		self::set(self::current_index, 'page', $page);
 	//	constants
-		cc('const', array('version' => $version['id']->get()));
+		cc('const', all);
 	}
 /**
  * Obtenir les classes disponibles
