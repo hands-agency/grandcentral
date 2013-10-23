@@ -33,6 +33,7 @@ class itemPage extends _items
 			if (isset($url[1]) && !empty($url[1]))
 			{
 				$item = item::create($this['type']['item'], array('url' => '/'.$url[1]), $this->get_env());
+				define('item', $this['type']['item']);
 		
 				if ($item->exists())
 				{
@@ -43,6 +44,10 @@ class itemPage extends _items
 				{
 					$this->get('error_404');
 				}
+			}
+			else
+			{
+				define('item', 'page');
 			}
 		}
 	//	si la page n'existe pas
