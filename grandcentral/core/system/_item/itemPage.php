@@ -62,6 +62,40 @@ class itemPage extends _items
 		}
 	}
 /**
+ * Save item into database
+ *
+ * @access  public
+ */
+	public function save()
+	{
+	//	Sauvegarde
+		parent::save();
+	//	gestion du parent de la page
+		if ($this['system']->get() === false && $this['key']->get() != 'home')
+		{
+			$parent = false;
+		//	si la page existe
+			if (!$this['id']->is_empty())
+			{
+			//	on vérifie si la page à un parent
+				$q = 'SELECT COUNT(item) as count FROM _rel WHERE item ="page" AND `key` = "child" AND rel="page" AND relid='.$this['id']->get();
+				$db = database::connect($this->get_env());
+				$r = $db->query($q);
+				if ($r['data'][0]['count'] > 0)
+				{
+					$parent = true;
+				}
+			}
+			
+			if ($parent === false)
+			{
+				$home = cc('page', 'home', $this->get_env());
+				$home['child']->add($this);
+				$home->save();
+			}
+		}
+	}
+/**
  * Envoie les entêtes HTTP de la page
  *
  * @access	public
