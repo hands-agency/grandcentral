@@ -160,6 +160,16 @@ class itemHuman extends _items
 		$_SESSION['user'] = null;
 	}
 /**
+ * Save item into database
+ *
+ * @access  public
+ */
+	public function save()
+	{
+		parent::save();
+		if ($_SESSION['user']['id']->get() == $this['id']->get()) $this->login();
+	}
+/**
  * Get user's IP adress
  *
  * @access	public

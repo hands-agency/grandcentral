@@ -398,7 +398,7 @@ class database
 		{
 			$preparedQuery = 'SELECT COUNT(*) as count FROM `'.$table.'`'.$cJoin.$cWhere.$cGroupby.$cLimit;
 		}
-		// print'<hr /><pre>database env : ';print_r($env);print'</pre>';
+		
 	//	requête
 		$db = database::connect($env);
 		$results = $db->query($preparedQuery, $preparedData);
