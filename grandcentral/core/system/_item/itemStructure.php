@@ -170,12 +170,11 @@ class itemStructure extends _items
 		}
 	//	add query to the spooler
 		$db->stack('CREATE TABLE IF NOT EXISTS `'.$db->get_name().'`.`'.$this['key'].'` ('.PHP_EOL.'	'.implode(','.PHP_EOL.'	', $columns).','.PHP_EOL.'	'.implode(','.PHP_EOL.'	', $indexes).''.PHP_EOL.') ENGINE=InnoDB DEFAULT CHARSET='.database::charset.' COLLATE='.database::collation.'');
+	//	insert data into table structure
+		parent::_insert();
 		
 		// print'<pre>';print_r($db->_spooler);print'</pre>';
 		// exit;
-	
-	//	insert data into table structure
-		parent::_insert();
 	}
 /**
  * Build queries to update an item
@@ -184,7 +183,6 @@ class itemStructure extends _items
  */
 	protected function _update()
 	{
-		// print'<pre>';print_r($_POST);print'</pre>';
 	//	création de l'index des colonnes
 		$this->columns = array();
 		foreach ($this['attr']->get() as $key => $attr)
@@ -193,10 +191,6 @@ class itemStructure extends _items
 		}
 	//	conect to db
 		$db = database::connect($this->get_env());
-	//	on détermine ce qui change
-		// $change = array_intersect_key($this['attr'], $this->attrs);
-		// $add = array_diff_key($this['attr'], $this->attrs);
-
 	//	ADD & CHANGE
 		$columns = array();
 		$indexes = array();
@@ -223,10 +217,7 @@ class itemStructure extends _items
 				}
 			}
 		}
-		// print'<pre>';print_r($columns);print'</pre>';
 	//	DROP
-		// print PHP_EOL.'AVANT : '.PHP_EOL;print_r($this->_attr);print'------------------------------------------------------------------------------------------------------------';
-		// print PHP_EOL.'POST : '.PHP_EOL;print_r($this['attr']->get());print'------------------------------------------------------------------------------------------------------------';
 		$drop = array_diff_key($this->_attr, $this['attr']->get());
 		// print'<pre>';print_r($drop);print'</pre>';
 		foreach ($drop as $key => $attr)
@@ -239,8 +230,6 @@ class itemStructure extends _items
 	//	add query to the spooler
 		// $db->stack('ALTER TABLE `'.$db->get_name().'`.`'.$this->_key.'` '.PHP_EOL.'	'.implode(','.PHP_EOL.'	', $columns).','.PHP_EOL.'	'.implode(','.PHP_EOL.'	', $indexes).''.PHP_EOL.'');
 		$db->stack('ALTER TABLE `'.$db->get_name().'`.`'.$this->_key.'` '.PHP_EOL.'	'.implode(','.PHP_EOL.'	', $columns));
-		
-		
 	//	insert data into table structure
 		parent::_update();
 		// print'<pre>';print_r($db->_spooler);print'</pre>';
@@ -253,14 +242,13 @@ class itemStructure extends _items
  */
 	protected function _delete()
 	{
-	//	insert data into table structure
-		parent::_delete();
 	//	conect to db
 		$db = database::connect($this->get_env());
 	//	delete table
 		$db->stack('DROP TABLE IF EXISTS `'.$db->get_name().'`.`'.$this->_key->get().'`');
+	//	insert data into table structure
+		parent::_delete();
 		// print'<pre>';print_r($db->_spooler);print'</pre>';
-		// 		exit;
     }
 /**
  * ALTER - Obtenir la définition mysql de la position d'une colonne
@@ -274,7 +262,6 @@ class itemStructure extends _items
 		
 		$pos = array_search($key, $this->columns);
 		// echo $key.PHP_EOL;
-		// print'<pre>pos '.$key.' : ';print_r($pos);print'</pre>';
 		$position = ($pos == 0) ? 'FIRST' : 'AFTER `'.$this->columns[$pos - 1].'`';
 		return ' '.$position;
 	}
