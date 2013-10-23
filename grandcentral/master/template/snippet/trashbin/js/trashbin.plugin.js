@@ -33,7 +33,7 @@
 				tolerance:'pointer',
 				activate:function(event, ui)
 				{
-					$element.find('.cc-bubble').effect('bounce', {distance:'10', times:'2'}, 250).delay(1000).hide('fast');
+				//	$element.find('.cc-bubble').effect('bounce', {distance:'10', times:'2'}, 250).delay(1000).hide('fast');
 				},
 				deactivate:function(event, ui)
 				{

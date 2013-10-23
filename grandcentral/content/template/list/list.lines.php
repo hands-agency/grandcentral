@@ -36,7 +36,7 @@
 	switch ($order)
 	{
 		case 'title':
-			function formatSeparator($val) {return strtoupper(substr($val, 0, 1));}
+			function formatSeparator($val) {return strtoupper(mb_substr($val, 0, 1));}
 			break;
 		case 'key':
 			function formatSeparator($val) {return explode('_', $val)[0];}

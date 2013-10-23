@@ -124,7 +124,7 @@ $(document).ready(function ()
 						done:function()
 						{	
 						//	Confirm status change
-							tab.effect('bounce', {distance:'30', times:'2'}, 250);
+						//	tab.effect('bounce', {distance:'30', times:'2'}, 250);
 						//	Get rid of the item
 							$(ui.draggable).hide('drop', {direction:'down'}, function(){$(this).remove();});
 						//	Tell this tab to be updated next time
