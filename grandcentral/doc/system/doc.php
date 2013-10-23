@@ -48,7 +48,7 @@ class doc
 	public static function show($expression)
 	{
 		$obj = new doc($expression);
-		echo new html($obj);
+		
 	}
 	
 /**

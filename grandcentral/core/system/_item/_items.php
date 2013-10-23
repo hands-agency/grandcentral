@@ -201,10 +201,13 @@ abstract class _items implements ArrayAccess, Iterator
 	//	conect to db
 		$db = database::connect($this->get_env());
 	//	préparation des données à mettre à jour
-		foreach ($this->data as $attr)
+		foreach ($this->data as $key => $attr)
 		{
 			switch (true)
 			{
+				case !is_a($attr, '_attrs'):
+					
+					break;
 				case is_a($attr, 'attrId'):
 					$id = $attr->get();
 					$mainData['id'] = $id;

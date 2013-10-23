@@ -30,6 +30,9 @@ class registry
  */
 	protected function __construct()
 	{
+	//	encoding
+		mb_internal_encoding(database::charset);
+	//	const
 		define('current', self::current_index);
 		define('all', self::all_index);
 	//	load structures into registry

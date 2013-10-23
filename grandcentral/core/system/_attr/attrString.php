@@ -10,6 +10,18 @@
 class attrString extends _attrs
 {
 /**
+ * Declare attribute
+ *
+ * @return	string	une string
+ * @access	public
+ */
+	public function __construct($data = null, $params = null)
+	{
+		$this->params['min'] = 0;
+		$this->params['max'] = 5000;
+		parent::__construct($data, $params);
+	}
+/**
  * Set string attribute
  *
  * @param	string	la variable
@@ -54,7 +66,7 @@ class attrString extends _attrs
  */
 	public function set_min($value)
 	{
-		$this->params['min'] = $value;
+		$this->params['min'] = (empty($value)) ? 0 : $value;
 		return $this;
 	}
 /**
@@ -66,7 +78,7 @@ class attrString extends _attrs
  */
 	public function set_max($value)
 	{
-		$this->params['max'] = $value;
+		$this->params['max'] = (empty($value)) ? 5000 : $value;
 		return $this;
 	}
 /**
