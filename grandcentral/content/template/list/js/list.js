@@ -1,22 +1,9 @@
-
-
-
-/*$('section>ol').shapeshift({
-    selector: 'li',
-	enableDrag: false,
-	
-});
-*/
-
-
 /*********************************************************************************************
 /**	* On unlock
  	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
 $(document).bind('unlock', function()
 {
-//	Bounce the icons
-	$('section>div>ol>li .icon').effect('bounce', {distance:'10', times:'2'}, 550);
 //	DRAGGABLE : Make the line draggable
 	$('section>div>ol>li')
 		.draggable(

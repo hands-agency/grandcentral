@@ -33,8 +33,6 @@ $(document).ready(function ()
 					app:app,
 					template:template,
 					param:param
-				},{},{
-					
 				});
 		//	Updated
 			$(this).removeClass('updateMe');
@@ -80,7 +78,7 @@ $(document).ready(function ()
 		{
 			li = $(this);
 			droppable = li.find('.droppable');
-			
+		/*	
 		//	Center horizontally
 			tabHeight = li.height()/2;
 			droppableHeight = droppable.height()/2;
@@ -89,6 +87,7 @@ $(document).ready(function ()
 			tabWidth = li.width()/2;
 			droppableWidth = droppable.width()/2;
 			droppable.css('left', '-'+(droppableWidth-tabWidth)+'px');
+			*/
 			
 		//	All tabs are now droppable
 			li.droppable(
@@ -114,24 +113,23 @@ $(document).ready(function ()
 				//	Our item's nickname
 					item = $(ui.draggable).data('item');
 				//	Change status
-					$().ajx(
+					$.ajx(
 					{
-						app: 'page',
+						app: 'master',
 						template: 'status',
-						type: 'routine',
 						item:item,
 						status:tab.data('status'),
 					}, {
 					//	Done
 						done:function()
 						{	
-						//	Confirm trash
+						//	Confirm status change
 							tab.effect('bounce', {distance:'30', times:'2'}, 250);
 						//	Get rid of the item
 							$(ui.draggable).hide('drop', {direction:'down'}, function(){$(this).remove();});
 						//	Tell this tab to be updated next time
 							tab.addClass('updateMe');
-						//	Check if a section is empty now (todo)
+						//	Check if a section is empty now (TODO)
 
 						}
 					});
