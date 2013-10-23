@@ -191,6 +191,12 @@
 			console.log('bon...');
 		}
 
+	//	New page
+		plugin.newpage = function()
+		{
+			document.location.href = ADMIN_URL+'/edit?item=page';
+		}
+
 	//	Fire up the plugin!
 		plugin.init();
 	}
