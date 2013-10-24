@@ -25,7 +25,7 @@
 		{
 		//	the plugin's final properties are the merged default and user-provided options (if any)
 			plugin.settings = $.extend({}, vars, options);
-
+			
 		//	Make droppable
 			$element.droppable(
 			{

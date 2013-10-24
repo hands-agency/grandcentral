@@ -49,7 +49,7 @@
 				'structure' =>  array(
 					'display' => 'big',
 					'link' => 'list',
-					'bunch' => cc('structure', array('key' => array('page', 'structure', 'version'), 'order()' => 'inherit(key)'), $_SESSION['pref']['handled_env']),
+					'bunch' => cc('structure', array('key' => array('structure', 'version'), 'order()' => 'inherit(key)'), $_SESSION['pref']['handled_env']),
 				),
 				'support' =>  array(
 					'display' => 'big',
@@ -58,13 +58,14 @@
 				),
 			),
 		),
-	//	Items
+	//	Content
 		'item' => array(
 			'icon' => '&#xe01e;',
 			'page' => 'list',
 		//	Subnav
 			'subnav' => array(
 				'structure' =>  array(
+					'title' => 'er',
 					'display' => 'big',
 					'link' => 'list',
 					'bunch' => cc('structure', array('key' => array('page'), 'order()' => 'inherit(key)'), $_SESSION['pref']['handled_env']),
