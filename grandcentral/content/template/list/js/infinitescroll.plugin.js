@@ -5,7 +5,7 @@
 (function($)
 {	
 //	Here we go!
-	$.infinitescroll = function(element, options)
+	$.infinitescroll = function(element, options, callbacks)
 	{
 	//	Use "plugin" to reference the current instance of the object
 		var plugin = this;
@@ -17,9 +17,9 @@
 	//	Plugin's variables
 		var vars = {
 			round:0,
-			range:options.param.limit,
+			range:options.limit,
 			rangeFrom:'0',
-			rangeTo:options.param.limit,
+			rangeTo:options.limit,
 		}
 
 	//	The "constructor"
@@ -44,15 +44,17 @@
 		//	Change range
 			plugin.settings.rangeFrom = plugin.settings.range * plugin.settings.round;
 			plugin.settings.rangeTo = plugin.settings.rangeFrom + plugin.settings.range;
-			plugin.settings.param.limit = plugin.settings.rangeFrom+', '+plugin.settings.rangeTo;
-			
+			plugin.settings.limit = plugin.settings.rangeFrom+', '+plugin.settings.rangeTo;
+
 		//	Load
 			$.ajx(
-				plugin.settings.param,
+				plugin.settings,
 				{
 					done:function(html)
 					{
 						$element.append(html);
+					//	Execute callback (make sure the callback is a function)
+						if ((typeof(callbacks) != 'undefined') && (typeof(callbacks) == "function")) callbacks.call(this, html);
 					}
 				},
 				{mime:'html'}
@@ -67,13 +69,13 @@
 	}
 
 //	Add the plugin to the jQuery.fn object
-	$.fn.infinitescroll = function(options)
+	$.fn.infinitescroll = function(options, callbacks)
 	{
 		return this.each(function()
 		{
 			if (undefined == $(this).data('infinitescroll'))
 			{
-				var plugin = new $.infinitescroll(this, options);
+				var plugin = new $.infinitescroll(this, options, callbacks);
 				$(this).data('infinitescroll', plugin);
 			}
 		});

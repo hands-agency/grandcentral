@@ -77,36 +77,12 @@ $(document).ready(function ()
 		$('.tabs li:not(.on)').each(function()
 		{
 			li = $(this);
-			droppable = li.find('.droppable');
-		/*	
-		//	Center horizontally
-			tabHeight = li.height()/2;
-			droppableHeight = droppable.height()/2;
-			droppable.css('top', '-'+(droppableHeight-tabHeight)+'px');
-		//	Center vertically
-			tabWidth = li.width()/2;
-			droppableWidth = droppable.width()/2;
-			droppable.css('left', '-'+(droppableWidth-tabWidth)+'px');
-			*/
-			
 		//	All tabs are now droppable
 			li.droppable(
 			{
 				tolerance: 'pointer',
 				activeClass: 'ui-droppable-active',
 				hoverClass: 'ui-droppable-hover',
-				activate:function(event, ui)
-				{
-				},
-				deactivate:function(event, ui)
-				{
-				},
-				over:function(event, ui)
-				{
-				},
-				out:function(event, ui)
-				{
-				},
 				drop:function(event, ui)
 				{
 					tab = $(this);

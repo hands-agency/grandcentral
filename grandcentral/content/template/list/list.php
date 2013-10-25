@@ -39,13 +39,10 @@
 	<script type="text/javascript" charset="utf-8">
 		$(".infiniteScroll").infinitescroll(
 		{
-			param:
-			{
-				app:"content",
-				template:"list/list.lines",
-				param:"'.addslashes(json_encode($_PARAM)).'",
-				limit:'.$limit.',
-			}
+			app:"content",
+			template:"list/list.lines",
+			param:"'.addslashes(json_encode($_PARAM)).'",
+			limit:'.$limit.',
 		});
 	</script>');
 ?>
