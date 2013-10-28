@@ -55,6 +55,7 @@
 		const ITEM = $('meta[property=\"cc:item\"]').attr('content');
 		const ID = $('meta[property=\"cc:id\"]').attr('content');
 		const SITE_URL = '".SITE_URL."';
+		const SITE_KEY = '".SITE_KEY."';
 		const ADMIN_URL = '".ADMIN_URL."';
 		const ENV = $('body').data('env');
 		const CURRENTEDITED_URL = '".$currentEditedItemUrl."';

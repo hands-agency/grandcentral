@@ -92,11 +92,11 @@
 		}
 
 	//	Save
-		plugin.save = function(newStatus)
+		plugin.save = function(newStatus, callback)
 		{
 		//	Id & status
 			id = $('input[name="'+ENV+'_'+_GET['item']+'[id]"]');
-			oldStatus = $('input[name="'+ENV+'_'+_GET['item']+'[status]"]');
+			oldStatus = $('input[name="'+SITE_KEY+'_'+_GET['item']+'[status]"]');
 			form = $('#content>section>form');
 			
 		//	Change status ?
@@ -122,6 +122,8 @@
 						url = '?item='+_GET['item']+'&id='+result;
 						if (window.location.hash) url += window.location.hash;
 						window.history.pushState('string', 'chose', url);
+					//	Callback	
+						if ((typeof(callback) != 'undefined') && (typeof(callback) == "function")) callback.call(this, result);
 					};
 				},
 			});
@@ -136,9 +138,7 @@
 				success:function(html)
 				{
 				//	Submit all forms	
-					plugin.save('live');
-				//	Execute callback
-					if ((typeof(callback) != 'undefined') && (typeof(callback['success']) == "function")) callback['success'].call(this, html);
+					plugin.save('live', callback);
 				},
 				error:function()
 				{
@@ -169,20 +169,26 @@
 	//	Save and start anew
 		plugin.save_new = function()
 		{
-			plugin.live(
+			plugin.live(function()
 			{
-				success:function()
-				{
-				//	Go to the form page
-					document.location.href = ADMIN_URL+'/edit?item='+_GET['item'];
-				}
+			//	Go to the form page
+				document.location.href = ADMIN_URL+'/edit?item='+_GET['item'];
 			});
 		}
 
-	//	Delete
-		plugin.delete = function()
+	//	Trash
+		plugin.trash = function()
 		{
-			console.log('todo');
+			plugin.save('trash');
+		}
+
+	//	Preview
+		plugin.preview = function()
+		{
+			plugin.save('draft', function()
+			{
+				openSite();
+			});
 		}
 
 	//	Workflow

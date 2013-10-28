@@ -209,6 +209,7 @@
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
 }
+/* Titles */
 #grandCentralNav>ul .sub h1
 {
 	font-family:"Raleway-Regular";
@@ -223,16 +224,28 @@
 #grandCentralNav>ul .sub ul
 {
 	overflow:auto;
-	padding-bottom:40px;
+	padding-bottom:30px;
 }
+
+/* Common to all display styles */
 #grandCentralNav>ul .sub ul li
 {
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
 }
 #grandCentralNav>ul .sub ul li a
 {
 	display:block;
 	position: relative;
-	color:#333;
+	color:#ccc;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+#grandCentralNav>ul .sub ul li:hover a
+{
+	color:#eee;
 }
 #grandCentralNav>ul .sub ul li .icon
 {
@@ -241,23 +254,6 @@
 #grandCentralNav>ul .sub ul li .title
 {
 	font-family:"Raleway-Thin";
-	display:block;
-}
-#grandCentralNav>ul .sub ul li:hover .title
-{
-	color:#333;
-}
-#grandCentralNav>ul .sub ul li .insert
-{
-	font-size:1.5em;
-	text-align:center;
-	display:none;
-}
-#grandCentralNav>ul .sub ul li .insert a
-{
-	color:#aaaaaa;
-	border:none;
-	padding-top:15px;
 	display:block;
 }
 
@@ -297,9 +293,6 @@
 	font-size:0.75em;
 	padding:5px;
 	border-bottom:1px solid #444;
-	-moz-box-sizing:border-box;
-	-webkit-box-sizing:border-box;
-	box-sizing:border-box;
 }
 #grandCentralNav>ul .sub ul.col li .icon
 {
@@ -310,7 +303,26 @@
 	display:none;
 }
 
+/* In labels */
+#grandCentralNav>ul .sub ul.label li
+{
+	float:left;
+	width:33.333%;
+	text-align:center;
+	padding:0 5px;
+}
+#grandCentralNav>ul .sub ul.label li a
+{
+	border:1px solid #555;
+	padding:7px 10px;
+	border-radius:10px;
+}
+
 /* In hives */
+#grandCentralNav>ul .sub ul.hive
+{
+	padding-bottom:70px;
+}
 #grandCentralNav>ul .sub ul.hive li a
 {
 	display:block;

@@ -43,26 +43,12 @@
 				{
 				//	Our item's nickname
 					item = $(ui.draggable).data('item');
-				//	Go to trash
-					$.ajx(
-					{
-						app: 'master',
-						template: 'status',
-						item:item,
-						status:$element.data('status'),
-					}, {
-					//	Done
-						done:function(html)
-						{
-							console.log(html);
-						//	Confirm trash
-						//	$element.effect('bounce', {distance:'30', times:'2'}, 250);
-						//	Get rid of the objet, whether it's an icon or not
-							byebye = $(ui.draggable);
-							byebye.hide('drop', {direction:'down'});
-						//	Check if a section is empty now (todo)
-							
-						}
+				//	Send to the trashbon !
+					plugin.send(item, function()
+					{						
+					//	Get rid of the objet
+						byebye = $(ui.draggable);
+						byebye.hide('drop', {direction:'down'});
 					});
 				}
 			});
@@ -84,6 +70,28 @@
 		plugin.toggle = function()
 		{
 			$element.toggleClass('visible hidden');
+		}
+		
+	//	Send
+		plugin.send = function(item, callback)
+		{
+		//	Go to trash
+			$.ajx(
+			{
+				app: 'master',
+				template: 'status',
+				item:item,
+				status:$element.data('status'),
+			}, {
+			//	Done
+				done:function(html)
+				{
+				//	Confirm trash
+					$element.effect('bounce', {distance:'30', times:'2'}, 250);
+				//	Callback
+					if ((typeof(callback) != 'undefined') && (typeof(callback) == "function")) callback.call(this, html);
+				}
+			});
 		}
 
 	//	Fire up the plugin!

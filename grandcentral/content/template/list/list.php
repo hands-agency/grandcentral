@@ -22,27 +22,25 @@
 //	Bind
 /********************************************************************************************/
 	$_APP->bind_script('list/js/list.js');
-	$_APP->bind_script('list/js/infinitescroll.plugin.js');
 	$_APP->bind_css('list/css/list.css');
+	
+/********************************************************************************************/
+//	Apps
+/********************************************************************************************/
+	$app = new app('jquery.infinitescroll');
+	$app->load();
+	$app = new app('jquery.viewport');
+	$app->load();
 
 /********************************************************************************************/
 //	Some vars
 /********************************************************************************************/
 //	Env
 	$handled_env = $_SESSION['pref']['handled_env'];
-//	Amount of items to be displayed at one time
-	$limit = 50;
 //	Object
 	$handled_item = (isset($_GET['item'])) ? $_GET['item'] : trigger_error('You should have an Item by now', E_USER_WARNING);
-
-	$_APP->bind_code('script', '
-	<script type="text/javascript" charset="utf-8">
-		$(".infiniteScroll").infinitescroll(
-		{
-			app:"content",
-			template:"list/list.lines",
-			param:"'.addslashes(json_encode($_PARAM)).'",
-			limit:'.$limit.',
-		});
-	</script>');
+//	Amount of items to be displayed at one time
+	$limit = 10;
+//	Count
+	$count = count::get($handled_item, $_PARAM, $handled_env);
 ?>

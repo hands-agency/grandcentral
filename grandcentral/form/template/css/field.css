@@ -1,10 +1,6 @@
 /********************************************************************************************/
 /* All fields
 /********************************************************************************************/
-/*div { border: 5px solid !important;}*/
-ol>li .field
-{
-}
 /* Placeholders */
 ::-webkit-input-placeholder
 {
@@ -81,7 +77,7 @@ ol>li[data-type="bool"] .wrapper
 /********************************************************************************************/
 ol>li[data-type="textarea"] textarea
 {
-	min-height:40px;
+	min-height:120px;
 }
 
 /********************************************************************************************/
@@ -90,18 +86,6 @@ ol>li[data-type="textarea"] textarea
 ol>li[data-type="code"] textarea
 {
 	font-family:Courier;
-}
-
-/********************************************************************************************/
-/* URL-rewritten */
-/********************************************************************************************/
-ol>li[data-type="urlr"] span
-{
-	padding:0 0 0 7px;
-}
-ol>li[data-type="urlr"] input
-{
-	width:140px;
 }
 
 /********************************************************************************************/
@@ -158,69 +142,12 @@ ol>li[data-type="checkbox"] li.on .descr
 }
 
 /********************************************************************************************/
-/* Media (unique & multiple) */
-/********************************************************************************************/
-ol>li[data-type="media"] .field ul
-{
-	margin:10px;
-	-moz-border-radius:7px;
-	-webkit-border-radius:7px;
-	border-radius:7px;
-	background-color:#ffffff !important;
-	border:3px dashed #eeeeee;
-}
-
-/********************************************************************************************/
-/* Date & time */
-/********************************************************************************************/
-
-
-/********************************************************************************************/
-/* Date & time picker */
-/********************************************************************************************/
-
-
-/********************************************************************************************/
-/* Apps
-/********************************************************************************************/
-ol>li[data-type="app"] .field
-{
-}
-ol>li[data-type="app"] .field>ul>li.app
-{
-	float:left;
-	margin:10px;
-	width:100px;
-}
-ol>li[data-type="app"] .field>ul>li.app>.icon
-{
-	width:50px;
-	height:50px;
-	margin-bottom:10px;
-	margin:auto;
-}
-ol>li[data-type="app"] .field>ul>li.app>.title
-{
-	font-size:10px;
-	text-align:center;
-}
-ol>li[data-type="app"] .field>ul>li.subform
-{
-	background:#eee;
-	min-height:300px;
-	clear:left;
-	padding:30px;
-	box-shadow: inset 0px 7px 7px -7px rgba(0, 0, 0, 0.4);
-}
-
-/********************************************************************************************/
 /* Labels for full lenght fields
 /********************************************************************************************/
 ol>li[data-type="wysiwyg"],
 ol>li[data-type="multipleselect"],
 ol>li[data-type="attr"],
 ol>li[data-type="rel"],
-ol>li[data-type="app"],
 ol>li[data-type="media"],
 ol>li[data-type="pagetype"]
 {
@@ -230,7 +157,6 @@ ol>li[data-type="wysiwyg"]>label,
 ol>li[data-type="multipleselect"]>label,
 ol>li[data-type="attr"]>label,
 ol>li[data-type="rel"]>label,
-ol>li[data-type="app"]>label,
 ol>li[data-type="media"]>label,
 ol>li[data-type="pagetype"]>label
 {
@@ -246,7 +172,6 @@ ol>li[data-type="wysiwyg"]>.wrapper,
 ol>li[data-type="multipleselect"]>.wrapper,
 ol>li[data-type="attr"]>.wrapper,
 ol>li[data-type="rel"]>.wrapper,
-ol>li[data-type="app"]>.wrapper,
 ol>li[data-type="media"]>.wrapper,
 ol>li[data-type="pagetype"]>.wrapper
 {
@@ -261,7 +186,6 @@ ol>li[data-type="wysiwyg"]>.wrapper>.field,
 ol>li[data-type="multipleselect"]>.wrapper>.field,
 ol>li[data-type="attr"]>.wrapper>.field,
 ol>li[data-type="rel"]>.wrapper>.field,
-ol>li[data-type="app"]>.wrapper>.field,
 ol>li[data-type="media"]>.wrapper>.field,
 ol>li[data-type="pagetype"]>.wrapper>.field
 {

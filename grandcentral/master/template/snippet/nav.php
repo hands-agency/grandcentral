@@ -39,36 +39,18 @@
 /********************************************************************************************/
 //	Build nav
 	$nav = array(
-	//	Environment
-		'env' => array(
+	//	Content
+		'item' => array(
 			'title' => cc('site', current)['title'],
 			'icon' => '&#xe02f;',
 			'page' => 'list',
 		//	Subnav
 			'subnav' => array(
 				'structure' =>  array(
-					'display' => 'big',
-					'link' => 'list',
-					'bunch' => cc('structure', array('key' => array('structure', 'version'), 'order()' => 'inherit(key)'), $_SESSION['pref']['handled_env']),
-				),
-				'support' =>  array(
-					'display' => 'big',
-					'link' => 'page',
-					'bunch' => cc('page', array('key' => array('doc')), 'admin'),
-				),
-			),
-		),
-	//	Content
-		'item' => array(
-			'icon' => '&#xe01e;',
-			'page' => 'list',
-		//	Subnav
-			'subnav' => array(
-				'structure' =>  array(
 					'title' => 'er',
-					'display' => 'big',
+					'display' => 'label',
 					'link' => 'list',
-					'bunch' => cc('structure', array('key' => array('page'), 'order()' => 'inherit(key)'), $_SESSION['pref']['handled_env']),
+					'bunch' => cc('structure', array('key' => array('page', 'structure', 'version'), 'order()' => 'inherit(key)'), $_SESSION['pref']['handled_env']),
 				),
 				'major' => array(
 					'display' => 'hive',

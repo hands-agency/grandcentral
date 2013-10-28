@@ -43,7 +43,6 @@
 	natcasesort($values);
 //	field
 	$p = array(
-		'label' => 'App :',
 		'placeholder' => '...',
 		'values' => $values,
 		'valuestype' => 'array'
