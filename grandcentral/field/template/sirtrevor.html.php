@@ -6,12 +6,13 @@
 	<?php if ($_FIELD->get_descr() != null) : ?><div class="help"><?= $_FIELD->get_descr(); ?></div><?php endif ?>
 	<span class="field">
 		
-		<textarea class="js-st-instance" <?=$_FIELD->get_attrs();?>></textarea>
+		<textarea class="js-st-instance" <?=$attrs?>><?=$value?></textarea>
 
 		<script>
 			new SirTrevor.Editor(
 			{
-				el:$('.js-st-instance')
+				el:$('.js-st-instance'),
+				blockTypes: ['Text', 'Heading', 'List']
 			});
 		</script>
 		

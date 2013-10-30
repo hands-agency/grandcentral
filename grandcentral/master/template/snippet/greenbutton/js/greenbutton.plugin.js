@@ -75,13 +75,11 @@
 				fn();
 			});
 			
-		//	On submit, use greenbutton instead
-			$('#section_form').on('submit', 'form', function()
+		//	Prevent regular submit
+			$('#content>section').on('submit', 'form', function()
 			{
-				$('#greenbutton-default').trigger('click');
 				return false;
 			});
-			
 		}
 		
 	//	New
@@ -94,6 +92,9 @@
 	//	Save
 		plugin.save = function(newStatus, callback)
 		{
+		//	Trigger regular submit for eventual plugin callbacks
+			$('#content>section>form').submit();
+			
 		//	Id & status
 			id = $('input[name="'+ENV+'_'+_GET['item']+'[id]"]');
 			oldStatus = $('input[name="'+SITE_KEY+'_'+_GET['item']+'[status]"]');

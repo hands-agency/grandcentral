@@ -10,6 +10,6 @@
  */
 class fieldSirtrevor extends _fields
 {
-	protected $datatype = array('json');
+	protected $datatype = array('string');
 }
 ?>

@@ -194,6 +194,11 @@ class adminItemForm
 				$field['values'] = $attr['param'];
 				$field['type'] = (isset($attr['max']) && $attr['max'] == 1) ? 'select' : 'multipleselect';
 				break;
+				
+		//	Default field type
+			default :
+				$field['type'] = $attr['type'];
+				break;
 		}
 		if (isset($attr['required'])) $field['required'] = $attr['required'];
 		if (isset($attr['min'])) $field['min'] = $attr['min'];
