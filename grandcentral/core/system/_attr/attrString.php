@@ -17,8 +17,6 @@ class attrString extends _attrs
  */
 	public function __construct($data = null, $params = null)
 	{
-		$this->params['min'] = 0;
-		$this->params['max'] = 5000;
 		parent::__construct($data, $params);
 	}
 /**
@@ -107,10 +105,10 @@ class attrString extends _attrs
 			case 0:
 				$type = 'varchar(5000)';
 				break;
-			case $this->params['max'] <= 21800:
+			case $this->params['max'] <= 16380:
 				$type = 'varchar('.$this->params['max'].')';
 				break;
-			case $this->params['max'] > 21800:
+			case $this->params['max'] > 16380:
 				$type = 'mediumtext';
 				break;
 		}
@@ -134,12 +132,14 @@ class attrString extends _attrs
 		$params['min'] = array(
 			'name' => 'min',
 			'type' => 'number',
-			'label' => 'Min'
+			'label' => 'Min',
+			'value' => 0
 		);
 		$params['max'] = array(
 			'name' => 'max',
 			'type' => 'number',
-			'label' => 'Max'
+			'label' => 'Max',
+			'value' => 5000
 		);
 	//	Return
 		return $params;

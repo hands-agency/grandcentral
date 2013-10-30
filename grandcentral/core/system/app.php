@@ -382,14 +382,14 @@ class app
  */
 	public function bind_file($zone, $file, $system = false)
 	{
-		if (filter_var($file, FILTER_VALIDATE_URL) === true)
-		{
-			$url = $file;
-		}
-		else
+		if (filter_var($file, FILTER_VALIDATE_URL) === false)
 		{
 			$url = $system === false ? $this->get_templateroot() : $this->get_systemroot();
 			$url .= $file;
+		}
+		else
+		{
+			$url = $file;
 		}
 		master::bind_file($zone, $url);
 	}

@@ -158,18 +158,6 @@ class master
 			trigger_error('Zone <strong>'.$zone.'</strong> does not exists in the master. Try another one.', E_USER_WARNING);
 		}
 	}
-	// public static function bind($zone, $data)
-	// {
-	// 	if (isset(self::$zones[$zone]))
-	// 	{
-	// 		self::$zones[$zone]['data'] .= $data;
-	// 	}
-	// 	else
-	// 	{
-	// 		trigger_error('Zone <strong>'.$zone.'</strong> does not exists in the master. Try another one.', E_USER_WARNING);
-	// 	}
-	// 	
-	// }
 /**
  * 
  *

@@ -76,6 +76,6 @@
 				}
 			});
 		";
-		$_APP->bind_file('script', $script);
+		$_APP->bind_code('script', $script);
 	}
 ?>
