@@ -113,6 +113,15 @@ class itemStructure extends _items
 		}
 */
 	//	add Created attribute
+		if (!isset($attrs['owner']))
+		{
+			$attrs['owner'] = array(
+				'key' => 'owner',
+				'type' => 'owner',
+				'title' => 'Owner'
+			);
+		}
+	//	add Created attribute
 		if (!isset($attrs['created']))
 		{
 			$attrs['created'] = array(

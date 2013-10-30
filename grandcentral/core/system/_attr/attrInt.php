@@ -141,6 +141,8 @@ class attrInt extends _attrs
 	{
 	//	Start with the default for all properties
 		$params = parent::get_properties();
+		
+		$params['key']['value'] = 'id';
 	//	Somes specifics for this attr
 		$params['min'] = array(
 			'name' => 'min',

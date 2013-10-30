@@ -72,6 +72,7 @@ class attrStatus extends _attrs
 	//	Start with the default for all properties
 		$params = parent::get_properties();
 	//	Somes specifics for this attr
+		$params['key']['value'] = 'status';
 		$params['key']['readonly'] = true;
 		unset($params['required']);
 	//	Return

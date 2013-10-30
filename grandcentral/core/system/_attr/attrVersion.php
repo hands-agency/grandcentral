@@ -72,6 +72,7 @@ class attrVersion extends _attrs
 		$params = parent::get_properties();
 	//	Somes specifics for this attr
 		# $params['somefield'] = array();
+		$params['key']['value'] = 'version';
 		$params['key']['readonly'] = true;
 		unset($params['required']);
 	//	Return

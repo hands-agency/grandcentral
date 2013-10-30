@@ -37,6 +37,7 @@ class attrCreated extends attrDate
 		$params = parent::get_properties();
 	//	Somes specifics for this attr
 		# $params['somefield'] = array();
+		$params['key']['value'] = 'created';
 		$params['key']['readonly'] = true;
 		unset($params['required'], $params['format']);
 	//	Return

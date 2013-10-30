@@ -35,6 +35,7 @@ class attrUpdated extends attrDate
 		$params = parent::get_properties();
 	//	Somes specifics for this attr
 		# $params['somefield'] = array();
+		$params['key']['value'] = 'updated';
 		$params['key']['readonly'] = true;
 		unset($params['required'], $params['format']);
 	//	Return

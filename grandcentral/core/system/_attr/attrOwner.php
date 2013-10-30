@@ -1,16 +1,16 @@
 <?php
 /**
- * String formated attributes handling class
+ * Integer formated attributes handling class
  *
  * @package 	Core
  * @author		Sylvain Frigui <sf@cafecentral.fr>
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
  */
-class attrKey extends _attrs
+class attrOwner extends _attrs
 {
 /**
- * Set string attribute
+ * Set attribute
  *
  * @param	string	la variable
  * @return	string	une string
@@ -18,20 +18,20 @@ class attrKey extends _attrs
  */
 	public function set($data)
 	{
-		$this->data = (string) $data;
+		$this->data = (int) $data;
 		return $this;
 	}
 /**
- * Set string attribute
+ * Get attribute
  *
  * @param	string	la variable
  * @return	string	une string
  * @access	public
  */
-	public function database_get()
+	public function get()
 	{
-		if (empty($this->data)) $this->data = md5(uniqid($_SESSION['user']['key'], true));
-		return $this->get();
+		if (empty($this->data)) $this->data = $_SESSION['user']['id'];
+		return $this->data;
 	}
 /**
  * Definition mysql
@@ -42,7 +42,7 @@ class attrKey extends _attrs
 	public function mysql_definition()
 	{
 	//	definition
-		$definition = '`'.$this->params['key'].'` varchar(32) CHARACTER SET '.database::charset.' COLLATE '.database::collation.' NOT NULL';
+		$definition = '`'.$this->params['key'].'` mediumint(3) unsigned NOT NULL';
 	//	retour
 		return $definition;
 	}
@@ -60,7 +60,7 @@ class attrKey extends _attrs
 		return $definition;
 	}
 /**
- * Default field attributes for key	
+ * Default field attributes for Version	
  *
  * @param	string	la variable
  * @return	string	une string
@@ -72,7 +72,7 @@ class attrKey extends _attrs
 		$params = parent::get_properties();
 	//	Somes specifics for this attr
 		# $params['somefield'] = array();
-		$params['key']['value'] = 'key';
+		$params['key']['value'] = 'owner';
 		$params['key']['readonly'] = true;
 		unset($params['required']);
 	//	Return
