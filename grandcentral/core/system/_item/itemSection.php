@@ -18,7 +18,7 @@ class itemSection extends _items
 	public function __tostring()
 	{
 		$app = new app($this['app']['key'], $this['app']['template'], $this['app']['param']);
-		master::bind($this['zone']->get(), $app->__tostring());
+		master::bind_code($this['zone']->get(), $app->__tostring());
 		return '';
 	}
 }

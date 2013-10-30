@@ -21,8 +21,8 @@
 /********************************************************************************************/
 //	Bind
 /********************************************************************************************/
-	$_APP->bind_script('snippet/notification/js/notification.js');
-	$_APP->bind_css('snippet/notification/css/notification.css');
+	$_APP->bind_file('script', 'snippet/notification/js/notification.js');
+	$_APP->bind_file('css', 'snippet/notification/css/notification.css');
 
 /********************************************************************************************/
 //	Bla bla bla

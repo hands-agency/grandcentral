@@ -21,8 +21,8 @@
 /********************************************************************************************/
 //	Bind
 /********************************************************************************************/
-	// $_APP->bind_script('js/tabs.js');
-	// 	$_APP->bind_css('css/tabs.css');
+	// $_APP->bind_file('script', 'js/tabs.js');
+	// 	$_APP->bind_file('css', 'css/tabs.css');
 
 	sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, 'Section par défaut ici');
 	// print '<pre>';print_r($_GET);print'</pre>';

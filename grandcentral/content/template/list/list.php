@@ -21,8 +21,8 @@
 /********************************************************************************************/
 //	Bind
 /********************************************************************************************/
-	$_APP->bind_script('list/js/list.js');
-	$_APP->bind_css('list/css/list.css');
+	$_APP->bind_file('script', 'list/js/list.js');
+	$_APP->bind_file('css', 'list/css/list.css');
 	
 /********************************************************************************************/
 //	Apps
@@ -39,6 +39,7 @@
 	$handled_env = $_SESSION['pref']['handled_env'];
 //	Object
 	$handled_item = (isset($_GET['item'])) ? $_GET['item'] : trigger_error('You should have an Item by now', E_USER_WARNING);
+
 //	Amount of items to be displayed at one time
 	$limit = 10;
 //	Count

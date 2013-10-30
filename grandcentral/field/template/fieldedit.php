@@ -21,8 +21,8 @@
 /********************************************************************************************/
 //	Bind
 /********************************************************************************************/
-	$_APP->bind_css('css/fieldedit.css');
-	$_APP->bind_script('js/fieldedit.js');
+	$_APP->bind_file('css', 'css/fieldedit.css');
+	$_APP->bind_file('script', 'js/fieldedit.js');
 
 /********************************************************************************************/
 //	Construction du premier niveau (la suite dans field.ajax)

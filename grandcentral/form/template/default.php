@@ -26,10 +26,10 @@
 /********************************************************************************************/
 //	Bind
 /********************************************************************************************/
-	$_APP->bind_css('css/form.css');
-	$_APP->bind_css('css/field.css');
-	$_APP->bind_script('js/validate.plugin.js');
-	$_APP->bind_script('js/form.js');
-	$_APP->bind_script('js/item.js');
-	$_APP->bind_code('script', '<script type="text/javascript" charset="utf-8">(function($) {$(\'section form\').validate();})(jQuery);</script>');
+	$_APP->bind_file('css', 'css/form.css');
+	$_APP->bind_file('css', 'css/field.css');
+	$_APP->bind_file('script', 'js/validate.plugin.js');
+	$_APP->bind_file('script', 'js/form.js');
+	$_APP->bind_file('script', 'js/item.js');
+	$_APP->bind_code('script', '(function($) {$(\'section form\').validate();})(jQuery);');
 ?> 

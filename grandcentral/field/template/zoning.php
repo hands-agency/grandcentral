@@ -21,9 +21,9 @@
 /********************************************************************************************/
 //	Bind
 /********************************************************************************************/
-	$_APP->bind_css('css/zoning.css');
-	$_APP->bind_script('js/multipleselect.js');
-	$_APP->bind_script('js/zoning.js');
+	$_APP->bind_file('css', 'css/zoning.css');
+	$_APP->bind_file('script', 'js/multipleselect.js');
+	$_APP->bind_file('script', 'js/zoning.js');
 		
 /********************************************************************************************/
 //	Some vars

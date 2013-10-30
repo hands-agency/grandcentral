@@ -21,8 +21,8 @@
 /********************************************************************************************/
 //	Bind scripts & css files
 /********************************************************************************************/
-	$_APP->bind_css('css/eventstream.css');
-	$_APP->bind_script('js/eventstream.js');
+	$_APP->bind_file('css', 'css/eventstream.css');
+	$_APP->bind_file('script', 'js/eventstream.js');
 	
 /********************************************************************************************/
 //	Some vars
@@ -46,7 +46,6 @@
 
 	//	Bind script
 		$script = "
-		<script type='text/javascript' charset='utf-8'>
 			$.sse(
 			{
 				source:'".$EventSource."',
@@ -76,7 +75,7 @@
 					if (ul.find('li').length > max) ul.find('li:last').remove();
 				}
 			});
-		</script>";
-		$_APP->bind_code('script', $script);
+		";
+		$_APP->bind_file('script', $script);
 	}
 ?>
