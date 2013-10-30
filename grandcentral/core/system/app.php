@@ -391,15 +391,6 @@ class app
 			$url = $system === false ? $this->get_templateroot() : $this->get_systemroot();
 			$url .= $file;
 		}
-		
-		
-		// print'<pre>';print_r($root.$data);print'</pre>';
-		// if (is_file($url.$file))
-		// {
-		// 	$url = $system === false ? $this->get_templateurl() : $this->get_systemurl();
-		// 	// print'<pre>';print_r($root.$data);print'</pre>';
-		// 	$data = $url.$data;
-		// }
 		master::bind_file($zone, $url);
 	}
 /**
@@ -410,7 +401,7 @@ class app
  */
 	public function bind_css($file, $system = false)
 	{
-		master::bind_file('css', $file, $system);
+		$this->bind_file('css', $file, $system);
 	}
 /**
  * 
@@ -420,7 +411,7 @@ class app
  */
 	public function bind_script($file, $system = false)
 	{
-		master::bind_file('script', $file, $system);
+		$this->bind_file('script', $file, $system);
 	}
 /**
  * 
