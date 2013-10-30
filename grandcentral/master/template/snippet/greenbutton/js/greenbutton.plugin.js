@@ -61,7 +61,7 @@
 				openContext(
 				{
 					app:'master',
-					template:'snippet/greenbutton/greenbuttonchoices',
+					template:'snippet/greenbutton/greenbutton.context',
 					sectionid:sectionid,
 				});
 			});

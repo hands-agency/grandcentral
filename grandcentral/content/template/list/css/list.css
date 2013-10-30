@@ -76,6 +76,7 @@ section[data-template="list/list"]>.infiniteScrollWantsMore
 	font-family:'Raleway-Regular';
 	text-transform:uppercase;
 	color:#ddd;
+	margin-bottom:200px;
 }
 section[data-template="list/list"]>.infiniteScrollWantsMore:hover
 {

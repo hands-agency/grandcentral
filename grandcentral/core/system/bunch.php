@@ -42,7 +42,7 @@ class bunch implements ArrayAccess, Iterator, Countable
 	{
 		if (!in_array($env, array('admin', 'site')))
 		{
-			trigger_error('Environment should be admin or site, not '.$env, E_USER_ERROR);
+			trigger_error('Environment should be admin or site, not <strong>'.$env.'</strong>', E_USER_ERROR);
 			$env = env;
 		}
 		$this->env = $env;
