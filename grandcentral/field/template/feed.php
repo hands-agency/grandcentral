@@ -21,9 +21,9 @@
 /********************************************************************************************/
 //	Bind
 /********************************************************************************************/
-	$_APP->bind_css('css/feed.css');
-	$_APP->bind_script('js/multipleselect.js');
-	$_APP->bind_script('js/feed.js');
+	$_APP->bind_file('css', 'css/feed.css');
+	$_APP->bind_file('script', 'js/multipleselect.js');
+	$_APP->bind_file('script', 'js/feed.js');
 		
 /********************************************************************************************/
 //	Some vars

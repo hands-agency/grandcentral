@@ -41,14 +41,13 @@
 //	General binding of scripts & css files
 /********************************************************************************************/
 //	jQuery
-//	$_APP->bind_script('https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js');
-//	$_APP->bind_script('https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js');
-	$_APP->bind_script('js/jquery-1.8.2.min.js');
-	$_APP->bind_script('js/jquery-ui-1.9.1.custom.min.js');
+//	$_APP->bind_file('script', 'https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js');
+//	$_APP->bind_file('script', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js');
+	$_APP->bind_file('script', 'js/jquery-1.8.2.min.js');
+	$_APP->bind_file('script', 'js/jquery-ui-1.9.1.custom.min.js');
 
 //	Reroot get in ajax
 	$_APP->bind_code("script", "
-	<script type='text/javascript' charset='utf-8'>
 	//	Some vars
 		var _GET = ".json_encode($_GET).";
 	//	Some consts
@@ -59,22 +58,21 @@
 		const ENV = $('body').data('env');
 		const CURRENTEDITED_URL = '".$currentEditedItemUrl."';
 		console.log(CURRENTEDITED_URL);
-	</script>
 	");
 	
 /********************************************************************************************/
 //	First day at work ?
 /********************************************************************************************/
 	$p = array('subject' => 'human', 'subjectid' => $_SESSION['user']['id']->get());
-	if (!cc('logbook', $p)->count()) $_APP->bind_code("script", '<script type="text/javascript" charset="utf-8">$(document).ready(function () {openContext({app:"master",template:"welcome"})});</script>');
+	if (!cc('logbook', $p)->count()) $_APP->bind_code("script", '$(document).ready(function () {openContext({app:"master",template:"welcome"})});');
 	
 /********************************************************************************************/
 //	Local binding scripts & css files
 /********************************************************************************************/
 //	Script
-	$_APP->bind_script('js/master.js');
+	$_APP->bind_file('script', 'js/master.js');
 //	css
-	$_APP->bind_css('css/master.css');
+	$_APP->bind_file('css', 'css/master.css');
 	
 /********************************************************************************************/
 //	Apps

@@ -92,8 +92,9 @@ class app
  * @return	string	le chemin de l'app
  * @access	public
  */
-	public function get_templateroot($env = env)
+	public function get_templateroot($env = null)
 	{
+		$env = is_null($env) ? $this->env : $env;
 		return $this->template_root[$env];
 	}
 /**
@@ -102,8 +103,9 @@ class app
  * @return	string	le chemin de l'app
  * @access	public
  */
-	public function get_templateurl($env = env)
+	public function get_templateurl($env = null)
 	{
+		$env = is_null($env) ? $this->env : $env;
 		return $this->template_url[$env];
 	}
 /**
@@ -222,7 +224,7 @@ class app
 		{
 			foreach ($this->ini['system']['script'] as $script)
 			{
-				$this->bind_script($script, true);
+				$this->bind_file('script', $script, true);
 			}
 		}
 	//	chargement des css
@@ -230,7 +232,7 @@ class app
 		{
 			foreach ($this->ini['system']['css'] as $css)
 			{
-				$this->bind_css($css, true);
+				$this->bind_file('css', $css, true);
 			}
 		}
 	}
@@ -241,10 +243,10 @@ class app
  * @return	string	la clé de l'app
  * @access	public
  */
-	public function bind_code($zone, $data)
-	{
-		master::bind($zone, $data);
-	}
+	// public function bind_code($zone, $data)
+	// {
+	// 	master::bind($zone, $data);
+	// }
 /**
  * 
  *
@@ -266,7 +268,7 @@ class app
 		$content = ob_get_contents();
 		ob_end_clean();
 		// print'<pre>';print_r(self::$zones);print'</pre>';
-		master::bind($zone, $content);
+		$this->bind_code($zone, $content);
 	}
 /**
  * 
@@ -274,93 +276,131 @@ class app
  * @return	string	la clé de l'app
  * @access	public
  */
-	public function bind_css($file, $system = false)
-	{
-		$key = $this->get_key().'/'.$file;
-		
-		if (!in_array($key, self::$loaded_file))
-		{
-			if ($system === false)
-			{
-				$url = $this->get_templateurl();
-				$root = $this->get_templateroot();
-			}
-			else
-			{
-				$url = $this->get_systemurl();
-				$root =$this->get_systemroot();
-			}
-		
-			if (!is_file($root.$file)) trigger_error('Damn! The CSS file <strong>'.$file.'</strong> you are calling does not exist.', E_USER_NOTICE);
-			else
-			{
-				if (SITE_DEBUG === true)
-				{
-					$refresh = '?'.time();
-					$data = '<link rel="stylesheet" href="'.$url.$file.$refresh.'" type="text/css" charset="utf-8">';
-				}
-				else
-				{
-					$refresh = '?'.time();
-					$data = '<link rel="stylesheet" href="'.$url.$file.$refresh.'" type="text/css" charset="utf-8">';
-				}
-				master::bind('css', $data);
-				self::$loaded_file[] = $key;
-			}
-		}
-		
-		
-	}
+	// public function bind_css($file, $system = false)
+	// {
+	// 	$key = $this->get_key().'/'.$file;
+	// 	
+	// 	if (!in_array($key, self::$loaded_file))
+	// 	{
+	// 		if ($system === false)
+	// 		{
+	// 			$url = $this->get_templateurl();
+	// 			$root = $this->get_templateroot();
+	// 		}
+	// 		else
+	// 		{
+	// 			$url = $this->get_systemurl();
+	// 			$root =$this->get_systemroot();
+	// 		}
+	// 	
+	// 		if (!is_file($root.$file)) trigger_error('Damn! The CSS file <strong>'.$file.'</strong> you are calling does not exist.', E_USER_NOTICE);
+	// 		else
+	// 		{
+	// 			if (SITE_DEBUG === true)
+	// 			{
+	// 				$refresh = '?'.time();
+	// 				$data = '<link rel="stylesheet" href="'.$url.$file.$refresh.'" type="text/css" charset="utf-8">';
+	// 			}
+	// 			else
+	// 			{
+	// 				$refresh = '?'.time();
+	// 				$data = '<link rel="stylesheet" href="'.$url.$file.$refresh.'" type="text/css" charset="utf-8">';
+	// 			}
+	// 			master::bind('css', $data);
+	// 			self::$loaded_file[] = $key;
+	// 		}
+	// 	}
+	// 	
+	// 	
+	// }
 /**
  * 
  *
  * @return	string	la clé de l'app
  * @access	public
  */
-	public function bind_script($file, $system = false)
+	// public function bind_script($file, $system = false)
+	// {
+	// //	script interne
+	// 	if (filter_var($file, FILTER_VALIDATE_URL) === false)
+	// 	{
+	// 		if ($system === false)
+	// 		{
+	// 			$urlscript = $this->get_templateurl().$file;
+	// 			$rootscript = $this->get_templateroot().$file;
+	// 		}
+	// 		else
+	// 		{
+	// 			$urlscript = $this->get_systemurl().$file;
+	// 			$rootscript = $this->get_systemroot().$file;
+	// 		}
+	// 	}
+	// //	script externe
+	// 	else
+	// 	{
+	// 		$urlscript = $file;
+	// 	}
+	// 	
+	// 	if (!in_array($urlscript, self::$loaded_file))
+	// 	{
+	// 		if (isset($rootscript) && !is_file($rootscript))
+	// 		{
+	// 			trigger_error('Hell! The script file <strong>'.$file.'</strong> you are calling does not exist.', E_USER_NOTICE);
+	// 		}
+	// 		else
+	// 		{
+	// 			if (SITE_DEBUG === true)
+	// 			{
+	// 				$refresh = '?'.time();
+	// 				$data = '<script src="'.$urlscript.'" type="text/javascript" charset="utf-8"></script>';
+	// 			}
+	// 			else
+	// 			{
+	// 				$refresh = '?'.time();
+	// 				$data = '<script src="'.$urlscript.'" type="text/javascript" charset="utf-8"></script>';
+	// 			}
+	// 			master::bind('script', $data);
+	// 			self::$loaded_file[] = $urlscript;
+	// 		}
+	// 	}
+	// }
+/**
+ * 
+ *
+ * @return	string	la clé de l'app
+ * @access	public
+ */
+	// public function bind_app($zone, app $app)
+	// {
+	// 	master::bind($zone, $app->__tostring());
+	// }
+/**
+ * 
+ *
+ * @return	string	la clé de l'app
+ * @access	public
+ */
+	public function bind_file($zone, $file, $system = false)
 	{
-	//	script interne
-		if (filter_var($file, FILTER_VALIDATE_URL) === false)
+		if (filter_var($file, FILTER_VALIDATE_URL) === true)
 		{
-			if ($system === false)
-			{
-				$urlscript = $this->get_templateurl().$file;
-				$rootscript = $this->get_templateroot().$file;
-			}
-			else
-			{
-				$urlscript = $this->get_systemurl().$file;
-				$rootscript = $this->get_systemroot().$file;
-			}
+			$url = $file;
 		}
-	//	script externe
 		else
 		{
-			$urlscript = $file;
+			$url = $system === false ? $this->get_templateroot() : $this->get_systemroot();
+			$url .= $file;
 		}
 		
-		if (!in_array($urlscript, self::$loaded_file))
-		{
-			if (isset($rootscript) && !is_file($rootscript))
-			{
-				trigger_error('Hell! The script file <strong>'.$file.'</strong> you are calling does not exist.', E_USER_NOTICE);
-			}
-			else
-			{
-				if (SITE_DEBUG === true)
-				{
-					$refresh = '?'.time();
-					$data = '<script src="'.$urlscript.'" type="text/javascript" charset="utf-8"></script>';
-				}
-				else
-				{
-					$refresh = '?'.time();
-					$data = '<script src="'.$urlscript.'" type="text/javascript" charset="utf-8"></script>';
-				}
-				master::bind('script', $data);
-				self::$loaded_file[] = $urlscript;
-			}
-		}
+		
+		// print'<pre>';print_r($root.$data);print'</pre>';
+		// if (is_file($url.$file))
+		// {
+		// 	$url = $system === false ? $this->get_templateurl() : $this->get_systemurl();
+		// 	// print'<pre>';print_r($root.$data);print'</pre>';
+		// 	$data = $url.$data;
+		// }
+		master::bind_file($zone, $url);
 	}
 /**
  * 
@@ -368,11 +408,10 @@ class app
  * @return	string	la clé de l'app
  * @access	public
  */
-	public function bind_app($zone, app $app)
+	public function bind_code($zone, $data)
 	{
-		master::bind($zone, $app->__tostring());
+		master::bind_code($zone, $data);
 	}
-	
 /**
  * 
  *

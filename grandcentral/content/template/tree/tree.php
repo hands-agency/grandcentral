@@ -21,10 +21,10 @@
 /********************************************************************************************/
 //	Bind
 /********************************************************************************************/	
-	$_APP->bind_css('tree/css/tree.css');
-	$_APP->bind_script('tree/js/nestedSortable/jquery.mjs.nestedSortable.js');
-	// $_APP->bind_script('js/nestedSortable/jquery.ui.touch-punch.js');
-	$_APP->bind_script('tree/js/nestedSortable/tree.js');
+	$_APP->bind_file('css', 'tree/css/tree.css');
+	$_APP->bind_file('script', 'tree/js/nestedSortable/jquery.mjs.nestedSortable.js');
+	// $_APP->bind_file('script', 'js/nestedSortable/jquery.ui.touch-punch.js');
+	$_APP->bind_file('script', 'tree/js/nestedSortable/tree.js');
 
 /********************************************************************************************/
 //	Make the tree

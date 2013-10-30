@@ -21,8 +21,8 @@
 /********************************************************************************************/
 //	Bind
 /********************************************************************************************/
-	$_APP->bind_css('css/media.css');
-	$_APP->bind_script('js/media.js');
+	$_APP->bind_file('css', 'css/media.css');
+	$_APP->bind_file('script', 'js/media.js');
 
 /********************************************************************************************/
 //	Load Library
@@ -35,8 +35,5 @@
 	if (isset($_POST['onSelect'])) $param['onSelect'] = $_POST['onSelect'];
 	$param = json_encode($param);
 	
-	$_APP->bind_code('script', '
-	<script type="text/javascript" charset="utf-8">
-		$(\'#mediaLibrary\').ccLibrary('.$param.');
-	</script>');
+	$_APP->bind_code('script', '$(\'#mediaLibrary\').ccLibrary('.$param.');');
 ?>

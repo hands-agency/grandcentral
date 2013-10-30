@@ -21,5 +21,5 @@
 /********************************************************************************************/
 //	Bind
 /********************************************************************************************/
-//	$_APP->bind_css('snippet/greenbutton/css/greenbuttonchoices.css');
+//	$_APP->bind_file('css', 'snippet/greenbutton/css/greenbuttonchoices.css');
 ?>

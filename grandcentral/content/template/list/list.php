@@ -21,9 +21,9 @@
 /********************************************************************************************/
 //	Bind
 /********************************************************************************************/
-	$_APP->bind_script('list/js/list.js');
-	$_APP->bind_script('list/js/infinitescroll.plugin.js');
-	$_APP->bind_css('list/css/list.css');
+	$_APP->bind_file('script', 'list/js/list.js');
+	$_APP->bind_file('script', 'list/js/infinitescroll.plugin.js');
+	$_APP->bind_file('css', 'list/css/list.css');
 
 /********************************************************************************************/
 //	Some vars
@@ -36,7 +36,6 @@
 	$handled_item = (isset($_GET['item'])) ? $_GET['item'] : trigger_error('You should have an Item by now', E_USER_WARNING);
 
 	$_APP->bind_code('script', '
-	<script type="text/javascript" charset="utf-8">
 		$(".infiniteScroll").infinitescroll(
 		{
 			param:
@@ -47,5 +46,5 @@
 				limit:'.$limit.',
 			}
 		});
-	</script>');
+	');
 ?>

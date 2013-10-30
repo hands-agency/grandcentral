@@ -21,11 +21,11 @@
 /********************************************************************************************/
 //	Bind
 /********************************************************************************************/
-	$_APP->bind_css('css/addable.css');
-	$_APP->bind_css('css/array.css');
-	$_APP->bind_script('js/addable.js');
-	$_APP->bind_script('js/array.js');
-	$_APP->bind_code('script', '<script type="text/javascript" charset="utf-8">$(\'li[data-type="array"]\').addable();</script>');
+	$_APP->bind_file('css', 'css/addable.css');
+	$_APP->bind_file('css', 'css/array.css');
+	$_APP->bind_file('script', 'js/addable.js');
+	$_APP->bind_file('script', 'js/array.js');
+	$_APP->bind_code('script', '$(\'li[data-type="array"]\').addable();');
 	
 /********************************************************************************************/
 //	Some vars
