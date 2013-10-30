@@ -26,8 +26,6 @@
 	$_APP->bind_script('js/wysiwyg/advanced.js');
 	$_APP->bind_script('js/wysiwyg.js');
 	*/
-	$app = new app('sirtrevor');
-	$app->load();
 
 /********************************************************************************************/
 //	Some vars
