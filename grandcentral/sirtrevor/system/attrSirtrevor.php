@@ -24,17 +24,14 @@ class attrSirtrevor extends _attrs implements ArrayAccess
 
 /**
  * Definition mysql
- * ex : `param` mediumtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
  *
- * @param	array 	le tableau de paramètres
  * @return	string	la définition mysql
  * @access	public
- * @static
  */
 	public function mysql_definition()
 	{
 	//	definition
-		$definition = '`'.$this->params['key'].'` varchar(5000) CHARACTER SET '.database::charset.' COLLATE '.database::collation.' NOT NULL';
+		$definition = '`'.$this->params['key'].'` mediumtext CHARACTER SET '.database::charset.' COLLATE '.database::collation.' NOT NULL';
 	//	retour
 		return $definition;
 	}
@@ -49,33 +46,36 @@ class attrSirtrevor extends _attrs implements ArrayAccess
 	public function __toString()
 	{
 	//	Some vars
-		$return = null;
-	//	Decode json stored as a string
-		$json = json_decode($this->get(), true);
+		$return = '';
 		
-		sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $json);
-		
-	//	Loop through blocks
-		foreach ($json['data'] as $block)
+		if ($this->get())
 		{
-		//	Markdown to HTML
-			$text = Markdown::defaultTransform($block['data']['text']);
-			
-		//	HTML formatting
-			switch ($block['type'])
+		
+		//	Decode json stored as a string
+			$json = json_decode($this->get(), true);
+		
+		//	Loop through blocks
+			foreach ($json['data'] as $block)
 			{
-			//	Text
-				case 'text':
-					$return .= str_replace("\n", "</p>\n<p>", '<p>'.$text.'</p>');
-					break;
-			//	Heading
-				case 'heading':
-					$return .= '<h2>'.$text.'</h2>';
-					break;
-			//	List
-				case 'list':
-					$return .= $text;
-					break;
+			//	Markdown to HTML
+				$text = Markdown::defaultTransform($block['data']['text']);
+			
+			//	HTML formatting
+				switch ($block['type'])
+				{
+				//	Text
+					case 'text':
+						$return .= str_replace("\n", "</p>\n<p>", '<p>'.$text.'</p>');
+						break;
+				//	Heading
+					case 'heading':
+						$return .= '<h2>'.$text.'</h2>';
+						break;
+				//	List
+					case 'list':
+						$return .= $text;
+						break;
+				}
 			}
 		}
 		

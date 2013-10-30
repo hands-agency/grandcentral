@@ -192,6 +192,7 @@ class app
 		$root = $this->get_templateroot();
 		$_ROUTINE = $root.$this->template.'.php';
 		$_TEMPLATE = $root.$this->template.'.'.$content_type.'.php';
+
 	//	on ouvre le tampon
 		ob_start();
 	//	on charge les données à afficher

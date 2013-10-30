@@ -151,7 +151,14 @@ abstract class _items implements ArrayAccess, Iterator
 	{
 		foreach ($datas as $attr => $data)
 		{
-			$this->data[$attr]->database_set($data);
+			if (isset($this->data[$attr]) && is_a($this->data[$attr], '_attrs'))
+			{
+				$this->data[$attr]->database_set($data);
+			}
+			else
+			{
+				trigger_error('<strong>'.$attr.'</strong> is in the database, but not in my attributes. table : '.$this->get_env().'/'.$this->get_table());
+			}
 		}
 	}
 /**
