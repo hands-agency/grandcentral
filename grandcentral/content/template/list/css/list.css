@@ -10,6 +10,28 @@ section[data-template="list/list"]>div>.nodata
 section[data-template="list/list"]>div>ol
 {
 }
+
+section[data-template="list/list"]>div>ol>li.animate
+{
+	-webkit-transform: translateY(200px);
+	-moz-transform: translateY(200px);
+	transform: translateY(200px);
+	-webkit-animation: moveUp 0.65s ease forwards;
+	-moz-animation: moveUp 0.65s ease forwards;
+	animation: moveUp 0.65s ease forwards;
+}
+@-webkit-keyframes moveUp {
+	to { -webkit-transform: translateY(0); opacity: 1; }
+}
+
+@-moz-keyframes moveUp {
+	to { -moz-transform: translateY(0); opacity: 1; }
+}
+
+@keyframes moveUp {
+	to { transform: translateY(0); opacity: 1; }
+}
+
 section[data-template="list/list"]>div>ol>li>.title
 {
 	font-family:"Raleway-Regular";
@@ -54,10 +76,21 @@ section[data-template="list/list"]>.infiniteScrollWantsMore
 	font-family:'Raleway-Regular';
 	text-transform:uppercase;
 	color:#ddd;
+	margin-bottom:200px;
 }
 section[data-template="list/list"]>.infiniteScrollWantsMore:hover
 {
 	color:#999;
+}
+/* Infinite scroll stopper */
+section[data-template="list/list"]>.infiniteScrollStopper
+{
+	clear:left;
+	cursor:pointer;
+	text-align:center;
+	font-family:'Raleway-Regular';
+	text-transform:uppercase;
+	color:#ddd;
 }
 
 /********************************************************************************************/

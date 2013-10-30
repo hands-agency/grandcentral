@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 23, 2013 at 02:43 AM
+-- Generation Time: Oct 28, 2013 at 03:16 PM
 -- Server version: 5.5.25
 -- PHP Version: 5.4.4
 
@@ -38,7 +38,7 @@ CREATE TABLE `const` (
   KEY `key` (`key`),
   KEY `status` (`status`),
   KEY `version` (`version`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=92 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=93 ;
 
 --
 -- Dumping data for table `const`
@@ -114,7 +114,8 @@ INSERT INTO `const` (`id`, `key`, `title`, `version`, `created`, `updated`, `sta
 (88, 'OPTIONS_FILTER_SORT_DESC_TITLE', 'From the first one to the last one', 1, '2013-10-19 17:12:22', '2013-10-19 17:12:22', 'live'),
 (89, 'OPTIONS_FILTERS_LEGEND_SORT', 'Sort', 1, '2013-10-19 17:10:19', '2013-10-19 17:10:19', 'live'),
 (90, 'OPTIONS_FILTER_DISPLAY_INSTACK_TITLE', 'In stacks', 1, '2013-10-19 17:13:55', '2013-10-19 17:13:55', 'live'),
-(91, 'OPTIONS_FILTER_DISPLAY_INMASONRY_TITLE', 'In masonry', 1, '2013-10-19 17:14:59', '2013-10-19 17:14:59', 'live');
+(91, 'OPTIONS_FILTER_DISPLAY_INMASONRY_TITLE', 'In masonry', 1, '2013-10-19 17:14:59', '2013-10-19 17:14:59', 'live'),
+(92, 'APPINI_H3_JQUERY', 'jQuery', 1, '2013-10-25 12:59:07', '2013-10-25 12:59:07', 'live');
 
 -- --------------------------------------------------------
 
@@ -135,25 +136,35 @@ CREATE TABLE `form` (
   `field` mediumtext COLLATE utf8_unicode_ci NOT NULL COMMENT 'The fields',
   `created` datetime NOT NULL COMMENT 'Created Datetime',
   `updated` datetime NOT NULL COMMENT 'Updated Datetime',
+  `system` tinyint(1) NOT NULL,
   `status` varchar(32) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Status',
   PRIMARY KEY (`id`),
   KEY `key` (`key`),
-  KEY `status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=66 ;
+  KEY `status` (`status`),
+  KEY `system` (`system`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=81 ;
 
 --
 -- Dumping data for table `form`
 --
 
-INSERT INTO `form` (`id`, `key`, `title`, `descr`, `template`, `action`, `method`, `target`, `enctype`, `field`, `created`, `updated`, `status`) VALUES
-(1, 'login', 'Login', '', 'login', 'login', 'post', '', '', '{"login":{"type":"text","key":"login","label":"Login","placeholder":"Your login","required":true},"password":{"type":"password","key":"password","label":"Password","placeholder":"Password","required":true},"save":{"type":"button","buttontype":"submit","key":"save","value":"submit"}}', '2013-09-14 12:53:52', '2013-09-14 12:53:52', ''),
-(57, 'mm_parution', 'mm_parution', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"title":{"key":"title","label":"Title","type":"text","required":"1","min":"","max":""},"descr":{"key":"descr","label":"Description","type":"textarea","required":"0","min":"","max":""},"key":{"key":"key","label":"The key","type":"text"},"url":{"key":"url","label":"Url","type":"text"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"Status","type":"text"},"cover":{"key":"cover","label":"Cover","type":"media","required":"0","min":"","max":""},"text":{"key":"text","label":"Text","type":"textarea","required":"0","min":"","max":""}}', '2013-10-22 02:21:23', '2013-10-22 02:21:23', 'live'),
-(59, 'mm_structure', 'mm_structure', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text","required":true},"title":{"key":"title","label":"A short title","type":"text","required":"1","min":"0","max":"255"},"descr":{"key":"descr","label":"A short description","type":"textarea","min":"0","max":"500"},"system":{"key":"system","label":"Is system","type":"bool"},"attr":{"key":"attr","label":"Attributes","type":"attr"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"status","type":"text"},"hasurl":{"key":"hasurl","label":"Has URL","type":"bool"}}', '2013-10-22 02:26:56', '2013-10-22 02:26:56', 'live'),
-(60, 'mm_seminaire', 'mm_seminaire', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"date":{"key":"date","label":"Date","type":"text","required":"0"},"title":{"key":"title","label":"Title","type":"text","required":"1","min":"","max":""},"descr":{"key":"descr","label":"Courte description","type":"textarea","required":"0","min":"","max":""},"text":{"key":"text","label":"Long texte","type":"textarea","required":"0","min":"","max":""},"key":{"key":"key","label":"The key","type":"text"},"url":{"key":"url","label":"Url","type":"text"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"Status","type":"text"},"cover":{"key":"cover","label":"Cover","type":"media","required":"0","min":"","max":""}}', '2013-10-22 02:28:41', '2013-10-22 02:28:41', 'live'),
-(62, 'mm_page', 'mm_page', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text"},"title":{"key":"title","label":"A short title","type":"text","required":"1","min":"0","max":"255"},"type":{"key":"type","label":"type","type":"array"},"descr":{"key":"descr","label":"A short description","type":"textarea","required":"0","min":"0","max":""},"text":{"key":"text","label":"The text content","type":"textarea","required":"0","min":"0","max":"65035"},"url":{"key":"url","label":"The url","type":"text"},"system":{"key":"system","label":"System","type":"bool","required":"0"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"Status","type":"text"},"version":{"key":"version","label":"version","type":"text"},"child":{"key":"child","label":"child","valuestype":"bunch","values":[{"item":"page"}],"type":"multipleselect","required":"0"},"section":{"key":"section","label":"section","valuestype":"bunch","values":[{"item":"section"}],"type":"multipleselect","required":"0"},"group":{"key":"group","label":"group","valuestype":"bunch","values":[{"item":"group"}],"type":"multipleselect","required":"0"},"cover":{"key":"cover","label":"Cover","type":"media","required":"0","min":"","max":""}}', '2013-10-22 23:15:33', '2013-10-22 23:15:33', 'live'),
-(63, 'mm_human', 'mm_human', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text"},"title":{"key":"title","label":"A short title","type":"text","required":"1","min":"0","max":"255"},"descr":{"key":"descr","label":"Short bio","type":"textarea"},"password":{"key":"password","label":"Password","type":"password"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"status","type":"text"},"system":{"key":"system","label":"system","type":"bool"},"profilepic":{"key":"profilepic","label":"Profile Picture","type":"media"},"group":{"key":"group","label":"group","valuestype":"bunch","values":[{"item":"group"}],"type":"multipleselect","min":"","max":""}}', '2013-10-23 02:09:13', '2013-10-23 02:09:13', 'live'),
-(64, 'admin_greenbutton', 'admin_greenbutton', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text"},"title":{"key":"title","label":"A short title","type":"text","required":"1","min":"0","max":"255"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"Status","type":"text"},"icon":{"key":"icon","label":"Icon","type":"textarea"}}', '2013-10-23 02:13:41', '2013-10-23 02:13:41', 'live'),
-(65, 'admin_section', 'admin_section', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text"},"title":{"key":"title","label":"A short title","type":"text","required":"1","min":"0","max":"255"},"descr":{"key":"descr","label":"A short description","type":"textarea","min":"0","max":"500"},"zone":{"key":"zone","label":"The zone","type":"text","min":"0","max":"255"},"app":{"key":"app","label":"The template","type":"app","required":"1"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"Status","type":"text"},"greenbutton":{"key":"greenbutton","label":"greenbutton","valuestype":"bunch","values":[{"item":"greenbutton"}],"type":"multipleselect","min":"","max":""}}', '2013-10-23 02:14:26', '2013-10-23 02:14:26', 'live');
+INSERT INTO `form` (`id`, `key`, `title`, `descr`, `template`, `action`, `method`, `target`, `enctype`, `field`, `created`, `updated`, `system`, `status`) VALUES
+(1, 'login', 'Login', '', 'login', 'login', 'post', '', '', '{"login":{"type":"text","key":"login","label":"Login","placeholder":"Your login","required":true},"password":{"type":"password","key":"password","label":"Password","placeholder":"Password","required":true},"save":{"type":"button","buttontype":"submit","key":"save","value":"submit"}}', '2013-09-14 12:53:52', '2013-09-14 12:53:52', 0, ''),
+(66, 'mm_parution', 'mm_parution', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"title":{"key":"title","label":"Title","type":"text","required":"1","min":"","max":""},"descr":{"key":"descr","label":"Description","type":"text","required":"0","min":"","max":""},"key":{"key":"key","label":"The key","type":"text"},"url":{"key":"url","label":"Url","type":"text"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"Status","type":"text"},"cover":{"key":"cover","label":"Cover","type":"media","required":"0","min":"","max":""},"text":{"key":"text","label":"Text","type":"text","required":"0","min":"","max":""}}', '2013-10-23 16:39:32', '2013-10-23 19:26:41', 0, 'live'),
+(67, 'mm_seminaire', 'mm_seminaire', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"date":{"key":"date","label":"Date","type":"text","required":"0"},"title":{"key":"title","label":"Title","type":"text","required":"1","min":"","max":""},"descr":{"key":"descr","label":"Courte description","type":"text","required":"0","min":"","max":""},"text":{"key":"text","label":"Long texte","type":"text","required":"0","min":"","max":""},"key":{"key":"key","label":"The key","type":"text"},"url":{"key":"url","label":"Url","type":"text"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"Status","type":"text"},"cover":{"key":"cover","label":"Cover","type":"media","required":"0","min":"","max":""}}', '2013-10-23 16:40:53', '2013-10-28 08:21:29', 0, 'live'),
+(68, 'mm_structure', 'mm_structure', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text","required":true},"title":{"key":"title","label":"A short title","type":"text","required":"1","min":"0","max":"255"},"descr":{"key":"descr","label":"A short description","type":"textarea","min":"0","max":"500"},"system":{"key":"system","label":"Is system","type":"bool"},"attr":{"key":"attr","label":"Attributes","type":"attr"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"status","type":"text"},"hasurl":{"key":"hasurl","label":"Has URL","type":"bool"}}', '2013-10-23 16:43:34', '2013-10-23 16:43:34', 0, 'live'),
+(69, 'mm_page', 'mm_page', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text"},"title":{"key":"title","label":"A short title","type":"text","required":"1","min":"0","max":"255"},"type":{"key":"type","label":"type","type":"array"},"descr":{"key":"descr","label":"A short description","type":"text","required":"0","min":"0","max":""},"text":{"key":"text","label":"The text content","type":"textarea","required":"0","min":"0","max":"65035"},"url":{"key":"url","label":"The url","type":"text"},"system":{"key":"system","label":"System","type":"bool","required":"0"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"Status","type":"text"},"version":{"key":"version","label":"version","type":"text"},"child":{"key":"child","label":"child","valuestype":"bunch","values":[{"item":"page"}],"type":"multipleselect","required":"0"},"section":{"key":"section","label":"section","valuestype":"bunch","values":[{"item":"section"}],"type":"multipleselect","required":"0"},"group":{"key":"group","label":"group","valuestype":"bunch","values":[{"item":"group"}],"type":"multipleselect","required":"0"},"cover":{"key":"cover","label":"Cover","type":"media","required":"0","min":"","max":""}}', '2013-10-23 18:24:47', '2013-10-23 18:24:47', 0, 'live'),
+(70, 'mm_article', 'mm_article', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"title":{"key":"title","label":"Title","type":"text","required":"1","min":"","max":""},"descr":{"key":"descr","label":"Description","type":"text","required":"0","min":"","max":""},"key":{"key":"key","label":"The key","type":"text"},"url":{"key":"url","label":"Url","type":"text"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"Status","type":"text"},"cover":{"key":"cover","label":"Cover","type":"media","required":"0","min":"","max":""},"text":{"key":"text","label":"Text","type":"textarea","required":"0","min":"","max":""}}', '2013-10-23 21:24:01', '2013-10-23 21:24:01', 0, 'live'),
+(71, 'mm_livre', 'mm_livre', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"title":{"key":"title","label":"Title","type":"text","required":"1","min":"","max":""},"descr":{"key":"descr","label":"Description","type":"text","required":"0","min":"","max":""},"key":{"key":"key","label":"The key","type":"text"},"url":{"key":"url","label":"Url","type":"text"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"Status","type":"text"},"cover":{"key":"cover","label":"Cover","type":"media","required":"0","min":"","max":""},"text":{"key":"text","label":"Text","type":"text","required":"0","min":"","max":""}}', '2013-10-23 21:38:06', '2013-10-23 21:38:06', 0, 'live'),
+(72, 'mm_group', 'mm_group', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text"},"title":{"key":"title","label":"Title","type":"text","required":"1","min":"","max":""},"admin":{"key":"admin","label":"admin","type":"bool"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"Status","type":"text"}}', '2013-10-25 00:21:48', '2013-10-25 00:21:48', 0, 'live'),
+(73, 'mm_version', 'mm_version', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text"},"title":{"key":"title","label":"A short title","type":"text","required":"1","min":"0","max":"255"},"lang":{"key":"lang","label":"Language","type":"text","required":"1","min":"0","max":"32"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"Status","type":"text"}}', '2013-10-25 00:25:10', '2013-10-25 00:25:10', 0, 'live'),
+(74, 'admin_const', 'admin_const', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text"},"title":{"key":"title","label":"Title","type":"text","required":"1","min":"","max":""},"version":{"key":"version","label":"Version","type":"text"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"Status","type":"text"}}', '2013-10-25 12:58:52', '2013-10-25 12:58:52', 1, 'live'),
+(75, 'mm_human', 'mm_human', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text"},"title":{"key":"title","label":"A short title","type":"text","required":"1","min":"0","max":"255"},"descr":{"key":"descr","label":"Short bio","type":"textarea"},"password":{"key":"password","label":"Password","type":"password"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"status","type":"text"},"system":{"key":"system","label":"system","type":"bool"},"profilepic":{"key":"profilepic","label":"Profile Picture","type":"media"},"group":{"key":"group","label":"group","valuestype":"bunch","values":[{"item":"group"}],"type":"multipleselect","min":"","max":""}}', '2013-10-28 08:15:44', '2013-10-28 08:15:44', 0, 'live'),
+(76, 'admin_structure', 'admin_structure', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text","required":true},"title":{"key":"title","label":"A short title","type":"text","required":"1","min":"0","max":"255"},"descr":{"key":"descr","label":"A short description","type":"textarea","min":"0","max":"500"},"system":{"key":"system","label":"Is system","type":"bool"},"attr":{"key":"attr","label":"Attributes","type":"attr"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"status","type":"text"},"hasurl":{"key":"hasurl","label":"Has URL","type":"bool"}}', '2013-10-28 10:39:22', '2013-10-28 10:39:22', 1, 'live'),
+(77, 'admin_greenbutton', 'admin_greenbutton', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text"},"title":{"key":"title","label":"A short title","type":"text","required":"1","min":"0","max":"255"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"Status","type":"text"},"icon":{"key":"icon","label":"Icon","type":"text","required":"0","min":"","max":""}}', '2013-10-28 10:39:38', '2013-10-28 10:39:38', 1, 'live'),
+(78, 'admin_section', 'admin_section', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text"},"title":{"key":"title","label":"A short title","type":"text","required":"1","min":"0","max":"255"},"descr":{"key":"descr","label":"A short description","type":"textarea","min":"0","max":"500"},"zone":{"key":"zone","label":"The zone","type":"text","min":"0","max":"255"},"app":{"key":"app","label":"The template","type":"app","required":"1"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"Status","type":"text"},"greenbutton":{"key":"greenbutton","label":"greenbutton","valuestype":"bunch","values":[{"item":"greenbutton"}],"type":"multipleselect","min":"","max":""}}', '2013-10-28 10:40:03', '2013-10-28 10:40:03', 1, 'live'),
+(79, 'mm_section', 'mm_section', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text"},"title":{"key":"title","label":"A short title","type":"text","required":"1","min":"0","max":"255"},"descr":{"key":"descr","label":"A short description","type":"textarea","min":"0","max":"500"},"zone":{"key":"zone","label":"The zone","type":"text","min":"0","max":"255"},"app":{"key":"app","label":"The template","type":"app","required":"1"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"Status","type":"text"}}', '2013-10-28 12:17:45', '2013-10-28 12:17:45', 0, 'live'),
+(80, 'admin_page', 'admin_page', '', 'default', 'item', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text"},"title":{"key":"title","label":"A short title","type":"text","required":"1","min":"0","max":"255"},"type":{"key":"type","label":"type","type":"array"},"descr":{"key":"descr","label":"A short description","type":"textarea","min":"0","max":"500"},"text":{"key":"text","label":"The text content","type":"textarea","min":"0","max":"65035"},"url":{"key":"url","label":"The url","type":"text","required":"1","min":"0","max":"255"},"system":{"key":"system","label":"System","type":"bool"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"Status","type":"text"},"child":{"key":"child","label":"child","valuestype":"bunch","values":[{"item":"page"}],"type":"multipleselect","min":"","max":""},"section":{"key":"section","label":"section","valuestype":"bunch","values":{"1":{"item":"section"}},"type":"multipleselect","min":"","max":""},"sectiondefault":{"key":"sectiondefault","label":"sectiondefault","valuestype":"bunch","values":{"1":{"item":"section"}},"type":"multipleselect","min":"","max":""}}', '2013-10-28 12:20:02', '2013-10-28 12:20:02', 1, 'live');
 
 -- --------------------------------------------------------
 
@@ -162,17 +173,17 @@ INSERT INTO `form` (`id`, `key`, `title`, `descr`, `template`, `action`, `method
 --
 
 CREATE TABLE `greenbutton` (
-  `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT COMMENT 'The unique identifier',
-  `key` varchar(32) COLLATE utf8_unicode_ci NOT NULL COMMENT 'The key',
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Label',
-  `created` datetime NOT NULL COMMENT 'Created Datetime',
-  `updated` datetime NOT NULL COMMENT 'Updated Datetime',
-  `status` varchar(32) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Status',
-  `icon` mediumtext COLLATE utf8_unicode_ci NOT NULL COMMENT 'Icon',
+  `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `key` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  `status` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `icon` varchar(5000) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `key` (`key`),
   KEY `status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `greenbutton`
@@ -185,11 +196,12 @@ INSERT INTO `greenbutton` (`id`, `key`, `title`, `created`, `updated`, `status`,
 (4, 'save_reach', 'Save & reach', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live', ''),
 (5, 'save_copy', 'Save as a copy', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live', ''),
 (6, 'save_new', 'Save & start anew', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live', ''),
-(7, 'delete', 'Move to trash', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live', ''),
+(7, 'trash', 'Move to trash', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live', ''),
 (8, 'live', 'Go live', '0000-00-00 00:00:00', '2013-02-07 06:31:35', 'live', ''),
 (9, 'workflow', 'Put back in the workflow', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live', ''),
 (10, 'buildapp', 'Build a new App!', '2013-03-22 08:57:22', '2013-10-20 22:53:27', 'live', ''),
-(11, 'newpage', 'Add a page to the sitetree', '2013-10-23 02:14:09', '2013-10-23 02:14:09', 'live', '');
+(11, 'newpage', 'Add a page to the sitetree', '2013-10-23 02:14:09', '2013-10-23 02:14:09', 'live', ''),
+(12, 'preview', 'Preview', '2013-10-28 10:39:50', '2013-10-28 10:39:50', 'live', '');
 
 -- --------------------------------------------------------
 
@@ -210,7 +222,7 @@ CREATE TABLE `logbook` (
   PRIMARY KEY (`id`),
   KEY `status` (`status`),
   KEY `key` (`key`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=78 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=87 ;
 
 --
 -- Dumping data for table `logbook`
@@ -293,7 +305,16 @@ INSERT INTO `logbook` (`id`, `key`, `subject`, `subjectid`, `item`, `itemid`, `c
 (74, 'insert', 'human', 2, 'form', 64, '2013-10-23 02:13:41', '2013-10-23 02:13:41', 'live'),
 (75, 'insert', 'human', 2, 'greenbutton', 11, '2013-10-23 02:14:09', '2013-10-23 02:14:09', 'live'),
 (76, 'insert', 'human', 2, 'form', 65, '2013-10-23 02:14:26', '2013-10-23 02:14:26', 'live'),
-(77, 'update', 'human', 2, 'section', 10, '2013-10-23 02:14:52', '2013-10-23 02:14:52', 'live');
+(77, 'update', 'human', 2, 'section', 10, '2013-10-23 02:14:52', '2013-10-23 02:14:52', 'live'),
+(78, 'insert', 'human', 2, 'form', 74, '2013-10-25 12:58:52', '2013-10-25 12:58:52', 'live'),
+(79, 'insert', 'human', 2, 'const', 92, '2013-10-25 12:59:07', '2013-10-25 12:59:07', 'live'),
+(80, 'insert', 'human', 2, 'form', 76, '2013-10-28 10:39:22', '2013-10-28 10:39:22', 'live'),
+(81, 'update', 'human', 2, 'structure', 8, '2013-10-28 10:39:28', '2013-10-28 10:39:28', 'live'),
+(82, 'insert', 'human', 2, 'form', 77, '2013-10-28 10:39:38', '2013-10-28 10:39:38', 'live'),
+(83, 'insert', 'human', 2, 'greenbutton', 12, '2013-10-28 10:39:50', '2013-10-28 10:39:50', 'live'),
+(84, 'insert', 'human', 2, 'form', 78, '2013-10-28 10:40:03', '2013-10-28 10:40:03', 'live'),
+(85, 'update', 'human', 2, 'section', 2, '2013-10-28 10:40:15', '2013-10-28 10:40:15', 'live'),
+(86, 'insert', 'human', 2, 'form', 80, '2013-10-28 12:20:02', '2013-10-28 12:20:02', 'live');
 
 -- --------------------------------------------------------
 
@@ -387,7 +408,7 @@ CREATE TABLE `section` (
 
 INSERT INTO `section` (`id`, `key`, `title`, `descr`, `zone`, `app`, `created`, `updated`, `status`) VALUES
 (1, 'live', 'Live', 'General form', 'content', '{"key":"content","template":"list/list", "param":{"status":"live", "system":false}}', '0000-00-00 00:00:00', '2013-04-02 14:02:45', 'live'),
-(2, 'edit', 'Edit', 'General form', 'content', '{"key":"content","template":"edit/edit"}', '2013-10-16 14:52:08', '2013-10-16 17:52:16', 'live'),
+(2, 'edit', 'Edit', 'General form', 'content', '{"key":"content","template":"edit\\/edit"}', '2013-10-16 14:52:08', '2013-10-28 10:40:15', 'live'),
 (3, 'php', 'PHP classes, methods & functions', 'lorem Lorem ipsum', 'content', '{"key":"content","template":"doc/code"}', '0000-00-00 00:00:00', '2013-08-30 01:16:18', 'live'),
 (4, 'doc', 'Documentation', '', 'content', '{"key":"content","template":"doc\\/doc"}', '2013-10-20 22:52:03', '2013-10-20 22:52:03', 'live'),
 (5, 'splash', 'Ressource not found', 'Lorem ipsum', 'content', '{"key":"content","template":"error/error"}', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live'),
@@ -462,9 +483,9 @@ INSERT INTO `structure` (`id`, `key`, `title`, `descr`, `system`, `attr`, `creat
 (3, 'page', 'Pages', '', 1, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"A short title","min":"0","max":"255","required":"1"},"type":{"key":"type","type":"array"},"descr":{"key":"descr","type":"string","title":"A short description","min":"0","max":"500"},"text":{"key":"text","type":"string","title":"The text content","min":"0","max":"65035"},"url":{"key":"url","type":"url","title":"The url","min":"0","max":"255","required":"1"},"system":{"key":"system","type":"bool","title":"System"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"},"child":{"key":"child","param":[{"item":"page"}],"min":"","max":"","type":"rel"},"section":{"key":"section","param":{"1":{"item":"section"}},"min":"","max":"","type":"rel"},"sectiondefault":{"key":"sectiondefault","param":{"1":{"item":"section"}},"min":"","max":"","type":"rel"}}', '0000-00-00 00:00:00', '2013-08-20 18:57:03', 'live', 1),
 (4, 'version', 'Versions', '', 1, '{"id":{"key":"id","title":"The unique identifier","type":"id"},"key":{"key":"key","title":"The key","type":"key"},"title":{"key":"title","title":"A short title","type":"string","min":"0","max":"255","required":"1"},"lang":{"key":"lang","title":"Language","type":"string","min":"0","max":"32","required":"1"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"}}', '0000-00-00 00:00:00', '2013-04-05 12:43:36', 'live', 0),
 (5, 'const', 'Text constants', '', 1, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"Title","min":"","max":"","required":"1"},"version":{"key":"version","title":"Version","type":"version"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"}}', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live', 0),
-(6, 'form', 'Forms', '', 1, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"Title","min":"","max":"","required":"1"},"descr":{"key":"descr","title":"A short description","type":"string","min":"0","max":"500"},"template":{"key":"template","type":"string","title":"Template","min":"","max":"","required":"1"},"action":{"key":"action","type":"string","title":"Action","min":"","max":"","required":"1"},"method":{"key":"method","type":"list","option":"post,get","title":"Method","required":"1"},"target":{"key":"target","type":"string","title":"Target"},"enctype":{"key":"enctype","type":"list","option":"application/x-www-form-urlencoded,multipart/form-data","title":"Enctype","required":"1"},"field":{"key":"field","type":"array","title":"The Fields"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"}}', '2013-09-27 08:33:31', '2013-09-27 08:33:31', 'live', 0),
+(6, 'form', 'Forms', '', 1, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"Title","min":"","max":"","required":"1"},"descr":{"key":"descr","title":"A short description","type":"string","min":"0","max":"500"},"template":{"key":"template","type":"string","title":"Template","min":"","max":"","required":"1"},"action":{"key":"action","type":"string","title":"Action","min":"","max":"","required":"1"},"method":{"key":"method","type":"list","option":"post,get","title":"Method","required":"1"},"target":{"key":"target","type":"string","title":"Target"},"enctype":{"key":"enctype","type":"list","option":"application/x-www-form-urlencoded,multipart/form-data","title":"Enctype","required":"1"},"field":{"key":"field","type":"array","title":"The Fields"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"system":{"key":"system","type":"bool","title":"System"},"status":{"key":"status","type":"status","title":"Status"}}', '2013-09-27 08:33:31', '2013-09-27 08:33:31', 'live', 0),
 (7, 'section', 'Sections', '', 1, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"A short title","min":"0","max":"255","required":"1"},"descr":{"key":"descr","type":"string","title":"A short description","min":"0","max":"500"},"zone":{"key":"zone","type":"string","title":"The zone","min":"0","max":"255"},"app":{"key":"app","type":"array","title":"The template","required":"1"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"},"greenbutton":{"key":"greenbutton","param":[{"item":"greenbutton"}],"min":"","max":"","type":"rel"}}', '2013-09-25 08:33:09', '2013-09-25 08:33:09', 'live', 0),
-(8, 'greenbutton', 'Green actions', '', 1, '{"id":{"key":"id","title":"The unique identifier","type":"id"},"key":{"key":"key","title":"The key","type":"key"},"title":{"key":"title","title":"A short title","type":"string","min":"0","max":"255","required":"1"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"},"icon":{"key":"icon","type":"string","title":"Icon"}}', '2013-09-25 08:33:09', '2013-09-25 08:33:09', 'live', 0),
+(8, 'greenbutton', 'Green button actions', '', 1, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"title":{"key":"title","type":"string","title":"A short title","required":"1","min":"0","max":"255"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"},"icon":{"key":"icon","type":"string","title":"Icon","required":"0","min":"","max":""}}', '2013-09-25 08:33:09', '2013-10-28 10:39:28', 'live', 0),
 (9, 'logbook', 'Logbook', '', 1, '{"id":{"key":"id","title":"The unique identifier","type":"id","min":"0","max":"0","index":"primary","auto_increment":"1"},"key":{"key":"key","title":"The key","type":"key","min":"0","max":"32","required":"1"},"subject":{"key":"subject","title":"Subject","type":"string","min":"","max":""},"subjectid":{"key":"subjectid","title":"Subject ID","type":"int","min":"","max":""},"item":{"key":"item","title":"item","type":"string","min":"","max":""},"itemid":{"key":"itemid","title":"item id","type":"int","min":"","max":""},\r\n"created":{"key":"created","type":"created","title":"Created Datetime"},\r\n"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},\r\n"status":{"key":"status","type":"status","title":"Status"}}', '0000-00-00 00:00:00', '2013-04-05 12:41:29', 'live', 0),
 (10, 'note', 'Notes', '', 1, '{"id":{"key":"id","type":"id","title":"The unique identifier"},"key":{"key":"key","type":"key","title":"The key"},"created":{"key":"created","type":"created","title":"Created Datetime"},"updated":{"key":"updated","type":"updated","title":"Updated Datetime"},"status":{"key":"status","type":"status","title":"Status"},"item":{"key":"item","type":"string","title":"Item","required":"1","min":"","max":""},"itemid":{"key":"itemid","type":"int","title":"Item ID","required":"1","min":"","max":""},"content":{"key":"content","type":"string","title":"Content","required":"1","min":"","max":""}}', '2013-10-20 22:59:08', '2013-10-20 23:01:39', 'live', 0);
 
@@ -529,14 +550,6 @@ INSERT INTO `_rel` (`item`, `itemid`, `key`, `rel`, `relid`, `position`) VALUES
 ('page', 7, 'section', 'section', 3, 0),
 ('page', 7, 'section', 'section', 4, 1),
 ('section', 1, 'greenbutton', 'greenbutton', 3, 0),
-('section', 2, 'greenbutton', 'greenbutton', 8, 0),
-('section', 2, 'greenbutton', 'greenbutton', 1, 1),
-('section', 2, 'greenbutton', 'greenbutton', 2, 2),
-('section', 2, 'greenbutton', 'greenbutton', 4, 3),
-('section', 2, 'greenbutton', 'greenbutton', 5, 4),
-('section', 2, 'greenbutton', 'greenbutton', 6, 5),
-('section', 2, 'greenbutton', 'greenbutton', 9, 6),
-('section', 2, 'greenbutton', 'greenbutton', 7, 7),
 ('page', 10, 'child', 'page', 5, 0),
 ('page', 10, 'child', 'page', 6, 1),
 ('page', 5, 'section', 'section', 9, 0),
@@ -555,7 +568,16 @@ INSERT INTO `_rel` (`item`, `itemid`, `key`, `rel`, `relid`, `position`) VALUES
 ('page', 11, 'section', 'section', 20, 0),
 ('page', 11, 'section', 'section', 4, 1),
 ('section', 20, 'greenbutton', 'greenbutton', 10, 0),
-('section', 10, 'greenbutton', 'greenbutton', 11, 0);
+('section', 10, 'greenbutton', 'greenbutton', 11, 0),
+('section', 2, 'greenbutton', 'greenbutton', 8, 0),
+('section', 2, 'greenbutton', 'greenbutton', 1, 1),
+('section', 2, 'greenbutton', 'greenbutton', 2, 2),
+('section', 2, 'greenbutton', 'greenbutton', 4, 3),
+('section', 2, 'greenbutton', 'greenbutton', 5, 4),
+('section', 2, 'greenbutton', 'greenbutton', 12, 5),
+('section', 2, 'greenbutton', 'greenbutton', 6, 6),
+('section', 2, 'greenbutton', 'greenbutton', 9, 7),
+('section', 2, 'greenbutton', 'greenbutton', 7, 8);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

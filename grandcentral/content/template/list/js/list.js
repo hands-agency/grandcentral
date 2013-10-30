@@ -1,3 +1,12 @@
+$(function()
+{
+	$(window).bind('scroll', function(event)
+	{
+		$('.infiniteScrollWantsMore:in-viewport').trigger('click');
+		$('li[data-item]').addClass('animate');
+	});
+});
+
 /*********************************************************************************************
 /**	* On unlock
  	* @author	mvd@cafecentral.fr

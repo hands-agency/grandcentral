@@ -42,15 +42,13 @@
 					$count = count($bunch);
 				}
 			?>
-			<? $h1 = (isset($key)) ? $key : null ?>
 			<? $link = $level2['link'] ?>
 			<? $display = $level2['display'] ?>
 			
 			<? if ($count > 0): ?>
 
-			<? if (isset($h1) && count($level2Bunch) > 1) : ?>			
-			<h1><?= cst('NAV_SUB_H1_'.$h1, $h1) ?></h1>
-			<? endif ?>
+			<? if (count($level2Bunch) > 1) : ?><h1><?=cst('NAV_SUB_H1_'.$key, $key)?></h1><? endif ?>
+			
 			<ul class="<?=$key?> <?=$display?>">
 				<? foreach ($bunch as $subpage): ?>
 				<?

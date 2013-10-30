@@ -1,10 +1,10 @@
 (function($){
 //	app
 	$fieldAppSelect = $('.fieldAppContainer .fieldAppSelect select');
+		$fieldContainer = $fieldAppSelect.closest('.fieldAppContainer');
 	$fieldAppSelect.change(function()
 	{
 	//	
-		$fieldContainer = $fieldAppSelect.closest('.fieldAppContainer');
 		$templateContainer = $fieldContainer.find('.fieldTemplateContainer');
 	//	remise à zéro
 		$templateContainer.empty();
@@ -17,7 +17,8 @@
 		};
 		if (value)
 		{
-			$templateContainer.ajx({
+			openContext(
+			{
 				app: 'field',
 				template: 'app.template',
 				env: $fieldContainer.attr('data-env'),
@@ -25,19 +26,11 @@
 				appkey: value,
 				valueTemplate: $templateContainer.attr('data-template'),
 				valueParam: params
-			},{
-			//	Callback
-				done:function()
-				{
-					
-				},
-			},{
-			//	Option
-				debug:false,
-				async:true,
 			});
 		}
 	});
-//	trigger à l'ouverture
-	if ($fieldAppSelect.attr('value')) {$fieldAppSelect.trigger('change');};
+	$fieldContainer.on('click', 'button', function()
+	{
+		$fieldAppSelect.trigger('change');
+	});
 })(jQuery);  

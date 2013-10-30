@@ -28,10 +28,9 @@ class itemStructure extends _items
 /**
  * Check if the items of this structure have an url and can be requested
  *
- * @param	array 	attributes array
  * @access  public
  */
-	public function has_url($data)
+	public function has_url()
 	{
 		return (isset($this->_attr->url)) ? true : false;
 	}

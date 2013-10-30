@@ -13,7 +13,7 @@
  * @package		The package
  * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
  * @author		Sylvain Frigui <sf@cafecentral.fr>
- * @copyright	Copyright © 2004-2012, Café Central
+ * @copyright	Copyright © 2004-2013, Café Central
  * @license		http://www.cafecentral.fr/fr/licences GNU Public License
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
@@ -54,10 +54,9 @@
 /********************************************************************************************/
 //	Fetch the bunch of items
 /********************************************************************************************/
+//	Build the params
 	$param = (isset($_POST['param'])) ? $_POST['param'] : null;
-//	Order
 	$param['order()'] = $order;
-//	Limit
 	$param['limit()'] = $limit;
 //	Refine ?
 	if (isset($_POST['q'])) $param['title'] = '%'.$_POST['q'].'%';
@@ -81,7 +80,8 @@
 			}
 		}
 	}
-	
+
+//	Some preprocessing
 	foreach ($bunch as $item)
 	{
 	//	Ensure we have a title, otherwise use the nickname

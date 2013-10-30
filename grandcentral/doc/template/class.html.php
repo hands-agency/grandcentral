@@ -2,7 +2,7 @@
 	$class = $_PARAM['doc']->data;
 	$methods = $class['method'];
 //	Parent ?
-	 $parent = (isset($class['parent'])) ? '(parent of '.$class['parent'].')' : '';
+	$parent = (isset($class['parent'])) ? '(parent of '.$class['parent'].')' : '';
 ?>
 <h2><?=$class['access'][0]?> class <?=$class['key']?> <?=$parent?></h2>
 <p><?=$class['descr']?></p>

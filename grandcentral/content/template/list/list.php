@@ -13,7 +13,7 @@
  * @package		The package
  * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
  * @author		Sylvain Frigui <sf@cafecentral.fr>
- * @copyright	Copyright © 2004-2012, Café Central
+ * @copyright	Copyright © 2004-2013, Café Central
  * @license		http://www.cafecentral.fr/fr/licences GNU Public License
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
@@ -22,29 +22,26 @@
 //	Bind
 /********************************************************************************************/
 	$_APP->bind_file('script', 'list/js/list.js');
-	$_APP->bind_file('script', 'list/js/infinitescroll.plugin.js');
 	$_APP->bind_file('css', 'list/css/list.css');
+	
+/********************************************************************************************/
+//	Apps
+/********************************************************************************************/
+	$app = new app('jquery.infinitescroll');
+	$app->load();
+	$app = new app('jquery.viewport');
+	$app->load();
 
 /********************************************************************************************/
 //	Some vars
 /********************************************************************************************/
 //	Env
 	$handled_env = $_SESSION['pref']['handled_env'];
-//	Amount of items to be displayed at one time
-	$limit = 50;
 //	Object
 	$handled_item = (isset($_GET['item'])) ? $_GET['item'] : trigger_error('You should have an Item by now', E_USER_WARNING);
 
-	$_APP->bind_code('script', '
-		$(".infiniteScroll").infinitescroll(
-		{
-			param:
-			{
-				app:"content",
-				template:"list/list.lines",
-				param:"'.addslashes(json_encode($_PARAM)).'",
-				limit:'.$limit.',
-			}
-		});
-	');
+//	Amount of items to be displayed at one time
+	$limit = 10;
+//	Count
+	$count = count::get($handled_item, $_PARAM, $handled_env);
 ?>

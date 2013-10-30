@@ -13,7 +13,7 @@
  * @package		The package
  * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
  * @author		Sylvain Frigui <sf@cafecentral.fr>
- * @copyright	Copyright © 2004-2012, Café Central
+ * @copyright	Copyright © 2004-2013, Café Central
  * @license		http://www.cafecentral.fr/fr/licences GNU Public License
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
@@ -39,35 +39,18 @@
 /********************************************************************************************/
 //	Build nav
 	$nav = array(
-	//	Environment
-		'env' => array(
+	//	Content
+		'item' => array(
 			'title' => cc('site', current)['title'],
 			'icon' => '&#xe02f;',
 			'page' => 'list',
 		//	Subnav
 			'subnav' => array(
 				'structure' =>  array(
-					'display' => 'big',
+					'title' => 'er',
+					'display' => 'label',
 					'link' => 'list',
 					'bunch' => cc('structure', array('key' => array('page', 'structure', 'version'), 'order()' => 'inherit(key)'), $_SESSION['pref']['handled_env']),
-				),
-				'support' =>  array(
-					'display' => 'big',
-					'link' => 'page',
-					'bunch' => cc('page', array('key' => array('doc')), 'admin'),
-				),
-			),
-		),
-	//	Items
-		'item' => array(
-			'icon' => '&#xe01e;',
-			'page' => 'list',
-		//	Subnav
-			'subnav' => array(
-				'structure' =>  array(
-					'display' => 'big',
-					'link' => 'list',
-					'bunch' => cc('structure', array('key' => array('page'), 'order()' => 'inherit(key)'), $_SESSION['pref']['handled_env']),
 				),
 				'major' => array(
 					'display' => 'hive',

@@ -208,11 +208,12 @@
 		$('#main').removeClass('contextOpened').addClass('contextClosed');
 		$('#context>div').html('');
 	}
-	openSite = function()
+	openSite = function(url)
 	{
 		closeAdmin();
 		closeNav();
-		window.history.pushState('string', 'chose', '/');
+		if (url) $('#grandCentralSite').find('iframe').attr('src', url);
+	//	window.history.pushState('string', 'chose', '/');
 	}
 	
 	

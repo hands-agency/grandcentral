@@ -13,7 +13,7 @@
  * @package		The package
  * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
  * @author		Sylvain Frigui <sf@cafecentral.fr>
- * @copyright	Copyright © 2004-2012, Café Central
+ * @copyright	Copyright © 2004-2013, Café Central
  * @license		http://www.cafecentral.fr/fr/licences GNU Public License
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
@@ -22,6 +22,11 @@
 //	Bind
 /********************************************************************************************/
 	$_APP->bind_file('css', 'doc/css/doc.css');
+	
+/********************************************************************************************/
+//	Some vars
+/********************************************************************************************/
+	$html = null;
 	
 /********************************************************************************************/
 //	What to display
@@ -49,8 +54,8 @@
 			case 'app':
 				$app = registry::get(registry::app_index, $name);
 				$ini = $app->get_ini();
-				if (isset($ini['php']['class'])) $classes = $ini['php']['class'];
-				if (isset($ini['php']['lib'])) $libs = $ini['php']['lib'];
+				$classes = (isset($ini['system']['class'])) ? $ini['system']['class'] : array();
+				$libs = (isset($ini['system']['lib'])) ? $ini['system']['lib'] : array();
 			//	Loop the doc
 				foreach($classes as $class)
 				{
@@ -59,7 +64,6 @@
 				//	Produce the doc
 					$params['doc'] = new doc($name);
 					$html = new app('doc', 'class', $params);
-					
 				}
 				break;
 		//	Classes & functions

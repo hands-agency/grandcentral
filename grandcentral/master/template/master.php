@@ -13,7 +13,7 @@
  * @package		The package
  * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
  * @author		Sylvain Frigui <sf@cafecentral.fr>
- * @copyright	Copyright © 2004-2012, Café Central
+ * @copyright	Copyright © 2004-2013, Café Central
  * @license		http://www.cafecentral.fr/fr/licences GNU Public License
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
@@ -54,6 +54,7 @@
 		const ITEM = $('meta[property=\"cc:item\"]').attr('content');
 		const ID = $('meta[property=\"cc:id\"]').attr('content');
 		const SITE_URL = '".SITE_URL."';
+		const SITE_KEY = '".SITE_KEY."';
 		const ADMIN_URL = '".ADMIN_URL."';
 		const ENV = $('body').data('env');
 		const CURRENTEDITED_URL = '".$currentEditedItemUrl."';

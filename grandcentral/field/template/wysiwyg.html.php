@@ -5,10 +5,17 @@
 <div class="wrapper">
 	<?php if ($_FIELD->get_descr() != null) : ?><div class="help"><?= $_FIELD->get_descr(); ?></div><?php endif ?>
 	<span class="field">
-			
-		<p>Implement http://jhollingworth.github.io/bootstrap-wysihtml5/</p>
+		
+		<textarea class="js-st-instance" <?=$_FIELD->get_attrs();?>></textarea>
+
+		<script>
+			new SirTrevor.Editor(
+			{
+				el:$('.js-st-instance')
+			});
+		</script>
 	
-		<textarea id="wysihtml5-textarea" <?=$_FIELD->get_attrs();?>><?=$_FIELD->get_cleaned_value();?></textarea>
+		<!--textarea id="wysihtml5-textarea" <?=$_FIELD->get_attrs();?>><?=$_FIELD->get_cleaned_value();?></textarea-->
 		
 	</span>
 </div>
