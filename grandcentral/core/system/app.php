@@ -408,6 +408,26 @@ class app
  * @return	string	la clé de l'app
  * @access	public
  */
+	public function bind_css($file, $system = false)
+	{
+		master::bind_file('css', $file, $system);
+	}
+/**
+ * 
+ *
+ * @return	string	la clé de l'app
+ * @access	public
+ */
+	public function bind_script($file, $system = false)
+	{
+		master::bind_file('script', $file, $system);
+	}
+/**
+ * 
+ *
+ * @return	string	la clé de l'app
+ * @access	public
+ */
 	public function bind_code($zone, $data)
 	{
 		master::bind_code($zone, $data);
