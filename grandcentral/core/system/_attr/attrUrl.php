@@ -21,9 +21,16 @@ class attrUrl extends _attrs
 	{
 		if (empty($this->data))
 		{
-			$this->data = $this->item['title']->get();
+			$this->data = $this->_slugify($this->item['title']->get());
 		}
-		return $this->_slugify($this->data);
+		$this->data = preg_replace('#(\[[^\]]*\])#', '', $this->data);
+	//	nettoyage des [] existants
+		if ($this->item['status']->get() != 'live')
+		{
+			$slug = new slug();
+			$this->data .= '['.$slug->makeSlugs($this->item['status']->get()).']';
+		}
+		return $this->data;
 	}
 /**
  * Set string attribute

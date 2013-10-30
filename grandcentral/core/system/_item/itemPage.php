@@ -153,10 +153,16 @@ class itemPage extends _items
  */
 	public function __tostring()
 	{
-	//	headers
-		$this->header();
 	//	prepare page display
 		$prepareFunction = '_prepare_'.$this['type']['key'];
+	//	error
+		if (!method_exists($this, $prepareFunction))
+		{
+			trigger_error('Cannot display page. I need a valid type.', E_USER_ERROR);
+		}
+	//	headers
+		$this->header();
+
 	//	display
 		return $this->$prepareFunction();
 	}
