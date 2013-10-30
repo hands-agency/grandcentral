@@ -197,7 +197,16 @@ class adminItemForm
 				
 		//	Default field type
 			default :
-				$field['type'] = $attr['type'];
+				$classes = registry::get(registry::class_index);
+				// print'<pre>';print_r($classes);print'</pre>';
+				if (isset($classes['field'.ucfirst($attr['type'])]))
+				{
+					$field['type'] = $attr['type'];
+				}
+				else
+				{
+					$field['type'] = 'text';
+				}
 				break;
 		}
 		if (isset($attr['required'])) $field['required'] = $attr['required'];
