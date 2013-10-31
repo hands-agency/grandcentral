@@ -77,6 +77,7 @@ class attrUrl extends _attrs
 	public function __tostring()
 	{
 		$readerUrl = ($this->item->get_table() == 'page') ? '' : registry::get(registry::reader_index, $this->item->get_table(), 'url');
+		$readerUrl = ($readerUrl == '/') ? '' : $readerUrl;
 		return constant(mb_strtoupper($this->item->get_env()).'_URL').$readerUrl.$this->get();
 	}
 /**
