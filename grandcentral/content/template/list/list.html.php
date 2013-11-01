@@ -1,11 +1,11 @@
 <? if ($count == 0) : ?>
 <div class="nodata">Nope, sorry, nothing. Zero. Zilch.</div>
 <? else : ?>
-<div class="infiniteScroll"><ol><!-- Welcome Ajax --></ol></div>
+<div class="infiniteScrollContainer"><ol><!-- Welcome Ajax --></ol></div>
 <div class="infiniteScrollWantsMore">More <?=$_GET['item']?>! miam miam miam...</div>
 <div class="infiniteScrollStopper">It's all I have.</div>
 <script type="text/javascript" charset="utf-8">
-	$('.infiniteScroll').infinitescroll(
+	$('#section_live').infinitescroll(
 	{
 		app:'content',
 		template:'list/list.lines',

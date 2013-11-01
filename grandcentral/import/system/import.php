@@ -62,7 +62,7 @@ class import
 				$value = trim((string) $data->$oldField);
 				
 				if ($newField == 'photo') $value = array(array('url' => 'image/photo/'.$value.'.jpg'));
-				if ($newField == 'text') $value = json_encode(array('data' => array('type' => 'text', 'data' => strip_tags($value))));
+				if ($newField == 'text') $value = json_encode(array('data' => array(array('type' => 'text', 'data' => array('text' => strip_tags($value))))));
 				
 				if (isset($data->$oldField)) $item[$newField] = $value;
 			}

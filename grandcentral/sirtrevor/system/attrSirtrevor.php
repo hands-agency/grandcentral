@@ -50,18 +50,20 @@ class attrSirtrevor extends _attrs implements ArrayAccess
 		
 		if ($this->get())
 		{
-		
 		//	Decode json stored as a string
 			$json = json_decode($this->get(), true);
 		
 		//	Loop through blocks
 			foreach ($json['data'] as $block)
 			{
+				$type = $block['type'];
+				$data = $block['data']['text'];
+
 			//	Markdown to HTML
-				$text = Markdown::defaultTransform($block['data']['text']);
+				$text = Markdown::defaultTransform($data);
 			
 			//	HTML formatting
-				switch ($block['type'])
+				switch ($type)
 				{
 				//	Text
 					case 'text':
