@@ -34,10 +34,9 @@ class itemPage extends _items
 			{
 				$item = item::create($this['type']['item'], array('url' => '/'.$url[1]), $this->get_env());
 				define('item', $this['type']['item']);
-		
 				if ($item->exists())
 				{
-					registry::set(registry::current_index, 'item', $item);
+					registry::set(registry::current_index, item, $item);
 					$this->child = true;
 				}
 				else
