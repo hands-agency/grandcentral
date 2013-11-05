@@ -148,8 +148,8 @@ class image extends _medias
 	//	si on ne reçoit que la hauteur
 		if (empty($width))
 		{
-			$ratio = $width / $this->get_height();
-			$height = $this->get_width() * $ratio;
+			$ratio = $height / $this->get_height();
+			$width = $this->get_width() * $ratio;
 		}
 	//	si on souhaite garder les proportions de l'image
 		if ($keep_proportions === true)

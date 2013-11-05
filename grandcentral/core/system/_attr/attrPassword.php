@@ -9,7 +9,7 @@
  */
 class attrPassword extends _attrs
 {
-	protected $hash;
+	public $hash;
 	protected $params = array(
 		'round' => 10
 	);
@@ -33,7 +33,10 @@ class attrPassword extends _attrs
  */
 	public function set($data)
 	{
-		$this->hash = password_hash((string) $data, PASSWORD_BCRYPT, array('cost' => $this->params['round']));
+		if (!empty($data))
+		{
+			$this->hash = password_hash((string) $data, PASSWORD_BCRYPT, array('cost' => $this->params['round']));
+		}
 		return $this;
 	}
 /**
