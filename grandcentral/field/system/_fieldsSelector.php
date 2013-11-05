@@ -168,6 +168,7 @@ abstract class _fieldsSelector extends _fields
 		{
 			$table = $value['item'];
 			$params = (isset($value['property'])) ? $value['property'] : null;
+			$params['order()'] = 'title';
 			// print'<pre>';print_r($value);print'</pre>';
 			$bunch->get($table, $params);
 			$countTable++;
