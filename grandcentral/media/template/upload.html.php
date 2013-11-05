@@ -22,8 +22,7 @@
 //	Upload files
 /********************************************************************************************/
 //	Build path
-	if ($_POST['root'] != '/') $_POST['root'] .= '/'; /* Final slash */
-	$path = SITE_THEME_ROOT.'/'.$_POST['app'].$_POST['root'];
+	$path = SITE_ROOT.'/'.$_POST['app'].$_POST['root'];
 	
 //	Loop through received files
 	foreach($_FILES as $id => $file)

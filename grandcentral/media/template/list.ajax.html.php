@@ -135,9 +135,7 @@ function readfiles(files)
 	
 //	Add the ajx params
 	formData.append('app', 'media');
-	formData.append('theme', 'admin');
 	formData.append('template', 'upload');
-	formData.append('type', 'routine');
 	formData.append('root', '<?= $_POST['root'] ?>');
 	
 //	Add the files (& preview them)
@@ -151,23 +149,17 @@ function readfiles(files)
     if (tests.formdata)
 	{	
  		var xhr = new XMLHttpRequest();
-		xhr.open('POST', ADMIN_URL+'/ajax');
+		xhr.open('POST', ADMIN_URL+'/api.html');
 		
 	//	Done !
 		xhr.onload = function()
 		{
-				progress.value = progress.innerHTML = 100;
-			//	Say the media lib is not empty anymore
-				$('#mediaLibrary .files').removeClass('empty');
-			//	Hide progressbar
-				$('#holder progress').hide(0, function(){$('#holder p').show()});
-			//	Masonry					
-			//	var $container = find('#mediaLibrary .files ul');
-			//		$container.imagesLoaded(function(){
-			//			$container.masonry({
-			//			itemSelector : 'li',
-			//		});
-			//	});
+			progress.value = progress.innerHTML = 100;
+		//	Say the media lib is not empty anymore
+			$('#mediaLibrary .files').removeClass('empty');
+		//	Hide progressbar
+			$('#holder progress').hide(0, function(){$('#holder p').show()});
+			
 		//	Debug
 			console.log(xhr.response);
 		}
