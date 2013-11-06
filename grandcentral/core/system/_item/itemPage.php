@@ -30,12 +30,13 @@ class itemPage extends _items
 	//	recherche de l'item, si l'url est complexe
 		if ($this->exists())
 		{
+		//	reader
 			if (isset($url[1]) && !empty($url[1]))
 			{
 				$item = item::create($this['type']['item'], array('url' => '/'.$url[1]), $this->get_env());
-				define('item', $this['type']['item']);
 				if ($item->exists())
 				{
+					define('item', $this['type']['item']);
 					registry::set(registry::current_index, item, $item);
 					$this->child = true;
 				}
@@ -44,21 +45,32 @@ class itemPage extends _items
 					$this->get('error_404');
 				}
 			}
+		//	pas de reader
 			else
 			{
 				define('item', 'page');
 			}
 		}
-	//	home
-		elseif (registry::get(registry::reader_index))
+	//	HACK pour le reader de la home
+		elseif ($reader = registry::get(registry::reader_index, '/'))
 		{
-			# code...
+			$item = item::create($reader['type']['item'], array('url' => '/'.$url[0]), $this->get_env());
+			
+			if ($item->exists())
+			{
+				define('item', $reader['type']['item']);
+				registry::set(registry::current_index, item, $item);
+				$this->get('home');
+				$this->child = true;
+			}
+			else
+			{
+				$this->get('error_404');
+			}
+		//	si la page n'existe pas
+			// $this->get('error_404');
 		}
-	//	si la page n'existe pas
-		else
-		{
-			$this->get('error_404');
-		}
+// print'<pre>';print_r($this['section']);print'</pre>';
 	//	application des droits
 		if ($this->exists() && !$_SESSION['user']->can('see', $this))
 		{

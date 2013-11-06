@@ -268,6 +268,12 @@ class registry
 		{
 			$reader['type'] = json_decode($reader['type'], true);
 			self::set(self::reader_index, $reader['type']['item'], $reader);
+			// print'<pre>';print_r($reader);print'</pre>';
+		//	hack pour gérer le cas du reader sur la home
+			if ($reader['url'] == '/')
+			{
+				self::set(self::reader_index, $reader['url'], $reader);
+			}
 		}
 	//	legacy
 		$db = database::connect();
