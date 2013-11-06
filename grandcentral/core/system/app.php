@@ -277,122 +277,27 @@ class app
  * @return	string	la clé de l'app
  * @access	public
  */
-	// public function bind_css($file, $system = false)
-	// {
-	// 	$key = $this->get_key().'/'.$file;
-	// 	
-	// 	if (!in_array($key, self::$loaded_file))
-	// 	{
-	// 		if ($system === false)
-	// 		{
-	// 			$url = $this->get_templateurl();
-	// 			$root = $this->get_templateroot();
-	// 		}
-	// 		else
-	// 		{
-	// 			$url = $this->get_systemurl();
-	// 			$root =$this->get_systemroot();
-	// 		}
-	// 	
-	// 		if (!is_file($root.$file)) trigger_error('Damn! The CSS file <strong>'.$file.'</strong> you are calling does not exist.', E_USER_NOTICE);
-	// 		else
-	// 		{
-	// 			if (SITE_DEBUG === true)
-	// 			{
-	// 				$refresh = '?'.time();
-	// 				$data = '<link rel="stylesheet" href="'.$url.$file.$refresh.'" type="text/css" charset="utf-8">';
-	// 			}
-	// 			else
-	// 			{
-	// 				$refresh = '?'.time();
-	// 				$data = '<link rel="stylesheet" href="'.$url.$file.$refresh.'" type="text/css" charset="utf-8">';
-	// 			}
-	// 			master::bind('css', $data);
-	// 			self::$loaded_file[] = $key;
-	// 		}
-	// 	}
-	// 	
-	// 	
-	// }
-/**
- * 
- *
- * @return	string	la clé de l'app
- * @access	public
- */
-	// public function bind_script($file, $system = false)
-	// {
-	// //	script interne
-	// 	if (filter_var($file, FILTER_VALIDATE_URL) === false)
-	// 	{
-	// 		if ($system === false)
-	// 		{
-	// 			$urlscript = $this->get_templateurl().$file;
-	// 			$rootscript = $this->get_templateroot().$file;
-	// 		}
-	// 		else
-	// 		{
-	// 			$urlscript = $this->get_systemurl().$file;
-	// 			$rootscript = $this->get_systemroot().$file;
-	// 		}
-	// 	}
-	// //	script externe
-	// 	else
-	// 	{
-	// 		$urlscript = $file;
-	// 	}
-	// 	
-	// 	if (!in_array($urlscript, self::$loaded_file))
-	// 	{
-	// 		if (isset($rootscript) && !is_file($rootscript))
-	// 		{
-	// 			trigger_error('Hell! The script file <strong>'.$file.'</strong> you are calling does not exist.', E_USER_NOTICE);
-	// 		}
-	// 		else
-	// 		{
-	// 			if (SITE_DEBUG === true)
-	// 			{
-	// 				$refresh = '?'.time();
-	// 				$data = '<script src="'.$urlscript.'" type="text/javascript" charset="utf-8"></script>';
-	// 			}
-	// 			else
-	// 			{
-	// 				$refresh = '?'.time();
-	// 				$data = '<script src="'.$urlscript.'" type="text/javascript" charset="utf-8"></script>';
-	// 			}
-	// 			master::bind('script', $data);
-	// 			self::$loaded_file[] = $urlscript;
-	// 		}
-	// 	}
-	// }
-/**
- * 
- *
- * @return	string	la clé de l'app
- * @access	public
- */
-	// public function bind_app($zone, app $app)
-	// {
-	// 	master::bind($zone, $app->__tostring());
-	// }
-/**
- * 
- *
- * @return	string	la clé de l'app
- * @access	public
- */
 	public function bind_file($zone, $file, $system = false)
 	{
 		if (filter_var($file, FILTER_VALIDATE_URL) === false)
 		{
-			$url = $system === false ? $this->get_templateroot() : $this->get_systemroot();
-			$url .= $file;
+			if ($system === false)
+			{
+				$app = $this->get_templateurl();
+				$url = $this->get_templateroot().$file;
+			}
+			else
+			{
+				$app = $this->get_systemurl();
+				$url = $this->get_systemroot().$file;
+			}
 		}
 		else
 		{
+			$app = null;
 			$url = $file;
 		}
-		master::bind_file($zone, $url);
+		master::bind_file($zone, $app, $url);
 	}
 /**
  * 

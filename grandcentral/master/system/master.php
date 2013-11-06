@@ -107,12 +107,20 @@ class master
 	//	traitement générique d'une zone : concaténation des contenus
 		else
 		{
-			$tmp = null;
-			foreach ($zone['data'] as $data)
+			$method = '_prepare_zone_'.$zone['key'];
+			if (method_exists($this, $method))
 			{
-				$tmp .= $data['data'];
+				$zone = $this->$method($zone);
 			}
-			$zone = $tmp;
+			else
+			{
+				$tmp = null;
+				foreach ($zone['data'] as $data)
+				{
+					$tmp .= $data['data'];
+				}
+				$zone = $tmp;
+			}
 		}
 		return $zone;
 	}
@@ -120,15 +128,76 @@ class master
  * 
  *
  * @return	string	la clé de l'app
+ * @access	protected
+ */
+	protected function _prepare_zone_css($zone)
+	{
+		$return = null;
+		foreach ($zone['data'] as $css)
+		{
+		//	pour les fichiers css
+			if ($css['type'] == 'file')
+			{
+				$file = new file($css['url']);
+				$data = $file->get();
+			//	remplacement des urls
+				// $tmp = preg_replace('/url\([\'"]?([^\'"]*)[\'"]?\)/', 'url('.$css['app'].'$1)', $data);
+				// $file->set()
+			//	url
+				$url = (SITE_DEBUG === true) ? $file->get_url().'?'.time() : $file->get_url();
+			//	stylesheet
+				$return .= '<link rel="stylesheet" href="'.$url.'" type="text/css" charset="utf-8">';
+			}
+		//	pour les styles bruts
+			else
+			{
+				$return .= '<style type="text/css" media="screen">'.$css['data'].'</style>';
+			}
+		}
+		return $return;
+	}
+/**
+ * 
+ *
+ * @return	string	la clé de l'app
+ * @access	protected
+ */
+	protected function _prepare_zone_script($zone)
+	{
+		$return = null;
+		foreach ($zone['data'] as $script)
+		{
+		//	pour les fichiers css
+			if ($script['type'] == 'file')
+			{
+				$file = new file($script['url']);
+			//	url
+				$url = (SITE_DEBUG === true) ? $file->get_url().'?'.time() : $file->get_url();
+			//	stylesheet
+				$return .= '<script src="'.$url.'" type="text/javascript" charset="utf-8"></script>';
+			}
+		//	pour les styles bruts
+			else
+			{
+				$return .= '<script type="text/javascript" charset="utf-8">'.$script['data'].'</script>';
+			}
+		}
+		return $return;
+	}
+/**
+ * 
+ *
+ * @return	string	la clé de l'app
  * @access	public
  */
-	public static function bind_file($zone, $file)
+	public static function bind_file($zone, $app, $file)
 	{
 		if (isset(self::$zones[$zone]))
 		{
 			$tmp = array(
 				'type' => 'file',
-				'url' => $file
+				'url' => $file,
+				'app' => $app
 			);
 			self::$zones[$zone]['data'][] = $tmp;
 		}
