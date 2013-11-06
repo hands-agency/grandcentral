@@ -26,7 +26,6 @@ class itemPage extends _items
 		}
 	//	recherche de la page
 		$this->get(array('url' => '/'.$url[0]));
-		print'<pre>';print_r(registry::get(registry::reader_index));print'</pre>';
 		
 	//	recherche de l'item, si l'url est complexe
 		if ($this->exists())
