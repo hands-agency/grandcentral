@@ -118,13 +118,14 @@
 		function initList()
 		{
 		//	Masonry					
-			var files = $ccLibrary.find('.files ul');
-			files.imagesLoaded(function()
+			var container = $ccLibrary.find('.files ul');
+
+			container.imagesLoaded(function()
 			{
-				files.masonry(
+				container.masonry(
 				{
 					itemSelector : 'li',
-  					columnWidth: 120,
+  					gutter: 10,
 					isAnimated: true
 				});
 			});

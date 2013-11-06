@@ -107,7 +107,7 @@
 #mediaLibrary .files li
 {
 	float: left;
-	width:20%;
+	width:120px;
 	position:relative;
 	margin-bottom:15px;
 }
@@ -242,7 +242,7 @@ li.ui-draggable-dragging *
 }
 #mediaLibrary .files.empty li.upload #holder
 {
-	padding:100px 0;
+	padding:100px 40px;
 	height:auto;
 	font-size:28px;
 }
@@ -252,8 +252,8 @@ li.ui-draggable-dragging *
 }
 #holder progress
 {
-	display:none;
 	width: 90%;
+	display:none;
 }
 #mediaLibrary .fail
 {
@@ -267,6 +267,8 @@ li.ui-draggable-dragging *
 /* Folders */
 #mediaLibrary .folder
 {
+	border-top:1px solid #ccc;
+	padding-top:15px;
 	clear:both;
 }
 #mediaLibrary .folder>ul>li
