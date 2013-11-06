@@ -19,6 +19,7 @@ class registry
 	const class_index = '__class__';
 	const app_index = '__app__';
 	const reader_index = '__reader__';
+	const legacy_index = '__legacy__';
 //	Storing
 	protected static $instance;
 	protected static $data;
@@ -40,7 +41,7 @@ class registry
 	//	load apps into registry
 		$this->_prepare_app();
 	//	load page readers into registry
-		$this->_prepare_reader();
+		$this->_prepare_legacy();
 	//	prepare environment
 		$this->_prepare_current();
 	}
@@ -256,9 +257,10 @@ class registry
  *
  * @access	protected
  */
-	protected function _prepare_reader()
+	protected function _prepare_legacy()
 	{
-		$db = database::connect('site');
+	//	readers
+		$db = database::connect();
 		$q = 'SELECT `id`, `url`, `type` FROM `page` WHERE `type` LIKE "%\"item\":%"';
 		$r = $db->query($q);
 		
@@ -267,6 +269,15 @@ class registry
 			$reader['type'] = json_decode($reader['type'], true);
 			self::set(self::reader_index, $reader['type']['item'], $reader);
 		}
+	//	legacy
+		$db = database::connect();
+		$q = 'SELECT * FROM `_rel` WHERE `item`="page" AND `key`="child" ORDER BY `itemid`, `position`';
+		$r = $db->query($q);
+		foreach ($r['data'] as $rel)
+		{
+			$tree[$rel['item'].'_'.$rel['itemid']][] = $rel['rel'].'_'.$rel['relid'];
+		}
+		self::set(self::legacy_index, $tree);
 	}
 }
 ?>

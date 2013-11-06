@@ -236,5 +236,149 @@ class itemPage extends _items
 	//	erreur
 		trigger_error('This link page needs a valid <strong>url</strong> to work properly.', E_USER_ERROR);
 	}
+/**
+ * Get a bunch with all the children of the page
+ *
+ * @access	public
+ */
+	public function get_children()
+	{
+		return $this['child']->unfold();
+	}
+/**
+ * Get a bunch with the direct parent of the page or all of his parents
+ *
+ * @param	int		deep of the ancestors
+ * @return	bunch	a bunch of pages
+ * @access	public
+ */
+	public function get_parent($deep = 1)
+	{
+		$page = $this->get_nickname();
+	//	get ancestors
+		$i = 0;
+		$deep = ($deep == 0) ? 1000 : (int) $deep;
+		while ($i < $deep)
+		{
+			$page = $this->_get_parent_nickname($page);
+			if ($page === false) break;
+			$parent[] = $page;
+			$i++;
+		}
+		$parent = (isset($parent)) ? array_reverse($parent) : null;
+	//	get the items
+		$b = new bunch(null, null, $this->get_env());
+	//	return
+		return $b->get_by_nickname($parent);
+	}
+/**
+ * Get a bunch with the pages at the same level of the current page
+ *
+ * @param	bool	if true return also the current page (default : true)
+ * @return	bunch	a bunch of pages
+ * @access	public
+ */
+	public function get_siblings($self = true)
+	{
+		$tree = (array) registry::get(registry::legacy_index);
+		
+		foreach ($tree as $parent => $children)
+		{
+			if (in_array($this->get_nickname(), $children))
+			{
+				$b = new bunch(null, null, $this->get_env());
+				if ($self === false)
+				{
+					$index = array_search($this->get_nickname(), $children);
+					unset($children[$index]);
+				}
+				return $b->get_by_nickname($children);
+			}
+		}
+	//	return
+		return null;
+	}
+/**
+ * Check if the page given in parameter is the parent of $this
+ *
+ * @param	mixed	an itemPage or a page nickname
+ * @return	bool	true if parent exists, false otherwise
+ * @access	public
+ */
+	public function is_child_of($parent)
+	{
+		$page = $this->get_nickname();
+		$parent = (is_a($parent, 'itemPage')) ? $parent->get_nickname() : $parent;
+		
+		while ($page = $this->_get_parent_nickname($page))
+		{
+			if ($parent == $page) return true;
+		}
+		return false;
+	}
+/**
+ * Check if the page given in parameter is the child of $this
+ *
+ * @param	mixed	an itemPage or a page nickname
+ * @return	bool	true if parent exists, false otherwise
+ * @access	public
+ */
+	public function is_parent_of($child)
+	{
+		$page = $this->get_nickname();
+		$child = (is_a($child, 'itemPage')) ? $child->get_nickname() : $child;
+		
+		while ($child = $this->_get_parent_nickname($child))
+		{
+			if ($child == $page) return true;
+		}
+		
+		return false;
+	}
+/**
+ * Get a bunch with the direct parent of the page or all of his parents
+ *
+ * @param	mixed	an itemPage or a page nickname
+ * @access	public
+ */
+	protected function _get_parent_nickname($page)
+	{
+		$return = false;
+		
+		// var_dump();
+		if (is_a($page, 'itemPage') || mb_strpos($page, 'page_') !== false)
+		{
+			// var_dump($bool);
+			$nickname = (is_a($page, 'itemPage')) ? $page->get_nickname() : $page;
+			$tree = (array) registry::get(registry::legacy_index);
+			// print'<pre>';print_r($tree);print'</pre>';
+			foreach ($tree as $parent => $children)
+			{
+				if (in_array($nickname, $children))
+				{
+					$return = $parent;
+					break;
+				}
+			}
+		}
+		
+		return $return;
+	}
+/**
+ * Get the level of the page in the site tree
+ *
+ * @return	int		the level of the current page
+ * @access	public
+ */
+	public function get_level()
+	{
+		$parent = array();
+		$page = $this->get_nickname();
+		while ($page = $this->_get_parent_nickname($page))
+		{
+			$parent[] = $page;
+		}
+		return count($parent);
+	}
 }
 ?>
