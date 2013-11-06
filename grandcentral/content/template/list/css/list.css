@@ -65,7 +65,6 @@ section[data-template="list/list"]>.infiniteScrollWantsMore:hover
 section[data-template="list/list"]>.infiniteScrollStopper
 {
 	clear:left;
-	cursor:pointer;
 	text-align:center;
 	font-family:'Raleway-Regular';
 	text-transform:uppercase;
