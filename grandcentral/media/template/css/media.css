@@ -118,7 +118,9 @@
 	border-radius:2px;
 	background:#fff;
 	overflow:hidden;
-	border:1px solid #eee;
+	box-shadow: 0 1px 3px rgba(34,25,25,0.4);
+	-moz-box-shadow: 0 1px 2px rgba(34,25,25,0.4);
+	-webkit-box-shadow: 0 1px 3px rgba(34,25,25,0.4);
 }
 #mediaLibrary .files li:not(.upload):hover
 {
@@ -164,16 +166,27 @@ li.ui-draggable-dragging *
 }
 #mediaLibrary .files li .title
 {
+	border-top:1px solid #ddd;
 	font-size:11px;
 	display:block;
 	color:#333;
-	padding:10px;
 	white-space:nowrap;
-	position:relative;
+	width:100%;
 	-webkit-transition: all .2s ease-out; 
 	-moz-transition: all .2s ease-out; 
 	-o-transition: all .2s ease-out; 
 	transition: all .2s ease-out;
+	position:absolute;
+	padding:10px;	
+	bottom:0;
+	opacity:0;
+	background:#fff;
+	z-index:1;
+}
+#mediaLibrary .files li:hover .title
+{
+	bottom:31px;
+	opacity:1;
 }
 #mediaLibrary .files li .title.sliding
 {
@@ -185,11 +198,19 @@ li.ui-draggable-dragging *
 }
 #mediaLibrary .files .info
 {
-	border-top:1px solid #ddd;
 	font-size:10px;
 	color:#999;
 	padding:9px;
 	display:block;
+	position:relative;
+	z-index:2;
+	background:#fff;
+	/* Linin numerals for Raleway */
+	font-feature-settings: 'lnum';
+	-moz-font-feature-settings: 'lnum=1';
+	-ms-font-feature-settings: 'lnum';
+	-webkit-font-feature-settings: 'lnum';
+	-o-font-feature-settings: 'lnum';
 }
 
 /* New (ribbon) */
@@ -268,7 +289,8 @@ li.ui-draggable-dragging *
 #mediaLibrary .folder
 {
 	border-top:1px solid #ccc;
-	padding-top:15px;
+	padding-top:20px;
+	margin-top:20px;
 	clear:both;
 }
 #mediaLibrary .folder>ul>li

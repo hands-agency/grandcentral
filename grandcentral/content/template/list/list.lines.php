@@ -29,7 +29,7 @@
 //	Falling from the sky
 	$limit = (isset($_POST['limit'])) ? $_POST['limit'] : trigger_error('You should have a limit', E_USER_WARNING);
 	$order = (isset($_POST['filter']) && $_POST['filter'] == 'order') ? $_POST['value'] : 'title';
-	
+
 /********************************************************************************************/
 //	Some functions
 /********************************************************************************************/

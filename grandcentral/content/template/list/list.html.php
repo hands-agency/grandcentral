@@ -5,7 +5,7 @@
 <div class="infiniteScrollWantsMore">More <?=$_GET['item']?>! miam miam miam...</div>
 <div class="infiniteScrollStopper">It's all I have.</div>
 <script type="text/javascript" charset="utf-8">
-	$('#section_live').infinitescroll(
+	$('section:visible').infinitescroll(
 	{
 		app:'content',
 		template:'list/list.lines',

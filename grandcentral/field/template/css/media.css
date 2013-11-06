@@ -85,11 +85,21 @@ li[data-type="media"] .wrapper ol.data li .title {
 	color:#333;
 	padding:10px;
 	white-space:nowrap;
-	position:relative;
+	position:absolute;
+	bottom:-31px;
 	-webkit-transition: all .2s ease-out; 
 	-moz-transition: all .2s ease-out; 
 	-o-transition: all .2s ease-out; 
 	transition: all .2s ease-out;
+	opacity:0;
+	background:#fff;
+	width:100%;
+	z-index:1;
+}
+li[data-type="media"] .wrapper ol.data li:hover .title
+{
+	bottom:30px;
+	opacity:1;
 }
 li[data-type="media"] .wrapper ol.data li .title.sliding {
 	left:-100%;
@@ -99,11 +109,17 @@ li[data-type="media"] .wrapper ol.data li .title.sliding {
 	transition: all 3s ease-in;
 }
 li[data-type="media"] .wrapper ol.data li .info {
-	border-top:1px solid #ddd;
 	font-size:10px;
 	color:#999;
 	padding:9px;
 	display:block;
+	z-index:2;
+	/* Linin numerals for Raleway */
+	font-feature-settings: 'lnum';
+	-moz-font-feature-settings: 'lnum=1';
+	-ms-font-feature-settings: 'lnum';
+	-webkit-font-feature-settings: 'lnum';
+	-o-font-feature-settings: 'lnum';
 }
 
 /********************************************************************************************/

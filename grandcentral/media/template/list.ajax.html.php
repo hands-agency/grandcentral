@@ -120,7 +120,13 @@ $(document).ready(function()
 				}
 				
 			//	Remasonry
-				container.masonry( 'appended', appendedMedia );
+				if (container.parents('.files').hasClass('empty'))
+				{
+				//	Say the media lib is not empty anymore
+					container.parents('.files').removeClass('empty');
+					$('#mediaLibrary').data('mediaGallery').initList();
+				}
+				else container.masonry( 'appended', appendedMedia );
 			};
 			reader.readAsDataURL(file);
 		}
@@ -154,8 +160,6 @@ $(document).ready(function()
 			{
 			//	Fill up the progress bar
 				progress.value = progress.innerHTML = 100;
-			//	Say the media lib is not empty anymore
-				$('#mediaLibrary .files').removeClass('empty');
 			//	Hide progressbar
 				$('#mediaLibrary #holder progress').hide(0, function(){$('#holder p').show()});
 			
