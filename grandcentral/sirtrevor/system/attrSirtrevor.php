@@ -67,7 +67,7 @@ class attrSirtrevor extends _attrs implements ArrayAccess
 				{
 				//	Text
 					case 'text':
-						$return .= str_replace("\n", "</p>\n<p>", '<p>'.$text.'</p>');
+						$return .= str_replace("\n", "</p>\n<p>", $text);
 						break;
 				//	Heading
 					case 'heading':
