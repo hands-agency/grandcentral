@@ -35,6 +35,10 @@
 	padding:15px;
 	cursor:pointer;
 	border-bottom:1px solid #333;
+	-webkit-transition: all .1s ease-out; 
+	-moz-transition: all .1s ease-out; 
+	-o-transition: all .1s ease-out; 
+	transition: all .1s ease-out;
 }
 .navOpened #grandCentralNav>ul>li>div
 {
@@ -47,6 +51,14 @@
 {
 	background:#26ae5f;
 	color:#fff;
+}
+#grandCentralNav:hover>ul>li:not(:hover)>.title
+{
+	opacity:0.2 !important;
+}
+.navClosed #grandCentralNav>ul>li.on
+{
+	position:relative;
 }
 .navClosed #grandCentralNav>ul>li.on:after
 {
@@ -168,26 +180,54 @@
 	height:40px;
 }
 
-/* Specificities : Edit */
-.adminOpened #grandCentralNav>ul li.editing
+/* Specificities : edit & editing */
+.adminOpened #grandCentralNav>ul li.edit
 {
 	display:none !important;
 }
+#grandCentralNav>ul li.edit,
 #grandCentralNav>ul li.editing
 {
 	text-align:center;
 	padding-right:0;
 	padding-left:0;
+	display:none;
 }
+#grandCentralNav>ul li.edit a,
 #grandCentralNav>ul li.editing a
 {
 	border-radius:3px;
 	text-transform:uppercase;
-	background:#FE9400;
 	padding:3px 5px;
-	color:#fff;
+	color:#ccc;
 	font-size:10px;
-	
+	font-family:"Raleway-Regular";
+	border:1px solid transparent;
+}
+#grandCentralNav>ul li.edit:hover a,
+#grandCentralNav>ul li.editing:hover a
+{
+	color:#fff;
+}
+#grandCentralNav>ul li.edit a
+{
+	border-color:#3eb4d6;
+}
+#grandCentralNav>ul li.edit:hover a
+{
+	background:#3eb4d6;
+}
+.adminClosed #grandCentralNav>ul li.edit
+{
+	display:block;
+}
+#grandCentralNav>ul li.editing a
+{
+	border-color:#FE9400;	
+}
+#grandCentralNav>ul li.editing:hover a
+{
+	background:#FE9400;
 }
 
 /********************************************************************************************/

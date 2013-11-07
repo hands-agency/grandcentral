@@ -186,6 +186,10 @@
 	{
 		$('#main').removeClass('navClosed').addClass('navBroadened');
 	}
+	hideNav = function()
+	{
+		$('#main').removeClass('navClosed').addClass('navHidden');
+	}
 
 //	Admin
 	openAdmin = function()

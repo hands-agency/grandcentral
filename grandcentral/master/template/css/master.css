@@ -619,6 +619,10 @@ progress::-webkit-progress-value {
 {
 	width:65%;
 }
+.navHidden #grandCentralNav
+{
+	width:0%;
+}
 .adminClosed #grandCentralNav
 {
 	-webkit-box-shadow: 5px 0px 0px rgba(50, 50, 50, 0.3);
@@ -678,6 +682,10 @@ progress::-webkit-progress-value {
 .navBroadened #grandCentralSite
 {
 	width:35%;
+}
+.navHidden #grandCentralSite
+{
+	width:100%;
 }
 .contextOpened #grandCentralSite
 {

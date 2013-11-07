@@ -25,7 +25,8 @@
 		</div>
 	
 		<div id="grandCentralSite">
-			<div class="overlay"><span data-icon="&#xe013;"></span></div>
+			<!-- ZONE:site|left -->
+			<iframe src="<?=SITE_URL?>"></iframe>
 		</div>
 	</div>
 	

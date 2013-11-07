@@ -4,8 +4,11 @@
 		<div class="title"><?=media($_SESSION['user']['profilepic'][0]['url'])?><span>Prénom</span></div>
 		<div class="sub"></div>
 	</li>
-	<li class="editing">
-		<a href="javascript:openAdmin();">editing</a>
+	<li class="edit">
+		<a>edit</a>
+	</li>
+	<li class="editing" data-item="page_1">
+		<a>editing</a>
 	</li>
 	<? foreach ($level1 as $page): ?>
 	

@@ -12,10 +12,11 @@
 			//	Shortcut
 				var $nav = $(this);
 				
+			//	Open drawer
 				$nav.on('click', '>ul>li', function()
 				{
-				//	Open the drawer
-					if (!$(this).hasClass('editing')) openNav();
+				//	Open the drawer (except for the edit buttons)
+					if (!$(this).hasClass('edit')) openNav();
 					
 				//	Some vars
 					subnav = $(this).find('.sub');
@@ -29,10 +30,6 @@
 				//	Show this nav
 					$(subnav).show();
 					$(this).addClass('on');
-				//	Fade-out useless UI elements
-					$nav.find('> ul > li').not('.on').fadeTo('fast', 0.2);
-				//	$('#main').fadeTo(null, 0.2);
-				//	$('#context').hide();
 
 				//	Show current
 					$(this).fadeTo('fast', 1);	
@@ -59,18 +56,25 @@
 					over: function() {},
 					out: function()
 					{
-						
 					//	Close the drawer
 						closeNav();
-						
+					//	Nothing is on
 						$nav.find('li').removeClass('on');
 					//	Hide all sub navs
 						$nav.find('ul li .sub').hide();
-					//	Fade-in UI useful elements
-						$nav.find('> ul > li').fadeTo('fast', 1);
 					}
 				};
 				this.hoverIntent( config );
+				
+			//	Edit
+				this.find('li.edit .editing').click(function()
+				{
+					openAdmin();
+				});
+				this.find('li.edit .edit').click(function()
+				{
+					openAdmin();
+				});
 				
 			//	Close the nav by click
 				this.find('button.close').click(function()

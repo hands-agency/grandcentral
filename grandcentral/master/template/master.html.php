@@ -6,6 +6,7 @@
 </head>
 <body data-env="<?=$_SESSION['pref']['handled_env']?>">
 	<!-- ZONE:body -->
+	<script src="https://togetherjs.com/togetherjs-min.js"></script>
 		
 	<div id="main" class="navClosed adminOpened contextClosed">
 			
@@ -19,6 +20,7 @@
 			</aside>
 
 			<div id="content" class="locked instack">
+				<button onclick="TogetherJS(this); return false;">Start TogetherJS</button>
 				<button type="button" class="close"></button>
 				<header><!-- ZONE:header --></header>
 				<div id="tabs"><!-- ZONE:tabs --></div>

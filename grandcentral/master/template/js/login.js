@@ -5,7 +5,7 @@
 $(document).ready(function ()
 {
 //	Ouvrir grand la nav
-	broadenNav();
+	hideNav();
 	
 //	When submitting
 	$('form').on('submit', function(e)
