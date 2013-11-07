@@ -126,7 +126,6 @@ abstract class _fieldsSelector extends _fields
 	{
 		foreach ($this->values as $key => $value)
 		{
-			if (!is_string($key)) $key = $value;
 		//	Prepare id, title and descr for values
 			$id = $key;
 			$title = $value;

@@ -348,7 +348,8 @@ class database
 			foreach ((array) $rel as $value)
 			{
 				$cIn .= ':relid'.$i.',';
-				$preparedData['relid'.$i] = mb_substr($value, mb_strpos($value, '_') + 1);
+				$tmp =  
+				$preparedData['relid'.$i] = (mb_strpos($value, '_') !== false) ? mb_substr($value, mb_strpos($value, '_') + 1) : $value;
 				$i++;
 			}
 			$cRel .= '('.$cKey.' ('.substr($cIn, 0, -1).')) OR ';
