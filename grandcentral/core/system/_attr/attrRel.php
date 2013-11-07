@@ -7,7 +7,7 @@
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
  */
-class attrRel extends _attrs implements Iterator
+class attrRel extends _attrs implements ArrayAccess, Iterator
 {
 	const table = '_rel';
 	protected $item;
@@ -183,6 +183,30 @@ class attrRel extends _attrs implements Iterator
 		);
 	//	Return
 		return $params;
+	}
+/**
+ * ArrayAccess Interface methods
+ *
+ * @param	string	la variable
+ * @return	string	une string
+ * @access	public
+ */
+	public function offsetSet($offset, $value)
+	{
+		if (is_null($offset)) $this->data[] = $value;
+		else $this->data[$offset] = $value;
+	}
+	public function offsetExists($offset)
+	{
+		return isset($this->data[$offset]);
+	}
+	public function offsetUnset($offset)
+	{
+		unset($this->data[$offset]);
+	}
+	public function offsetGet($offset)
+	{
+		return isset($this->data[$offset]) ? $this->data[$offset] : null;
 	}
 //	Iterator
 	function rewind()

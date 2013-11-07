@@ -272,9 +272,9 @@ class database
 		$attrsKey = array_keys($attrs);
 		$rels = array();
 	//	version
-		if (isset($attrs['version']))
+		if (isset($attrs['version']) && !isset($params['version']))
 		{
-			# code...
+			// $params['version'] = cc($env, current)['version']->get();
 		}
 		// print'<pre>';print_r($attrs);print'</pre>';
 	//	tri attributs / relations

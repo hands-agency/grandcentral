@@ -34,6 +34,8 @@ class itemVersion extends _items
 		{
 			$this->get(1);
 		}
+		
+		return $this;
 	}
 }
 ?>

@@ -108,7 +108,6 @@ class boot
 				{
 					$param['url'] = $url;
 					$this->site = $param;
-					$this->site['version'] = ($version !== 0) ? $version : null;
 					break 2;
 				}
 			//	recherche approximative
@@ -116,10 +115,12 @@ class boot
 				{
 					$param['url'] = mb_substr($url, 0, mb_strrpos($url, '/'));
 					$this->site = $param;
-					$this->site['version'] = null;
 				}
+			//	version
+				$this->site['version'] = ($version !== 0) ? $version : null;
 			}
 		}
+		
 		$this->admin = $admin;
 		$this->admin['root'] = $this->root.'/'.self::admin_dir;
 		if (is_array($this->site))

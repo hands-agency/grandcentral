@@ -150,7 +150,7 @@ class registry
 			{
 				$result['attr'] = json_decode($result['attr'], true);
 				self::set($env, self::attr_index, $result['key'], $result);
-				self::set($env, self::attr_index, 'structure_'.$result['id'], $result['key']);
+				// self::set($env, self::attr_index, 'structure_'.$result['id'], $result['key']);
 			}
 		}
 	}
@@ -212,9 +212,13 @@ class registry
 		if (isset($_GET['env'])) $_SESSION['pref']['handled_env'] = $_GET['env'];
 	//	admin
 		$admin = item::create('site', 'admin', 'admin');
+		$tmp = item::create('version', null, 'admin');
+		$admin['version'] = $tmp->guess()->get_attr('id');
 		self::set(self::current_index, 'admin', $admin);
 	//	site
 		$site = item::create('site', SITE_KEY, 'site');
+		$tmp = item::create('version', null, 'site');
+		$site['version'] = $tmp->guess()->get_attr('id');
 		self::set(self::current_index, 'site', $site);
 	//	version
 		$version = item::create('version');
