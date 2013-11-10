@@ -22,9 +22,42 @@
 //	Bind
 /********************************************************************************************/	
 	$_APP->bind_file('css', 'tree/css/tree.css');
-	$_APP->bind_file('script', 'tree/js/nestedSortable/jquery.mjs.nestedSortable.js');
-	// $_APP->bind_file('script', 'js/nestedSortable/jquery.ui.touch-punch.js');
-	$_APP->bind_file('script', 'tree/js/nestedSortable/tree.js');
+//	$_APP->bind_file('script', 'tree/js/nestedSortable/jquery.mjs.nestedSortable.js');
+//	$_APP->bind_file('script', 'js/nestedSortable/jquery.ui.touch-punch.js');
+//	$_APP->bind_file('script', 'tree/js/nestedSortable/tree.js');
+	
+	$_APP->bind_file('script', 'tree/js/jsplumb/jquery.jsPlumb-1.4.1-all-min.js');
+	$_APP->bind_code('script', '
+	initPlumb = function()
+	{
+		jsPlumb.ready(function()
+		{
+		//	Some vars
+			var connectorLineWidth = 1;
+			var connectorColor = "#666";
+		
+			jsPlumb.importDefaults(
+			{			
+				Connector : [ "Flowchart", { stub:[40, 40]} ],
+				PaintStyle : { strokeStyle:connectorColor, lineWidth:connectorLineWidth },
+				EndpointStyle : { radius:2, fillStyle:connectorColor },
+				HoverPaintStyle : {strokeStyle:"#ec9f2e" },
+				EndpointHoverStyle : {fillStyle:"#ec9f2e" },			
+				Anchors :  [ "BottomCenter", "TopCenter" ]
+			});
+		
+		//	Connect
+			jsPlumb.connect({source:"page_1", target:"page_12"});
+			jsPlumb.connect({source:"page_1", target:"page_14"});
+			jsPlumb.connect({source:"page_1", target:"page_19"});
+			jsPlumb.connect({source:"page_1", target:"page_16"});
+			jsPlumb.connect({source:"page_1", target:"page_17"});
+		
+			jsPlumb.connect({source:"page_14", target:"page_20"});
+			jsPlumb.connect({source:"page_14", target:"page_21"});
+		});
+	};
+	');
 
 /********************************************************************************************/
 //	Make the tree
@@ -124,21 +157,34 @@
 			{
 				$page = $this->ref[$node['id']];
 				$node['id'] = ($page['key'] == 'home') ? 'home' : $node['id'];
-				$content = '
-				<div class="'.$page->get_table().'">
 				
-					<div class="icon">'.$node['key'].'</div>
-					
-					<div class="title"><a href="'.$page->edit().'">'.$page['title'].'</a></div>
-					<div class="url"><a href="'.$page['url'].'">'.$page['url']->get().'</a></div>
-					
-					<div class="clear"><!-- Clearing floats --></div>
-
+			//	Do you have zones ?
+				/* TODO */
+	
+			//	Is this a feed ?
+				if ($page['type']['key'] == 'feed')
+				{
+					$feed = '<div class="detail">'.$page['type']['item'].'</div>';
+				}
+				else $feed = null;
+			//	Do you want a badge ?
+				$badge = '<a href="" class="cc-badge">12</a>';
+				
+			//	Content
+				$content = '
+				<div class="page" data-status="'.$page['status'].'">
+					<div class="icon" id="'.$page->get_nickname().'">
+						<div class="title"><a href="'.$page->edit().'">'.$page['title'].'</a></div>
+						'.$badge.'
+					</div>
+					'.$feed.'
 				</div>';
+			//	Build the <li>
 				if (isset($node['children'])) $content .= $this->make_tree($node['children']);
 				$li .= '<li data-item="'.$page->get_nickname().'">'.$content.'</li>';
 			}
 			if (!is_null($class)) $class = ' class="'.$class.'"';
+		//	Return
 			return '<ol'.$class.'>'.$li.'</ol>';
 		}
 		

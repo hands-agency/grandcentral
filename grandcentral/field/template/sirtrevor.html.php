@@ -12,7 +12,7 @@
 			new SirTrevor.Editor(
 			{
 				el:$('.js-st-instance'),
-				blockTypes: ['Text', 'Heading', 'List']
+				blockTypes: ['Text', 'Heading', 'List', 'Quote']
 			});
 		</script>
 		

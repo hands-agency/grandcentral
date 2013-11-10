@@ -16,7 +16,7 @@
 				$nav.on('click', '>ul>li', function()
 				{
 				//	Open the drawer (except for the edit buttons)
-					if (!$(this).hasClass('edit')) openNav();
+					if (!$(this).hasClass('edit') & !$(this).hasClass('editing')) openNav();
 					
 				//	Some vars
 					subnav = $(this).find('.sub');
@@ -36,16 +36,14 @@
 				});
 				
 			//	Some var
-				var originalwidth = this.width();
 				var timeoutOpen = 500;
 				var timeoutClose = 500;
+				var timeoutReopen = 500;
 				
 			//	When hover intent
 				var config = {
 					timeout: timeoutOpen,
-					over: function()
-					{
-					},
+					over: function(){},
 					out: function(){}
 				};
 				this.find('> ul > li').hoverIntent( config );
@@ -66,14 +64,16 @@
 				};
 				this.hoverIntent( config );
 				
-			//	Edit
-				this.find('li.edit .editing').click(function()
+			//	Editing
+				this.find('li.editing a').click(function()
 				{
 					openAdmin();
 				});
-				this.find('li.edit .edit').click(function()
+			//	Edit
+				this.find('li.edit a').click(function()
 				{
-					openAdmin();
+					nickname = $('#grandCentralSite iframe').contents().find('head meta[property="gc:item"]').attr('content').split('_');
+					window.location = ADMIN_URL+'/edit?item='+nickname[0]+'&id='+nickname[1];
 				});
 				
 			//	Close the nav by click

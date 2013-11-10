@@ -4,103 +4,105 @@
 section[data-template="tree/tree"]
 {
 }
-section[data-template="tree/tree"] li
+
+section[data-template="tree/tree"] ol
 {
-	position:relative;
-	padding:0;
 }
-section[data-template="tree/tree"] li ol
+section[data-template="tree/tree"] ol li
 {
-	position:relative;
-	margin:0px 0 0px 50px;
+	display:inline-block;
+	white-space:nowrap;
+	vertical-align:top;
 }
 
-/* Second-level pages for readability */
-section[data-template="tree/tree"]>li>ol>li>*:first-child
+/********************************************************************************************/
+/* Pages
+/********************************************************************************************/
+section[data-template="tree/tree"] ol li .page
 {
-	background:#ccc;
-	-moz-border-radius: 40px;
-	border-radius: 40px;
+	margin:0 5px 70px 5px;
 	padding:10px;
-	width:400px;
+	border:1px solid transparent;
+	display:inline-block;
+	white-space:normal;
 }
-section[data-template="tree/tree"]>li>ol>li>*:first-child .icon
+section[data-template="tree/tree"] ol li .page:hover
 {
-	border:none;
+	border-color:#ddd;
+	border-radius:3px;
 }
 
-/* Connexions */
-section[data-template="tree/tree"] ol:before
+/* The icon */
+section[data-template="tree/tree"] ol li .page .icon
 {
-	content:'';
-	height:100%;
+	width:80px;
+	height:100px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	background:#F2F2F2;
+	padding:15px 10px;
+	text-align:center;
+	border:1px solid transparent;
+	display:inline-block;
+	position:relative;
+}
+section[data-template="tree/tree"] ol li .page .icon:hover
+{
+}
+
+/* Badges */
+section[data-template="tree/tree"] ol li .page .icon .cc-badge
+{
 	top:-5px;
-	position:absolute;
-	z-index:-1;
-	left:-27px;
-	-moz-box-sizing:border-box;
-	-webkit-box-sizing:border-box;
-	box-sizing:border-box;
-	width:1px;
-	background:#eee;
-	border-bottom:1px solid #fff;
-}
-section[data-template="tree/tree"] li ol li *:first-child:before
-{
-	content:'';
-	border-top:1px solid #eee;
-	width:30px;
-	height:50px;
-	position:absolute;
-	z-index:-1;
-	top:50%;
-	left:-40px;
-}
-section[data-template="tree/tree"] li ol li *:first-child:after
-{
-	content:'';
-	width:25px;
-	height:25px;
-	margin-top:-10px;
-	left:-65px;
-	top:50%;
-	background:#eee;
-	position:absolute;
+	right:-5px;
 }
 
-/* Icon (handle) & placeholder */
-section[data-template="tree/tree"] li * .icon
-{
-	margin:0 10px 0 0;
-}
-
-/* Title */
-section[data-template="tree/tree"] li * .title
+/* The title */
+section[data-template="tree/tree"] ol li .page .icon>.title
 {
 	font-family: "Raleway-Regular";
+	font-size:12px;
+	margin-bottom:15px;
 }
-section[data-template="tree/tree"] li li li * .title
+section[data-template="tree/tree"] ol li .page .icon>.title a
 {
-	font-size:1em;
-}
-section[data-template="tree/tree"] li * .title a:not(:hover)
-{
-	color:#666;
-}
-/* URL */
-section[data-template="tree/tree"] li * .url
-{
-	color:#ccc;
-	font-family: "Raleway-Thin";
+	color:#333;
 }
 
+/* The Detail */
+section[data-template="tree/tree"] ol li .page .detail
+{
+	font-family: "Raleway-Regular";
+	color:#ccc;
+	margin:15px;
+	font-size:10px;
+	display:inline-block;
+}
+
+/* By status */
+section[data-template="tree/tree"] ol li .page[data-status="asleep"] .icon
+{
+	border:1px dashed #ccc;
+	background:#fff;
+}
+
+/* Home */
+section[data-template="tree/tree"]>ol>li>.page
+{
+	margin-left:30%;
+}
+
+/********************************************************************************************/
 /* Action */
+/********************************************************************************************/
 section[data-template="tree/tree"] li * .action
 {
 	display:none;
 }
 
+/********************************************************************************************/
 /* Kill draggable animations */
+/********************************************************************************************/
 section[data-template="tree/tree"].ui-sortable li
 {
 	cursor:auto;
@@ -141,47 +143,6 @@ section[data-template="tree/tree"].ui-sortable-dragging .icon
 /* Placeholder */
 section[data-template="tree/tree"] li.placeholder
 {
-	width:70px;
-	height:70px;
-	margin:0 0 10px 0;
-	border-radius:40px;
-}
-
-/********************************************************************************************/
-/* Pages
-/********************************************************************************************/
-section[data-template="tree/tree"] li>div
-{
-	position:relative;
-	margin:0px 0 10px 0;
-}
-
-/* Icon */
-section[data-template="tree/tree"] li .page .icon
-{
-	float:left;
-	width:50px;
-	height:50px;
-	font-size:20px;
-	-moz-border-radius: 40px;
-	border-radius: 40px;
-	background:#fff;
-	color:#666;
-	font-family: "Raleway-Thin";
-	font-size:20px;
-	line-height:50px;
-	border:1px dashed rgba(0, 0, 0, .2);
-	/* Linin numerals for Raleway */
-	font-feature-settings: 'lnum';
-	-moz-font-feature-settings: 'lnum=1';
-	-ms-font-feature-settings: 'lnum';
-	-webkit-font-feature-settings: 'lnum';
-	-o-font-feature-settings: 'lnum';
-}
-section[data-template="tree/tree"] li .page .title
-{
-	font-size:1.5em;
-	padding:5px 0 0 0;
 }
 
 /********************************************************************************************/
@@ -201,10 +162,6 @@ section[data-template="tree/tree"] li .pagelink
 }
 section[data-template="tree/tree"] li .pagelink .icon
 {
-	width:35px !important;
-	height:35px !important;
-	line-height:35px;
-	background:#ddd;
 }
 
 /* Second-level pages for readability */

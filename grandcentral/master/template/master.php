@@ -45,8 +45,8 @@
 	//	Some vars
 		var _GET = ".json_encode($_GET).";
 	//	Some consts
-		const ITEM = $('meta[property=\"cc:item\"]').attr('content');
-		const ID = $('meta[property=\"cc:id\"]').attr('content');
+		const ITEM = $('meta[property=\"gc:item\"]').attr('content');
+		const ID = $('meta[property=\"gc:id\"]').attr('content');
 		const SITE_URL = '".SITE_URL."';
 		const SITE_KEY = '".SITE_KEY."';
 		const ADMIN_URL = '".ADMIN_URL."';
