@@ -269,16 +269,27 @@ class itemPage extends _items
  * @return	bunch	a bunch of pages
  * @access	public
  */
-	public function get_parent($deep = 1)
+	public function get_parent()
+	{
+		$page = $this->get_nickname();
+		$parent = $this->_get_parent_nickname($page);
+	//	get the items
+		$b = new bunch(null, null, $this->get_env());
+	//	return
+		return $b->get_by_nickname($parent);
+	}
+/**
+ * Get a bunch with the direct all of the ancestors of the page
+ *
+ * @return	bunch	a bunch of pages
+ * @access	public
+ */
+	public function get_parents()
 	{
 		$page = $this->get_nickname();
 	//	get ancestors
-		$i = 0;
-		$deep = ($deep == 0) ? 1000 : (int) $deep;
-		while ($i < $deep)
+		while ($page = $this->_get_parent_nickname($page))
 		{
-			$page = $this->_get_parent_nickname($page);
-			if ($page === false) break;
 			$parent[] = $page;
 			$i++;
 		}
@@ -295,7 +306,7 @@ class itemPage extends _items
  * @return	bunch	a bunch of pages
  * @access	public
  */
-	public function get_siblings($self = true)
+	public function get_siblings($params = null, $self = true)
 	{
 		$tree = (array) registry::get(registry::legacy_index);
 		

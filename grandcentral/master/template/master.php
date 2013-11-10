@@ -78,6 +78,7 @@
 		$app = new app($app);
 		$app->load();
 	}
+	$_APP->bind_code("script", "$(document).ajaxStart(function() { Pace.restart(); });");
 	
 /********************************************************************************************/
 //	Meta
