@@ -1,18 +1,115 @@
+$(function  ()
+{
+	var adjustment;
+
+	$('ol.tree').sortable(
+	{
+		handle: '.icon',
+		itemSelector: 'li[data-item]',
+		nested: true,
+		placeholder: '<li class="placeholder"></li>',
+	
+	//	set item relative to cursor position
+		onDragStart: function ($item, container, _super)
+		{
+		
+		//	Detach the connector
+			id = $item.find('.icon').attr('id');
+			jsPlumb.detachAllConnections(id);
+		
+			var offset = $item.offset(),
+			pointer = container.rootGroup.pointer
+
+			adjustment = {
+				left: pointer.left - offset.left,
+				top: pointer.top - offset.top
+			}
+
+			_super($item, container);
+		},
+	
+		onDrag: function ($item, position)
+		{
+			placeholder = $('ol.tree').find('.placeholder');
+		//	Resize placeholder
+			placeholder.css(
+			{
+				width: $item.width(),
+				height: $item.height()
+			});
+		
+			$item.css(
+			{
+				left: position.left - adjustment.left,
+				top: position.top - adjustment.top
+			})
+		},
+	});
+	
+	initPlumb = function()
+	{
+		jsPlumb.ready(function()
+		{
+		//	Some vars
+			var connectorLineWidth = 1;
+			var connectorColor = '#666';
+			
+		//	Some paintstyles
+			paintStyleAsleep = {
+				dashstyle:'2 4',
+				strokeStyle:connectorColor,
+				lineWidth:connectorLineWidth,
+			}
+		
+			jsPlumb.importDefaults(
+			{			
+				Connector : [ 'Flowchart', { stub:[40, 40]} ],
+				PaintStyle : { strokeStyle:connectorColor, lineWidth:connectorLineWidth },
+				EndpointStyle : { radius:2, fillStyle:connectorColor },
+				HoverPaintStyle : {strokeStyle:'#ec9f2e' },
+				EndpointHoverStyle : {fillStyle:'#ec9f2e' },			
+				Anchors :  [ 'BottomCenter', 'TopCenter' ],
+			});
+		});
+	};
+	
+	connectPlumb = function()
+	{
+		jsPlumb.ready(function()
+		{		
+		//	Connect
+			jsPlumb.connect({source:'page_1', target:'page_12'});
+			jsPlumb.connect({source:'page_1', target:'page_14'});
+			jsPlumb.connect({source:'page_1', target:'page_19'});
+			jsPlumb.connect({source:'page_1', target:'page_16'});
+			jsPlumb.connect({source:'page_1', target:'page_17'});
+		
+			jsPlumb.connect({source:'page_14', target:'page_21', paintStyle:paintStyleAsleep});
+			jsPlumb.connect({source:'page_14', target:'page_20'});
+			
+			jsPlumb.connect({source:'page_20', target:'page_22'});
+		});
+	};
+	initPlumb();
+});
+
 /*********************************************************************************************
 /**	* Site tree
 * 	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
 //	Start nested sortable
-	$(document).bind('unlock', function()
+/*	$(document).bind('unlock', function()
 	{
-		$('ol.sitetree').nestedSortable(
+		console.log('nested sortable !');
+		$('ol.tree').nestedSortable(
 		{
-            handle: '.icon',
+			handle: '.icon',
             items: 'li',
-            toleranceElement: '>div',
+			toleranceElement: '>div',
 			helper:	'clone',
 			opacity: .6,
 			placeholder: 'placeholder',
+			protectRoot: true,
 			revert: 250,
 			tolerance: 'pointer',
 			isTree: true,
@@ -36,6 +133,7 @@
 			}
 		});
 	});
+	*/
 	
 //	Save the curent sitetree
 	$(document).bind('lock', function()

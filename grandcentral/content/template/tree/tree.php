@@ -23,41 +23,10 @@
 /********************************************************************************************/	
 	$_APP->bind_file('css', 'tree/css/tree.css');
 //	$_APP->bind_file('script', 'tree/js/nestedSortable/jquery.mjs.nestedSortable.js');
-//	$_APP->bind_file('script', 'js/nestedSortable/jquery.ui.touch-punch.js');
-//	$_APP->bind_file('script', 'tree/js/nestedSortable/tree.js');
-	
+//	$_APP->bind_file('script', 'tree/js/nestedSortable/jquery.ui.touch-punch.js');
+	$_APP->bind_file('script', 'tree/js/jquery-sortable.js');
 	$_APP->bind_file('script', 'tree/js/jsplumb/jquery.jsPlumb-1.4.1-all-min.js');
-	$_APP->bind_code('script', '
-	initPlumb = function()
-	{
-		jsPlumb.ready(function()
-		{
-		//	Some vars
-			var connectorLineWidth = 1;
-			var connectorColor = "#666";
-		
-			jsPlumb.importDefaults(
-			{			
-				Connector : [ "Flowchart", { stub:[40, 40]} ],
-				PaintStyle : { strokeStyle:connectorColor, lineWidth:connectorLineWidth },
-				EndpointStyle : { radius:2, fillStyle:connectorColor },
-				HoverPaintStyle : {strokeStyle:"#ec9f2e" },
-				EndpointHoverStyle : {fillStyle:"#ec9f2e" },			
-				Anchors :  [ "BottomCenter", "TopCenter" ]
-			});
-		
-		//	Connect
-			jsPlumb.connect({source:"page_1", target:"page_12"});
-			jsPlumb.connect({source:"page_1", target:"page_14"});
-			jsPlumb.connect({source:"page_1", target:"page_19"});
-			jsPlumb.connect({source:"page_1", target:"page_16"});
-			jsPlumb.connect({source:"page_1", target:"page_17"});
-		
-			jsPlumb.connect({source:"page_14", target:"page_20"});
-			jsPlumb.connect({source:"page_14", target:"page_21"});
-		});
-	};
-	');
+	$_APP->bind_file('script', 'tree/js/tree.js');
 
 /********************************************************************************************/
 //	Make the tree
@@ -172,7 +141,7 @@
 				
 			//	Content
 				$content = '
-				<div class="page" data-status="'.$page['status'].'">
+				<div class="page" data-status="'.$page['status'].'" data-type="'.$page['type']['key'].'">
 					<div class="icon" id="'.$page->get_nickname().'">
 						<div class="title"><a href="'.$page->edit().'">'.$page['title'].'</a></div>
 						'.$badge.'

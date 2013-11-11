@@ -8,11 +8,12 @@ section[data-template="tree/tree"]
 section[data-template="tree/tree"] ol
 {
 }
-section[data-template="tree/tree"] ol li
+section[data-template="tree/tree"] li
 {
 	display:inline-block;
 	white-space:nowrap;
 	vertical-align:top;
+	border-radius:3px;
 }
 
 /********************************************************************************************/
@@ -20,26 +21,27 @@ section[data-template="tree/tree"] ol li
 /********************************************************************************************/
 section[data-template="tree/tree"] ol li .page
 {
-	margin:0 5px 70px 5px;
-	padding:10px;
+	padding:7px 10px;
+	height:140px;
+	margin-bottom:70px;
 	border:1px solid transparent;
-	display:inline-block;
 	white-space:normal;
+	display:inline-block;
 }
 section[data-template="tree/tree"] ol li .page:hover
 {
-	border-color:#ddd;
-	border-radius:3px;
 }
 
 /* The icon */
 section[data-template="tree/tree"] ol li .page .icon
 {
-	width:80px;
-	height:100px;
+	width:110px;
+	height:100%;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
-	background:#F2F2F2;
 	padding:15px 10px;
 	text-align:center;
 	border:1px solid transparent;
@@ -63,6 +65,7 @@ section[data-template="tree/tree"] ol li .page .icon>.title
 	font-family: "Raleway-Regular";
 	font-size:12px;
 	margin-bottom:15px;
+	padding:3px 0;
 }
 section[data-template="tree/tree"] ol li .page .icon>.title a
 {
@@ -82,8 +85,9 @@ section[data-template="tree/tree"] ol li .page .detail
 /* By status */
 section[data-template="tree/tree"] ol li .page[data-status="asleep"] .icon
 {
-	border:1px dashed #ccc;
-	background:#fff;
+	border:1px dashed #333;
+	opacity:0.6;
+	
 }
 
 /* Home */
@@ -129,43 +133,85 @@ section[data-template="tree/tree"] li ol li.ui-sortable-helper>*:before
 	border:none;
 }
 
-/* new draggable animations */
-section[data-template="tree/tree"].ui-sortable li .icon
+
+/********************************************************************************************/
+/* Sortable
+/********************************************************************************************/
+/* Draggable */
+.unlocked section[data-template="tree/tree"] ol li .icon
 {
 	cursor:move;
-}
-section[data-template="tree/tree"].ui-sortable li .icon:hover,
-section[data-template="tree/tree"].ui-sortable-dragging .icon
-{
-	box-shadow: 3px 3px 1px 0 rgba(0, 0, 0, .1) !important;
 }
 
 /* Placeholder */
 section[data-template="tree/tree"] li.placeholder
 {
+	width:110px;
+	height:120px;
+}
+
+/* Being Dragged */
+section[data-template="tree/tree"] ol li.dragged 
+{
+	position:absolute;
+	z-index:3;
+	background:#fff;
+	width:100px !important;
+	height:100px !important;
+	overflow:hidden;
+	border-radius:100px;
+	box-shadow: 3px 3px 1px 0 rgba(0, 0, 0, .1) !important;
+}
+section[data-template="tree/tree"] ol li.dragged .page
+{
+}
+
+/********************************************************************************************/
+/* Content
+/********************************************************************************************/
+section[data-template="tree/tree"] li .page[data-type="content"] .icon
+{
+	background:#F2F2F2;
+}
+
+/********************************************************************************************/
+/* Feed
+/********************************************************************************************/
+section[data-template="tree/tree"] li .page[data-type="feed"] .icon
+{
+	background:#F2F2F2;
 }
 
 /********************************************************************************************/
 /* Header
 /********************************************************************************************/
-section[data-template="tree/tree"] li .pageheader
+section[data-template="tree/tree"] li .page[data-type="header"] .icon
 {
-
+	border:1px solid #F2F2F2;
+}
+section[data-template="tree/tree"] li .page[data-type="header"] .icon:before
+{
+	content:'';
+	position:absolute;
+	top:0;
+	left:50%;
+	border-left:1px solid #333;
+	margin-left:-1px;
+	width:1px;
+	height:100%;
+}
+section[data-template="tree/tree"] li .page[data-type="header"] .icon .title
+{
+	background:#fff;
+	z-index:2;
+	position:relative;
 }
 
 /********************************************************************************************/
 /* Links
 /********************************************************************************************/
-section[data-template="tree/tree"] li .pagelink
+section[data-template="tree/tree"] li .page[data-type="link"] .icon
 {
-	
-}
-section[data-template="tree/tree"] li .pagelink .icon
-{
-}
-
-/* Second-level pages for readability */
-section[data-template="tree/tree"]>li>ol>li>.pagelink:first-child
-{
-	background:#eee;
+	height:60px;
+	border:1px solid #ccc;
 }

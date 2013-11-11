@@ -8,13 +8,5 @@
 		
 		<textarea class="js-st-instance" <?=$attrs?>><?=$value?></textarea>
 
-		<script>
-			new SirTrevor.Editor(
-			{
-				el:$('.js-st-instance'),
-				blockTypes: ['Text', 'Heading', 'List', 'Quote']
-			});
-		</script>
-		
 	</span>
 </div>

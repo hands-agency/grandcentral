@@ -452,8 +452,7 @@ progress::-webkit-progress-value {
 /* Placeholder */
 .placeholder
 {
-	background:rgba(100,100,100,0.1) !important;
-	border:none !important;
+	border:1px dotted #ddd !important;
 }
 
 /********************************************************************************************/
