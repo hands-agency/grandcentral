@@ -36,7 +36,7 @@
 				values:$available.data('values'),
 				valuestype:$available.data('valuestype'),
 			});
-
+			
 		//	Make the selected sortable
 			$element.find('.selected ol').sortable(
 			{

@@ -1,6 +1,12 @@
-$(function  ()
+/*********************************************************************************************
+/**	* jQuery Sortable
+* 	* @author	mvd@cafecentral.fr
+**#******************************************************************************************/
+$(function()
 {
 	var adjustment;
+	var draggedWidth;
+	var draggedHeight;
 
 	$('ol.tree').sortable(
 	{
@@ -9,14 +15,18 @@ $(function  ()
 		nested: true,
 		placeholder: '<li class="placeholder"></li>',
 	
-	//	set item relative to cursor position
+	//	On drag start
 		onDragStart: function ($item, container, _super)
 		{
-		
+		//	Remember the size before we style it
+			draggedWidth = $item.width();
+			draggedHeight = $item.height();
+			
 		//	Detach the connector
 			id = $item.find('.icon').attr('id');
 			jsPlumb.detachAllConnections(id);
 		
+		//	set item relative to cursor position
 			var offset = $item.offset(),
 			pointer = container.rootGroup.pointer
 
@@ -27,25 +37,50 @@ $(function  ()
 
 			_super($item, container);
 		},
-	
+		
+	//	On drag
 		onDrag: function ($item, position)
 		{
-			placeholder = $('ol.tree').find('.placeholder');
 		//	Resize placeholder
+			placeholder = $('ol.tree').find('.placeholder');
 			placeholder.css(
 			{
-				width: $item.width(),
-				height: $item.height()
+				width: draggedWidth,
+				height: draggedHeight,
 			});
-		
+		//	Move with mouse
 			$item.css(
 			{
 				left: position.left - adjustment.left,
 				top: position.top - adjustment.top
 			})
 		},
+		
+	//	On drop
+		onDrop: function  (item, targetContainer, _super)
+		{
+		//	animation on drop
+			var clonedItem = $('<li/>').css({height: 0})
+			item.before(clonedItem)
+			clonedItem.animate({'height': item.height()})
+
+			item.animate(clonedItem.position(), function  ()
+			{
+				clonedItem.detach()
+				_super(item)
+			})
+		//	Redo connections
+		//	connectPlumb();
+		},
 	});
-	
+});
+
+/*********************************************************************************************
+/**	* jsPomb
+* 	* @author	mvd@cafecentral.fr
+**#******************************************************************************************/
+$(function()
+{
 	initPlumb = function()
 	{
 		jsPlumb.ready(function()
@@ -70,24 +105,6 @@ $(function  ()
 				EndpointHoverStyle : {fillStyle:'#ec9f2e' },			
 				Anchors :  [ 'BottomCenter', 'TopCenter' ],
 			});
-		});
-	};
-	
-	connectPlumb = function()
-	{
-		jsPlumb.ready(function()
-		{		
-		//	Connect
-			jsPlumb.connect({source:'page_1', target:'page_12'});
-			jsPlumb.connect({source:'page_1', target:'page_14'});
-			jsPlumb.connect({source:'page_1', target:'page_19'});
-			jsPlumb.connect({source:'page_1', target:'page_16'});
-			jsPlumb.connect({source:'page_1', target:'page_17'});
-		
-			jsPlumb.connect({source:'page_14', target:'page_21', paintStyle:paintStyleAsleep});
-			jsPlumb.connect({source:'page_14', target:'page_20'});
-			
-			jsPlumb.connect({source:'page_20', target:'page_22'});
 		});
 	};
 	initPlumb();

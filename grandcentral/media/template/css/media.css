@@ -97,7 +97,7 @@
 }
 
 /********************************************************************************************/
-/* Files 
+/* List 
 /********************************************************************************************/
 #mediaLibrary .files
 {
@@ -107,7 +107,7 @@
 #mediaLibrary .files li
 {
 	float: left;
-	width:120px;
+	width:110px;
 	position:relative;
 	margin-bottom:15px;
 }
@@ -131,7 +131,7 @@
 	display:block;
 }
 
-/* Draggable TODO (it's binded to the document..) */
+/* Draggable TODO (it's bound to the document..) */
 li.ui-draggable-dragging
 {
 	display:block;

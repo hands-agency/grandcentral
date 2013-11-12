@@ -14,6 +14,7 @@ section[data-template="tree/tree"] li
 	white-space:nowrap;
 	vertical-align:top;
 	border-radius:3px;
+	border:1px solid transparent; /* Prepare placeholder */
 }
 
 /********************************************************************************************/
@@ -44,7 +45,7 @@ section[data-template="tree/tree"] ol li .page .icon
 	border-radius: 3px;
 	padding:15px 10px;
 	text-align:center;
-	border:1px solid transparent;
+	border:1px solid #ccc;
 	display:inline-block;
 	position:relative;
 }
@@ -105,36 +106,6 @@ section[data-template="tree/tree"] li * .action
 }
 
 /********************************************************************************************/
-/* Kill draggable animations */
-/********************************************************************************************/
-section[data-template="tree/tree"].ui-sortable li
-{
-	cursor:auto;
-    -webkit-transition:none !important;
-    -moz-transition:none !important;
-    transition:none !important;
-}
-section[data-template="tree/tree"].ui-sortable .ui-sortable-helper
-{
-	box-shadow:none !important;
-	background:none !important;
-	border:none !important;
-    -webkit-transform:none !important;
-    -moz-transform:none !important;
-    transform:none !important;
-}
-section[data-template="tree/tree"].ui-sortable .ui-sortable-helper:before,
-section[data-template="tree/tree"].ui-sortable .ui-sortable-helper:after
-{
-	display:none;
-}
-section[data-template="tree/tree"] li ol li.ui-sortable-helper>*:before
-{
-	border:none;
-}
-
-
-/********************************************************************************************/
 /* Sortable
 /********************************************************************************************/
 /* Draggable */
@@ -146,21 +117,24 @@ section[data-template="tree/tree"] li ol li.ui-sortable-helper>*:before
 /* Placeholder */
 section[data-template="tree/tree"] li.placeholder
 {
-	width:110px;
-	height:120px;
 }
 
 /* Being Dragged */
 section[data-template="tree/tree"] ol li.dragged 
 {
 	position:absolute;
-	z-index:3;
 	background:#fff;
-	width:100px !important;
-	height:100px !important;
+	width:80px !important;
+	height:80px !important;
 	overflow:hidden;
 	border-radius:100px;
+	z-index:99999;
+	background:#fff;
+	border:1px solid #F2F2F2;
 	box-shadow: 3px 3px 1px 0 rgba(0, 0, 0, .1) !important;
+    -webkit-transform: rotateZ(-3deg) scale(1.05) !important;
+    -moz-transform: rotateZ(-3deg) scale(1.05) !important;
+    transform: rotateZ(-3deg) scale(1.05) !important;
 }
 section[data-template="tree/tree"] ol li.dragged .page
 {

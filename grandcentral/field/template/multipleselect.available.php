@@ -19,11 +19,16 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	Get and process from ajax
+//	Some vars
 /********************************************************************************************/
 //	The field name & idz
 	$name = $_POST['name'];
+//	Refine values?
+	$refine = (isset($_POST['q'])) ? $_POST['q'] : null;
 	
+/********************************************************************************************/
+//	Get and process from ajax
+/********************************************************************************************/
 //	Create a blank field (tweak)
 	$param = array(
 		'values' => $_POST['values'],
@@ -32,7 +37,7 @@
 	$multipleselect = new fieldMultipleselect(null, $param);
 	
 //	Get the available values
-	$available = $multipleselect->prepare_values();
+	$available = $multipleselect->prepare_values($refine);
 	
 //	HACK MULTI TABLE
 	if (count($param['values']) > 1 && is_array($param['values']))
@@ -44,10 +49,5 @@
 		}
 	// print '<pre>';print_r($tmp);print'</pre>';
 		$available = $tmp;
-	}
-	
-//	Refine
-	if (isset($_POST['q'])) {
-		echo 'TODO refined with '.$_POST['q'];
 	}
 ?>

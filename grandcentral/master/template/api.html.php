@@ -41,10 +41,11 @@
 		$_GET = $_POST['_GET'];
 		unset($_POST['_GET']);
 	}
+
+//	We want the CSS and script zones soooo badly
+	echo '<!-- ZONE:css -->';
+	echo '<!-- ZONE:script -->';
 		
 //	Call the right app
 	echo new app($app, $key, $param);
-//	We wand the CSS and script zones soooo badly
-	echo '<!-- ZONE:css -->';
-	echo '<!-- ZONE:script -->';
 ?>

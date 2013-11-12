@@ -38,6 +38,7 @@
 		private $tree;
 		private $pages;
 		private $ref;
+		private $jsPlumbConnect;
 		
 		public function __construct()
 		{
@@ -121,7 +122,10 @@
 		
 		private function make_tree($tree, $class = null)
 		{
+		//	Some vars
 			$li = null;
+			
+		//	Loop through pages
 			foreach ($tree as $node)
 			{
 				$page = $this->ref[$node['id']];
@@ -137,7 +141,8 @@
 				}
 				else $feed = null;
 			//	Do you want a badge ?
-				$badge = '<a href="" class="cc-badge">12</a>';
+				$badge = null;
+			//	$badge = '<a href="" class="cc-badge">12</a>';
 				
 			//	Content
 				$content = '
@@ -148,17 +153,42 @@
 					</div>
 					'.$feed.'
 				</div>';
+				
+			//	If the tree goes on
+				if (isset($node['children']))
+				{
+				//	Recurse
+					$content .= $this->make_tree($node['children']);
+				//	Prepare the connections for jsPlumb
+					foreach ($page['child'] as $child) $this->jsPlumbConnect .= 'jsPlumb.connect({source:"'.$page->get_nickname().'", target:'.$child.'});';
+				}
 			//	Build the <li>
-				if (isset($node['children'])) $content .= $this->make_tree($node['children']);
 				$li .= '<li data-item="'.$page->get_nickname().'">'.$content.'</li>';
 			}
 			if (!is_null($class)) $class = ' class="'.$class.'"';
+			
+		//	Get the jsPlumb Connections
+			$jsPlumbConnect = $this->jsPlumbConnect();
+			
 		//	Return
-			return '<ol'.$class.'>'.$li.'</ol>';
+			return '<ol'.$class.'>'.$li.'</ol>'.$jsPlumbConnect;
 		}
+		
+		public function jsPlumbConnect()
+		{
+			return '
+			<script>
+				connectPlumb = function()
+				{
+					jsPlumb.ready(function() {'.$this->jsPlumbConnect.'});	
+				};
+			</script>';
+		}
+			
 		
 		public function __tostring()
 		{
+			
 			return $this->make_tree($this->tree, $this->class);
 		}
 	}

@@ -81,10 +81,11 @@ abstract class _fieldsSelector extends _fields
 /**
  * Prépare la liste des valeurs en fonction du type passé
  * 
+ * @param	string	Refine the values using a string
  * @return	array 	la liste des valeurs traitées sous forme de tableau
  * @access	public
  */
-	public function prepare_values()
+	public function prepare_values($refine = null)
 	{
 		if (empty($this->valuestype))
 		{
@@ -102,7 +103,7 @@ abstract class _fieldsSelector extends _fields
 				$values = $this->_prepare_values_array();
 				break;
 			case 'bunch':
-				$values = $this->_prepare_values_bunch();
+				$values = $this->_prepare_values_bunch($refine);
 				break;
 			case 'function':
 				$values = $this->_prepare_values_function();
@@ -139,10 +140,11 @@ abstract class _fieldsSelector extends _fields
 /**
  * Prépare la liste des valeurs de type bunch
  * 
+ * @param	string	Refine the values using a string
  * @return	array 	la liste des valeurs traitées sous forme de tableau
  * @access	protected
  */
-	protected function _prepare_values_bunch()
+	protected function _prepare_values_bunch($refine = null)
 	{
 	//	Some vars
 		$values = '';
@@ -167,7 +169,10 @@ abstract class _fieldsSelector extends _fields
 		{
 			$table = $value['item'];
 			$params = (isset($value['property'])) ? $value['property'] : null;
+		//	Default order
 			$params['order()'] = 'title';
+		//	Refine ?
+			if (isset($refine)) $params['title'] = '%'.$refine.'%';
 			// print'<pre>';print_r($value);print'</pre>';
 			$bunch->get($table, $params);
 			$countTable++;
