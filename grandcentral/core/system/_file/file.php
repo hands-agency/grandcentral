@@ -155,25 +155,6 @@ class file
 	}
 	
 /**
- * Minifier le contenu d'un fichier
- *
- * @param	string	le type de minification souhaitée (js, css ou autre)
- * @access	public
- */
-	public function minify($type = null)
-	{
-		switch ($type)
-		{
-			case 'js':
-				$this->data = JSMin::minify($this->data);
-				break;
-			case 'css':
-				$this->data = Minify_CSS_Compressor::process($this->data);
-				break;
-		}
-	}
-	
-/**
  * Obtenir le chemin du répertoire du fichier
  *
  * @return	string	le chmin du répertoire root du fichier

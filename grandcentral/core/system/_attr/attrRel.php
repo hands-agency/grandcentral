@@ -147,10 +147,11 @@ class attrRel extends _attrs implements ArrayAccess, Iterator
  * @return	string	une string
  * @access	public
  */
-	public function unfold()
+	public function unfold($params = null)
 	{
 		$bunch = new bunch(null, null, $this->item->get_env());
-		$bunch->get_by_nickname($this->data);
+		
+		$bunch->get_by_nickname($this->data, $params);
 		
 		return $bunch;
 	}

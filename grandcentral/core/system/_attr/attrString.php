@@ -10,16 +10,6 @@
 class attrString extends _attrs
 {
 /**
- * Declare attribute
- *
- * @return	string	une string
- * @access	public
- */
-	public function __construct($data = null, $params = null)
-	{
-		parent::__construct($data, $params);
-	}
-/**
  * Set string attribute
  *
  * @param	string	la variable

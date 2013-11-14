@@ -311,7 +311,7 @@ class database
 						$operator = $matches[1];
 						$value = $matches[2];
 						break;
-					case in_array($attrs[$key]['type'], array('string', 'date', 'array')):
+					case in_array($attrs[$key]['type'], array('string', 'date', 'array', 'key', 'updated', 'created')):
 						$operator = 'LIKE';
 						break;
 					default:
@@ -381,6 +381,7 @@ class database
 			{
 				return '/\b('.$value.')\b/i';
 			};
+			
 			$orders = preg_replace(array_map($func, $attrsKey),'`'.$table.'`.`$1`', $orders);
 		//	écriture de la clause order by
 			$cOrder = ' ORDER BY '.implode(', ', $orders).'';

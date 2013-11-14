@@ -42,7 +42,7 @@ class attrKey extends _attrs
 	public function mysql_definition()
 	{
 	//	definition
-		$definition = '`'.$this->params['key'].'` varchar(32) CHARACTER SET '.database::charset.' COLLATE '.database::collation.' NOT NULL';
+		$definition = '`'.$this->params['key'].'` varchar(64) CHARACTER SET '.database::charset.' COLLATE '.database::collation.' NOT NULL';
 	//	retour
 		return $definition;
 	}

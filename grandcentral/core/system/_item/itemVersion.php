@@ -17,7 +17,7 @@ class itemVersion extends _items
 	public function guess()
 	{
 	//	si on a une version qui nous a été donnée par la classe boot
-		if (SITE_VERSION != null)
+		if ($this->get_env() == 'site' && SITE_VERSION != null)
 		{
 			$param = SITE_VERSION;
 		}

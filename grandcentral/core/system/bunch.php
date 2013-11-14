@@ -249,7 +249,7 @@ class bunch implements ArrayAccess, Iterator, Countable
  * @param	array	array of _items nicknames
  * @access	public
  */
-	public function get_by_nickname($nicknames)
+	public function get_by_nickname($nicknames, $params = null)
 	{
 		// print'<pre>';print_r($nicknames);print'</pre>';
 		$nicknames = (array) $nicknames;
@@ -257,27 +257,32 @@ class bunch implements ArrayAccess, Iterator, Countable
 		foreach ($nicknames as $nickname)
 		{
 			list($table, $id) = explode('_', $nickname);
-			$params[$table][] = $id;
+			$ids[$table][] = $id;
 		}
 	//	Only if we have params
-		if (!empty($params))
+		if (!empty($ids))
 		{
 		//	recherche des items
-			foreach ($params as $table => $ids)
+			foreach ($ids as $table => $id)
 			{
-				$this->get($table, array('id' => $ids));
+				$params['id'] = $id;
+				if (!isset($params['order()']))
+				{
+					$params['order()'] = 'inherit(id)';
+				}
+				$this->get($table, $params);
 			}
-		//	tri
-			foreach ($this->data as $item)
-			{
-				$order[] = array_search($item->get_nickname(), $nicknames);
-			}
-			asort($order);
-			foreach ($order as $key => $index)
-			{
-				$data[$index] = $this->data[$key];
-			}
-			$this->data = array_values($data);
+		// //	tri
+		// 		foreach ($this->data as $item)
+		// 		{
+		// 			$order[] = array_search($item->get_nickname(), $nicknames);
+		// 		}
+		// 		asort($order);
+		// 		foreach ($order as $key => $index)
+		// 		{
+		// 			$data[$index] = $this->data[$key];
+		// 		}
+		// 		$this->data = array_values($data);
 		}
 		return $this;
 	}

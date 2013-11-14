@@ -115,11 +115,12 @@ class boot
 				{
 					$param['url'] = mb_substr($url, 0, mb_strrpos($url, '/'));
 					$this->site = $param;
+					break 2;
 				}
-			//	version
-				$this->site['version'] = ($version !== 0) ? $version : null;
 			}
 		}
+	//	version
+		$this->site['version'] = ($version !== 0) ? $version : null;
 		
 		$this->admin = $admin;
 		$this->admin['root'] = $this->root.'/'.self::admin_dir;

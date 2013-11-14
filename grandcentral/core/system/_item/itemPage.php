@@ -70,6 +70,10 @@ class itemPage extends _items
 		//	si la page n'existe pas
 			// $this->get('error_404');
 		}
+		else
+		{
+			$this->get('error_404');
+		}
 // print'<pre>';print_r($this['section']);print'</pre>';
 	//	application des droits
 		if ($this->exists() && !$_SESSION['user']->can('see', $this))

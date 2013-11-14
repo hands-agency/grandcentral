@@ -213,17 +213,19 @@ class registry
 	//	admin
 		$admin = item::create('site', 'admin', 'admin');
 		$tmp = item::create('version', null, 'admin');
-		$admin['version'] = $tmp->guess()->get_attr('id');
+		$v['admin'] = $tmp->guess();
+		$admin['version'] = $v['admin']->get_attr('id');
 		self::set(self::current_index, 'admin', $admin);
 	//	site
 		$site = item::create('site', SITE_KEY, 'site');
 		$tmp = item::create('version', null, 'site');
-		$site['version'] = $tmp->guess()->get_attr('id');
+		$v['site'] = $tmp->guess();
+		$site['version'] = $v['site']->get_attr('id');
 		self::set(self::current_index, 'site', $site);
 	//	version
 		$version = item::create('version');
 		$version->guess();
-		self::set(self::current_index, 'version', $version);
+		self::set(self::current_index, 'version', $v[env]);
 	//	page
 		$page = item::create('page');
 		$page->guess();

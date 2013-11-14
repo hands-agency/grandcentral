@@ -41,6 +41,15 @@ class sentinel
  */
 	private function __construct()
 	{
+	//	si l'affichage des erreurs est désactivé
+		if(SITE_DEBUG === false)
+		{
+			ini_set("display_errors", 0);
+		}
+		else
+		{
+			ini_set("error_reporting", 'E_ALL');
+		}
 		self::startwatch();
 		$this->log = ROOT.$this->log;
 		set_error_handler(array($this,'error_handler'));
@@ -74,12 +83,6 @@ class sentinel
  */
 	public static function log($type, $param)
 	{
-	//	si l'affichage des erreurs est désactivé
-		if(SITE_DEBUG === false)
-		{
-			ini_set("display_errors", 0);
-			return;
-		}
 	//	par défaut, le script continuera de tourner
 		$die = false;
 		$trace = true;
@@ -127,6 +130,9 @@ class sentinel
 	//	Add the trace
 		if ($trace === true)
 		{
+		//	vider le précédent tampon
+			// ob_end_clean();
+		//	afficher l'erreur
 			ob_start();
 			debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
 			// print '<pre style="width:2000px">';print_r(debug_backtrace());print'</pre>';
