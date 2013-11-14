@@ -4,14 +4,14 @@
 		<div class="title"><?=media($_SESSION['user']['profilepic'][0]['url'])?><span>Prénom</span></div>
 		<div class="sub"></div>
 	</li>
-	<li class="edit">
-		<a>edit</a>
-	</li>
-	<li class="editing" data-item="page_1">
-		<a>editing</a>
-	</li>
-	<? foreach ($level1 as $page): ?>
 	
+	<? if (cc('page', current)['key'] == 'edit') : ?>
+	<li class="editing" data-item="page_1"><a>editing</a></li>
+	<? else :?>
+	<li class="edit"><a>edit</a></li>
+	<? endif ?>
+	
+	<? foreach ($level1 as $page): ?>
 	<? $truc = $page['key']->get();?>
 	<? $config = $nav[$truc] ?>
 	<? $title = (isset($config['title'])) ? $config['title'] : $page['title'] ?>

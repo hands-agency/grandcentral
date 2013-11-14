@@ -28,7 +28,7 @@ class master
 	//	instanciate the app master
 		$params['page'] = $page;
 		$this->app = new app('master', $page['type']['master'], $params);
-	//	retreive the template root
+	//	retrieve the template root
 		$root = $this->app->get_templateroot().$page['type']['master'].'.'.$page['type']['content_type'].'.php';
 	//	parse the template and parse zones
 		self::$zones = self::get_zones($root);

@@ -4,211 +4,188 @@
 section[data-template="tree/tree"]
 {
 }
+
+section[data-template="tree/tree"] ol
+{
+}
 section[data-template="tree/tree"] li
 {
-	position:relative;
-	padding:0;
-}
-section[data-template="tree/tree"] li ol
-{
-	position:relative;
-	margin:0px 0 0px 50px;
-}
-
-/* Second-level pages for readability */
-section[data-template="tree/tree"]>li>ol>li>*:first-child
-{
-	background:#ccc;
-	-moz-border-radius: 40px;
-	border-radius: 40px;
-	padding:10px;
-	width:400px;
-}
-section[data-template="tree/tree"]>li>ol>li>*:first-child .icon
-{
-	border:none;
-}
-
-/* Connexions */
-section[data-template="tree/tree"] ol:before
-{
-	content:'';
-	height:100%;
-	top:-5px;
-	position:absolute;
-	z-index:-1;
-	left:-27px;
-	-moz-box-sizing:border-box;
-	-webkit-box-sizing:border-box;
-	box-sizing:border-box;
-	width:1px;
-	background:#eee;
-	border-bottom:1px solid #fff;
-}
-section[data-template="tree/tree"] li ol li *:first-child:before
-{
-	content:'';
-	border-top:1px solid #eee;
-	width:30px;
-	height:50px;
-	position:absolute;
-	z-index:-1;
-	top:50%;
-	left:-40px;
-}
-section[data-template="tree/tree"] li ol li *:first-child:after
-{
-	content:'';
-	width:25px;
-	height:25px;
-	margin-top:-10px;
-	left:-65px;
-	top:50%;
-	background:#eee;
-	position:absolute;
-}
-
-/* Icon (handle) & placeholder */
-section[data-template="tree/tree"] li * .icon
-{
-	margin:0 10px 0 0;
-}
-
-/* Title */
-section[data-template="tree/tree"] li * .title
-{
-	font-family: "Raleway-Regular";
-}
-section[data-template="tree/tree"] li li li * .title
-{
-	font-size:1em;
-}
-section[data-template="tree/tree"] li * .title a:not(:hover)
-{
-	color:#666;
-}
-/* URL */
-section[data-template="tree/tree"] li * .url
-{
-	color:#ccc;
-	font-family: "Raleway-Thin";
-}
-
-/* Action */
-section[data-template="tree/tree"] li * .action
-{
-	display:none;
-}
-
-/* Kill draggable animations */
-section[data-template="tree/tree"].ui-sortable li
-{
-	cursor:auto;
-    -webkit-transition:none !important;
-    -moz-transition:none !important;
-    transition:none !important;
-}
-section[data-template="tree/tree"].ui-sortable .ui-sortable-helper
-{
-	box-shadow:none !important;
-	background:none !important;
-	border:none !important;
-    -webkit-transform:none !important;
-    -moz-transform:none !important;
-    transform:none !important;
-}
-section[data-template="tree/tree"].ui-sortable .ui-sortable-helper:before,
-section[data-template="tree/tree"].ui-sortable .ui-sortable-helper:after
-{
-	display:none;
-}
-section[data-template="tree/tree"] li ol li.ui-sortable-helper>*:before
-{
-	border:none;
-}
-
-/* new draggable animations */
-section[data-template="tree/tree"].ui-sortable li .icon
-{
-	cursor:move;
-}
-section[data-template="tree/tree"].ui-sortable li .icon:hover,
-section[data-template="tree/tree"].ui-sortable-dragging .icon
-{
-	box-shadow: 3px 3px 1px 0 rgba(0, 0, 0, .1) !important;
-}
-
-/* Placeholder */
-section[data-template="tree/tree"] li.placeholder
-{
-	width:70px;
-	height:70px;
-	margin:0 0 10px 0;
-	border-radius:40px;
+	display:inline-block;
+	white-space:nowrap;
+	vertical-align:top;
+	border-radius:3px;
+	border:1px solid transparent; /* Prepare placeholder */
 }
 
 /********************************************************************************************/
 /* Pages
 /********************************************************************************************/
-section[data-template="tree/tree"] li>div
+section[data-template="tree/tree"] ol li .page
 {
-	position:relative;
-	margin:0px 0 10px 0;
+	padding:7px 10px;
+	height:140px;
+	margin-bottom:70px;
+	border:1px solid transparent;
+	white-space:normal;
+	display:inline-block;
+}
+section[data-template="tree/tree"] ol li .page:hover
+{
 }
 
-/* Icon */
-section[data-template="tree/tree"] li .page .icon
+/* The icon */
+section[data-template="tree/tree"] ol li .page .icon
 {
-	float:left;
-	width:50px;
-	height:50px;
-	font-size:20px;
-	-moz-border-radius: 40px;
-	border-radius: 40px;
-	background:#fff;
-	color:#666;
-	font-family: "Raleway-Thin";
-	font-size:20px;
-	line-height:50px;
-	border:1px dashed rgba(0, 0, 0, .2);
-	/* Linin numerals for Raleway */
-	font-feature-settings: 'lnum';
-	-moz-font-feature-settings: 'lnum=1';
-	-ms-font-feature-settings: 'lnum';
-	-webkit-font-feature-settings: 'lnum';
-	-o-font-feature-settings: 'lnum';
+	width:110px;
+	height:100%;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	padding:15px 10px;
+	text-align:center;
+	border:1px solid #ccc;
+	display:inline-block;
+	position:relative;
 }
-section[data-template="tree/tree"] li .page .title
+section[data-template="tree/tree"] ol li .page .icon:hover
 {
-	font-size:1.5em;
-	padding:5px 0 0 0;
+}
+
+/* Badges */
+section[data-template="tree/tree"] ol li .page .icon .cc-badge
+{
+	top:-5px;
+	right:-5px;
+}
+
+/* The title */
+section[data-template="tree/tree"] ol li .page .icon>.title
+{
+	font-family: "Raleway-Regular";
+	font-size:12px;
+	margin-bottom:15px;
+	padding:3px 0;
+}
+section[data-template="tree/tree"] ol li .page .icon>.title a
+{
+	color:#333;
+}
+
+/* The Detail */
+section[data-template="tree/tree"] ol li .page .detail
+{
+	font-family: "Raleway-Regular";
+	color:#ccc;
+	margin:15px;
+	font-size:10px;
+	display:inline-block;
+}
+
+/* By status */
+section[data-template="tree/tree"] ol li .page[data-status="asleep"] .icon
+{
+	border:1px dashed #333;
+	opacity:0.6;
+	
+}
+
+/* Home */
+section[data-template="tree/tree"]>ol>li>.page
+{
+	margin-left:30%;
+}
+
+/********************************************************************************************/
+/* Action */
+/********************************************************************************************/
+section[data-template="tree/tree"] li * .action
+{
+	display:none;
+}
+
+/********************************************************************************************/
+/* Sortable
+/********************************************************************************************/
+/* Draggable */
+.unlocked section[data-template="tree/tree"] ol li .icon
+{
+	cursor:move;
+}
+
+/* Placeholder */
+section[data-template="tree/tree"] li.placeholder
+{
+}
+
+/* Being Dragged */
+section[data-template="tree/tree"] ol li.dragged 
+{
+	position:absolute;
+	background:#fff;
+	width:80px !important;
+	height:80px !important;
+	overflow:hidden;
+	border-radius:100px;
+	z-index:99999;
+	background:#fff;
+	border:1px solid #F2F2F2;
+	box-shadow: 3px 3px 1px 0 rgba(0, 0, 0, .1) !important;
+    -webkit-transform: rotateZ(-3deg) scale(1.05) !important;
+    -moz-transform: rotateZ(-3deg) scale(1.05) !important;
+    transform: rotateZ(-3deg) scale(1.05) !important;
+}
+section[data-template="tree/tree"] ol li.dragged .page
+{
+}
+
+/********************************************************************************************/
+/* Content
+/********************************************************************************************/
+section[data-template="tree/tree"] li .page[data-type="content"] .icon
+{
+	background:#F2F2F2;
+}
+
+/********************************************************************************************/
+/* Feed
+/********************************************************************************************/
+section[data-template="tree/tree"] li .page[data-type="feed"] .icon
+{
+	background:#F2F2F2;
 }
 
 /********************************************************************************************/
 /* Header
 /********************************************************************************************/
-section[data-template="tree/tree"] li .pageheader
+section[data-template="tree/tree"] li .page[data-type="header"] .icon
 {
-
+	border:1px solid #F2F2F2;
+}
+section[data-template="tree/tree"] li .page[data-type="header"] .icon:before
+{
+	content:'';
+	position:absolute;
+	top:0;
+	left:50%;
+	border-left:1px solid #333;
+	margin-left:-1px;
+	width:1px;
+	height:100%;
+}
+section[data-template="tree/tree"] li .page[data-type="header"] .icon .title
+{
+	background:#fff;
+	z-index:2;
+	position:relative;
 }
 
 /********************************************************************************************/
 /* Links
 /********************************************************************************************/
-section[data-template="tree/tree"] li .pagelink
+section[data-template="tree/tree"] li .page[data-type="link"] .icon
 {
-	
-}
-section[data-template="tree/tree"] li .pagelink .icon
-{
-	width:35px !important;
-	height:35px !important;
-	line-height:35px;
-	background:#ddd;
-}
-
-/* Second-level pages for readability */
-section[data-template="tree/tree"]>li>ol>li>.pagelink:first-child
-{
-	background:#eee;
+	height:60px;
+	border:1px solid #ccc;
 }

@@ -22,9 +22,11 @@
 //	Bind
 /********************************************************************************************/	
 	$_APP->bind_file('css', 'tree/css/tree.css');
-	$_APP->bind_file('script', 'tree/js/nestedSortable/jquery.mjs.nestedSortable.js');
-	// $_APP->bind_file('script', 'js/nestedSortable/jquery.ui.touch-punch.js');
-	$_APP->bind_file('script', 'tree/js/nestedSortable/tree.js');
+//	$_APP->bind_file('script', 'tree/js/nestedSortable/jquery.mjs.nestedSortable.js');
+//	$_APP->bind_file('script', 'tree/js/nestedSortable/jquery.ui.touch-punch.js');
+	$_APP->bind_file('script', 'tree/js/jquery-sortable.js');
+	$_APP->bind_file('script', 'tree/js/jsplumb/jquery.jsPlumb-1.4.1-all-min.js');
+	$_APP->bind_file('script', 'tree/js/tree.js');
 
 /********************************************************************************************/
 //	Make the tree
@@ -36,6 +38,7 @@
 		private $tree;
 		private $pages;
 		private $ref;
+		private $jsPlumbConnect;
 		
 		public function __construct()
 		{
@@ -119,31 +122,73 @@
 		
 		private function make_tree($tree, $class = null)
 		{
+		//	Some vars
 			$li = null;
+			
+		//	Loop through pages
 			foreach ($tree as $node)
 			{
 				$page = $this->ref[$node['id']];
 				$node['id'] = ($page['key'] == 'home') ? 'home' : $node['id'];
-				$content = '
-				<div class="'.$page->get_table().'">
 				
-					<div class="icon">'.$node['key'].'</div>
-					
-					<div class="title"><a href="'.$page->edit().'">'.$page['title'].'</a></div>
-					<div class="url"><a href="'.$page['url'].'">'.$page['url']->get().'</a></div>
-					
-					<div class="clear"><!-- Clearing floats --></div>
-
+			//	Do you have zones ?
+				/* TODO */
+	
+			//	Is this a feed ?
+				if ($page['type']['key'] == 'feed')
+				{
+					$feed = '<div class="detail">'.$page['type']['item'].'</div>';
+				}
+				else $feed = null;
+			//	Do you want a badge ?
+				$badge = null;
+			//	$badge = '<a href="" class="cc-badge">12</a>';
+				
+			//	Content
+				$content = '
+				<div class="page" data-status="'.$page['status'].'" data-type="'.$page['type']['key'].'">
+					<div class="icon" id="'.$page->get_nickname().'">
+						<div class="title"><a href="'.$page->edit().'">'.$page['title'].'</a></div>
+						'.$badge.'
+					</div>
+					'.$feed.'
 				</div>';
-				if (isset($node['children'])) $content .= $this->make_tree($node['children']);
+				
+			//	If the tree goes on
+				if (isset($node['children']))
+				{
+				//	Recurse
+					$content .= $this->make_tree($node['children']);
+				//	Prepare the connections for jsPlumb
+					foreach ($page['child'] as $child) $this->jsPlumbConnect .= 'jsPlumb.connect({source:"'.$page->get_nickname().'", target:'.$child.'});';
+				}
+			//	Build the <li>
 				$li .= '<li data-item="'.$page->get_nickname().'">'.$content.'</li>';
 			}
 			if (!is_null($class)) $class = ' class="'.$class.'"';
-			return '<ol'.$class.'>'.$li.'</ol>';
+			
+		//	Get the jsPlumb Connections
+			$jsPlumbConnect = $this->jsPlumbConnect();
+			
+		//	Return
+			return '<ol'.$class.'>'.$li.'</ol>'.$jsPlumbConnect;
 		}
+		
+		public function jsPlumbConnect()
+		{
+			return '
+			<script>
+				connectPlumb = function()
+				{
+					jsPlumb.ready(function() {'.$this->jsPlumbConnect.'});	
+				};
+			</script>';
+		}
+			
 		
 		public function __tostring()
 		{
+			
 			return $this->make_tree($this->tree, $this->class);
 		}
 	}

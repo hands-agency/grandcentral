@@ -60,7 +60,7 @@ class attrSirtrevor extends _attrs implements ArrayAccess
 				$data = $block['data']['text'];
 
 			//	Markdown to HTML
-				$text = Markdown::defaultTransform($data);
+				$text = trim(Markdown::defaultTransform($data));
 			
 			//	HTML formatting
 				switch ($type)
@@ -75,6 +75,8 @@ class attrSirtrevor extends _attrs implements ArrayAccess
 						break;
 				//	List
 					case 'list':
+				//	Quote
+					case 'quote':
 						$return .= $text;
 						break;
 				}

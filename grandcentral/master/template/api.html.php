@@ -41,7 +41,8 @@
 		$_GET = $_POST['_GET'];
 		unset($_POST['_GET']);
 	}
-//	We wand the CSS and script zones soooo badly
+
+//	We want the CSS and script zones soooo badly
 	echo '<!-- ZONE:css -->';
 	echo '<!-- ZONE:script -->';
 		

@@ -181,7 +181,8 @@
 }
 
 /* Specificities : edit & editing */
-.adminOpened #grandCentralNav>ul li.edit
+.adminOpened #grandCentralNav>ul li.edit,
+.adminOpened #grandCentralNav>ul li.editing
 {
 	display:none !important;
 }
@@ -191,7 +192,6 @@
 	text-align:center;
 	padding-right:0;
 	padding-left:0;
-	display:none;
 }
 #grandCentralNav>ul li.edit a,
 #grandCentralNav>ul li.editing a
@@ -225,9 +225,20 @@
 {
 	border-color:#FE9400;	
 }
+#grandCentralNav>ul li.editing a:not(:hover)
+{
+	animation: pulse 3s ease-out infinite;
+	-webkit-animation: pulse 3s ease-out infinite;
+}
 #grandCentralNav>ul li.editing:hover a
 {
 	background:#FE9400;
+}
+@keyframes pulse { 
+  50% { border-color: rgba(254,148,0,0.2) }
+}
+@-webkit-keyframes pulse { 
+  50% { border-color: rgba(254,148,0,0.2) }
 }
 
 /********************************************************************************************/
