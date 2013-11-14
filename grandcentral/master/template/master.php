@@ -30,6 +30,9 @@
 		$currentEditedItem = cc($_GET['item'], $_GET['id'], 'site');
 		if (isset($currentEditedItem['url'])) $currentEditedItemUrl = $currentEditedItem['url'];
 	}
+	
+//	truc	
+//	foreach (cc('structure', all) as $s) $s->save();
 
 /********************************************************************************************/
 //	General binding of scripts & css files

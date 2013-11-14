@@ -371,15 +371,13 @@ class bunch implements ArrayAccess, Iterator, Countable
 /**
  * Serialize this bunch in Json
  *
- * @param	string  la table des objets pour la recherche
- * @param	array  	le tableau de paramètres de la recherche
- * @param	string  admin ou site
+ * @param	array  Filter lets you choose a set of fields to be retrieved
  * @access	public
  */
-	public function json()
+	public function json($filter = null)
 	{
 		$return = array();
-		foreach ($this->data as $item) $return[] = $item->json();
+		foreach ($this->data as $item) $return[] = $item->json($filter);
         return '['.implode(',',$return) .']';
     }
 

@@ -60,7 +60,6 @@
 	$param['limit()'] = $limit;
 //	Refine ?
 	if (isset($_POST['q'])) $param['title'] = '%'.$_POST['q'].'%';
-
 //	Fetch the bunch
 	$bunch = cc($handled_item, $param, $handled_env);
 	

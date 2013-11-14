@@ -370,11 +370,15 @@ abstract class _items implements ArrayAccess, Iterator
  * @return	string	l'url de l'objet
  * @access	public
  */
-	public function json()
+	public function json($filter = null)
 	{
 		foreach ($this->data as $value)
 		{
-			$return[$value->get_key()] = $value->get();
+		//	Filter
+			if (is_null($filter) OR in_array($value->get_key(), $filter))
+			{
+				$return[$value->get_key()] = $value->get();
+			}
 		}
 		return json_encode($return);
 	}
