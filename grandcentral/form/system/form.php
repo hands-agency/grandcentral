@@ -140,7 +140,7 @@ class form
  */
 	public function set_action($action)
 	{
-		$action = (is_a($action, 'attrUrl') && !$action->is_empty()) ? $action->__tostring() : '';
+		$action = (is_a($action, 'attrUrl') && !$action->is_empty()) ? $action->__tostring() : $action;
 		$this->attrs['action'] = $action;
 		return $this;
 	}
@@ -249,9 +249,38 @@ class form
  * @return	array 	le tableau des erreurs rencontrées
  * @access	public
  */
+	public function get_fields()
+	{
+		return $this->fields;
+	}
+/**
+ * Retourne la liste des champs cachés
+ * 
+ * @return	array 	le tableau des erreurs rencontrées
+ * @access	public
+ */
 	public function get_field($name)
 	{
 		return $this->fields[$name];
+	}
+/**
+ * Retourne la liste des champs cachés
+ * 
+ * @return	array 	le tableau des erreurs rencontrées
+ * @access	public
+ */
+	public function delete_field($name)
+	{
+		unset($this->fields[$name]);
+		
+		foreach ($this->fieldsets as $key => $fieldset)
+		{
+			$index = array_search($name, $fieldset['fields']);
+			if ($index !== false)
+			{
+				unset($this->fieldsets[$key]['fields'][$index]);
+			}
+		}
 	}
 /**
  * Retourne la liste des champs cachés

@@ -53,7 +53,7 @@ class boot
 	//	ouverture du tampon
 		ob_start($this->buffer_callback);
 	//	recherche de l'url active
-		$this->root = $_SERVER['DOCUMENT_ROOT'];
+		// $this->root = $_SERVER['DOCUMENT_ROOT'];
 		$this->get_url();
 		$this->get_config();
 	//	chargement d'un coeur alternatif

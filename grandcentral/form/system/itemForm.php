@@ -10,7 +10,27 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 class itemForm extends _items
-{	
+{
+/**
+ * Vérifie si les champs du formulaire sont correctement remplis.
+ * Retourne true s'ils sont tous valide, sinon retourne un tableau d'erreurs
+ *
+ * @param	string	la clef du champ
+ * @param	string	la clef du paramètre visé
+ * @param	mixed	la valeur du paramètre
+ * @access	public
+ */
+	public function is_valid()
+	{
+		$form = $this->prepare();
+		
+		foreach ($form->get_fields() as $field)
+		{
+			print'<pre>';print_r($field);print'</pre>';
+		}
+		
+		return $this;
+	}
 /**
  * Ajoute / modifie les paramètres des champs
  *
@@ -36,11 +56,10 @@ class itemForm extends _items
 		$params = array(
 			'data-item' => 'form_'.$this['id'],
 			'data-key' => $this['key'],
-			'action' => cc('page', 'post', $this->get_env())['url'],
+			'action' => cc('page', $this['action']->get(), $this->get_env())['url'],
 			'method' => $this['method'],
 			'enctype' => $this['enctype'],
 			'target' => $this['target'],
-			'theme' => $this['theme'],
 			'template' => $this['template'],
 		);
 	//	instanciation du formulaire

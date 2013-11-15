@@ -21,6 +21,7 @@ abstract class _fields
 	protected $disabled = false;
 	protected $min;
 	protected $max;
+	protected $class;
 	protected $attrs;
 	protected $template;
 	protected $errors;
@@ -152,6 +153,18 @@ abstract class _fields
 		return $this;
 	}
 /**
+ * Affecte un label au champ
+ * 
+ * @param	string	le label
+ * @access	public
+ */
+	public function set_class($class)
+	{
+		$this->class = htmlspecialchars($class);
+		$this->attrs['class'] = $this->class;
+		return $this;
+	}
+/**
  * Affecte un identifiant html (id) au champ
  * 
  * @param	string	l'id
@@ -188,7 +201,7 @@ abstract class _fields
 		$bool = (bool) $bool;
 		if (true === $bool)
 		{
-			// $this->attrs['required'] = 'required';
+			$this->attrs['required'] = 'required';
 			$this->required = true;
 		}
 		else
@@ -341,6 +354,16 @@ abstract class _fields
 	{
 		$class = mb_strtolower(get_called_class());
 		return mb_substr($class, 5);
+	}
+/**
+ * Obtenir le label du champ
+ * 
+ * @return	string	le label du champ
+ * @access	public
+ */
+	function get_class()
+	{
+		return $this->class;
 	}
 /**
  * Obtenir la clef du champ

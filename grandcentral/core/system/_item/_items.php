@@ -350,7 +350,7 @@ abstract class _items implements ArrayAccess, Iterator
  */
 	public function listing()
 	{
-		return '/admin/list?item='.$this->get_table();
+		return ADMIN_URL.'/list?item='.$this->get_table();
 	}
 	
 /**
@@ -361,7 +361,7 @@ abstract class _items implements ArrayAccess, Iterator
  */
 	public function edit()
 	{
-		return '/admin/edit?item='.$this->get_table().'&id='.$this['id']->get();
+		return ADMIN_URL.'/edit?item='.$this->get_table().'&id='.$this['id']->get();
 	}
 
 /**

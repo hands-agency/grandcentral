@@ -59,13 +59,18 @@
 					$title = cst('ITEM_'.$subpage['key'].'_TITLE', $subpage['title']);
 					$descr = cst('ITEM_'.$subpage['key'].'_DESCR', $subpage['descr']);
 					
+					$pages = cc('page', array(
+						'key' => array('list', 'edit'),
+						'order()' => 'inherit(key)'
+					));
+					
 					switch ($link)
 					{
 						case 'edit':
-							$url = '/admin/edit?item='.$subpage->get_table().'&id='.$subpage['id'];
+							$url = $pages[1]['url'].'?item='.$subpage->get_table().'&id='.$subpage['id'];
 							break;
 						case 'list':
-							$url = '/admin/list?item='.$subpage['key'];
+							$url = $pages[0]['url'].'?item='.$subpage['key'];
 							break;
 						case 'page':
 							$url = $subpage['url'];

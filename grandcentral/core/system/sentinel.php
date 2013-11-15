@@ -48,6 +48,7 @@ class sentinel
 		}
 		else
 		{
+			ini_set("display_errors", 1);
 			ini_set("error_reporting", 'E_ALL');
 		}
 		self::startwatch();
@@ -131,7 +132,7 @@ class sentinel
 		if ($trace === true)
 		{
 		//	vider le précédent tampon
-			// ob_end_clean();
+			ob_end_clean();
 		//	afficher l'erreur
 			ob_start();
 			debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
