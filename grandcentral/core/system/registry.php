@@ -285,11 +285,15 @@ class registry
 		$db = database::connect();
 		$q = 'SELECT * FROM `_rel` WHERE `item`="page" AND `key`="child" ORDER BY `itemid`, `position`';
 		$r = $db->query($q);
-		foreach ($r['data'] as $rel)
+	//	If we have children
+		if ($r['count'])
 		{
-			$tree[$rel['item'].'_'.$rel['itemid']][] = $rel['rel'].'_'.$rel['relid'];
+			foreach ($r['data'] as $rel)
+			{
+				$tree[$rel['item'].'_'.$rel['itemid']][] = $rel['rel'].'_'.$rel['relid'];
+			}
+			self::set(self::legacy_index, $tree);
 		}
-		self::set(self::legacy_index, $tree);
 	}
 }
 ?>

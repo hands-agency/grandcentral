@@ -48,14 +48,12 @@
 	//	Some vars
 		var _GET = ".json_encode($_GET).";
 	//	Some consts
-		const ITEM = $('meta[property=\"gc:item\"]').attr('content');
-		const ID = $('meta[property=\"gc:id\"]').attr('content');
-		const SITE_URL = '".SITE_URL."';
-		const SITE_KEY = '".SITE_KEY."';
-		const ADMIN_URL = '".ADMIN_URL."';
-		const ENV = $('body').data('env');
-		const CURRENTEDITED_URL = '".$currentEditedItemUrl."';
-		console.log(CURRENTEDITED_URL);
+		var ITEM = $('meta[property=\"gc:item\"]').attr('content');
+		var SITE_URL = '".SITE_URL."';
+		var SITE_KEY = '".SITE_KEY."';
+		var ADMIN_URL = '".ADMIN_URL."';
+		var ENV = $('body').data('env');
+		var CURRENTEDITED_URL = '".$currentEditedItemUrl."';
 	");
 	
 /********************************************************************************************/

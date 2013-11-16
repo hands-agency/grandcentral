@@ -53,12 +53,12 @@
 					'bunch' => cc('structure', array('key' => array('page', 'structure', 'version'), 'order()' => 'inherit(key)'), $_SESSION['pref']['handled_env']),
 				),
 				'major' => array(
-					'display' => 'hive',
+					'display' => 'bubble',
 					'link' => 'list',
 					'bunch' => cc('structure', array('system' => false, 'hasurl' => true, 'order()' => 'title'), $_SESSION['pref']['handled_env']),
 				),
 				'minor' => array(
-					'display' => 'hive',
+					'display' => 'bubble',
 					'link' => 'list',
 					'bunch' => cc('structure', array('system' => false, 'hasurl' => false, 'order()' => 'title'), $_SESSION['pref']['handled_env']),
 				),

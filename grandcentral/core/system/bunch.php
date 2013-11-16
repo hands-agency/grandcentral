@@ -377,7 +377,7 @@ class bunch implements ArrayAccess, Iterator, Countable
 	public function json($filter = null)
 	{
 		$return = array();
-		foreach ($this->data as $item) $return[] = $item->json($filter);
+		foreach ($this->data as $item) if ($item->json($filter)) $return[] = $item->json($filter);
         return '['.implode(',',$return) .']';
     }
 

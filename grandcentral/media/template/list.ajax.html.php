@@ -153,7 +153,7 @@ $(document).ready(function()
 	    if (tests.formdata)
 		{	
 	 		var xhr = new XMLHttpRequest();
-			xhr.open('POST', ADMIN_URL+'/api.html');
+			xhr.open('POST', ADMIN_URL+'/ajax.html');
 		
 		//	Done !
 			xhr.onload = function()

@@ -24,10 +24,7 @@
 			if (!callback) callback = Array;
 		
 		//	Params
-			var url = ADMIN_URL+'/api.'+mime;
-		//	Add the current item
-			param['caller_item'] = ITEM;
-			param['caller_id'] = ID;
+			var url = ADMIN_URL+'/ajax.'+mime;
 		//	Reroute the _GET (currently declared in the master)
 			param['_GET'] = _GET;
 		//	Pass DEBUG via post
