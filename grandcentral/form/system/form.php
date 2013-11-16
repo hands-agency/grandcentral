@@ -19,7 +19,7 @@ class form
 		'enctype' => 'application/x-www-form-urlencoded',
 		'accept-charset' => 'utf-8',
 	);
-	protected $template = 'default';
+	protected $template = 'form';
 	protected $fields = array();
 	protected $hidden_fields = array();
 	protected $fieldsets = array(

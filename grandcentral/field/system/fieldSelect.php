@@ -13,7 +13,21 @@
 class fieldSelect extends _fieldsSelector
 {
 	protected $datatype = array('rel, string');
-	
+/**
+ * Affecte une valeur au champ. Les valeurs des sélecteurs peuvent être des dérivés de _item ou des string de type page_1
+ * 
+ * @param	mixed	un objet ou un tag d'objet (ex : page_1)
+ * @access	public
+ */
+	public function set_value($value)
+	{
+		parent::set_value($value);
+		if (is_array($this->value))
+		{
+			$this->value = array_values($this->value)[0];
+		}
+		return $this;
+	}
 /**
  * Affecte un placeholder au champ
  * 

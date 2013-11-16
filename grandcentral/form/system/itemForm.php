@@ -11,6 +11,7 @@
  */
 class itemForm extends _items
 {
+	
 /**
  * Vérifie si les champs du formulaire sont correctement remplis.
  * Retourne true s'ils sont tous valide, sinon retourne un tableau d'erreurs
@@ -20,16 +21,54 @@ class itemForm extends _items
  * @param	mixed	la valeur du paramètre
  * @access	public
  */
-	public function is_valid()
+	public function populate_with_item(_items $item)
 	{
-		$form = $this->prepare();
-		
-		foreach ($form->get_fields() as $field)
+		foreach ($this['field'] as $id => $field)
 		{
-			print'<pre>';print_r($field);print'</pre>';
+			if (isset($field['key']) && isset($item[$field['key']]))
+			{
+				$field['value'] = $item[$field['key']]->get();
+				$this['field'][$id] = $field;
+			}
 		}
-		
 		return $this;
+	}
+	
+/**
+ * Vérifie si les champs du formulaire sont correctement remplis.
+ * Retourne true s'ils sont tous valide, sinon retourne un tableau d'erreurs
+ *
+ * @param	string	la clef du champ
+ * @param	string	la clef du paramètre visé
+ * @param	mixed	la valeur du paramètre
+ * @access	public
+ */
+	public function validate($datas)
+	{
+		// print'<pre>';print_r($datas);print'</pre>';
+	//	on peuple le form avec les valeurs de data
+		foreach ($this['field'] as $id => $field)
+		{
+			
+			if (isset($field['key']) && isset($datas[$field['key']]))
+			{
+				$field['value'] = $datas[$field['key']];
+				$this['field'][$id] = $field;
+			}
+		}
+	//	on récupère le form html pour générer les champs
+		$form = $this->prepare();
+		// print'<pre>';print_r($form->get_field('user[firstname]'));print'</pre>';
+	//	on teste chaque champ
+		foreach ($form->get_fields() as $id => $field)
+		{
+			$return[] = array(
+				'key' => $field->get_name(),
+				'valid' => $field->is_valid(),
+				'error' => $field->get_error()
+			);
+		}
+		return $return;
 	}
 /**
  * Ajoute / modifie les paramètres des champs
