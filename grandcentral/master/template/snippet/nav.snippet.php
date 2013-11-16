@@ -59,18 +59,14 @@
 					$title = cst('ITEM_'.$subpage['key'].'_TITLE', $subpage['title']);
 					$descr = cst('ITEM_'.$subpage['key'].'_DESCR', $subpage['descr']);
 					
-					$pages = cc('page', array(
-						'key' => array('list', 'edit'),
-						'order()' => 'inherit(key)'
-					));
-					
+				//	Find the link
 					switch ($link)
 					{
 						case 'edit':
-							$url = $pages[1]['url'].'?item='.$subpage->get_table().'&id='.$subpage['id'];
+							$url = $editPage['url']->args(array('item' => $subpage->get_table(), 'id' => $subpage['id']));
 							break;
 						case 'list':
-							$url = $pages[0]['url'].'?item='.$subpage['key'];
+							$url = $listPage['url']->args(array('item' => $subpage['key']));
 							break;
 						case 'page':
 							$url = $subpage['url'];
