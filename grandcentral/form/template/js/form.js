@@ -127,7 +127,7 @@ $(document).ready(function ()
 /**	* Handling H1 and title binding
  	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
-	$('section input[name$="[title]"]').live('input', function()
+	$('section input[name$="[title]"]').on('input', function()
 	{
 		title = $(this).val();
 		maxlength = 55;

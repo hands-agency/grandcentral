@@ -107,7 +107,7 @@
 			});
 
 		//	Delete a selected
-			$element.find('.selected li .delete').live('click', function()
+			$element.on('click', '.selected li .delete', function()
 			{
 				$(this).parent().hide('slide', { direction: "down" }, 100, function()
 				{

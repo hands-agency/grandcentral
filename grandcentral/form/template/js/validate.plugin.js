@@ -39,13 +39,13 @@
 			};
 
 		//	Remember when a field has changed
-			$element.find('[name^="' + vars['key'] + '"]').live('input', function()
+			$element.on('input', '[name^="' + vars['key'] + '"]', function()
 			{
 				vars['fieldHasChanged'] = true;
 			})
 		
 		//	Validate each field on blur
-			$element.find('[name^="' + vars['key'] + '"]').live('blur', function()
+			$element.on('blur', '[name^="' + vars['key'] + '"]', function()
 			{
 			//	But only if has changed
 				if (vars['fieldHasChanged'] === true) plugin.field($(this).closest('li[data-key]'));

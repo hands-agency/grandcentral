@@ -60,22 +60,3 @@ $(document).bind('unlock', function()
 			});
 		});
 	});
-
-/*********************************************************************************************
-/**	* Display the archives
- 	* @author	mvd@cafecentral.fr
-**#******************************************************************************************/
-/*	$('section .flag.archive').live('click', function() {
-	//	CODE : The archive list
-		code='<ul class="archives flat"></ul>';
-	//	APPEND : Create the archive list if it doesn't exist, load it and display it.
-		obj = $(this).parents('li');
-		if (!$(obj).find('.archives').length) {
-			$(obj).append(code);
-		}
-		$(obj).find('.archives').load(ajx('archive.compare'), function() {
-			$(obj).find('.archives').toggle('fast');}
-		);
-		$(this).toggleClass('on off');
-	});
-*/

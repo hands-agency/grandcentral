@@ -2,7 +2,7 @@
 /**	* Display the archives
  	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
-	$('section .flag.archive').live('click', function() {
+	$('section .flag.archive').on('click', function() {
 	//	CODE : The archive list
 		code='<ul class="archives flat"></ul>';
 	//	APPEND : Create the archive list if it doesn't exist, load it and display it.
@@ -20,7 +20,7 @@
 /**	* Showing the discussion input on a wall
  	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
-	$('section .discuss').live('click', function() {
+	$('section .discuss').on('click', function() {
 	//	CODE : the new comment line
 		code='<ul class="comment"><li class="flat"><form action=""><input type="text" placeholder="Post an answer to this note" />	<input type="submit" name="some_name" value="" id="some_name" /></form></li></ul>';
 	//	our item
