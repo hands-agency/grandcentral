@@ -31,8 +31,8 @@
 		if (isset($currentEditedItem['url'])) $currentEditedItemUrl = $currentEditedItem['url'];
 	}
 	
-//	truc	
-//	foreach (cc('structure', all) as $s) $s->save();
+//	Update all structures
+//	foreach (cc('structure', all, 'site') as $s) $s->save();
 
 /********************************************************************************************/
 //	General binding of scripts & css files
