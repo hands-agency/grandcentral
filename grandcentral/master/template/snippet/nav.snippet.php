@@ -63,10 +63,10 @@
 					switch ($link)
 					{
 						case 'edit':
-							$url = $editPage['url']->args(array('item' => $subpage->get_table(), 'id' => $subpage['id']));
+							$url = $editPage['url']->args(array('item' => $subpage->get_table(), 'id' => $subpage['id']->get()));
 							break;
 						case 'list':
-							$url = $listPage['url']->args(array('item' => $subpage['key']));
+							$url = $listPage['url']->args(array('item' => $subpage['key']->get()));
 							break;
 						case 'page':
 							$url = $subpage['url'];
@@ -77,6 +77,7 @@
 							break;
 					}
 					?>
+					
 				<li>
 					<a href="<?=$url ?>">
 						<span class="icon" <? if (isset($subpage['icon'])): ?>data-icon="<?=$subpage['icon']?>"<? endif ?>></span>
