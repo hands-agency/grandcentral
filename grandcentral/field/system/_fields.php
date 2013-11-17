@@ -77,7 +77,8 @@ abstract class _fields
 	function is_valid()
 	{
 		$valid = true;
-		// print '<pre>'.$this->name.' : ';print_r($value);print'</pre>';
+		// print '<pre>'.$this->name.' : ';print_r($this->value);print'</pre>';
+		
 		if (true === $this->required && empty($this->value))
 		{
 			$valid = false;

@@ -45,11 +45,6 @@ class itemPage extends _items
 					$this->get('error_404');
 				}
 			}
-		//	pas de reader
-			else
-			{
-				define('item', 'page');
-			}
 		}
 	//	HACK pour le reader de la home
 		elseif ($reader = registry::get(registry::reader_index, '/'))
@@ -75,6 +70,7 @@ class itemPage extends _items
 			$this->get('error_404');
 		}
 // print'<pre>';print_r($this['section']);print'</pre>';
+		if (!defined('item')) define('item', 'page');
 	//	application des droits
 		if ($this->exists() && !$_SESSION['user']->can('see', $this))
 		{

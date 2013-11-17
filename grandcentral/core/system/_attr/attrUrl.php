@@ -63,6 +63,7 @@ class attrUrl extends _attrs
  */
 	public function args($arg)
 	{
+		// print'<pre>';print_r($arg);print'</pre>';
 		$url = $this->__tostring();
 		$url .= (!empty($arg)) ? '?'.http_build_query($arg) : '';
 		return $url;

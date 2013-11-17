@@ -63,10 +63,11 @@
 					switch ($link)
 					{
 						case 'edit':
-							$url = $editPage['url']->args(array('item' => $subpage->get_table(), 'id' => $subpage['id']));
+							$url = $editPage['url']->args(array('item' => $subpage->get_table(), 'id' => $subpage['id']->get()));
 							break;
 						case 'list':
-							$url = $listPage['url']->args(array('item' => $subpage['key']));
+							// print'<pre>';print_r($listPage['url']->get());print'</pre>';
+							$url = $listPage['url']->args(array('item' => $subpage['key']->get()));
 							break;
 						case 'page':
 							$url = $subpage['url'];

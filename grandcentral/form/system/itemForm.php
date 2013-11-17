@@ -62,6 +62,7 @@ class itemForm extends _items
 	//	on teste chaque champ
 		foreach ($form->get_fields() as $id => $field)
 		{
+			// print'<pre>';print_r($field);print'</pre>';
 			$return[] = array(
 				'key' => $field->get_name(),
 				'valid' => $field->is_valid(),

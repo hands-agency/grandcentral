@@ -32,6 +32,7 @@ abstract class _fieldsSelector extends _fields
 				$value = $value->get();
 				break;
 		}
+		// print'<pre>';print_r($this->value);print'</pre>';
 		$this->value = $value;
 		return $this;
 	}
@@ -260,20 +261,6 @@ abstract class _fieldsSelector extends _fields
 		$properties['irel'] = 'text';
 		
 		return $properties;
-	}
-	
-/**
- * Vérifie la validité de la valeur du champ / TODO
- * 
- * @param	mixed	la valeur du champ
- * @return	bool	true ou false
- * @access	public
- */
-	function is_valid()
-	{
-		$valid = true;
-		
-		return $valid;
 	}
 }
 ?>
