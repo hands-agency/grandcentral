@@ -66,7 +66,6 @@
 							$url = $editPage['url']->args(array('item' => $subpage->get_table(), 'id' => $subpage['id']->get()));
 							break;
 						case 'list':
-							// print'<pre>';print_r($listPage['url']->get());print'</pre>';
 							$url = $listPage['url']->args(array('item' => $subpage['key']->get()));
 							break;
 						case 'page':
@@ -78,6 +77,7 @@
 							break;
 					}
 					?>
+					
 				<li>
 					<a href="<?=$url ?>">
 						<span class="icon" <? if (isset($subpage['icon'])): ?>data-icon="<?=$subpage['icon']?>"<? endif ?>></span>
