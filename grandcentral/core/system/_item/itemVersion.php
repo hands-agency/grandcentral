@@ -29,7 +29,7 @@ class itemVersion extends _items
 		}
 		
 		$this->get($param);
-		
+		// print'<pre>';print_r($this);print'</pre>';
 		if (!$this->exists())
 		{
 			$this->get(1);

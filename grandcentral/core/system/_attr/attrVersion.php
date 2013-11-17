@@ -10,9 +10,19 @@
 class attrVersion extends _attrs
 {
 /**
+ * Get complete item url
+ *
+ * @return	string	url
+ * @access	public
+ */
+	public function attach(_items $item)
+	{
+		$this->item = $item;
+	}
+/**
  * Set attribute
  *
- * @param	string	la variable
+ * @param	stringd	la variable
  * @return	string	une string
  * @access	public
  */
@@ -28,13 +38,16 @@ class attrVersion extends _attrs
  * @return	string	une string
  * @access	public
  */
-	public function get()
+	public function database_get()
 	{
-		if (empty($this->data)) $this->data = cc('version', current)['id'];
+		if (empty($this->data))
+		{
+			$this->data = cc($this->item->get_env(), current)['version'];
+		}
 		return $this->data;
 	}
 /**
- * Definition mysql
+ * Definition mysqld
  *
  * @return	string	la définition mysql
  * @access	public

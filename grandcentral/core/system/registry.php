@@ -223,8 +223,6 @@ class registry
 		$site['version'] = $v['site']->get_attr('id');
 		self::set(self::current_index, 'site', $site);
 	//	version
-		$version = item::create('version');
-		$version->guess();
 		self::set(self::current_index, 'version', $v[env]);
 	//	page
 		$page = item::create('page');

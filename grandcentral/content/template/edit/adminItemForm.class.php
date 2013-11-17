@@ -33,7 +33,7 @@ class adminItemForm
 		$this->form['key'] = $key;
 		$this->form['title'] = $key;
 		$this->form['template'] = 'default';
-		$this->form['action'] = 'item';
+		$this->form['action'] = 'post';
 		$this->form['method'] = 'post';
 		$this->form['system'] = $env == 'admin' ? true : false;
 	//	recherche de l'item à injecter dans le form
