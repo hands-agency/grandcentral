@@ -38,9 +38,9 @@
 //	General binding of scripts & css files
 /********************************************************************************************/
 //	jQuery
-//	$_APP->bind_file('script', 'https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js');
+//	$_APP->bind_file('script', 'https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js');
 //	$_APP->bind_file('script', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js');
-	$_APP->bind_file('script', 'js/jquery-1.8.2.min.js');
+	$_APP->bind_file('script', 'js/jquery-1.10.2.min.js');
 	$_APP->bind_file('script', 'js/jquery-ui-1.9.1.custom.min.js');
 
 //	Reroot get in ajax
