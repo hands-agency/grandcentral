@@ -21,7 +21,7 @@ class attrMedia extends attrArray
 		$return = array();
 		if (!empty($this->data))
 		{
-			foreach ($this->data as $file)
+			foreach ((array) $this->data as $file)
 			{
 				// print'<pre>';print_r($file);print'</pre>';
 				$return[] = media($file['url']);

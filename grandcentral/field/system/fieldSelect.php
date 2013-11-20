@@ -22,7 +22,7 @@ class fieldSelect extends _fieldsSelector
 	public function set_value($value)
 	{
 		parent::set_value($value);
-		if (is_array($this->value))
+		if (is_array($this->value) && !empty($this->value))
 		{
 			$this->value = array_values($this->value)[0];
 		}

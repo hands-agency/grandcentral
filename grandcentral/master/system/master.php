@@ -194,12 +194,23 @@ class master
 	{
 		if (isset(self::$zones[$zone]))
 		{
+		//	recherche de versions précédentes
+			$valid = true;
+			foreach (self::$zones[$zone]['data'] as $value)
+			{
+				if (isset($value['url']) && $value['url'] == $file)
+				{
+					$valid = false;
+					break;
+				}
+			}
+		//	affectation
 			$tmp = array(
 				'type' => 'file',
 				'url' => $file,
 				'app' => $app
 			);
-			self::$zones[$zone]['data'][] = $tmp;
+			if ($valid) self::$zones[$zone]['data'][] = $tmp;
 		}
 		else
 		{
