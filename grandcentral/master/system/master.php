@@ -170,9 +170,17 @@ class master
 		//	pour les fichiers css
 			if ($script['type'] == 'file')
 			{
-				$file = new file($script['url']);
-			//	url
-				$url = (SITE_DEBUG === true) ? $file->get_url().'?'.time() : $file->get_url();
+				if (filter_var($script['url'], FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED))
+				{
+					$url = $script['url'];
+				}
+				else
+				{
+					$file = new file($script['url']);
+				//	url
+					$url = (SITE_DEBUG === true) ? $file->get_url().'?'.time() : $file->get_url();
+				}
+				
 			//	stylesheet
 				$return .= '<script src="'.$url.'" type="text/javascript" charset="utf-8"></script>';
 			}
@@ -204,6 +212,7 @@ class master
 					break;
 				}
 			}
+			
 		//	affectation
 			$tmp = array(
 				'type' => 'file',
