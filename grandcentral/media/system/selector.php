@@ -49,7 +49,7 @@
 				break;
 		//	HACK rapide. Il faut trouver une meilleure manière de gérer les fichiers qui n'existent pas
 			default:
-				// $media = new image($media->get_root());
+				$media = new image($media->get_root());
 				break;
 		}
 		
