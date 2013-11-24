@@ -17,7 +17,7 @@
  * @license		http://www.cafecentral.fr/fr/licences GNU Public License
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
- */	
+ */
 /********************************************************************************************/
 //	Some vars
 /********************************************************************************************/
@@ -58,8 +58,7 @@
 	$param = (isset($_POST['param'])) ? $_POST['param'] : null;
 	$param['order()'] = $order;
 	$param['limit()'] = $limit;
-//	Refine ?
-	if (isset($_POST['q'])) $param['title'] = '%'.$_POST['q'].'%';
+	sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $param);
 //	Fetch the bunch
 	$bunch = cc($handled_item, $param, $handled_env);
 	

@@ -7,15 +7,21 @@
 //	Plugin
 	$.fn.searchasyoutype = function(param, target, callback)
 	{
-	//	Some vars	
-		var stop = null;
-		var timing = 400;
+	//	Some vars
+		var timing = 500;
+		var timeout;
 
 	//	On key up...
 		this.keyup(function()
 		{
+		//	Some vars
 			$search = $(this);
-			setTimeout(function()
+			
+		//	Stop current action
+			clearTimeout(timeout);
+			
+		//	Start a new one
+			timeout = setTimeout(function()
 			{
 			//	Add the typed value to the params	
 				param['q'] = $search.val();

@@ -19,27 +19,10 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	Bind
+//	Get the things you can link to
 /********************************************************************************************/
-//	Apps
-	$app = new app('sirtrevor');
-	$app->load();
-//	Css
-	$_APP->bind_css('css/sirtrevor.css');
-//	Script
-	$_APP->bind_script('js/sirtrevor.js');
-	$_APP->bind_code('script', '
-		new SirTrevor.Editor(
-		{
-			el:$(".js-st-instance"),
-			blockTypes: ["Text", "Heading", "List", "Quote"]
-		});
-	');
-
-/********************************************************************************************/
-//	Some vars
-/********************************************************************************************/
-	$_FIELD = $_PARAM['field'];
-	$value = $_FIELD->get_value();
-	$attrs = $_FIELD->get_attrs();
+	$structures = cc('structure', array(
+		'hasurl' => true,
+		'order()' => 'title',
+	), 'site');
 ?>

@@ -2277,7 +2277,14 @@
       text : "link",
   
       onClick: function() {
-  
+	
+	// GRAND CENTRAL OVERRRIDE
+  	openContext({
+		app:'field',
+		template:'sirtrevor.link',
+	});
+	// SIR TREBOR DEFAULT
+	/*
         var link = prompt(i18n.t("general:link")),
             link_regex = /(ftp|http|https):\/\/./;
   
@@ -2286,9 +2293,9 @@
          if (!link_regex.test(link)) {
            link = "http://" + link;
          }
-  
          document.execCommand(this.cmd, false, link);
         }
+*/
       },
   
       isActive: function() {

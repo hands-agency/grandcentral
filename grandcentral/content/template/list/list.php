@@ -27,10 +27,12 @@
 /********************************************************************************************/
 //	Apps
 /********************************************************************************************/
-	$app = new app('jquery.infinitescroll');
-	$app->load();
-	$app = new app('jquery.viewport');
-	$app->load();
+	$apps = array('jquery.infinitescroll', 'jquery.viewport');
+	foreach ($apps as $app)
+	{
+		$app = new app($app);
+		$app->load();
+	}
 
 /********************************************************************************************/
 //	Some vars
@@ -39,7 +41,9 @@
 	$handled_env = $_SESSION['pref']['handled_env'];
 //	Object
 	$handled_item = (isset($_GET['item'])) ? $_GET['item'] : trigger_error('You should have an Item by now', E_USER_WARNING);
-
+//	Refine
+	if (isset($_POST['q'])) $_PARAM['title'] = '%'.$_POST['q'].'%';
+	
 //	Amount of items to be displayed at one time
 	$limit = 50;
 //	Count
