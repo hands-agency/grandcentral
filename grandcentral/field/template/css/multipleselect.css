@@ -105,8 +105,7 @@ ol>li[data-type="multipleselect"] .field .available ul
 	overflow:auto;
 	max-height:250px;
 }
-ol>li[data-type="multipleselect"] .field .available li .delete,
-ol>li[data-type="multipleselect"] .field .available li .descr
+ol>li[data-type="multipleselect"] .field .available li .delete
 {
 	display:none;
 }
@@ -160,11 +159,6 @@ ol>li[data-type="multipleselect"] .field li .icon
 ol>li[data-type="multipleselect"] .field li .title
 {
 	margin:2px 0 0 23px;
-}
-ol>li[data-type="multipleselect"] .field li .descr
-{
-	color:#aaa;
-	margin-left:23px;
 }
 ol>li[data-type="multipleselect"] .field li .delete
 {

@@ -58,7 +58,7 @@
 	$param = (isset($_POST['param'])) ? $_POST['param'] : null;
 	$param['order()'] = $order;
 	$param['limit()'] = $limit;
-	sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $param);
+
 //	Fetch the bunch
 	$bunch = cc($handled_item, $param, $handled_env);
 	
