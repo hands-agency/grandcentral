@@ -22,15 +22,17 @@ class itemVersion extends _items
 			$param = SITE_VERSION;
 		}
 	//	sinon on détecte la langue du navigateur
-		else
+		elseif (isset($_SERVER['HTTP_ACCEPT_LANGUAGE']))
 		{
 			$lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 			$param['lang'] = $lang;
 		}
 		
-		$this->get($param);
-		// print'<pre>';print_r($this);print'</pre>';
-		if (!$this->exists())
+		if (isset($param) && !empty($param))
+		{
+			$this->get($param);
+		}
+		else
 		{
 			$this->get(1);
 		}

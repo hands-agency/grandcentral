@@ -53,6 +53,7 @@ class sentinel
 		}
 		self::startwatch();
 		$this->log = ROOT.$this->log;
+		register_shutdown_function(array($this,'error_shutdown'));
 		set_error_handler(array($this,'error_handler'));
 		set_exception_handler(array($this,'exception_handler'));
 	}
@@ -106,6 +107,7 @@ class sentinel
 				$trace = false;
 				break;
       	//	warning
+			case 2:
 	        case E_WARNING:
 			case E_USER_WARNING:
 				$type = 'Warning';
@@ -116,7 +118,15 @@ class sentinel
 	        case E_STRICT:
 				$type = 'Strict';
 				break;
+		//	Strict
+			case 4:
+	        case E_PARSE:
+				$type = 'Parse';
+				$die = true;
+				$trace = false;
+				break;
 		//	fatal
+			case 1:
 			case 4096:
 			case E_ERROR:
 	        case E_USER_ERROR:
@@ -185,6 +195,29 @@ class sentinel
 			'What went wrong' => $e->getMessage()
 		);
 		$this->log(E_WARNING, $param);
+    }
+
+/**
+ * Fetch and format PHP exceptions
+ *
+ * @param	string  $sample the sample data
+ * @author	mvd@cafecentral.fr
+ * @return	array	all of the exciting sample options
+ * @access	public
+ */
+	public function error_shutdown()
+    {
+		$error = error_get_last();
+		
+		if (!is_null($error))
+		{
+			$param = array(
+				'What went wrong' => $error['message'],
+				'file' => $error['file'],
+				'line' => $error['line']
+			);
+			$this->log($error['type'], $param);
+		}
     }
 
 /**
