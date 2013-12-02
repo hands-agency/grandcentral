@@ -22,7 +22,7 @@
 //	Bind
 /********************************************************************************************/
 	$_APP->bind_file('css', 'css/media.css');
-	$_APP->bind_file('script', 'js/mediaGallery.plugin.js');
+	$_APP->bind_file('script', 'js/mediagallery.plugin.js');
 
 /********************************************************************************************/
 //	Load Library
