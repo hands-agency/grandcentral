@@ -96,7 +96,7 @@
 			$('#content>section>form').submit();
 			
 		//	Id & status
-			id = $('input[name="'+ENV+'_'+_GET['item']+'[id]"]');
+			id = $('input[name="'+SITE_KEY+'_'+_GET['item']+'[id]"]');
 			oldStatus = $('input[name="'+SITE_KEY+'_'+_GET['item']+'[status]"]');
 			form = $('#content>section>form');
 			
@@ -117,7 +117,7 @@
 					if ($.isNumeric(result))
 					{
 					//	Bring it to the form
-						$(id).val(result);
+						id.val(result);
 						$('#greenbutton-default').removeClass('on');
 					//	Rewrite URL
 						url = '?item='+_GET['item']+'&id='+result;
@@ -163,7 +163,7 @@
 		plugin.save_copy = function()
 		{
 		//	Get rid of id and save
-			$('input[name="'+ENV+'_'+_GET['item']+'[id]"]').val('');
+			$('input[name="'+SITE_KEY+'_'+_GET['item']+'[id]"]').val('');
 			plugin.save();
 		}
 

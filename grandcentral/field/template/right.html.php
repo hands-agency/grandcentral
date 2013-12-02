@@ -34,7 +34,7 @@
 	<?php endforeach; ?>
 </table>
 
-<style type="text/css" media="screen">
+<style type="text/css">
 	fieldset .right h2 {
 		font-size: 1.6em;
 		padding: 10px;

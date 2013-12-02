@@ -146,12 +146,12 @@ class master
 			//	url
 				$url = (SITE_DEBUG === true) ? $file->get_url().'?'.time() : $file->get_url();
 			//	stylesheet
-				$return .= '<link rel="stylesheet" href="'.$url.'" type="text/css" charset="utf-8">';
+				$return .= '<link rel="stylesheet" href="'.$url.'"  media="all" type="text/css" charset="utf-8">';
 			}
 		//	pour les styles bruts
 			else
 			{
-				$return .= '<style type="text/css" media="screen">'.$css['data'].'</style>';
+				$return .= '<style type="text/css" media="all">'.$css['data'].'</style>';
 			}
 		}
 		return $return;

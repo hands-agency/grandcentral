@@ -7,7 +7,7 @@
 		</tr>
 	<? endfor ?>
 </table>
-<style type="text/css" media="screen">
+<style type="text/css">
 	table {
 		width:200px;
 		height:200px;

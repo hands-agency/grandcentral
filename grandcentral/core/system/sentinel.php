@@ -234,7 +234,7 @@ class sentinel
 		if (!self::$debugcss)
 		{
 			$css = '
-			<style type="text/css" media="screen">
+			<style type="text/css">
 				.cc-sentinel 
 				{
 					position: relative;
