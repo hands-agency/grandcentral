@@ -83,4 +83,22 @@
 		$return = (defined($const)) ? constant($const) : $label;
 		return $return;
 	}
+	
+/**
+ * Constant handling
+ *
+ * @param	string	app 1
+ * @param	string	app 2...
+ * @access	public
+ */
+	function load()
+	{
+		$apps = func_get_args();
+		foreach ($apps as $app)
+		{
+			$app = new app($app);
+			$app->load();
+			unset($app);
+		}
+	}
 ?>
