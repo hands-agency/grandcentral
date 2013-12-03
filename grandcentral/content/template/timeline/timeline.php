@@ -108,9 +108,9 @@
 			'updated' => array('> '.$yesterday_dawn, '< '.$yesterday_morning),
 		),
 	//	Days of this week if we're not tuesday
-		'before' => array(
-			'updated' => '< '.$yesterday_dawn,
-		),
+	//	'before' => array(
+	//		'updated' => '< '.$yesterday_dawn,
+	//	),
 	);
 	
 //	Last week

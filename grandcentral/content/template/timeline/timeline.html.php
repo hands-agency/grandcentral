@@ -108,11 +108,11 @@
 				$('.logbookList .loading').remove();
 				
 			//	Add user
+				author = '';	
 				if (data['author']) author = '<div class="title"><a href="" class="user">'+data['author']+'</a></div>';
-				else author = '';
 			//	Add descr
+				descr = '';
 				if (data['descr']) descr = '<div class="descr">'+data['descr']+'</div>';
-				else descr = '';
 				
 			//	LI
 				li = '<li data-item="'+item+'" style="display:none"><div class="icon"></div><div class="padding">'+author+descr+'<div class="date">'+data['created']+'</div></div></li>';
