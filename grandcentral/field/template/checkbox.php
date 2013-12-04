@@ -30,7 +30,7 @@
 	foreach ($values as $key => $option)
 	{
 	//	checked
-		$checked = ($option['id'] == $_FIELD->get_value()) ? ' checked="checked"' : null;
+		$checked = (in_array($option['id'], (array) $_FIELD->get_value())) ? ' checked="checked"' : null;
 	//	descr
 		$descr = (isset($option['descr']) && !empty($option['descr'])) ? '<span class="descr">'.htmlspecialchars($option['descr']).'</span>' : null;
 	//	<li>
