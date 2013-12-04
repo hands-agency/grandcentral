@@ -65,7 +65,10 @@
 				//	Ensure the items get loaded just one time;
 					old = $('#eventstream li[data-item='+item+']');
 					if (old.length != 0) old.stop().hide('fast', function(){\$(this).remove();});
-
+				
+				//	Show eventstream
+					$('#eventstream').show();
+					
 				//	Add the new line
 					li = '<li data-item=\"'+item+'\" style=\"display:none;opacity:'+data['opacity']+'\"><a href=\"'+data['editauthor']+'\">'+data['author']+'</a> <span>'+data['event']+'</span> <a href=\"'+data['edit']+'\">'+data['title']+'</a> <span>'+data['timeSince']+'</span> <a href=\"\" class=\"undo\">Undo</a><a href=\"\" class=\"compare\">What\'s new?</a></li>';
 					$(li).prependTo(ul).show('fast').fadeTo(300000, 0.3, function() {\$(this).hide('fast', function(){\$(this).remove()})});

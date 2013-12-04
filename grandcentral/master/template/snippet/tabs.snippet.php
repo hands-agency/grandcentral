@@ -1,3 +1,4 @@
+<h1><a href="<?=$link?>"><span class="back"><?=$back?></span><span class="current"><?=$current->cut('50')?></span></a></h1>
 <ul class="tabs" data-target="content" <? if (isset($defaultSection)): ?>data-default="<?=$defaultSection?>"<? endif ?>>
 	<? foreach($sections as $section) : ?>
 	<? $app = $section['app']; ?>

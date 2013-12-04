@@ -1,12 +1,12 @@
 #eventstream {
-	min-height:23px;
-	margin-bottom:7px;
+	margin:15px 0 0 10px;
+	display:none;
 }
 #eventstream ul
 {
 	list-style-type:disc;
 	color:#3eb4d6;
-	padding:7px 0 0 16px;
+	padding:0 0 0 16px;
 }
 #eventstream ul li
 {

@@ -7,11 +7,10 @@
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
 	box-shadow: 0px 0 6px -6px hsla(0,0%,0%,1);
-	padding:0 15px;
+	padding:10px 0 0 10px;
 }
 #tabs>ul
 {
-	font-size:15px;
 }
 #tabs>ul>li
 {
@@ -37,10 +36,13 @@
 {
 	display:block;
 }
-#tabs>ul>li>a .title
+#tabs>ul>li>a .title,
+h1
 {
 	font-family:"Raleway-Regular";
 	color:#000;
+	text-transform:uppercase;
+	font-size:12px;
 }
 #tabs>ul>li>a .descr
 {
@@ -56,7 +58,7 @@
 }
 #tabs>ul>li.on a
 {
-	border-top:1px solid #F2F2F2;
+
 }
 #tabs>ul>li.on>a:after
 {
@@ -125,4 +127,50 @@
 {
 	float:right;
 	margin:0 0 0 10px;
+}
+
+/********************************************************************************************/
+/* H1
+/********************************************************************************************/
+h1
+{
+
+}
+h1 a span
+{
+	display:block;
+	padding:7px 10px;
+	margin:7px 0;
+	float:left;
+}
+/* Back */
+h1 .back
+{
+	margin-left:-100%;
+	-webkit-transition: all .1s ease-out; 
+	-moz-transition: all .1s ease-out; 
+	-o-transition: all .1s ease-out; 
+	transition: all .1s ease-out;
+}
+h1:hover .back
+{
+	margin-left:0;
+	-webkit-transition: all .1s ease-out; 
+	-moz-transition: all .1s ease-out; 
+	-o-transition: all .1s ease-out; 
+	transition: all .1s ease-out;
+}
+h1:hover .back:before
+{
+	content:'⇠ ';
+}
+/* Current */
+h1 .current
+{
+	color:#fff;
+	background:#999;
+}
+h1:hover .current
+{
+	color:#ddd;
 }

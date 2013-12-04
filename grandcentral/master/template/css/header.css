@@ -1,51 +1,22 @@
 /********************************************************************************************/
-/* H1
+/* Clap along
 /********************************************************************************************/
 header
 {
-	padding:30px 30px 0px 30px;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
 	position:relative;
 }
-header h1
-{
-}
-header h1 span
+header .clapalong
 {
 	font-size:40px;
-	font-family: "Raleway-Thin";
-	display:block;
-	float:left;
+	line-height:1.4em;
+	font-family:'Raleway-Thin';
+	padding:30px 100px 30px 30px;
 }
-/* Back */
-header h1 .back
+header .clapalong span
 {
-	border-radius:3px;
-	padding-right:20px;
-	margin-left:-100%;
-	-webkit-transition: all .1s ease-out; 
-	-moz-transition: all .1s ease-out; 
-	-o-transition: all .1s ease-out; 
-	transition: all .1s ease-out;
-}
-header h1:hover .back
-{
-	margin-left:0;
-}
-header h1:hover .back:before
-{
-	content:'⇠';
-	font-size:34px;
-	margin-right:5px;
-}
-/* Current */
-header h1 .current
-{
-	color:#000;
-}
-header h1:hover .current
-{
-	color:#ddd;
+	border-bottom:1px dashed #ccc;
+	color:#ccc;
 }
