@@ -99,7 +99,7 @@ section[data-template="edit/edit"]>form>fieldset ol>li .wrapper .help
 /********************************************************************************************/
 li.ok .field
 {
-/*	border-color:#26ae5f !important; */
+/*	border-color:#6cbf2d !important; */
 }
 li.ko .field
 {
@@ -163,12 +163,12 @@ section[data-template="edit/edit"] fieldset ol>li.editable [data-control]:hover:
 /* Control while editing */
 section[data-template="edit/edit"] fieldset ol>li.editing [data-control]
 {
-	background:#26ae5f;
+	background:#6cbf2d;
 	cursor:pointer;
 }
 section[data-template="edit/edit"] fieldset ol>li.editing [data-control]:after
 {
-	border-right-color:#26ae5f;
+	border-right-color:#6cbf2d;
 }
 section[data-template="edit/edit"] fieldset ol>li.editing [data-control]:hover
 {
@@ -196,10 +196,10 @@ section[data-template="edit/edit"] fieldset ol>li.guiding [data-control]:after {
 
 /* Control field is OK */
 section[data-template="edit/edit"] fieldset ol>li.ok [data-control]{
-	background:#26ae5f;
+	background:#6cbf2d;
 }
 section[data-template="edit/edit"] fieldset ol>li.ok [data-control]:after {
-	border-right-color:#26ae5f;
+	border-right-color:#6cbf2d;
 }
 
 /* Control field is K0 */

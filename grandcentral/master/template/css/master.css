@@ -205,8 +205,8 @@ a:visited
 /********************************************************************************************/
 /* States of things
 /********************************************************************************************/
-.invite 			{background-color:#26ae5f !important;}
-.invite:before 		{border-top-color:#26ae5f !important;}
+.invite 			{background-color:#6cbf2d !important;}
+.invite:before 		{border-top-color:#6cbf2d !important;}
 /*.selected,
 .ui-selected		{background-color:#FFFBCC !important;}
 */
@@ -447,7 +447,7 @@ progress::-webkit-progress-value {
 }
 .ui-sortable-hover
 {
-	border-color:#26ae5f !important;
+	border-color:#6cbf2d !important;
 }
 /* Placeholder */
 .placeholder

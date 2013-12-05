@@ -84,10 +84,6 @@ section[data-template="timeline/timeline"]>ol>li>.padding>.title
 	font-family:"Raleway-Regular";
 	padding:0 !important;
 }
-section[data-template="timeline/timeline"]>ol>li>.padding>.descr
-{
-	font-family:"Raleway-Thin";
-}
 section[data-template="timeline/timeline"]>ol>li>.padding>.title .user
 {
 	font-weight:bold;

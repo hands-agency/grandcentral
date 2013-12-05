@@ -29,7 +29,7 @@
 /********************************************************************************************/
 	if (cc('page', current)['key'] == 'home')
 	{
-		$invite = '<div class="clapalong">Clap along if you feel like <span>updating</span> <span>structure</span> added by <span>yourself</span> yesterday.</div>';
+		$invite = '<div class="clapalong">Clap along if you feel like <span>adding</span> a <span>page</span> called <span>something new</span>.</div>';
 	}
 	else $invite = null;
 ?>

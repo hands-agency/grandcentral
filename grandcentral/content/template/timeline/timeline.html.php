@@ -17,7 +17,7 @@
 				<!-- <h5><?=$structure?> </h5> -->
 				<? $logbook = current($items) ?>
 				<? $user = cc('human', $subject, 'site') ?>
-				<? $structure = cc('structure', $logbook['item'], 'site') ?>
+				<? $structure = cc('structure', $logbook['item']->get(), 'site') ?>
 				<li data-item="<?=$logbook->get_nickname()?>">
 					<?
 						$thumbnail = (isset($user['profilepic'])) ? media($user['profilepic'][0]['url'])->thumbnail(100, null) : null;
@@ -28,7 +28,11 @@
 					<div class="padding">
 
 						<div class="title">
-							<a href="<?=$user->edit() ?>" class="user"><?=$user['title'] ?></a> <?=cst('TIMELINE_EVENT_'.$event, $event)?> <? if (!isset($_GET['item'])): ?><a href="<?=cc('structure', $structure, $_SESSION['pref']['handled_env'])->edit()?>"><?=cc('structure', $structure, $_SESSION['pref']['handled_env'])['title'] ?></a> :<? endif ?>
+							
+							<a href="<?=$user->edit() ?>" class="user"><?=$user['title'] ?></a>
+							<?=cst('TIMELINE_EVENT_'.$event, $event)?>
+							<? if (!isset($_GET['item'])): ?><a href="<?=$structure->edit()?>"><?=count($items)?> <?=$structure['title'] ?></a> :<? endif ?>
+							
 							<? $i = $and = 0 ?>
 							<? foreach ($items as $item): ?>
 								<? $item = cc($item['item']->get(), $item['itemid']->get(), $_SESSION['pref']['handled_env']) ?>
@@ -42,18 +46,6 @@
 								and <a href=""><?=$and?> others</a>.
 							<? endif ?>
 						</div>
-					
-						<ul class="descr">
-							<? $i = 0 ?>
-							<? foreach ($items as $item): ?>
-							<? if ($i < $displayThumbnails): ?>
-								<li>
-									<div class="descr"><?=cc($item['item']->get(), $item['itemid']->get(), $_SESSION['pref']['handled_env'])['descr']?></div>
-								</li>
-							<? endif ?>
-							<? $i++ ?>
-							<? endforeach ?>
-						</ul>
 					
 						<? if (isset($current['url'])): ?>
 						<ul class="thumbnails">
@@ -88,6 +80,8 @@
 <? endforeach ?>
 </ol>
 <? endif ?>
+
+<?/*=sentinel::stopwatch().'s ('.database::query_count().' queries), using '.sentinel::memoryusage()*/?>
 
 <? if (isset($EventSource)) : ?>
 <script type="text/javascript" charset="utf-8">

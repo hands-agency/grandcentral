@@ -49,7 +49,7 @@
 #grandCentralNav>ul>li.on>.title,
 #grandCentralNav>ul>li:hover>.title
 {
-	background:#26ae5f;
+	background:#6cbf2d;
 	color:#fff;
 }
 #grandCentralNav:hover>ul>li:not(:hover)>.title
@@ -166,7 +166,7 @@
 }
 #grandCentralNav>ul>li.me:after
 {
-	border-color: transparent transparent transparent #26ae5f;
+	border-color: transparent transparent transparent #6cbf2d;
 }
 #grandCentralNav>ul li.me .sub
 {

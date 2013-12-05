@@ -89,7 +89,7 @@ section[data-template="edit/edit"]>form>fieldset ol>li .wrapper .help
 /********************************************************************************************/
 /* Field-level */
 li.ok .field {
-/*	border-color:#26ae5f !important; */
+/*	border-color:#6cbf2d !important; */
 }
 li.ko .field {
 	border-color:#df3528 !important;
@@ -130,10 +130,10 @@ section[data-template="edit/edit"] fieldset ol>li.guiding .control:after {
 }
 /* Control OK */
 section[data-template="edit/edit"] fieldset ol>li.ok .control{
-	background:#26ae5f;
+	background:#6cbf2d;
 }
 section[data-template="edit/edit"] fieldset ol>li.ok .control:after {
-	border-right-color:#26ae5f;
+	border-right-color:#6cbf2d;
 }
 section[data-template="edit/edit"] fieldset ol>li.ok .control:before {
 	content:'✔';

@@ -24,7 +24,7 @@
 		{
 			code = $(template.html());
 		//	Append and enable
-			data.prepend(code);
+			upload.before(code);
 			$(code).show('fast').find('*:disabled').prop('disabled', false);
 		//	Add data
 			media = ui.helper;
