@@ -4,6 +4,7 @@
 li[data-type="media"] .wrapper ol.data
 {
 	text-align:center;
+	position:relative;
 }
 li[data-type="media"] .wrapper ol.data li
 {

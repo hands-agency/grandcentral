@@ -3,7 +3,6 @@
 //	Our media
 	field = $('li[data-type="media"] .wrapper');
 	data = field.find('ol.data');
-	template = field.find('.template');
 	media = data.find('li');
 	path = media.find('input').val();
 	upload = $('li[data-type="media"] .wrapper ol.data li.upload');
@@ -22,9 +21,10 @@
 		},
 		drop:function(event, ui)
 		{
+	 		template = $(this).closest('.field').find('.template');
 			code = $(template.html());
 		//	Append and enable
-			upload.before(code);
+			$(this).before(code);
 			$(code).show('fast').find('*:disabled').prop('disabled', false);
 		//	Add data
 			media = ui.helper;
@@ -32,6 +32,8 @@
 			$(code).find('input').val(media.data('path'));
 			$(code).find('.title').html(media.data('title'));
 			$(code).find('.info').html(media.data('info'));
+		//	Sortable
+			data.sortable();
 		}
 	});
 
@@ -67,6 +69,9 @@
 		});
 		return false;
 	});
+
+//	Sortable
+	data.sortable();
 	
 //	Scroll title
 	title = media.find('.title');

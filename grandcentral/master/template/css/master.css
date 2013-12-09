@@ -75,7 +75,6 @@ button
 	border-radius: 3px;
 	border: 1px solid #ddd;
 	border-bottom-color: #c5c5c5;
-	box-shadow: 0 1px 3px rgba(0,0,0,0.075);
 	cursor: pointer;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -94,24 +93,53 @@ button:active
 {
 	background: #e3e3e3;
 }
-button.close,
-button.delete
+/* Close */
+button.close
 {
-	height:15px;
-	line-height:15px;
-	width:15px;
-	font-size:14px;
-	padding:0 !important;
-	background:transparent;
+	position:absolute;
+	top:10px;
+	right:10px;
+	z-index:3;
 	border:none;
-	box-shadow:none;
-	text-shadow:none;
-	opacity:0.5;
+	background:transparent;
+	color:#000;
+	opacity:0.65;
+	width:26px;
+	height:26px;
+	cursor:pointer;
+	font-size:12px;
 }
-button.close:before,
-button.delete:before
+button.close:before
 {
-	content:'×';
+	content:'';
+	width:0px;
+	height:0px;
+	position:absolute;
+	top:50%;
+	left:50%;
+	display:block;
+	border-radius:20px;
+	-webkit-transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	transition:         all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	z-index:-1;
+}
+button.close:hover:before
+{
+	margin:-13px 0 0 -13px;
+	width:25px;
+	height:25px;
+	background:#000;
+}
+button.close:hover
+{
+	opacity:1;
+	color:#fff;
+}
+button.close:after,
+button.delete:after
+{
+	content:'✕';
+	font-size:12px;
 }
 button.close:hover,
 button.delete:hover
@@ -142,7 +170,7 @@ input[type="search"]
 /********************************************************************************************/
 body
 {
-	font-family:helvetica, arial, "Lucida Grande", Geneva, Verdana, sans-serif;
+	font-family:"HelveticaNeue", helvetica, arial, "Lucida Grande", Geneva, Verdana, sans-serif;
 	font-size:1em;
 	color:#444;
 	background:#fff;

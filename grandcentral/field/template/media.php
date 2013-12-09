@@ -36,6 +36,8 @@
 	$data = '';
 //	The html templates for jQuery
 	$template = '';
+//	A counter
+	$count = 0;
 
 /********************************************************************************************/
 //	Print the data from the Database
@@ -46,7 +48,8 @@
 	{
 	//	Fetch media
 		$media = media($value['url']);
-		$path = mb_substr($media->get_root(), mb_strpos($media->get_root(), '/media/') + 7); /* Make a method out of this*/
+		$path = mb_substr($media->get_root(), mb_strpos($media->get_root(), '/media/') + 7); /* TODO Make a method out of this*/
+		$title = (isset($value['title'])) ? $value['title'] : null;
 		$data .= '
 		<li>
 			<button class="delete"></button>
@@ -55,8 +58,10 @@
 				<span class="title">'.$media->get_key().'</span>
 				<span class="info">'.strtoupper($media->get_extension()).' • '.$media->get_size().'</span>
 			</a>
-			<input type="hidden" name="'.$_FIELD->get_name().'[][url]" value="'.$path.'" />
+			<input type="hidden" name="'.$_FIELD->get_name().'['.$count.'][url]" value="'.$path.'" />
+			<input type="hidden" name="'.$_FIELD->get_name().'['.$count.'][title]" value="'.$title.'" />
 		</li>';
+		$count++;
 	}
 	
 /********************************************************************************************/
@@ -71,5 +76,6 @@
 			<span class="info"></span>
 		</a>
 		<input type="hidden" name="'.$_FIELD->get_name().'[][url]" value="" disabled="disabled" />
+		<input type="hidden" name="'.$_FIELD->get_name().'[][title]" value="" disabled="disabled" />
 	</li>';
 ?>
