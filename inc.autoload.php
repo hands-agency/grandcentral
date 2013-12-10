@@ -167,7 +167,7 @@ class boot
 		{
 			$this->define('site', $this->site);
 			$this->define('KEY', constant(ENV.'_KEY'));
-			$this->define('DOMAIN_URL', constant(ENV.'_URL'));
+			$this->define('DOMAIN_URL', $this->domain);
 			$this->define('URI', $this->uri);
 			$this->define('URL', $this->url);
 			$this->define('URLR', constant(ENV.'_URLR'));

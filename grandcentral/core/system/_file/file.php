@@ -179,12 +179,13 @@ class file
 /**
  * Obtenir l'url web du fichier
  *
+ * @param	bool	absolute link (default false)
  * @return	string	l'url du fichier
  * @access	private
  */
-	public function get_url()
+	public function get_url($absolute = false)
 	{
-		return $this->url;
+		return ($absolute === false) ? $this->url : DOMAIN_URL.$this->url;
 	}
 	
 /**
