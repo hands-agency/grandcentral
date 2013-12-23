@@ -379,7 +379,7 @@ class database
 		//	on traduit proprement
 			$func = function($value)
 			{
-				return '/\b('.$value.')\b/i';
+				return '/\b('.$value.')\b/';
 			};
 			
 			$orders = preg_replace(array_map($func, $attrsKey),'`'.$table.'`.`$1`', $orders);
