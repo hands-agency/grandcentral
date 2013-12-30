@@ -71,6 +71,7 @@
 #options #refine
 {
 	padding:0 0 0 5px;
+	display:none; /* Starts hidden, show if necessary */
 }
 #options #refine input
 {

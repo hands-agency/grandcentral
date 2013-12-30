@@ -25,10 +25,12 @@
 	$handled_env = $_SESSION['pref']['handled_env'];
 //	Object
 	$handled_item = $_GET['item'];
+//	Default order
+	$defaultOrder = 'updated';
 
 //	Falling from the sky
 	$limit = (isset($_POST['limit'])) ? $_POST['limit'] : trigger_error('You should have a limit', E_USER_WARNING);
-	$order = (isset($_POST['filter']) && $_POST['filter'] == 'order') ? $_POST['value'] : 'title';
+	$order = (isset($_POST['filter']) && $_POST['filter'] == 'order') ? $_POST['value'] : $defaultOrder;
 
 /********************************************************************************************/
 //	Some functions
@@ -84,6 +86,5 @@
 	{
 	//	Ensure we have a title, otherwise use the nickname
 		if (empty($item['title'])) $item['title'] = (empty($item['title'])) ? $item->get_nickname() : $item['title'];
-	
 	}
 ?>

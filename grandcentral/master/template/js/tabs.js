@@ -45,14 +45,7 @@ $(document).ready(function ()
 	//	Change the main display
 		$('#main').attr('class', $(panel).data('display'));
 	//	Don't go to #stuff
-		
-	//	Bind the filter field
-		$('#refine input').searchasyoutype(
-		{
-			app:app,
-			template:template,
-			section:section
-		}, '#content section:visible');
+		// TODO
 	});
 
 /*********************************************************************************************
@@ -67,6 +60,39 @@ $(document).ready(function ()
 	else pseudo = ':first';
 //	WRONG, not here...
 	$(window).load( function(){$('.tabs li a'+pseudo).parent().trigger('click');} );
+	
+/*********************************************************************************************
+/**	* Tabs : Open a section from the landing in the hash (or the first one)
+	* @author	mvd@cafecentral.fr
+**#******************************************************************************************/
+	var $admin = $('#grandCentralAdmin');
+	var $tabs = $('#tabs');
+	var stickyNavTop = $tabs.offset().top;
+  
+	var stickyNav = function()
+	{  
+		var scrollTop = $admin.scrollTop();  
+       
+		if (scrollTop > stickyNavTop)
+		{
+			if ($tabs.not('.sticky'))
+			{
+		    	$tabs
+					.addClass('sticky')
+					.css('left', $admin.css('left'))
+					.css('width', $admin.css('width'));
+			}
+		}
+		else
+		{
+			$tabs.removeClass('sticky');   
+		}  
+	}
+	
+	$admin.scroll(function()
+	{
+	    stickyNav();
+	});  
 	
 /*********************************************************************************************
 /**	* On unlock
