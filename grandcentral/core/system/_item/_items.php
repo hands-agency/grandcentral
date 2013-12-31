@@ -367,7 +367,7 @@ abstract class _items implements ArrayAccess, Iterator
 /**
  * Serialize this item in JSON
  *
- * @return	string	l'url de l'objet
+ * @return	array	Filter output by attributes
  * @access	public
  */
 	public function json($filter = null)
@@ -375,13 +375,13 @@ abstract class _items implements ArrayAccess, Iterator
 		$return = array();
 		foreach ($this->data as $value)
 		{
-		//	Filter
-			if (!$filter OR in_array($value->get_key(), $filter))
+		//	Filter attributes
+			if ($filter === null OR empty($filter) OR in_array($value->get_key(), $filter))
 			{
 				$return[$value->get_key()] = $value->get();
 			}
 		}
-		if (!empty($return)) return json_encode($return);
+		if (!empty($return)) return json_encode($return, JSON_UNESCAPED_UNICODE);
 	}
 	
 /********************************************************************************************/
