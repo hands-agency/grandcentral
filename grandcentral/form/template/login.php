@@ -23,7 +23,7 @@
 /********************************************************************************************/
 	$_FORM = $_PARAM['form'];
 //	Logo
-	$master = new app('master');
+	$master = new app('content');
 	$logo = new image($master->get_templateroot().'/image/logo_grandcentral.jpg');
 
 /********************************************************************************************/
