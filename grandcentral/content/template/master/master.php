@@ -54,6 +54,10 @@
 		var ADMIN_URL = '".ADMIN_URL."';
 		var ENV = $('body').data('env');
 		var CURRENTEDITED_URL = '".$currentEditedItemUrl."';
+	//	Prevent pace on PushState
+		window.paceOptions = {
+			restartOnPushState: false
+		};
 	");
 	
 /********************************************************************************************/

@@ -1,38 +1,71 @@
 /*********************************************************************************************
-/**	* Search as you type
+/**	* Form validation plugin
  	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
 (function($)
 {	
-//	Plugin
-	$.fn.searchasyoutype = function(param, target, callback)
+//	Here we go!
+	$.searchasyoutype = function(element, options, callbacks)
 	{
-	//	Some vars
-		var timing = 500;
-		var timeout;
+	//	Use "plugin" to reference the current instance of the object
+		var plugin = this;
+	//	this will hold the merged default, and user-provided options
+		plugin.settings = {}
+		var $element = $(element), // reference to the jQuery version of DOM element
+		element = element;	// reference to the actual DOM element
+		
+	//	Plugin's variables
+		var vars = {
+			timing:500,
+			timeout:null,
+		}
 
-	//	On key up...
-		this.keyup(function()
+	//	The "constructor"
+		plugin.init = function()
 		{
-		//	Some vars
-			$search = $(this);
-			
-		//	Stop current action
-			clearTimeout(timeout);
-			
-		//	Start a new one
-			timeout = setTimeout(function()
+		//	the plugin's final properties are the merged default and user-provided options (if any)
+			plugin.settings = $.extend({}, vars, options);
+
+			$element.on('input', function()
 			{
-			//	Add the typed value to the params	
-				param['q'] = $search.val();
-			//	Refresh the target
-			  	$(target).ajx(param, callback,
+			//	Some vars
+				$search = $(this);
+			
+			//	Stop current action
+				clearTimeout(plugin.settings.timeout);
+			//	Start a new one
+				plugin.settings.timeout = setTimeout(function()
 				{
-				//	Debug
-					debug:false,
-				});
-			}, timing);
+				//	Fetch the q value
+					q = $search.val();
+					
+				//	Refresh the target
+				  	$(plugin.settings.target).ajx(
+					{
+						app:plugin.settings.app,
+						template:plugin.settings.template,
+						param:plugin.settings.param,
+						q:q,
+					}
+					, callbacks);
+				}, plugin.settings.timing);
+			});
+		}
+
+	//	Fire up the plugin!
+		plugin.init();
+	}
+
+//	Add the plugin to the jQuery.fn object
+	$.fn.searchasyoutype = function(options, callbacks)
+	{
+		return this.each(function()
+		{
+			if (undefined == $(this).data('searchasyoutype'))
+			{
+				var plugin = new $.searchasyoutype(this, options, callbacks);
+				$(this).data('searchasyoutype', plugin);
+			}
 		});
 	}
-})( jQuery );
-	
+})(jQuery);

@@ -83,11 +83,12 @@
 				});
 				
 			//	Global Search
-				$('#globalsearch').searchasyoutype(
+			/*	$('#globalsearch').searchasyoutype(
 				{
 					app:'page',
 					template:'snippet/cc-search',
 				}, '#globalsearch-container');
+			*/
 			};
 		})( jQuery );
 	//	Go	

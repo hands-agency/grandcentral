@@ -842,7 +842,7 @@ footer
 {
 	position:fixed;
 	overflow:auto;
-	z-index:2;
+	z-index:3;
 	width:0%;
 	height:100%;
 	top:0;

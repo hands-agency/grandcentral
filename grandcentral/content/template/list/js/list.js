@@ -1,11 +1,3 @@
-$(function()
-{
-	$(window).bind('scroll', function(event)
-	{
-		$('.infiniteScrollWantsMore:in-viewport').trigger('click');
-	});
-});
-
 /*********************************************************************************************
 /**	* On unlock
  	* @author	mvd@cafecentral.fr
