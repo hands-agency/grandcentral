@@ -21,15 +21,12 @@
 /********************************************************************************************/
 //	Bind
 /********************************************************************************************/
-	$_APP->bind_file('css', 'css/header.css');
-	$_APP->bind_file('script', 'js/header.js');
+	$_APP->bind_file('script', 'master/snippet/greenbutton/js/greenbutton.plugin.js');
+	$_APP->bind_file('script', 'master/snippet/greenbutton/js/greenbutton.js');
+	$_APP->bind_file('css', 'master/snippet/greenbutton/css/greenbutton.css');
 	
 /********************************************************************************************/
-//	Some vars
+//	Prepare the labels
 /********************************************************************************************/
-	if (cc('page', current)['key'] == 'home')
-	{
-		$invite = '<div class="clapalong">Clap along if you feel like <span>adding</span> a <span>page</span> called <span>something new</span>.</div>';
-	}
-	else $invite = null;
+
 ?>

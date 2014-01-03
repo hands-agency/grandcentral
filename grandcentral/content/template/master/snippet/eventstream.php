@@ -21,8 +21,8 @@
 /********************************************************************************************/
 //	Bind scripts & css files
 /********************************************************************************************/
-	$_APP->bind_file('css', 'css/eventstream.css');
-	$_APP->bind_file('script', 'js/eventstream.js');
+	$_APP->bind_file('css', 'master/css/eventstream.css');
+	$_APP->bind_file('script', 'master/js/eventstream.js');
 	
 /********************************************************************************************/
 //	Some vars

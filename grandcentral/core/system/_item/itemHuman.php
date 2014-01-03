@@ -84,6 +84,7 @@ class itemHuman extends _items
  */
 	public function can($action, itemPage $page)
 	{
+		// print'<pre>';print_r($page['group']->get());print'</pre>';
 	//	Les admins peuvent tout voir
 		if ($this->is_admin())
 		{
@@ -128,6 +129,7 @@ class itemHuman extends _items
 				
 				foreach ($page['group']->get() as $authorized_group)
 				{
+					
 					if (in_array($authorized_group, $this['group']->get()))
 					{
 						return true;

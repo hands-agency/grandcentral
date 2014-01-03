@@ -40,8 +40,8 @@
 //	jQuery
 //	$_APP->bind_file('script', 'https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js');
 //	$_APP->bind_file('script', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js');
-	$_APP->bind_file('script', 'js/jquery-1.10.2.min.js');
-	$_APP->bind_file('script', 'js/jquery-ui-1.9.1.custom.min.js');
+	$_APP->bind_file('script', 'master/js/jquery-1.10.2.min.js');
+	$_APP->bind_file('script', 'master/js/jquery-ui-1.9.1.custom.min.js');
 
 //	Reroot get in ajax
 	$_APP->bind_code("script", "
@@ -66,9 +66,9 @@
 //	Local binding scripts & css files
 /********************************************************************************************/
 //	Script
-	$_APP->bind_file('script', 'js/master.js');
+	$_APP->bind_file('script', 'master/js/master.js');
 //	css
-	$_APP->bind_file('css', 'css/master.css');
+	$_APP->bind_file('css', 'master/css/master.css');
 	
 /********************************************************************************************/
 //	Apps
@@ -84,39 +84,39 @@
 /********************************************************************************************/
 //	Meta
 /********************************************************************************************/
-	$_APP->bind_snippet('meta', 'snippet/meta');
+	$_APP->bind_snippet('meta', 'master/snippet/meta');
 	
 /********************************************************************************************/
 //	Nav CC
 /********************************************************************************************/
-	$_APP->bind_snippet('nav', 'snippet/nav');
+	$_APP->bind_snippet('nav', 'master/snippet/nav');
 	
 /********************************************************************************************/
 //	Header
 /********************************************************************************************/
 //	Header
-	$_APP->bind_snippet('header', 'snippet/header');
+	$_APP->bind_snippet('header', 'master/snippet/header');
 //	Even stream
 	$_APP->bind_code('header', '<div id="eventstream"><ul class="mine"></ul><ul class="everybodyelses"></ul></div>');
-	$_APP->bind_snippet('header', 'snippet/eventstream');	
+	$_APP->bind_snippet('header', 'master/snippet/eventstream');	
 //	Green button
-	$_APP->bind_snippet('header', 'snippet/greenbutton/greenbutton');
+	$_APP->bind_snippet('header', 'master/snippet/greenbutton/greenbutton');
 	
 /********************************************************************************************/
 //	Tabs
 /********************************************************************************************/
-	$_APP->bind_snippet('tabs', 'snippet/tabs');
+	$_APP->bind_snippet('tabs', 'master/snippet/tabs');
 	
 /********************************************************************************************/
 //	Content
 /********************************************************************************************/
 //	Options
-	$_APP->bind_snippet('content', 'snippet/options');
+	$_APP->bind_snippet('content', 'master/snippet/options');
 //	Trashbin
-	$_APP->bind_snippet('content', 'snippet/trashbin/trashbin');
+	$_APP->bind_snippet('content', 'master/snippet/trashbin/trashbin');
 	
 /********************************************************************************************/
 //	Footer
 /********************************************************************************************/
-	$_APP->bind_snippet('footer', 'snippet/footer');	
+	$_APP->bind_snippet('footer', 'master/snippet/footer');	
 ?>

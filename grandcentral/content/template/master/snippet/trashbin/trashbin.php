@@ -21,5 +21,8 @@
 /********************************************************************************************/
 //	Bind
 /********************************************************************************************/
-	$_APP->bind_file('css', 'css/footer.css');
+	$_APP->bind_file('script', 'master/snippet/trashbin/js/trashbin.plugin.js');
+	$_APP->bind_code('script', '$("#trashbin").trashbin();');
+//	CSS
+	$_APP->bind_file('css', 'master/snippet/trashbin/css/trashbin.css');
 ?>

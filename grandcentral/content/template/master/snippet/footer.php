@@ -21,17 +21,5 @@
 /********************************************************************************************/
 //	Bind
 /********************************************************************************************/
-	$_APP->bind_file('script', 'snippet/notification/js/notification.js');
-	$_APP->bind_file('css', 'snippet/notification/css/notification.css');
-
-/********************************************************************************************/
-//	Bla bla bla
-/********************************************************************************************/
-	header('Content-Type: text/event-stream');
-	header('Cache-Control: no-cache');
-//	Generate random number for demonstration
-	$count = rand(0, 10);
-//	Go
-	echo 'data: ';
-	for ($i=0; $i < $count; $i++) echo '<li><a href="en">Jean-Paul Sartre</a> a ajouté <a href="en">Un long titre pour...</a>.</li>';
+	$_APP->bind_file('css', 'master/css/footer.css');
 ?>
