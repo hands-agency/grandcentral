@@ -34,21 +34,17 @@
 }
 #grandCentralLogo
 {
-	border-radius:150px;
-	background:#fff;
-	width:150px;
-	height:150px;
-	margin:0 auto 50px auto;
 }
 form
 {
-	margin:auto;
-	width: 500px;
-	height:400px;
 	position:absolute;
 	top:50%;
 	left:50%;
-	margin:-250px 0 0 -200px;
+	margin:-210px 0 0 -310px;
+	background:#111;
+	width:540px;
+	height:340px;
+	padding:40px;
 }
 form fieldset
 {
@@ -60,31 +56,55 @@ form ol
 	padding:0;
 	margin:0;
 	list-style-type:none;
-	overflow:auto;
-	position:relative;
 }
 form ol li
 {
+	margin-bottom:20px;
 }
-form ol li i
-{
-}
+h1,
 label
 {
-	display:none;
+	font-size:50px;
+	font-family:"Raleway-Thin";
+	color:#ccc;
+	border:1px solid transparent;
+	padding:0 10px;
+}
+h1
+{
+	font-size:30px;
+	color:#777;
+	margin-bottom:20px;
 }
 input
 {
-	font-size:40px;
-	width:100%;
-	padding:10px;
+	font-size:50px;
 	border:none;
-	text-align:center;
-	-moz-box-sizing:border-box;
-	-webkit-box-sizing:border-box;
-	box-sizing:border-box;
 	font-family:"Raleway-Thin";
-	color:#333;
+	color:#eee;
+	background:transparent;
+	border:1px solid transparent;
+	padding:2px 10px;
+}
+input:hover
+{
+	border:1px solid #3eb4d6;
+}
+::-webkit-input-placeholder {
+   color: #3eb4d6;
+}
+:-moz-placeholder { /* Firefox 18- */
+   color: #3eb4d6;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #3eb4d6;
+}
+:-ms-input-placeholder {  
+   color: #3eb4d6;
+}
+input:-webkit-autofill {
+	background: transparent !important;
 }
 button[type="submit"]
 {

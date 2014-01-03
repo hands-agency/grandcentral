@@ -17,7 +17,7 @@ $(document).ready(function ()
 		$.post(form.attr('action'), form.serialize(), function(response)
 		{
 		//	DEBUG
-			console.log(response);
+		//	console.log(response);
 			
 		//	What should i do know?
 			switch(response)
