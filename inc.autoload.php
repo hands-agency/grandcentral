@@ -27,6 +27,7 @@ class boot
 	const app_template_dir 	= 'template';		//	le répertoire des apps
    	const app_ini_file 		= 'config.ini';	 	//	le nom des fichiers de configuration des apps
    	const index_enabled		= false;			//	pour afficher la page index si on ne trouve pas de site
+	const app_maintenance 	= 'maintenance';		//	le répertoire de la maintenance
 	
 	private $boot 			= 'core';			//	l'app à charger par défaut
 	// private $buffer_callback= 'ob_gzhandler';	//	le paramètre du tampon
@@ -58,13 +59,30 @@ class boot
 		$this->get_config();
 	//	chargement d'un coeur alternatif
 		if (empty($this->site)) $this->boot = (self::index_enabled === true) ? 'index' : trigger_error('Sorry, can\'t find your site definition in the <strong>inc.config.php</strong> file.', E_USER_ERROR);
-		elseif ($this->site['maintenance'] === true && $this->env == 'site') $this->boot = 'maintenance';
-	//	définition des constantes
-		$this->define_config();
-	//	prise en charge de l'autoload des classes
-		spl_autoload_register('boot::autoload');
-	//	chargement du coeur
-		self::get($this->core_root);
+		// elseif ($this->site['maintenance'] === true && $this->env == 'site') $this->boot = 'maintenance';
+		switch (true)
+		{
+		//	maintenance
+			case $this->site['maintenance'] === true && $this->env == 'site':
+				$this->boot = 'maintenance';
+			//	définition des constantes
+				$this->define_config();
+				$this->core_root = '';
+				require($this->site['root'].'/'.self::app_maintenance.'/'.self::app_maintenance.'.php');
+				exit;
+				break;
+		//	dans tous les autres cas
+			default:
+			//	définition des constantes
+				$this->define_config();
+			//	prise en charge de l'autoload des classes
+				spl_autoload_register('boot::autoload');
+			//	chargement du coeur
+				self::get($this->core_root);
+				
+				break;
+		}
+	
 	}
 
 /**
