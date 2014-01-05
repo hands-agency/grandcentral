@@ -21,7 +21,7 @@
 /********************************************************************************************/
 //	Ajax
 /********************************************************************************************/
-	$app = new app('master');
+	$app = new app('content');
 	$templates = $app->get_templates($_POST['pagetype'], $_SESSION['pref']['handled_env']);
 //	construction du select
 	$field = 'template : nodata';

@@ -49,8 +49,8 @@ jQuery(document).ready(function($)
 			//	Load the options drop
 				$drop.ajx(
 				{
-					app:'master',
-					template:'snippet/options.unlocked',
+					app:'content',
+					template:'master/snippet/options.unlocked',
 					section:$('#content section:visible').data('template'),
 				},{
 					done:function()
@@ -86,8 +86,8 @@ jQuery(document).ready(function($)
 	//	Load the options drop
 		$drop.ajx(
 		{
-			app:'master',
-			template:'snippet/options.filters',
+			app:'content',
+			template:'master/snippet/options.filters',
 			sectiontype:$('#content section:visible').data('template'),
 		},{
 			done:function()

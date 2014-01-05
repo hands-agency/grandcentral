@@ -78,7 +78,7 @@
 		//	Go to trash
 			$.ajx(
 			{
-				app: 'master',
+				app: 'content',
 				template: 'status',
 				item:item,
 				status:$element.data('status'),

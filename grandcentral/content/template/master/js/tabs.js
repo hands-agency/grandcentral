@@ -66,7 +66,7 @@ $(document).ready(function ()
 	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
 	var $admin = $('#grandCentralAdmin');
-	var $tabs = $('#tabs');
+	var $tabs = $('header');
 	var stickyNavTop = $tabs.offset().top;
   
 	var stickyNav = function()
@@ -117,7 +117,7 @@ $(document).ready(function ()
 				//	Change status
 					$.ajx(
 					{
-						app: 'master',
+						app: 'content',
 						template: 'status',
 						item:item,
 						status:tab.data('status'),

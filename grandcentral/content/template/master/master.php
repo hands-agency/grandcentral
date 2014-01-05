@@ -102,15 +102,12 @@
 	$_APP->bind_snippet('header', 'master/snippet/header');
 //	Even stream
 	$_APP->bind_code('header', '<div id="eventstream"><ul class="mine"></ul><ul class="everybodyelses"></ul></div>');
-	$_APP->bind_snippet('header', 'master/snippet/eventstream');	
+	$_APP->bind_snippet('header', 'master/snippet/eventstream');
+//	Tabs
+	$_APP->bind_snippet('header', 'master/snippet/tabs');
 //	Green button
 	$_APP->bind_snippet('header', 'master/snippet/greenbutton/greenbutton');
-	
-/********************************************************************************************/
-//	Tabs
-/********************************************************************************************/
-	$_APP->bind_snippet('tabs', 'master/snippet/tabs');
-	
+
 /********************************************************************************************/
 //	Content
 /********************************************************************************************/

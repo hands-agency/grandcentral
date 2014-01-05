@@ -60,8 +60,8 @@
 			//	Open the context
 				openContext(
 				{
-					app:'master',
-					template:'snippet/greenbutton/greenbutton.context',
+					app:'content',
+					template:'master/snippet/greenbutton/greenbutton.context',
 					sectionid:sectionid,
 				});
 			});

@@ -39,8 +39,8 @@
 	{
 		$EventSource = cc('page', 'api.eventstream')['url']->args(array
 		(
-			'app' => 'master',
-			'template' => 'eventstream',
+			'app' => 'content',
+			'template' => 'master/eventstream',
 			'item' => $_GET['item'],
 		));
 

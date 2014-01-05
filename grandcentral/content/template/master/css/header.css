@@ -8,6 +8,13 @@ header
 	box-sizing:border-box;
 	position:relative;
 }
+header.sticky
+{
+    position: fixed;
+    left: 0;  
+    top: 0;  
+    z-index: 2;
+}
 header .clapalong
 {
 	font-size:40px;

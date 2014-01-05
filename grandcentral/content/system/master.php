@@ -101,7 +101,7 @@ class master
 		if (is_file($file))
 		{
 			$param['zone'] = $zone;
-			$app = new app('master', $key, $param);
+			$app = new app('content', $key, $param);
 			$zone = $app->__tostring();
 		}
 	//	traitement générique d'une zone : concaténation des contenus

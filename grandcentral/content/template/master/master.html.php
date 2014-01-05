@@ -21,7 +21,6 @@
 			<div id="content" class="locked instack">
 				<!--button type="button" class="close"></button-->
 				<header><!-- ZONE:header --></header>
-				<div id="tabs"><!-- ZONE:tabs --></div>
 				<!-- ZONE:content|left -->
 				<? foreach($_PAGE['section']->unfold() as $section) : ?>
 				<? $app = $section['app'] ?>
