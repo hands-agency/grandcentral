@@ -144,7 +144,7 @@ class master
 				// $tmp = preg_replace('/url\([\'"]?([^\'"]*)[\'"]?\)/', 'url('.$css['app'].'$1)', $data);
 				// $file->set()
 			//	url
-				$url = (SITE_DEBUG === true) ? $file->get_url().'?'.time() : $file->get_url();
+				$url = (SITE_DEBUG === true) ? $file->get_url(true).'?'.time() : $file->get_url(true);
 			//	stylesheet
 				$return .= '<link rel="stylesheet" href="'.$url.'"  media="all" type="text/css" charset="utf-8">';
 			}
@@ -178,7 +178,7 @@ class master
 				{
 					$file = new file($script['url']);
 				//	url
-					$url = (SITE_DEBUG === true) ? $file->get_url().'?'.time() : $file->get_url();
+					$url = (SITE_DEBUG === true) ? $file->get_url(true).'?'.time() : $file->get_url(true);
 				}
 				
 			//	stylesheet
