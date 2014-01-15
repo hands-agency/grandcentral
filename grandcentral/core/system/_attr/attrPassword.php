@@ -187,7 +187,7 @@ class attrPassword extends _attrs
 			// convert to string for output
 			$out = implode('', $tmp1);
 		}
- 
+ 		$this->set($out);
 		return $out;
 	}
 }
