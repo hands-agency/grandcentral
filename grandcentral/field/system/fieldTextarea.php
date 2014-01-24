@@ -23,6 +23,20 @@ class fieldTextarea extends _fields
 		parent::__construct($name, $attrs);
 	}
 /**
+ * Affecte une valeur au champ
+ * 
+ * @param	mixed	la valeur
+ * @access	public
+ */
+	public function set_value($text)
+	{
+		if (!empty($text))
+		{
+			$this->value = $text;
+		}
+		return $this;
+	}
+/**
  * Affecte un placeholder au champ
  * 
  * @param	string	le placeholder

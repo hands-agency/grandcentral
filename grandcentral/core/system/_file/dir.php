@@ -18,7 +18,7 @@ class dir implements Iterator
 	protected $key;
 	protected $root;
 	protected static $nogood = array('Thumbs.db', '.DS_Store', '.svn', '.', '..');
-	public $data;
+	public $data = array();
 
 /**
  * Crée un objet "répertoire" défini par son chemin

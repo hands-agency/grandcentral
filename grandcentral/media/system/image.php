@@ -116,7 +116,7 @@ class image extends _medias
 		{
 			$thumb = new image($file);
 		//	création du thumbnail
-			if (!$thumb->exists())
+			if (!$thumb->exists() || $thumb->get_created() < $this->get_created())
 			{
 				$this->copy($root);
 				$thumb = new image($root.'/'.$this->get_key());
