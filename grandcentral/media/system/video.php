@@ -19,7 +19,12 @@ class video extends _medias
 	 */
 		public function __tostring()
 		{
-			return '<video><source src="'.$this->get_url().'" type="video/mp4"><source src="'.$this->get_url().'" type="video/ogg">Your browser does not support the video tag.</video>';
+			return '
+			<video controls>
+				<source src="'.$this->get_url(true).'" type="video/mp4">
+				<source src="'.$this->get_url(true).'" type="video/ogg">
+				Your browser does not support the video tag.
+			</video>';
 		}
 	
 /**
