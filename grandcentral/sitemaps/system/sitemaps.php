@@ -11,7 +11,7 @@ class sitemaps
 {
 	private $data;
 	private $filepath;
-	private $filename = 'sitemap.xml';
+	private $filename = 'sitemap.xml.php';
 
 /**
  * Class constructor

@@ -11,6 +11,7 @@ class attrRel extends _attrs implements ArrayAccess, Iterator
 {
 	const table = '_rel';
 	protected $item;
+	protected $data = array();
 /**
  * Set array attribute
  *
@@ -32,13 +33,13 @@ class attrRel extends _attrs implements ArrayAccess, Iterator
 	{
 		if (empty($rel))
 		{
-			$this->data = null;
+			$this->data = array();
 			return $this;
 		}
 	//	mise en conformité de l'objet
 		if (!is_array($rel) && !is_a($rel, 'bunch')) $rel = array($rel);
 	//	on vide
-		$this->data = null;
+		$this->data = array();
 	//	affectation
 		foreach ($rel as $value)
 		{
