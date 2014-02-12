@@ -12,6 +12,43 @@ class attrMedia extends attrArray
 /**
  * xxxx
  *
+ * @param	mixed	string, array, file class or dir class
+ * @return	string	une string
+ * @access	public
+ */
+	public function set($data)
+	{
+		$medias = array();
+		switch (true)
+		{
+			case is_a($data, 'dir'):
+				foreach ($data->get() as $file)
+				{
+					$medias[] = $file->get_root();
+				}
+				break;
+			case is_a($data, 'file'):
+				$medias[] = $data->get_root();
+				break;
+			case is_array($data):
+				$medias = $data;
+				break;
+			case is_string($data):
+				$medias[] = $data;
+				break;
+		}
+		print'<pre>';print_r($medias);print'</pre>';
+		foreach ($medias as $media)
+		{
+			$tmp = media($media);
+			if ($tmp->exists()) $this->data[] = $tmp->get_path();
+		}
+		
+		return $this;
+	}
+/**
+ * xxxx
+ *
  * @param	string	la variable
  * @return	string	une string
  * @access	public

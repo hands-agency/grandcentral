@@ -23,7 +23,7 @@
 	//	Accept media with the full serveur root
 		if (strstr((string) $file, $root)) $root = null;
 		
-		$media = new file($root.$file);
+		$media = new media($root.$file);
 		
 		switch ($media->get_mime())
 		{
@@ -46,10 +46,6 @@
 			case 'video/x-ms-wmv':
 			case 'video/x-flv':
 				$media = new video($media->get_root());
-				break;
-		//	HACK rapide. Il faut trouver une meilleure manière de gérer les fichiers qui n'existent pas
-			default:
-				$media = new image($media->get_root());
 				break;
 		}
 		

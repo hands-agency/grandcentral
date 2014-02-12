@@ -7,7 +7,7 @@
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
  */
-abstract class _medias extends file
+class media extends file
 {
 /**
  * Returns the path of the media
@@ -22,6 +22,9 @@ abstract class _medias extends file
 		return $path;
 	}
 
-	
+	public function __call($method, $args)
+	{
+		trigger_error('I\'m just a simple media object. You can\'t call '.$method.'. Are you sure i exist.', E_USER_WARNING);
+	}
 }
 ?>
