@@ -36,14 +36,38 @@ class registry
 	//	const
 		define('current', self::current_index);
 		define('all', self::all_index);
-	//	load structures into registry
-		$this->_prepare_structure();
-	//	load apps into registry
-		$this->_prepare_app();
-	//	load page readers into registry
+		
+		// $cache = new app('cache');
+		// $file = $cache->get_templateroot().'registry/'.md5(URI);
+		
+		// print'<pre>';print_r(self::get_constants());print'</pre>';
+		// print'<pre>';print_r(URI);print'</pre>';
+		// if (is_file($file) && 1 == 1)
+		// {
+		// 	$data = file_get_contents($file);
+		// 	self::$data = unserialize($data);
+		// }
+		// else
+		// {
+			//	load structures into registry
+			$this->_prepare_structure();
+			//	load apps into registry
+			$this->_prepare_app();
+			
+			// $data = serialize(self::$data);
+			// file_put_contents($file, $data);
+		// }
+		
+	//	user
+		$human = item::create('human', null, 'site');
+		$human->guess();
+		//	load page readers into registry
 		$this->_prepare_legacy();
-	//	prepare environment
+		//	prepare environment
 		$this->_prepare_current();
+		// print'<pre>';print_r(self::$data);print'</pre>';
+		//	constants
+		cc('const', all);
 	}
 /**
  * Create only one instance of the Registry
@@ -204,9 +228,6 @@ class registry
  */
 	protected function _prepare_current()
 	{
-	//	user
-		$human = item::create('human', null, 'site');
-		$human->guess();
 	//	Env
 		if (!isset($_SESSION['pref']['handled_env'])) $_SESSION['pref']['handled_env'] = 'site';
 		if (isset($_GET['env'])) $_SESSION['pref']['handled_env'] = $_GET['env'];
@@ -228,8 +249,6 @@ class registry
 		$page = item::create('page');
 		$page->guess();
 		self::set(self::current_index, 'page', $page);
-	//	constants
-		cc('const', all);
 	}
 /**
  * Obtenir les classes disponibles
