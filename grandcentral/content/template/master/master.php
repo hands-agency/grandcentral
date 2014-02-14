@@ -64,7 +64,7 @@
 //	First day at work ?
 /********************************************************************************************/
 	$p = array('subject' => 'human', 'subjectid' => $_SESSION['user']['id']->get());
-	if (!cc('logbook', $p)->count()) $_APP->bind_code("script", '$(document).ready(function () {openContext({app:"master",template:"welcome"})});');
+	if (count::get('logbook', $p, 'site') == 0) $_APP->bind_code("script", '$(document).ready(function () {openContext({app:"content",template:"master/welcome"})});');
 	
 /********************************************************************************************/
 //	Local binding scripts & css files
