@@ -19,12 +19,13 @@ class import
  * @param	string  only site
  * @access	public
  */
-	public function __construct($url, $item, $equiv)
+	public function __construct($url, $item, $equiv, $populate = null)
 	{
 	//	Some vars
 		$this->url = $url;
 		$this->item = $item;
 		$this->equiv = $equiv;
+		$this->populate = $populate;
 	}
 	
 /**
@@ -59,7 +60,7 @@ class import
 			if ((string) $data->etat == 'active') $item['status'] = 'live';
 			else $item['status'] = 'asleep';
 			
-		//	Loop through the attributes
+		//	Loop through the attributes to be imported
 			foreach ($this->equiv as $newField => $oldField)
 			{
 				$add = true;
@@ -70,10 +71,15 @@ class import
 				//	Switch
 					switch ($newField)
 					{
+						case 'id':
+							$item[$newField]->set($value);
+						//	$add = false;
+							break;
 						case 'photo':
 							$value = array(array('url' => 'image/photo/'.$value.'.jpg'));
 							break;
 						case 'text':
+						case 'txt':
 							$value = json_encode(array('data' => array(array('type' => 'text', 'data' => array('text' => strip_tags($value))))));
 							break;
 						case 'tag':
@@ -89,12 +95,43 @@ class import
 							}
 							$add = false;
 							break;
+						case 'issue':								
+							$rel = cc('issue', $value);
+							$item['issue']->add($rel);
+							$add = false;
+							break;
 							
 					}
-				//	Add Attr	
+				//	Add Attr
 					if (isset($data->$oldField) && $add) $item[$newField] = $value;	
 				}
 			}
+			
+		//	Loop through the attributes to be populated
+			if ($this->populate)
+			{
+				foreach ($this->populate as $newField => $value)
+				{
+				//	Value or function
+					if (substr($value, -2) == '()')
+					{
+						$function = substr($value, 0, -2);
+						$value = $function($item);
+					}
+				
+				//	Switch
+					switch ($newField)
+					{
+						case 'password':
+							$value = $item['password']->generate();
+							break;
+						default:
+							$item[$newField] = $value;
+							break;
+					}
+				}
+			}
+			
 		//	Save item
 			$item->save();	
 		}

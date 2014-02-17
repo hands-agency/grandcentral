@@ -20,7 +20,7 @@
 				<? $structure = cc('structure', $logbook['item']->get(), 'site') ?>
 				<li data-item="<?=$logbook->get_nickname()?>">
 					<?
-						$thumbnail = (isset($user['profilepic'])) ? media($user['profilepic'][0]['url'])->thumbnail(100, null) : null;
+						$thumbnail = (!$user['profilepic']->is_empty()) ? $user['profilepic'][0]->thumbnail(100, null) : null;
 						$empty = (!isset($thumbnail)) ? 'empty' : null;
 					?>
 					<div class="icon <?=$empty?>"><a href="<?=$user->edit()?>"><?=$thumbnail?></a></div>

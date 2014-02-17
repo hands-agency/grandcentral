@@ -265,6 +265,17 @@ a:visited
 	font-style:normal;
 }
 
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-icon]:before
+{
+	font-family: 'linecons';
+	content: attr(data-icon);
+	speak: none;
+	font-weight: normal;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+
 /********************************************************************************************/
 /*////////////////////////////////////////////////////////////////////////////////////////////
 /* Bubbles

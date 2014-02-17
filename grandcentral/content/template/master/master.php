@@ -64,7 +64,7 @@
 //	First day at work ?
 /********************************************************************************************/
 	$p = array('subject' => 'human', 'subjectid' => $_SESSION['user']['id']->get());
-	if (!cc('logbook', $p)->count()) $_APP->bind_code("script", '$(document).ready(function () {openContext({app:"master",template:"welcome"})});');
+	if (count::get('logbook', $p, 'site') == 0) $_APP->bind_code("script", '$(document).ready(function () {openContext({app:"content",template:"master/welcome"})});');
 	
 /********************************************************************************************/
 //	Local binding scripts & css files
@@ -77,7 +77,7 @@
 /********************************************************************************************/
 //	Apps
 /********************************************************************************************/
-	$apps = array('searchasyoutype', 'jquery.masonry', 'jquery.imagesloaded', 'jquery.hoverintent', 'jquery.sse', 'jquery.pace');
+	$apps = array('searchasyoutype', 'jquery.masonry', 'jquery.imagesloaded', 'jquery.hoverintent', 'jquery.sse', 'jquery.pace', 'linecons');
 	foreach ($apps as $app)
 	{
 		$app = new app($app);
