@@ -30,21 +30,27 @@ class attrMedia extends attrArray
 			case is_a($data, 'file'):
 				$medias[] = $data->get_root();
 				break;
+			case is_string($data) || isset($data['url']):
+				$medias[] = $data;
+				break;
 			case is_array($data):
 				$medias = $data;
 				break;
-			case is_string($data):
-				$medias[] = $data;
-				break;
 		}
-
+		print'<pre>';print_r($medias);print'</pre>';
 		if (count($medias) > 0)
 		{
 			$this->data = array();
 			foreach ($medias as $media)
 			{
-				$tmp = (isset($media['url'])) ? media($media['url']) : media($media);
-				if ($tmp->exists()) $this->data[] = $tmp->get_path();
+				$m = (isset($media['url'])) ? media($media['url']) : media($media);
+				if ($m->exists())
+				{
+					$tmp['url'] = $m->get_path();
+					$tmp['title'] = (isset($media['title'])) ? $media['title'] : '';
+					$this->data[] = $tmp;
+				}
+				
 			}
 		}
 		
