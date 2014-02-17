@@ -77,7 +77,7 @@
 /********************************************************************************************/
 //	Apps
 /********************************************************************************************/
-	$apps = array('searchasyoutype', 'jquery.masonry', 'jquery.imagesloaded', 'jquery.hoverintent', 'jquery.sse', 'jquery.pace');
+	$apps = array('searchasyoutype', 'jquery.masonry', 'jquery.imagesloaded', 'jquery.hoverintent', 'jquery.sse', 'jquery.pace', 'linecons');
 	foreach ($apps as $app)
 	{
 		$app = new app($app);

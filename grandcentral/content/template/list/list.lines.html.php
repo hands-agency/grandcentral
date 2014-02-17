@@ -10,8 +10,11 @@
 ?>	
 <li data-item="<?=$item->get_nickname()?>">
 	<?
-		$images = $item[$iconField]->unfold();
-		$thumbnail = (!$item[$iconField]->is_empty() && $images[0]->exists()) ? $images[0]->thumbnail(200, null) : null;
+		if ($iconField)
+		{
+			$images = $item[$iconField]->unfold();
+			$thumbnail = (!$item[$iconField]->is_empty() && $images[0]->exists()) ? $images[0]->thumbnail(200, null) : null;
+		}
 		$empty = (!isset($thumbnail)) ? 'empty' : null;
 	?>
 	<div class="icon <?=$empty?>"><a href="<?=$item->edit()?>"><?=$thumbnail?></a></div>

@@ -37,6 +37,7 @@ class attrMedia extends attrArray
 				$medias[] = $data;
 				break;
 		}
+		$this->data = array();
 		foreach ($medias as $media)
 		{
 			$tmp = media($media);

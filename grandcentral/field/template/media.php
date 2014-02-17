@@ -76,6 +76,5 @@
 			<span class="info"></span>
 		</a>
 		<input type="hidden" name="'.$_FIELD->get_name().'[][url]" value="" disabled="disabled" />
-		<input type="hidden" name="'.$_FIELD->get_name().'[][title]" value="" disabled="disabled" />
 	</li>';
 ?>
