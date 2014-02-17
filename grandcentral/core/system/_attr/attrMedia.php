@@ -37,11 +37,15 @@ class attrMedia extends attrArray
 				$medias[] = $data;
 				break;
 		}
-		print'<pre>';print_r($medias);print'</pre>';
-		foreach ($medias as $media)
+		
+		if (count($medias) > 0)
 		{
-			$tmp = media($media);
-			if ($tmp->exists()) $this->data[] = $tmp->get_path();
+			$this->data = array();
+			foreach ($medias as $media)
+			{
+				$tmp = (isset($media['url'])) ? media($media['url']) : media($media);
+				if ($tmp->exists()) $this->data[] = $tmp->get_path();
+			}
 		}
 		
 		return $this;
