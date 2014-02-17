@@ -37,7 +37,7 @@ class attrMedia extends attrArray
 				$medias = $data;
 				break;
 		}
-		print'<pre>';print_r($medias);print'</pre>';
+		
 		if (count($medias) > 0)
 		{
 			$this->data = array();
