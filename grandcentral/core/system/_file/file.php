@@ -45,7 +45,7 @@ class file
 	{
 		$this->key = mb_substr($this->root, mb_strrpos($this->root, '/') + 1);
 		$this->dir = dirname($this->root);
-		$this->url = mb_substr($this->root, mb_strlen(DOCUMENT_ROOT));
+		$this->url = SITE_URL.mb_substr($this->root, mb_strlen(DOCUMENT_ROOT));
 	}
 
 /**
@@ -183,9 +183,10 @@ class file
  * @return	string	l'url du fichier
  * @access	private
  */
-	public function get_url($absolute = false)
+	public function get_url()
 	{
-		return ($absolute === false) ? $this->url : DOMAIN_URL.$this->url;
+		// print'<pre>';print_r($absolute);print'</pre>';
+		return $this->url;
 	}
 	
 /**
