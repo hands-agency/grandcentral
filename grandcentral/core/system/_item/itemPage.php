@@ -196,12 +196,12 @@ class itemPage extends _items
 		$sections = $this['section']->get();
 		if ($this->child === true)
 		{
-			array_unshift($sections, $this['type']['content']);
+			if (!empty($this['type']['content'])) array_unshift($sections, $this['type']['content']);
 		}
 	//	add section list
 		else
 		{
-			array_unshift($sections, $this['type']['list']);
+			if (!empty($this['type']['list'])) array_unshift($sections, $this['type']['list']);
 		}
 	//	add section to the page
 		$this['section']->set($sections);
