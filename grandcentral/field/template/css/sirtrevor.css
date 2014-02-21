@@ -1,0 +1,21 @@
+/********************************************************************************************/
+/* Toolbar
+/********************************************************************************************/
+li[data-type="sirtrevor"] .wrapper .st-block__inner
+{
+	padding:10px;
+}
+li[data-type="sirtrevor"] .wrapper .st-text-block
+{
+	font-style:'Raleway-Regular';
+	font-size:0.8em;
+}
+li[data-type="sirtrevor"] .wrapper .st-text-block--heading
+{
+	font-style:'Raleway-Regular';
+	font-size:1.4em;
+}
+li[data-type="sirtrevor"] .wrapper .st-text-block>div
+{
+	margin-bottom:10px;
+}

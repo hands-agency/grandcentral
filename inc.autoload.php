@@ -21,28 +21,27 @@
 class boot
 {
    	const ini_file 			= 'inc.config.php';	//	le fichier de config
-   	const admin_dir 		= '/cafecentral';	//	le répertoire racine de cc
-	const admin_theme_dir	= '/theme';			//	le répertoire par défaut des thèmes de l'admin
-	const admin_cache_dir	= '/cache';			//	
-   	const site_dir 			= '/www';			//	le répertoire racine des sites
-	const site_theme_dir	= '';				//	le répertoire par défaut des thèmes du site
-	const site_cache_dir	= '/cache';			//	
-   	const app_dir 			= '/app';			//	le répertoire des apps
+   	const admin_dir 		= 'grandcentral';	//	le répertoire racine de cc
+   	const site_dir 			= 'www';			//	le répertoire racine des sites
+   	const app_system_dir 	= 'system';			//	le répertoire des fichiers systèmes d'une app
+	const app_template_dir 	= 'template';		//	le répertoire des apps
    	const app_ini_file 		= 'config.ini';	 	//	le nom des fichiers de configuration des apps
-   	const index_enabled		= true;				//	pour afficher la page index si on ne trouve pas de site
+   	const index_enabled		= false;			//	pour afficher la page index si on ne trouve pas de site
+	const app_maintenance 	= 'maintenance';		//	le répertoire de la maintenance
 	
 	private $boot 			= 'core';			//	l'app à charger par défaut
 	// private $buffer_callback= 'ob_gzhandler';	//	le paramètre du tampon
 	private $buffer_callback= null;
 	private $root;
-	private $directory;
+	// private $directory;
 	private $relative_root;
 	private $uri;
 	private $url;
 	private $domain;
-	private $env			= 'admin';
+	private $env;
 	private $admin;
 	private $site;
+	private $core_root;
 
 /**
  * What is this method about
@@ -55,18 +54,35 @@ class boot
 	//	ouverture du tampon
 		ob_start($this->buffer_callback);
 	//	recherche de l'url active
-		$this->root = $_SERVER['DOCUMENT_ROOT'];
+		// $this->root = $_SERVER['DOCUMENT_ROOT'];
 		$this->get_url();
 		$this->get_config();
 	//	chargement d'un coeur alternatif
-		if (empty($this->site)) $this->boot = (self::index_enabled === true) ? 'index' : $this->error('no-site');
-		elseif ($this->site['maintenance'] === true && $this->env == 'site') $this->boot = 'maintenance';
-	//	définition des constantes
-		$this->define_config();
-	//	prise en charge de l'autoload des classes
-		spl_autoload_register('boot::autoload');
-	//	chargement du coeur
-		self::get(CORE_ROOT);
+		if (empty($this->site)) $this->boot = (self::index_enabled === true) ? 'index' : trigger_error('Sorry, can\'t find your site definition in the <strong>inc.config.php</strong> file.', E_USER_ERROR);
+		// elseif ($this->site['maintenance'] === true && $this->env == 'site') $this->boot = 'maintenance';
+		switch (true)
+		{
+		//	maintenance
+			case $this->site['maintenance'] === true && $this->env == 'site':
+				$this->boot = 'maintenance';
+			//	définition des constantes
+				$this->define_config();
+				$this->core_root = '';
+				require($this->site['root'].'/'.self::app_maintenance.'/'.self::app_maintenance.'.php');
+				exit;
+				break;
+		//	dans tous les autres cas
+			default:
+			//	définition des constantes
+				$this->define_config();
+			//	prise en charge de l'autoload des classes
+				spl_autoload_register('boot::autoload');
+			//	chargement du coeur
+				self::get($this->core_root);
+				
+				break;
+		}
+	
 	}
 
 /**
@@ -110,7 +126,6 @@ class boot
 				{
 					$param['url'] = $url;
 					$this->site = $param;
-					$this->site['version'] = ($version !== 0) ? $version : null;
 					break 2;
 				}
 			//	recherche approximative
@@ -118,28 +133,31 @@ class boot
 				{
 					$param['url'] = mb_substr($url, 0, mb_strrpos($url, '/'));
 					$this->site = $param;
-					$this->site['version'] = null;
+					break 2;
 				}
 			}
 		}
+	//	version
+		$this->site['version'] = ($version !== 0) ? $version : null;
+		
 		$this->admin = $admin;
-		$this->admin['root'] = $this->root.self::admin_dir;
+		$this->admin['root'] = $this->root.'/'.self::admin_dir;
 		if (is_array($this->site))
 		{
 		//	site
 			$this->site['urlr'] = mb_substr($this->url, mb_strlen($this->site['url']));
-			$this->site['root'] = $this->root.self::site_dir.'/'.$this->site['key'];
-			$this->site['theme_root'] = $this->site['root'].self::site_theme_dir;
-			$this->site['theme_relative_root'] = $this->relative_root.self::site_dir.'/'.$this->site['key'].self::site_theme_dir;
-			$this->site['cache_root'] = $this->site['root'].self::site_cache_dir;
+			$this->site['root'] = $this->root.'/'.self::site_dir.'/'.$this->site['key'];
+			// $this->site['theme_root'] = $this->site['root'].self::site_theme_dir;
+			// $this->site['theme_relative_root'] = $this->relative_root.self::site_dir.'/'.$this->site['key'].self::site_theme_dir;
+			// $this->site['cache_root'] = $this->site['root'].self::site_cache_dir;
 		//	admin
 			$this->admin['url'] = $this->site['url'].'/'.$this->admin['key'];
 			$this->admin['urlr'] = mb_substr($this->url, mb_strlen($this->admin['url']));
-			$this->admin['app_root'] = $this->admin['root'].self::app_dir;
-			$this->admin['app_relative_root'] = $this->relative_root.self::admin_dir.self::app_dir;
-			$this->admin['theme_root'] = $this->admin['root'].self::admin_theme_dir;
-			$this->admin['theme_relative_root'] = $this->relative_root.self::admin_dir.self::admin_theme_dir;
-			$this->admin['cache_root'] = $this->admin['root'].self::admin_cache_dir;
+			// $this->admin['app_root'] = $this->admin['root'].self::app_dir;
+			// $this->admin['app_relative_root'] = $this->relative_root.self::admin_dir.self::app_dir;
+			// $this->admin['theme_root'] = $this->admin['root'].self::admin_theme_dir;
+			// $this->admin['theme_relative_root'] = $this->relative_root.self::admin_dir.self::admin_theme_dir;
+			// $this->admin['cache_root'] = $this->admin['root'].self::admin_cache_dir;
 		//	env
 			$this->env = (mb_strpos($this->site['urlr'].'/', '/'.$this->admin['key'].'/') === 0) ? 'admin' : 'site';
 			if ($this->env === 'site') unset($this->admin['urlr']);
@@ -157,23 +175,21 @@ class boot
 	private function define_config()
 	{
 		$this->define('admin', $this->admin);
-		$this->define('CORE_ROOT', ADMIN_ROOT.self::app_dir.'/'.$this->boot);
-		define('CC_ROOT', $this->root);
-		define('CC_DIR', $this->relative_root);
+		$this->define('DOCUMENT_ROOT', $this->root);
+		$this->core_root = ADMIN_ROOT.'/'.$this->boot;
+		// define('CC_ROOT', $this->root);
+		// define('CC_DIR', $this->relative_root);
 		define('env', $this->env);
 		define('ENV', mb_strtoupper($this->env));
 		if (!empty($this->site))
 		{
 			$this->define('site', $this->site);
 			$this->define('KEY', constant(ENV.'_KEY'));
-			$this->define('DOMAIN_URL', constant(ENV.'_URL'));
+			$this->define('DOMAIN_URL', $this->domain);
 			$this->define('URI', $this->uri);
 			$this->define('URL', $this->url);
 			$this->define('URLR', constant(ENV.'_URLR'));
 			$this->define('ROOT', constant(ENV.'_ROOT'));
-			$this->define('THEME_ROOT', constant(ENV.'_THEME_ROOT'));
-			$this->define('THEME_RELATIVE_ROOT', constant(ENV.'_THEME_RELATIVE_ROOT'));
-			$this->define('CACHE_ROOT', constant(ENV.'_CACHE_ROOT'));
 		}
 	}
 
@@ -205,12 +221,23 @@ class boot
  * @return	array	all of the exciting sample options
  * @access	public
  */
-	public static function get($root, $require = true)
+	public static function get($app_root, $require = true)
 	{
-		$ini_file = $root.'/'.self::app_ini_file;
+		$ini_file = $app_root.'/'.self::app_ini_file;
+		
 		if (is_file($ini_file) && $ini = parse_ini_file($ini_file, true))
 		{
-			array_walk_recursive($ini['php'], 'self::load', $root);
+			foreach ($ini[self::app_system_dir] as $type => $files)
+			{
+				if (in_array($type, array('class', 'lib')))
+				{
+					foreach ($files as $file)
+					{
+						$root = $app_root.'/'.self::app_system_dir.'/'.$file;
+						self::load($root);
+					}
+				}
+			}
 		}
 		else
 		{
@@ -226,9 +253,8 @@ class boot
  * @return	array	all of the exciting sample options
  * @access	public
  */
-	private static function load($file, $id, $root)
-	{
-		$file = $root.$file;
+	private static function load($file)
+	{	
 		if (is_file($file))
 		{
 			require_once $file;
@@ -270,7 +296,7 @@ class boot
  */
 	private function autoload($name)
 	{
-		(class_exists('registry', false) && $app = registry::get(registry::class_index, $name)) ? self::get(ADMIN_APP_ROOT.'/'.$app) : self::error('no-class', $name);
+		(class_exists('registry', false) && $app = registry::get(registry::class_index, $name)) ? self::get(ADMIN_ROOT.'/'.$app) : self::error('no-class', $name);
 	}
 
 /**

@@ -1,3 +1,6 @@
 .DS_Store
 inc.config.php
-*/cache/*
+grandcentral/cache/template/*
+www/cache/*
+
+.gitignore

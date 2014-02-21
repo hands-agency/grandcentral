@@ -1,0 +1,108 @@
+/********************************************************************************************/
+/* Common
+/********************************************************************************************/
+section[data-template^="doc/"] h2
+{
+	border:none !important;
+	margin-bottom:0 !important;
+}
+section[data-template^="doc/"] .padding
+{
+	padding:15px;
+	border:1px solid #eee;
+	margin-bottom:40px;
+}
+section[data-template^="doc/"] .descr
+{
+	color:#888;
+	margin-bottom:10px;
+}
+/* Code */
+section[data-template^="doc/"] code,
+section[data-template^="doc/"] pre
+{
+	background:#F2F2F2;
+	font-size:0.8em;
+	margin:10px 0;
+}
+section[data-template^="doc/"] pre
+{
+	border:1px solid #F2F2F2;
+	padding:10px 40px;
+}
+section[data-template^="doc/"] p,
+section[data-template^="doc/"] ul
+{
+	margin:0 0 10px 0;
+}
+section[data-template^="doc/"] ul
+{
+	padding:0 0 0 20px;
+	list-style-type:square;
+}
+
+/* Tables */
+section[data-template^="doc/"] table
+{
+	background:#eee;
+	width:100%;
+	margin:0 0 10px 0;
+}
+section[data-template^="doc/"] table tr th
+{
+	font-weight:bold;
+	text-align:left;
+}
+section[data-template^="doc/"] table tr th,
+section[data-template^="doc/"] table tr td
+{
+	padding:10px;
+	border-bottom:1px solid #fff;
+}
+section[data-template^="doc/"] table tr ul,
+section[data-template^="doc/"] table tr ol
+{
+	padding-left:10px;
+	margin:0;
+}
+section[data-template^="doc/"] table tr ul
+{
+	list-style-type:square;
+}
+section[data-template^="doc/"] table tr ol
+{
+	list-style-type:decimal;
+}
+
+/********************************************************************************************/
+/* The PHP doc
+/********************************************************************************************/
+section[data-template^="doc/"] #section_php ul
+{
+	border-bottom:1px solid #ccc;
+	padding:0 0 20px 0;
+	margin:0 0 20px 0;
+}
+
+/********************************************************************************************/
+/* Detail
+/********************************************************************************************/
+/* Toc */
+section[data-template^="doc/"] .toc
+{
+	padding:20px;
+}
+/* heading */
+section[data-template^="doc/"] h2
+{
+	color:#999;
+}
+section[data-template^="doc/"] h2 em
+{
+	color:#000;
+}
+section[data-template^="doc/"] h3
+{
+	margin-top:20px;
+}
+

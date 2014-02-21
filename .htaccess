@@ -11,7 +11,7 @@
 #********************************************************************************************/
 #	OVH
 #********************************************************************************************/
-	SetEnv PHP_VER 5_TEST
+	SetEnv PHP_VER 5_4
 
 #********************************************************************************************/
 #	Better website experience for IE users
@@ -79,7 +79,7 @@
 #	webfonts
 	ExpiresByType font/truetype					"access plus 1 month"
 	ExpiresByType font/opentype					"access plus 1 month"
-	ExpiresByType application/x-font-woff		"access plus 1 month"
+	ExpiresByType application/font-woff			"access plus 1 month"
 	ExpiresByType image/svg+xml					"access plus 1 month"
 	ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
     

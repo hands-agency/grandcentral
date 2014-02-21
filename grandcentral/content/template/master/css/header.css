@@ -1,0 +1,30 @@
+/********************************************************************************************/
+/* Clap along
+/********************************************************************************************/
+header
+{
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	position:relative;
+	background:#fff;
+}
+header.sticky
+{
+    position: fixed;
+    left: 0;  
+    top: 0;  
+    z-index: 2;
+}
+header .clapalong
+{
+	font-size:40px;
+	line-height:1.4em;
+	font-family:'Raleway-Thin';
+	padding:30px 100px 30px 30px;
+}
+header .clapalong span
+{
+	border-bottom:1px dashed #ccc;
+	color:#ccc;
+}

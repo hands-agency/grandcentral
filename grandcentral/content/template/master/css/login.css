@@ -1,0 +1,113 @@
+/********************************************************************************************/
+/* Login
+/********************************************************************************************/
+#grandCentralSite iframe
+{
+	-webkit-filter: saturate(0.5);
+	-moz-filter: saturate(0.5);
+	-ms-filter: saturate(0.5);
+	-o-filter: saturate(0.5);
+	filter: saturate(0.5);
+	-webkit-filter: brightness(0.6);
+	-moz-filter: brightness(0.6);
+	-ms-filter: brightness(0.6);
+	-o-filter: brightness(0.6);
+	filter: brightness(0.6);
+	-webkit-filter: blur(5px);
+	-moz-filter: blur(5px);
+	-ms-filter: blur(5px);
+	-o-filter: blur(5px);
+	filter: blur(5px);
+}
+
+/********************************************************************************************/
+/* Login
+/********************************************************************************************/
+#overlay
+{
+	width:100%;
+	height:100%;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:2;
+}
+#grandCentralLogo
+{
+}
+form
+{
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin:-210px 0 0 -310px;
+	background:#111;
+	width:540px;
+	height:340px;
+	padding:40px;
+}
+form fieldset
+{
+	padding:0;
+	border:0;
+}
+form ol
+{
+	padding:0;
+	margin:0;
+	list-style-type:none;
+}
+form ol li
+{
+	margin-bottom:20px;
+}
+h1,
+label
+{
+	font-size:50px;
+	font-family:"Raleway-Thin";
+	color:#ccc;
+	border:1px solid transparent;
+	padding:0 10px;
+}
+h1
+{
+	font-size:30px;
+	color:#777;
+	margin-bottom:20px;
+}
+input
+{
+	font-size:50px;
+	border:none;
+	font-family:"Raleway-Thin";
+	color:#eee;
+	background:transparent;
+	border:1px solid transparent;
+	padding:2px 10px;
+}
+input:hover
+{
+	border:1px solid #3eb4d6;
+}
+::-webkit-input-placeholder {
+   color: #3eb4d6;
+}
+:-moz-placeholder { /* Firefox 18- */
+   color: #3eb4d6;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #3eb4d6;
+}
+:-ms-input-placeholder {  
+   color: #3eb4d6;
+}
+input:-webkit-autofill {
+	background: transparent !important;
+}
+button[type="submit"]
+{
+	/* This is disgusting */
+	position: absolute; width: 1px; height: 1px; left: -9999px;
+}

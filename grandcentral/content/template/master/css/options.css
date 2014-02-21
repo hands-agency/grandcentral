@@ -1,0 +1,122 @@
+/********************************************************************************************/
+/* Options
+/********************************************************************************************/
+#options
+{
+	overflow:auto;
+	font-size:0.9em;
+	background:#F0F0F0;
+	padding:20px 30px;
+}
+#options>ul:first-child>li
+{
+	background:#fff;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	margin:0 10px 0 0;
+	height:25px;
+	line-height:27px;
+	font-size:14px;
+	padding:0 10px;
+	float:left;
+	position:relative;
+	cursor:pointer !important;
+	text-align:center;
+	/* 3D flip */
+	-webkit-transform-style: preserve-3d;
+	-webkit-transition: 0.5s;
+	border:1px solid #e2e4e6;
+}
+#options>ul:first-child>li.right
+{
+	float:right;
+	margin:0 0 0 10px;
+}
+#options>ul:first-child>li.on
+{
+	background:#3eb4d6;
+	border-color:#3eb4d6;
+	color:#ffffff;
+	/* 3D flip */
+	-webkit-transform: rotatey(180deg);
+}
+#options>ul:first-child>li.on:after
+{
+	position:absolute;
+	bottom:-20px;
+	left:50%;
+	margin-left:-7px;
+	content:'';
+	border-style: solid;
+	border-width: 0 7px 7px 7px;
+	border-color: transparent transparent #999 transparent;
+}
+
+/* Lock / unlock */
+#lock
+{
+	width:25px;
+	padding:0 !important;
+}
+
+/* Filter */
+#filter
+{
+	width:25px;
+	padding:0 !important;
+}
+
+/* Local search */
+#options #refine
+{
+	padding:0 0 0 5px;
+	display:none; /* Starts hidden, show if necessary */
+}
+#options #refine input
+{
+	border:0;
+	padding:3px 7px;
+	width:170px;
+}
+
+/********************************************************************************************/
+/* Options drop
+/********************************************************************************************/
+#options_drop
+{
+	margin-top:19px;
+	border-top:1px solid #999;
+	padding:7px 0;
+	display:none;
+}
+#options_drop ul
+{
+	float:left;
+	width:25%;
+}
+#options_drop ul li
+{
+	border-bottom:1px solid #ddd;
+	padding:3px 0;
+	cursor:pointer;
+}
+#options_drop ul li.legend
+{
+	font-family:'Raleway-Regular';
+}
+#options_drop ul li .title
+{
+	font-family:'Raleway-Thin';
+}
+#options_drop ul li.on .title
+{
+	color:#3eb4d6;
+}
+#options_drop ul li .descr
+{
+	display:none;
+}
+#options_drop ul:first-child
+{
+}

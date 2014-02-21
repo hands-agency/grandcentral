@@ -1,0 +1,11 @@
+/********************************************************************************************/
+/* template
+/********************************************************************************************/
+form .page .field .field {
+	display: inline !important;
+	border: 0 !important;
+}
+form .page .fieldPageTypeSelect {
+	padding: 0 5px;
+	line-height:30px;
+}

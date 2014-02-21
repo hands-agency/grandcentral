@@ -1,0 +1,266 @@
+/********************************************************************************************/
+/*////////////////////////////////////////////////////////////////////////////////////////////
+/* A Form Section
+/////////////////////////////////////////////////////////////////////////////////////////////
+/********************************************************************************************/
+/* Fieldsets */
+section[data-template="edit/edit"]
+{
+	background:#F0F0F0;
+}
+section[data-template="edit/edit"]>form>fieldset
+{
+}
+section[data-template="edit/edit"]>form>fieldset>legend
+{
+	font-weight:bold;
+}
+section[data-template="edit/edit"]>form>fieldset>.descr
+{
+	margin-bottom:10px;
+	color:#ccc;
+}
+
+/* Lines */
+section[data-template="edit/edit"]>form>fieldset>ol>li
+{
+	background:#fff;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	padding:5px;
+	position:relative;
+	margin:0 50px 10px 0;
+	border:1px solid #eee;
+}
+
+/* Labels */
+section[data-template="edit/edit"]>form>fieldset ol>li>label
+{
+	color:#333333;
+	width:25%;
+	float:left;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	text-align:right;
+	padding:15px 15px 0 0;
+	font-family: "Raleway-Thin";
+	vertical-align:top;
+}
+
+/* Field */
+section[data-template="edit/edit"]>form>fieldset ol>li .wrapper
+{
+	width:75%;
+	display:inline-block;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+}
+section[data-template="edit/edit"]>form>fieldset ol>li .wrapper .field
+{
+	position:relative;
+	display: block;
+	padding:7px;
+	background:#fff;
+	-webkit-transition:border-color .3s ease-in;
+	-moz-transition:border-color .3s ease-in;
+	-o-transition:border-color .3s ease-in;
+	transition:border-color .3s ease-in;
+	font-family:'Raleway-Regular';
+}
+section[data-template="edit/edit"]>form>fieldset ol>li>.wrapper>.field
+{
+	border-left:1px solid #eee;
+}
+section[data-template="edit/edit"]>form>fieldset ol>li.number .wrapper .field,
+section[data-template="edit/edit"]>form>fieldset ol>li.text .wrapper .field,
+section[data-template="edit/edit"]>form>fieldset ol>li.textarea .wrapper .field,
+section[data-template="edit/edit"]>form>fieldset ol>li.wysiwyg .wrapper .field,
+section[data-template="edit/edit"]>form>fieldset ol>li.multipleselect .wrapper .field
+{
+}
+
+/********************************************************************************************/
+/* Help
+/********************************************************************************************/
+section[data-template="edit/edit"]>form>fieldset ol>li .wrapper .help
+{
+	padding:10px 0;
+	display:none;
+}
+
+/********************************************************************************************/
+/* Look
+/********************************************************************************************/
+li.ok .field
+{
+/*	border-color:#6cbf2d !important; */
+}
+li.ko .field
+{
+	border-color:#df3528 !important;
+}
+
+/********************************************************************************************/
+/* Control
+/********************************************************************************************/
+/* All controls */
+section[data-template="edit/edit"] fieldset ol>li [data-control]
+{
+	position:absolute;
+	right:-50px;
+	top:10px;
+	height:35px;
+	line-height:35px;
+	width:35px;
+	text-align:center;
+	color:#fff;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	background:#eee;
+}
+section[data-template="edit/edit"] fieldset ol>li [data-control]:after
+{
+	content:'';
+	width:0;
+	height:0;
+	border-style:solid;
+	border-width:5px 8px 5px 0;
+	border-color:transparent #eee transparent transparent;
+	position:absolute;
+	top:13px;
+	left:-7px;
+}
+
+/* Control proposing edition */
+section[data-template="edit/edit"] fieldset ol>li.editable [data-control]
+{
+	background:transparent;
+	cursor:pointer;
+	color:#ccc;
+	border:1px solid #F2F2F2;
+}
+section[data-template="edit/edit"] fieldset ol>li.editable [data-control]:after
+{
+	border-right-color:transparent;
+}
+section[data-template="edit/edit"] fieldset ol>li.editable [data-control]:hover
+{
+	background:#ccc;
+	color:#fff;
+}
+section[data-template="edit/edit"] fieldset ol>li.editable [data-control]:hover:after
+{
+	border-right-color:#ccc;
+}
+
+/* Control while editing */
+section[data-template="edit/edit"] fieldset ol>li.editing [data-control]
+{
+	background:#6cbf2d;
+	cursor:pointer;
+}
+section[data-template="edit/edit"] fieldset ol>li.editing [data-control]:after
+{
+	border-right-color:#6cbf2d;
+}
+section[data-template="edit/edit"] fieldset ol>li.editing [data-control]:hover
+{
+	background:#FF9900;
+	-moz-transform: scale(1.1);
+	-webkit-transform: scale(1.1);
+	-o-transform: scale(1.1);
+	transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=1.1, M12=-0, M21=0, M22=1.1);
+}
+section[data-template="edit/edit"] fieldset ol>li.editing [data-control]:hover:after
+{
+	border-right-color:#FF9900;
+}
+
+/* Control guiding you */
+section[data-template="edit/edit"] fieldset ol>li.guiding [data-control]
+{
+	background:#ccc;
+}
+section[data-template="edit/edit"] fieldset ol>li.guiding [data-control]:after {
+	border-right-color:#ccc;
+}
+
+/* Control field is OK */
+section[data-template="edit/edit"] fieldset ol>li.ok [data-control]{
+	background:#6cbf2d;
+}
+section[data-template="edit/edit"] fieldset ol>li.ok [data-control]:after {
+	border-right-color:#6cbf2d;
+}
+
+/* Control field is K0 */
+section[data-template="edit/edit"] fieldset ol>li.ko [data-control] {
+	background:#df3528;
+}
+section[data-template="edit/edit"] fieldset ol>li.ko [data-control]:after {
+	border-right-color:#df3528;
+}
+
+/********************************************************************************************/
+/* Todo
+/********************************************************************************************/
+section[data-template="edit/edit"]>form>fieldset ol>li .wrapper .todo
+{
+	list-style-type:square;
+	padding:10px 0 5px 20px;
+}
+
+/********************************************************************************************/
+/* Edit
+/********************************************************************************************/
+section[data-template="edit/edit"]>form>fieldset .editing
+{
+}
+/* The form to edit the form */
+section[data-template="edit/edit"]>form>fieldset .editWrapper
+{
+	background:#eff2f4;
+	margin-top:10px;
+	padding:5px;
+	position:relative;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+}
+section[data-template="edit/edit"]>form>fieldset .editWrapper:after
+{
+	position:absolute;
+	top:-15px;
+	left:50%;
+	margin-left:-15px;
+	content:'';
+	border-style: solid;
+	border-width: 0 15px 15px 15px;
+	border-color: transparent transparent #eff2f4 transparent;
+}
+section[data-template="edit/edit"]>form>fieldset .editWrapper>ol>li
+{
+	padding:5px;
+}
+
+/* Editing a subform & keep readability */
+.subEditing #greenbutton-default
+{
+    -webkit-transform: saturate(0.1);
+    -moz-transform: saturate(0.1);
+    transform: saturate(0.1);
+	-webkit-filter:saturate(0.1);
+}
+.subEditing li.editable [data-control]
+{
+	display:none;
+}

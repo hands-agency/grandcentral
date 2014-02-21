@@ -1,0 +1,74 @@
+/********************************************************************************************/
+/* Data
+/********************************************************************************************/
+/* The fields */
+[data-type="attr"] .data>li,
+[data-type="rel"] .data>li,
+[data-type="array"] .data>li,
+[data-type="bunch"] .data>li
+{
+	position:relative;
+	background:#F3F3F3;
+	margin-bottom:3px;
+	moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	padding:5px;
+	margin:10px;
+}
+[data-type="attr"] .data>li .delete,
+[data-type="rel"] .data>li .delete,
+[data-type="array"] .data>li .delete,
+[data-type="bunch"] .data>li .delete
+{
+	position:absolute;
+	top:5px;
+	right:5px;
+	display:none;
+}
+[data-type="attr"] .data>li:hover .delete,
+[data-type="rel"] .data>li:hover .delete,
+[data-type="array"] .data>li:hover .delete,
+[data-type="bunch"] .data>li:hover .delete
+{
+	display:block;
+}
+	
+/* The lines of the field */
+[data-type="attr"] .data>li li,
+[data-type="rel"] .data>li li,
+[data-type="array"] .data>li li,
+[data-type="bunch"] .data>li li
+{
+	padding:5px;
+}
+
+/********************************************************************************************/
+/* Templates
+/********************************************************************************************/
+[data-type="attr"] .template,
+[data-type="rel"] .template,
+[data-type="array"] .template,
+[data-type="bunch"] .template
+{
+	display:none;
+}
+
+/********************************************************************************************/
+/* Add
+/********************************************************************************************/
+[data-type="attr"] .add,
+[data-type="rel"] .add,
+[data-type="array"] .add,
+[data-type="bunch"] .add
+{
+	text-align:center;
+}
+[data-type="attr"] .add li,
+[data-type="rel"] .add li,
+[data-type="array"] .add li,
+[data-type="bunch"] .add li
+{
+	display:inline-block;
+	margin:0 5px;
+}
