@@ -1,0 +1,191 @@
+/********************************************************************************************/
+/* Common 
+/********************************************************************************************/
+section[data-template="tree/tree"]
+{
+}
+
+section[data-template="tree/tree"] ol
+{
+}
+section[data-template="tree/tree"] li
+{
+	display:inline-block;
+	white-space:nowrap;
+	vertical-align:top;
+	border-radius:3px;
+	border:1px solid transparent; /* Prepare placeholder */
+}
+
+/********************************************************************************************/
+/* Pages
+/********************************************************************************************/
+section[data-template="tree/tree"] ol li .page
+{
+	padding:7px 10px;
+	height:140px;
+	margin-bottom:70px;
+	border:1px solid transparent;
+	white-space:normal;
+	display:inline-block;
+}
+section[data-template="tree/tree"] ol li .page:hover
+{
+}
+
+/* The icon */
+section[data-template="tree/tree"] ol li .page .icon
+{
+	width:110px;
+	height:100%;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	padding:15px 10px;
+	text-align:center;
+	border:1px solid #ccc;
+	display:inline-block;
+	position:relative;
+}
+section[data-template="tree/tree"] ol li .page .icon:hover
+{
+}
+
+/* Badges */
+section[data-template="tree/tree"] ol li .page .icon .cc-badge
+{
+	top:-5px;
+	right:-5px;
+}
+
+/* The title */
+section[data-template="tree/tree"] ol li .page .icon>.title
+{
+	font-family: "Raleway-Regular";
+	font-size:12px;
+	margin-bottom:15px;
+	padding:3px 0;
+}
+section[data-template="tree/tree"] ol li .page .icon>.title a
+{
+	color:#333;
+}
+
+/* The Detail */
+section[data-template="tree/tree"] ol li .page .detail
+{
+	font-family: "Raleway-Regular";
+	color:#ccc;
+	margin:15px;
+	font-size:10px;
+	display:inline-block;
+}
+
+/* By status */
+section[data-template="tree/tree"] ol li .page[data-status="asleep"] .icon
+{
+	border:1px dashed #333;
+	opacity:0.6;
+	
+}
+
+/* Home */
+section[data-template="tree/tree"]>ol>li>.page
+{
+	margin-left:30%;
+}
+
+/********************************************************************************************/
+/* Action */
+/********************************************************************************************/
+section[data-template="tree/tree"] li * .action
+{
+	display:none;
+}
+
+/********************************************************************************************/
+/* Sortable
+/********************************************************************************************/
+/* Draggable */
+.unlocked section[data-template="tree/tree"] ol li .icon
+{
+	cursor:move;
+}
+
+/* Placeholder */
+section[data-template="tree/tree"] li.placeholder
+{
+}
+
+/* Being Dragged */
+section[data-template="tree/tree"] ol li.dragged 
+{
+	position:absolute;
+	background:#fff;
+	width:80px !important;
+	height:80px !important;
+	overflow:hidden;
+	border-radius:100px;
+	z-index:99999;
+	background:#fff;
+	border:1px solid #F2F2F2;
+	box-shadow: 3px 3px 1px 0 rgba(0, 0, 0, .1) !important;
+    -webkit-transform: rotateZ(-3deg) scale(1.05) !important;
+    -moz-transform: rotateZ(-3deg) scale(1.05) !important;
+    transform: rotateZ(-3deg) scale(1.05) !important;
+}
+section[data-template="tree/tree"] ol li.dragged .page
+{
+}
+
+/********************************************************************************************/
+/* Content
+/********************************************************************************************/
+section[data-template="tree/tree"] li .page[data-type="content"] .icon
+{
+	background:#F2F2F2;
+}
+
+/********************************************************************************************/
+/* Feed
+/********************************************************************************************/
+section[data-template="tree/tree"] li .page[data-type="feed"] .icon
+{
+	background:#F2F2F2;
+}
+
+/********************************************************************************************/
+/* Header
+/********************************************************************************************/
+section[data-template="tree/tree"] li .page[data-type="header"] .icon
+{
+	border:1px solid #F2F2F2;
+}
+section[data-template="tree/tree"] li .page[data-type="header"] .icon:before
+{
+	content:'';
+	position:absolute;
+	top:0;
+	left:50%;
+	border-left:1px solid #333;
+	margin-left:-1px;
+	width:1px;
+	height:100%;
+}
+section[data-template="tree/tree"] li .page[data-type="header"] .icon .title
+{
+	background:#fff;
+	z-index:2;
+	position:relative;
+}
+
+/********************************************************************************************/
+/* Links
+/********************************************************************************************/
+section[data-template="tree/tree"] li .page[data-type="link"] .icon
+{
+	height:60px;
+	border:1px solid #ccc;
+}

@@ -1,0 +1,19 @@
+/********************************************************************************************/
+/* Array
+/********************************************************************************************/
+[data-type="array"] .data li li
+{
+	display:inline-block;
+	width:50%;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+[data-type="array"] .data li li .wrapper
+{
+	width:100% !important;
+}
+li[data-type="array"] .wrapper pre
+{
+	white-space:pre-wrap;
+}

@@ -1,0 +1,1 @@
+<p>Here, the instructions for the <?=$section?> section when it is unlocked</p>

@@ -1,0 +1,41 @@
+/********************************************************************************************/
+/* Toolbar
+/********************************************************************************************/
+li[data-type="wysiwyg"] .wrapper .toolbar
+{
+	margin:0 0 15px 0;
+}
+li[data-type="wysiwyg"] .wrapper .toolbar>li:not(.divider)
+{
+	display:inline-block;
+	position:relative;
+}
+li[data-type="wysiwyg"] .wrapper .toolbar>li:not(.divider) button
+{
+	min-width:20px;
+}
+li[data-type="wysiwyg"] .wrapper .toolbar>li.wysihtml5-command-active button
+{
+	background: #e3e3e3;
+}
+/* Divider */
+li[data-type="wysiwyg"] .wrapper .toolbar li.divider
+{
+	width:7px;
+	display:inline-block;
+}
+
+/********************************************************************************************/
+/* Editor iframe
+/********************************************************************************************/
+li[data-type="wysiwyg"] .wrapper iframe
+{
+
+	width:100%;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	min-height:200px !important;
+	padding:0 !important;
+	border:none;
+}

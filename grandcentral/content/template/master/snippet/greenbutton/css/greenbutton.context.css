@@ -1,0 +1,21 @@
+/********************************************************************************************/
+/* Choices
+/********************************************************************************************/
+#greenbutton-choices
+{
+}
+#greenbutton-choices ul li
+{
+	padding:7px 0;
+	border-bottom:1px solid #ccc;
+}
+#greenbutton-choices ul li .title
+{
+	font-family:'Raleway-Thin';
+	color:#000;
+}
+#greenbutton-choices ul li .descr
+{
+	color:#ccc;
+	font-size:0.8em;
+}

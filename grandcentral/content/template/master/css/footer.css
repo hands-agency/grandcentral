@@ -1,0 +1,43 @@
+/********************************************************************************************/
+/* Footer
+/********************************************************************************************/
+footer
+{
+	font-size:0.75em;
+	overflow:auto;
+	color:#ddd;
+	padding:50px 30px 30px 30px;
+}
+footer a
+{
+	color:#ccc;
+}
+/* mnsys */
+#mnsys
+{
+	float:left;
+}
+#mnsys li
+{
+	display:inline;
+}
+#mnsys li:after
+{
+	content:'•';
+	margin:0 3px 0 5px;
+	color:#ddd;
+}
+#mnsys li:last-child:after
+{
+	content:'';
+}
+
+/* mnflags */
+#mnflags
+{
+	float:right;
+}
+#mnflags li
+{
+	display:inline;
+}

@@ -1,0 +1,177 @@
+/********************************************************************************************/
+/* tabs
+/********************************************************************************************/
+#tabs
+{
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	box-shadow: 0px 0 6px -6px hsla(0,0%,0%,1);
+	padding:10px 0 0 10px;
+	position:relative;
+}
+#tabs>ul
+{
+}
+#tabs>ul>li
+{
+	position:relative;
+	text-align:center;
+	display:inline-block;
+	cursor:pointer;
+}
+#tabs>ul>li a
+{
+	opacity:0.5;
+	-webkit-transition: all 0.1s ease-out;
+	-moz-transition: all 0.1s ease-out;
+	-o-transition: all 0.1s ease-out;
+	transition: all 0.1s ease-out;
+	display:block;
+	position:relative;
+	z-index:1;
+	margin:0 15px 0 15px;
+	padding:15px 0;
+}
+#tabs>ul>li>a>span
+{
+	display:block;
+}
+#tabs>ul>li>a .title,
+h1
+{
+	font-family:"Raleway-Regular";
+	color:#000;
+	text-transform:uppercase;
+	font-size:12px;
+}
+#tabs>ul>li>a .descr
+{
+	font-size:0.65em;
+	color:#fff;
+	opacity:0.5;
+	display:none;
+}
+#tabs>ul>li.on a,
+#tabs>ul>li:hover a
+{
+	opacity:1;
+}
+#tabs>ul>li.on a
+{
+
+}
+#tabs>ul>li.on>a:after
+{
+	content:'';
+	position:absolute;
+	border-style: solid;
+	border-width: 10px 10px 0px 10px;
+	border-color: #fff transparent transparent transparent;
+	bottom:-10px;
+	margin-left:-10px;
+	left:50%;
+}
+
+/* Dividers */
+#tabs>ul li.divider:before
+{
+	content:'•';
+	font-size:1.3em;
+	color:#eeeeee;
+	position:relative;
+	top:5px;
+}
+
+/* Bubbles */
+#tabs>ul>li .cc-bubble
+{
+	display:none;
+	top:-17px;
+	right:-7px;
+}
+#tabs>ul>li:hover .cc-bubble
+{
+	display:block;
+}
+
+/* Droppable */
+#tabs>ul>li .droppable
+{
+	width:100px;
+	height:100px;
+	left:50%;
+	top:50%;
+	margin:-50px 0 0 -50px;
+	position:absolute;
+	pointer-events:none;
+	opacity:0;
+	z-index:3;
+	-moz-border-radius:100px;
+	-webkit-border-radius:100px;
+	border-radius:100px;
+	background:rgba(255, 255, 255, 0.5);
+	border:1px dashed #FE9400;
+	-webkit-transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	transition:         all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
+#tabs>ul>li.ui-droppable-hover .droppable
+{
+	opacity:1;
+	-moz-transform: scale(1.5);
+	-webkit-transform: scale(1.5);
+	transform: scale(1.5);
+}
+
+/* You can have some tabs on the right side as well */
+#tabs>ul>li.right
+{
+	float:right;
+	margin:0 0 0 10px;
+}
+
+/********************************************************************************************/
+/* H1
+/********************************************************************************************/
+h1
+{
+
+}
+h1 a span
+{
+	display:block;
+	padding:7px 10px;
+	margin:7px 0;
+	float:left;
+}
+/* Back */
+h1 .back
+{
+	margin-left:-100%;
+	-webkit-transition: all .1s ease-out; 
+	-moz-transition: all .1s ease-out; 
+	-o-transition: all .1s ease-out; 
+	transition: all .1s ease-out;
+}
+h1:hover .back
+{
+	margin-left:0;
+	-webkit-transition: all .1s ease-out; 
+	-moz-transition: all .1s ease-out; 
+	-o-transition: all .1s ease-out; 
+	transition: all .1s ease-out;
+}
+h1:hover .back:before
+{
+	content:'⇠ ';
+}
+/* Current */
+h1 .current
+{
+	color:#fff;
+	background:#999;
+}
+h1:hover .current
+{
+	color:#ddd;
+}

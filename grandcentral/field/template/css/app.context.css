@@ -1,0 +1,25 @@
+/********************************************************************************************/
+/* template
+/********************************************************************************************/
+#context ol li
+{
+}
+#context ol li label
+{
+	width:20%;
+	font-family:'raleway-thin';
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	display:inline-block;
+	padding:0 10px 0 0;
+	text-align:right;
+}
+#context ol li .wrapper
+{
+	width:70%;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	display:inline-block;
+}

@@ -1,0 +1,57 @@
+/********************************************************************************************/
+/* Trashbin
+/********************************************************************************************/
+#trashbin
+{
+	width:40px;
+	height:40px;
+	left:50%;
+	margin-left:-20px;
+	position:fixed;
+	padding:20px;
+	z-index:3;
+	-moz-border-radius:40px;
+	-webkit-border-radius:40px;
+	border-radius:40px;
+	font-size:2.4em;
+	color:#fff;
+	text-align:center;
+	background:#aaa;
+	opacity:0.8;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
+}
+#trashbin.hover
+{
+	color:#eee;
+	border:1px dashed #FE9400;
+	background:rgba(255, 255, 255, 0.5);
+	-moz-transform: scale(1.8);
+	-webkit-transform: scale(1.8);
+	transform: scale(1.8);
+}
+#trashbin.full
+{
+	
+}
+#trashbin.visible
+{
+	bottom:50px;
+}
+#trashbin.hidden
+{
+	bottom:-100px;
+}
+#trashbin.empty
+{
+	
+}
+#trashbin .cc-bubble
+{
+	display:none;
+	position:absolute;
+	top:-15px;
+	right:-10px;
+}
