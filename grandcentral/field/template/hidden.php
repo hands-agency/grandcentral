@@ -13,7 +13,7 @@
  * @package		The package
  * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
  * @author		Sylvain Frigui <sf@cafecentral.fr>
- * @copyright	Copyright © 2004-2013, Café Central
+ * @copyright	Copyright © 2004-2012, Café Central
  * @license		http://www.cafecentral.fr/fr/licences GNU Public License
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
@@ -24,4 +24,24 @@
 /********************************************************************************************/
 	$_FIELD = $_PARAM['field'];
 	
+	if (!function_exists('crymeahidden'))
+	{
+		function crymeahidden($name, $value, $return = array())
+		{
+			if (!is_array($value))
+			{
+				$return[$name] = $value;
+			}
+			else
+			{
+				foreach ($value as $k => $v)
+				{
+					$return = crymeahidden($name.'['.$k.']', $v, $return);
+				}
+			}
+			return $return;
+		}
+	}
+	
+	$hiddens = crymeahidden($_FIELD->get_name(), $_FIELD->get_value());
 ?>

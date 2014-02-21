@@ -189,6 +189,10 @@ abstract class _fields
 			$this->value = $text;
 			$this->attrs['value'] = $this->get_cleaned_value();
 		}
+		else
+		{
+			unset($this->attrs['value']);
+		}
 		return $this;
 	}
 /**

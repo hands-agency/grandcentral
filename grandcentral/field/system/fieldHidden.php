@@ -22,5 +22,19 @@ class fieldHidden extends _fieldsInput
 		parent::__construct($name, $attrs);
 		$this->attrs['type'] = 'hidden';
 	}
+/**
+ * Affecte une valeur au champ
+ * 
+ * @param	mixed	la valeur
+ * @access	public
+ */
+	public function set_value($value)
+	{
+		if (!empty($value))
+		{
+			$this->value = $value;
+		}
+		return $this;
+	}
 }
 ?>
