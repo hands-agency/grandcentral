@@ -2,3 +2,5 @@
 inc.config.php
 grandcentral/cache/template/*
 www/cache/*
+
+.gitignore
