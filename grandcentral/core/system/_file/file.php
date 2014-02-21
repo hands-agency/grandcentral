@@ -315,20 +315,20 @@ class file
 	}
 	
 	
-/**
- * Get the file MIME type
- *
- * @return	string	le nom du fichier
- * @access	private
- */
-	public function get_mimeType()
-	{
-		if ($this->exists() && empty($this->mimeType))
-		{
-			list($this->mimeType, $subtype) = explode('/', $this->get_mime());
-		}
-		return $this->mimeType;
-	}
+// /**
+//  * Get the file MIME type
+//  *
+//  * @return	string	le nom du fichier
+//  * @access	private
+//  */
+// 	public function get_mimeType()
+// 	{
+// 		if ($this->exists() && empty($this->mimeType))
+// 		{
+// 			list($this->mimeType, $subtype) = explode('/', $this->get_mime());
+// 		}
+// 		return $this->mimeType;
+// 	}
 	
 /**
  * Get the file MIME subtype
@@ -336,14 +336,14 @@ class file
  * @return	string	le nom du fichier
  * @access	private
  */
-	public function get_mimeSubtype()
-	{
-		if ($this->exists() && empty($this->mimeType))
-		{
-			list($type, $this->mimeSubtype) = explode('/', $this->get_mime());
-		}
-		return $this->mimeSubtype;
-	}
+	// public function get_mimeSubtype()
+	// {
+	// 	if ($this->exists() && empty($this->mimeType))
+	// 	{
+	// 		list($type, $this->mimeSubtype) = explode('/', $this->get_mime());
+	// 	}
+	// 	return $this->mimeSubtype;
+	// }
 	
 /**
  * Display a file
