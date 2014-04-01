@@ -38,7 +38,7 @@
 //	?
 /********************************************************************************************/
 //	Fetch the zones
-	$page = cc('page', $handled_id, $handled_env);
+	$page = i('page', $handled_id, $handled_env);
 	$html = new html($page, 'default', 'master');
 	$zones = $html->get_zones();
 		
@@ -65,7 +65,7 @@
 	$p = array(
 		'key' => array('form'),
 	);
-	$favs = cc('app', $p, 'admin');
+	$favs = i('app', $p, 'admin');
 
 /********************************************************************************************/
 //	Sort of a repository of data for Ajax

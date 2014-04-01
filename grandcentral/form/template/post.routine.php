@@ -36,7 +36,7 @@
 	$env = 'admin' == $site ? 'admin' : 'site';
 	
 	$id = (isset($_POST['id'])) ? $_POST['id'] : null;
-	$i = cc($table, $id, $env);
+	$i = i($table, $id, $env);
 	
 	foreach ($_POST as $key => $value)
 	{

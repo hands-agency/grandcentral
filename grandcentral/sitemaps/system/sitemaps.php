@@ -35,13 +35,13 @@ class sitemaps
 	public function create()
 	{
 	//	Get the structures with url
-		$structures = cc('structure', array('hasurl' => true));
+		$structures = i('structure', array('hasurl' => true));
 	//	Loop through structures with url
 		$url = null;
 		foreach ($structures as $structure)
 		{
 		//	Get the items
-			$items = cc($structure['key']->get(), array('status' => 'live'));
+			$items = i($structure['key']->get(), array('status' => 'live'));
 			foreach ($items as $item)
 			{
 				$url .= "<url>\n";

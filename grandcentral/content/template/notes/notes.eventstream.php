@@ -31,7 +31,7 @@
 	if (isset($_GET['itemid'])) $p['itemid'] = $_GET['itemid'];
 	
 //	Fetch !
-	$notes = cc('note', $p, $_SESSION['pref']['handled_env']);
+	$notes = i('note', $p, $_SESSION['pref']['handled_env']);
 
 	/**
 	 * Constructs the SSE data format and flushes that data to the client.

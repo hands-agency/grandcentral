@@ -62,7 +62,7 @@
 	$param['limit()'] = $limit;
 
 //	Fetch the bunch
-	$bunch = cc($handled_item, $param, $handled_env);
+	$bunch = i($handled_item, $param, $handled_env);
 	
 /********************************************************************************************/
 //	Some prepross

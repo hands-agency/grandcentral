@@ -72,8 +72,8 @@
 //	List of available bunches
 	$available = array('bunch');
 	
-	$structures = cc('structure', all, $_SESSION['pref']['handled_env']);
-	// $items = cc($_POST['table'], all);
+	$structures = i('structure', all, $_SESSION['pref']['handled_env']);
+	// $items = i($_POST['table'], all);
 	// $s[''] = '...';
 	$values = array();
 	foreach ($structures as $structure)

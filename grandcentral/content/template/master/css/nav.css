@@ -34,7 +34,6 @@
 {
 	padding:15px;
 	cursor:pointer;
-	border-bottom:1px solid #333;
 	-webkit-transition: all .1s ease-out; 
 	-moz-transition: all .1s ease-out; 
 	-o-transition: all .1s ease-out; 
@@ -43,6 +42,7 @@
 .navOpened #grandCentralNav>ul>li>div
 {
 	width:28%;
+	border-bottom:1px solid #222;	
 }
 
 /* .on / :hover */
@@ -154,7 +154,7 @@
 /* Specificities : Me */
 #grandCentralNav>ul li.me
 {
-	background:#444;
+
 }
 #grandCentralNav>ul li.me>.title
 {
@@ -248,12 +248,11 @@
 {
 	display:none;
 	position:absolute;
-	top:70px;
 	right:0;
-	padding:15px 30px;
+	top:0;
+	padding:15px;
 	margin:0;
 	width:70% !important;
-	background:#222;
 	overflow:auto;
 	z-index:2;
 	-moz-box-sizing:border-box;
@@ -275,7 +274,7 @@
 #grandCentralNav>ul .sub ul
 {
 	overflow:auto;
-	padding-bottom:30px;
+	padding:70px 0 30px 0;
 }
 
 /* Common to all display styles */
@@ -328,11 +327,6 @@
 	color:#ccc;
 	margin-bottom:5px;
 }
-#grandCentralNav>ul .sub ul.big li .descr
-{
-	font-size:0.8em;
-	color:#555;
-}
 
 /* In cols */
 #grandCentralNav>ul .sub ul.col li a
@@ -346,10 +340,6 @@
 	border-bottom:1px solid #444;
 }
 #grandCentralNav>ul .sub ul.col li .icon
-{
-	display:none;
-}
-#grandCentralNav>ul .sub ul.col li .descr
 {
 	display:none;
 }
@@ -426,10 +416,6 @@
 	z-index:1;
 	font-family:'Raleway-Regular';
 }
-#grandCentralNav>ul .sub ul.hive li .descr
-{
-	display:none;
-}
 #grandCentralNav>ul .sub ul.hive li a:hover:before
 {
 	border-bottom-color:#3eb4d6;
@@ -477,10 +463,6 @@
 	z-index:1;
 	font-family:'Raleway-Regular';
 }
-#grandCentralNav>ul .sub ul.bubble li .descr
-{
-	display:none;
-}
 #grandCentralNav>ul .sub ul.bubble li a:hover:before
 {
 	border-bottom-color:#3eb4d6;
@@ -494,6 +476,35 @@
 	font-size:3.1em;
 	background:transparent;
 	text-align:center;
+}
+
+/* In masonry */
+#grandCentralNav>ul .sub ul.masonry li
+{
+	display:block;
+	padding:10px;
+	width:33%;
+	float:left;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	background:#333;
+	border:3px solid #111;
+}
+
+/* In tiles */
+#grandCentralNav>ul .sub ul.tiles li
+{
+	display:block;
+	padding:10px;
+	height:120px;
+	width:120px;
+	float:left;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	background:#333;
+	margin:0 4px 4px 0;
 }
 
 /* CC search */

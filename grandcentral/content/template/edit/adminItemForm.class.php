@@ -29,7 +29,7 @@ class adminItemForm
 		$this->table = $table;
 	//	recherche du formulaire
 		$key = constant(mb_strtoupper($env).'_KEY').'_'.$table;
-		$this->form = cc('form', $key, 'admin');
+		$this->form = i('form', $key, 'admin');
 		$this->form['key'] = $key;
 		$this->form['title'] = $key;
 		$this->form['template'] = 'default';
@@ -37,7 +37,7 @@ class adminItemForm
 		$this->form['method'] = 'post';
 		$this->form['system'] = $env == 'admin' ? true : false;
 	//	recherche de l'item à injecter dans le form
-		$this->item = cc($table, $id, $env);
+		$this->item = i($table, $id, $env);
 	}
 /**
  * Mettre en conformité le formulaire et la structure
@@ -54,7 +54,7 @@ class adminItemForm
 	//	modification du formaulaire seulement si la structure de l'objet a été modifiée
 		else
 		{
-			$structure = cc('structure', $this->table, $this->env);
+			$structure = i('structure', $this->table, $this->env);
 			if ($structure['updated']->get() > $this->form['updated']->get())
 			{
 				$this->_update_form();

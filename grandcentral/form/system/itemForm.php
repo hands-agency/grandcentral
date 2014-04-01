@@ -96,7 +96,7 @@ class itemForm extends _items
 		$params = array(
 			'data-item' => 'form_'.$this['id'],
 			'data-key' => $this['key'],
-			'action' => cc('page', $this['action']->get(), $this->get_env())['url'],
+			'action' => i('page', $this['action']->get(), $this->get_env())['url'],
 			'method' => $this['method'],
 			'enctype' => $this['enctype'],
 			'target' => $this['target'],

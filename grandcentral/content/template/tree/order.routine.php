@@ -31,7 +31,7 @@
 		{
 		//	fetch the complete page
 			list($item, $id) = explode('_', $sitetree['item']);
-			$page = cc($item, $id, $_SESSION['pref']['handled_env']);
+			$page = i($item, $id, $_SESSION['pref']['handled_env']);
 		//	Reset the children pages
 			$page->set_rel('child', null);
 		//	Add the new one by one

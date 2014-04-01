@@ -35,9 +35,9 @@
 		$apps[] = $array;
 	}
 //	List page
-	$listPage = cc('page', 'list');
+	$listPage = i('page', 'list');
 //	Edit page
-	$editPage = cc('page', 'edit');
+	$editPage = i('page', 'edit');
 
 /********************************************************************************************/
 //	Config
@@ -46,7 +46,7 @@
 	$nav = array(
 	//	Content
 		'item' => array(
-			'title' => cc('site', current)['title'],
+			'title' => i('site', current)['title'],
 			'icon' => '&#xe02f;',
 			'page' => 'list',
 		//	Subnav
@@ -55,22 +55,22 @@
 					'title' => 'er',
 					'display' => 'label',
 					'link' => 'list',
-					'bunch' => cc('structure', array('key' => array('page', 'structure', 'version'), 'order()' => 'inherit(key)'), $_SESSION['pref']['handled_env']),
+					'bunch' => i('structure', array('key' => array('page', 'structure', 'version'), 'order()' => 'inherit(key)'), $_SESSION['pref']['handled_env']),
 				),
 				'major' => array(
-					'display' => 'bubble',
+					'display' => 'masonry',
 					'link' => 'list',
-					'bunch' => cc('structure', array('system' => false, 'hasurl' => true, 'order()' => 'title'), $_SESSION['pref']['handled_env']),
+					'bunch' => i('structure', array('system' => false, 'hasurl' => true, 'order()' => 'title'), $_SESSION['pref']['handled_env']),
 				),
 				'minor' => array(
 					'display' => 'bubble',
 					'link' => 'list',
-					'bunch' => cc('structure', array('system' => false, 'hasurl' => false, 'order()' => 'title'), $_SESSION['pref']['handled_env']),
+					'bunch' => i('structure', array('system' => false, 'hasurl' => false, 'order()' => 'title'), $_SESSION['pref']['handled_env']),
 				),
 				'system' => array(
 					'display' => 'col',
 					'link' => 'list',
-					'bunch' => cc('structure', array('system' => true, 'key' => array('!=human', '!=group', '!=version', '!=logbook', '!=structure', '!=page', '!=site'), 'order()' => 'title'), $_SESSION['pref']['handled_env']),
+					'bunch' => i('structure', array('system' => true, 'key' => array('!=human', '!=group', '!=version', '!=logbook', '!=structure', '!=page', '!=site'), 'order()' => 'title'), $_SESSION['pref']['handled_env']),
 				),
 			),
 		),
@@ -83,7 +83,7 @@
 				'social' => array(
 					'display' => 'big',
 					'link' => 'list',
-					'bunch' => cc('structure', array('key' => array('human', 'machine', 'group'), 'order()' => 'inherit(key)'), 'site'),
+					'bunch' => i('structure', array('key' => array('human', 'machine', 'group'), 'order()' => 'inherit(key)'), 'site'),
 				),
 			),
 		),
@@ -94,8 +94,8 @@
 		//	Subnav
 			'subnav' => array(
 				'apps' => array(
-					'display' => 'hive',
-					'link' => cc('page', 'app')['url'],
+					'display' => 'tiles',
+					'link' => i('page', 'app')['url'],
 					'array' => $apps,
 				),
 			),
@@ -106,7 +106,7 @@
 //	Get the list of level1 pages
 /********************************************************************************************/
 	foreach ($nav as $key => $value) $keys[] = $key;
-	$level1 = cc('page', array
+	$level1 = i('page', array
 	(
 		'key' => $keys,
 		'order()' => 'inherit(key)',

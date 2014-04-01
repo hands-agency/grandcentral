@@ -1,6 +1,5 @@
 <div id="overlay">
 	<form <?= $_FORM->get_attrs(); ?> autocomplete="off">
-		<h1>Let me guess.</h1>
 		<!--div id="grandCentralLogo"><?=$logo?></div-->
 		<?php foreach($_FORM->get_hiddens() as $hidden) : ?>
 			<?= $_FORM->get_field($hidden); ?>

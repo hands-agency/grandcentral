@@ -2,7 +2,7 @@
 <div class="nodata">Nope, sorry, nothing. Zero. Zilch.</div>
 <? else : ?>
 <div class="infiniteScrollContainer"><ol><!-- Welcome Ajax --></ol></div>
-<div class="infiniteScrollWantsMore">More <?=$_GET['item']?>! miam miam miam...</div>
+<div class="infiniteScrollWantsMore">More <?=$_GET['item']?>! Miam miam miam...</div>
 <div class="infiniteScrollStopper">It's all I have.</div>
 
 <script type="text/javascript" charset="utf-8">

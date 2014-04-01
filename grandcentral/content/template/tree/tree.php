@@ -58,7 +58,7 @@
 				$ids[] = $data['id'];
 			}
 		//	This will be the bunch of items that fit in the site tree
-			$this->pages = cc('page', array
+			$this->pages = i('page', array
 			(
 				'id' => $ids,
 			), $_SESSION['pref']['handled_env']);

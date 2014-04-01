@@ -53,7 +53,7 @@ pre, code, kbd, samp
 	font-family:'monaco', monospace, sans-serif;
 }
 
-button
+#grandCentralAdmin button
 {
 	font-size: 1em;
 	font-family:inherit;
@@ -83,18 +83,18 @@ button
 	-ms-user-select: none;
 	user-select: none;
 }
-button:hover
+#grandCentralAdmin button:hover
 {
 	background-image: -moz-linear-gradient(#F3F3F3, #ddd);
 	background-image: -webkit-linear-gradient(#F3F3F3, #ddd);
 	background-image: linear-gradient(#F3F3F3, #ddd);
 }
-button:active
+#grandCentralAdmin button:active
 {
 	background: #e3e3e3;
 }
 /* Close */
-button.close
+#grandCentralAdmin button.close
 {
 	position:absolute;
 	top:10px;
@@ -109,7 +109,7 @@ button.close
 	cursor:pointer;
 	font-size:12px;
 }
-button.close:before
+#grandCentralAdmin button.close:before
 {
 	content:'';
 	width:0px;
@@ -123,26 +123,26 @@ button.close:before
 	transition:         all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	z-index:-1;
 }
-button.close:hover:before
+#grandCentralAdmin button.close:hover:before
 {
-	margin:-13px 0 0 -13px;
+	margin:-14px 0 0 -14px;
 	width:25px;
 	height:25px;
-	background:#000;
+	border:2px solid #000;
 }
-button.close:hover
+#grandCentralAdmin button.close:hover
 {
 	opacity:1;
 	color:#fff;
 }
-button.close:after,
-button.delete:after
+#grandCentralAdmin button.close:after,
+#grandCentralAdmin button.delete:after
 {
 	content:'✕';
 	font-size:12px;
 }
-button.close:hover,
-button.delete:hover
+#grandCentralAdmin button.close:hover,
+#grandCentralAdmin button.delete:hover
 {
 	opacity:1;
 }
@@ -462,10 +462,10 @@ progress::-webkit-progress-value {
 /********************************************************************************************/
 .nodata
 {
-	color:#e2e4e6;
+	color:#ccc;
 	font-family: "Raleway-Thin";
 	text-align:center;
-	padding:30px;
+	padding:100px 30px;
 	position:relative;
 }
 .nodata a
@@ -612,7 +612,7 @@ progress::-webkit-progress-value {
 /* The Nav */
 #grandCentralNav
 {
-	background:#222;	
+	background:#111;	
 }
 .navClosed #grandCentralNav
 {
@@ -640,12 +640,12 @@ progress::-webkit-progress-value {
 /* The admin */
 #grandCentralAdmin
 {
-	background:#fff;
 	-webkit-box-shadow: 5px 0px 0px rgba(50, 50, 50, 0.3);
 	-moz-box-shadow:    5px 0px 0px rgba(50, 50, 50, 0.3);
 	box-shadow:         5px 0px 0px rgba(50, 50, 50, 0.3);
 	z-index:1;
-	overflow:auto;
+	overflow:scroll;
+	background:#eee;
 }
 .adminClosed #grandCentralAdmin
 {
@@ -793,6 +793,14 @@ progress::-webkit-progress-value {
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
 	position:relative;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
+}
+#content.unlocked
+{
+	background-color:#0D4583 !important;
 }
 #content>button.close
 {
@@ -801,7 +809,12 @@ progress::-webkit-progress-value {
 	right:15px;
 	z-index:2;
 }
-
+#content h1
+{
+	font-family:"Raleway-Regular";
+	font-size:45px;
+	margin:0 0 20px 0;
+}
 /* Footer */
 footer
 {
@@ -821,8 +834,7 @@ footer
 	height:100%;
 	top:0;
 	right:0;
-	border-left:1px solid #F2F2F2;
-	background:#E9E9E9;
+	background:#222;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
@@ -852,10 +864,13 @@ footer
 {
 	margin:0;
 	padding:30px;
-	border-radius:3px;
 	font-size:0.8em;
 	display:none;
 	position:relative;
+}
+#content.unlocked section
+{
+	background-color:transparent !important;
 }
 #content section>p,
 #content section>ul,
@@ -886,10 +901,16 @@ footer
 #content section h4,
 #content section h5
 {
-	font-family: "Raleway-Thin";
+	font-family:"Raleway-Regular";
+	/* Linin numerals for Raleway */
+	font-feature-settings: 'lnum';
+	-moz-font-feature-settings: 'lnum=1';
+	-ms-font-feature-settings: 'lnum';
+	-webkit-font-feature-settings: 'lnum';
+	-o-font-feature-settings: 'lnum';
 	margin:0 0 5px;
 	font-weight:normal;
-	clear:left;
+	clear:both;
 }
 #content section>h2 a,
 #content section>h3 a,
@@ -905,14 +926,15 @@ footer
 {
 	margin:0px 0 10px 0;
 	font-size:2em;
-	border-bottom:1px solid #eee;
-	padding:0 0 5px 5px;
+	border-bottom:1px solid #ccc;
+	padding:0 0 5px 0;
+	text-align:center;
 }
 #content section>h2 span.flag
 {
 	font-family:"Raleway-Regular";
 	text-transform:uppercase;
-	background:#eee;
+	background:#fff;
 	border-radius:4px;
 	padding:4px 5px;
 	margin-right:10px;
@@ -920,12 +942,8 @@ footer
 	position:relative;
 	top:-5px;
 }
-#content section>h2 span.centered
+#content section>h2
 {
-	padding:0 10px;
-	background:#ffffff;
-	position:relative;
-	top:14px;
 }
 
 /* #content section h3 */

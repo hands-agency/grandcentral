@@ -241,11 +241,12 @@ li.ui-draggable-dragging *
 /* Upload */
 #mediaLibrary .files li.upload #holder
 {
-	border:1px dashed #ccc;
+	border:1px dashed #555;
+	color:#444;
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
 	border-radius:5px;
-	height:120px;
+	padding:50px 0;
 	font-family: 'Raleway-Thin';
 	text-align:center;
 }
@@ -288,7 +289,6 @@ li.ui-draggable-dragging *
 /* Folders */
 #mediaLibrary .folder
 {
-	border-top:1px solid #ccc;
 	padding-top:20px;
 	margin-top:20px;
 	clear:both;

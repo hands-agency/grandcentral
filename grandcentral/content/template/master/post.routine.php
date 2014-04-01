@@ -37,7 +37,7 @@
 		
 	//	recherche du formulaire de provenance
 		$key = array_keys($_POST);
-		$form = cc('form', $key[0]);
+		$form = i('form', $key[0]);
 		
 		if ($form->exists())
 		{

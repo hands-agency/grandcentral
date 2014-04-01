@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?= cc('version', current)->get_attr('key') ?>">
+<html lang="<?= i('version', current)->get_attr('key') ?>">
 <head>
 	<!-- ZONE:meta-->
 	<!-- ZONE:css -->
@@ -18,13 +18,13 @@
 				<div><!-- Welcome Ajax --></div>
 			</aside>
 
-			<div id="content" class="locked instack">
+			<div id="content" class="locked inmasonry">
 				<!--button type="button" class="close"></button-->
 				<header><!-- ZONE:header --></header>
 				<!-- ZONE:content|left -->
 				<? foreach($_PAGE['section']->unfold() as $section) : ?>
 				<? $app = $section['app'] ?>
-				<? $greenbutton = ($section['greenbutton']->get()) ? cc($section['greenbutton']->get()[0])->json() : null ?>
+				<? $greenbutton = ($section['greenbutton']->get()) ? i($section['greenbutton']->get()[0])->json() : null ?>
 				<? /* cst('GREENBUTTON_SECTION_NEW_TITLE') */ ?>
 				<section id="section_<?= $section['key'] ?>" data-app="<?= $app['key'] ?>" data-template="<?= $app['template'] ?>" data-greenbutton='<?= $greenbutton ?>'></section>
 				<? endforeach; ?>

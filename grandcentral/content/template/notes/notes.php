@@ -52,7 +52,7 @@
 /********************************************************************************************/
 	if (isset($item) && isset($id))
 	{
-		$notes = cc('note', array
+		$notes = i('note', array
 		(
 			'item' => $item,
 			'itemid' => $id,
@@ -105,7 +105,7 @@
 /********************************************************************************************/
 //	Event Source
 /********************************************************************************************/
-		$EventSource = 	cc('page', 'api.eventstream')['url']->args(array
+		$EventSource = 	i('page', 'api.eventstream')['url']->args(array
 		(
 			'app' => 'section',
 			'theme' => 'notes',

@@ -37,19 +37,32 @@
 <div class="folder">
 	<ul>
 		<? if (isset($directories)): ?>
+
 		<? foreach ($directories as $dir): ?>
 		<?
-			$files = scandir($dir->get_root(), SCANDIR_SORT_DESCENDING);
-			$count = 3;
-			$previews = array();
-			for ($i=0; $i < $count ; $i++) if (isset($files[$i])) $previews[] = $files[$i];
+			$reg = $dir->get_root().'/*.jpg';
+			$files = glob($reg);
+			usort($files, function($file_1, $file_2)
+			{
+			    $file_1 = filectime($file_1);
+			    $file_2 = filectime($file_2);
+			    if($file_1 == $file_2)
+			    {
+			        return 0;
+			    }
+			    return $file_1 < $file_2 ? 1 : -1;
+			});
 		?>
 		<li>
 			<div class="title">
 				<a href="#" class="dir"><?= $dir->get_key() ?></a>
 			</div>
 			<ul class="preview">
-				<?php foreach ($previews as $preview): ?><li><?= media($dir->get_key().'/'.$preview)->thumbnail(100, null) ?></li><?php endforeach ?>
+				<?php for ($i=0; $i < $maxPreviews ; $i++) : ?>
+					<?php if (isset($files[$i])): ?>
+						<li><?= media($files[$i])->thumbnail(100, null) ?></li>
+					<?php endif ?>
+				<?php endfor; ?>
 			</ul>
 		</li>
 		<? endforeach ?>

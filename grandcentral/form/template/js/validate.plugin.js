@@ -20,8 +20,7 @@
 			key: $element.data('key'),
 			fieldHasChanged: false,
 			formIsValid: true,
-			icon:{'ok':'icon-ok','ko':'icon-remove'},
-			delay:{'ok':'1000','ko':'6500'},
+			delay:{'ok':'1500','ko':'10000'},
 		}
 
 	//	The "constructor"
@@ -90,8 +89,6 @@
 				//	console.log(msg);
 			
 					$li = field;
-				//	Start clean
-					$li.removeClass('ok ko guiding');
 				
 				//	Field is OK
 					if (msg === true)
@@ -117,16 +114,14 @@
 						vars['formIsValid'] = false;
 					}
 					
-				//	Append the control if needed
-					if ($li.find('[data-control]').length == 0) $li.append(controlCode);
-				//	Customize the control and the line
-					$li.find('[data-control]')
-						.html('')
-						.attr('class', vars['icon'][css])
-						.effect('bounce', {direction: bounceDirection, distance:'10', times:'2'}, 250)
-						.delay(vars['delay'][css])
-						.fadeOut('slow');
-					$li.addClass(css);
+				//	Control!
+					showControl($li,
+					{
+						html:css,
+						timeout:vars['delay'][css],
+						control:css,
+					});
+				//	$li.find('[data-control]').effect('bounce', {direction: bounceDirection, distance:'10', times:'2'}, 250);
 				
 				//	Back to normal
 					vars['fieldHasChanged'] = false;

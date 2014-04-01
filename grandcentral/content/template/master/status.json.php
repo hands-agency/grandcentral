@@ -22,7 +22,7 @@
 //	Change the status of an item
 /********************************************************************************************/
 	list($item, $id) = explode('_', $_POST['item']);
-	$item = cc($item, $id, $_SESSION['pref']['handled_env']);
+	$item = i($item, $id, $_SESSION['pref']['handled_env']);
 	$item['status'] = $_POST['status'];
 	$item->save();
 ?>

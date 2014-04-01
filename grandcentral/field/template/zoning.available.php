@@ -25,7 +25,7 @@
 //	$name = $_POST['name'];
 	$name = $_SESSION['pref']['handled_env'].'_section';
 //	Get the available values
-	$available = cc('app', all);
+	$available = i('app', all);
 //	Refine
 	if (isset($_POST['q'])) {
 		echo 'TODO refined with '.$_POST['q'];

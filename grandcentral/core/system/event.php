@@ -21,7 +21,7 @@ class event
 	public static function prepare()
 	{
 	//	Get and store the events
-		$events = cc('event', all);
+		$events = i('event', all);
 		foreach ($events as $event) self::bind($event['item'], $event['trigger'], $event['function'], $event['arg']);
 	}
 
@@ -83,7 +83,7 @@ class event
 		if ($item->get_table() == 'logbook') return false;
 	
 	//	Otherwise proceed
-		$log = cc('logbook', null, $_SESSION['pref']['handled_env']);
+		$log = i('logbook', null, $_SESSION['pref']['handled_env']);
 		$attr = array(
 			'subject' => $_SESSION['user']->get_table(),
 			'subjectid' => $_SESSION['user']['id']->get(),

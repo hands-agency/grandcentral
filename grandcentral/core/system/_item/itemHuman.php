@@ -109,7 +109,7 @@ class itemHuman extends _items
 					if ($r['count'] > 0)
 					{
 					//	on cherche la page parente
-						$parent = cc('page', $r['data'][0]['itemid']);
+						$parent = i('page', $r['data'][0]['itemid']);
 					//	si la page parente existe dans la bdd, et qu'elle a des groupes, on copie ses groupes 
 						if ($parent->exists() && !$parent['group']->is_empty())
 						{

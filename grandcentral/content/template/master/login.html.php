@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?= cc('version', current)->get_attr('key') ?>">
+<html lang="<?= i('version', current)->get_attr('key') ?>">
 <head>
 	<!-- ZONE:meta-->
 	<!-- ZONE:css -->

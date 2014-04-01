@@ -133,7 +133,7 @@
 		foreach ($only as $get => $only) if (isset($_GET[$get])) $p[$only] = $_GET[$get];
 		
 	//	Fetch the logbook
-		$logbook = cc('logbook', $p, $_SESSION['pref']['handled_env']);
+		$logbook = i('logbook', $p, $_SESSION['pref']['handled_env']);
 
 	//	Reorder by user and actions
 		foreach ($logbook as $e)
@@ -145,7 +145,7 @@
 /********************************************************************************************/
 //	Event Source
 /********************************************************************************************/
-	$EventSource = cc('page', 'api.eventstream')['url']->args(array
+	$EventSource = i('page', 'api.eventstream')['url']->args(array
 	(
 		'app' => 'content',
 		'template' => 'timeline/timeline',

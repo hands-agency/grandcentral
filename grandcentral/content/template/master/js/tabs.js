@@ -4,7 +4,7 @@
 **#******************************************************************************************/
 $(document).ready(function ()
 {
-	$('.tabs li').click(function()
+	$('#tabs li').click(function()
 	{
 	//	Set to off all the tabs, and set to on just "the one"
 		$(this).siblings('.on').removeClass('on');
@@ -55,14 +55,14 @@ $(document).ready(function ()
 //	By hash
 	if (window.location.hash) pseudo = '[href='+window.location.hash+']';
 //	On demand
-	else if ($('.tabs[data-default]').length) pseudo = '[href=#'+$('.tabs').data('default')+']';
+	else if ($('#tabs[data-default]').length) pseudo = '[href=#'+$('#tabs').data('default')+']';
 //	By default
 	else pseudo = ':first';
 //	WRONG, not here...
-	$(window).load( function(){$('.tabs li a'+pseudo).parent().trigger('click');} );
+	$(window).load( function(){$('#tabs li a'+pseudo).parent().trigger('click');} );
 	
 /*********************************************************************************************
-/**	* Tabs : Open a section from the landing in the hash (or the first one)
+/**	* Sticky nav
 	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
 	var $admin = $('#grandCentralAdmin');
@@ -100,7 +100,7 @@ $(document).ready(function ()
 **#******************************************************************************************/
 	$(document).bind('unlock', function()
 	{
-		$('.tabs li:not(.on)').each(function()
+		$('#tabs li:not(.on)').each(function()
 		{
 			li = $(this);
 		//	All tabs are now droppable

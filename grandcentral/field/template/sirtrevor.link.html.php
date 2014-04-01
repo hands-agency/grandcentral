@@ -27,7 +27,7 @@
 		<?php foreach ($structures as $structure): ?>
 			<h1><?=$structure['title']?></h1>
 			<?
-				$items = cc($structure['key']->get(), array('order()' => 'title'), 'site');
+				$items = i($structure['key']->get(), array('order()' => 'title'), 'site');
 			?>
 			<ul>
 			<?php foreach ($items as $item): ?>

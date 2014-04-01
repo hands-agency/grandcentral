@@ -16,11 +16,11 @@
 			<? foreach ($structures as $structure => $items): ?>
 				<!-- <h5><?=$structure?> </h5> -->
 				<? $logbook = current($items) ?>
-				<? $user = cc('human', $subject, 'site') ?>
-				<? $structure = cc('structure', $logbook['item']->get(), 'site') ?>
+				<? $user = i('human', $subject, 'site') ?>
+				<? $structure = i('structure', $logbook['item']->get(), 'site') ?>
 				<li data-item="<?=$logbook->get_nickname()?>">
 					<?
-						$thumbnail = (!$user['profilepic']->is_empty()) ? $user['profilepic'][0]->thumbnail(100, null) : null;
+						$thumbnail = (!$user['profilepic']->is_empty()) ? $user['profilepic']->unfold()[0]->thumbnail(100, null) : null;
 						$empty = (!isset($thumbnail)) ? 'empty' : null;
 					?>
 					<div class="icon <?=$empty?>"><a href="<?=$user->edit()?>"><?=$thumbnail?></a></div>
@@ -35,7 +35,7 @@
 							
 							<? $i = $and = 0 ?>
 							<? foreach ($items as $item): ?>
-								<? $item = cc($item['item']->get(), $item['itemid']->get(), $_SESSION['pref']['handled_env']) ?>
+								<? $item = i($item['item']->get(), $item['itemid']->get(), $_SESSION['pref']['handled_env']) ?>
 
 								<? if (($item->exists()) && ($i < $displayItems)) : ?>
 									<a href="<?= $item->edit()?>"><?= ($item['title']) ? $item['title'] : $item['key']; ?></a><? if ($i != count($items)-1): ?>, <? else : ?>.<? endif ?>
@@ -54,8 +54,8 @@
 							<? if ($i < $displayThumbnails): ?>
 								<li>
 									<div class="thumbnail small">
-										<!--iframe src="<?=cc($item['item'], $item['itemid'])['url']?>"></iframe-->
-										<a class="thumbnailPlaceholder" href="<?=cc($item['item']->get(), $item['itemid']->get())['url']?>"></a>
+										<!--iframe src="<?=i($item['item'], $item['itemid'])['url']?>"></iframe-->
+										<a class="thumbnailPlaceholder" href="<?=i($item['item']->get(), $item['itemid']->get())['url']?>"></a>
 									</div>
 								</li>
 							<? endif ?>

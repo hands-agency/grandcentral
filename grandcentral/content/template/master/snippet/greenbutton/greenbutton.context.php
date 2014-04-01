@@ -29,13 +29,13 @@
 	$sectionid = (isset($_POST['sectionid'])) ? $_POST['sectionid'] : null;
 	$item = (isset($_GET['item'])) ? $_GET['item'] : null;
 	$id = (isset($_GET['id'])) ? $_GET['id'] : null;
-	$handled_item = (isset($item) && isset($id)) ? cc($item, $id) : null;
-	$handled_itemStructure = (isset($item) && isset($id)) ? cc('structure', $item) : null;
+	$handled_item = (isset($item) && isset($id)) ? i($item, $id) : null;
+	$handled_itemStructure = (isset($item) && isset($id)) ? i('structure', $item) : null;
 	
 /********************************************************************************************/
 //	Fetch the actions
 /********************************************************************************************/
-	$actions = ($sectionid) ? cc('section', $sectionid)['greenbutton']->unfold() : null;
+	$actions = ($sectionid) ? i('section', $sectionid)['greenbutton']->unfold() : null;
 	
 /********************************************************************************************/
 //	Some filters

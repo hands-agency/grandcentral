@@ -31,7 +31,7 @@ $(document).bind('unlock', function()
 	$(document).on('click', '#options_drop li[data-value]', function()
 	{
 		order = $(this).data('value');
-		$('.tabs .li.on').trigger('click');
+		$('#tabs li.on').trigger('click');
 	});
 
 /*********************************************************************************************

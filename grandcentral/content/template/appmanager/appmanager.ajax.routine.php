@@ -28,7 +28,7 @@
 /********************************************************************************************/
 		case 'install':
 		//	création d'une nouvelle app
-			$app = cc('app');
+			$app = i('app');
 			$app['key'] = $_POST['key'];
 			$about = $app->ini('about');
 			$app['title'] = $about['title'];
@@ -46,7 +46,7 @@
 				{
 					foreach ($dep['child'] as $appkey)
 					{
-						$child = cc('app', $appkey);
+						$child = i('app', $appkey);
 						if ($child->exists())
 						{
 							$tmp = $child['dependency'];
@@ -64,7 +64,7 @@
 //	Supprimer
 /********************************************************************************************/
 		case 'remove':
-			$app = cc('app', $_POST['key']);
+			$app = i('app', $_POST['key']);
 			// print '<pre>';print_r($app);print'</pre>';
 		//	suppression des dépendances enfants
 			if ($dep = $app->ini('dependencies'))
@@ -73,7 +73,7 @@
 				{
 					foreach ((array) $dep['child'] as $appkey)
 					{
-						$child = cc('app', $appkey);
+						$child = i('app', $appkey);
 						if ($child->exists())
 						{
 							$childDep = (array) $child['dependency'];

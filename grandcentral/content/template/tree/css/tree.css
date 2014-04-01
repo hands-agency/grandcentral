@@ -36,18 +36,19 @@ section[data-template="tree/tree"] ol li .page:hover
 /* The icon */
 section[data-template="tree/tree"] ol li .page .icon
 {
-	width:110px;
+	width:120px;
 	height:100%;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
+	-moz-border-radius: 2px;
+	border-radius:2px;
 	padding:15px 10px;
 	text-align:center;
-	border:1px solid #ccc;
 	display:inline-block;
+	background:#fff;
 	position:relative;
+	box-shadow: 3px 3px 1px 0 rgba(0, 0, 0, .05);
 }
 section[data-template="tree/tree"] ol li .page .icon:hover
 {
@@ -63,10 +64,16 @@ section[data-template="tree/tree"] ol li .page .icon .cc-badge
 /* The title */
 section[data-template="tree/tree"] ol li .page .icon>.title
 {
-	font-family: "Raleway-Regular";
-	font-size:12px;
-	margin-bottom:15px;
-	padding:3px 0;
+	padding:5px 0;
+	font-size:11px;
+	position:absolute;
+	bottom:10px;
+	left:0;
+	width:100%;
+	z-index:100;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
 }
 section[data-template="tree/tree"] ol li .page .icon>.title a
 {
@@ -78,16 +85,22 @@ section[data-template="tree/tree"] ol li .page .detail
 {
 	font-family: "Raleway-Regular";
 	color:#ccc;
-	margin:15px;
+	margin:0 10px;
+	vertical-align:top;
 	font-size:10px;
 	display:inline-block;
+	background:#fff;
+	padding:10px;
+	
 }
 
 /* By status */
 section[data-template="tree/tree"] ol li .page[data-status="asleep"] .icon
 {
-	border:1px dashed #333;
+	border:1px dotted #333;
 	opacity:0.6;
+	background:transparent;
+	box-shadow:none;
 	
 }
 
@@ -145,7 +158,7 @@ section[data-template="tree/tree"] ol li.dragged .page
 /********************************************************************************************/
 section[data-template="tree/tree"] li .page[data-type="content"] .icon
 {
-	background:#F2F2F2;
+
 }
 
 /********************************************************************************************/
@@ -153,7 +166,7 @@ section[data-template="tree/tree"] li .page[data-type="content"] .icon
 /********************************************************************************************/
 section[data-template="tree/tree"] li .page[data-type="feed"] .icon
 {
-	background:#F2F2F2;
+
 }
 
 /********************************************************************************************/
@@ -161,7 +174,8 @@ section[data-template="tree/tree"] li .page[data-type="feed"] .icon
 /********************************************************************************************/
 section[data-template="tree/tree"] li .page[data-type="header"] .icon
 {
-	border:1px solid #F2F2F2;
+	background:transparent;
+	box-shadow:none;
 }
 section[data-template="tree/tree"] li .page[data-type="header"] .icon:before
 {
@@ -176,9 +190,8 @@ section[data-template="tree/tree"] li .page[data-type="header"] .icon:before
 }
 section[data-template="tree/tree"] li .page[data-type="header"] .icon .title
 {
-	background:#fff;
+	background:#eee;
 	z-index:2;
-	position:relative;
 }
 
 /********************************************************************************************/
@@ -188,4 +201,17 @@ section[data-template="tree/tree"] li .page[data-type="link"] .icon
 {
 	height:60px;
 	border:1px solid #ccc;
+}
+
+/********************************************************************************************/
+/* Unlocked 
+/********************************************************************************************/
+.unlocked section[data-template="tree/tree"] li .page .icon
+{
+	background:rgba(255, 255, 255, 0.2) !important;
+	border:1px solid #fff !important;
+}
+.unlocked section[data-template="tree/tree"] li .page .icon a
+{
+	color:#fff !important;
 }

@@ -40,6 +40,7 @@ input,
 select,
 textarea
 {
+	background:transparent;
 	border:1px solid transparent;
 	padding:7px;
 	margin:0;

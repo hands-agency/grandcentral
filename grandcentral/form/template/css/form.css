@@ -25,13 +25,19 @@ section[data-template="edit/edit"]>form>fieldset>.descr
 section[data-template="edit/edit"]>form>fieldset>ol>li
 {
 	background:#fff;
-	-moz-border-radius:5px;
-	-webkit-border-radius:5px;
-	border-radius:5px;
-	padding:5px;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	padding:0 5px;
 	position:relative;
-	margin:0 50px 10px 0;
+	margin:0 0 10px 0;
 	border:1px solid #eee;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	min-height:50px;
+	-webkit-transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	transition:         all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275); 
 }
 
 /* Labels */
@@ -66,7 +72,6 @@ section[data-template="edit/edit"]>form>fieldset ol>li .wrapper .field
 	position:relative;
 	display: block;
 	padding:7px;
-	background:#fff;
 	-webkit-transition:border-color .3s ease-in;
 	-moz-transition:border-color .3s ease-in;
 	-o-transition:border-color .3s ease-in;
@@ -109,21 +114,35 @@ li.ko .field
 /********************************************************************************************/
 /* Control
 /********************************************************************************************/
+/* field in control */
+section[data-template="edit/edit"] fieldset ol>li.controlling
+{
+	margin-right:50px;
+}
+	
 /* All controls */
 section[data-template="edit/edit"] fieldset ol>li [data-control]
 {
 	position:absolute;
-	right:-50px;
-	top:10px;
+	right:100px;
+	top:5px;
 	height:35px;
 	line-height:35px;
 	width:35px;
 	text-align:center;
 	color:#fff;
-	-moz-border-radius:5px;
-	-webkit-border-radius:5px;
-	border-radius:5px;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
 	background:#eee;
+	opacity:0;
+	-webkit-transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	transition:         all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
+section[data-template="edit/edit"] fieldset ol>li.controlling [data-control]
+{
+	opacity:1;
+	right:-50px;
 }
 section[data-template="edit/edit"] fieldset ol>li [data-control]:after
 {
@@ -131,28 +150,26 @@ section[data-template="edit/edit"] fieldset ol>li [data-control]:after
 	width:0;
 	height:0;
 	border-style:solid;
-	border-width:5px 8px 5px 0;
+	border-width:5px 5px 5px 0;
 	border-color:transparent #eee transparent transparent;
 	position:absolute;
 	top:13px;
-	left:-7px;
+	left:-5px;
 }
 
 /* Control proposing edition */
 section[data-template="edit/edit"] fieldset ol>li.editable [data-control]
 {
-	background:transparent;
+	background:rgba(255, 255, 255, 0.1);
 	cursor:pointer;
 	color:#ccc;
-	border:1px solid #F2F2F2;
 }
 section[data-template="edit/edit"] fieldset ol>li.editable [data-control]:after
 {
-	border-right-color:transparent;
+	border-right-color:rgba(255, 255, 255, 0.1);
 }
 section[data-template="edit/edit"] fieldset ol>li.editable [data-control]:hover
 {
-	background:#ccc;
 	color:#fff;
 }
 section[data-template="edit/edit"] fieldset ol>li.editable [data-control]:hover:after
@@ -163,16 +180,15 @@ section[data-template="edit/edit"] fieldset ol>li.editable [data-control]:hover:
 /* Control while editing */
 section[data-template="edit/edit"] fieldset ol>li.editing [data-control]
 {
-	background:#6cbf2d;
+	background:rgba(255, 255, 255, 0.2);
 	cursor:pointer;
 }
 section[data-template="edit/edit"] fieldset ol>li.editing [data-control]:after
 {
-	border-right-color:#6cbf2d;
+	border-right-color:rgba(255, 255, 255, 0.2);
 }
 section[data-template="edit/edit"] fieldset ol>li.editing [data-control]:hover
 {
-	background:#FF9900;
 	-moz-transform: scale(1.1);
 	-webkit-transform: scale(1.1);
 	-o-transform: scale(1.1);
@@ -228,7 +244,7 @@ section[data-template="edit/edit"]>form>fieldset .editing
 /* The form to edit the form */
 section[data-template="edit/edit"]>form>fieldset .editWrapper
 {
-	background:#eff2f4;
+	background:rgba(255, 255, 255, 0.2) !important;
 	margin-top:10px;
 	padding:5px;
 	position:relative;
@@ -245,7 +261,7 @@ section[data-template="edit/edit"]>form>fieldset .editWrapper:after
 	content:'';
 	border-style: solid;
 	border-width: 0 15px 15px 15px;
-	border-color: transparent transparent #eff2f4 transparent;
+	border-color: transparent transparent rgba(255, 255, 255, 0.2) transparent;
 }
 section[data-template="edit/edit"]>form>fieldset .editWrapper>ol>li
 {
@@ -261,6 +277,25 @@ section[data-template="edit/edit"]>form>fieldset .editWrapper>ol>li
 	-webkit-filter:saturate(0.1);
 }
 .subEditing li.editable [data-control]
+{
+	display:none;
+}
+
+/********************************************************************************************/
+/* Unlocked 
+/********************************************************************************************/
+.unlocked section[data-template="edit/edit"]>form>fieldset>ol>li
+{
+	background:rgba(255, 255, 255, 0.2) !important;
+	border:1px solid #fff !important;
+	margin-left:50px;
+	margin-right:50px;
+}
+.unlocked section[data-template="edit/edit"]>form>fieldset ol>li>label
+{
+	color:#fff !important;
+}
+.unlocked section[data-template="edit/edit"]>form>fieldset>ol>li .field
 {
 	display:none;
 }

@@ -5,7 +5,7 @@
 		<div class="sub"></div>
 	</li>
 	
-	<? if (cc('page', current)['key'] == 'edit') : ?>
+	<? if (i('page', current)['key'] == 'edit') : ?>
 	<li class="editing" data-item="page_1"><a>editing</a></li>
 	<? else :?>
 	<li class="edit"><a>edit</a></li>
@@ -57,7 +57,6 @@
 				<?
 				//	Title & descr
 					$title = cst('ITEM_'.$subpage['key'].'_TITLE', $subpage['title']);
-					$descr = cst('ITEM_'.$subpage['key'].'_DESCR', $subpage['descr']);
 					
 				//	Find the link
 					switch ($link)
@@ -82,7 +81,6 @@
 					<a href="<?=$url ?>">
 						<span class="icon" <? if (isset($subpage['icon'])): ?>data-icon="<?=$subpage['icon']?>"<? endif ?>></span>
 						<span class="title"><?=$title?></span>
-						<span class="descr"><?=$descr?></span>
 					</a>
 				</li>
 				<? endforeach ?>

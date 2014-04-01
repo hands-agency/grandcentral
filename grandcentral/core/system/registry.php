@@ -67,7 +67,7 @@ class registry
 		$this->_prepare_current();
 		// print'<pre>';print_r(self::$data);print'</pre>';
 		//	constants
-		cc('const', all);
+		i('const', all);
 	}
 /**
  * Create only one instance of the Registry

@@ -25,7 +25,7 @@
 			plugin.settings = $.extend({}, vars, options);
 	
 		//	Load and change the labels
-			$('.tabs li').click(function()
+			$('#tabs li').click(function()
 			{
 			//	Some vars
 				link = $(this).find('a');

@@ -42,7 +42,7 @@ class attrVersion extends _attrs
 	{
 		if (empty($this->data))
 		{
-			$this->data = cc($this->item->get_env(), current)['version'];
+			$this->data = i($this->item->get_env(), current)['version'];
 		}
 		return $this->data;
 	}

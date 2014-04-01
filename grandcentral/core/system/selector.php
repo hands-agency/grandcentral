@@ -17,7 +17,7 @@
  * @return	mixed	an item or a bunch
  * @access	public
  */
-	function cc($table, $params = null, $env = env)
+	function i($table, $params = null, $env = env)
 	{
 		switch (true)
 		{
@@ -56,6 +56,19 @@
 		}
 	}
 /**
+ * Old CC selector (for continuity)
+ *
+ * @param	string	table
+ * @param	mixed	parameter or array of parameters
+ * @param	string	admin ou site
+ * @return	mixed	an item or a bunch
+ * @access	public
+ */
+	function cc($table, $params = null, $env = env)
+	{
+		return i($table, $params, $env);
+	}
+/**
  * Euro selector
  *
  * @param	string	table
@@ -66,7 +79,7 @@
  */
 	function €($table, $params = null, $env = env)
 	{
-		return cc($table, $params, $env);
+		return i($table, $params, $env);
 	}
 /**
  * Constant handling

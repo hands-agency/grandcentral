@@ -29,7 +29,7 @@
 	
 	
 //	Prepare values
-	$available = cc('structure', 'app');
+	$available = i('structure', 'app');
 	$attr = (isset($available['attr'])) ? $available['attr'] : null;
 	
 //	Create a blank field (tweak)

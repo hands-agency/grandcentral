@@ -27,12 +27,12 @@
 	$currentEditedItemUrl = SITE_URL;
 	if (isset($_GET['item']) && isset($_GET['id']))
 	{
-		$currentEditedItem = cc($_GET['item'], $_GET['id'], 'site');
+		$currentEditedItem = i($_GET['item'], $_GET['id'], 'site');
 		if (isset($currentEditedItem['url'])) $currentEditedItemUrl = $currentEditedItem['url'];
 	}
 	
 //	Update all structures
-//	foreach (cc('structure', all, 'site') as $s) $s->save();
+//	foreach (i('structure', all, 'site') as $s) $s->save();
 
 /********************************************************************************************/
 //	General binding of scripts & css files
@@ -73,7 +73,7 @@
 	$_APP->bind_file('script', 'master/js/master.js');
 //	css
 	$_APP->bind_file('css', 'master/css/master.css');
-	
+
 /********************************************************************************************/
 //	Apps
 /********************************************************************************************/
@@ -98,21 +98,17 @@
 /********************************************************************************************/
 //	Header
 /********************************************************************************************/
-//	Header
-	$_APP->bind_snippet('header', 'master/snippet/header');
 //	Even stream
 	$_APP->bind_code('header', '<div id="eventstream"><ul class="mine"></ul><ul class="everybodyelses"></ul></div>');
 	$_APP->bind_snippet('header', 'master/snippet/eventstream');
 //	Green button
 	$_APP->bind_snippet('header', 'master/snippet/greenbutton/greenbutton');
-//	Tabs
-	$_APP->bind_snippet('header', 'master/snippet/tabs');
+//	Header (here, i need the section var)
+	$_APP->bind_snippet('header', 'master/snippet/header');
 
 /********************************************************************************************/
 //	Content
 /********************************************************************************************/
-//	Options
-	$_APP->bind_snippet('content', 'master/snippet/options');
 //	Trashbin
 	$_APP->bind_snippet('content', 'master/snippet/trashbin/trashbin');
 	

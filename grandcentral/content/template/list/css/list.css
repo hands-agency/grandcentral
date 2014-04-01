@@ -14,11 +14,17 @@ section[data-template="list/list"]>div>ol
 section[data-template="list/list"]>div>ol>li>.title
 {
 	font-family:"Raleway-Regular";
+	line-height:1.4em;
+}
+section[data-template="list/list"]>div>ol>li>.title a
+{
+	color:#000;
 }
 section[data-template="list/list"]>div>ol>li>.descr
 {
-	font-family:"Raleway-Regular";
+	font-family:"Raleway-Light";
 	line-height:1.4em;
+	color:#999;
 }
 /* Actions */
 section[data-template="list/list"]>div>ol>li>.action
@@ -122,8 +128,6 @@ section[data-template="list/list"]>.infiniteScrollStopper
 /* Descr */
 .instack section[data-template="list/list"]>div>ol>li>.descr
 {
-	color:#777;
-	font-size:0.9em;
 }
 .instack section[data-template="list/list"]>div>ol>li>.fork
 {
@@ -150,15 +154,14 @@ section[data-template="list/list"]>.infiniteScrollStopper
 }
 .inmasonry section[data-template="list/list"]>div>ol>li
 {
-	border:1px solid #ddd;
+	border:5px solid #F2F2F2;
 	background:#fff;
 	border-radius:3px;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
 	float:left;
-	width:200px;
-	margin:5px;
+	width:20%;
 }
 .inmasonry section[data-template="list/list"]>div>ol>li>:not(.icon)
 {
@@ -182,8 +185,6 @@ section[data-template="list/list"]>.infiniteScrollStopper
 /* Descr */
 .inmasonry section[data-template="list/list"]>div>ol>li>.descr
 {
-	color:#777;
-	font-size:0.9em;
 }
 /* Action */
 .inmasonry section[data-template="list/list"]>div>ol>li>.action

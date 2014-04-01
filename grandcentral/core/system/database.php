@@ -274,7 +274,7 @@ class database
 	//	version
 		if (isset($attrs['version']) && !isset($params['version']))
 		{
-			// $params['version'] = cc($env, current)['version']->get();
+			// $params['version'] = i($env, current)['version']->get();
 		}
 		// print'<pre>';print_r($attrs);print'</pre>';
 	//	tri attributs / relations

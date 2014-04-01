@@ -3,14 +3,16 @@
 /********************************************************************************************/
 section[data-template^="doc/"] h2
 {
-	border:none !important;
-	margin-bottom:0 !important;
 }
 section[data-template^="doc/"] .padding
 {
-	padding:15px;
-	border:1px solid #eee;
-	margin-bottom:40px;
+	border:5px solid #F2F2F2;
+	background:#fff;
+	border-radius:3px;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	padding:20px;
 }
 section[data-template^="doc/"] .descr
 {
