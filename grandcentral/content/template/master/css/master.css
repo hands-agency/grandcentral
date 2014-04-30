@@ -497,7 +497,7 @@ progress::-webkit-progress-value {
 {
 	background:#444;
 	overflow:hidden;
-	height:150px;
+	height:250px;
 	position:relative;
 }
 .siteOpened #grandCentralSite
@@ -532,8 +532,12 @@ progress::-webkit-progress-value {
 	font-size:3em;
 	text-align:center;
 	text-transform:uppercase;
-	margin-top:45px;
+	position:absolute;
+	top:50%;
+	width:100%;
+	margin-top:-25px;
 	z-index:2;
+	height:55px;
 }
 #grandCentralSite:hover .overlay h1
 {
@@ -565,7 +569,8 @@ progress::-webkit-progress-value {
 #grandCentralSite iframe
 {
 	width:100%;
-	height:100%;
+	height:120%;
+	position:relative;
 	/*
 	filter: blur(5px);
 	-webkit-filter: blur(5px);

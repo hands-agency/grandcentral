@@ -79,7 +79,10 @@ $(document).ready(function ()
   
 	var stickyNav = function()
 	{  
-		var scrollTop = $(document).scrollTop();  
+		var scrollTop = $(document).scrollTop();
+
+	//	parallax
+		$('#grandCentralSite iframe').css('top', scrollTop/2);
        
 		if (scrollTop > stickyNavTop)
 		{
