@@ -53,7 +53,7 @@
 	{	
 	//	Edit
 		case 'edit':
-			$structure = i('structure', $_GET['item'], $_SESSION['pref']['handled_env']);
+			$structure = i('item', $_GET['item'], $_SESSION['pref']['handled_env']);
 		//	We have an item already
 			if (isset($_GET['id']))
 			{
@@ -65,7 +65,7 @@
 			else
 			{
 				$link = i($_GET['item'], null, $_SESSION['pref']['handled_env'])->listing();
-				$current = new attrString('[So new i don\'t even have a title]');
+				$current = new attrString('[I\'m so fresh, i don\'t even have a title]');
 			}
 		//	Go
 			$back = $structure['title'];
@@ -73,7 +73,7 @@
 			
 	//	List
 		case 'list':
-			$structure = i('structure', $_GET['item'], $_SESSION['pref']['handled_env']);
+			$structure = i('item', $_GET['item'], $_SESSION['pref']['handled_env']);
 			$item = i('page', 'home');
 			$link = $item['url'];
 			$back = $item['title'];

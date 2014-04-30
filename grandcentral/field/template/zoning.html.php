@@ -11,7 +11,7 @@
 					<button class="delete" type="button"></button>
 					<div class="icon"></div>
 					<div class="title"><?=$section['title']?></div>
-					<input type="hidden" name="<?=$_APP->get_name()?>[]" value="<?=$section->get_nickname()?>" />
+					<input type="hidden" name="<?=$fieldName?>[]" value="<?=$section->get_nickname()?>" />
 				</li>
 				<? endforeach; endif; ?>
 			</ol>

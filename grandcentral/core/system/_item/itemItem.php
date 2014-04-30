@@ -7,7 +7,7 @@
  * @access   public
  * @see      http://www.cafecentral.fr/fr/wiki
  */
-class itemStructure extends _items
+class itemItem extends _items
 {
 	protected $_key;
 	protected $_attr;

@@ -1,2 +1,2 @@
-<h1>Titre du truc</h1>
+<h1><?=i(item, current)['title']?></h1>
 <?= $form; ?>

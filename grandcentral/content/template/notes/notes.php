@@ -29,6 +29,9 @@
 /********************************************************************************************/
 //	Default Max notes displayed
 	$displayNotes = 10;
+//	Minutes before we divide the notes
+	$minuteDivider = 5;
+
 //	Comes via Ajax as well
 	if (isset($_POST['displayNotes'])) $displayNotes = $_POST['displayNotes'];
 	
@@ -38,24 +41,22 @@
 //	Via ajax
 	if (isset($_POST['item']))
 	{
-		list($item, $id) = explode('_', $_POST['item']);
+		$item = $_POST['item'];
 	}
 //	Inline in the page
 	else if (isset($_GET['id']) && isset($_GET['item']))
 	{
-		$item = $_GET['item'];
-		$id = $_GET['id'];
+		$item = $_GET['item'].'_'.$_GET['id'];
 	}
 
 /********************************************************************************************/
 //	Get notes
 /********************************************************************************************/
-	if (isset($item) && isset($id))
+	if (isset($item))
 	{
 		$notes = i('note', array
 		(
 			'item' => $item,
-			'itemid' => $id,
 			'status' => 'live',
 			'order()' => 'created DESC',
 			'limit()' => $displayNotes,
@@ -67,12 +68,17 @@
 /********************************************************************************************/
 //	Get the form
 /********************************************************************************************/
-		$form = new item_form('inline_note');
-
+		$form = i('form', 'note', 'admin');
+		
+	//	Start a new note
+		$newNote = i('note');
+		$newNote['item'] = $item;
+		$form->populate_with_item($newNote);
+		
 	//	Recreate form
 	/*	$form['field'] = array(
-			'descr' => array(
-				'key' => 'descr',
+			'text' => array(
+				'key' => 'text',
 				'type' => 'textarea',
 				'placeholder' => 'Dont forget the place holder',
 			),
@@ -107,9 +113,8 @@
 /********************************************************************************************/
 		$EventSource = 	i('page', 'api.eventstream')['url']->args(array
 		(
-			'app' => 'section',
-			'theme' => 'notes',
-			'template' => 'notes',
+			'app' => 'content',
+			'template' => 'notes/notestream',
 		));
 	}
 ?>

@@ -1,7 +1,7 @@
 <ul id="options">
-	<li id="refine" class="off" data-icon="&#xe009;"><input type="text" placeholder="<?=$current->cut('50')?>" /></li>
-	<li id="lock" class="off" data-icon="&#xe00d;"></li>
-	<li id="filter" class="off" data-icon="&#xe01f;"></li>
+	<li id="filter" class="off" data-batchicon="&#xF06B;"></li>
+	<li id="refine" class="off" data-batchicon="&#xF097;"><input type="text" placeholder="<?=$current->cut('50')?>" /></li>
+	<li id="lock" class="off" data-batchicon="&#xF0C2;"></li>
 </ul>
 <ul id="tabs" data-target="content" <? if (isset($defaultSection)): ?>data-default="<?=$defaultSection?>"<? endif ?>>
 	<? foreach($sections as $section) : ?>

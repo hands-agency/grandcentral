@@ -1,3 +1,4 @@
+<h1>Code</h1>
 <? foreach($html as $app) : ?>
 	<h2><span class="flag"><?=$app['key']?></span><?=ucfirst($app['title'])?></h2>
 	<div class="padding">

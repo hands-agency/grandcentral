@@ -28,11 +28,15 @@ class attrOwner extends _attrs
  * @return	string	une string
  * @access	public
  */
-	public function get()
+	public function database_get()
 	{
-		if (empty($this->data)) $this->data = $_SESSION['user']['id'];
+		if (empty($this->data))
+		{
+			$this->data = $_SESSION['user']['id'];
+		}
 		return $this->data;
 	}
+	
 /**
  * Definition mysql
  *

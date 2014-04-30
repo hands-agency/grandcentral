@@ -4,23 +4,23 @@
 /////////////////////////////////////////////////////////////////////////////////////////////
 /********************************************************************************************/
 /* Fieldsets */
-section[data-template="edit/edit"] fieldset
+section[data-template="/edit/edit"] fieldset
 {
 	padding-top:7px;
 	margin-bottom:10px;
 }
-section[data-template="edit/edit"]>form>fieldset>legend
+section[data-template="/edit/edit"]>form>fieldset>legend
 {
 	font-weight:bold;
 }
-section[data-template="edit/edit"]>form>fieldset>.descr
+section[data-template="/edit/edit"]>form>fieldset>.descr
 {
 	margin-bottom:10px;
 	color:#ccc;
 }
 
 /* Lines */
-section[data-template="edit/edit"]>form>fieldset>ol>li
+section[data-template="/edit/edit"]>form>fieldset>ol>li
 {
 	background:#F2F2F2;
 	margin-bottom:10px;
@@ -32,7 +32,7 @@ section[data-template="edit/edit"]>form>fieldset>ol>li
 }
 
 /* Labels */
-section[data-template="edit/edit"]>form>fieldset>ol>li>label
+section[data-template="/edit/edit"]>form>fieldset>ol>li>label
 {
 	color:#333333;
 	width:160px;
@@ -44,25 +44,25 @@ section[data-template="edit/edit"]>form>fieldset>ol>li>label
 }
 
 /* Field */
-section[data-template="edit/edit"]>form>fieldset ol>li .wrapper
+section[data-template="/edit/edit"]>form>fieldset ol>li .wrapper
 {
 	width:508px; 
 	display:inline-block;
 }
-section[data-template="edit/edit"]>form>fieldset ol>li .wrapper .field
+section[data-template="/edit/edit"]>form>fieldset ol>li .wrapper .field
 {
 	position:relative;
 	display:block;
 	padding:3px;
 }
 
-section[data-template="edit/edit"]>form>fieldset ol>li.number>.wrapper .field,
-section[data-template="edit/edit"]>form>fieldset ol>li.text>.wrapper .field,
-section[data-template="edit/edit"]>form>fieldset ol>li.textarea>.wrapper .field,
-section[data-template="edit/edit"]>form>fieldset ol>li.attr>.wrapper .field,
-section[data-template="edit/edit"]>form>fieldset ol>li.wysiwyg>.wrapper .field,
-section[data-template="edit/edit"]>form>fieldset ol>li.multipleselect>.wrapper .field,
-section[data-template="edit/edit"]>form>fieldset ol>li.rel>.wrapper .field	
+section[data-template="/edit/edit"]>form>fieldset ol>li.number>.wrapper .field,
+section[data-template="/edit/edit"]>form>fieldset ol>li.text>.wrapper .field,
+section[data-template="/edit/edit"]>form>fieldset ol>li.textarea>.wrapper .field,
+section[data-template="/edit/edit"]>form>fieldset ol>li.attr>.wrapper .field,
+section[data-template="/edit/edit"]>form>fieldset ol>li.wysiwyg>.wrapper .field,
+section[data-template="/edit/edit"]>form>fieldset ol>li.multipleselect>.wrapper .field,
+section[data-template="/edit/edit"]>form>fieldset ol>li.rel>.wrapper .field	
 {
 	border:1px solid #ccc;
 	-moz-border-radius:3px;
@@ -78,7 +78,7 @@ section[data-template="edit/edit"]>form>fieldset ol>li.rel>.wrapper .field
 /********************************************************************************************/
 /* Help
 /********************************************************************************************/
-section[data-template="edit/edit"]>form>fieldset ol>li .wrapper .help
+section[data-template="/edit/edit"]>form>fieldset ol>li .wrapper .help
 {
 	padding:10px 0;
 	display:none;
@@ -96,7 +96,7 @@ li.ko .field {
 }
 
 /* Control */
-section[data-template="edit/edit"] fieldset ol>li .control {
+section[data-template="/edit/edit"] fieldset ol>li .control {
 	position:absolute;
 	right:-50px;
 	top:10px;
@@ -109,7 +109,7 @@ section[data-template="edit/edit"] fieldset ol>li .control {
 	-webkit-border-radius:5px;
 	border-radius:5px;
 }
-section[data-template="edit/edit"] fieldset ol>li .control:after
+section[data-template="/edit/edit"] fieldset ol>li .control:after
 {
 	content:'';
 	width:0;
@@ -122,37 +122,37 @@ section[data-template="edit/edit"] fieldset ol>li .control:after
 	left:-8px;
 }
 /* Control guiding you */
-section[data-template="edit/edit"] fieldset ol>li.guiding .control{
+section[data-template="/edit/edit"] fieldset ol>li.guiding .control{
 	background:#ccc;
 }
-section[data-template="edit/edit"] fieldset ol>li.guiding .control:after {
+section[data-template="/edit/edit"] fieldset ol>li.guiding .control:after {
 	border-right-color:#ccc;
 }
 /* Control OK */
-section[data-template="edit/edit"] fieldset ol>li.ok .control{
+section[data-template="/edit/edit"] fieldset ol>li.ok .control{
 	background:#6cbf2d;
 }
-section[data-template="edit/edit"] fieldset ol>li.ok .control:after {
+section[data-template="/edit/edit"] fieldset ol>li.ok .control:after {
 	border-right-color:#6cbf2d;
 }
-section[data-template="edit/edit"] fieldset ol>li.ok .control:before {
+section[data-template="/edit/edit"] fieldset ol>li.ok .control:before {
 	content:'✔';
 }
 /* Control K0 */
-section[data-template="edit/edit"] fieldset ol>li.ko .control {
+section[data-template="/edit/edit"] fieldset ol>li.ko .control {
 	background:#df3528;
 }
-section[data-template="edit/edit"] fieldset ol>li.ko .control:after {
+section[data-template="/edit/edit"] fieldset ol>li.ko .control:after {
 	border-right-color:#df3528;
 }
-section[data-template="edit/edit"] fieldset ol>li.ko .control:before {
+section[data-template="/edit/edit"] fieldset ol>li.ko .control:before {
 	content:'✕';
 }
 
 /********************************************************************************************/
 /* Todo
 /********************************************************************************************/
-section[data-template="edit/edit"]>form>fieldset ol>li .wrapper .todo
+section[data-template="/edit/edit"]>form>fieldset ol>li .wrapper .todo
 {
 	list-style-type:square;
 	padding:10px 0 0 20px;
@@ -168,7 +168,7 @@ section[data-template="edit/edit"]>form>fieldset ol>li .wrapper .todo
 	display:block;
 }
 /* Fieldsets */
-section[data-template="edit/edit"]>form>fieldset fieldset
+section[data-template="/edit/edit"]>form>fieldset fieldset
 {
 	margin:10px;
 }

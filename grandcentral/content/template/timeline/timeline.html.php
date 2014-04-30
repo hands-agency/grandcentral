@@ -1,6 +1,7 @@
 <? if (!$events): ?>
 <div class="nodata">As soon as something happens, we'll let you know right here</div>
 <? else : ?>
+<h1>Digest</h1>
 <ol class="logbookList">
 	<? foreach ($events as $period => $subject): ?>
 	<!--h2><?=$period?></h2-->
@@ -11,19 +12,19 @@
 	?>
 	<? foreach ($subject as $subject => $event): ?>
 		<!-- <h3>user <?=$subject?></h3> -->
-		<? foreach ($event as $event => $structures): ?>
+		<? foreach ($event as $event => $items): ?>
 			<!-- <h4><?=$event?></h4> -->
-			<? foreach ($structures as $structure => $items): ?>
+			<? foreach ($items as $structure => $items): ?>
 				<!-- <h5><?=$structure?> </h5> -->
 				<? $logbook = current($items) ?>
 				<? $user = i('human', $subject, 'site') ?>
-				<? $structure = i('structure', $logbook['item']->get(), 'site') ?>
+				<? $structure = i('item', $logbook['item']->get(), 'site') ?>
 				<li data-item="<?=$logbook->get_nickname()?>">
 					<?
 						$thumbnail = (!$user['profilepic']->is_empty()) ? $user['profilepic']->unfold()[0]->thumbnail(100, null) : null;
 						$empty = (!isset($thumbnail)) ? 'empty' : null;
 					?>
-					<div class="icon <?=$empty?>"><a href="<?=$user->edit()?>"><?=$thumbnail?></a></div>
+					<div class="icon <?=$empty?>" data-item="human_<?=$user['owner'] ?>" data-item-link="timeline"><?=$thumbnail?></div>
 					
 					<div class="padding">
 
@@ -109,7 +110,7 @@
 				if (data['descr']) descr = '<div class="descr">'+data['descr']+'</div>';
 				
 			//	LI
-				li = '<li data-item="'+item+'" style="display:none"><div class="icon"></div><div class="padding">'+author+descr+'<div class="date">'+data['created']+'</div></div></li>';
+				li = '<li data-item="'+item+'" style="display:none"><div class="icon"></div><div class="padding">'+author+descr+'</div></li>';
 				$(li).prependTo('.logbookList').show('fast');
 				
 			//	No data ?

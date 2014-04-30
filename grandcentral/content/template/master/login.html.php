@@ -9,7 +9,7 @@
 		
 	<div id="main" class="navClosed adminClosed contextClosed">
 			
-		<nav id="grandCentralNav"><!-- ZONE:nav --></nav>
+		<nav id="adminNav"><!-- ZONE:nav --></nav>
 		
 		<div id="grandCentralAdmin">
 	

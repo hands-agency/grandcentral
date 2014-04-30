@@ -6,13 +6,12 @@
 }
 #greenbutton-choices ul li
 {
-	padding:7px 0;
-	border-bottom:1px solid #ccc;
+	border-bottom:1px solid #555;
 }
 #greenbutton-choices ul li .title
 {
-	font-family:'Raleway-Thin';
-	color:#000;
+	color:#fff;
+	margin:0;
 }
 #greenbutton-choices ul li .descr
 {

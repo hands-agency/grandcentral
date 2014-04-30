@@ -6,7 +6,6 @@
 	<div class="field">
 		<input  type="hidden" name="<?= $_FIELD->get_name(); ?>" <?php if ($_FIELD->is_disabled()): ?>disabled="disabled"<?php endif ?>value="">
 		<div class="selected">
-			<div class="h3-wrapper"><h3><?=MULTIPLESELECT_SELECTED_LABEL?></h3></div>
 			<ol>
 				<li class="nodata" <?=$hideNodata?>>
 					<?=MULTIPLESELECT_SELECTED_NODATA?>
@@ -23,7 +22,6 @@
 			</ol>
 		</div>
 		<div class="available" data-name="<?=$name?>" data-values="<?=$values?>" data-valuestype="<?=$valuestype?>">
-			<div class="h3-wrapper"><h3><?=MULTIPLESELECT_AVAILABLE_LABEL?></h3></div>
 			<div class="refine"><input type="search" placeholder="Refine" /></div>
 			<ul class="choices"><!-- Welcome Ajax --></ul>
 		</div>

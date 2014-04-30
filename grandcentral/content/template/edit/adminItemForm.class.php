@@ -40,7 +40,7 @@ class adminItemForm
 		$this->item = i($table, $id, $env);
 	}
 /**
- * Mettre en conformité le formulaire et la structure
+ * Mettre en conformité le formulaire et la structure d'un item
  *
  * @access	public
  */
@@ -54,7 +54,7 @@ class adminItemForm
 	//	modification du formaulaire seulement si la structure de l'objet a été modifiée
 		else
 		{
-			$structure = i('structure', $this->table, $this->env);
+			$structure = i('item', $this->table, $this->env);
 			if ($structure['updated']->get() > $this->form['updated']->get())
 			{
 				$this->_update_form();
@@ -134,7 +134,7 @@ class adminItemForm
 		//	key
 			case $attr['type'] == 'key':
 				$field['type'] = 'text';
-				if ($this->item->get_table() == 'structure') $field['required'] = true;
+				if ($this->item->get_table() == 'item') $field['required'] = true;
 				break;
 		//	bool
 			case $attr['type'] == 'bool':
@@ -175,7 +175,7 @@ class adminItemForm
 						$field['type'] = 'form';
 						break;
 				//	objet structure
-					case $this->item->get_table() == 'structure' && $attr['key'] == 'attr':
+					case $this->item->get_table() == 'item' && $attr['key'] == 'attr':
 						$field['type'] = 'attr';
 						break;
 				//	objet section

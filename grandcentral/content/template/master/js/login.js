@@ -3,10 +3,7 @@
  	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
 $(document).ready(function ()
-{
-//	Ouvrir grand la nav
-	hideNav();
-	
+{	
 //	When submitting
 	$('form').on('submit', function(e)
 	{

@@ -11,7 +11,7 @@ class sitemaps
 {
 	private $data;
 	private $filepath;
-	private $filename = 'sitemap.xml.php';
+	private $filename = '/sitemap.xml.php';
 
 /**
  * Class constructor
@@ -35,10 +35,10 @@ class sitemaps
 	public function create()
 	{
 	//	Get the structures with url
-		$structures = i('structure', array('hasurl' => true));
+		$items = i('item', array('hasurl' => true));
 	//	Loop through structures with url
 		$url = null;
-		foreach ($structures as $structure)
+		foreach ($items as $structure)
 		{
 		//	Get the items
 			$items = i($structure['key']->get(), array('status' => 'live'));
@@ -54,7 +54,7 @@ class sitemaps
 		}
 		
 	//	Encapsulate
-		$this->data .= "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+
 		$this->data .= "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n";
 		$this->data .= $url;
 		$this->data .= "</urlset>";

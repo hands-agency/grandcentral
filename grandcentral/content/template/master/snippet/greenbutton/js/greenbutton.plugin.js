@@ -56,7 +56,7 @@
 			{
 				$(this).toggleClass('on');
 			//	Fetch the right section
-				sectionid = $('#content section:visible').attr('id').replace('section_', '');
+				sectionid = $('#adminContent section:visible').attr('id').replace('section_', '');
 			//	Open the context
 				openContext(
 				{
@@ -76,7 +76,7 @@
 			});
 			
 		//	Prevent regular submit
-			$('#content>section').on('submit', 'form', function()
+			$('#adminContent>section').on('submit', 'form', function()
 			{
 				return false;
 			});
@@ -93,12 +93,12 @@
 		plugin.save = function(newStatus, callback)
 		{
 		//	Trigger regular submit for eventual plugin callbacks
-			$('#content>section>form').submit();
+			$('#adminContent>section>form').submit();
 			
 		//	Id & status
 			id = $('input[name="'+SITE_KEY+'_'+_GET['item']+'[id]"]');
 			oldStatus = $('input[name="'+SITE_KEY+'_'+_GET['item']+'[status]"]');
-			form = $('#content>section>form');
+			form = $('#adminContent section>form');
 			
 		//	Change status ?
 			if (newStatus) oldStatus.val(newStatus);

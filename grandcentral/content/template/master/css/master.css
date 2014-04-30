@@ -53,100 +53,6 @@ pre, code, kbd, samp
 	font-family:'monaco', monospace, sans-serif;
 }
 
-#grandCentralAdmin button
-{
-	font-size: 1em;
-	font-family:inherit;
-	width: auto;
-	overflow: visible;
-	padding:4px 8px;
-	margin:0;	
-	color:#666;
-	cursor:pointer;
-	height:26px;
-	text-align:center;
-	text-shadow: 0 1px 0 rgba(255,255,255,0.9);
-	white-space: nowrap;
-	background-color: #eaeaea;
-	background-image: -moz-linear-gradient(#fafafa, #eaeaea);
-	background-image: -webkit-linear-gradient(#fafafa, #eaeaea);
-	background-image: linear-gradient(#fafafa, #eaeaea);
-	background-repeat: repeat-x;
-	border-radius: 3px;
-	border: 1px solid #ddd;
-	border-bottom-color: #c5c5c5;
-	cursor: pointer;
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
-#grandCentralAdmin button:hover
-{
-	background-image: -moz-linear-gradient(#F3F3F3, #ddd);
-	background-image: -webkit-linear-gradient(#F3F3F3, #ddd);
-	background-image: linear-gradient(#F3F3F3, #ddd);
-}
-#grandCentralAdmin button:active
-{
-	background: #e3e3e3;
-}
-/* Close */
-#grandCentralAdmin button.close
-{
-	position:absolute;
-	top:10px;
-	right:10px;
-	z-index:3;
-	border:none;
-	background:transparent;
-	color:#000;
-	opacity:0.65;
-	width:26px;
-	height:26px;
-	cursor:pointer;
-	font-size:12px;
-}
-#grandCentralAdmin button.close:before
-{
-	content:'';
-	width:0px;
-	height:0px;
-	position:absolute;
-	top:50%;
-	left:50%;
-	display:block;
-	border-radius:20px;
-	-webkit-transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	transition:         all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	z-index:-1;
-}
-#grandCentralAdmin button.close:hover:before
-{
-	margin:-14px 0 0 -14px;
-	width:25px;
-	height:25px;
-	border:2px solid #000;
-}
-#grandCentralAdmin button.close:hover
-{
-	opacity:1;
-	color:#fff;
-}
-#grandCentralAdmin button.close:after,
-#grandCentralAdmin button.delete:after
-{
-	content:'✕';
-	font-size:12px;
-}
-#grandCentralAdmin button.close:hover,
-#grandCentralAdmin button.delete:hover
-{
-	opacity:1;
-}
-
 .ie7 img
 {
 	-ms-interpolation-mode: bicubic;
@@ -170,7 +76,7 @@ input[type="search"]
 /********************************************************************************************/
 body
 {
-	font-family:"HelveticaNeue", helvetica, arial, "Lucida Grande", Geneva, Verdana, sans-serif;
+	font-family:"Helvetica Neue", helvetica, arial, "Lucida Grande", Geneva, Verdana, sans-serif;
 	font-size:1em;
 	color:#444;
 	background:#fff;
@@ -245,7 +151,7 @@ a:visited
 
 /********************************************************************************************/
 /*////////////////////////////////////////////////////////////////////////////////////////////
-/* Import des typos
+/* Fonts
 /////////////////////////////////////////////////////////////////////////////////////////////
 /********************************************************************************************/
 /* Raleway Thin */
@@ -411,9 +317,6 @@ progress::-webkit-progress-value {
 .ui-sortable li:not(.nodata)
 {
 	cursor:move;
-    -webkit-transition: -webkit-transform 0.1s ease-in;
-    -moz-transition: -moz-transform 0.1s ease-in;
-    transition: transform 0.1s ease-in;
 }
 .ui-draggable:hover,
 .ui-sortable li:hover
@@ -422,13 +325,6 @@ progress::-webkit-progress-value {
 .ui-draggable-dragging,
 .ui-sortable-helper
 {
-	z-index:99999;
-	background:#fff;
-	border:1px solid #F2F2F2;
-	box-shadow: 3px 3px 1px 0 rgba(0, 0, 0, .1) !important;
-    -webkit-transform: rotateZ(-3deg) scale(1.05) !important;
-    -moz-transform: rotateZ(-3deg) scale(1.05) !important;
-    transform: rotateZ(-3deg) scale(1.05) !important;
 }
 /* Draggable */
 .ui-draggable:hover
@@ -436,9 +332,6 @@ progress::-webkit-progress-value {
 }
 .ui-draggable-dragging
 {
-    -webkit-transform: rotateZ(3deg) scale(1.05) !important;
-    -moz-transform: rotateZ(3deg) scale(1.05) !important;
-    transform: rotateZ(3deg) scale(1.05) !important;
 }
 /* Sortable */
 .ui-sortable li:hover
@@ -507,13 +400,6 @@ progress::-webkit-progress-value {
 {
 	text-align:center;
 	color:#fff;
-	/*
-	text-shadow: 0 1px 0 rgba(0,0,0,0.1);
-	-webkit-box-shadow: 0px 1px 1px rgba(0,0,0,0.2);
-	-moz-box-shadow: 0px 1px 1px rgba(0,0,0,0.2);
-	-o-box-shadow: 0px 1px 1px rgba(0,0,0,0.2);
-	box-shadow: 0px 1px 1px rgba(0,0,0,0.2);
-	*/
 }
 .icon img
 {
@@ -554,11 +440,11 @@ progress::-webkit-progress-value {
 /* Size: small */
 .thumbnail.small iframe
 {
-	transform: translate(-577px, -721px) scale(0.1);
-	-moz-transform: translate(-577px, -721px) scale(0.1);
-	-ms-transform: translate(-577px, -721px) scale(0.1);
-	-webkit-transform: translate(-577px, -721px) scale(0.1);
-	-o-transform: translate(-577px, -721px) scale(0.1);
+	transform:scale(1.3);
+	-moz-transform:scale(1.3);
+	-ms-transform:scale(1.3);
+	-webkit-transform:scale(1.3);
+	-o-transform:scale(1.3);
 }
 .thumbnail.small .thumbnailPlaceholder
 {
@@ -588,88 +474,22 @@ progress::-webkit-progress-value {
 /********************************************************************************************/
 #main
 {
-	overflow:hidden;
 }
 
 /********************************************************************************************/
 /* The structure Whatever happens
 /********************************************************************************************/
-/* Our 3 main lanes */
-#grandCentralNav,
-#grandCentralAdmin,
-#grandCentralSite
-{
-	float:left;
-	position:relative;
-	-moz-box-sizing:border-box;
-	-webkit-box-sizing:border-box;
-	box-sizing:border-box;
-	height:100%;
-	-webkit-transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	transition:         all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-}
-
-/* The Nav */
-#grandCentralNav
-{
-	background:#111;	
-}
-.navClosed #grandCentralNav
-{
-	width:5%;
-}
-.navOpened #grandCentralNav
-{
-	width:45%;
-}
-.navBroadened #grandCentralNav
-{
-	width:65%;
-}
-.navHidden #grandCentralNav
-{
-	width:0%;
-}
-.adminClosed #grandCentralNav
-{
-	-webkit-box-shadow: 5px 0px 0px rgba(50, 50, 50, 0.3);
-	-moz-box-shadow:    5px 0px 0px rgba(50, 50, 50, 0.3);
-	box-shadow:         5px 0px 0px rgba(50, 50, 50, 0.3);
-}
-
-/* The admin */
+/* Our 2 main bands */
+#grandCentralSite,
 #grandCentralAdmin
 {
-	-webkit-box-shadow: 5px 0px 0px rgba(50, 50, 50, 0.3);
-	-moz-box-shadow:    5px 0px 0px rgba(50, 50, 50, 0.3);
-	box-shadow:         5px 0px 0px rgba(50, 50, 50, 0.3);
-	z-index:1;
-	overflow:scroll;
-	background:#eee;
+	
 }
-.adminClosed #grandCentralAdmin
+#grandCentralAdmin
 {
-	width:0% !important;
-}
-.navClosed #grandCentralAdmin
-{
-	width:80%;
-}
-.navOpened #grandCentralAdmin
-{
-	width:50%;
-}
-.navBroadened #grandCentralAdmin
-{
-	width:0%;
-}
-.contextOpened.navClosed #grandCentralAdmin
-{
-	width:90%;
-}
-.navOpened #grandCentralAdmin>button.close
-{
-	display:none;
+	position:absolute;
+	width:100%;
+	height:100%;
 }
 
 /* The site */
@@ -677,48 +497,27 @@ progress::-webkit-progress-value {
 {
 	background:#444;
 	overflow:hidden;
+	height:150px;
+	position:relative;
 }
-.navClosed #grandCentralSite
+.siteOpened #grandCentralSite
 {
-	width:15%;
-}
-.navOpened #grandCentralSite
-{
-	width:5%;
-}
-.navBroadened #grandCentralSite
-{
-	width:35%;
-}
-.navHidden #grandCentralSite
-{
-	width:100%;
-}
-.contextOpened #grandCentralSite
-{
-	width:5%;
-}
-.navClosed.adminClosed #grandCentralSite
-{
-	width:95%;
-}
-.navOpened.adminClosed #grandCentralSite
-{
-	width:55%;
+	height:90%;
 }
 #grandCentralSite .overlay
 {
+	background:rgba(0, 0, 0, 0.4);
+	cursor:pointer;
+	z-index:1;
 	position:absolute;
 	width:100%;
 	height:100%;
-	background:rgba(0, 0, 0, 0.2);
-	cursor:pointer;
 	-webkit-transition: all .15s ease-out; 
 	-moz-transition: all .15s ease-out; 
 	-o-transition: all .15s ease-out; 
 	transition: all .15s ease-out;
 }
-.adminClosed #grandCentralSite .overlay
+.siteOpened #grandCentralSite .overlay
 {
 	display:none;
 }
@@ -726,12 +525,26 @@ progress::-webkit-progress-value {
 {
 	background:none;
 }
+#grandCentralSite .overlay h1
+{
+	font-family: "Raleway-Thin";
+	color:#fff;
+	font-size:3em;
+	text-align:center;
+	text-transform:uppercase;
+	margin-top:45px;
+	z-index:2;
+}
+#grandCentralSite:hover .overlay h1
+{
+	opacity:0;
+}
 #grandCentralSite .overlay span
 {
 	position:absolute;
 	left:50%;
 	top:50%;
-	margin:-50px 0 0 -40px;
+	margin:-60px 0 0 -50px;
 	width:100px;
 	height:100px;
 	border-radius:3px;
@@ -744,41 +557,102 @@ progress::-webkit-progress-value {
 	-webkit-transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	transition:         all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-#grandCentralSite .overlay:hover span
+#grandCentralSite:hover .overlay span
 {
 	opacity:0.8;
-	margin-left:-50px;
+	margin-top:-50px;
 }
 #grandCentralSite iframe
 {
 	width:100%;
 	height:100%;
-	/* Emulate the minimum viewport */
-	min-width:1024px;
+	/*
+	filter: blur(5px);
+	-webkit-filter: blur(5px);
+	-moz-filter: blur(5px);
+	-o-filter: blur(5px);
+	-ms-filter: blur(5px);
+	*/
+}
+#grandCentralSite:hover iframe
+{
+	filter: blur(0);
+	-webkit-filter: blur(0);
+	-moz-filter: blur(0);
+	-o-filter: blur(0);
+	-ms-filter: blur(0);
 }
 
+/* Our 3 main lanes */
+#adminNav,
+#adminContent,
+#adminContext
+{
+	float:left;
+	position:relative;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	-webkit-transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	transition:         all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
+
+/* The Nav */
+#adminNav
+{
+	float:left;
+	background:#222;
+	height:100%;
+}
+.navClosed #adminNav
+{
+	width:5%;
+}
+.navOpened #adminNav
+{
+	width:45%;
+}
+
+/* The Content */
+#adminContent
+{
+	z-index:1;
+}
+.navClosed #adminContent
+{
+	width:95%;
+}
+.navOpened #adminContent
+{
+	width:45%;
+}
+.contextOpened #adminContent
+{
+	width:60%;
+}
+
+
 /* The content & context */
-.contextOpened #context
+#adminContext
 {
+	float:right;
+	width:0;
+	height:100%;
+}
+.contextOpened #adminContext
+{
+	width:35%;
 	padding:30px;
-	/* Context is fixed, so % are for the full page */
-	width:41%;
-	right:5%;
 }
-.navOpened.contextOpened #context
+.navOpened #adminContent
 {
-	/* Context is fixed, so % are for the full page */
-	width:0%;
-	padding:0;
+	width:0;
 }
-.navClosed.contextOpened #content
+.sticky #adminContext
 {
-	width:55% !important;
-}
-.contextClosed #context>button.close
-{
-	/* weird, weird... */
-	display:none;
+    position: fixed;
+    right: 0;  
+    top: 0;  
 }
 
 /********************************************************************************************/
@@ -786,34 +660,46 @@ progress::-webkit-progress-value {
 /* Content
 /////////////////////////////////////////////////////////////////////////////////////////////
 /********************************************************************************************/
-#content
+#adminContent
 {
-	padding:0 0px 30px 0px;
-	-moz-box-sizing:border-box;
-	-webkit-box-sizing:border-box;
-	box-sizing:border-box;
-	position:relative;
-	-webkit-transition: all .15s ease-out; 
-	-moz-transition: all .15s ease-out; 
-	-o-transition: all .15s ease-out; 
-	transition: all .15s ease-out;
+	overflow:hidden;
 }
-#content.unlocked
+.sticky #adminContent
 {
-	background-color:#0D4583 !important;
+	left:5%;
 }
-#content>button.close
+#adminContent.unlocked
+{
+	background-color:#364875 !important;
+}
+#adminContent>button.close
 {
 	position:absolute;
 	top:15px;
 	right:15px;
 	z-index:2;
 }
-#content h1
+#adminContent section>h1
 {
-	font-family:"Raleway-Regular";
-	font-size:45px;
+	font-family: "Raleway-Thin";
+	font-size:35px;
 	margin:0 0 20px 0;
+	text-align:center;
+}
+#adminContent section>h1:hover:before
+{
+	content:'< ';
+	opacity:0.2;
+	border:1px solid #000;
+	border-radius:50%;
+	width:40px;
+	height:40px;
+	line-height:35px;
+	font-size:35px;
+	display:inline-block;
+	margin:0 10px 0 0;
+	position:relative;
+	top:-5px;
 }
 /* Footer */
 footer
@@ -825,30 +711,19 @@ footer
 /* Context
 /////////////////////////////////////////////////////////////////////////////////////////////
 /********************************************************************************************/
-#context
+#adminContext
 {
-	position:fixed;
 	overflow:auto;
-	z-index:3;
-	width:0%;
-	height:100%;
-	top:0;
-	right:0;
-	background:#222;
-	-moz-box-sizing:border-box;
-	-webkit-box-sizing:border-box;
-	box-sizing:border-box;
-	-webkit-transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	transition:         all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+	background:#eee;
 }
-#context>button.close
+#adminContext>button.close
 {
 	position:absolute;
 	top:15px;
 	right:15px;
 	z-index:2;
 }
-#context h1
+#adminContext h1
 {
 	font-family:"Raleway-Regular";
 	font-size:45px;
@@ -860,27 +735,79 @@ footer
 /* Content sections
 /////////////////////////////////////////////////////////////////////////////////////////////
 /********************************************************************************************/
-#content section
+#adminContent #sectiontray
 {
-	margin:0;
-	padding:30px;
-	font-size:0.8em;
-	display:none;
+	-webkit-transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	transition:         all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	position:relative;
+	/* width:500%; Width is in master.js */	
 }
-#content.unlocked section
+.sticky #adminContent #sectiontray
+{
+	padding-top:40px;
+}
+#adminContent #sectiontray>li
+{
+	/* width:20%; Width is in master.js */
+	font-size:0.8em;
+	position:relative;
+	float:left;
+	padding:0 20px 20px 20px;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+#adminContent section
+{
+	border-radius:3px;
+	background:#eee;
+	padding:30px;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
+}
+#adminContent section.virgin,
+#adminContent section.loading
+{
+	height:400px;
+	text-align:center;
+}
+#adminContent section.virgin:before
+{
+	content:'virgin';
+	display:block;
+	padding:100px 0;
+	color:#ccc;
+}
+#adminContent section.virgin
+{
+	opacity:0.7;
+}
+#adminContent section.loading
+{
+	opacity:0.4;
+}
+#adminContent .hidden
+{
+	left:-100%;
+}
+#adminContent.unlocked section
 {
 	background-color:transparent !important;
 }
-#content section>p,
-#content section>ul,
-#content section>ol
+#adminContent section>p,
+#adminContent section>ul,
+#adminContent section>ol
 {
 	color:#555;
 }
 
-/* #content section toc */
-#content section .toc 
+/* #adminContent section toc */
+#adminContent section .toc 
 {
 	border:1px dotted #ccc;
 	padding:20px;
@@ -891,15 +818,15 @@ footer
 	column-count: 3;
 	column-gap: 20px;
 }
-#content section .toc li
+#adminContent section .toc li
 {
 }
 
 /* Section titles */
-#content section h2,
-#content section h3,
-#content section h4,
-#content section h5
+#adminContent section h2,
+#adminContent section h3,
+#adminContent section h4,
+#adminContent section h5
 {
 	font-family:"Raleway-Regular";
 	/* Linin numerals for Raleway */
@@ -908,29 +835,38 @@ footer
 	-ms-font-feature-settings: 'lnum';
 	-webkit-font-feature-settings: 'lnum';
 	-o-font-feature-settings: 'lnum';
-	margin:0 0 5px;
 	font-weight:normal;
 	clear:both;
 }
-#content section>h2 a,
-#content section>h3 a,
-#content section>h4 a,
-#content section>h5 a
+#adminContent section>h2 a,
+#adminContent section>h3 a,
+#adminContent section>h4 a,
+#adminContent section>h5 a
 {
 	color:#333;
 }
 
-/* #content section h2 */
-#content section>h2,
-#content section>div>h2
+/* #adminContent section h2 */
+#adminContent section>h2,
+#adminContent section>div>h2
 {
-	margin:0px 0 10px 0;
-	font-size:2em;
+	margin:0 0 20px 0;
 	border-bottom:1px solid #ccc;
 	padding:0 0 5px 0;
 	text-align:center;
+	text-transform:uppercase;
 }
-#content section>h2 span.flag
+#adminContent section h2>.centered
+{
+	background:#eee;
+	padding:0 10px;
+	color:#aaa;
+	position:relative;
+	bottom:-13px;
+	display:inline;
+	font-size:12px;
+}
+#adminContent section>h2 span.flag
 {
 	font-family:"Raleway-Regular";
 	text-transform:uppercase;
@@ -942,74 +878,74 @@ footer
 	position:relative;
 	top:-5px;
 }
-#content section>h2
+#adminContent section>h2
 {
 }
 
-/* #content section h3 */
-#content section>h3
+/* #adminContent section h3 */
+#adminContent section>h3
 {
 	font-size:1.5em;
 	border-color:#ddd;
 }
 
-/* #content section h4 */
-#content section>h4
+/* #adminContent section h4 */
+#adminContent section>h4
 {
 	font-size:1.1em;
 	border-color:#eee;
 }
 
 /* Nodata */
-#content section>.nodata
+#adminContent section>.nodata
 {
 	font-size:30px;
 }
 
 /* The lines */
-#content section>ul,
-#content section>ol
+#adminContent section>ul,
+#adminContent section>ol
 {
 	padding:0;
 }
-#content section>ul>li
-#content section>ol>li
+#adminContent section>ul>li
+#adminContent section>ol>li
 {
 	position:relative;
 }
-#content section .in2col,
-#content section .in3col,
-#content section .in4col,
-#content section .in5col
+#adminContent section .in2col,
+#adminContent section .in3col,
+#adminContent section .in4col,
+#adminContent section .in5col
 {
 	overflow:auto;
 }
-#content section .in2col li,
-#content section .in3col li,
-#content section .in4col li,
-#content section .in5col li
+#adminContent section .in2col li,
+#adminContent section .in3col li,
+#adminContent section .in4col li,
+#adminContent section .in5col li
 {
 	float:left;
 }
-#content section .in2col li
+#adminContent section .in2col li
 {
 	width:50%;
 }
-#content section .in3col li
+#adminContent section .in3col li
 {
 	width:33%;
 }
-#content section .in4col li
+#adminContent section .in4col li
 {
 	width:25%;
 }
-#content section .in5col li
+#adminContent section .in5col li
 {
 	width:20%;
 }
 
 /* Handles */
-#content section>ol>li .handle
+#adminContent section>ol>li .handle
 {
 	position:absolute;
 	top:20px;
@@ -1022,30 +958,102 @@ footer
 	border-radius:8px;
 	opacity:0;
 }
-#content section>ol>li:hover>.handle
+#adminContent section>ol>li:hover>.handle
 {
 	opacity:1;
 }
 
 /* Insert & update a field */
-#content section>ol>li.liveupdate,
-#content section>ol>li.liveinsert
+#adminContent section>ol>li.liveupdate,
+#adminContent section>ol>li.liveinsert
 {
 	-moz-box-shadow:inset 0 10px 10px -7px rgba(0, 0, 0, 0.1);
 }
-#content section>ol>li.liveinsert
+#adminContent section>ol>li.liveinsert
 {
 	height:5px 15px;
 	text-align:center;
 	display:none;
 	font-size:0.8em;
 }
-#content section>ol>li.liveupdate input,
-#content section>ol>li.liveupdate select,
-#content section>ol>li.liveinsert input,
-#content section>ol>li.liveinsert select
+#adminContent section>ol>li.liveupdate input,
+#adminContent section>ol>li.liveupdate select,
+#adminContent section>ol>li.liveinsert input,
+#adminContent section>ol>li.liveinsert select
 {
 	width:auto !important;
+}
+
+#grandCentralAdmin button
+{
+	background:none;
+	border:1px solid #eee;
+	padding:5px 7px;
+	margin:0;
+	color:#999;
+	cursor: pointer;
+}
+#grandCentralAdmin button:hover
+{
+	color:#3eb4d6;
+	border-color:#999;
+}
+#grandCentralAdmin button:active
+{
+}
+
+/* Close */
+#grandCentralAdmin button.close
+{
+	position:absolute;
+	top:10px;
+	right:10px;
+	z-index:3;
+	border:none;
+	background:transparent;
+	color:#000;
+	opacity:0.65;
+	width:26px;
+	height:26px;
+	cursor:pointer;
+	font-size:12px;
+}
+#grandCentralAdmin button.close:before
+{
+	content:'';
+	width:0px;
+	height:0px;
+	position:absolute;
+	top:50%;
+	left:50%;
+	display:block;
+	border-radius:20px;
+	-webkit-transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	transition:         all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	z-index:-1;
+}
+#grandCentralAdmin button.close:hover:before
+{
+	margin:-14px 0 0 -14px;
+	width:25px;
+	height:25px;
+	border:2px solid #000;
+}
+#grandCentralAdmin button.close:hover
+{
+	opacity:1;
+	color:#fff;
+}
+#grandCentralAdmin button.close:after,
+#grandCentralAdmin button.delete:after
+{
+	content:'✕';
+	font-size:12px;
+}
+#grandCentralAdmin button.close:hover,
+#grandCentralAdmin button.delete:hover
+{
+	opacity:1;
 }
 
 /********************************************************************************************/

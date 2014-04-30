@@ -1,0 +1,1 @@
+<input type="url" placeholder="An external URL" />

@@ -15,7 +15,7 @@ jQuery(document).ready(function($)
 		$(document).on('click', '#lock', function(event)
 		{
 		//	Unlock
-			if ($('#content').hasClass('locked')) unlock();
+			if ($('#adminContent').hasClass('locked')) unlock();
 		//	Or Lock
 			else lock();
 		});
@@ -24,12 +24,12 @@ jQuery(document).ready(function($)
 		function lock()
 		{
 		//	IOI unlocked
-			if ($('#content').hasClass('unlocked'))
+			if ($('#adminContent').hasClass('unlocked'))
 			{				
 			//	Hide option drop
 				$drop.hide('fast');
 			//	Say it with a class
-				$('#content').toggleClass('unlocked locked');
+				$('#adminContent').toggleClass('unlocked locked');
 				$button.toggleClass('icon-unlock icon-lock').toggleClass('on off');
 			
 			//	Trigger lock events
@@ -41,7 +41,7 @@ jQuery(document).ready(function($)
 		function unlock()
 		{
 		//	IOI is locked
-			if ($('#content').hasClass('locked'))
+			if ($('#adminContent').hasClass('locked'))
 			{				
 			//	Hide all the drops, so you can see what you're doing
 				$('.help').hide('fast');
@@ -51,14 +51,14 @@ jQuery(document).ready(function($)
 				{
 					app:'content',
 					template:'master/snippet/options.unlocked',
-					section:$('#content section:visible').data('template'),
+					section:$('#adminContent section:visible').data('template'),
 				},{
 					done:function()
 					{
 					//	Show option drop
 						$drop.show('fast');
 					//	Say it with a class
-						$('#content').toggleClass('unlocked locked');
+						$('#adminContent').toggleClass('unlocked locked');
 						$button.toggleClass('on off').toggleClass('icon-unlock icon-lock');
 					}
 				});
@@ -88,7 +88,7 @@ jQuery(document).ready(function($)
 		{
 			app:'content',
 			template:'master/snippet/options.filters',
-			sectiontype:$('#content section:visible').data('template'),
+			sectiontype:$('#adminContent section:visible').data('template'),
 		},{
 			done:function()
 			{
@@ -106,7 +106,7 @@ jQuery(document).ready(function($)
 	$(document).on('click', '#options_drop li li', function()
 	{
 	//	Some vars
-		panel = $('#content section:visible');
+		panel = $('#adminContent section:visible');
 		filter = $(this).parent('ul').data('filter');
 		section = panel.attr('id').replace('section_', '');
 		value = $(this).data('value');
@@ -131,7 +131,7 @@ jQuery(document).ready(function($)
 				break;
 		//	Change display
 			case 'display':
-			  $('#content').attr('class', value);
+			  $('#adminContent').attr('class', value);
 			  break;
 		}
 		

@@ -168,7 +168,7 @@ class registry
 		{
 			$db = database::connect($env);
 		//	on cherche les structures disponibles et on les mets dans le registre
-			$results = $db->query('SELECT * FROM structure ORDER BY `key`');
+			$results = $db->query('SELECT * FROM item ORDER BY `key`');
 			
 			foreach ($results['data'] as $result)
 			{

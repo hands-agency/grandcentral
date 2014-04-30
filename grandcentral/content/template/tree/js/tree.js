@@ -4,74 +4,19 @@
 **#******************************************************************************************/
 $(function()
 {
-	var adjustment;
-	var draggedWidth;
-	var draggedHeight;
-
 	$('ol.tree').sortable(
 	{
 		handle: '.icon',
-		itemSelector: 'li[data-item]',
-		nested: true,
-		placeholder: '<li class="placeholder"></li>',
-	
-	//	On drag start
-		onDragStart: function ($item, container, _super)
-		{
-		//	Remember the size before we style it
-			draggedWidth = $item.width();
-			draggedHeight = $item.height();
-			
-		//	Detach the connector
-			id = $item.find('.icon').attr('id');
-			jsPlumb.detachAllConnections(id);
+		items: '> li li[data-item]',
+		tolerance:'intersect',
 		
-		//	set item relative to cursor position
-			var offset = $item.offset(),
-			pointer = container.rootGroup.pointer
-
-			adjustment = {
-				left: pointer.left - offset.left,
-				top: pointer.top - offset.top
-			}
-
-			_super($item, container);
-		},
-		
-	//	On drag
-		onDrag: function ($item, position)
+	//	On stop
+		stop: function()
 		{
-		//	Resize placeholder
-			placeholder = $('ol.tree').find('.placeholder');
-			placeholder.css(
-			{
-				width: draggedWidth,
-				height: draggedHeight,
-			});
-		//	Move with mouse
-			$item.css(
-			{
-				left: position.left - adjustment.left,
-				top: position.top - adjustment.top
-			})
-		},
-		
-	//	On drop
-		onDrop: function  (item, targetContainer, _super)
-		{
-		//	animation on drop
-			var clonedItem = $('<li/>').css({height: 0})
-			item.before(clonedItem)
-			clonedItem.animate({'height': item.height()})
-
-			item.animate(clonedItem.position(), function  ()
-			{
-				clonedItem.detach()
-				_super(item)
-			})
 		//	Redo connections
-		//	connectPlumb();
+			connectPlumb();
 		},
+
 	});
 });
 

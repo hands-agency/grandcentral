@@ -183,6 +183,16 @@ class attrRel extends _attrs implements ArrayAccess, Iterator
 			'type' => 'bunch',
 			'label' => 'Build your list of items',
 		);
+		$params['min'] = array(
+			'name' => 'min',
+			'type' => 'number',
+			'label' => 'Min',
+		);
+		$params['max'] = array(
+			'name' => 'max',
+			'type' => 'number',
+			'label' => 'Max',
+		);
 	//	Return
 		return $params;
 	}

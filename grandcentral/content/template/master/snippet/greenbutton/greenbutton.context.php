@@ -21,7 +21,7 @@
 /********************************************************************************************/
 //	Bind
 /********************************************************************************************/
-	$_APP->bind_css('snippet/greenbutton/css/greenbutton.context.css');
+	$_APP->bind_css('master/snippet/greenbutton/css/greenbutton.context.css');
 	
 /********************************************************************************************/
 //	Some vars
@@ -29,8 +29,8 @@
 	$sectionid = (isset($_POST['sectionid'])) ? $_POST['sectionid'] : null;
 	$item = (isset($_GET['item'])) ? $_GET['item'] : null;
 	$id = (isset($_GET['id'])) ? $_GET['id'] : null;
-	$handled_item = (isset($item) && isset($id)) ? i($item, $id) : null;
-	$handled_itemStructure = (isset($item) && isset($id)) ? i('structure', $item) : null;
+	$handled_item = (isset($item) && isset($id)) ? i($item, $id, $_SESSION['pref']['handled_env']) : null;
+	$handled_itemItem = (isset($item) && isset($id)) ? i('item', $item) : null;
 	
 /********************************************************************************************/
 //	Fetch the actions
@@ -43,7 +43,7 @@
 	if ($handled_item)
 	{
 	//	Only for items with URLs
-		if (!$handled_itemStructure->has_url())
+		if (!$handled_itemItem->has_url())
 		{
 			/* TODO */
 		}

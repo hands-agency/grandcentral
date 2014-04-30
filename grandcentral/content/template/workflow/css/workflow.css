@@ -1,0 +1,25 @@
+section[data-template="/workflow/workflow"]
+{
+
+}
+section[data-template="/workflow/workflow"] table tr th,
+section[data-template="/workflow/workflow"] table tr td
+{
+	padding:0 10px;
+	vertical-align:middle;
+	width:200px;
+}
+section[data-template="/workflow/workflow"] table tr th
+{
+	font-weight:bold;
+}
+section[data-template="/workflow/workflow"] table tr td ul li
+{
+	padding:30px 10px;
+	background:#fff;
+	margin:10px 0;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+	text-align:center;
+}

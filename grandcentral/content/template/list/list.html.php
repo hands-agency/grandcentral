@@ -1,7 +1,8 @@
 <? if ($count == 0) : ?>
 <div class="nodata">Nope, sorry, nothing. Zero. Zilch.</div>
 <? else : ?>
-<div class="infiniteScrollContainer"><ol><!-- Welcome Ajax --></ol></div>
+<h1><?=$_GET['item']?></h1>
+<div class="infiniteScrollContainer"></div>
 <div class="infiniteScrollWantsMore">More <?=$_GET['item']?>! Miam miam miam...</div>
 <div class="infiniteScrollStopper">It's all I have.</div>
 
@@ -9,7 +10,7 @@
 $(document).ready(function()
 {
 //	Some vars
-	container = $('#content section:visible');
+	container = $('#adminContent section.active');
 
 //	The first time only...
 	if (container.data('infinitescroll') == undefined)
@@ -21,7 +22,7 @@ $(document).ready(function()
 			app:'content',
 			template:'list/list',
 			param:'<?=addslashes(json_encode($_PARAM))?>',
-			target:'#content section:visible',
+			target:'#adminContent section.active',
 		});
 	}
 	
@@ -34,6 +35,21 @@ $(document).ready(function()
 		param:'<?=addslashes(json_encode($_PARAM))?>',
 		limit:<?=$limit?>,
 		autoscroll:true,
+	},
+	function()
+	{
+		var $container = $('.inmasonry section[data-template="/list/list"]>.infiniteScrollContainer>ol');
+		console.log($container);
+	//	initialize Masonry after all images have loaded  
+		$container.imagesLoaded( function()
+		{
+			$container.masonry(
+			{
+				itemSelector: 'li[data-item]',
+				gutter: 15,
+				isAnimated: true
+			});
+		});
 	});
 });
 </script>

@@ -1,7 +1,7 @@
 /********************************************************************************************/
 /* Browser
 /********************************************************************************************/
-li[data-type="zoning"] .field .browser
+li[data-type="zoning"] .browser
 {
 	-moz-border-radius:7px;
 	-webkit-border-radius:7px;
@@ -18,7 +18,7 @@ li[data-type="zoning"] .field .browser
 	-webkit-user-select:none;
 	position:relative;
 }
-li[data-type="zoning"] .field .browser:before
+li[data-type="zoning"] .browser:before
 {
 	content:'';
 	border-top-left-radius: 7px;
@@ -36,14 +36,14 @@ li[data-type="zoning"] .field .browser:before
 	box-sizing:border-box;
 	margin-bottom:10px;
 }
-li[data-type="zoning"] .field .legend
+li[data-type="zoning"] .legend
 {
 	color:#bbbbbb;
 	text-align:center;
 	font-size:0.9em;
 }
 /* Bubble */
-li[data-type="zoning"] .field .cc-bubble
+li[data-type="zoning"] .cc-bubble
 {
 	top:-15px;
 	right:-7px;
@@ -53,7 +53,7 @@ li[data-type="zoning"] .field .cc-bubble
 /********************************************************************************************/
 /* Zones
 /********************************************************************************************/
-li[data-type="zoning"] .field .browser .zone
+li[data-type="zoning"] .browser .zone
 {
 	position:relative;
 	clear:both;
@@ -61,7 +61,7 @@ li[data-type="zoning"] .field .browser .zone
 }
 
 /* Zone title */
-li[data-type="zoning"] .field .browser .zone>.title
+li[data-type="zoning"] .browser .zone>.title
 {
 	position:absolute;
 	left:-100px;
@@ -74,7 +74,7 @@ li[data-type="zoning"] .field .browser .zone>.title
 	font-family:"Raleway-Thin";
 	text-align:right;
 }
-li[data-type="zoning"] .field .browser .zone>.title:after
+li[data-type="zoning"] .browser .zone>.title:after
 {
 	content:"●";
 	position:absolute;
@@ -89,11 +89,11 @@ li[data-type="zoning"] .field .browser .zone>.title:after
 	color:#df3528;
 	box-shadow:0 1px 0px 0 rgba(255, 255, 255, 0.6);
 }
-.unlocked li[data-type="zoning"] .browser .field .zone>.title
+.unlocked li[data-type="zoning"] .browser .zone>.title
 {
 	display:block;
 }
-li[data-type="zoning"] .field .browser .zone.right>.title
+li[data-type="zoning"] .browser .zone.right>.title
 {
 	left:auto;
 	right:-100px !important;
@@ -102,20 +102,20 @@ li[data-type="zoning"] .field .browser .zone.right>.title
 	border:none;
 	border-left:1px solid #cccccc;
 }
-li[data-type="zoning"] .field .browser .zone.right>.title:after
+li[data-type="zoning"] .browser .zone.right>.title:after
 {
 	left:-39px !important;
 }
 
 /* Tabs */
-li[data-type="zoning"] .field .tabs
+li[data-type="zoning"] .tabs
 {
 	margin-bottom:10px;
 }
 
 /* Champs */
-li[data-type="zoning"] .field .selected li:not(.nodata),
-li[data-type="zoning"] .field .available li:not(.nodata)
+li[data-type="zoning"] .selected li:not(.nodata),
+li[data-type="zoning"] .available li:not(.nodata)
 {
 	border:1px solid #dedede;
 	background:#fff;
@@ -130,15 +130,15 @@ li[data-type="zoning"] .field .available li:not(.nodata)
 	-moz-user-select:none;
 	-webkit-user-select:none;
 }
-li[data-type="zoning"] .field .selected li:not(.nodata):hover,
-li[data-type="zoning"] .field .available li:not(.nodata):hover
+li[data-type="zoning"] .selected li:not(.nodata):hover,
+li[data-type="zoning"] .available li:not(.nodata):hover
 {
 	border-color: #3eb4d6;
 	-webkit-box-shadow: 0 0 4px #3eb4d6;
 	box-shadow: 0 0 4px #3eb4d6;
 }
-li[data-type="zoning"] .field .selected li .icon,
-li[data-type="zoning"] .field .available li .icon
+li[data-type="zoning"] .selected li .icon,
+li[data-type="zoning"] .available li .icon
 {
 	width:17px;
 	height:17px;
@@ -146,16 +146,16 @@ li[data-type="zoning"] .field .available li .icon
 	margin:0 !important;
 }
 
-li[data-type="zoning"] .field li .title
+li[data-type="zoning"] li .title
 {
 	margin:2px 0 0 23px;
 }
-li[data-type="zoning"] .field li .descr
+li[data-type="zoning"] li .descr
 {
 	color:#ccc;
 	margin-left:23px;
 }
-li[data-type="zoning"] .field li .delete
+li[data-type="zoning"] li .delete
 {
 	float:right;
 	width:13px;
@@ -164,7 +164,7 @@ li[data-type="zoning"] .field li .delete
 	padding:0;
 	line-height:10px;
 }
-li[data-type="zoning"] .field li .delete:before
+li[data-type="zoning"] li .delete:before
 {
 	content:'×';
 }
@@ -173,22 +173,22 @@ li[data-type="zoning"] .field li .delete:before
 /* Selected sections */
 /********************************************************************************************/
 /* Floats */
-li[data-type="zoning"] .field .selected.left,
-li[data-type="zoning"] .field .selected.right
+li[data-type="zoning"] .selected.left,
+li[data-type="zoning"] .selected.right
 {
 	clear:none !important;
 	width:50%;
 	float:left;
 }
-li[data-type="zoning"] .field .selected .left
+li[data-type="zoning"] .selected .left
 {
 }
-li[data-type="zoning"] .field .selected .right
+li[data-type="zoning"] .selected .right
 {
 }
 
 /* Sections */
-li[data-type="zoning"] .field .selected ol
+li[data-type="zoning"] .selected ol
 {
 	border:1px dashed #ddd;
 	padding:5px;
@@ -198,17 +198,17 @@ li[data-type="zoning"] .field .selected ol
 	margin:0 10px !important;
 	background:#fff;
 }
-li[data-type="zoning"] .field .selected ol li:not(.nodata)
+li[data-type="zoning"] .selected ol li:not(.nodata)
 {
 }
-li[data-type="zoning"] .field .selected ol li .delete
+li[data-type="zoning"] .selected ol li .delete
 {
 }
-li[data-type="zoning"] .field .selected ol li .title:hover
+li[data-type="zoning"] .selected ol li .title:hover
 {
 	color:#3eb4d6;
 }
-li[data-type="zoning"] .field .selected ol li .config
+li[data-type="zoning"] .selected ol li .config
 {
 	clear:both;
 	border-top:1px solid #ccc;
@@ -217,14 +217,14 @@ li[data-type="zoning"] .field .selected ol li .config
 }
 
 /* Nodata */
-li[data-type="zoning"] .field .selected ol li.nodata
+li[data-type="zoning"] .selected ol li.nodata
 {
 	padding:5px 0 !important;
 	font-size:12px;
 }
 
 /* Placeholder */
-li[data-type="zoning"] .field .selected .placeholder
+li[data-type="zoning"] .selected .placeholder
 {
 	height:20px;
 }
@@ -232,7 +232,7 @@ li[data-type="zoning"] .field .selected .placeholder
 /********************************************************************************************/
 /* Available apps
 /********************************************************************************************/
-li[data-type="zoning"] .field .available
+li[data-type="zoning"] .available
 {
 	float:right;
 	width:250px;
@@ -246,7 +246,7 @@ li[data-type="zoning"] .field .available
 	-o-box-shadow: 0px 2px 2px rgba(0,0,0,0.027);
 	box-shadow: 0px 2px 2px rgba(0,0,0,0.027);
 }
-li[data-type="zoning"] .field .available p
+li[data-type="zoning"] .available p
 {
 	margin:0 0 5px 0;
 	color:#999;
@@ -254,7 +254,7 @@ li[data-type="zoning"] .field .available p
 }
 
 /* Refine */
-li[data-type="zoning"] .field .available .refine input
+li[data-type="zoning"] .available .refine input
 {
 	width:100% !important;
 	-moz-box-sizing:border-box;
@@ -269,23 +269,23 @@ li[data-type="zoning"] .field .available .refine input
 }
 
 /* Available */
-li[data-type="zoning"] .field .available ul {
+li[data-type="zoning"] .available ul {
 	overflow:auto;
 	max-height:500px;	
 }
-li[data-type="zoning"] .field .available li .delete
+li[data-type="zoning"] .available li .delete
 {
 	display:none;
 }
 
 
 /* Fav */
-li[data-type="zoning"] .field .available ul.fav {
+li[data-type="zoning"] .available ul.fav {
 	padding-bottom:10px;
 	margin-bottom:10px;
 	border-bottom:1px dashed #ccc;
 }
-li[data-type="zoning"] .field .available li .delete
+li[data-type="zoning"] .available li .delete
 {
 	display:none;
 }

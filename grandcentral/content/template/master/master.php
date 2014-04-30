@@ -30,9 +30,14 @@
 		$currentEditedItem = i($_GET['item'], $_GET['id'], 'site');
 		if (isset($currentEditedItem['url'])) $currentEditedItemUrl = $currentEditedItem['url'];
 	}
+
+//	The sections
+	$sections = $_PAGE['section']->unfold();
+	$sectionTrayWidth = ($sections->count * 100).'%';
+	$sectionWidth = (100 / $sections->count).'%';
 	
 //	Update all structures
-//	foreach (i('structure', all, 'site') as $s) $s->save();
+//	foreach (i('item', all, 'site') as $s) $s->save();
 
 /********************************************************************************************/
 //	General binding of scripts & css files
@@ -77,7 +82,7 @@
 /********************************************************************************************/
 //	Apps
 /********************************************************************************************/
-	$apps = array('searchasyoutype', 'jquery.masonry', 'jquery.imagesloaded', 'jquery.hoverintent', 'jquery.sse', 'jquery.pace', 'linecons');
+	$apps = array('searchasyoutype', 'jquery.masonry', 'jquery.imagesloaded', 'jquery.hoverintent', 'jquery.sse', 'jquery.pace', 'batchfont');
 	foreach ($apps as $app)
 	{
 		$app = new app($app);

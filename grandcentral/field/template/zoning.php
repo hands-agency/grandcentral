@@ -33,22 +33,25 @@
 //	Object
 	$handled_item = $_GET['item'];
 	$handled_id = $_GET['id'];
+//	Name of the field
+	$fieldName = constant(mb_strtoupper($handled_env).'_KEY').'_'.$handled_item.'[section]';
 	
 /********************************************************************************************/
 //	?
 /********************************************************************************************/
 //	Fetch the zones
 	$page = i('page', $handled_id, $handled_env);
-	$html = new html($page, 'default', 'master');
-	$zones = $html->get_zones();
+	$master = $page['type']['master'];
+	$root = SITE_ROOT.'/content'.$master.'.html.php';
+	$zones = master::get_zones($root);
 		
 //	Fetch the sections
-	$sections = $page->get_rel('section');
+	$sections = $page['section']->unfold();
 
 //	Add the existing sections to the zones
 	foreach ($sections as $section)
 	{
-		if (isset($zones[$section['zone']])) $zones[$section['zone']]['section'][] = $section;
+		if (isset($zones[$section['zone']->get()])) $zones[$section['zone']->get()]['section'][] = $section;
 	}
 //	Show/hide Noda
 	foreach ($zones as $key => $zone)
@@ -56,39 +59,37 @@
 		if (isset($zone['section'])) $zones[$key]['hideNodata'] = 'style="display:none;"';
 		else $zones[$key]['hideNodata'] = null;
 	}
+
 //	DEBUG
-#	sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $zones);
+//	sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $zones);
 
 /********************************************************************************************/
 //	Favourites items
 /********************************************************************************************/
-	$p = array(
-		'key' => array('form'),
-	);
-	$favs = i('app', $p, 'admin');
+	$favs = array();
 
 /********************************************************************************************/
 //	Sort of a repository of data for Ajax
 /********************************************************************************************/
 //	Name
 	$param = array(
-		'value' => 'zoning', /* todo */
+		'value' => 'zoning',
 		'disabled' => true,
 		'cssclass' => 'name',
 	);
-	$name = new field_hidden(null, $param);
+	$name = new fieldHidden(null, $param);
 //	Values
 	$param = array(
 		'value' => htmlspecialchars(json_encode('app'), ENT_COMPAT),
 		'disabled' => true,
 		'cssclass' => 'values',
 	);
-	$values = new field_hidden(null, $param);
+	$values = new fieldHidden(null, $param);
 //	Valuestypes
 	$param = array(
 		'value' => 'bunch',
 		'disabled' => true,
 		'cssclass' => 'valuestype',
 	);
-	$valuestype = new field_hidden(null, $param);
+	$valuestype = new fieldHidden(null, $param);
 ?>

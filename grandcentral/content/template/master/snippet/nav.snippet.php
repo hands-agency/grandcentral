@@ -5,12 +5,6 @@
 		<div class="sub"></div>
 	</li>
 	
-	<? if (i('page', current)['key'] == 'edit') : ?>
-	<li class="editing" data-item="page_1"><a>editing</a></li>
-	<? else :?>
-	<li class="edit"><a>edit</a></li>
-	<? endif ?>
-	
 	<? foreach ($level1 as $page): ?>
 	<? $truc = $page['key']->get();?>
 	<? $config = $nav[$truc] ?>
@@ -24,7 +18,7 @@
 		$on = null;
 	?>
 	<li class="<?=$page['key']?> <?=$on?>">
-		<? if ($title): ?><div class="title" data-icon="<?=$icon?>"><span><?=$title?></span></div><? endif ?>
+		<? if ($title): ?><div class="title" data-batchicon="<?=$icon?>"><span><?=$title?></span></div><? endif ?>
 		
 		<? if ($level2Bunch OR $level2Content): ?>
 		<div class="sub">
@@ -79,7 +73,7 @@
 					
 				<li>
 					<a href="<?=$url ?>">
-						<span class="icon" <? if (isset($subpage['icon'])): ?>data-icon="<?=$subpage['icon']?>"<? endif ?>></span>
+						<span class="icon" <? if (isset($subpage['icon']) && !$subpage['icon']->is_empty()): ?>data-batchicon="<?=$subpage['icon']?>"<? endif ?>></span>
 						<span class="title"><?=$title?></span>
 					</a>
 				</li>

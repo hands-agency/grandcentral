@@ -24,7 +24,7 @@
 	$_APP->bind_file('css', 'tree/css/tree.css');
 //	$_APP->bind_file('script', 'tree/js/nestedSortable/jquery.mjs.nestedSortable.js');
 //	$_APP->bind_file('script', 'tree/js/nestedSortable/jquery.ui.touch-punch.js');
-	$_APP->bind_file('script', 'tree/js/jquery-sortable.js');
+//	$_APP->bind_file('script', 'tree/js/jquery-sortable.js');
 	$_APP->bind_file('script', 'tree/js/jsplumb/jquery.jsPlumb-1.4.1-all-min.js');
 	$_APP->bind_file('script', 'tree/js/tree.js');
 
@@ -161,6 +161,11 @@
 					$content .= $this->make_tree($node['children']);
 				//	Prepare the connections for jsPlumb
 					foreach ($page['child'] as $child) $this->jsPlumbConnect .= 'jsPlumb.connect({source:"'.$page->get_nickname().'", target:'.$child.'});';
+				}
+			//	The list stops, but we need to be ready to welcome new pages...
+				else
+				{
+					$content .= '<ol></ol>';
 				}
 			//	Build the <li>
 				$li .= '<li data-item="'.$page->get_nickname().'">'.$content.'</li>';

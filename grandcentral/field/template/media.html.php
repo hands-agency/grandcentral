@@ -9,7 +9,7 @@
 
 		<ol class="data">
 			<?= $data; ?>
-			<li class="upload" data-icon="&#xe01b;"></li>
+			<li class="upload" data-batchicon="&#xe01b;"></li>
 		</ol>
 		<pre class="template">
 			<?=$template; ?>

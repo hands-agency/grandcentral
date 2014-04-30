@@ -30,17 +30,17 @@ class app
 	public function __construct($key, $template = 'default', $params = null, $env = env)
 	{
 		$this->key = (!empty($key)) ? $key : trigger_error('Your <strong>$key param</strong> is empty, new app() will not work', E_USER_WARNING);
-		$this->template = $template;
+		$this->template = (mb_strpos($template, '/') === 0) ? $template : '/'.$template;
 		$this->env = $env;
 		
-		$this->system_root = ADMIN_ROOT.'/'.$key.'/'.boot::app_system_dir.'/';
-		$this->system_url = '/'.boot::admin_dir.'/'.$key.'/'.boot::app_system_dir.'/';
+		$this->system_root = ADMIN_ROOT.'/'.$key.'/'.boot::app_system_dir;
+		$this->system_url = '/'.boot::admin_dir.'/'.$key.'/'.boot::app_system_dir;
 		
-		$this->template_root['admin'] = ADMIN_ROOT.'/'.$key.'/'.boot::app_template_dir.'/';
-		$this->template_root['site'] = SITE_ROOT.'/'.$key.'/';
+		$this->template_root['admin'] = ADMIN_ROOT.'/'.$key.'/'.boot::app_template_dir;
+		$this->template_root['site'] = SITE_ROOT.'/'.$key;
 		
-		$this->template_url['admin'] = '/'.boot::admin_dir.'/'.$key.'/'.boot::app_template_dir.'/';
-		$this->template_url['site'] = '/'.boot::site_dir.'/'.SITE_KEY.'/'.$key.'/';
+		$this->template_url['admin'] = '/'.boot::admin_dir.'/'.$key.'/'.boot::app_template_dir;
+		$this->template_url['site'] = '/'.boot::site_dir.'/'.SITE_KEY.'/'.$key;
 		
 		$this->get_ini();
 		$this->set_default_param();
@@ -256,6 +256,9 @@ class app
  */
 	public function bind_snippet($zone, $snippet_key)
 	{
+	//	Failsafe first slash
+		$snippet_key = (mb_strpos($snippet_key, '/') === 0) ? $snippet_key : '/'.$snippet_key;
+		
 		$_APP = $this;
 		// print'<pre>';print_r($data);print'</pre>';
 		$routine = $this->get_templateroot().$snippet_key.'.php';
@@ -279,6 +282,8 @@ class app
  */
 	public function bind_file($zone, $file, $system = false)
 	{
+	//	Failsafe first slash
+		$file = (mb_strpos($file, '/') === 0) ? $file : '/'.$file;
 		if (filter_var($file, FILTER_VALIDATE_URL) === false)
 		{
 			if ($system === false)

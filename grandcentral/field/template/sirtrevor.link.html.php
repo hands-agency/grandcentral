@@ -1,7 +1,8 @@
 <script type="text/javascript" charset="utf-8">
-	$('#context #sirtrevorlink .external button').on('click', function()
+//	External link
+	$(document).on('click', '#adminContext #sirtrevorlink .external button', function()
 	{
-		link = $(this).parent().find('input').val()
+		link = $('#externalLink').contents().find('input').val();
 		if(link && link.length > 0)
 		{
 			link_regex = /(ftp|http|https):\/\/./;
@@ -11,7 +12,8 @@
 		}
 		else console.log('That is not a valid URL, buddy');
 	});
-	$('#context #sirtrevorlink .internal [data-item] button').on('click', function()
+//	Internal link
+	$(document).on('click', '#adminContext #sirtrevorlink .internal [data-item] button', function()
 	{
 		link = $(this).parent().data('item');
 		document.execCommand('CreateLink', false, link);
@@ -21,17 +23,19 @@
 
 <div id="sirtrevorlink">
 	<div class="external">
-		<iframe src=""><input type="url" placeholder="An external URL" /><button>go</button></iframe>
+		<!-- Stored in an iframe to keep the focus on the highlighted link...-->
+		<iframe id="externalLink" src="http://localhost/link.html"></iframe>
+		<button>Add link</button>
 	</div>
 	<div class="internal">
-		<?php foreach ($structures as $structure): ?>
+		<?php foreach ($items as $structure): ?>
 			<h1><?=$structure['title']?></h1>
 			<?
 				$items = i($structure['key']->get(), array('order()' => 'title'), 'site');
 			?>
 			<ul>
 			<?php foreach ($items as $item): ?>
-				<li data-item="<?=$item->get_nickname()?>"><button><?=$item['title']?></button></li>
+				<li data-item="<?=$item['url']->abbr()?>"><button><?=$item['title']?></button></li>
 			<?php endforeach ?>
 			</ul>
 		<?php endforeach ?>

@@ -23,10 +23,10 @@
 /********************************************************************************************/
 	$attrs = $_APP->get_attr();
 	
-	$admin_structures = i('structure', all, 'admin');
+	$admin_structures = i('item', all, 'admin');
 	// print '<pre>admin : ';print_r($admin_structures->get_attr('title'));print'</pre>';
 	// print '<pre>';print_r($admin_rights->get_attr('title'));print'</pre>';
-	$site_structures = i('structure', all, 'site');
+	$site_structures = i('item', all, 'site');
 	// print '<pre>site : ';print_r($site_structures->get_attr('title'));print'</pre>';
 	// print '<pre>';print_r($site_rights->get_attr('title'));print'</pre>';
 	

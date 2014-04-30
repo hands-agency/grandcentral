@@ -44,52 +44,59 @@
 /********************************************************************************************/
 //	Build nav
 	$nav = array(
-	//	Content
-		'item' => array(
+	//	Site
+		'site' => array(
 			'title' => i('site', current)['title'],
-			'icon' => '&#xe02f;',
+			'icon' => '&#xF147',
 			'page' => 'list',
 		//	Subnav
 			'subnav' => array(
-				'structure' =>  array(
+				'item' =>  array(
 					'title' => 'er',
-					'display' => 'label',
+					'display' => 'big',
 					'link' => 'list',
-					'bunch' => i('structure', array('key' => array('page', 'structure', 'version'), 'order()' => 'inherit(key)'), $_SESSION['pref']['handled_env']),
+					'bunch' => i('item', array('key' => array('page', 'item', 'site', 'version'), 'order()' => 'inherit(key)'), $_SESSION['pref']['handled_env']),
 				),
-				'major' => array(
-					'display' => 'masonry',
+				'doc' =>  array(
+					'title' => 'er',
+					'display' => 'big',
 					'link' => 'list',
-					'bunch' => i('structure', array('system' => false, 'hasurl' => true, 'order()' => 'title'), $_SESSION['pref']['handled_env']),
-				),
-				'minor' => array(
-					'display' => 'bubble',
-					'link' => 'list',
-					'bunch' => i('structure', array('system' => false, 'hasurl' => false, 'order()' => 'title'), $_SESSION['pref']['handled_env']),
-				),
-				'system' => array(
-					'display' => 'col',
-					'link' => 'list',
-					'bunch' => i('structure', array('system' => true, 'key' => array('!=human', '!=group', '!=version', '!=logbook', '!=structure', '!=page', '!=site'), 'order()' => 'title'), $_SESSION['pref']['handled_env']),
+					'bunch' => i('page', array('key' => array('doc'), 'order()' => 'inherit(key)'), 'admin'),
 				),
 			),
 		),
-	//	Social
-		'social' => array(
-			'icon' => '&#xe014;',
+	//	Content
+		'content' => array(
+			'title' => 'Content',
+			'icon' => '&#xF150',
 			'page' => 'list',
 		//	Subnav
 			'subnav' => array(
 				'social' => array(
 					'display' => 'big',
 					'link' => 'list',
-					'bunch' => i('structure', array('key' => array('human', 'machine', 'group'), 'order()' => 'inherit(key)'), 'site'),
+					'bunch' => i('item', array('key' => array('human', 'machine', 'group'), 'order()' => 'inherit(key)'), 'site'),
+				),
+				'major' => array(
+					'display' => 'bubble',
+					'link' => 'list',
+					'bunch' => i('item', array('system' => false, 'hasurl' => true, 'order()' => 'title'), $_SESSION['pref']['handled_env']),
+				),
+				'minor' => array(
+					'display' => 'bubble',
+					'link' => 'list',
+					'bunch' => i('item', array('system' => false, 'hasurl' => false, 'order()' => 'title'), $_SESSION['pref']['handled_env']),
+				),
+				'system' => array(
+					'display' => 'col',
+					'link' => 'list',
+					'bunch' => i('item', array('system' => true, 'key' => array('!=human', '!=group', '!=version', '!=logbook', '!=structure', '!=page', '!=site'), 'order()' => 'title'), $_SESSION['pref']['handled_env']),
 				),
 			),
 		),
 	//	Apps
 		'app' => array(
-			'icon' => '&#xe00e;',
+			'icon' => '&#xF12D',
 			'page' => 'edit',
 		//	Subnav
 			'subnav' => array(

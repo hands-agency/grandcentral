@@ -33,22 +33,3 @@ $(document).bind('unlock', function()
 		order = $(this).data('value');
 		$('#tabs li.on').trigger('click');
 	});
-
-/*********************************************************************************************
-/**	* On unlock
- 	* @author	mvd@cafecentral.fr
-**#******************************************************************************************/
-	$(document).ready(function()
-	{
-		var $container = $('.inmasonry section[data-template="list/list"]>ol');
-	//	initialize Masonry after all images have loaded  
-		$container.imagesLoaded( function()
-		{
-			$container.masonry(
-			{
-				itemSelector: 'li[data-item]',
-				gutter: 10,
-				isAnimated: true
-			});
-		});
-	});

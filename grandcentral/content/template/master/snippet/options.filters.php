@@ -59,7 +59,7 @@
 		//	Labels
 			$filter['label'] = array('note' , 'bug', 'enhancement', 'question');
 		//	About
-			$filter['about'] = array('cosmetic', 'seo', 'xplat', 'devfeat', 'structure', 'content', 'layout', 'performance');
+			$filter['about'] = array('cosmetic', 'seo', 'xplat', 'devfeat', 'item', 'content', 'layout', 'performance');
 		//	Visibility
 			$filter['visibility'] = array('me', 'groups');
 		//	Severity
