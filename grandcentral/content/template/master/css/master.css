@@ -170,6 +170,14 @@ a:visited
 	font-weight:normal;
 	font-style:normal;
 }
+/* Raleway Bold */
+@font-face
+{
+	font-family:'Raleway-Bold';
+	src:url('../font/Raleway/Raleway-Bold.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
 
 /********************************************************************************************/
 /*////////////////////////////////////////////////////////////////////////////////////////////
@@ -528,6 +536,7 @@ progress::-webkit-progress-value {
 #grandCentralSite .overlay h1
 {
 	font-family: "Raleway-Thin";
+	letter-spacing:3px;
 	color:#fff;
 	font-size:3em;
 	text-align:center;
@@ -629,7 +638,7 @@ progress::-webkit-progress-value {
 }
 .navOpened #adminContent
 {
-	width:45%;
+	width:55% !important; /* even when the context is opened */
 }
 .contextOpened #adminContent
 {
@@ -649,7 +658,7 @@ progress::-webkit-progress-value {
 	width:35%;
 	padding:30px;
 }
-.navOpened #adminContent
+.navOpened #adminContext
 {
 	width:0;
 }
@@ -658,6 +667,93 @@ progress::-webkit-progress-value {
     position: fixed;
     right: 0;  
     top: 0;  
+}
+
+/********************************************************************************************/
+/*////////////////////////////////////////////////////////////////////////////////////////////
+/* Alert layer
+/////////////////////////////////////////////////////////////////////////////////////////////
+/********************************************************************************************/
+#alert
+{
+	position:fixed;
+	z-index:10000;
+	opacity:0;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	background: -moz-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 100%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.85))); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.85) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.85) 100%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.85) 100%); /* IE10+ */
+	background: radial-gradient(ellipse at center,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.85) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#d9000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	pointer-events:none;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
+}
+.poppedAlert #alert
+{
+	opacity:1;
+	pointer-events:auto;
+	transform:scale(1.1);
+	-moz-transform:scale(1.1);
+	-ms-transform:scale(1.1);
+	-webkit-transform:scale(1.1);
+	-o-transform:scale(1.1);
+}
+#alert .icon
+{
+	text-align:center;
+	line-height:90px;
+	color:#fff;
+	position:absolute;
+	height:200px;
+	width:200px;
+	top:50%;
+	left:50%;
+	margin-top:-100px;
+	margin-left:-100px;
+	border-radius:50%;
+	background:#000;
+	font-size:100px;
+	line-height:210px;
+}
+#alert.success .icon
+{
+	background:#6cbf2d;
+}
+#alert.error .icon
+{
+	background:#FF0000;
+}
+#alert .info
+{
+	position:absolute;
+	bottom:100px;
+	color:#fff;
+	font-family: "Raleway-Regular";
+	width:100%;
+	text-align:center;
+}
+#alert .info .response
+{
+	border:1px solid #ccc;
+	border-radius:2px;
+	padding:5px 10px;
+	margin:0 0 10px 0;
+	font-size:18px;
+	display:inline-block;
+}
+#alert .info .help
+{
+	margin:auto;
+	font-size:10px;
+	opacity:0.5;
 }
 
 /********************************************************************************************/
@@ -691,21 +787,6 @@ progress::-webkit-progress-value {
 	margin:0 0 20px 0;
 	text-align:center;
 }
-#adminContent section>h1:hover:before
-{
-	content:'< ';
-	opacity:0.2;
-	border:1px solid #000;
-	border-radius:50%;
-	width:40px;
-	height:40px;
-	line-height:35px;
-	font-size:35px;
-	display:inline-block;
-	margin:0 10px 0 0;
-	position:relative;
-	top:-5px;
-}
 /* Footer */
 footer
 {
@@ -720,6 +801,7 @@ footer
 {
 	overflow:auto;
 	background:#eee;
+	border-left:1px solid #ddd;
 }
 #adminContext>button.close
 {
@@ -734,6 +816,25 @@ footer
 	font-size:45px;
 	margin:0 0 20px 0;
 }
+#adminContext h2
+{
+	font-family:"Raleway-Regular";
+	margin:0 0 20px 0;
+	border-bottom:1px solid #ccc;
+	padding:0 0 5px 0;
+	text-align:center;
+	text-transform:uppercase;
+}
+#adminContext h2>.centered
+{
+	background:#eee;
+	padding:0 10px;
+	color:#aaa;
+	position:relative;
+	bottom:-13px;
+	display:inline;
+	font-size:12px;
+}
 
 /********************************************************************************************/
 /*////////////////////////////////////////////////////////////////////////////////////////////
@@ -742,14 +843,14 @@ footer
 /********************************************************************************************/
 #adminContent #sectiontray
 {
-	-webkit-transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	transition:         all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	-webkit-transition: left 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	transition:         left 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	position:relative;
 	/* width:500%; Width is in master.js */	
 }
 .sticky #adminContent #sectiontray
 {
-	padding-top:40px;
+	padding-top:67px;
 }
 #adminContent #sectiontray>li
 {
@@ -774,11 +875,11 @@ footer
 	-moz-transition: all .15s ease-out; 
 	-o-transition: all .15s ease-out; 
 	transition: all .15s ease-out;
+	min-height:300px;
 }
 #adminContent section.virgin,
 #adminContent section.loading
 {
-	height:400px;
 	text-align:center;
 }
 #adminContent section.virgin:before
@@ -795,10 +896,6 @@ footer
 #adminContent section.loading
 {
 	opacity:0.4;
-}
-#adminContent .hidden
-{
-	left:-100%;
 }
 #adminContent.unlocked section
 {
@@ -992,8 +1089,8 @@ footer
 #grandCentralAdmin button
 {
 	background:none;
-	border:1px solid #eee;
-	padding:5px 7px;
+	border:none;
+	padding:0;
 	margin:0;
 	color:#999;
 	cursor: pointer;
@@ -1023,31 +1120,9 @@ footer
 	cursor:pointer;
 	font-size:12px;
 }
-#grandCentralAdmin button.close:before
-{
-	content:'';
-	width:0px;
-	height:0px;
-	position:absolute;
-	top:50%;
-	left:50%;
-	display:block;
-	border-radius:20px;
-	-webkit-transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	transition:         all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	z-index:-1;
-}
-#grandCentralAdmin button.close:hover:before
-{
-	margin:-14px 0 0 -14px;
-	width:25px;
-	height:25px;
-	border:2px solid #000;
-}
 #grandCentralAdmin button.close:hover
 {
 	opacity:1;
-	color:#fff;
 }
 #grandCentralAdmin button.close:after,
 #grandCentralAdmin button.delete:after

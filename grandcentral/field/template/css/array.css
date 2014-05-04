@@ -17,7 +17,16 @@
 {
 	width:100% !important;
 }
-li[data-type="array"] .wrapper pre
+/* No possible render? Render flat! */
+li[data-type="array"] .wrapper .flat
+{
+	padding:15px;
+}
+li[data-type="array"] .wrapper .flat p
+{
+	margin-bottom:5px;
+}
+li[data-type="array"] .wrapper .flat pre
 {
 	white-space:pre-wrap;
 }

@@ -29,10 +29,13 @@
 //	Script
 	$_APP->bind_script('js/sirtrevor.js');
 	$_APP->bind_code('script', '
+	
+	//	SirTrevor.LANGUAGE = "en";
 		new SirTrevor.Editor(
 		{
 			el:$(".js-st-instance"),
-			blockTypes: ["Text", "Heading", "List", "Quote"]
+			blockTypes: ["Text", "Heading", "List"],
+			defaultType: "Text",
 		});
 	');
 

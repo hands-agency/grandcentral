@@ -1,7 +1,7 @@
 (function($){
 //	app
 	$fieldAppSelect = $('.fieldAppContainer .fieldAppSelect select');
-		$fieldContainer = $fieldAppSelect.closest('.fieldAppContainer');
+	$fieldContainer = $fieldAppSelect.closest('.fieldAppContainer');
 	$fieldAppSelect.change(function()
 	{
 	//	

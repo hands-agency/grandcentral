@@ -5,9 +5,18 @@
 	<!-- ZONE:css -->
 </head>
 <body data-env="<?=$_SESSION['pref']['handled_env']?>">
+	
 	<!-- ZONE:body -->
 		
 	<div id="main" class="navClosed contextClosed">
+	
+		<div id="alert">
+			<div class="icon" data-batchicon="&#xF03C;"></div>
+			<div class="info">				
+				<div class="response"></div>
+				<div class="help">Tap to close</div>
+			</div>
+		</div>
 		
 		<div id="grandCentralSite">
 			<div class="overlay">
@@ -19,26 +28,27 @@
 		<div id="grandCentralAdmin">
 			
 			<nav id="adminNav"><!-- ZONE:nav --></nav>
-			
-			<aside id="adminContext">
-				<button type="button" class="close"></button>
-				<div><!-- Welcome Ajax --></div>
-			</aside>
 
-			<div id="adminContent" class="locked inmasonry">
+			<div id="adminContent" class="locked">
 				<header><!-- ZONE:header --></header>
 				<!-- ZONE:content|left -->
 				<ul id="sectiontray" style="width:<?=$sectionTrayWidth?>">
 					<? foreach($sections as $section) : ?>
 					<? $app = $section['app'] ?>
+					<? $prefDisplay = isset($_SESSION['user']['pref'][$section['key']->get()]['display']) ? $_SESSION['user']['pref'][$section['key']]['display'] : 'inmasonry' ?>
 					<? $greenbutton = ($section['greenbutton']->get()) ? i($section['greenbutton']->get()[0])->json() : null ?>
 					<? /* cst('GREENBUTTON_SECTION_NEW_TITLE') */ ?>
-					<li style="width:<?=$sectionWidth?>"><section id="section_<?= $section['key'] ?>" class="virgin" data-app="<?= $app['key'] ?>" data-template="<?= $app['template'] ?>" data-greenbutton='<?= $greenbutton ?>'></section></li>
+					<li style="width:<?=$sectionWidth?>"><section id="section_<?= $section['key'] ?>" class="virgin" data-pref-display="<?=$prefDisplay?>" data-app="<?= $app['key'] ?>" data-template="<?= $app['template'] ?>" data-greenbutton='<?= $greenbutton ?>'></section></li>
 					<? endforeach; ?>
 				</ul>
 				<footer><!-- ZONE:footer --></footer>
 			</div>
 			
+			<aside id="adminContext">
+				<button type="button" class="close"></button>
+				<div><!-- Welcome Ajax --></div>
+			</aside>
+						
 		</div>
 	</div>
 	

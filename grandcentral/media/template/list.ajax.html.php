@@ -34,10 +34,10 @@
 		<? endif;?>
 	</ul>
 </div>
+<? if (isset($directories)): ?>
+<h2><span class="centered">Folders</span></h2>
 <div class="folder">
 	<ul>
-		<? if (isset($directories)): ?>
-
 		<? foreach ($directories as $dir): ?>
 		<?
 			$reg = $dir->get_root().'/*.jpg';
@@ -60,16 +60,15 @@
 			<ul class="preview">
 				<?php for ($i=0; $i < $maxPreviews ; $i++) : ?>
 					<?php if (isset($files[$i])): ?>
-						<li><?= media($files[$i])->thumbnail(100, null) ?></li>
+						<li style="background-image:url('<?= media($files[$i])->thumbnail(100, null)->get_url() ?>')"></li>
 					<?php endif ?>
 				<?php endfor; ?>
 			</ul>
 		</li>
 		<? endforeach ?>
-		<? endif ?>
 	</ul>
 </div>
-<div class="clear"><!-- Clearing floats --></div>
+<? endif ?>
 
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function()
@@ -139,7 +138,7 @@ $(document).ready(function()
 					container.parents('.files').removeClass('empty');
 					$('#mediaLibrary').data('mediaGallery').initList();
 				}
-				else container.masonry( 'appended', appendedMedia );
+				else container.masonry( 'prepended', appendedMedia );
 			};
 			reader.readAsDataURL(file);
 		}

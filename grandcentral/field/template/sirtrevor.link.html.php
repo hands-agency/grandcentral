@@ -29,7 +29,7 @@
 	</div>
 	<div class="internal">
 		<?php foreach ($items as $structure): ?>
-			<h1><?=$structure['title']?></h1>
+			<h2><span class="centered"><?=$structure['title']?></span></h2>
 			<?
 				$items = i($structure['key']->get(), array('order()' => 'title'), 'site');
 			?>

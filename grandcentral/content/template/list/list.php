@@ -47,4 +47,25 @@
 	
 //	Count
 	$count = count::get($handled_item, $_PARAM, $handled_env);
+	
+//	Pref
+	$pref_filter = isset($_POST['filter']) ? $_POST['filter'] : null;
+	$pref_value = isset($_POST['value']) ? $_POST['value'] : null;
+	$pref = array('list' => array($handled_item => array($pref_filter => $pref_value)));
+	
+/********************************************************************************************/
+//	Some fonctions
+/********************************************************************************************/
+	function save_pref($pref)
+	{
+		$human = i('human', $_SESSION['user']['id']->get());
+		$human['pref'] = $pref;
+		sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $human['pref']);exit;
+		$human->save();
+	}
+	
+/********************************************************************************************/
+//	Save pref
+/********************************************************************************************/
+	if ($pref_filter && $pref_value) save_pref($pref);
 ?>

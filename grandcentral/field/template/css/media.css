@@ -57,9 +57,9 @@ li[data-type="media"] .wrapper ol.data li.upload.hover
 {
 	color:#FE9400;
 	border-color:#FE9400;
-	-moz-transform: scale(1.2);
-	-webkit-transform: scale(1.2);
-	transform: scale(1.2);
+	-moz-transform: scale(1.1);
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
 }
 
 /********************************************************************************************/
@@ -101,13 +101,6 @@ li[data-type="media"] .wrapper ol.data li:hover .title
 {
 	bottom:30px;
 	opacity:1;
-}
-li[data-type="media"] .wrapper ol.data li .title.sliding {
-	left:-100%;
-	-webkit-transition: all 3s ease-in; 
-	-moz-transition: all 3s ease-in; 
-	-o-transition: all 3s ease-in; 
-	transition: all 3s ease-in;
 }
 li[data-type="media"] .wrapper ol.data li .info {
 	font-size:10px;

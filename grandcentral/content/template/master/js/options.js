@@ -51,7 +51,7 @@ jQuery(document).ready(function($)
 				{
 					app:'content',
 					template:'master/snippet/options.unlocked',
-					section:$('#adminContent section:visible').data('template'),
+					section:$('#adminContent section.active').data('template'),
 				},{
 					done:function()
 					{
@@ -87,8 +87,8 @@ jQuery(document).ready(function($)
 		$drop.ajx(
 		{
 			app:'content',
-			template:'master/snippet/options.filters',
-			sectiontype:$('#adminContent section:visible').data('template'),
+			template:'/master/snippet/options.filters',
+			sectiontype:$('#adminContent section.active').data('template'),
 		},{
 			done:function()
 			{
@@ -106,7 +106,7 @@ jQuery(document).ready(function($)
 	$(document).on('click', '#options_drop li li', function()
 	{
 	//	Some vars
-		panel = $('#adminContent section:visible');
+		panel = $('#adminContent section.active');
 		filter = $(this).parent('ul').data('filter');
 		section = panel.attr('id').replace('section_', '');
 		value = $(this).data('value');
@@ -131,7 +131,7 @@ jQuery(document).ready(function($)
 				break;
 		//	Change display
 			case 'display':
-			  $('#adminContent').attr('class', value);
+				panel.attr('data-pref-display', value);
 			  break;
 		}
 		

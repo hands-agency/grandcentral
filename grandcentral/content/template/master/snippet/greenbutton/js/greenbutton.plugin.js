@@ -56,7 +56,7 @@
 			{
 				$(this).toggleClass('on');
 			//	Fetch the right section
-				sectionid = $('#adminContent section:visible').attr('id').replace('section_', '');
+				sectionid = $('#adminContent section.active').attr('id').replace('section_', '');
 			//	Open the context
 				openContext(
 				{
@@ -94,7 +94,6 @@
 		{
 		//	Trigger regular submit for eventual plugin callbacks
 			$('#adminContent>section>form').submit();
-			
 		//	Id & status
 			id = $('input[name="'+SITE_KEY+'_'+_GET['item']+'[id]"]');
 			oldStatus = $('input[name="'+SITE_KEY+'_'+_GET['item']+'[status]"]');
@@ -125,6 +124,8 @@
 						window.history.pushState('string', 'chose', url);
 					//	Callback	
 						if ((typeof(callback) != 'undefined') && (typeof(callback) == "function")) callback.call(this, result);
+					//	Pop alert
+						popAlert('success', 'Yep. That\'s saved.');
 					};
 				},
 			});
@@ -142,7 +143,9 @@
 					plugin.save('live', callback);
 				},
 				error:function()
-				{
+				{			
+				//	Pop alert
+					popAlert('error', 'Couple of things missing.');
 				//	console.log('error');
 				},
 				complete:function()

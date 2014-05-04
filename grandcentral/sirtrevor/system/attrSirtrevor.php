@@ -71,7 +71,7 @@ class attrSirtrevor extends _attrs implements ArrayAccess
 						break;
 				//	Heading
 					case 'heading':
-						$return .= '<h2>'.strip_tags($text).'</h2>'; // Feels like Sir Trevors stores a <h1> in the db
+						$return .= '<h2>'.strip_tags($text).'</h2>';
 						break;
 				//	List
 					case 'list':

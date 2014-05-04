@@ -23,6 +23,9 @@ $(document).ready(function ()
 
 	//	Hide all panels
 		$('#adminContent section').removeClass('active');
+	//	Hide options
+	//	TODO refresh content instead of hide
+		$('#options_drop').hide('fast');
 	//	Open the right panel
 		if (!$panel.html() || $(this).hasClass('updateMe'))
 		{
@@ -83,6 +86,7 @@ $(document).ready(function ()
 
 	//	parallax
 		$('#grandCentralSite iframe').css('top', scrollTop/2);
+		$('#grandCentralSite h1').css('top', 50+(((scrollTop/250)/2)*100)+'%');
        
 		if (scrollTop > stickyNavTop)
 		{

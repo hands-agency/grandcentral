@@ -7,8 +7,12 @@ li[data-type="sirtrevor"] .wrapper .st-block__inner
 }
 li[data-type="sirtrevor"] .wrapper .st-text-block
 {
-	font-style:'Raleway-Regular';
+	font-family:'Raleway-Regular';
 	font-size:0.8em;
+}
+li[data-type="sirtrevor"] .wrapper .st-text-block b
+{
+	font-family:'Raleway-Bold';
 }
 li[data-type="sirtrevor"] .wrapper .st-text-block--heading
 {

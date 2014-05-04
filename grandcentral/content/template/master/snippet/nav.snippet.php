@@ -1,10 +1,5 @@
 <button type="button" class="close"></button>
-<ul>
-	<li class="me">
-		<div class="title"><?=media($_SESSION['user']['profilepic'][0]['url'])?><span>Prénom</span></div>
-		<div class="sub"></div>
-	</li>
-	
+<ul>	
 	<? foreach ($level1 as $page): ?>
 	<? $truc = $page['key']->get();?>
 	<? $config = $nav[$truc] ?>
@@ -13,12 +8,13 @@
 	<? $level2Bunch = (isset($config['subnav']) && is_array($config['subnav'])) ? $config['subnav'] : null ?>
 	<? $level2Content = (isset($config['subnav']) && is_string($config['subnav'])) ? $config['subnav'] : null ?>
 	<?
-		$icon = (isset($config['icon'])) ? $config['icon'] : null;
+		$icon = (isset($config['icon'])) ?  'data-batchicon="'.$config['icon'].'"' : null;
+		$image = (isset($config['image'])) ? media($config['image']) : null;
 	//	On / off ?
 		$on = null;
 	?>
 	<li class="<?=$page['key']?> <?=$on?>">
-		<? if ($title): ?><div class="title" data-batchicon="<?=$icon?>"><span><?=$title?></span></div><? endif ?>
+		<? if ($title): ?><div class="title" <?=$icon?>><?=$image?><span><?=$title?></span></div><? endif ?>
 		
 		<? if ($level2Bunch OR $level2Content): ?>
 		<div class="sub">
@@ -44,7 +40,7 @@
 			
 			<? if ($count > 0): ?>
 
-			<? if (count($level2Bunch) > 1) : ?><h1><?=cst('NAV_SUB_H1_'.$key, $key)?></h1><? endif ?>
+			<? if (count($level2Bunch) > 1) : ?><h1><span class="centered"><?=cst('NAV_SUB_H1_'.$key, $key)?></span></h1><? endif ?>
 			
 			<ul class="<?=$key?> <?=$display?>">
 				<? foreach ($bunch as $subpage): ?>

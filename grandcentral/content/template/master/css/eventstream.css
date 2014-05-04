@@ -1,11 +1,11 @@
 #eventstream {
-	padding:7px 0 10px 0;
+	padding:0 0 10px 0;
 	display:none;
 }
 #eventstream ul
 {
 	list-style-type:disc;
-	color:#3eb4d6;
+	color:#6cbf2d;
 	padding:0 0 0 16px;
 }
 #eventstream ul li

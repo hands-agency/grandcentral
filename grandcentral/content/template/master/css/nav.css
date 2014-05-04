@@ -166,29 +166,6 @@
 {
 
 }
-#adminNav>ul li.me>.title
-{
-	background:none;
-}
-#adminNav>ul li.me>.title span
-{
-	color:#000;
-}
-#adminNav>ul>li.me:after
-{
-	border-color: transparent transparent transparent #6cbf2d;
-}
-#adminNav>ul li.me .sub
-{
-	top:0 !important;
-	background:transparent;
-	padding:15px;
-}
-#adminNav>ul li.me .sub input
-{
-	width:100%;
-	height:40px;
-}
 
 /* Specificities : edit & editing */
 /*
@@ -261,7 +238,7 @@
 	position:absolute;
 	right:0;
 	top:0;
-	padding:15px;
+	padding:30px 15px;
 	margin:0;
 	width:70% !important;
 	height:800px; /* TMP */
@@ -274,14 +251,23 @@
 /* Titles */
 #adminNav>ul .sub h1
 {
-	font-family:"Raleway-Regular";
-	text-transform:uppercase;
-	clear:both;
-	color:#666;
+	font-family:"Raleway-Bold";
+	margin:0 0 20px 0;
+	border-bottom:1px solid #333;
+	padding:0 0 5px 0;
 	text-align:center;
-	margin:10px;
-	padding:0 0 10px 0 	;
-	letter-spacing:1px;
+	letter-spacing:3px;
+	text-transform:uppercase;
+}
+#adminNav>ul .sub h1>.centered
+{
+	background:#222;
+	padding:0 10px;
+	color:#555;
+	position:relative;
+	bottom:-13px;
+	display:inline;
+	font-size:12px;
 }
 #adminNav>ul .sub ul
 {
@@ -320,14 +306,17 @@
 }
 
 /* In big */
+#adminNav>ul .sub ul.big
+{
+	text-align:center;
+}
 #adminNav>ul .sub ul.big li a
 {
 	display:block;
-	padding:10px;
+	padding:5px;
 }
 #adminNav>ul .sub ul.big li:not(:last-child)
 {
-	border-bottom:1px solid #333;
 }
 #adminNav>ul .sub ul.big li a:hover .title
 {
@@ -335,8 +324,7 @@
 }
 #adminNav>ul .sub ul.big li .icon
 {
-	display:inline-block;
-	margin-right:10px;
+	display:none;
 }
 #adminNav>ul .sub ul.big li .title
 {
@@ -355,7 +343,7 @@
 	color:#ccc;
 	font-size:0.75em;
 	padding:5px;
-	border-bottom:1px solid #444;
+	border-bottom:1px solid #333;
 }
 #adminNav>ul .sub ul.col li .icon
 {
@@ -372,7 +360,7 @@
 }
 #adminNav>ul .sub ul.label li a
 {
-	border:1px solid #555;
+	border:1px solid #333;
 	padding:7px 10px;
 	border-radius:10px;
 }
@@ -449,51 +437,61 @@
 	text-align:center;
 }
 
-/* In Bubbles */
-#adminNav>ul .sub ul.bubble
+/* In tiles */
+#adminNav>ul .sub ul.tiles
 {
-
-}
-#adminNav>ul .sub ul.bubble li a
-{
-	display:block;
-	float:left;
-	font-size:0.8em;
 	text-align:center;
-	width: 80px;
+}
+#adminNav>ul .sub ul.tiles li
+{
+	display:inline-block;
+}
+#adminNav>ul .sub ul.tiles li a
+{
+	text-align:center;
+	width:80px;
 	height:80px;
-	margin:0 10px 10px 0;
-	background:#eee;
+	margin:5px;
+	background:#ccc;
 	position: relative;
-	color:#333;
-	border-radius:100px;
+	border-radius:3px;
+	opacity:0.8;
+	-webkit-transition: all .1s ease-out; 
+	-moz-transition: all .1s ease-out; 
+	-o-transition: all .1s ease-out; 
+	transition: all .1s ease-out;
 }
-#adminNav>ul .sub ul.bubble li a:hover
+#adminNav>ul .sub ul.tiles li a:hover
 {
-	background:#3eb4d6 !important;
+	opacity:1;
 }
-#adminNav>ul .sub ul.bubble li .title
+#adminNav>ul .sub ul.tiles li .title
 {
-	font-size:0.85em;
+	font-size:11px;
 	width:100%;
 	position:absolute;
-	top:50px;
+	bottom:10px;
 	z-index:1;
 	font-family:'Raleway-Regular';
+	font-size:9px;
+	color:#333;
+	text-transform:uppercase;
 }
-#adminNav>ul .sub ul.bubble li a:hover:before
+#adminNav>ul .sub ul.tiles li a:hover:before
 {
 	border-bottom-color:#3eb4d6;
 }
-#adminNav>ul .sub ul.bubble li a:hover:after
+#adminNav>ul .sub ul.tiles li a:hover:after
 {
 	border-top-color:#3eb4d6;
 }
-#adminNav>ul .sub ul.bubble li .icon
+#adminNav>ul .sub ul.tiles li .icon
 {
-	font-size:3.1em;
-	background:transparent;
+	font-size:40px;
+	line-height:67px;
 	text-align:center;
+	color:#fff;
+	opacity:0.8;
 }
 
 /* In masonry */
@@ -515,21 +513,6 @@
 	font-size:40px;
 }
 
-
-/* In tiles */
-#adminNav>ul .sub ul.tiles li
-{
-	display:block;
-	padding:10px;
-	height:120px;
-	width:120px;
-	float:left;
-	-moz-box-sizing:border-box;
-	-webkit-box-sizing:border-box;
-	box-sizing:border-box;
-	background:#333;
-	margin:0 4px 4px 0;
-}
 
 /* CC search */
 #adminNav>ul>li.cc-search
@@ -563,8 +546,8 @@
 	background:#ccc;
 }
 
-/* Bubbles */
-#adminNav>ul .sub ul li .title .cc-bubble
+/* tiless */
+#adminNav>ul .sub ul li .title .cc-tiles
 {
 	top:-17px;
 	right:-16px;

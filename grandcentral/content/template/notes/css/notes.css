@@ -1,9 +1,11 @@
 /********************************************************************************************/
 /* As a full section
 /********************************************************************************************/
-section .noteList
+section .noteList,
+section .noteForm
 {
 	margin:auto;
+	max-width:700px;
 }
 section .noteList>li:not(.more),
 section .noteForm
@@ -118,7 +120,7 @@ section .noteList>li>.text:before
 /* Form */
 section .noteForm
 {
-	border-top:1px solid #fff;
+	border-top:1px solid #ccc;
 	padding:30px 0 0px 0;
 }
 section .noteForm form label,

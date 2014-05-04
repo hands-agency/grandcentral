@@ -121,7 +121,6 @@
 						timeout:vars['delay'][css],
 						control:css,
 					});
-				//	$li.find('[data-control]').effect('bounce', {direction: bounceDirection, distance:'10', times:'2'}, 250);
 				
 				//	Back to normal
 					vars['fieldHasChanged'] = false;

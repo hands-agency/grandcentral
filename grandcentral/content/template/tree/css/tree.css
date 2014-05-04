@@ -75,6 +75,7 @@ section[data-template="/tree/tree"] ol li .page .icon>.title
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
+	font-family: "Raleway-Regular";
 }
 section[data-template="/tree/tree"] ol li .page .icon>.title a
 {

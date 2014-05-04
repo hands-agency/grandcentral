@@ -16,6 +16,7 @@ ol>li[data-type="multipleselect"] .field .available
 	-webkit-border-radius:3px;
 	border-radius:3px;
 	position:relative;
+	min-height:200px;
 }
 ol>li[data-type="multipleselect"] .field p
 {

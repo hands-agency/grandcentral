@@ -42,26 +42,52 @@
 /********************************************************************************************/
 //	Config
 /********************************************************************************************/
-//	Build nav
 	$nav = array(
-	//	Site
-		'site' => array(
-			'title' => i('site', current)['title'],
-			'icon' => '&#xF147',
+	//	Me
+		'me' => array(
+			'title' => $_SESSION['user']['title'],
+			'image' => $_SESSION['user']['profilepic'][0]['url'],
 			'page' => 'list',
 		//	Subnav
 			'subnav' => array(
-				'item' =>  array(
+				'digest' =>  array(
+					'title' => 'er',
+					'display' => 'big',
+					'link' => 'page',
+					'bunch' => i('page', array('key' => array('home', 'logout'), 'order()' => 'inherit(key)'), 'admin'),
+				),
+				'edit' =>  array(
+					'title' => 'er',
+					'display' => 'big',
+					'link' => 'edit',
+					'bunch' => i('human', $_SESSION['user']['id'], 'site'),
+				),
+				'byebye' =>  array(
+					'title' => 'er',
+					'display' => 'big',
+					'link' => 'page',
+					'bunch' => i('page', array('key' => array('logout'), 'order()' => 'inherit(key)'), 'admin'),
+				),
+			),
+		),
+	//	Site
+		'site' => array(
+			'title' => i('site', current)['title'],
+			'image' => i('site', current)['favicon'][0]['url'],
+			'page' => 'list',
+		//	Subnav
+			'subnav' => array(
+				'structure' =>  array(
 					'title' => 'er',
 					'display' => 'big',
 					'link' => 'list',
 					'bunch' => i('item', array('key' => array('page', 'item', 'site', 'version'), 'order()' => 'inherit(key)'), $_SESSION['pref']['handled_env']),
 				),
-				'doc' =>  array(
+				'play and fix' =>  array(
 					'title' => 'er',
 					'display' => 'big',
-					'link' => 'list',
-					'bunch' => i('page', array('key' => array('doc'), 'order()' => 'inherit(key)'), 'admin'),
+					'link' => 'page',
+					'bunch' => i('page', array('key' => array('doc', 'lab'), 'order()' => 'inherit(key)'), 'admin'),
 				),
 			),
 		),
@@ -78,12 +104,12 @@
 					'bunch' => i('item', array('key' => array('human', 'machine', 'group'), 'order()' => 'inherit(key)'), 'site'),
 				),
 				'major' => array(
-					'display' => 'bubble',
+					'display' => 'tiles',
 					'link' => 'list',
 					'bunch' => i('item', array('system' => false, 'hasurl' => true, 'order()' => 'title'), $_SESSION['pref']['handled_env']),
 				),
 				'minor' => array(
-					'display' => 'bubble',
+					'display' => 'tiles',
 					'link' => 'list',
 					'bunch' => i('item', array('system' => false, 'hasurl' => false, 'order()' => 'title'), $_SESSION['pref']['handled_env']),
 				),

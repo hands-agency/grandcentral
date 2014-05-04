@@ -38,7 +38,7 @@ $(document).ready(function()
 	},
 	function()
 	{
-		var $container = $('.inmasonry section[data-template="/list/list"]>.infiniteScrollContainer>ol');
+		var $container = $('section[data-template="/list/list"][data-pref-display="inmasonry"]>.infiniteScrollContainer>ol');
 		console.log($container);
 	//	initialize Masonry after all images have loaded  
 		$container.imagesLoaded( function()

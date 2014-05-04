@@ -22,8 +22,8 @@
 //	Bind
 /********************************************************************************************/
 	$_APP->bind_file('css', 'css/zoning.css');
-	$_APP->bind_file('script', 'js/multipleselect.js');
-	$_APP->bind_file('script', 'js/zoning.js');
+//	$_APP->bind_file('script', 'js/multipleselect.js');
+//	$_APP->bind_file('script', 'js/zoning.js');
 		
 /********************************************************************************************/
 //	Some vars
@@ -33,20 +33,23 @@
 //	Object
 	$handled_item = $_GET['item'];
 	$handled_id = $_GET['id'];
+	
 //	Name of the field
 	$fieldName = constant(mb_strtoupper($handled_env).'_KEY').'_'.$handled_item.'[section]';
 	
-/********************************************************************************************/
-//	?
-/********************************************************************************************/
 //	Fetch the zones
 	$page = i('page', $handled_id, $handled_env);
-	$master = $page['type']['master'];
-	$root = SITE_ROOT.'/content'.$master.'.html.php';
+	$app = $page['type']['app'];
+	$template = $page['type']['template'];
+	$root = SITE_ROOT.'/'.$app.'/'.$template.'.html.php';
 	$zones = master::get_zones($root);
 		
 //	Fetch the sections
 	$sections = $page['section']->unfold();
+	
+/********************************************************************************************/
+//	?
+/********************************************************************************************/
 
 //	Add the existing sections to the zones
 	foreach ($sections as $section)

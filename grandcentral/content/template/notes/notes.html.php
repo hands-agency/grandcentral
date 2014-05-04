@@ -1,11 +1,9 @@
 <? if (!isset($notes)) : ?>
 <div class="nodata">We're building here a place where you'll be able to chat. Come back when you're work is done.</div>
 <? elseif (!$notes->count()): ?>
-<h1>Notes</h1>
-<div class="nodata">Do you have something to say ?</div>
+<div class="nodata">Something to say ?</div>
 <? endif ?>
 <? if (isset($notes)) : ?>
-<h1>Notes</h1>
 <ul class="noteList">
 	<? if ($displayNotes == $notes->count): ?><li class="more"></li><? endif ?>
 

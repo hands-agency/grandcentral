@@ -3,7 +3,8 @@ $(document).ready(function () {
 /**	* Multiple
 * 	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
-	$('.zoning').multipleselect({		
+	$('.zoning').multipleselect(
+	{		
 		app:'field',
 		theme:'default',
 		template:'zoning.available',
