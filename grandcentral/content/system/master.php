@@ -27,7 +27,7 @@ class master
 		self::$content_type = (empty($page['type']['content_type'])) ? 'html' : $page['type']['content_type'];
 	//	instanciate the app master
 		$params['page'] = $page;
-		$this->app = new app('content', $page['type']['master'], $params);
+		$this->app = app('content', $page['type']['master'], $params);
 	//	retrieve the template root
 		$root = $this->app->get_templateroot().$page['type']['master'].'.'.$page['type']['content_type'].'.php';
 	//	parse the template and parse zones
@@ -101,7 +101,7 @@ class master
 		if (is_file($file))
 		{
 			$param['zone'] = $zone;
-			$app = new app('content', $key, $param);
+			$app = app('content', $key, $param);
 			$zone = $app->__tostring();
 		}
 	//	traitement générique d'une zone : concaténation des contenus

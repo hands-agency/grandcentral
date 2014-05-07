@@ -22,7 +22,7 @@ class sitemaps
 	public function __construct()
 	{
 	//	Find the root
-		$app = new app('sitemaps');
+		$app = app('sitemaps');
 		$this->filepath = $app->get_templateroot();
 	}
 	

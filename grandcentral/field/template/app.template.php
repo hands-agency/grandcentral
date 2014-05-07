@@ -25,7 +25,7 @@
 /********************************************************************************************/
 //	Template list
 /********************************************************************************************/
-	$app = new app($_POST['appkey'], null, json_decode($_POST['valueParam'], true));
+	$app = app($_POST['appkey'], null, json_decode($_POST['valueParam'], true));
 	$templates = $app->get_templates(null, $_POST['env']);
 	$fparams = array(
 		'label' => 'template : ',
@@ -38,5 +38,5 @@
 //	Params
 /********************************************************************************************/
 	$params['app'] = $app;
-	$fieldParam = new app('field', 'app.param', $params);
+	$fieldParam = app('field', 'app.param', $params);
 ?>

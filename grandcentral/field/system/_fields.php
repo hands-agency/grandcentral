@@ -429,7 +429,7 @@ abstract class _fields
 		{
 			$this->template = mb_substr(mb_strtolower(get_called_class()), 5);
 		}
-		$app = new app('field', $this->template, array('field' => $this));
+		$app = app('field', $this->template, array('field' => $this));
 		return $app->__tostring();
 	}
 /**

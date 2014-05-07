@@ -63,22 +63,22 @@
 					$name = basename($class, '.php');
 				//	Produce the doc
 					$params['doc'] = new doc($name);
-					$html = new app('doc', 'class', $params);
+					$html = app('doc', 'class', $params);
 				}
 				break;
 		//	Classes & functions
 			case 'class':
 				$params['doc'] = new doc($name);
-				$html = new app('doc', 'class', $params);
+				$html = app('doc', 'class', $params);
 				break;
 			case 'function':
 				$params['doc'] = new doc($name);
-				$html = new app('doc', 'function', $params);
+				$html = app('doc', 'function', $params);
 				break;
 		//	Methods
 			case 'method':
 				$params['doc'] = new doc($name);
-				$html = new app('doc', 'method', $params);
+				$html = app('doc', 'method', $params);
 				break;
 		
 		//	Nothing

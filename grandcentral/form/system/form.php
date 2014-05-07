@@ -311,7 +311,7 @@ class form
 	public function __tostring()
 	{
 		$param['form'] = $this;
-		$html = new app('form', $this->template, $param);
+		$html = app('form', $this->template, $param);
 		return $html->__tostring();
 	}
 /**

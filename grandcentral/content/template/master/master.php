@@ -80,7 +80,7 @@
 	$apps = array('searchasyoutype', 'jquery.masonry', 'jquery.imagesloaded', 'jquery.hoverintent', 'jquery.sse', 'jquery.pace', 'linecons');
 	foreach ($apps as $app)
 	{
-		$app = new app($app);
+		$app = app($app);
 		$app->load();
 	}
 	$_APP->bind_code("script", "$(document).ajaxStart(function() { Pace.restart(); });");

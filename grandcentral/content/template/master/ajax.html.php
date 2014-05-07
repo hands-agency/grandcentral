@@ -47,5 +47,5 @@
 	echo '<!-- ZONE:script -->';
 		
 //	Call the right app
-	echo new app($app, $key, $param);
+	echo app($app, $key, $param);
 ?>

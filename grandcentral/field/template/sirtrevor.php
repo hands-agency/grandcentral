@@ -22,7 +22,7 @@
 //	Bind
 /********************************************************************************************/
 //	Apps
-	$app = new app('sirtrevor');
+	$app = app('sirtrevor');
 	$app->load();
 //	Css
 	$_APP->bind_css('css/sirtrevor.css');

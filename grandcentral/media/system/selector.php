@@ -18,7 +18,7 @@
 	function media($file)
 	{
 		
-		$appMedia = new app('media');
+		$appMedia = app('media');
 		$root = $appMedia->get_templateroot('site');
 	//	Accept media with the full serveur root
 		if (strstr((string) $file, $root)) $root = null;

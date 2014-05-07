@@ -45,7 +45,7 @@
 			$_POST = $_POST[$key[0]];
 		//	appel de la routine
 			$param['form'] = $form;
-			echo new app('form', $form['action'], $param);
+			echo app('form', $form['action'], $param);
 		}
 		else
 		{

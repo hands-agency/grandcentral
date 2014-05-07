@@ -50,7 +50,7 @@
 	//	non installée
 		else
 		{
-			$tmp = new app();
+			$tmp = app();
 			$tmp['key'] = $app['key'];
 			$tmp = $tmp->ini('about');
 			$app['title'] = $tmp['title'];

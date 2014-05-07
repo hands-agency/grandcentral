@@ -35,5 +35,5 @@
 	$key = $_GET['template'];
 		
 //	Call the right app
-	echo new app($app, $key);
+	echo app($app, $key);
 ?>
