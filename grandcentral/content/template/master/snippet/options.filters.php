@@ -28,6 +28,7 @@
 //	Some vars
 /********************************************************************************************/
 	$handled_env = $_SESSION['pref']['handled_env'];
+	$handled_item = $_GET['item'];
 	$sectiontype = $_POST['sectiontype'];
 	
 /********************************************************************************************/
@@ -39,27 +40,27 @@
 	switch ($sectiontype)
 	{
 	//	List
-		case 'list/list':
+		case '/list/list':
 		//	Display
 			$filter['display'] = array('instack', 'inmasonry');
 		//	Order
-			$filter['order'] = registry::get($handled_env, registry::attr_index, $_GET['item'], 'attr');
+			$filter['order'] = registry::get($handled_env, registry::attr_index, $handled_item, 'attr');
 		//	Sort
 			$filter['sort'] = array('asc', 'desc');
 			break;
 		
 	//	Form
-		case 'edit/edit':
+		case '/edit/edit':
 		//	Importance
 			$filter['required'] = array('compulsory', 'optional');
 			break;
 			
 	//	Notes
-		case 'notes':
+		case '/notes':
 		//	Labels
 			$filter['label'] = array('note' , 'bug', 'enhancement', 'question');
 		//	About
-			$filter['about'] = array('cosmetic', 'seo', 'xplat', 'devfeat', 'structure', 'content', 'layout', 'performance');
+			$filter['about'] = array('cosmetic', 'seo', 'xplat', 'devfeat', 'item', 'content', 'layout', 'performance');
 		//	Visibility
 			$filter['visibility'] = array('me', 'groups');
 		//	Severity

@@ -30,7 +30,7 @@ $(document).off('keypress', '.noteForm form textarea').on('keypress', '.noteForm
 			data: form.serialize(),
 			beforeSend: function()
 			{
-			//	Prevent writing
+			//	Prevent further writing
 				textarea.attr('disabled','disabled');
 				$('<li class="loading" style="display:none"><progress value="00" max="100"></progress></li>').appendTo(list).slideDown('fast');
 			//	Loading
@@ -39,16 +39,11 @@ $(document).off('keypress', '.noteForm form textarea').on('keypress', '.noteForm
 			success: function(result)
 			{
 			//	DEBUG
-			//	console.log(dataMentions);
-			
-			//	Start event source (TODO Not the best way to retrieve data we already have...)
-				item = form.find('[name="inline_note[item]"]').val();
-				itemid = form.find('[name="inline_note[itemid]"]').val();
-				StartEventSource(list, item, itemid);
+			//	console.log(result);
 				
 			//	Start fresh for next time
-				textarea.val('').attr('disabled', null).trigger('autosize');
-				mentions.html('<div></div>');
+				textarea.val('').attr('disabled', null);
+			//	mentions.html('<div></div>');
 			}
 		});
 		

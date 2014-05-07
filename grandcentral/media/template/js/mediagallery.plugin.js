@@ -159,13 +159,6 @@
 					$('#trashbin').data('trashbin').toggle();
 				}
 			});
-
-		//	Slide titles
-			$element.find('.files li .title').hoverIntent(
-			{
-			    over: function(){$(this).addClass('sliding')},
-			    out: function(){$(this).removeClass('sliding')},
-			});
 		}
 		
 	//	Method

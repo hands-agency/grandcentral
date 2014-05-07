@@ -34,29 +34,41 @@
 		<? endif;?>
 	</ul>
 </div>
+<? if (isset($directories)): ?>
+<h2><span class="centered">Folders</span></h2>
 <div class="folder">
 	<ul>
-		<? if (isset($directories)): ?>
 		<? foreach ($directories as $dir): ?>
 		<?
-			$files = scandir($dir->get_root(), SCANDIR_SORT_DESCENDING);
-			$count = 3;
-			$previews = array();
-			for ($i=0; $i < $count ; $i++) if (isset($files[$i])) $previews[] = $files[$i];
+			$reg = $dir->get_root().'/*.jpg';
+			$files = glob($reg);
+			usort($files, function($file_1, $file_2)
+			{
+			    $file_1 = filectime($file_1);
+			    $file_2 = filectime($file_2);
+			    if($file_1 == $file_2)
+			    {
+			        return 0;
+			    }
+			    return $file_1 < $file_2 ? 1 : -1;
+			});
 		?>
 		<li>
 			<div class="title">
 				<a href="#" class="dir"><?= $dir->get_key() ?></a>
 			</div>
 			<ul class="preview">
-				<?php foreach ($previews as $preview): ?><li><?= media($dir->get_key().'/'.$preview)->thumbnail(100, null) ?></li><?php endforeach ?>
+				<?php for ($i=0; $i < $maxPreviews ; $i++) : ?>
+					<?php if (isset($files[$i])): ?>
+						<li style="background-image:url('<?= media($files[$i])->thumbnail(100, null)->get_url() ?>')"></li>
+					<?php endif ?>
+				<?php endfor; ?>
 			</ul>
 		</li>
 		<? endforeach ?>
-		<? endif ?>
 	</ul>
 </div>
-<div class="clear"><!-- Clearing floats --></div>
+<? endif ?>
 
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function()
@@ -126,7 +138,7 @@ $(document).ready(function()
 					container.parents('.files').removeClass('empty');
 					$('#mediaLibrary').data('mediaGallery').initList();
 				}
-				else container.masonry( 'appended', appendedMedia );
+				else container.masonry( 'prepended', appendedMedia );
 			};
 			reader.readAsDataURL(file);
 		}

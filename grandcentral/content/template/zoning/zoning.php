@@ -19,6 +19,11 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
+//	Bind
+/********************************************************************************************/	
+	$_APP->bind_file('css', 'zoning/css/zoning.css');
+
+/********************************************************************************************/
 //	Some vars
 /********************************************************************************************/	
 //	Env
@@ -26,12 +31,9 @@
 //	Item
 	$handled_item = $_GET['item'];
 	$handled_id = (isset($_GET['id'])) ? $_GET['id'] : null;
-//	Current section
-	$section = $_POST['section'];
 
 /********************************************************************************************/	
 //	Create the new form if not already existing
 /********************************************************************************************/	
-	require ADMIN_ROOT.'/content/template/edit/adminItemForm.class.php';
-	$form = new adminItemForm($handled_env, $handled_item, $section, $handled_id);
+	$form = i('form', 'zoning');
 ?>

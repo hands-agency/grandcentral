@@ -29,10 +29,10 @@
 /********************************************************************************************/
 //	Get the section
 //	list($app, $id) = explode('_', $_POST['handled_app']);
-//	$section = cc('section', $id);
+//	$section = i('section', $id);
 	
 //	Get the app
-	$section = cc('section', 'live');
+	$section = i('section', 'live');
 	
 //	Fetch the section
 	$p = array(

@@ -32,11 +32,21 @@
 /********************************************************************************************/
 //	Insertion
 /********************************************************************************************/
-	list($site, $table) = explode('_', $_FORM['key']);
-	$env = 'admin' == $site ? 'admin' : 'site';
+//	Forms for all sites (no _ in the name)
+	if (!strstr($_FORM['key']->get(), '_'))
+	{
+		$table = $_FORM['key']->get();
+		$env = 'site';
+	}
+//	Specific forms ([site]_[formkey])
+	else
+	{
+		list($site, $table) = explode('_', $_FORM['key']);
+		$env = 'admin' == $site ? 'admin' : 'site';
+	}
 	
 	$id = (isset($_POST['id'])) ? $_POST['id'] : null;
-	$i = cc($table, $id, $env);
+	$i = i($table, $id, $env);
 	
 	foreach ($_POST as $key => $value)
 	{

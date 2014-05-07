@@ -26,5 +26,5 @@
 /********************************************************************************************/
 //	Some vars
 /********************************************************************************************/
-	if (isset($_GET['item']) && isset($_GET['id'])) $item = cc($_GET['item'], $_GET['id'], $_SESSION['pref']['handled_env']);
+	if (isset($_GET['item']) && isset($_GET['id'])) $item = i($_GET['item'], $_GET['id'], $_SESSION['pref']['handled_env']);
 ?>

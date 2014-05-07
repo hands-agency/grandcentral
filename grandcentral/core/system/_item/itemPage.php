@@ -103,7 +103,7 @@ class itemPage extends _items
 			
 			if ($parent === false)
 			{
-				$home = cc('page', 'home', $this->get_env());
+				$home = i('page', 'home', $this->get_env());
 				$home['child']->add($this);
 				$home->save();
 			}
@@ -201,7 +201,7 @@ class itemPage extends _items
 	//	redirection
 		if (count($child) > 0)
 		{
-			$child = cc($child[0]);
+			$child = i($child[0]);
 			header('Location:'.$child['url'], false);
 		}
 	//	erreur

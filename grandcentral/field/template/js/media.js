@@ -73,11 +73,4 @@
 //	Sortable
 	data.sortable();
 	
-//	Scroll title
-	title = media.find('.title');
-	title.hoverIntent(
-	{
-	    over: function(){$(this).addClass('sliding')},
-	    out: function(){$(this).removeClass('sliding')},
-	});	
 })(jQuery); 

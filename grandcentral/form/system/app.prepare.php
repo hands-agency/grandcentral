@@ -9,7 +9,7 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 //	on recherche dans la base le form correspondant au param['key']
-	$form = cc('form', $this->param['key']);
+	$form = i('form', $this->param['key']);
 //	si le form existe, on le monte dans les paramètres
 	if ($form->exists())
 	{

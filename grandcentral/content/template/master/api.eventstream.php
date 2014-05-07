@@ -38,7 +38,7 @@
 //	Some vars
 	$app = $_GET['app'];
 	$key = $_GET['template'];
-		
+	
 //	Call the right app
 	echo app($app, $key);
 ?>

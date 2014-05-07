@@ -51,7 +51,7 @@ class registry
 		// prepare environment
 		$this->_prepare_current();
 		//	constants
-		cc('const', all);
+		i('const', all);
 	}
 /**
  * Create only one instance of the Registry

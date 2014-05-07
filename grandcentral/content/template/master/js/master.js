@@ -50,7 +50,8 @@
 			})
 			.fail(function( jqXHR, textStatus )
 			{
-				console.log( "Request failed: " + textStatus );
+			//	console.log( "Request failed: " + textStatus );
+				console.log( "Request failed: " + jqXHR.responseText );
 			});
 		};
 	})( jQuery );
@@ -108,17 +109,34 @@
 /**	* Open / close lanes
  	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
-	$('#grandCentralAdmin>#content>button.close').on('click', function()
+	$('#grandCentralAdmin>#adminContent>button.close').on('click', function()
 	{
 		closeAdmin();
 	});
-	$('#grandCentralAdmin>#context>button.close').on('click', function()
+	$('#grandCentralAdmin>#adminContext>button.close').on('click', function()
 	{
 		closeContext();
 	});
 	$('#grandCentralSite>.overlay').on('click', function()
 	{
 		openSite();
+	});
+	
+	
+	
+/*********************************************************************************************
+/**	* All links
+ 	* @author	mvd@cafecentral.fr
+**#******************************************************************************************/
+	$(document).on('click', '[data-item-link]', function()
+	{
+		nickname = $(this).data('item').split('_');
+		item = nickname[0];
+		id = nickname[1];
+		tab = $(this).data('item-link');
+	//	Go there
+		url = ADMIN_URL+'/edit?item='+item+'&id='+id+'#'+tab;
+		document.location.href = url;
 	});
 	
 /*********************************************************************************************
@@ -179,14 +197,6 @@
 	{
 		$('#main').removeClass('navOpened').addClass('navClosed');
 	}
-	broadenNav = function()
-	{
-		$('#main').removeClass('navClosed').addClass('navBroadened');
-	}
-	hideNav = function()
-	{
-		$('#main').removeClass('navClosed').addClass('navHidden');
-	}
 
 //	Admin
 	openAdmin = function()
@@ -202,20 +212,33 @@
 	openContext = function(param)
 	{
 		$('#main').removeClass('contextClosed').addClass('contextOpened');
-		$('#context>div').ajx(param);
+		$('#adminContext>div').ajx(param);
 	}
 	closeContext = function()
 	{
 		$('#main').removeClass('contextOpened').addClass('contextClosed');
-		$('#context>div').html('');
+		$('#adminContext>div').html('');
 	}
+	
+//	Site
 	openSite = function(url)
 	{
-		closeAdmin();
-		closeNav();
+		$('#main').addClass('siteOpened');
 		if (url) $('#grandCentralSite').find('iframe').attr('src', url);
 	//	window.history.pushState('string', 'chose', '/');
 	}
+	
+//	alert
+	popAlert = function(type, label)
+	{
+		$('#main').addClass('poppedAlert').delay(1000).queue(function(){$(this).removeClass('poppedAlert').dequeue();});
+		$('#alert').attr('class', type);
+		$('#alert .response').html(label);
+	}
+	$(document).on('click', '#alert', function()
+	{
+		$('#main').removeClass('poppedAlert');
+	});
 	
 	
 /*********************************************************************************************

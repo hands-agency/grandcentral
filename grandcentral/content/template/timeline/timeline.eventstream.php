@@ -30,7 +30,7 @@
 	{
 		$p['created'] = '> '.$_GET['since'];	
 	}
-	$logbooks = cc('logbook', $p, $_SESSION['pref']['handled_env']);
+	$logbooks = i('logbook', $p, $_SESSION['pref']['handled_env']);
 
 	/**
 	 * Constructs the SSE data format and flushes that data to the client.
@@ -53,7 +53,7 @@
 	foreach ($logbooks as $logbook)
 	{
 	//	Author
-		$author = cc($logbook['subject'], $logbook['subjectid'])['title'];
+		$author = i($logbook['subject'], $logbook['subjectid'])['title'];
 	//	Message
 		$msg = '{"id": "'.$logbook['id'].'", "event": "'.$logbook['key'].'", "author": "'.$author.'", "item": "'.$logbook['item'].'", "itemid": "'.$logbook['itemid'].'"}';
 	//	Send message

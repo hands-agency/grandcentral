@@ -1,6 +1,6 @@
 <?php
 /**
- * Description: This is the description of the document.
+ * Description: This is the description of the document that we are .
  * You can add as many lines as you want.
  * Remember you're not coding for yourself. The world needs your doc.
  * Example usage:
@@ -235,153 +235,153 @@ class sentinel
 		{
 			$css = '
 			<style type="text/css">
-				.cc-sentinel 
+				.gc-sentinel 
 				{
 					position: relative;
-					-moz-border-radius: 3px;
-					border-radius: 3px;
-					color: rgba(0,0,0, .8);
-					text-shadow: 0 1px 0 #fff;
-					border: 3px solid #EEEEEE;
-					margin:50px auto;
-					max-width:600px;
+					-moz-border-radius: 2px;
+					border-radius: 2px;
+					margin:50px;
 					position: relative;
-					background:#ffffff	
+					background:#f9f9f9;
+					font-family:"HelveticaNeue", helvetica, arial, "Lucida Grande", Geneva, Verdana, sans-serif;
+					-webkit-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.4);
+					-moz-box-shadow:    0px 1px 1px 0px rgba(50, 50, 50, 0.4);
+					box-shadow:         0px 1px 1px 0px rgba(50, 50, 50, 0.4);
+					display: table;
 				}
-				.cc-sentinel dfn
+				.gc-sentinel:after
+				{
+					position:absolute;
+					top:10px;
+					right:10px;
+					content:"×";
+					color:rgba(0, 0, 0, 0.2);
+					cursor:pointer;
+				}
+				.gc-sentinel:after:hover
+				{
+					color:rgba(0, 0, 0, 1);
+				}
+				.gc-sentinel dfn
 				{
 					border-bottom:1px dotted #999999;
 					font-style:normal;
 				}
-				.cc-sentinel dfn:hover
+				.gc-sentinel dfn:hover
 				{
 					color:#FFFFFF;
 				}
 				
-				/* Shadow */
-				.cc-sentinel:before, .cc-sentinel:after 
-				{
-					z-index: -1; 
-					position: absolute; 
-					content: "";
-					bottom: 15px;
-					left: 10px;
-					width: 50%; 
-					top: 80%;
-					max-width:300px;
-					background: rgba(0, 0, 0, 0.7); 
-					-webkit-box-shadow: 0 15px 10px rgba(0,0,0, 0.5);   
-					-moz-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.5);
-					box-shadow: 0 15px 10px rgba(0, 0, 0, 0.5);
-					-webkit-transform: rotate(-3deg);    
-					-moz-transform: rotate(-3deg);   
-					-o-transform: rotate(-3deg);
-					-ms-transform: rotate(-3deg);
-					transform: rotate(-3deg);
+				/* Flag */
+				.gc-sentinel-flag {
+					width:60px;
+					height:140px;
+					display: table-cell;
+					margin:0 40px 0 0;
+					background:#000;
+					padding:10px;
+					color:#fff;
+					text-align:center;
+					position:relative;
 				}
-				.cc-sentinel:after 
-				{
-				  -webkit-transform: rotate(3deg);
-				  -moz-transform: rotate(3deg);
-				  -o-transform: rotate(3deg);
-				  -ms-transform: rotate(3deg);
-				  transform: rotate(3deg);
-				  right: 10px;
-				  left: auto;
-				}
-				
-				/* Ribbon */
-				.cc-sentinel-ribbon-wrapper {
-					width: 85px;
-					height: 88px;
-					overflow: hidden;
-					position: absolute;
-					top: -3px;
-					right: -3px;
-				}
-				.cc-sentinel-ribbon {
-					text-transform:uppercase;
-					color: #333;
-					text-align: center;
-					text-shadow: rgba(255,255,255,0.5) 0px 1px 0px;
-					-webkit-transform: rotate(45deg);
-					-moz-transform:    rotate(45deg);
-					-ms-transform:     rotate(45deg);
-					-o-transform:      rotate(45deg);
-					position: relative;
-					padding: 7px 0;
-					left: -5px;
-					top: 15px;
-					width: 120px;
-					color: #6a6340;
-					-webkit-box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
-					-moz-box-shadow:    0px 0px 3px rgba(0,0,0,0.3);
-					box-shadow:         0px 0px 3px rgba(0,0,0,0.3);
-				}
-				
-				.cc-sentinel-ribbon:before {
-					left: 0;
-				}
-				.cc-sentinel-ribbon:after {
-					right: 0;
+				.gc-sentinel-flag:after{
+					position:absolute;
+					top:50%;
+					left:50%;
+					content:"";
+					width:50px;
+					height:50px;
+					background:rgba(0, 0, 0, 0.2);
+					margin:-25px 0 0 -25px;
+					border-radius:50%;
+					font-size:30px;
+					line-height:50px;
+					font-weight:bold;
 				}
 				
 				/* Colours */
-				.cc-sentinel-ribbon.debug
+				.gc-sentinel-flag.ok
 				{
-					background-color: #BFDC7A;
-					background-image: -webkit-gradient(linear, left top, left bottom, from(#BFDC7A), to(#8EBF45));
-					background-image: -webkit-linear-gradient(top, #BFDC7A, #8EBF45);
-					background-image:    -moz-linear-gradient(top, #BFDC7A, #8EBF45);
-					background-image:     -ms-linear-gradient(top, #BFDC7A, #8EBF45);
-					background-image:      -o-linear-gradient(top, #BFDC7A, #8EBF45);
+					background:#01B255;
+					color:#01B255;
 				}
-				.cc-sentinel-ribbon.notice
+				.gc-sentinel-flag.ok:after
 				{
-					background:#FFD500;
+					content:"✔"
 				}
-				.cc-sentinel-ribbon.warning,
-				.cc-sentinel-ribbon.strict
+				
+				.gc-sentinel-flag.debug
 				{
-					background:#FFC000;
+					background:#1B44B2;
+					color:#1B44B2;
 				}
-				.cc-sentinel-ribbon.error
+				.gc-sentinel-flag.debug:after
 				{
-					background:#FF0000;
+					content:"—"
 				}
-				.cc-sentinel-ribbon:before,
-				.cc-sentinel-ribbon:after {
-					content: "";
-					border-top:   3px solid #888888;   
-					border-left:  3px solid transparent;
-					border-right: 3px solid transparent;
-					position:absolute;
-					bottom: -3px;
+				
+				.gc-sentinel-flag.notice
+				{
+					background:#FFD059;
+					color:#FFD059;
+				}
+				.gc-sentinel-flag.notice:after
+				{
+					content:"!"
+				}
+				
+				.gc-sentinel-flag.warning,
+				.gc-sentinel-flag.strict
+				{
+					color:#FFD500;
+				}
+				.gc-sentinel-flag.warning:after,
+				.gc-sentinel-flag.strict:after
+				{
+					content:"!"
+				}
+				
+				.gc-sentinel-flag.parse
+				{
+					background:#FFD059;
+					color:#FFD059;
+				}
+				.gc-sentinel-flag.parse:after
+				{
+					content:"?"
+				}
+				
+				.gc-sentinel-flag.error
+				{
+					background:#FF1A02;
+					color:#FF1A02;
+				}
+				.gc-sentinel-flag.error:after
+				{
+					content:"!"
 				}
 
 				/* Lines */
-				.cc-sentinel-title
+				.gc-sentinel-title
 				{
-					font-size:12px;
-					padding:10px;
-					border-bottom:1px solid #dddddd;
-					background-image: -moz-linear-gradient(top, #FFFFFF 0%, #EEEEEE 100%);
+					font-size:16px;
+					padding:30px 30px 10px 30px;
+					font-weight:bold;
 				}
-				.cc-sentinel-descr
+				.gc-sentinel-descr
 				{
-					padding:30px 50px;
+					padding:0 30px 30px 30px;
 					font-size:12px;
 					white-space:pre-wrap;
-					background:#f9f9f9;
-					margin:1px
+					margin:0;
 				}
-				.cc-sentinel-descr pre
+				.gc-sentinel-descr pre
 				{
 					white-space:pre-wrap;
 					color:#999;
-					margin: 10px 0 0 0;
-					padding: 0 0 0 10px;
-					border-left:1px solid #eee
+					margin: 10px 0 0 0px;
+					padding: 5px 0 5px 10px;
+					border-left:1px solid #ccc
 				}
 			</style>';
 		//	We're good once and for all
@@ -391,12 +391,10 @@ class sentinel
 	//	Print the debug
 		if (isset($css)) echo $css;
 		echo '
-		<div class="cc-sentinel">
-			<div class="cc-sentinel-ribbon-wrapper">
-				<div class="cc-sentinel-ribbon '.strtolower($flag).'">'.$flag.'</div>
-			</div>
-			<div class="cc-sentinel-title">'.$title.'</div>
-			<pre class="cc-sentinel-descr">'.print_r($descr, true).'</pre>
+		<div class="gc-sentinel">
+			<div class="gc-sentinel-flag '.$flag.'"></div>
+			<div class="gc-sentinel-title">'.$title.'</div>
+			<div class="gc-sentinel-descr">'.print_r($descr, true).'</div>
 		</div>';
 	}
 

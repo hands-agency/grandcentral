@@ -51,10 +51,10 @@ class import
 		foreach ($this->data as $data)
 		{
 		//	Test
-			$test = cc($this->item, array('title' => trim((string) $data->titre)));
-			if ($test->count()) $item = cc($this->item, $test[0]['id']->get());
+			$test = i($this->item, array('title' => trim((string) $data->titre)));
+			if ($test->count()) $item = i($this->item, $test[0]['id']->get());
 		//	Create the new object
-			else $item = cc($this->item);
+			else $item = i($this->item);
 			
 		//	Todo
 			if ((string) $data->etat == 'active') $item['status'] = 'live';
@@ -88,15 +88,15 @@ class import
 							foreach ($value as $title)
 							{
 								$title = trim($title);	
-								$rel = cc('place', array('title' => $title));
+								$rel = i('place', array('title' => $title));
 								if ($rel->count()) $item['location']->add($rel[0]);
-								$rel = cc('people', array('title' => $title));
+								$rel = i('people', array('title' => $title));
 								if ($rel->count()) $item['people']->add($rel[0]);
 							}
 							$add = false;
 							break;
 						case 'issue':								
-							$rel = cc('issue', $value);
+							$rel = i('issue', $value);
 							$item['issue']->add($rel);
 							$add = false;
 							break;

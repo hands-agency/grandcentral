@@ -22,9 +22,9 @@
 		$root = $appMedia->get_templateroot('site');
 	//	Accept media with the full serveur root
 		if (strstr((string) $file, $root)) $root = null;
-		
+		$file = (mb_strpos($file, '/') === 0) ? $file : '/'.$file;
 		$media = new media($root.$file);
-		
+		// print '<fieldset class="debug"><legend>'.__FUNCTION__.'() in '.__FILE__.' line '.__LINE__.'</legend><pre>';print_r($media);print'</pre></fieldset>';
 		switch ($media->get_mime())
 		{
 		//	image

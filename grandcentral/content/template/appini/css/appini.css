@@ -1,26 +1,26 @@
-section[data-template="appini/appini"] table
+section[data-template="/appini/appini"] table
 {
 
 	margin-bottom:10px;
 }
-section[data-template="appini/appini"] table td,
-section[data-template="appini/appini"] table th
+section[data-template="/appini/appini"] table td,
+section[data-template="/appini/appini"] table th
 {
 	padding:5px 10px;
 }
-section[data-template="appini/appini"] table th
+section[data-template="/appini/appini"] table th
 {
 	width:140px;
 	text-align:right;
 	font-family: "Raleway-Thin";
 }
-section[data-template="appini/appini"] table td
+section[data-template="/appini/appini"] table td
 {
-	background:#F5F5F5;
+	background:#fff;
 	font-family: "Raleway-Regular";
 	line-height:1.6em;
 }
-section[data-template="appini/appini"] table ul li
+section[data-template="/appini/appini"] table ul li
 {
 	list-style-type:square;
 	margin:0 0 0 15px;

@@ -28,10 +28,9 @@
 	if (isset($_GET['since'])) $p['created'] = '> '.$_GET['since'];
 //	On a special item
 	if (isset($_GET['item'])) $p['item'] = $_GET['item'];
-	if (isset($_GET['itemid'])) $p['itemid'] = $_GET['itemid'];
 	
 //	Fetch !
-	$notes = cc('note', $p, $_SESSION['pref']['handled_env']);
+	$notes = i('note', $p, $_SESSION['pref']['handled_env']);
 
 	/**
 	 * Constructs the SSE data format and flushes that data to the client.
@@ -54,21 +53,19 @@
 	foreach ($notes as $note)
 	{
 	//	Attrs to be passed
-		$created = new date($note['created']);
+		$created = new attrDate($note['created']);
 		$attrs = array(
 			'id' => null,
-			'author' => null,
-			'author_link' => 'http://www.link.com',
-			'author_name' => 'Michael, remember to do this.',
-			'descr' => null,
+			'owner' => null,
+		//	'owner_name' => i('human', $note['owner'])['title']->get(),
+			'text' => null,
 			'item' => null,
-			'itemid' => null,
 			'created' => $created->time_since(),
 			'updated' => null,
 		);
 	//	Add attrs
 		$msg = array();
-		foreach ($attrs as $attr => $value) $msg[$attr] = (is_null($value)) ? $note[$attr] : $value;
+		foreach ($attrs as $attr => $value) $msg[$attr] = (is_null($value)) ? $note[$attr]->get() : $value;
 	//	Encode
 		$json = json_encode($msg, true);
 	//	And send

@@ -9,11 +9,24 @@
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
 }
+[data-type="array"] .data li li label
+{
+	display:none;
+}
 [data-type="array"] .data li li .wrapper
 {
 	width:100% !important;
 }
-li[data-type="array"] .wrapper pre
+/* No possible render? Render flat! */
+li[data-type="array"] .wrapper .flat
+{
+	padding:15px;
+}
+li[data-type="array"] .wrapper .flat p
+{
+	margin-bottom:5px;
+}
+li[data-type="array"] .wrapper .flat pre
 {
 	white-space:pre-wrap;
 }

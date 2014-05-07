@@ -92,5 +92,5 @@
 			};
 		})( jQuery );
 	//	Go	
-		$('#grandCentralNav').nav();
+		$('#adminNav').nav();
     });

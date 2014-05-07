@@ -20,16 +20,30 @@
  */
 /********************************************************************************************/
 //	Bind
-/********************************************************************************************/
-	$_APP->bind_file('css', 'master/css/header.css');
-	$_APP->bind_file('script', 'master/js/header.js');
-	
+/********************************************************************************************/	
+	$_APP->bind_file('css', 'workflow/css/workflow.css');
+
 /********************************************************************************************/
 //	Some vars
+/********************************************************************************************/	
+//	Env
+	$handled_env = $_SESSION['pref']['handled_env'];
+//	Item
+	$handled_item = $_GET['item'];
+	$handled_id = (isset($_GET['id'])) ? $_GET['id'] : null;
+	$item = i($handled_item, $handled_id, $handled_env);
+	$structure = i('item', $handled_item, $handled_env);
+	
+//	Preparing the <table>
+	$th = null;
+	$td = null;
+	
 /********************************************************************************************/
-	if (cc('page', current)['key'] == 'home')
-	{
-		$invite = '<div class="clapalong">Clap along if you feel like <span>adding</span> a <span>page</span> called <span>something new</span>.</div>';
-	}
-	else $invite = null;
+//	Fetch the workflows
+/********************************************************************************************/
+	$workflow = i('workflow', array(
+		'item' => 'structure_'.$structure['id'],
+	), 'site');
+
+	if ($workflow->count > 0) $workflowstatuses = $workflow[0]['workflowstatus']->unfold();
 ?>

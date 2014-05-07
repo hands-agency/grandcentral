@@ -27,9 +27,10 @@ class master
 		self::$content_type = (empty($page['type']['content_type'])) ? 'html' : $page['type']['content_type'];
 	//	instanciate the app master
 		$params['page'] = $page;
-		$this->app = app('content', $page['type']['master'], $params);
+		$tpl = (mb_strpos($page['type']['template'], '/') === 0) ? $page['type']['template'] : '/'.$page['type']['template'];
+		$this->app = new app($page['type']['app'], $tpl, $params);
 	//	retrieve the template root
-		$root = $this->app->get_templateroot().$page['type']['master'].'.'.$page['type']['content_type'].'.php';
+		$root = $this->app->get_templateroot().$tpl.'.'.$page['type']['content_type'].'.php';
 	//	parse the template and parse zones
 		self::$zones = self::get_zones($root);
 	}

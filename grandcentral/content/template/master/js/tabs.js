@@ -4,7 +4,7 @@
 **#******************************************************************************************/
 $(document).ready(function ()
 {
-	$('.tabs li').click(function()
+	$('#tabs li').click(function()
 	{
 	//	Set to off all the tabs, and set to on just "the one"
 		$(this).siblings('.on').removeClass('on');
@@ -18,34 +18,45 @@ $(document).ready(function ()
 
 	//	Target section...
 		param = link.attr('data-param'); /* We want the string, not the object */
-		panel = $('#section_'+section);
-		panels = $(panel).get(0).tagName;
+		$panel = $('#section_'+section);
+		panelWidth = $panel.outerWidth()+40;
 
 	//	Hide all panels
-		$('#content section').hide();
+		$('#adminContent section').removeClass('active');
+	//	Hide options
+	//	TODO refresh content instead of hide
+		$('#options_drop').hide('fast');
 	//	Open the right panel
-		if (!$(panel).html() || $(this).hasClass('updateMe'))
+		if (!$panel.html() || $(this).hasClass('updateMe'))
 		{
-			$(panel)
-				.show()
+		//	Fetch content
+			$panel
+				.addClass('loading')
 				.ajx(
 				{
 					app:app,
 					template:template,
 					param:param
+				}, {
+				//	Done
+					done:function()
+					{
+					//	Say it's loaded
+						$panel.removeClass('loading');
+					}
 				});
-		//	Updated
-			$(this).removeClass('updateMe');
 		}
-	//	Or just show it
-		else
-		{
-			$(panel).show();
-		}
+		
+	//	Show
+		index = $panel.parent().index();
+		left = (panelWidth) * (index);
+		$('#sectiontray').css('left', '-'+left+'px');		
+	//	Say it's updated
+		$panel.removeClass('virgin updateMe').addClass('active');
+						
 	//	Change the main display
-		$('#main').attr('class', $(panel).data('display'));
-	//	Don't go to #stuff
-		// TODO
+		$('#main').attr('class', $panel.data('display'));
+
 	});
 
 /*********************************************************************************************
@@ -55,41 +66,42 @@ $(document).ready(function ()
 //	By hash
 	if (window.location.hash) pseudo = '[href='+window.location.hash+']';
 //	On demand
-	else if ($('.tabs[data-default]').length) pseudo = '[href=#'+$('.tabs').data('default')+']';
+	else if ($('#tabs[data-default]').length) pseudo = '[href=#'+$('#tabs').data('default')+']';
 //	By default
 	else pseudo = ':first';
 //	WRONG, not here...
-	$(window).load( function(){$('.tabs li a'+pseudo).parent().trigger('click');} );
+	$(window).load( function(){$('#tabs li a'+pseudo).parent().trigger('click');} );
 	
 /*********************************************************************************************
-/**	* Tabs : Open a section from the landing in the hash (or the first one)
+/**	* Sticky nav
 	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
-	var $admin = $('#grandCentralAdmin');
-	var $tabs = $('header');
-	var stickyNavTop = $tabs.offset().top;
+	var $main = $('#main');
+	var $header = $('header');
+	var stickyNavTop = $header.offset().top;
   
 	var stickyNav = function()
 	{  
-		var scrollTop = $admin.scrollTop();  
+		var scrollTop = $(document).scrollTop();
+
+	//	parallax
+		$('#grandCentralSite iframe').css('top', scrollTop/2);
+		$('#grandCentralSite h1').css('top', 50+(((scrollTop/250)/2)*100)+'%');
        
 		if (scrollTop > stickyNavTop)
 		{
-			if ($tabs.not('.sticky'))
+			if ($main.not('.sticky'))
 			{
-		    	$tabs
-					.addClass('sticky')
-					.css('left', $admin.css('left'))
-					.css('width', $admin.css('width'));
+		    	$main.addClass('sticky');
 			}
 		}
 		else
 		{
-			$tabs.removeClass('sticky');   
+			$main.removeClass('sticky'); 
 		}  
 	}
 	
-	$admin.scroll(function()
+	$(document).scroll(function()
 	{
 	    stickyNav();
 	});  
@@ -100,7 +112,7 @@ $(document).ready(function ()
 **#******************************************************************************************/
 	$(document).bind('unlock', function()
 	{
-		$('.tabs li:not(.on)').each(function()
+		$('#tabs li:not(.on)').each(function()
 		{
 			li = $(this);
 		//	All tabs are now droppable

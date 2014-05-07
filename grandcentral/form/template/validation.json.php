@@ -23,7 +23,7 @@
 /********************************************************************************************/
 	// print'<pre>';print_r($_POST);print'</pre>';
 //	The form
-	$form = cc('form', $_POST['form']);
+	$form = i('form', $_POST['form']);
 //	The field
 	$field = $form['field'][$_POST['field']];
 	

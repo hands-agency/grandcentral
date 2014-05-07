@@ -25,7 +25,7 @@
 			plugin.settings = $.extend({}, vars, options);
 	
 		//	Load and change the labels
-			$('.tabs li').click(function()
+			$('#tabs li').click(function()
 			{
 			//	Some vars
 				link = $(this).find('a');
@@ -56,7 +56,7 @@
 			{
 				$(this).toggleClass('on');
 			//	Fetch the right section
-				sectionid = $('#content section:visible').attr('id').replace('section_', '');
+				sectionid = $('#adminContent section.active').attr('id').replace('section_', '');
 			//	Open the context
 				openContext(
 				{
@@ -76,7 +76,7 @@
 			});
 			
 		//	Prevent regular submit
-			$('#content>section').on('submit', 'form', function()
+			$('#adminContent>section').on('submit', 'form', function()
 			{
 				return false;
 			});
@@ -93,12 +93,11 @@
 		plugin.save = function(newStatus, callback)
 		{
 		//	Trigger regular submit for eventual plugin callbacks
-			$('#content>section>form').submit();
-			
+			$('#adminContent>section>form').submit();
 		//	Id & status
 			id = $('input[name="'+SITE_KEY+'_'+_GET['item']+'[id]"]');
 			oldStatus = $('input[name="'+SITE_KEY+'_'+_GET['item']+'[status]"]');
-			form = $('#content>section>form');
+			form = $('#adminContent section>form');
 			
 		//	Change status ?
 			if (newStatus) oldStatus.val(newStatus);
@@ -125,6 +124,8 @@
 						window.history.pushState('string', 'chose', url);
 					//	Callback	
 						if ((typeof(callback) != 'undefined') && (typeof(callback) == "function")) callback.call(this, result);
+					//	Pop alert
+						popAlert('success', 'Yep. That\'s saved.');
 					};
 				},
 			});
@@ -142,7 +143,9 @@
 					plugin.save('live', callback);
 				},
 				error:function()
-				{
+				{			
+				//	Pop alert
+					popAlert('error', 'Couple of things missing.');
 				//	console.log('error');
 				},
 				complete:function()

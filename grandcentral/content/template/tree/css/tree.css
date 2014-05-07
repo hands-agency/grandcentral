@@ -1,14 +1,15 @@
 /********************************************************************************************/
 /* Common 
 /********************************************************************************************/
-section[data-template="tree/tree"]
+section[data-template="/tree/tree"]
 {
 }
 
-section[data-template="tree/tree"] ol
+section[data-template="/tree/tree"] ol
 {
+	text-align:center;
 }
-section[data-template="tree/tree"] li
+section[data-template="/tree/tree"] li
 {
 	display:inline-block;
 	white-space:nowrap;
@@ -20,7 +21,7 @@ section[data-template="tree/tree"] li
 /********************************************************************************************/
 /* Pages
 /********************************************************************************************/
-section[data-template="tree/tree"] ol li .page
+section[data-template="/tree/tree"] ol li .page
 {
 	padding:7px 10px;
 	height:140px;
@@ -29,78 +30,92 @@ section[data-template="tree/tree"] ol li .page
 	white-space:normal;
 	display:inline-block;
 }
-section[data-template="tree/tree"] ol li .page:hover
+section[data-template="/tree/tree"] ol li .page:hover
 {
 }
 
 /* The icon */
-section[data-template="tree/tree"] ol li .page .icon
+section[data-template="/tree/tree"] ol li .page .icon
 {
-	width:110px;
+	width:120px;
 	height:100%;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
+	-moz-border-radius: 2px;
+	border-radius:2px;
 	padding:15px 10px;
 	text-align:center;
-	border:1px solid #ccc;
 	display:inline-block;
+	background:#fff;
 	position:relative;
+	box-shadow: 3px 3px 1px 0 rgba(0, 0, 0, .05);
 }
-section[data-template="tree/tree"] ol li .page .icon:hover
+section[data-template="/tree/tree"] ol li .page .icon:hover
 {
 }
 
 /* Badges */
-section[data-template="tree/tree"] ol li .page .icon .cc-badge
+section[data-template="/tree/tree"] ol li .page .icon .cc-badge
 {
 	top:-5px;
 	right:-5px;
 }
 
 /* The title */
-section[data-template="tree/tree"] ol li .page .icon>.title
+section[data-template="/tree/tree"] ol li .page .icon>.title
 {
+	padding:5px 0;
+	font-size:11px;
+	position:absolute;
+	bottom:10px;
+	left:0;
+	width:100%;
+	z-index:100;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
 	font-family: "Raleway-Regular";
-	font-size:12px;
-	margin-bottom:15px;
-	padding:3px 0;
 }
-section[data-template="tree/tree"] ol li .page .icon>.title a
+section[data-template="/tree/tree"] ol li .page .icon>.title a
 {
 	color:#333;
 }
 
 /* The Detail */
-section[data-template="tree/tree"] ol li .page .detail
+section[data-template="/tree/tree"] ol li .page .detail
 {
 	font-family: "Raleway-Regular";
 	color:#ccc;
-	margin:15px;
+	margin:0 10px;
+	vertical-align:top;
 	font-size:10px;
 	display:inline-block;
+	background:#fff;
+	padding:10px;
+	display:none;
 }
 
 /* By status */
-section[data-template="tree/tree"] ol li .page[data-status="asleep"] .icon
+section[data-template="/tree/tree"] ol li .page[data-status="asleep"] .icon
 {
-	border:1px dashed #333;
+	border:1px dotted #333;
 	opacity:0.6;
+	background:transparent;
+	box-shadow:none;
 	
 }
 
 /* Home */
-section[data-template="tree/tree"]>ol>li>.page
+section[data-template="/tree/tree"]>ol>li>.page
 {
-	margin-left:30%;
+/*	margin-left:30%; */
 }
 
 /********************************************************************************************/
 /* Action */
 /********************************************************************************************/
-section[data-template="tree/tree"] li * .action
+section[data-template="/tree/tree"] li * .action
 {
 	display:none;
 }
@@ -109,61 +124,54 @@ section[data-template="tree/tree"] li * .action
 /* Sortable
 /********************************************************************************************/
 /* Draggable */
-.unlocked section[data-template="tree/tree"] ol li .icon
+.unlocked section[data-template="/tree/tree"] ol li .icon
 {
 	cursor:move;
 }
 
 /* Placeholder */
-section[data-template="tree/tree"] li.placeholder
+section[data-template="/tree/tree"] li.ui-sortable-placeholder
 {
+	border:1px dotted #ddd !important;
+	opacity:0.1 !important;
+	background:#ddd;
+	visibility:visible !important;
 }
 
 /* Being Dragged */
-section[data-template="tree/tree"] ol li.dragged 
+section[data-template="/tree/tree"] ol li.ui-sortable-helper 
 {
-	position:absolute;
-	background:#fff;
-	width:80px !important;
-	height:80px !important;
-	overflow:hidden;
-	border-radius:100px;
-	z-index:99999;
-	background:#fff;
-	border:1px solid #F2F2F2;
-	box-shadow: 3px 3px 1px 0 rgba(0, 0, 0, .1) !important;
-    -webkit-transform: rotateZ(-3deg) scale(1.05) !important;
-    -moz-transform: rotateZ(-3deg) scale(1.05) !important;
-    transform: rotateZ(-3deg) scale(1.05) !important;
 }
-section[data-template="tree/tree"] ol li.dragged .page
+section[data-template="/tree/tree"] ol li.ui-sortable-helper .page .icon
 {
+	box-shadow: 3px 3px 1px 0 rgba(0, 0, 0, .1) !important;
 }
 
 /********************************************************************************************/
 /* Content
 /********************************************************************************************/
-section[data-template="tree/tree"] li .page[data-type="content"] .icon
+section[data-template="/tree/tree"] li .page[data-type="content"] .icon
 {
-	background:#F2F2F2;
+
 }
 
 /********************************************************************************************/
 /* Feed
 /********************************************************************************************/
-section[data-template="tree/tree"] li .page[data-type="feed"] .icon
+section[data-template="/tree/tree"] li .page[data-type="feed"] .icon
 {
-	background:#F2F2F2;
+
 }
 
 /********************************************************************************************/
 /* Header
 /********************************************************************************************/
-section[data-template="tree/tree"] li .page[data-type="header"] .icon
+section[data-template="/tree/tree"] li .page[data-type="header"] .icon
 {
-	border:1px solid #F2F2F2;
+	background:transparent;
+	box-shadow:none;
 }
-section[data-template="tree/tree"] li .page[data-type="header"] .icon:before
+section[data-template="/tree/tree"] li .page[data-type="header"] .icon:before
 {
 	content:'';
 	position:absolute;
@@ -174,18 +182,30 @@ section[data-template="tree/tree"] li .page[data-type="header"] .icon:before
 	width:1px;
 	height:100%;
 }
-section[data-template="tree/tree"] li .page[data-type="header"] .icon .title
+section[data-template="/tree/tree"] li .page[data-type="header"] .icon .title
 {
-	background:#fff;
+	background:#eee;
 	z-index:2;
-	position:relative;
 }
 
 /********************************************************************************************/
 /* Links
 /********************************************************************************************/
-section[data-template="tree/tree"] li .page[data-type="link"] .icon
+section[data-template="/tree/tree"] li .page[data-type="link"] .icon
 {
 	height:60px;
 	border:1px solid #ccc;
+}
+
+/********************************************************************************************/
+/* Unlocked 
+/********************************************************************************************/
+.unlocked section[data-template="/tree/tree"] li .page .icon
+{
+	background:rgba(255, 255, 255, 0.1) !important;
+	border:1px solid rgba(255, 255, 255, 0.4) !important;
+}
+.unlocked section[data-template="/tree/tree"] li .page .icon a
+{
+	color:#fff !important;
 }

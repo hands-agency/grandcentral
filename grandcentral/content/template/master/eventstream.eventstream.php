@@ -34,7 +34,7 @@
 		'item' => $_GET['item'],
 		'updated' => '> '.$since,
 	);
-	$logbooks = cc('logbook', $p, $_SESSION['pref']['handled_env']);
+	$logbooks = i('logbook', $p, $_SESSION['pref']['handled_env']);
 
 	/**
 	 * Constructs the SSE data format and flushes that data to the client.
@@ -58,7 +58,7 @@
 	foreach ($logbooks as $logbook)
 	{
 	//	Fetch item
-		$item = cc((string)$logbook['item'], (string)$logbook['itemid'], $_SESSION['pref']['handled_env']);
+		$item = i((string)$logbook['item'], (string)$logbook['itemid'], $_SESSION['pref']['handled_env']);
 		$item['title'] = (empty($item['title'])) ? $item->get_nickname() : $item['title'];
 		
 	//	Aging
@@ -68,7 +68,7 @@
 		if (isset($_GET['delay'])) $opacity = $opacity-(($interval->format('%i.%s'))/($_GET['delay']*2));
 		
 	//	Author
-		$author = cc((string)$logbook['subject'], (string)$logbook['subjectid']);
+		$author = i((string)$logbook['subject'], (string)$logbook['subjectid']);
 		$author['title'] = (empty($author['title'])) ? $author->get_nickname() : $author['title'];
 		
 	//	Message

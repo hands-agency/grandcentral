@@ -37,7 +37,7 @@
 /********************************************************************************************/
 	if (isset($_GET['item']))
 	{
-		$EventSource = cc('page', 'api.eventstream')['url']->args(array
+		$EventSource = i('page', 'api.eventstream')['url']->args(array
 		(
 			'app' => 'content',
 			'template' => 'master/eventstream',

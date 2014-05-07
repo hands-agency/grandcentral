@@ -56,7 +56,7 @@
 				{
 					refresh = false;
 					delay = '';
-				//	Reset connection
+				//	Reset connection (DOESNT WORK, SO HAD TO COMMENT CONNECT() TO AVOID LOOP CONNECTIONS...)
 					source.close();
 					connect();
 				};

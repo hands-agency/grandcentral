@@ -258,6 +258,9 @@ abstract class _apps
  */
 	public function bind_snippet($zone, $snippet_key)
 	{
+	//	Failsafe first slash
+		$snippet_key = (mb_strpos($snippet_key, '/') === 0) ? $snippet_key : '/'.$snippet_key;
+		
 		$_APP = $this;
 		// print'<pre>';print_r($data);print'</pre>';
 		$routine = $this->get_templateroot().'/'.$snippet_key.'.php';
@@ -281,6 +284,8 @@ abstract class _apps
  */
 	public function bind_file($zone, $file, $system = false)
 	{
+	//	Failsafe first slash
+		$file = (mb_strpos($file, '/') === 0) ? $file : '/'.$file;
 		if (filter_var($file, FILTER_VALIDATE_URL) === false)
 		{
 			$file = (mb_strpos($file, '/') === 0) ? $file : '/'.$file;
