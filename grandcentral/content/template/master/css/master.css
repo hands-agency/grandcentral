@@ -1,0 +1,1170 @@
+/********************************************************************************************/
+/*////////////////////////////////////////////////////////////////////////////////////////////
+/* From Boiler plate (you would be a fool to alter that)
+/////////////////////////////////////////////////////////////////////////////////////////////
+/********************************************************************************************/
+header, section, footer, aside, nav, article, figure
+{
+  display: block;
+}
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video
+{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font:inherit;
+	vertical-align: baseline;
+}
+ul, ol
+{
+	list-style-type:none;
+}
+
+fieldset
+{
+	margin:0;
+	padding:0;
+	border:0;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section
+{
+  display: block;
+}
+
+table
+{
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+pre, code, kbd, samp
+{
+	font-family:'monaco', monospace, sans-serif;
+}
+
+.ie7 img
+{
+	-ms-interpolation-mode: bicubic;
+}
+input[type="search"]
+{
+	-webkit-appearance:textfield;
+}
+
+/* Clearing float use : <div class="clear"><!-- Clearing floats --></div> */
+.clear
+{
+	clear:both;
+	float:none !important;
+	height:0;
+	line-height:0;
+}
+
+/********************************************************************************************/
+/* Body
+/********************************************************************************************/
+body
+{
+	font-family:"Helvetica Neue", helvetica, arial, "Lucida Grande", Geneva, Verdana, sans-serif;
+	font-size:1em;
+	color:#444;
+	background:#fff;
+}
+
+/********************************************************************************************/
+/* Hyperlinking
+/********************************************************************************************/
+a
+{
+	color:#3eb4d6;
+	text-decoration:none;
+}
+a:hover
+{}
+a:active
+{
+	position:relative;
+    top:1px;
+}
+a:visited
+{}
+
+/* Accesskey */
+.acceskey
+{text-decoration:underline;}
+
+/* Kill Browser tweaks */
+*:focus
+{outline: none;}
+*::selection
+{
+	background:#df3528;
+	color:#fff;
+}
+*::-moz-selection
+{
+	background:#df3528;
+	color:#fff;
+}
+*::-webkit-selection
+{
+	background:#df3528;
+	color:#fff;
+}
+
+/********************************************************************************************/
+/* Loading
+/********************************************************************************************/
+.loading
+{
+}
+
+/********************************************************************************************/
+/*////////////////////////////////////////////////////////////////////////////////////////////
+/* General stuff
+/////////////////////////////////////////////////////////////////////////////////////////////
+/********************************************************************************************/
+
+/********************************************************************************************/
+/* States of things
+/********************************************************************************************/
+.invite 			{background-color:#6cbf2d !important;}
+.invite:before 		{border-top-color:#6cbf2d !important;}
+/*.selected,
+.ui-selected		{background-color:#FFFBCC !important;}
+*/
+.warning			{background-color:#ffc000 !important;}
+.warning:before 	{border-top-color:#ffc000 !important;}
+.alert				{background-color:#FF0000 !important;}
+.alert:before 		{border-top-color:#FF0000 !important;}
+
+/********************************************************************************************/
+/*////////////////////////////////////////////////////////////////////////////////////////////
+/* Fonts
+/////////////////////////////////////////////////////////////////////////////////////////////
+/********************************************************************************************/
+/* Raleway Thin */
+@font-face
+{
+	font-family:'Raleway-Thin';
+	src:url('../font/Raleway/Raleway-Thin.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+/* Raleway Regular */
+@font-face
+{
+	font-family:'Raleway-Regular';
+	src:url('../font/Raleway/Raleway-Regular.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+/* Raleway Bold */
+@font-face
+{
+	font-family:'Raleway-Bold';
+	src:url('../font/Raleway/Raleway-Bold.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+
+/********************************************************************************************/
+/*////////////////////////////////////////////////////////////////////////////////////////////
+/* Bubbles
+/////////////////////////////////////////////////////////////////////////////////////////////
+/********************************************************************************************/
+.cc-bubble
+{
+	background:#999;
+	padding:5px 8px !important;
+	border:none !important;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	color:#eee;
+	position:absolute;
+	font-size:10px;
+	font-family:"Raleway-Thin";
+	text-shadow:0px 1px 1px rgba(0, 0, 0, 0.5);
+	opacity:0.8;
+	text-transform:uppercase;
+	z-index:1000;
+	-moz-box-shadow: 0 10px 10px -7px rgba(0, 0, 0, 0.4) !important;
+	box-shadow: 0 10px 10px -7px rgba(0, 0, 0, 0.4) !important;
+	font-weight:normal;
+}
+a.cc-bubble:hover
+{
+	opacity:1;
+}
+.cc-bubble:before
+{
+	border-top: 6px solid #999;
+	border-right: 6px solid transparent;
+	position:absolute;
+	bottom:-6px;
+	right:7px;
+	content:"";
+}
+
+
+/********************************************************************************************/
+/*////////////////////////////////////////////////////////////////////////////////////////////
+/* Badges
+/////////////////////////////////////////////////////////////////////////////////////////////
+/********************************************************************************************/
+a.cc-badge
+{
+	text-align:center;
+	border:none !important;
+    background: red;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    text-align: center;
+	line-height:22px;
+	color:#eee;
+	position:absolute;
+	font-size:11px;
+	font-family:"Raleway-Regular";
+	/* Linin numerals for Raleway */
+	font-feature-settings: 'lnum';
+	-moz-font-feature-settings: 'lnum=1';
+	-ms-font-feature-settings: 'lnum';
+	-webkit-font-feature-settings: 'lnum';
+	-o-font-feature-settings: 'lnum';
+	text-shadow:0px 0px 1px rgba(0, 0, 0, 0.5);
+	opacity:0.8;
+	z-index:1000;
+	-moz-box-shadow: 0 10px 10px -7px rgba(0, 0, 0, 0.4) !important;
+	box-shadow: 0 10px 10px -7px rgba(0, 0, 0, 0.4) !important;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
+}
+a.cc-badge:hover
+{
+	opacity:1;
+}
+a.cc-badge:before, a.cc-badge:after
+{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background: red;
+	z-index:-1;
+}
+a.cc-badge:before
+{
+    -webkit-transform: rotate(30deg);
+       -moz-transform: rotate(30deg);
+        -ms-transform: rotate(30deg);
+         -o-transform: rotate(30deg);
+}
+a.cc-badge:after
+{
+    -webkit-transform: rotate(60deg);
+       -moz-transform: rotate(60deg);
+        -ms-transform: rotate(60deg);
+         -o-transform: rotate(60deg);
+}
+
+/********************************************************************************************/
+/*////////////////////////////////////////////////////////////////////////////////////////////
+/* Progress bars
+/////////////////////////////////////////////////////////////////////////////////////////////
+/********************************************************************************************/
+progress {
+	background-color: #f3f3f3;
+	border: 0;
+	height: 6px;
+	border-radius: 3px;
+}
+progress::-webkit-progress-bar {
+	background-color: #f3f3f3;
+	border-radius: 3px;
+}
+progress::-moz-progress-bar {
+	background-color: #f3f3f3;
+	border-radius: 3px;
+}
+progress::-webkit-progress-value {
+	background: #3eb4d6;
+	border-radius: 3px;
+}
+.progress-value {
+	padding: 0px 5px;
+	line-height: 20px;
+	margin-left: 5px;
+	font-size: .8em;
+	color: #555;
+	height: 18px;
+	float: right;
+}
+
+/********************************************************************************************/
+/* Draggable / Droppable / Sortable
+/********************************************************************************************/
+/* Draggable, Sortable */
+.ui-draggable,
+.ui-sortable li:not(.nodata)
+{
+	cursor:move;
+}
+.ui-draggable:hover,
+.ui-sortable li:hover
+{
+}
+.ui-draggable-dragging,
+.ui-sortable-helper
+{
+}
+/* Draggable */
+.ui-draggable:hover
+{
+}
+.ui-draggable-dragging
+{
+}
+/* Sortable */
+.ui-sortable li:hover
+{
+}
+.ui-sortable-helper
+{
+}
+.ui-sortable-hover
+{
+	border-color:#6cbf2d !important;
+}
+/* Placeholder */
+.placeholder
+{
+	border:1px dotted #ddd !important;
+}
+
+/********************************************************************************************/
+/* Nodata
+/********************************************************************************************/
+.nodata
+{
+	color:#ccc;
+	font-family: "Raleway-Thin";
+	text-align:center;
+	padding:100px 30px;
+	position:relative;
+}
+.nodata a
+{
+	color:#ccc;
+	border-bottom:1px solid;
+}
+
+/********************************************************************************************/
+/* More
+/********************************************************************************************/
+.more
+{
+	text-align:center;
+	background:#F9F9F9;
+	color:#ccc;
+	height:20px;
+	line-height:20px;
+	padding:0 !important;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
+	cursor:pointer;
+}
+.more:after
+{
+	content:'• • •';
+}
+.more:hover
+{
+	color:#999;
+}
+
+/********************************************************************************************/
+/* Icons
+/********************************************************************************************/
+.icon
+{
+	text-align:center;
+	color:#fff;
+}
+.icon img
+{
+	display:block;
+	width:100%;
+}
+
+/********************************************************************************************/
+/*////////////////////////////////////////////////////////////////////////////////////////////
+/* Thumbnails
+/////////////////////////////////////////////////////////////////////////////////////////////
+/********************************************************************************************/
+.thumbnail iframe
+{
+	width:1280px;
+	height:1600px;
+	position:absolute;
+	border:2px solid #ccc;
+	-webkit-box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+	-moz-box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+	-o-box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+	box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+	background:#fff;
+}
+.thumbnail .thumbnailPlaceholder
+{
+	display:block;
+	position:relative;
+	z-index:1;
+}
+.thumbnail .thumbnailPlaceholder:hover
+{
+	border-color: #3eb4d6;
+	-webkit-box-shadow: 0 0 4px #3eb4d6;
+	box-shadow: 0 0 4px #3eb4d6;
+}
+
+/* Size: small */
+.thumbnail.small iframe
+{
+	transform:scale(1.3);
+	-moz-transform:scale(1.3);
+	-ms-transform:scale(1.3);
+	-webkit-transform:scale(1.3);
+	-o-transform:scale(1.3);
+}
+.thumbnail.small .thumbnailPlaceholder
+{
+	width:130px;
+	height:162px;
+}
+
+/* Size: medium */
+.thumbnail.medium iframe
+{
+	transform: translate(-520px, -640px) scale(0.2);
+	-moz-transform: translate(-515px, -640px) scale(0.2);
+	-ms-transform: translate(-515px, -640px) scale(0.2);
+	-webkit-transform: translate(-514px, -641px) scale(0.2);
+	-o-transform: translate(-515px, -640px) scale(0.2);
+}
+.thumbnail.medium .thumbnailPlaceholder
+{
+	width:257px;
+	height:322px;
+}
+
+/********************************************************************************************/
+/*////////////////////////////////////////////////////////////////////////////////////////////
+/* Main structure (position, content, context...)
+/////////////////////////////////////////////////////////////////////////////////////////////
+/********************************************************************************************/
+#main
+{
+}
+
+/********************************************************************************************/
+/* The structure Whatever happens
+/********************************************************************************************/
+/* Our 2 main bands */
+#grandCentralSite,
+#grandCentralAdmin
+{
+	
+}
+#grandCentralAdmin
+{
+	position:absolute;
+	width:100%;
+	height:100%;
+}
+
+/* The site */
+#grandCentralSite
+{
+	background:#444;
+	overflow:hidden;
+	height:250px;
+	position:relative;
+}
+.siteOpened #grandCentralSite
+{
+	height:90%;
+}
+#grandCentralSite .overlay
+{
+	background:rgba(0, 0, 0, 0.4);
+	cursor:pointer;
+	z-index:1;
+	position:absolute;
+	width:100%;
+	height:100%;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
+}
+.siteOpened #grandCentralSite .overlay
+{
+	display:none;
+}
+#grandCentralSite .overlay:hover
+{
+	background:none;
+}
+#grandCentralSite .overlay h1
+{
+	font-family: "Raleway-Thin";
+	letter-spacing:3px;
+	color:#fff;
+	font-size:3em;
+	text-align:center;
+	text-transform:uppercase;
+	position:absolute;
+	top:50%;
+	width:100%;
+	margin-top:-25px;
+	z-index:2;
+	height:55px;
+}
+#grandCentralSite:hover .overlay h1
+{
+	opacity:0;
+}
+#grandCentralSite .overlay span
+{
+	position:absolute;
+	left:50%;
+	top:50%;
+	margin:-60px 0 0 -50px;
+	width:100px;
+	height:100px;
+	border-radius:3px;
+	text-align:center;
+	color:#fff;
+	font-size:50px;
+	line-height:105px;
+	background:#111;
+	opacity:0;
+	-webkit-transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	transition:         all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+#grandCentralSite:hover .overlay span
+{
+	opacity:0.8;
+	margin-top:-50px;
+}
+#grandCentralSite iframe
+{
+	width:100%;
+	height:120%;
+	position:relative;
+	/*
+	filter: blur(5px);
+	-webkit-filter: blur(5px);
+	-moz-filter: blur(5px);
+	-o-filter: blur(5px);
+	-ms-filter: blur(5px);
+	*/
+}
+#grandCentralSite:hover iframe
+{
+	filter: blur(0);
+	-webkit-filter: blur(0);
+	-moz-filter: blur(0);
+	-o-filter: blur(0);
+	-ms-filter: blur(0);
+}
+
+/* Our 3 main lanes */
+#adminNav,
+#adminContent,
+#adminContext
+{
+	float:left;
+	position:relative;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	-webkit-transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	transition:         all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
+
+/* The Nav */
+#adminNav
+{
+	float:left;
+	background:#222;
+	height:100%;
+}
+.navClosed #adminNav
+{
+	width:5%;
+}
+.navOpened #adminNav
+{
+	width:45%;
+}
+
+/* The Content */
+#adminContent
+{
+	z-index:1;
+}
+.navClosed #adminContent
+{
+	width:95%;
+}
+.navOpened #adminContent
+{
+	width:55% !important; /* even when the context is opened */
+}
+.contextOpened #adminContent
+{
+	width:60%;
+}
+
+
+/* The content & context */
+#adminContext
+{
+	float:right;
+	width:0;
+	height:100%;
+}
+.contextOpened #adminContext
+{
+	width:35%;
+	padding:30px;
+}
+.navOpened #adminContext
+{
+	width:0;
+}
+.sticky #adminContext
+{
+    position: fixed;
+    right: 0;  
+    top: 0;  
+}
+
+/********************************************************************************************/
+/*////////////////////////////////////////////////////////////////////////////////////////////
+/* Alert layer
+/////////////////////////////////////////////////////////////////////////////////////////////
+/********************************************************************************************/
+#alert
+{
+	position:fixed;
+	z-index:10000;
+	opacity:0;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	background: -moz-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 100%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.85))); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.85) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.85) 100%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.85) 100%); /* IE10+ */
+	background: radial-gradient(ellipse at center,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.85) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#d9000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	pointer-events:none;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
+}
+.poppedAlert #alert
+{
+	opacity:1;
+	pointer-events:auto;
+	transform:scale(1.1);
+	-moz-transform:scale(1.1);
+	-ms-transform:scale(1.1);
+	-webkit-transform:scale(1.1);
+	-o-transform:scale(1.1);
+}
+#alert .icon
+{
+	text-align:center;
+	line-height:90px;
+	color:#fff;
+	position:absolute;
+	height:200px;
+	width:200px;
+	top:50%;
+	left:50%;
+	margin-top:-100px;
+	margin-left:-100px;
+	border-radius:50%;
+	background:#000;
+	font-size:100px;
+	line-height:210px;
+}
+#alert.success .icon
+{
+	background:#6cbf2d;
+}
+#alert.error .icon
+{
+	background:#FF0000;
+}
+#alert .info
+{
+	position:absolute;
+	bottom:100px;
+	color:#fff;
+	font-family: "Raleway-Regular";
+	width:100%;
+	text-align:center;
+}
+#alert .info .response
+{
+	border:1px solid #ccc;
+	border-radius:2px;
+	padding:5px 10px;
+	margin:0 0 10px 0;
+	font-size:18px;
+	display:inline-block;
+}
+#alert .info .help
+{
+	margin:auto;
+	font-size:10px;
+	opacity:0.5;
+}
+
+/********************************************************************************************/
+/*////////////////////////////////////////////////////////////////////////////////////////////
+/* Content
+/////////////////////////////////////////////////////////////////////////////////////////////
+/********************************************************************************************/
+#adminContent
+{
+	overflow:hidden;
+}
+.sticky #adminContent
+{
+	left:5%;
+}
+#adminContent.unlocked
+{
+	background-color:#364875 !important;
+}
+#adminContent>button.close
+{
+	position:absolute;
+	top:15px;
+	right:15px;
+	z-index:2;
+}
+#adminContent section>h1
+{
+	font-family: "Raleway-Thin";
+	font-size:35px;
+	margin:0 0 20px 0;
+	text-align:center;
+}
+/* Footer */
+footer
+{
+}
+
+/********************************************************************************************/
+/*////////////////////////////////////////////////////////////////////////////////////////////
+/* Context
+/////////////////////////////////////////////////////////////////////////////////////////////
+/********************************************************************************************/
+#adminContext
+{
+	overflow:auto;
+	background:#eee;
+	border-left:1px solid #ddd;
+}
+#adminContext>button.close
+{
+	position:absolute;
+	top:15px;
+	right:15px;
+	z-index:2;
+}
+#adminContext h1
+{
+	font-family:"Raleway-Regular";
+	font-size:45px;
+	margin:0 0 20px 0;
+}
+#adminContext h2
+{
+	font-family:"Raleway-Regular";
+	margin:0 0 20px 0;
+	border-bottom:1px solid #ccc;
+	padding:0 0 5px 0;
+	text-align:center;
+	text-transform:uppercase;
+}
+#adminContext h2>.centered
+{
+	background:#eee;
+	padding:0 10px;
+	color:#aaa;
+	position:relative;
+	bottom:-13px;
+	display:inline;
+	font-size:12px;
+}
+
+/********************************************************************************************/
+/*////////////////////////////////////////////////////////////////////////////////////////////
+/* Content sections
+/////////////////////////////////////////////////////////////////////////////////////////////
+/********************************************************************************************/
+#adminContent #sectiontray
+{
+	-webkit-transition: left 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	transition:         left 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	position:relative;
+	/* width:500%; Width is in master.js */	
+}
+.sticky #adminContent #sectiontray
+{
+	padding-top:67px;
+}
+#adminContent #sectiontray>li
+{
+	/* width:20%; Width is in master.js */
+	font-size:0.8em;
+	position:relative;
+	float:left;
+	padding:0 20px 20px 20px;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+#adminContent section
+{
+	border-radius:3px;
+	background:#eee;
+	padding:30px;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
+	min-height:300px;
+}
+#adminContent section.virgin,
+#adminContent section.loading
+{
+	text-align:center;
+}
+#adminContent section.virgin:before
+{
+	content:'virgin';
+	display:block;
+	padding:100px 0;
+	color:#ccc;
+}
+#adminContent section.virgin
+{
+	opacity:0.7;
+}
+#adminContent section.loading
+{
+	opacity:0.4;
+}
+#adminContent.unlocked section
+{
+	background-color:transparent !important;
+}
+#adminContent section>p,
+#adminContent section>ul,
+#adminContent section>ol
+{
+	color:#555;
+}
+
+/* #adminContent section toc */
+#adminContent section .toc 
+{
+	border:1px dotted #ccc;
+	padding:20px;
+	-moz-column-count: 3;
+	-moz-column-gap: 20px;
+	-webkit-column-count: 3;
+	-webkit-column-gap: 20px;
+	column-count: 3;
+	column-gap: 20px;
+}
+#adminContent section .toc li
+{
+}
+
+/* Section titles */
+#adminContent section h2,
+#adminContent section h3,
+#adminContent section h4,
+#adminContent section h5
+{
+	font-family:"Raleway-Regular";
+	/* Linin numerals for Raleway */
+	font-feature-settings: 'lnum';
+	-moz-font-feature-settings: 'lnum=1';
+	-ms-font-feature-settings: 'lnum';
+	-webkit-font-feature-settings: 'lnum';
+	-o-font-feature-settings: 'lnum';
+	font-weight:normal;
+	clear:both;
+}
+#adminContent section>h2 a,
+#adminContent section>h3 a,
+#adminContent section>h4 a,
+#adminContent section>h5 a
+{
+	color:#333;
+}
+
+/* #adminContent section h2 */
+#adminContent section>h2,
+#adminContent section>div>h2
+{
+	margin:0 0 20px 0;
+	border-bottom:1px solid #ccc;
+	padding:0 0 5px 0;
+	text-align:center;
+	text-transform:uppercase;
+}
+#adminContent section h2>.centered
+{
+	background:#eee;
+	padding:0 10px;
+	color:#aaa;
+	position:relative;
+	bottom:-13px;
+	display:inline;
+	font-size:12px;
+}
+#adminContent section>h2 span.flag
+{
+	font-family:"Raleway-Regular";
+	text-transform:uppercase;
+	background:#fff;
+	border-radius:4px;
+	padding:4px 5px;
+	margin-right:10px;
+	font-size:10px;
+	position:relative;
+	top:-5px;
+}
+#adminContent section>h2
+{
+}
+
+/* #adminContent section h3 */
+#adminContent section>h3
+{
+	font-size:1.5em;
+	border-color:#ddd;
+}
+
+/* #adminContent section h4 */
+#adminContent section>h4
+{
+	font-size:1.1em;
+	border-color:#eee;
+}
+
+/* Nodata */
+#adminContent section>.nodata
+{
+	font-size:30px;
+}
+
+/* The lines */
+#adminContent section>ul,
+#adminContent section>ol
+{
+	padding:0;
+}
+#adminContent section>ul>li
+#adminContent section>ol>li
+{
+	position:relative;
+}
+#adminContent section .in2col,
+#adminContent section .in3col,
+#adminContent section .in4col,
+#adminContent section .in5col
+{
+	overflow:auto;
+}
+#adminContent section .in2col li,
+#adminContent section .in3col li,
+#adminContent section .in4col li,
+#adminContent section .in5col li
+{
+	float:left;
+}
+#adminContent section .in2col li
+{
+	width:50%;
+}
+#adminContent section .in3col li
+{
+	width:33%;
+}
+#adminContent section .in4col li
+{
+	width:25%;
+}
+#adminContent section .in5col li
+{
+	width:20%;
+}
+
+/* Handles */
+#adminContent section>ol>li .handle
+{
+	position:absolute;
+	top:20px;
+	right:10px;
+	width:15px;
+	height:15px;
+	background:#999 no-repeat 50% 50%;
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	border-radius:8px;
+	opacity:0;
+}
+#adminContent section>ol>li:hover>.handle
+{
+	opacity:1;
+}
+
+/* Insert & update a field */
+#adminContent section>ol>li.liveupdate,
+#adminContent section>ol>li.liveinsert
+{
+	-moz-box-shadow:inset 0 10px 10px -7px rgba(0, 0, 0, 0.1);
+}
+#adminContent section>ol>li.liveinsert
+{
+	height:5px 15px;
+	text-align:center;
+	display:none;
+	font-size:0.8em;
+}
+#adminContent section>ol>li.liveupdate input,
+#adminContent section>ol>li.liveupdate select,
+#adminContent section>ol>li.liveinsert input,
+#adminContent section>ol>li.liveinsert select
+{
+	width:auto !important;
+}
+
+#grandCentralAdmin button
+{
+	background:none;
+	border:none;
+	padding:0;
+	margin:0;
+	color:#999;
+	cursor: pointer;
+}
+#grandCentralAdmin button:hover
+{
+	color:#3eb4d6;
+	border-color:#999;
+}
+#grandCentralAdmin button:active
+{
+}
+
+/* Close */
+#grandCentralAdmin button.close
+{
+	position:absolute;
+	top:10px;
+	right:10px;
+	z-index:3;
+	border:none;
+	background:transparent;
+	color:#000;
+	opacity:0.65;
+	width:26px;
+	height:26px;
+	cursor:pointer;
+	font-size:12px;
+}
+#grandCentralAdmin button.close:hover
+{
+	opacity:1;
+}
+#grandCentralAdmin button.close:after,
+#grandCentralAdmin button.delete:after
+{
+	content:'✕';
+	font-size:12px;
+}
+#grandCentralAdmin button.close:hover,
+#grandCentralAdmin button.delete:hover
+{
+	opacity:1;
+}
+
+/********************************************************************************************/
+/* Build the admin
+/********************************************************************************************/
+body[data-env="admin"]:before
+{
+	display:block;
+	height:5px;
+	content:'';
+	position:relative;
+	top:0px;
+	width:100%;
+	z-index:10;
+	-webkit-background-size: 40px 40px;
+	-moz-background-size: 40px 40px;
+	background-size: 40px 40px; /* Controls the size of the stripes */
+	background-color: #FF0000;
+	background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, .7) 25%, transparent 25%,
+		transparent 50%, rgba(255, 255, 255, .7) 50%, rgba(255, 255, 255, .7) 75%,
+		transparent 75%, transparent);
+	background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, .7) 25%, transparent 25%,
+		transparent 50%, rgba(255, 255, 255, .7) 50%, rgba(255, 255, 255, .7) 75%,
+		transparent 75%, transparent);
+	background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, .7) 25%, transparent 25%,
+		transparent 50%, rgba(255, 255, 255, .7) 50%, rgba(255, 255, 255, .7) 75%,
+		transparent 75%, transparent);
+	background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, .7) 25%, transparent 25%,
+		transparent 50%, rgba(255, 255, 255, .7) 50%, rgba(255, 255, 255, .7) 75%,
+		transparent 75%, transparent);
+	background-image: linear-gradient(-45deg, rgba(255, 255, 255, .7) 25%, transparent 25%,
+		transparent 50%, rgba(255, 255, 255, .7) 50%, rgba(255, 255, 255, .7) 75%,
+		transparent 75%, transparent);	
+}
