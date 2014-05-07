@@ -56,7 +56,7 @@ class itemVersion extends _items
 				if ($site['key'] == SITE_KEY && !empty($key))
 				{
 					$version = 'VERSION_';
-					define($version.'KEY', mb_strtoupper($key));
+					// define($version.'KEY', mb_strtoupper($key));
 					define($version.''.mb_strtoupper($key), $url);
 				}
 			}

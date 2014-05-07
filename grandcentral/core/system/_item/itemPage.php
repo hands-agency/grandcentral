@@ -416,7 +416,7 @@ class itemPage extends _items
 		// on recherche les pages liées aux readers et les liaisans entre les pages
 		$q = 'SELECT * FROM `_rel` WHERE `item`="page" AND (`key`="child"'.$hash.') ORDER BY `itemid`, `position`';
 		$r = $db->query($q);
-		$readers = array();
+		$readers = $tree = array();
 		foreach ($r['data'] as $rel)
 		{
 			if ('child' == $rel['key'])
