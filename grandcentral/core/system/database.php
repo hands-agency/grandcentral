@@ -127,6 +127,7 @@ class database
  */
 	public function query($query, $p = null)
 	{
+		// print'<pre>';print_r($query);print'</pre>';
 		try
 		{
 		//	benchmark
@@ -248,6 +249,8 @@ class database
  */
 	public static function query_item($env, $table, $params = null, $counter = false)
 	{
+	//	paramètres par défaut
+		if (!isset($params['status'])) $params['status'] = 'live';
 	//	préparation des variables
 		$i = 0;
 		$cWhere = null;
@@ -417,7 +420,16 @@ class database
 				$datas[$data['id']] = $data;
 			}
 		//	recherche des relations
-			if (count($ids) > 0)
+			$is_rel = false;
+			foreach ($attrs as $attr)
+			{
+				if ('rel' == $attr['type'])
+				{
+					$is_rel = true;
+					break;
+				}
+			}
+			if (count($ids) > 0 && $is_rel)
 			{
 				$relationQuery = 'SELECT * FROM `'.attrRel::table.'` WHERE `item` = "'.$table.'" AND `itemid` IN ('.implode(',', $ids).') ORDER BY position';
 				$results = $db->query($relationQuery);

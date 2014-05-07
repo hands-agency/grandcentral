@@ -8,7 +8,7 @@
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
  */
-class app
+abstract class _apps
 {
 	protected $env;
 	protected $key;
@@ -27,25 +27,27 @@ class app
  * @param	string  only site
  * @access	public
  */
-	public function __construct($key, $template = 'default', $params = null, $env = env)
+	public function __construct($template = 'default', $params = null, $env = env)
 	{
-		$this->key = (!empty($key)) ? $key : trigger_error('Your <strong>$key param</strong> is empty, new app() will not work', E_USER_WARNING);
-		$this->template = $template;
+		$this->key = mb_substr(mb_strtolower(get_called_class()), 3);
+		
+		// $this->key = (!empty($key)) ? $key : trigger_error('Your <strong>$key param</strong> is empty, app() will not work', E_USER_WARNING);
+		$this->template = (mb_strpos($template, '/') === 0) ? $template : '/'.$template;
 		$this->env = $env;
 		
-		$this->system_root = ADMIN_ROOT.'/'.$key.'/'.boot::app_system_dir.'/';
-		$this->system_url = '/'.boot::admin_dir.'/'.$key.'/'.boot::app_system_dir.'/';
+		$this->system_root = ADMIN_ROOT.'/'.$this->key.'/'.boot::app_system_dir;
+		$this->system_url = '/'.boot::admin_dir.'/'.$this->key.'/'.boot::app_system_dir;
 		
-		$this->template_root['admin'] = ADMIN_ROOT.'/'.$key.'/'.boot::app_template_dir.'/';
-		$this->template_root['site'] = SITE_ROOT.'/'.$key.'/';
+		$this->template_root['admin'] = ADMIN_ROOT.'/'.$this->key.'/'.boot::app_template_dir;
+		$this->template_root['site'] = SITE_ROOT.'/'.$this->key;
 		
-		$this->template_url['admin'] = '/'.boot::admin_dir.'/'.$key.'/'.boot::app_template_dir.'/';
-		$this->template_url['site'] = '/'.boot::site_dir.'/'.SITE_KEY.'/'.$key.'/';
+		$this->template_url['admin'] = '/'.boot::admin_dir.'/'.$this->key.'/'.boot::app_template_dir;
+		$this->template_url['site'] = '/'.boot::site_dir.'/'.SITE_KEY.'/'.$this->key;
 		
 		$this->get_ini();
 		$this->set_default_param();
 		$this->set_param($params);
-	}	
+	}
 /**
  * 
  *
@@ -182,9 +184,9 @@ class app
 		$_APP = &$this;
 	//	HACK pour test des fichiers d'initialisation des paramtres de l'app
 	//	pour exemple voir le fichier launcher de l'app form
-		if (is_file($this->get_systemroot().'/app.prepare.php'))
+		if (method_exists($this, 'prepare'))
 		{
-			include($this->get_systemroot().'/app.prepare.php');
+			$this->prepare();
 		}
 		$_PARAM = &$this->param;
 	//	on prépare la vue
@@ -216,7 +218,7 @@ class app
 		{
 			foreach ($this->ini['dependencies']['app'] as $key)
 			{
-				$app = new app($key);
+				$app = app($key);
 				$app->load();
 			}
 		}
@@ -258,8 +260,8 @@ class app
 	{
 		$_APP = $this;
 		// print'<pre>';print_r($data);print'</pre>';
-		$routine = $this->get_templateroot().$snippet_key.'.php';
-		$template = $this->get_templateroot().$snippet_key.'.snippet.php';
+		$routine = $this->get_templateroot().'/'.$snippet_key.'.php';
+		$template = $this->get_templateroot().'/'.$snippet_key.'.snippet.php';
 	//	on ouvre le tampon
 		ob_start();
 	//	on charge les données à afficher
@@ -281,6 +283,7 @@ class app
 	{
 		if (filter_var($file, FILTER_VALIDATE_URL) === false)
 		{
+			$file = (mb_strpos($file, '/') === 0) ? $file : '/'.$file;
 			if ($system === false)
 			{
 				$app = $this->get_templateurl();
@@ -395,6 +398,74 @@ class app
 	//	call
 		$templates = $filterFile($this->get_templateroot($env));
 		return (empty($templates)) ? false : $templates;
+	}
+	
+/**
+ * Routine de préparation des apps
+ *
+ * @param	mixed	la valeur à lire dans le registre. Vous pouvez mettre autant d'arguments que vous le souhaitez.
+ * @access	protected
+ */
+	public static function register()
+	{
+		$cache = new app('cache');
+		$fileCache = $cache->get_templateroot().'/registry/'.md5('app');
+		//	dans le cache
+		if (is_file($fileCache) && filemtime(ADMIN_ROOT) < filemtime($fileCache))
+		{
+			// print'<pre>';print_r('dans le cache des apps');print'</pre>';
+			$datas = unserialize(file_get_contents($fileCache));
+		}
+		//	création du cache
+		else
+		{
+			//print'<pre>';print_r('génération du cache des apps');print'</pre>';
+			$root = new dir(ADMIN_ROOT);
+		
+			$root->get();
+			$classes = array();
+		
+			foreach ($root as $dir)
+			{
+				$key = $dir->get_key();
+				$app = new app($key);
+				$files = $app->get_ini('system');
+			//	on charge automatiquement les librairies
+				if (isset($files['lib']))
+				{
+					foreach ($files['lib'] as $file)
+					{
+						$libs[] = $app->get_systemroot().$file;
+					}
+				}
+			//	préparation du tableau pour la mise en registre des classes pour l'autoloader
+				if (isset($files['class']))
+				{
+					foreach ($files['class'] as $file)
+					{
+						preg_match('/([a-z0-9A-Z_-]*).php/u', $file, $class);
+						if (isset($class[1])) $classes[$class[1]] = $app->get_key();
+					}
+				}
+			//	préparation du tableau pour la mise en registre des apps
+				$apps[$key] = $app;
+			}
+			
+			$datas[registry::app_index] = $apps;
+			$datas[registry::class_index] = $classes;
+			$datas['libraries'] = $libs;
+			//	mise en cache
+			file_put_contents($fileCache, serialize($datas));
+		}
+	//	mise en registre des apps
+		registry::set(registry::app_index, $datas[registry::app_index]);
+	//	mise en registre du nom des classes pour l'autload
+		registry::set(registry::class_index, $datas[registry::class_index]);
+	//	chargement des librairies
+		foreach ($datas['libraries'] as $file)
+		{
+			require_once($file);
+		}
 	}
 }
 ?>

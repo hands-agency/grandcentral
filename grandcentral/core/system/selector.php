@@ -96,9 +96,30 @@
 		$apps = func_get_args();
 		foreach ($apps as $app)
 		{
-			$app = new app($app);
+			$app = app($app);
 			$app->load();
 			unset($app);
 		}
+	}
+	
+/**
+ * App factory
+ *
+ * @param	string	app 1
+ * @param	string	app 2...
+ * @access	public
+ */
+	function app($key, $template = 'default', $params = null, $env = env)
+	{
+		$appClass = 'app'.ucfirst($key);
+		if (registry::get(registry::class_index, $appClass) === false)
+		{
+			$app = new app($key, $template, $params, $env);
+		}
+		else
+		{
+			$app = new $appClass($template, $params, $env);
+		}
+		return $app;
 	}
 ?>

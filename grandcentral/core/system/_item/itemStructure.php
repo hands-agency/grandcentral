@@ -43,6 +43,7 @@ class itemStructure extends _items
 	{
 		$this->_prepare_attr();
 		parent::save();
+		self::register_reset();
 	}
 /**
  * Build queries to insert an item
@@ -59,7 +60,7 @@ class itemStructure extends _items
 			$attrs['id'] = array(
 				'key' => 'id',
 				'type' => 'id',
-				'title' => 'The unique identifier'
+				// 'title' => 'The unique identifier'
 			);
 			$attrs = array_reverse($attrs, true);
 		}
@@ -74,7 +75,7 @@ class itemStructure extends _items
 			$attrs['key'] = array(
 				'key' => 'key',
 				'type' => 'key',
-				'title' => 'The key'
+				// 'title' => 'The key'
 			);
 		}
 		else
@@ -99,7 +100,7 @@ class itemStructure extends _items
 			$attrs['url'] = array(
 				'key' => 'url',
 				'type' => 'url',
-				'title' => 'Url'
+				// 'title' => 'Url'
 			);
 		}
 	//	add Version attribute
@@ -118,7 +119,7 @@ class itemStructure extends _items
 			$attrs['owner'] = array(
 				'key' => 'owner',
 				'type' => 'owner',
-				'title' => 'Owner'
+				// 'title' => 'Owner'
 			);
 		}
 	//	add Created attribute
@@ -127,7 +128,7 @@ class itemStructure extends _items
 			$attrs['created'] = array(
 				'key' => 'created',
 				'type' => 'created',
-				'title' => 'Created Datetime'
+				// 'title' => 'Created Datetime'
 			);
 		}
 	//	add Updated attribute
@@ -136,7 +137,7 @@ class itemStructure extends _items
 			$attrs['updated'] = array(
 				'key' => 'updated',
 				'type' => 'updated',
-				'title' => 'Updated Datetime'
+				// 'title' => 'Updated Datetime'
 			);
 		}
 	//	add Updated attribute
@@ -145,7 +146,7 @@ class itemStructure extends _items
 			$attrs['status'] = array(
 				'key' => 'status',
 				'type' => 'status',
-				'title' => 'Status'
+				// 'title' => 'Status'
 			);
 		}
 		// print'<pre>';print_r($attrs);print'</pre>';
@@ -257,6 +258,7 @@ class itemStructure extends _items
 	//	insert data into table structure
 		parent::_delete();
 		// print'<pre>';print_r($db->_spooler);print'</pre>';
+		self::register_reset();
     }
 /**
  * ALTER - Obtenir la définition mysql de la position d'une colonne
@@ -272,6 +274,65 @@ class itemStructure extends _items
 		// echo $key.PHP_EOL;
 		$position = ($pos == 0) ? 'FIRST' : 'AFTER `'.$this->columns[$pos - 1].'`';
 		return ' '.$position;
+	}
+	
+/**
+ * On charge toutes les structures disponibles et on crée la liste de définition des attributs
+ *
+ * @param	mixed	la valeur à lire dans le registre. Vous pouvez mettre autant d'arguments que vous le souhaitez.
+ * @access	public
+ */
+	public static function register()
+	{
+		$cache = app('cache');
+		
+		$fileCache = $cache->get_templateroot().'/registry/'.md5('structure');
+		
+		if (is_file($fileCache))
+		{
+			// print'<pre>';print_r('dans le cache des structures');print'</pre>';
+			$datas = unserialize(file_get_contents($fileCache));
+		}
+		else
+		{
+			//print'<pre>';print_r('génération du cache des structures');print'</pre>';
+			//	pour les deux environnements, on charge tous les attributs
+			foreach (array('admin', 'site') as $env)
+			{
+				$db = database::connect($env);
+				//	on cherche les structures disponibles et on les mets dans le registre
+				$r = $db->query('SELECT * FROM structure ORDER BY `key`');
+				foreach ($r['data'] as $item)
+				{
+					$item['attr'] = json_decode($item['attr'], true);
+				
+					$datas[$env][registry::attr_index][$item['key']] = $item;
+					//self::set($env, self::attr_index, $result['key'], $result);
+				}
+			}
+			// mise en cache
+			file_put_contents($fileCache, serialize($datas));
+		}
+		
+		registry::set('admin', $datas['admin']);
+		registry::set('site', $datas['site']);
+		// registry::set(registry::reader_index, $datas['reader']);
+	}
+	
+/**
+ * Delete cache file of the structures loaded into the registry
+ *
+ * @access  public
+ */
+	private function register_reset()
+	{
+		$cache = app('cache');
+		$fileCache = $cache->get_templateroot().'/registry/'.md5('structure');
+		
+		if (is_file($fileCache))
+		{
+			unlink($fileCache);
+		}
 	}
 }
 ?>

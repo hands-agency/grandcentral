@@ -45,14 +45,29 @@ class attrUrl extends _attrs
 		return $this;
 	}
 /**
+ * xxxx
+ *
+ * @param	string	la variable
+ * @return	string	une string
+ * @access	public
+ */
+	public function set_reader($value)
+	{
+		$this->params['reader'] = $value;
+		$this->params['table'] = registry::get(registry::reader_index, $value, 'url');
+	}
+/**
  * Get complete item url
  *
  * @return	string	url
  * @access	public
  */
-	public function attach(_items $item)
+	public function attach(_items &$item)
 	{
-		$this->item = $item;
+		$this->params['table'] = $item->get_table();
+		$this->params['env'] = $item->get_env();
+		$this->params['version'] = (isset($item['version']) && !$item['version']->is_empty()) ? $item['version'] : null;
+		// print'<pre>';print_r(registry::get_constants());print'</pre>';
 	}
 /**
  * php http_build_query() on url
@@ -77,9 +92,31 @@ class attrUrl extends _attrs
  */
 	public function __tostring()
 	{
-		$readerUrl = ($this->item->get_table() == 'page') ? '' : registry::get(registry::reader_index, $this->item->get_table(), 'url');
-		$readerUrl = ($readerUrl == '/') ? '' : $readerUrl;
-		return constant(mb_strtoupper($this->item->get_env()).'_URL').$readerUrl.$this->get();
+		$url = '';
+		// version url
+		if (is_null($this->params['version']))
+		{
+			$url = cc($this->params['env'], current)['version']->get_url();
+		}
+		else
+		{
+			$version = constant(mb_strtoupper($this->params['env']).'_VERSION');
+			$url = constant('VERSION_'.mb_strtoupper($version)).$url;
+		}
+		// reader
+		if ($this->params['table'] != 'page')
+		{
+			foreach (registry::get(registry::reader_index) as $page => $tables)
+			{
+				if (in_array($this->params['table'], $tables))
+				{
+					$url = registry::get(registry::url_index, $page);
+					break;
+				}
+			}
+		}
+		// retunr
+		return $url.$this->get();
 	}
 /**
  * Definition mysql

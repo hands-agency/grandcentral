@@ -52,18 +52,21 @@ class dir implements Iterator
 	public function get($recursive = false)
 	{
 		$dir = dir($this->root);
-		while($entry = $dir->read())
+		if (!empty($dir))
 		{
-			$type = filetype($this->root.'/'.$entry);
-		 	if (!in_array($entry, self::$nogood))
+			while($entry = $dir->read())
 			{
-				$path = $this->root.'/'.$entry;
-				$obj = ($type === 'dir') ? new dir($path) : new file($path);
-				if ($recursive === true && get_class($obj) === __CLASS__) $obj->get($recursive);
-				$this->data[$obj->get_key()] = $obj;
+				$type = filetype($this->root.'/'.$entry);
+			 	if (!in_array($entry, self::$nogood))
+				{
+					$path = $this->root.'/'.$entry;
+					$obj = ($type === 'dir') ? new dir($path) : new file($path);
+					if ($recursive === true && get_class($obj) === __CLASS__) $obj->get($recursive);
+					$this->data[$obj->get_key()] = $obj;
+				}
 			}
+			$dir->close();
 		}
-		$dir->close();
 		
 		return $this->data;
 	}

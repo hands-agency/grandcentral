@@ -20,6 +20,7 @@ class registry
 	const app_index = '__app__';
 	const reader_index = '__reader__';
 	const legacy_index = '__legacy__';
+	const url_index = '__url__';
 //	Storing
 	protected static $instance;
 	protected static $data;
@@ -31,41 +32,24 @@ class registry
  */
 	protected function __construct()
 	{
-	//	encoding
+		// encoding
 		mb_internal_encoding(database::charset);
-	//	const
+		// const
 		define('current', self::current_index);
 		define('all', self::all_index);
-		
-		// $cache = new app('cache');
-		// $file = $cache->get_templateroot().'registry/'.md5(URI);
-		
-		// print'<pre>';print_r(self::get_constants());print'</pre>';
-		// print'<pre>';print_r(URI);print'</pre>';
-		// if (is_file($file) && 1 == 1)
-		// {
-		// 	$data = file_get_contents($file);
-		// 	self::$data = unserialize($data);
-		// }
-		// else
-		// {
-			//	load structures into registry
-			$this->_prepare_structure();
-			//	load apps into registry
-			$this->_prepare_app();
-			
-			// $data = serialize(self::$data);
-			// file_put_contents($file, $data);
-		// }
-		
-	//	user
+		// load apps into registry
+		app::register();
+		// load structures into registry
+		itemStructure::register();
+		// load user
 		$human = item::create('human', null, 'site');
 		$human->guess();
-		//	load page readers into registry
-		$this->_prepare_legacy();
-		//	prepare environment
+		// prepare version
+		itemVersion::register();
+		// itemPage::register();
+		itemPage::register();
+		// prepare environment
 		$this->_prepare_current();
-		// print'<pre>';print_r(self::$data);print'</pre>';
 		//	constants
 		cc('const', all);
 	}
@@ -155,100 +139,51 @@ class registry
 		return ($type !== null && $tmp[strtoupper($type)]) ? $tmp[strtoupper($type)] : $tmp;
 	}
 /**
- * On charge toutes les structures disponibles et on crée la liste de définition des attributs
- *
- * @param	mixed	la valeur à lire dans le registre. Vous pouvez mettre autant d'arguments que vous le souhaitez.
- * @access	protected
- */
-	protected function _prepare_structure()
-	{
-		
-	//	pour les deux environnements
-		foreach (array('admin', 'site') as $env)
-		{
-			$db = database::connect($env);
-		//	on cherche les structures disponibles et on les mets dans le registre
-			$results = $db->query('SELECT * FROM structure ORDER BY `key`');
-			
-			foreach ($results['data'] as $result)
-			{
-				$result['attr'] = json_decode($result['attr'], true);
-				self::set($env, self::attr_index, $result['key'], $result);
-				// self::set($env, self::attr_index, 'structure_'.$result['id'], $result['key']);
-			}
-		}
-	}
-/**
- * Création de la liste des classes de l'application (pour l'autoload)
- *
- * @param	mixed	la valeur à lire dans le registre. Vous pouvez mettre autant d'arguments que vous le souhaitez.
- * @access	protected
- */
-	protected function _prepare_app()
-	{
-		$root = new dir(ADMIN_ROOT);
-		
-		$root->get();
-		$classes = array();
-		
-		foreach ($root as $dir)
-		{
-			$key = $dir->get_key();
-			$app = new app($key);
-			$files = $app->get_ini('system');
-		//	on charge automatiquement les librairies
-			if (isset($files['lib']))
-			{
-				foreach ($files['lib'] as $file)
-				{
-					require_once($app->get_systemroot().'/'.$file);
-				}
-			}
-		//	préparation du tableau pour la mise en registre des classes pour l'autoloader
-			if (isset($files['class']))
-			{
-				foreach ($files['class'] as $file)
-				{
-					preg_match('/([a-z0-9A-Z_-]*).php/u', $file, $class);
-					if (isset($class[1])) $classes[$class[1]] = $app->get_key();
-				}
-			}
-		//	préparation du tableau pour la mise en registre des apps
-			$apps[$key] = $app;
-		}
-	//	mise en registre des apps
-		self::set(self::app_index, $apps);
-	//	mise en registre du nom des classes pour l'autload
-		self::set(self::class_index, $classes);
-	}
-/**
  * Chargement du site, du user, des versions et de la page courrants
  *
  * @access	protected
  */
 	protected function _prepare_current()
 	{
-	//	Env
-		if (!isset($_SESSION['pref']['handled_env'])) $_SESSION['pref']['handled_env'] = 'site';
-		if (isset($_GET['env'])) $_SESSION['pref']['handled_env'] = $_GET['env'];
-	//	admin
-		$admin = item::create('site', 'admin', 'admin');
-		$tmp = item::create('version', null, 'admin');
-		$v['admin'] = $tmp->guess();
-		$admin['version'] = $v['admin']->get_attr('id');
-		self::set(self::current_index, 'admin', $admin);
-	//	site
-		$site = item::create('site', SITE_KEY, 'site');
-		$tmp = item::create('version', null, 'site');
-		$v['site'] = $tmp->guess();
-		$site['version'] = $v['site']->get_attr('id');
-		self::set(self::current_index, 'site', $site);
-	//	version
-		self::set(self::current_index, 'version', $v[env]);
-	//	page
+		// print'<pre>';print_r(self::get_constants());print'</pre>';
+		$cache = app('cache');
+		$fileCache = $cache->get_templateroot().'/registry/'.md5(URL);
+		//	dans le cache
+		if (is_file($fileCache))
+		{
+			//print'<pre>';print_r('dans le cache site et admin + versions');print'</pre>';
+			$datas = unserialize(file_get_contents($fileCache));
+		}
+		//	création du cache
+		else
+		{
+			//print'<pre>';print_r('génération du cache site et admin + versions');print'</pre>';
+			//	Env
+			if (!isset($_SESSION['pref']['handled_env'])) $_SESSION['pref']['handled_env'] = 'site';
+			if (isset($_GET['env'])) $_SESSION['pref']['handled_env'] = $_GET['env'];
+			//	admin
+			$admin = item::create('site', 'admin', 'admin');
+			$tmp = item::create('version', null, 'admin');
+			$v['admin'] = $tmp->guess();
+			$admin['version'] = $v['admin'];
+			$datas['admin'] = $admin;
+			//	site
+			$site = item::create('site', SITE_KEY, 'site');
+			$tmp = item::create('version', null, 'site');
+			$v['site'] = $tmp->guess();
+			$site['version'] = $v['site'];
+			$datas['site'] = $site;
+			//	version
+			$datas['version'] = $datas[env];
+			//	mise en cache
+			file_put_contents($fileCache, serialize($datas));
+		}
+		self::set(self::current_index, $datas);
+		//	page
 		$page = item::create('page');
 		$page->guess();
 		self::set(self::current_index, 'page', $page);
+		// print'<pre>';print_r($datas);print'</pre>';
 	}
 /**
  * Obtenir les classes disponibles
@@ -274,43 +209,6 @@ class registry
 		}
 		
 		return $classes;
-	}
-/**
- * On charge toutes les url et les types de pages
- *
- * @access	protected
- */
-	protected function _prepare_legacy()
-	{
-	//	readers
-		$db = database::connect();
-		$q = 'SELECT `id`, `url`, `type` FROM `page` WHERE `type` LIKE "%\"item\":%"';
-		$r = $db->query($q);
-		
-		foreach ($r['data'] as $reader)
-		{
-			$reader['type'] = json_decode($reader['type'], true);
-			self::set(self::reader_index, $reader['type']['item'], $reader);
-			// print'<pre>';print_r($reader);print'</pre>';
-		//	hack pour gérer le cas du reader sur la home
-			if ($reader['url'] == '/')
-			{
-				self::set(self::reader_index, $reader['url'], $reader);
-			}
-		}
-	//	legacy
-		$db = database::connect();
-		$q = 'SELECT * FROM `_rel` WHERE `item`="page" AND `key`="child" ORDER BY `itemid`, `position`';
-		$r = $db->query($q);
-	//	If we have children
-		if ($r['count'])
-		{
-			foreach ($r['data'] as $rel)
-			{
-				$tree[$rel['item'].'_'.$rel['itemid']][] = $rel['rel'].'_'.$rel['relid'];
-			}
-			self::set(self::legacy_index, $tree);
-		}
 	}
 }
 ?>

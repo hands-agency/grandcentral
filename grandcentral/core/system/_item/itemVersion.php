@@ -39,5 +39,28 @@ class itemVersion extends _items
 		
 		return $this;
 	}
+	
+	public function get_url()
+	{	
+		return ('site' == $this->get_env()) ? constant('VERSION_'.mb_strtoupper($this['key'])) : ADMIN_URL;
+	}
+	
+	public static function register()
+	{
+		require(DOCUMENT_ROOT.'/'.boot::ini_file);
+		// print'<pre>';print_r($site);print'</pre>';
+		foreach ($site as $site)
+		{
+			foreach ((array) $site['url'] as $key => $url)
+			{
+				if ($site['key'] == SITE_KEY && !empty($key))
+				{
+					$version = 'VERSION_';
+					define($version.'KEY', mb_strtoupper($key));
+					define($version.''.mb_strtoupper($key), $url);
+				}
+			}
+		}
+	}
 }
 ?>

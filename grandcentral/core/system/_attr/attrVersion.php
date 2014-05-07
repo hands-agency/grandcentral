@@ -10,14 +10,16 @@
 class attrVersion extends _attrs
 {
 /**
- * Get complete item url
+ * Set attribute
  *
- * @return	string	url
+ * @param	stringd	la variable
+ * @return	string	une string
  * @access	public
  */
-	public function attach(_items $item)
+	public function unfold()
 	{
-		$this->item = $item;
+		$v = cc('version', $this->data);
+		return $v;
 	}
 /**
  * Set attribute
@@ -42,7 +44,7 @@ class attrVersion extends _attrs
 	{
 		if (empty($this->data))
 		{
-			$this->data = cc($this->item->get_env(), current)['version'];
+			$this->data = cc($this->item->get_env(), current)['version']->get();
 		}
 		return $this->data;
 	}

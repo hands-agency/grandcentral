@@ -10,7 +10,6 @@
 class attrRel extends _attrs implements ArrayAccess, Iterator
 {
 	const table = '_rel';
-	protected $item;
 	protected $data = array();
 /**
  * Set array attribute
@@ -92,7 +91,9 @@ class attrRel extends _attrs implements ArrayAccess, Iterator
  */
 	public function attach(_items $item)
 	{
-		$this->item = $item;
+		$this->params['env'] = $item->get_env();
+		$this->params['table'] = $item->get_table();
+		$this->params['id'] = $item['id']->get();
 	}
 /**
  * Set attribute
@@ -150,7 +151,7 @@ class attrRel extends _attrs implements ArrayAccess, Iterator
  */
 	public function unfold($params = null)
 	{
-		$bunch = new bunch(null, null, $this->item->get_env());
+		$bunch = new bunch(null, null, $this->params['env']);
 		
 		$bunch->get_by_nickname($this->data, $params);
 		

@@ -191,5 +191,15 @@ class itemHuman extends _items
             $this->ip = getenv('REMOTE_ADDR');
         }
 	}
+/**
+ * Check whether an item exists in base or not
+ *
+ * @return  bool    true ou false
+ * @access  public
+ */
+	public function exists()
+	{
+		return (!$this->data['id']->is_empty() && $this->data['key']->get() != 'anonymous') ? true : false;
+	}
 }
 ?>

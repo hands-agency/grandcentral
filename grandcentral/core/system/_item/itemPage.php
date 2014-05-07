@@ -12,74 +12,67 @@ class itemPage extends _items
 	const child = 'child';
 	protected $child = false;
 /**
- * Détermine en fonction du contexte quelle page afficher
+ * Détermine si la page dispose d'une section reader
+ *
+ * @access	public
+ */
+	public function has_reader()
+	{
+		return (is_array(registry::get(registry::reader_index, $this->get_nickname()))) ? true : false;
+	}
+/**
+ * Rechercher une page avec une url
+ *
+ * @access	public
+ */
+	public function get_by_url($url = null)
+	{
+		if (empty($url)) $url = '/';
+		
+		$cache = app('cache');
+		$fileCache = $cache->get_templateroot().'/page/'.md5($this['url'].$url);
+		
+		// dans le cache
+		//if (is_file($fileCache))
+		//{
+		//	$this->data = unserialize(file_get_contents($fileCache));
+		//}
+		// création du cache
+		//else
+		//{
+			$this->get(array('url' => $url));
+		//	file_put_contents($fileCache, serialize($this->data));
+		//}
+	}
+/**
+ * Devine la page à afficher
  *
  * @access	public
  */
 	public function guess()
 	{
-	//	analyse de l'url
-		$url[0] = null;
-		if (URLR != null)
+		// recherche de la page
+		$this->get_by_url(URLR);
+		//	si la page n'existe pas, on éclate l'url et on fait une recherche aproximative
+		if (!$this->exists())
 		{
-			$url = explode('/', mb_substr(URLR, 1));
-		}
-	//	recherche de la page
-		$this->get(array('url' => '/'.$url[0]));
-		
-	//	recherche de l'item, si l'url est complexe
-		if ($this->exists())
-		{
-		//	reader
-			if (isset($url[1]) && !empty($url[1]))
+			$hash = mb_substr(URLR, 0, mb_strrpos(URLR, '/'));
+			// chargement de la page de home
+			$this->get_by_url($hash);
+			if (!$this->exists() OR ($this->exists() && !$this->has_reader()))
 			{
-				$item = item::create($this['type']['item'], array('url' => '/'.$url[1]), $this->get_env());
-				if ($item->exists())
-				{
-					define('item', $this['type']['item']);
-					registry::set(registry::current_index, item, $item);
-					$this->child = true;
-				}
-				else
-				{
-					$this->get('error_404');
-				}
+				$this->get_by_url('/404');
 			}
 		}
-	//	HACK pour le reader de la home
-		elseif ($reader = registry::get(registry::reader_index, '/'))
-		{
-			$item = item::create($reader['type']['item'], array('url' => '/'.$url[0]), $this->get_env());
-			
-			if ($item->exists())
-			{
-				define('item', $reader['type']['item']);
-				registry::set(registry::current_index, item, $item);
-				$this->get('home');
-				$this->child = true;
-			}
-			else
-			{
-				$this->get('error_404');
-			}
-		//	si la page n'existe pas
-			// $this->get('error_404');
-		}
-		else
-		{
-			$this->get('error_404');
-		}
-// print'<pre>';print_r($this['section']);print'</pre>';
-		if (!defined('item')) define('item', 'page');
-	//	application des droits
+		// application des droits
 		if ($this->exists() && !$_SESSION['user']->can('see', $this))
 		{
 			$this->get('login');
 		}
-	//	si pas de 404
+		// si on ne trouve rien, on renvoi une erreur
 		if (!$this->exists())
 		{
-			trigger_error('No page found. Give me a 404.', E_USER_ERROR);
+			$this->get_by_url('/404');
 		}
 	}
 /**
@@ -182,31 +175,6 @@ class itemPage extends _items
 
 	//	display
 		return $this->$prepareFunction();
-	}
-/**
- * Prepare display of a feed page
- *
- * @access	public
- */
-	private function _prepare_feed()
-	{
-	//	call master
-		$master = new master($this);
-	//	add section content
-		$sections = $this['section']->get();
-		if ($this->child === true)
-		{
-			if (!empty($this['type']['content'])) array_unshift($sections, $this['type']['content']);
-		}
-	//	add section list
-		else
-		{
-			if (!empty($this['type']['list'])) array_unshift($sections, $this['type']['list']);
-		}
-	//	add section to the page
-		$this['section']->set($sections);
-	//	display master
-		return $master->__tostring();
 	}
 /**
  * Prepare display of a content page
@@ -408,6 +376,78 @@ class itemPage extends _items
 			$parent[] = $page;
 		}
 		return count($parent);
+	}
+/**
+ * On charge toutes les urls des pages du site
+ *
+ * @param	mixed	la valeur à lire dans le registre. Vous pouvez mettre autant d'arguments que vous le souhaitez.
+ * @access	public
+ */
+/**
+ * On charge toutes les url et les types de pages
+ *
+ * @access	protected
+ */
+	public static function register()
+	{
+		$db = database::connect('site');
+		// on recherche toutes les urls des pages
+		$q = 'SELECT `id`, `url` FROM `page`';
+		$r = $db->query($q);
+		foreach ($r['data'] as $page)
+		{
+			$urls['page_'.$page['id']] = $page['url'];
+		}
+		// on recherche les readers dans le table section
+		$q = 'SELECT `id`, `app` FROM `section` WHERE `app` LIKE "%\"key\":\"reader\"%"';
+		$r = $db->query($q);
+		// traitement de la requête pour stockage
+		$hash = null;
+		$readersid = array();
+		if ($r['count'] > 0)
+		{
+			foreach ($r['data'] as $reader)
+			{
+				$readersId[] = $reader['id'];
+				$readersTable[$reader['id']] = json_decode($reader['app'], true);
+			}
+			$hash = ' OR (`rel`="section" AND `relid` IN ('.implode(',',$readersId).'))';
+		}
+		// on recherche les pages liées aux readers et les liaisans entre les pages
+		$q = 'SELECT * FROM `_rel` WHERE `item`="page" AND (`key`="child"'.$hash.') ORDER BY `itemid`, `position`';
+		$r = $db->query($q);
+		$readers = array();
+		foreach ($r['data'] as $rel)
+		{
+			if ('child' == $rel['key'])
+			{
+				$tree[$rel['item'].'_'.$rel['itemid']][] = $rel['rel'].'_'.$rel['relid'];
+			}
+			else
+			{
+				$readers[$rel['item'].'_'.$rel['itemid']][] = $readersTable[$rel['relid']]['param']['item'];
+			}
+		}
+		// mise en registre
+		registry::set(registry::url_index, $urls);
+		registry::set(registry::legacy_index, $tree);
+		registry::set(registry::reader_index, $readers);
+	}
+	
+/**
+ * Delete cache file of the structures loaded into the registry
+ *
+ * @access  public
+ */
+	private function register_reset()
+	{
+		$cache = app('cache');
+		$fileCache = $cache->get_templateroot().'registry/'.md5('url');
+		
+		if (is_file($fileCache))
+		{
+			unlink($fileCache);
+		}
 	}
 }
 ?>

@@ -30,7 +30,7 @@ class attrOwner extends _attrs
  */
 	public function get()
 	{
-		if (empty($this->data)) $this->data = $_SESSION['user']['id'];
+		if (empty($this->data)) $this->data = $_SESSION['user']['id']->get();
 		return $this->data;
 	}
 /**
