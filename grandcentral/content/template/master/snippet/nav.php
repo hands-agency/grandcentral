@@ -116,7 +116,7 @@
 				'system' => array(
 					'display' => 'col',
 					'link' => 'list',
-					'bunch' => i('item', array('system' => true, 'key' => array('!=human', '!=group', '!=version', '!=logbook', '!=structure', '!=page', '!=site'), 'order()' => 'title'), $_SESSION['pref']['handled_env']),
+					'bunch' => i('item', array('system' => true, 'key' => array('!=human', '!=group', '!=version', '!=logbook', '!=item', '!=page', '!=site'), 'order()' => 'title'), $_SESSION['pref']['handled_env']),
 				),
 			),
 		),

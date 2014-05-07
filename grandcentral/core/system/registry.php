@@ -40,7 +40,7 @@ class registry
 		// load apps into registry
 		app::register();
 		// load structures into registry
-		itemStructure::register();
+		itemItem::register();
 		// load user
 		$human = item::create('human', null, 'site');
 		$human->guess();

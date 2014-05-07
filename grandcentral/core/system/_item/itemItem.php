@@ -301,7 +301,7 @@ class itemItem extends _items
 			{
 				$db = database::connect($env);
 				//	on cherche les structures disponibles et on les mets dans le registre
-				$r = $db->query('SELECT * FROM structure ORDER BY `key`');
+				$r = $db->query('SELECT * FROM item ORDER BY `key`');
 				foreach ($r['data'] as $item)
 				{
 					$item['attr'] = json_decode($item['attr'], true);

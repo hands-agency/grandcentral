@@ -38,5 +38,7 @@
 	{
 		$form = null;
 	}
+//	title
+	$title = (defined('item')) ? i(item, current)['title'] : i('page', current)['title'];
 	
 ?>

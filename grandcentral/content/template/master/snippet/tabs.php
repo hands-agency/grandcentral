@@ -43,7 +43,7 @@
 	{	
 	//	Edit
 		case 'edit':
-			$structure = cc('structure', $_GET['item'], $_SESSION['pref']['handled_env']);
+			$structure = cc('item', $_GET['item'], $_SESSION['pref']['handled_env']);
 		//	We have an item already
 			if (isset($_GET['id']))
 			{
@@ -63,7 +63,7 @@
 			
 	//	List
 		case 'list':
-			$structure = cc('structure', $_GET['item'], $_SESSION['pref']['handled_env']);
+			$structure = cc('item', $_GET['item'], $_SESSION['pref']['handled_env']);
 			$item = cc('page', 'home');
 			$link = $item['url'];
 			$back = $item['title'];

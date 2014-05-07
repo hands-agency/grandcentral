@@ -1,2 +1,2 @@
-<h1><?=i(item, current)['title']?></h1>
+<h1><?=$title?></h1>
 <?= $form; ?>
