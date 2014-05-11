@@ -119,4 +119,5 @@ ol>li[data-type="multipleselect"] .field li .title
 ol>li[data-type="multipleselect"] .field li .delete
 {
 	float:right;
+	margin:1px 3px 0 0 !important;
 }
