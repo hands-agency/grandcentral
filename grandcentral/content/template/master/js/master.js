@@ -212,12 +212,24 @@
 	openContext = function(param)
 	{
 		$('#main').removeClass('contextClosed').addClass('contextOpened');
-		$('#adminContext>div').ajx(param);
+		$('#adminContext>div').attr('data-template', param.template).ajx(param);
+		/* TODO Hacky way to recenter the panel */
+		setTimeout(function()
+		{
+			$('#tabs li a'+pseudo).parent().trigger('click');
+		}, 220);
+
+		
 	}
 	closeContext = function()
 	{
 		$('#main').removeClass('contextOpened').addClass('contextClosed');
-		$('#adminContext>div').html('');
+		$('#adminContext>div').attr('data-template', '').html('');
+		/* TODO Hacky way to recenter the panel */
+		setTimeout(function()
+		{
+			$('#tabs li a'+pseudo).parent().trigger('click');
+		}, 220);
 	}
 	
 //	Site
@@ -239,20 +251,6 @@
 	{
 		$('#main').removeClass('poppedAlert');
 	});
-	
-	
-/*********************************************************************************************
-/**	* Resize the main view to fit viewport
- 	* @author	mvd@cafecentral.fr
-**#******************************************************************************************/
-	resize = function()
-	{
-		$('#main').height($(window).height());
-	}
-//	Resize now
-	resize();
-//	And when the window resizes
-	$(window).resize(function(){resize()});
 
 /*********************************************************************************************
 /**	* Make the bubbles with the .warn class jump

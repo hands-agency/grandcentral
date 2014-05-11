@@ -152,14 +152,14 @@ class registry
 		$cache = app('cache');
 		$fileCache = $cache->get_templateroot().'/registry/'.md5(URL);
 		//	dans le cache
-		if (is_file($fileCache))
-		{
+	//	if (is_file($fileCache))
+	//	{
 			//print'<pre>';print_r('dans le cache site et admin + versions');print'</pre>';
-			$datas = unserialize(file_get_contents($fileCache));
-		}
+	//		$datas = unserialize(file_get_contents($fileCache));
+	//	}
 		//	création du cache
-		else
-		{
+	//	else
+	//	{
 			//	admin
 			$admin = item::create('site', 'admin', 'admin');
 			$tmp = item::create('version', null, 'admin');
@@ -176,7 +176,7 @@ class registry
 			$datas['version'] = $datas[env];
 			//	mise en cache
 			file_put_contents($fileCache, serialize($datas));
-		}
+	//	}
 		self::set(self::current_index, $datas);
 		//	page
 		$page = item::create('page');

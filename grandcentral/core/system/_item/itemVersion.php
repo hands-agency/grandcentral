@@ -21,7 +21,7 @@ class itemVersion extends _items
 		{
 			$param = SITE_VERSION;
 		}
-	//	sinon on détecte la langue du navigateur
+	//	Otherwise, detect browser language
 		elseif (isset($_SERVER['HTTP_ACCEPT_LANGUAGE']))
 		{
 			$lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
@@ -32,17 +32,24 @@ class itemVersion extends _items
 		{
 			$this->get($param);
 		}
-		else
-		{
-			$this->get(1);
-		}
 		
+	//	Nothing? Just get the first version.
+		if (!$this->exists())
+		{
+			$this->get(
+				array(
+					'order()' => 'id',
+					'limit()' => 1,
+				)
+			);
+		}
 		return $this;
 	}
 	
 	public function get_url()
-	{	
-		return ('site' == $this->get_env()) ? constant('VERSION_'.mb_strtoupper($this['key'])) : ADMIN_URL;
+	{
+		$url = (defined('VERSION_'.mb_strtoupper($this['key']))) ? constant('VERSION_'.mb_strtoupper($this['key'])) : SITE_URL;
+		return ('site' == $this->get_env()) ? $url : ADMIN_URL;
 	}
 	
 	public static function register()

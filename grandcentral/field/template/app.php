@@ -21,23 +21,20 @@
 /********************************************************************************************/
 //	Bind
 /********************************************************************************************/
-	$_APP->bind_file('css', 'css/app.css');
-	$_APP->bind_file('script', 'js/app.js');
+	$_APP->bind_file('css', '/css/app.css');
+	$_APP->bind_file('script', '/js/app.js');
 	
 /********************************************************************************************/
 //	construction du champ app
 /********************************************************************************************/
 	$_FIELD = $_PARAM['field'];
 	$apps = registry::get(registry::app_index);
-	// print'<pre>';print_r();print'</pre>';
-//	look for apps with template
+
+//	Build the app list
 	foreach ($apps as $app)
 	{
-		if ($t = $app->get_templates(null, $_SESSION['pref']['handled_env']))
-		{
-			$about = $app->get_ini('about');
-			$values[$app->get_key()] = $app->get_key();//$about['title'];
-		}
+		$about = $app->get_ini('about');
+		$values[$app->get_key()] = $about['title'];
 	}
 //	sort
 	natcasesort($values);
@@ -58,5 +55,5 @@
 //	template
 	$template = (isset($value['template']) & !empty($value['template'])) ? $value['template'] : null;
 //	param
-	$params = (isset($value['param']) & !empty($value['param'])) ? htmlspecialchars(json_encode($value['param']), ENT_COMPAT, 'UTF-8') : null;
+	$param = (isset($value['param']) & !empty($value['param'])) ? htmlspecialchars(json_encode($value['param']), ENT_COMPAT, 'UTF-8') : null;
 ?>
