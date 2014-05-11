@@ -21,12 +21,10 @@
 /********************************************************************************************/
 //	We start from the form and the field
 /********************************************************************************************/
-	// print'<pre>';print_r($_POST);print'</pre>';
 //	The form
 	$form = i('form', $_POST['form']);
 //	The field
 	$field = $form['field'][$_POST['field']];
-	
 //	création du champ de test
 	if (isset($_POST['value'])) $field['value'] = $_POST['value'];
 	$class = 'field'.ucfirst($field['type']);

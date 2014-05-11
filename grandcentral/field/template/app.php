@@ -47,14 +47,14 @@
 		'values' => $values,
 		'valuestype' => 'array'
 	);
-	$field = new fieldSelect($_FIELD->get_name().'[key]', $p);
+	$field = new fieldSelect($_FIELD->get_name().'[app]', $p);
 	
 /********************************************************************************************/
 //	Autoload values
 /********************************************************************************************/
 	$value = $_FIELD->get_value();
 //	app
-	if (isset($value['key']) && !empty($value['key'])) $field->set_value($value['key']);
+	if (isset($value['app']) && !empty($value['app'])) $field->set_value($value['app']);
 //	template
 	$template = (isset($value['template']) & !empty($value['template'])) ? $value['template'] : null;
 //	param

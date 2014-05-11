@@ -45,7 +45,7 @@ class file
 	{
 		$this->key = mb_substr($this->root, mb_strrpos($this->root, '/') + 1);
 		$this->dir = dirname($this->root);
-		$this->url = SITE_URL.mb_substr($this->root, mb_strlen(DOCUMENT_ROOT));
+		$this->url = DOMAIN_URL.mb_substr($this->root, mb_strlen(DOCUMENT_ROOT));
 	}
 
 /**

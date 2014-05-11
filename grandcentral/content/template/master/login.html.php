@@ -4,7 +4,7 @@
 	<!-- ZONE:meta-->
 	<!-- ZONE:css -->
 </head>
-<body data-env="<?=$_SESSION['pref']['handled_env']?>">
+<body data-env="<? $_SESSION['pref']['handled_env']?>">
 	<!-- ZONE:body -->
 		
 	<div id="main" class="siteOpened">

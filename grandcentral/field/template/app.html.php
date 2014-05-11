@@ -9,7 +9,7 @@
 		<div class="fieldAppContainer" data-name="<?= $_FIELD->get_name(); ?>" data-env="<?= $_SESSION['pref']['handled_env']; ?>">
 			<span class="fieldAppSelect"><?= $field; ?></span>
 			<button type="button">Configure</button>
-			<span class="fieldTemplateContainer" data-appkey="<?= $value['key']; ?>" data-template="<?= $template; ?>" data-param="<?= $params; ?>">
+			<span class="fieldTemplateContainer" data-appkey="<?= $value['app']; ?>" data-template="<?= $template; ?>" data-param="<?= $params; ?>">
 				<!-- Ajax -->
 			</span>
 		</div>

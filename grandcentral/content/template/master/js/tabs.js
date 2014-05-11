@@ -20,7 +20,7 @@ $(document).ready(function ()
 		param = link.attr('data-param'); /* We want the string, not the object */
 		$panel = $('#section_'+section);
 		panelWidth = $panel.outerWidth()+40;
-
+		
 	//	Hide all panels
 		$('#adminContent section').removeClass('active');
 	//	Hide options

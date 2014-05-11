@@ -19,17 +19,18 @@ class attrUrl extends _attrs
  */
 	public function database_get()
 	{
+		// print'<pre>';print_r($this->params);print'</pre>';
 		if (empty($this->data))
 		{
-			$this->data = $this->_slugify($this->item['title']->get());
+			$this->data = $this->_slugify($this->params['name']->get());
 		}
 		$this->data = preg_replace('#(\[[^\]]*\])#', '', $this->data);
 	//	nettoyage des [] existants
-		if ($this->item['status']->get() != 'live')
-		{
-			$slug = new slug();
-			$this->data .= '['.$slug->makeSlugs($this->item['status']->get()).']';
-		}
+		// if ($this->params['status'] != 'live')
+		// 		{
+		// 			$slug = new slug();
+		// 			$this->data .= '['.$slug->makeSlugs($this->params['status']).']';
+		// 		}
 		return $this->data;
 	}
 /**
@@ -67,6 +68,8 @@ class attrUrl extends _attrs
 		$this->params['table'] = $item->get_table();
 		$this->params['env'] = $item->get_env();
 		$this->params['version'] = (isset($item['version']) && !$item['version']->is_empty()) ? $item['version'] : null;
+		$this->params['status'] = $item['status'];
+		$this->params['name'] = $item['title']->get();
 		// print'<pre>';print_r(registry::get_constants());print'</pre>';
 	}
 /**

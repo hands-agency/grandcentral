@@ -145,6 +145,9 @@ class registry
  */
 	protected function _prepare_current()
 	{
+		//	Env
+		if (!isset($_SESSION['pref']['handled_env'])) $_SESSION['pref']['handled_env'] = 'site';
+		if (isset($_GET['env'])) $_SESSION['pref']['handled_env'] = $_GET['env'];
 		// print'<pre>';print_r(self::get_constants());print'</pre>';
 		$cache = app('cache');
 		$fileCache = $cache->get_templateroot().'/registry/'.md5(URL);
@@ -157,10 +160,6 @@ class registry
 		//	création du cache
 		else
 		{
-			//print'<pre>';print_r('génération du cache site et admin + versions');print'</pre>';
-			//	Env
-			if (!isset($_SESSION['pref']['handled_env'])) $_SESSION['pref']['handled_env'] = 'site';
-			if (isset($_GET['env'])) $_SESSION['pref']['handled_env'] = $_GET['env'];
 			//	admin
 			$admin = item::create('site', 'admin', 'admin');
 			$tmp = item::create('version', null, 'admin');

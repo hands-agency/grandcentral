@@ -286,6 +286,7 @@ abstract class _apps
 	{
 	//	Failsafe first slash
 		$file = (mb_strpos($file, '/') === 0) ? $file : '/'.$file;
+		// print'<pre>';print_r($file);print'</pre>';
 		if (filter_var($file, FILTER_VALIDATE_URL) === false)
 		{
 			$file = (mb_strpos($file, '/') === 0) ? $file : '/'.$file;

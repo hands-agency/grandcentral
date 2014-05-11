@@ -10,6 +10,17 @@
 class attrVersion extends _attrs
 {
 /**
+ * Attacher des données de l'item contenant l'attribut
+ *
+ * @return	string	url
+ * @access	public
+ */
+	public function attach(_items $item)
+	{
+		$this->params['env'] = $item->get_env();
+		// print'<pre>';print_r(registry::get_constants());print'</pre>';
+	}
+/**
  * Set attribute
  *
  * @param	stringd	la variable
@@ -44,7 +55,7 @@ class attrVersion extends _attrs
 	{
 		if (empty($this->data))
 		{
-			$this->data = cc($this->item->get_env(), current)['version']->get();
+			$this->data = cc($this->params['env'], current)['version']['id']->get();
 		}
 		return $this->data;
 	}
