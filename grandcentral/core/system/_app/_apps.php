@@ -388,7 +388,7 @@ abstract class _apps
 					{
 						if (preg_match($pattern, $item->get_key(), $matches))
 						{
-							$tpls[] = empty($basename) ? '/'.$matches[1] : '/'.$basename.'/'.$matches[1];
+							$tpls[] = empty($basename) ? $matches[1] : $basename.'/'.$matches[1];
 							// print'<pre>';print_r('SUCCESS');print'</pre>';
 						}
 					}
@@ -449,7 +449,7 @@ abstract class _apps
 				{
 					foreach ($files['class'] as $file)
 					{
-						preg_match('/([a-z0-9A-Z_-]*).php/u', $file, $class);
+						preg_match('/([a-z0-9A-Z_-]*).php$/u', $file, $class);
 						if (isset($class[1])) $classes[$class[1]] = $app->get_key();
 					}
 				}

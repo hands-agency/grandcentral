@@ -72,6 +72,7 @@ class bunch implements ArrayAccess, Iterator, Countable
 	//	on extrait la colonne à trier
 		$extract = $this->get_column($index);
 		//uasort($extract, 'strcoll');
+		if (empty($extract)) return $this;
 		//sort($extract, SORT_LOCALE_STRING);
 		natcasesort($extract);
 	//	on récupère les index triés
@@ -88,6 +89,7 @@ class bunch implements ArrayAccess, Iterator, Countable
 		}
 		$this->data = &$tmp;
 		$this->order = $index;
+		
 		array_values($this->data);
 		
 		return $this;
