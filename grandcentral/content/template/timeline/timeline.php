@@ -19,7 +19,7 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	Bind
+//	Some binds
 /********************************************************************************************/
 	$_APP->bind_file('script', 'timeline/js/timeline.js');
 	$_APP->bind_file('css', 'timeline/css/timeline.css');

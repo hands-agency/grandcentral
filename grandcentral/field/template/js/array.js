@@ -3,7 +3,7 @@
 //	Some vars
 	selector = 'li[data-type="array"] input[data-associative="array"]';
 	
-//	Bind the key
+//	Some binds the key
 	$(document).off('input', selector).on('input', selector, function()
 	{
 	//	Get the value

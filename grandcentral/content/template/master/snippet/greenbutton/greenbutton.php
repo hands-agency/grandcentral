@@ -19,7 +19,7 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	Bind
+//	Some binds
 /********************************************************************************************/
 	$_APP->bind_file('script', 'master/snippet/greenbutton/js/greenbutton.plugin.js');
 	$_APP->bind_file('script', 'master/snippet/greenbutton/js/greenbutton.js');

@@ -19,7 +19,7 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	Bind
+//	Some binds
 /********************************************************************************************/
 	$_APP->bind_file('script', 'master/snippet/notification/js/notification.js');
 	$_APP->bind_file('css', 'master/snippet/notification/css/notification.css');

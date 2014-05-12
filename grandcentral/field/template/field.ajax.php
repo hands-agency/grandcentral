@@ -19,7 +19,7 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	Bind
+//	Some binds
 /********************************************************************************************/
 	// print '<pre>';print_r($_POST);print'</pre>';
 	$value = json_decode(stripslashes($_POST['value']), true);

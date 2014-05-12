@@ -19,7 +19,7 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	Bind
+//	Some binds
 /********************************************************************************************/	
 	$_APP->bind_file('css', 'openlabs/const/css/const.css');
 	$_APP->bind_file('script', 'openlabs/const/js/const.js');

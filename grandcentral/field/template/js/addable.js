@@ -24,7 +24,7 @@
 		//	the plugin's final properties are the merged default and user-provided options (if any)
 			plugin.settings = $.extend({}, vars, options);
 			
-		//	Bind the add and delete buttons
+		//	Some binds the add and delete buttons
 			plugin.addButtons();
 			plugin.deleteButtons();
 		}

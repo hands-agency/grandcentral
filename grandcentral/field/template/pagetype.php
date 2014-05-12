@@ -19,7 +19,7 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	Bind
+//	Some binds
 /********************************************************************************************/
 //	$_APP->bind_file('css', 'css/pagetype.css');
 //	$_APP->bind_file('script', 'js/pagetype.js');
@@ -29,4 +29,99 @@
 /********************************************************************************************/
 //	For easier access
 	$_FIELD = $_PARAM['field'];
+//	The stores values
+	$value = $_FIELD->get_value();
+	$possibleFields = array('key', 'http_status', 'content_type', 'app', 'template', 'url');
+//	List of the apps
+	$apps = registry::get(registry::app_index);
+	
+/********************************************************************************************/
+//	Prepare values
+/********************************************************************************************/
+	foreach ($possibleFields as $field) if (!isset($value[$field])) $value[$field] = null;
+	
+/********************************************************************************************/
+//	Build the key field
+/********************************************************************************************/
+//	Values
+	$values = array(
+		'content' => 'Content page',
+		'header' => 'Header',
+		'link' => 'Just a link',
+	);
+//	field
+	$p = array(
+		'label' => 'Page type',
+		'values' => $values,
+		'value' => $value['key'],
+		'valuestype' => 'array'
+	);
+	$fieldKey = new fieldRadio($_FIELD->get_name().'[key]', $p);
+	
+/********************************************************************************************/
+//	Build the http_status field
+/********************************************************************************************/
+//	Values
+	$values = array(
+		'200 OK' => '200 OK',
+		'404 Not Found' => '404 Not Found',
+		'307 Temporary Redirect' => '307 Temporary Redirect',
+	);
+//	field
+	$p = array(
+		'label' => 'HTTP Status',
+		'values' => $values,
+		'value' => $value['http_status'],
+		'valuestype' => 'array'
+	);
+	$fieldHttpStatus = new fieldSelect($_FIELD->get_name().'[http_status]', $p);
+	
+/********************************************************************************************/
+//	Build the content_type field
+/********************************************************************************************/
+//	Values
+	$values = array(
+		'html' => 'HTML',
+		'xml' => 'XML',
+		'json' => 'JSON',
+	);
+//	field
+	$p = array(
+		'label' => 'Content Type',
+		'values' => $values,
+		'value' => $value['content_type'],
+		'valuestype' => 'array'
+	);
+	$fieldContentType = new fieldSelect($_FIELD->get_name().'[content_type]', $p);
+	
+/********************************************************************************************/
+//	Build the app field
+/********************************************************************************************/
+//	Values
+	foreach ($apps as $app)
+	{
+		$about = $app->get_ini('about');
+		$values[$app->get_key()] = $about['title'];
+	}
+	natcasesort($values);
+//	Field
+	$p = array(
+		'label' => 'App',
+		'placeholder' => '...',
+		'values' => $values,
+		'value' => $value['app'],
+		'valuestype' => 'array'
+	);
+	$fieldApp = new fieldApp($_FIELD->get_name(), $p);
+	
+/********************************************************************************************/
+//	Build the url field
+/********************************************************************************************/
+//	Field
+	$p = array(
+		'label' => 'Link URL',
+		'placeholder' => 'The link URL',
+		'value' => $value['url'],
+	);
+	$fieldUrl = new fieldText($_FIELD->get_name().'[url]', $p);
 ?>

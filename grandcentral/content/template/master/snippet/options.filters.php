@@ -19,7 +19,7 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	Bind
+//	Some binds
 /********************************************************************************************/
 //	$_APP->bind_file('script', 'master/js/options.filters.js');
 //	$_APP->bind_file('css', 'master/css/options.filters.css');

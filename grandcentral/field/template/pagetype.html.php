@@ -5,10 +5,14 @@
 <div class="wrapper">
 	<? if ($_FIELD->get_descr() != null) : ?><div class="help"><?= $_FIELD->get_descr() ?></div><? endif ?>
 	<div class="field">
-		<select>
-			<option>Content</option>
-			<option>Feed</option>
-			<option>Header</option>
-		</select>
+		
+		<ol>
+			<li><?= $fieldKey ?></li>
+			<li><?= $fieldHttpStatus ?></li>
+			<li><?= $fieldContentType ?></li>
+			<li data-type="app"><?= $fieldApp ?></li>
+			<li><?= $fieldUrl ?></li>
+		</ol>
+		
 	</div>
 </div>

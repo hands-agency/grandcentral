@@ -1,13 +1,12 @@
 (function($)
 {
 //	Some vars content-side
-	$field = $('[data-type="app"]');
+	$li = $('[data-type="app"]');
+	$field = $li.find('.field');
 	$contentApp = $field.find('[name$="\[app\]"]');
-	$contentTemplate = $field.find('[name$="\[template\]"]');
-	$contentParam = $field.find('[name$="\[param\]"]');
-	$container = $contentApp.closest('.fieldAppContainer');
-	$templateContainer = $container.find('.fieldTemplateContainer');
-	
+	$configureContainer = $field.find('.configure');
+	$contentTemplate = $configureContainer.find('.template');
+	$contentParam = $configureContainer.find('.param');
 //	Some vars context-side
 	contextDom = '#adminContext [data-template="/app.context"]';
 	
@@ -15,34 +14,31 @@
 	$contentApp.change(function()
 	{
 	//	Reset template and params
-		$contentTemplate.val('');
-		$contentParam.val('');
-	//	chargement des templates et paramètres
-		var value = $contentApp.val();
-		var params = $templateContainer.attr('data-param');
-		if ($templateContainer.data('appkey') != value)
-		{
-			params = null;
-		};
-		if (value)
-		{
-			openContext(
-			{
-				app: 'field',
-				template: '/app.context',
-				env: $container.data('env'),
-				name: $container.data('name'),
-				appkey: value,
-				valueTemplate: $templateContainer.data('template'),
-				valueParam: params
-			});
-		}
+		$contentTemplate.html('');
+		$contentParam.html('');
+	//	Configure
+		$field.find('button').click();
 	});
 	
 //	Open context to manage template and params
-	$container.on('click', 'button', function()
+	$field.on('click', 'button', function()
 	{
-		$contentApp.trigger('change');
+	//	Some vars
+		valueApp = $contentApp.val();
+		valueTemplate = $contentTemplate.find('[name$="\[template\]"]').val()
+		valueParam = $contentParam.find('[name*="\[param\]"]').serialize();
+		
+	//	Open Context to configure
+		openContext(
+		{
+			app: 'field',
+			template: '/app.context',
+			env: $field.data('env'),
+			name: $field.data('name'),
+			valueApp: valueApp,
+			valueTemplate: valueTemplate,
+			valueParam: valueParam,
+		});
 	});
 	
 //	Send template and params to content
@@ -54,14 +50,15 @@
 		$contextParam = $context.find('.param :input');
 		
 	//	Start Fresh
-		$templateContainer.html('');
+		$contentTemplate.html('');
+		$contentParam.html('');
 		
 	//	Write template
 		template = $contextTemplate.val();
 		if (template)
 		{
-			input = '<input type="hidden" name="'+$container.data('name')+'[template]" value="'+template+'" />';
-			$templateContainer.append(input);
+			input = '<input type="hidden" name="'+$field.data('name')+'[template]" value="'+template+'" />';
+			$contentTemplate.append(input);
 		}
 		
 	//	Write params
@@ -70,12 +67,12 @@
 		{
 			for (var i=0; i < param.length; i++)
 			{
-				input = '<input type="hidden" name="'+$container.data('name')+'[param]['+param[i]['name'] +']" value="'+param[i]['value']+'" />';
-				$templateContainer.append(input);
+				input = '<input type="hidden" name="'+$field.data('name')+'[param]['+param[i]['name'] +']" value="'+param[i]['value']+'" />';
+				$contentParam.append(input);
 			}
 		}
 	//	Close the context & validate field
 		closeContext();
-		$('#section_edit form').data('validate').field($field);
+		$('#section_edit form').data('validate').field($li);
 	});
 })(jQuery);  

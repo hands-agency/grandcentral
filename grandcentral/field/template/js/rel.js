@@ -2,7 +2,7 @@
 {
 //	Some vars
 	selector = 'li[data-type="rel"] input[data-associative="rel"]';
-//	Bind the key
+//	Some binds the key
 	$(document).off('input', selector).on('input', selector, function()
 	{
 	//	Get the value

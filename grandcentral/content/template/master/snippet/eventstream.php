@@ -19,7 +19,7 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	Bind scripts & css files
+//	Some binds scripts & css files
 /********************************************************************************************/
 	$_APP->bind_file('css', 'master/css/eventstream.css');
 	$_APP->bind_file('script', 'master/js/eventstream.js');
@@ -44,7 +44,7 @@
 			'item' => $_GET['item'],
 		));
 
-	//	Bind script
+	//	Some binds script
 		$script = "
 			$.sse(
 			{

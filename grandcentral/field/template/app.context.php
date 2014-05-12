@@ -20,9 +20,21 @@
  */
 /********************************************************************************************/
 //	Some vars
-/********************************************************************************************/
-//	print '<pre>';print_r($_POST);print'</pre>';
-	$app = app($_POST['appkey'], null, json_decode($_POST['valueParam'], true));
+/********************************************************************************************/	
+//	Value template
+	$valueTemplate = (isset($_POST['valueTemplate'])) ? $_POST['valueTemplate'] : null;
+	
+//	Value param
+	parse_str(urldecode($_POST['name']), $name);
+	$form = key($name);
+	$field = key($name[$form]);
+	if ($_POST['valueParam'])
+	{
+		parse_str(urldecode($_POST['valueParam']), $param);
+		$valueParam = $param[$form][$field]['param'];
+	}
+	else $valueParam = array();
+	$app = app($_POST['valueApp'], null, $valueParam);
 	
 /********************************************************************************************/
 //	Template list
@@ -38,7 +50,7 @@
 		$fparams = array(
 			'values' => $templates,
 			'valuestype' => 'array',
-			'value' => $_POST['valueTemplate']
+			'value' => $valueTemplate,
 		);
 		$fieldTemplate = new fieldSelect($_POST['name'].'[template]', $fparams);
 	}	

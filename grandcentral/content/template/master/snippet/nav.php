@@ -19,7 +19,7 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	Bind
+//	Some binds
 /********************************************************************************************/
 	$_APP->bind_file('script', 'master/js/nav.js');
 	$_APP->bind_file('css', 'master/css/nav.css');
@@ -54,19 +54,13 @@
 					'title' => 'er',
 					'display' => 'big',
 					'link' => 'page',
-					'bunch' => i('page', array('key' => array('home', 'logout'), 'order()' => 'inherit(key)'), 'admin'),
-				),
-				'edit' =>  array(
-					'title' => 'er',
-					'display' => 'big',
-					'link' => 'edit',
-					'bunch' => i('human', $_SESSION['user']['id'], 'site'),
+					'bunch' => i('page', array('key' => array('home'), 'order()' => 'inherit(key)'), 'admin'),
 				),
 				'byebye' =>  array(
 					'title' => 'er',
 					'display' => 'big',
 					'link' => 'page',
-					'bunch' => i('page', array('key' => array('logout'), 'order()' => 'inherit(key)'), 'admin'),
+					'bunch' => i('page', array('key' => array('logout.post'), 'order()' => 'inherit(key)'), 'site'),
 				),
 			),
 		),
