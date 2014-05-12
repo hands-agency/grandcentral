@@ -45,15 +45,3 @@
 <h3>Find it</h3>
 <p>Written in <?=$function['file']?></p>
 <p>Starts line <?=$function['line']['start']?>, ends line <?=$function['line']['end']?> (that's <?=$function['line']['end']-$function['line']['start']?> lines of code)</p>
-
-<h3>Comments</h3>
-<p>Please note that these comments will be shared with the whole Café Central Community, not just your company.</p>
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=171899362895002";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<div class="fb-comments" data-href="http://www.cafecentral.fr" data-num-posts="10" data-width="570"></div>
