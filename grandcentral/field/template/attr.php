@@ -53,7 +53,7 @@
 /********************************************************************************************/
 //	The list of add buttons
 /********************************************************************************************/
-	foreach ($available as $field) $addbuttons .= '<li><button type="button" data-type="'.mb_substr(mb_strtolower($field), 4).'">'.mb_substr(mb_strtolower($field), 4).'</button></li>';
+	foreach ($available as $field) $addbuttons .= '<li><button type="button" data-type="'.mb_substr(mb_strtolower($field), 4).'">+ '.mb_substr(mb_strtolower($field), 4).'</button></li>';
 
 /********************************************************************************************/
 //	Print the data from the Database

@@ -1,0 +1,16 @@
+/* Restyle app field*/
+[data-type="app"] .field label
+{
+	display:none;
+}
+[data-type="app"] .field .wrapper
+{
+	margin:0 !important;
+	padding:0 !important;
+	width:auto !important;
+}
+[data-type="app"] .field .wrapper .field
+{
+	border:none !important;
+	padding:0 !important;
+}

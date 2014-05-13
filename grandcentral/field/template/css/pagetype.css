@@ -1,0 +1,25 @@
+/********************************************************************************************/
+/* All
+/********************************************************************************************/
+[data-type="pagetype"] .field>div
+{
+	padding:5px;
+	display:inline-block;
+	width:49.6%;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	vertical-align:top;
+}
+[data-type="pagetype"] .field>div.option>ol
+{
+	background:#F2F2F2;
+}
+[data-type="pagetype"] .field>div>ol>li
+{
+	overflow:auto;
+}
+[data-type="pagetype"] .field>div>ol>li .field
+{
+	border-color:#fff !important;
+}

@@ -6,13 +6,20 @@
 	<? if ($_FIELD->get_descr() != null) : ?><div class="help"><?= $_FIELD->get_descr() ?></div><? endif ?>
 	<div class="field">
 		
-		<ol>
-			<li><?= $fieldKey ?></li>
-			<li><?= $fieldHttpStatus ?></li>
-			<li><?= $fieldContentType ?></li>
-			<li data-type="app"><?= $fieldApp ?></li>
-			<li><?= $fieldUrl ?></li>
-		</ol>
+		<div class="type">
+			<ol>
+				<li data-key="key" data-type="radio"><?= $fieldKey ?></li>
+			</ol>
+		</div>
+		
+		<div class="option">
+			<ol>
+				<li data-key="http-status" data-type="select"><?= $fieldHttpStatus ?></li>
+				<li data-key="content-type" data-type="select"><?= $fieldContentType ?></li>
+				<li data-key="url" data-type="url"><?= $fieldUrl ?></li>
+				<li data-key="master" data-type="app"><?= $fieldMaster ?></li>
+			</ol>
+		</div>
 		
 	</div>
 </div>

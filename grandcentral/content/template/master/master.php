@@ -19,6 +19,12 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
+//	Some tests
+/********************************************************************************************/
+//	Display entry ticket (minimum usage, right after booting)
+//	echo '<div style="font-family:arial;padding:30px 10px;background:#FE6022;color:#fff;font-size:20px;text-align:center"><strong style="color:#FE6022;background:#fff;padding:10px;margin-right:10px">Entry ticket</strong> '.sentinel::stopwatch().'s ● '.database::query_count().' queries ● using '.sentinel::memoryusage().'</div>';exit;
+	
+/********************************************************************************************/
 //	Some vars
 /********************************************************************************************/
 //	The current page

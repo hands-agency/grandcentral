@@ -784,7 +784,7 @@ progress::-webkit-progress-value {
 {
 	font-family: "Raleway-Thin";
 	font-size:35px;
-	margin:0 0 20px 0;
+	margin:0 0 30px 0;
 	text-align:center;
 }
 /* Footer */
@@ -1088,37 +1088,48 @@ footer
 
 #grandCentralAdmin button
 {
-	background:none;
+	background:rgba(0, 0, 0,.2);
 	border:none;
-	padding:0;
+	border-radius:2px;
+	font-size:10px;
+	padding:10px 15px;
 	margin:0;
-	color:#999;
+	color:#fff;
 	cursor: pointer;
+	text-transform:uppercase;
+	font-family:'Raleway-Bold';
+	letter-spacing:1px;
+	-webkit-transition: all .1s ease-out; 
+	-moz-transition: all .1s ease-out; 
+	-o-transition: all .1s ease-out; 
+	transition: all .1s ease-out;
 }
 #grandCentralAdmin button:hover
 {
-	color:#3eb4d6;
-	border-color:#999;
+	color:#fff;
+	background:#3eb4d6;
 }
 #grandCentralAdmin button:active
 {
 }
 
 /* Close */
-#grandCentralAdmin button.close
+#grandCentralAdmin button.close,
+#grandCentralAdmin button.delete
 {
 	position:absolute;
 	top:10px;
 	right:10px;
 	z-index:3;
 	border:none;
-	background:transparent;
+	background:transparent !important;
 	color:#000;
 	opacity:0.65;
 	width:26px;
 	height:26px;
 	cursor:pointer;
 	font-size:12px;
+	padding:0 !important;
 }
 #grandCentralAdmin button.close:hover
 {

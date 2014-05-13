@@ -21,8 +21,8 @@
 /********************************************************************************************/
 //	Some binds
 /********************************************************************************************/
-//	$_APP->bind_file('css', 'css/pagetype.css');
-//	$_APP->bind_file('script', 'js/pagetype.js');
+	$_APP->bind_file('css', 'css/pagetype.css');
+	$_APP->bind_file('script', 'js/pagetype.js');
 	
 /********************************************************************************************/
 //	Some vars
@@ -31,7 +31,7 @@
 	$_FIELD = $_PARAM['field'];
 //	The stores values
 	$value = $_FIELD->get_value();
-	$possibleFields = array('key', 'http_status', 'content_type', 'app', 'template', 'url');
+	$possibleFields = array('key', 'http_status', 'content_type', 'master', 'template', 'url');
 //	List of the apps
 	$apps = registry::get(registry::app_index);
 	
@@ -43,6 +43,8 @@
 /********************************************************************************************/
 //	Build the key field
 /********************************************************************************************/
+//	Name
+	$name = $_FIELD->get_name().'[key]';
 //	Values
 	$values = array(
 		'content' => 'Content page',
@@ -56,16 +58,32 @@
 		'value' => $value['key'],
 		'valuestype' => 'array'
 	);
-	$fieldKey = new fieldRadio($_FIELD->get_name().'[key]', $p);
+	$fieldKey = new fieldRadio($name, $p);
+	
+/********************************************************************************************/
+//	Build the url field
+/********************************************************************************************/
+//	Name
+	$name = $_FIELD->get_name().'[url]';
+//	Field
+	$p = array(
+		'label' => 'Link URL',
+		'placeholder' => 'The link URL',
+		'value' => $value['url'],
+	);
+	$fieldUrl = new fieldText($name, $p);
 	
 /********************************************************************************************/
 //	Build the http_status field
 /********************************************************************************************/
+//	Name
+	$name = $_FIELD->get_name().'[http_status]';
 //	Values
 	$values = array(
 		'200 OK' => '200 OK',
+		'301 Moved Permanently' => '301 Moved Permanently',
+		'302 Moved Temporarily' => '302 Moved Temporarily',
 		'404 Not Found' => '404 Not Found',
-		'307 Temporary Redirect' => '307 Temporary Redirect',
 	);
 //	field
 	$p = array(
@@ -74,11 +92,13 @@
 		'value' => $value['http_status'],
 		'valuestype' => 'array'
 	);
-	$fieldHttpStatus = new fieldSelect($_FIELD->get_name().'[http_status]', $p);
+	$fieldHttpStatus = new fieldSelect($name, $p);
 	
 /********************************************************************************************/
 //	Build the content_type field
 /********************************************************************************************/
+//	Name
+	$name = $_FIELD->get_name().'[content_type]';
 //	Values
 	$values = array(
 		'html' => 'HTML',
@@ -92,11 +112,13 @@
 		'value' => $value['content_type'],
 		'valuestype' => 'array'
 	);
-	$fieldContentType = new fieldSelect($_FIELD->get_name().'[content_type]', $p);
+	$fieldContentType = new fieldSelect($name, $p);
 	
 /********************************************************************************************/
 //	Build the app field
 /********************************************************************************************/
+//	Name
+	$name = $_FIELD->get_name().'[master]';
 //	Values
 	foreach ($apps as $app)
 	{
@@ -106,22 +128,9 @@
 	natcasesort($values);
 //	Field
 	$p = array(
-		'label' => 'App',
+		'label' => 'Master template',
 		'placeholder' => '...',
-		'values' => $values,
-		'value' => $value['app'],
-		'valuestype' => 'array'
+		'value' => $value['master'],
 	);
-	$fieldApp = new fieldApp($_FIELD->get_name(), $p);
-	
-/********************************************************************************************/
-//	Build the url field
-/********************************************************************************************/
-//	Field
-	$p = array(
-		'label' => 'Link URL',
-		'placeholder' => 'The link URL',
-		'value' => $value['url'],
-	);
-	$fieldUrl = new fieldText($_FIELD->get_name().'[url]', $p);
+	$fieldMaster = new fieldApp($name, $p);
 ?>
