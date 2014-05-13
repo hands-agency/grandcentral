@@ -92,15 +92,15 @@
 			'page' => 'list',
 		//	Subnav
 			'subnav' => array(
-				'social' => array(
-					'display' => 'big',
-					'link' => 'list',
-					'bunch' => i('item', array('key' => array('human', 'machine', 'group'), 'order()' => 'inherit(key)'), 'site'),
-				),
 				'major' => array(
 					'display' => 'tiles',
 					'link' => 'list',
 					'bunch' => i('item', array('system' => false, 'hasurl' => true, 'order()' => 'title'), $_SESSION['pref']['handled_env']),
+				),
+				'social' => array(
+					'display' => 'big',
+					'link' => 'list',
+					'bunch' => i('item', array('key' => array('human', 'machine', 'group'), 'order()' => 'inherit(key)'), 'site'),
 				),
 				'minor' => array(
 					'display' => 'tiles',

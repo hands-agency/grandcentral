@@ -76,7 +76,7 @@
 /********************************************************************************************/
 //	The list of add buttons
 /********************************************************************************************/
-	foreach ($available as $field) $addbuttons .= '<li><button type="button" data-type="'.$field.'">'.$field.'</button></li>';
+	foreach ($available as $field) $addbuttons .= '<li><button type="button" data-type="'.$field.'">+ '.$field.'</button></li>';
 
 /********************************************************************************************/
 //	Print the data from the Database
