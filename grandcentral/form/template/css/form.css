@@ -22,7 +22,7 @@ section[data-template="/edit/edit"]>form>fieldset>.descr
 }
 
 /* Lines */
-section[data-template="/edit/edit"]>form>fieldset>ol>li
+section[data-template="/edit/edit"]>form>fieldset>ol>li[data-type]
 {
 	background:#fff;
 	-moz-border-radius:3px;
@@ -40,7 +40,7 @@ section[data-template="/edit/edit"]>form>fieldset>ol>li
 }
 
 /* Labels */
-section[data-template="/edit/edit"]>form>fieldset ol>li>label
+section[data-template="/edit/edit"]>form>fieldset ol>li[data-type]>label
 {
 	color:#333333;
 	width:25%;
@@ -49,13 +49,14 @@ section[data-template="/edit/edit"]>form>fieldset ol>li>label
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
 	text-align:right;
-	padding:15px 15px 0 0;
-	font-family: "Raleway-Thin";
+	padding:15px 15px 0 15px;
+	font-family: "Raleway-Regular";
 	vertical-align:top;
+	color:#ccc;
 }
 
 /* Field */
-section[data-template="/edit/edit"]>form>fieldset ol>li .wrapper
+section[data-template="/edit/edit"]>form>fieldset ol>li[data-type] .wrapper
 {
 	width:75%;
 	display:inline-block;
@@ -66,7 +67,7 @@ section[data-template="/edit/edit"]>form>fieldset ol>li .wrapper
 	-webkit-border-radius:3px;
 	border-radius:3px;
 }
-section[data-template="/edit/edit"]>form>fieldset ol>li .wrapper .field
+section[data-template="/edit/edit"]>form>fieldset ol>li[data-type] .wrapper .field
 {
 	position:relative;
 	display: block;
@@ -77,22 +78,15 @@ section[data-template="/edit/edit"]>form>fieldset ol>li .wrapper .field
 	transition:border-color .3s ease-in;
 	font-family:'Raleway-Regular';
 }
-section[data-template="/edit/edit"]>form>fieldset ol>li>.wrapper>.field
+section[data-template="/edit/edit"]>form>fieldset ol>li[data-type] .wrapper .field
 {
 	border-left:1px solid #eee;
-}
-section[data-template="/edit/edit"]>form>fieldset ol>li.number .wrapper .field,
-section[data-template="/edit/edit"]>form>fieldset ol>li.text .wrapper .field,
-section[data-template="/edit/edit"]>form>fieldset ol>li.textarea .wrapper .field,
-section[data-template="/edit/edit"]>form>fieldset ol>li.wysiwyg .wrapper .field,
-section[data-template="/edit/edit"]>form>fieldset ol>li.multipleselect .wrapper .field
-{
 }
 
 /********************************************************************************************/
 /* Help
 /********************************************************************************************/
-section[data-template="/edit/edit"]>form>fieldset ol>li .wrapper .help
+section[data-template="/edit/edit"]>form>fieldset ol>li[data-type] .wrapper .help
 {
 	padding:10px 0;
 	display:none;
