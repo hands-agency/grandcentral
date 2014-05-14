@@ -4,6 +4,7 @@
 	$li = $('[data-type="pagetype"]');
 	$field = $li.find('.field');
 	$fieldKey = $field.find('input[name$="[key]"]:radio');
+	$fieldKeySelected = $field.find('input[name$="[key]"]:checked');
 	
 	$liHttpstatus = $field.find('[data-key="http-status"]');
 	$fieldHttpstatus = $field.find('[data-key="http-status"] select');
@@ -55,5 +56,8 @@
 				break;
 		}
 	});
+	
+//	Apply these rules to currently selected
+	$fieldKeySelected.trigger('change');
 	
 })(jQuery);  
