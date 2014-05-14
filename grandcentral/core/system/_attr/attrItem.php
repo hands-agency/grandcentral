@@ -84,7 +84,11 @@ class attrItem extends _attrs
 	//	Start with the default for all properties
 		$params = parent::get_properties();
 	//	Somes specifics for this attr
-		// $params['key']['value'] = 'item';
+		$params['rel'] = array(
+            'name' => 'param',
+            'type' => 'bunch',
+            'label' => 'Build your list of items',
+        );
 	//	Return
 		return $params;
 	}

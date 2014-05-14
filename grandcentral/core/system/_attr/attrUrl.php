@@ -19,8 +19,7 @@ class attrUrl extends _attrs
  */
 	public function database_get()
 	{
-		// print'<pre>';print_r($this->params);print'</pre>';
-		if (empty($this->data))
+		if (empty($this->data) && isset($this->params['name']))
 		{
 			$this->data = $this->_slugify($this->params['name']->get());
 		}

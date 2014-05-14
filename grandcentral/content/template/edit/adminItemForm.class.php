@@ -160,6 +160,11 @@ class adminItemForm
 			case $attr['type'] == 'version':
 				$field['type'] = 'text';
 				break;
+		//	version
+			case $attr['type'] == 'i18n':
+				$field['type'] = 'i18n';
+				$field['field'] = $attr['field'];
+				break;
 		//	array
 			case $attr['type'] == 'array':
 				$field['type'] = 'array';
@@ -167,8 +172,8 @@ class adminItemForm
 				switch (true)
 				{
 				//	objet page
-					case $this->item->get_table() == 'page' && $attr['key'] == 'master':
-						$field['type'] = 'master';
+					case $this->item->get_table() == 'page' && $attr['key'] == 'type':
+						$field['type'] = 'pagetype';
 						break;
 				//	objet form
 					case $this->item->get_table() == 'form' && $attr['key'] == 'field':

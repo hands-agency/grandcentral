@@ -16,10 +16,8 @@
 //	Change options based on page type
 	$fieldKey.change(function()
 	{
-	//	Currently selected pagetype
 		type = $(this).val();
-		
-	//	Display options based on pagetype
+	//	Display options based on page type
 		switch(type)
 		{
 		//	Content pages
@@ -34,7 +32,6 @@
 			//	Set status to 200 OK
 				$fieldHttpstatus.val('200 OK');
 				break;
-				
 		//	Headers
 			case 'header':
 			//	Hide app configuration (master template)
@@ -46,7 +43,6 @@
 			//	Set status to 200 OK
 				$fieldHttpstatus.val('200 OK');
 				break;
-				
 		//	Links
 			case 'link':
 			//	Hide app configuration (master template)
@@ -61,7 +57,7 @@
 		}
 	});
 	
-//	Apply these rules to currently selected pagetype
+//	Apply these rules to currently selected
 	$fieldKeySelected.trigger('change');
 	
 })(jQuery);  

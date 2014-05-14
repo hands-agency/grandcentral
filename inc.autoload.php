@@ -128,8 +128,11 @@ class boot
 					$this->site = $param;
 					break 2;
 				}
-			//	recherche approximative
-				elseif (mb_strpos($url, $this->domain) === 0 && mb_strpos($this->url.'/', mb_substr($url, 0, mb_strrpos($url, '/')).'/') === 0)
+			}
+			foreach ((array) $param['url'] as $version => $url)
+			{
+			//	recherche exacte
+				if (mb_strpos($url, $this->domain) === 0 && mb_strpos($this->url.'/', mb_substr($url, 0, mb_strrpos($url, '/')).'/') === 0)
 				{
 					$param['url'] = mb_substr($url, 0, mb_strrpos($url, '/'));
 					$this->site = $param;
