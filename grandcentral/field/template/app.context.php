@@ -35,12 +35,15 @@
 	}
 	else $valueParam = array();
 	$app = app($_POST['valueApp'], null, $valueParam);
+
+//	Content-type
+	$valueContenttype = (isset($_POST['valueContenttype'])) ? $_POST['valueContenttype'] : null;
 	
 /********************************************************************************************/
 //	Template list
 /********************************************************************************************/
 //	Check if the app has some templates
-	$templates = $app->get_templates(null, $_POST['env']);
+	$templates = $app->get_templates($valueContenttype, $_POST['env']);
 	if ($templates)
 	{
 	//	We need templates, not indexes

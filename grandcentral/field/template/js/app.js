@@ -27,6 +27,8 @@
 		valueApp = $contentApp.val();
 		valueTemplate = $contentTemplate.find('[name$="\[template\]"]').val()
 		valueParam = $contentParam.find('[name*="\[param\]"]').serialize();
+		// Sometimes we have a content-type as a template filter
+		valueContenttype = ($('[data-type="pagetype"]').length != 0) ? $('[data-type="pagetype"] [name$="\[content_type\]"]').val() : undefined;
 		
 	//	Open Context to configure
 		openContext(
@@ -36,6 +38,7 @@
 			env: $field.data('env'),
 			name: $field.data('name'),
 			valueApp: valueApp,
+			valueContenttype: valueContenttype,
 			valueTemplate: valueTemplate,
 			valueParam: valueParam,
 		});
