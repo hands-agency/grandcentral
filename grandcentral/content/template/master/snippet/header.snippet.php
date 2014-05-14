@@ -1,6 +1,6 @@
 <ul id="options">
 	<li id="filter" class="off" data-batchicon="&#xF06B;"></li>
-	<li id="refine" class="off" data-batchicon="&#xF097;"><input type="text" placeholder="<?=$current->cut('50')?>" /></li>
+	<li id="refine" class="off" data-batchicon="&#xF097;"><input type="text" placeholder="<?=$current?>" /></li>
 	<li id="lock" class="off" data-batchicon="&#xF0C2;"></li>
 </ul>
 <ul id="tabs" data-target="content" <? if (isset($defaultSection)): ?>data-default="<?=$defaultSection?>"<? endif ?>>
