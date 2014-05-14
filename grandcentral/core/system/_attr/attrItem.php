@@ -10,42 +10,17 @@
 class attrItem extends _attrs
 {
 /**
- * Get complete item url
- *
- * @return	string	url
- * @access	public
- */
-	public function attach(_items $item)
-	{
-		$this->item = $item;
-	}
-/**
  * Set attribute
- *
- * @param	stringd	la variable
- * @return	string	une string
- * @access	public
- */
-	public function set($data)
-	{
-		$this->data = (int) $data;
-		return $this;
-	}
-/**
- * Get attribute
  *
  * @param	string	la variable
  * @return	string	une string
  * @access	public
  */
-	// public function database_get()
-	// {
-	// 	if (empty($this->data))
-	// 	{
-	// 		$this->data = i($this->item->get_env(), current)['version'];
-	// 	}
-	// 	return $this->data;
-	// }
+	public function set($data)
+	{
+		$this->data = (string) $data;
+		return $this;
+	}
 /**
  * Definition mysqld
  *
@@ -55,7 +30,7 @@ class attrItem extends _attrs
 	public function mysql_definition()
 	{
 	//	definition
-		$definition = '`'.$this->params['key'].'` varchar(255) CHARACTER SET '.database::charset.' COLLATE '.database::collation.' NOT NULL';
+		$definition = '`'.$this->params['key'].'` varchar(64) CHARACTER SET '.database::charset.' COLLATE '.database::collation.' NOT NULL';
 	//	retour
 		return $definition;
 	}

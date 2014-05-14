@@ -59,7 +59,7 @@
 			{
 				$item = i($_GET['item'], $_GET['id'], $_SESSION['pref']['handled_env']);
 				$link = $item->listing();
-				$current = $item['title'];
+				$current = (isset($item['title']) && !$item['title']->is_empty()) ? $item['title'] : $item['key'];
 			}
 		//	New item
 			else

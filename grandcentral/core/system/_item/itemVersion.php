@@ -55,7 +55,7 @@ class itemVersion extends _items
 	public static function register()
 	{
 		require(DOCUMENT_ROOT.'/'.boot::ini_file);
-		// print'<pre>';print_r($site);print'</pre>';
+		
 		foreach ($site as $site)
 		{
 			foreach ((array) $site['url'] as $key => $url)

@@ -71,7 +71,7 @@ class attrUrl extends _attrs
 		// hack i18n pour les champs titre
 		switch (true)
 		{
-			case $item['title']->is_empty():
+			case !isset($item['title']) || $item['title']->is_empty():
 				$this->params['name'] = '';
 				break;
 			case is_array($item['title']->get()):
