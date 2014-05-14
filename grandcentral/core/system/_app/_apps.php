@@ -351,7 +351,6 @@ abstract class _apps
 /**
  * Obtenir la liste des templates de la vue
  *
- * @param	string	le nom du theme
  * @param	string	le type de template (html, routine, json...)
  * @param	string	l'environnement, site ou admin
  * @return	array	le tableau des templates ou false
