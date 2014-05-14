@@ -22,21 +22,26 @@
 //	Some binds
 /********************************************************************************************/
 //	Apps
-	$app = app('sirtrevor');
-	$app->load();
+	load('sirtrevor');
 //	Css
 	$_APP->bind_css('css/sirtrevor.css');
 //	Script
 	$_APP->bind_script('js/sirtrevor.js');
 	$_APP->bind_code('script', '
 	
-	//	SirTrevor.LANGUAGE = "en";
-		new SirTrevor.Editor(
+		var instances = $(".js-st-instance"),
+		l = instances.length, instance;
+
+		while (l--)
 		{
-			el:$(".js-st-instance"),
-			blockTypes: ["Text", "Heading", "List"],
-			defaultType: "Text",
-		});
+			instance = $(instances[l]);
+		//	SirTrevor.LANGUAGE = "en";
+		    new SirTrevor.Editor(
+			{
+				el: instance,
+				blockTypes: ["Text", "Heading", "List"],
+			});
+		}
 	');
 
 /********************************************************************************************/

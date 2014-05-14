@@ -4,6 +4,7 @@
 #tabs
 {
 	display:inline-block;
+	margin-left:10px;
 }
 .unlocked #tabs
 {
@@ -15,10 +16,11 @@
 	text-align:center;
 	display:inline-block;
 	cursor:pointer;
+	margin:0 10px;
 }
 #tabs>li a
 {
-	opacity:0.5;
+	opacity:0.3;
 	-webkit-transition: all 0.1s ease-out;
 	-moz-transition: all 0.1s ease-out;
 	-o-transition: all 0.1s ease-out;
@@ -26,9 +28,16 @@
 	display:block;
 	position:relative;
 	z-index:1;
-	padding:3px 15px;
-	border-radius:25px;
 	color:#000;
+}
+#tabs>li a:before
+{
+	content:'';
+	border-bottom:5px solid transparent;
+	width:100%;
+	position:absolute;
+	bottom:-25px;
+	left:0;
 }
 #tabs>li>a>span
 {
@@ -38,7 +47,7 @@
 {
 	font-family:"Raleway-Regular";
 	text-transform:uppercase;
-	font-size:12px;
+	font-size:13px;
 }
 #tabs>li>a .descr
 {
@@ -52,10 +61,13 @@
 {
 	opacity:1;
 }
-#tabs>li.on a
+#tabs>li.on a:before
 {
-	background:#000;
-	color:#fff;
+	border-color:#3eb4d6;
+}
+#tabs>li:hover:not(.on) a:before
+{
+	border-color:#eee;
 }
 
 /* Dividers */

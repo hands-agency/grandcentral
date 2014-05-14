@@ -23,8 +23,13 @@ $(document).ready(function ()
 	//	We are controlling
 		li.addClass(param.control);
 		
-	//	Add label
+	//	Clear (and maybe add label)
+		control.html('');
 		if (param.html) control.html(param.html);
+	//	Clear (and maybe add icon)
+	//	control.data('batchicon', '');
+	//	if (param.batchicon) control.data('batchicon', param.batchicon);
+		
 	//	Timeout
 		if (param.timeout) li.delay(param.timeout).queue(function()
 		{

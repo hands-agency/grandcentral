@@ -118,6 +118,7 @@
 					showControl($li,
 					{
 						html:css,
+					//	batchicon:'&#xF03C;',
 						timeout:vars['delay'][css],
 						control:css,
 					});

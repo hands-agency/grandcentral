@@ -110,7 +110,7 @@ li.ko .field
 /* field in control */
 section[data-template="/edit/edit"] fieldset ol>li.controlling
 {
-	margin-right:50px;
+	margin-right:50px !important;
 }
 	
 /* All controls */
@@ -209,7 +209,6 @@ section[data-template="/edit/edit"] fieldset ol>li.ok [data-control]{
 section[data-template="/edit/edit"] fieldset ol>li.ok [data-control]:after {
 	border-right-color:#6cbf2d;
 }
-
 /* Control field is K0 */
 section[data-template="/edit/edit"] fieldset ol>li.ko [data-control] {
 	background:#df3528;
