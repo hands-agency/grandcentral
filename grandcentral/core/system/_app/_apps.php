@@ -388,7 +388,7 @@ abstract class _apps
 					{
 						if (preg_match($pattern, $item->get_key(), $matches))
 						{
-							$tpls[] = empty($basename) ? $matches[1] : $basename.'/'.$matches[1];
+							$tpls[] = empty($basename) ? '/'.$matches[1] : '/'.$basename.'/'.$matches[1];
 							// print'<pre>';print_r('SUCCESS');print'</pre>';
 						}
 					}
