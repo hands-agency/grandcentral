@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Sam 10 Mai 2014 à 17:39
+-- Généré le: Mer 14 Mai 2014 à 12:28
 -- Version du serveur: 5.5.29
 -- Version de PHP: 5.4.10
 
@@ -26,7 +26,6 @@ SET time_zone = "+00:00";
 -- Structure de la table `const`
 --
 
-DROP TABLE IF EXISTS `const`;
 CREATE TABLE `const` (
   `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -125,7 +124,6 @@ INSERT INTO `const` (`id`, `key`, `title`, `version`, `created`, `updated`, `sta
 -- Structure de la table `form`
 --
 
-DROP TABLE IF EXISTS `form`;
 CREATE TABLE `form` (
   `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -156,10 +154,10 @@ INSERT INTO `form` (`id`, `key`, `title`, `descr`, `template`, `action`, `method
 (1, 'login', 'Login', '', 'login', 'login', 'post', '', '', '{"login":{"type":"text","key":"login","label":"So. My login is","placeholder":"my email address","required":true},"password":{"type":"password","key":"password","label":"and this is","placeholder":"my password","required":true},"save":{"type":"button","buttontype":"submit","key":"save","value":"Now let me in!"}}', '2013-09-14 12:53:52', '2013-09-14 12:53:52', 0, 'live', 0),
 (141, 'note', 'Notes', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"hidden","readonly":true},"item":{"key":"item","label":"Item","type":"hidden","min":"","max":"","placeholder":"Item"},"text":{"key":"text","label":"Text","type":"textarea","min":"","max":"","placeholder":"A short description"}}', '2013-09-14 12:53:52', '2013-09-14 12:53:52', 0, 'live', 0),
 (146, 'zoning', 'Zoning', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"hidden","readonly":true},"item":{"key":"item","label":"Item","type":"hidden","min":"","max":"","placeholder":"Item"},"section":{"key":"text","label":"Text","type":"zoning","min":"","max":""}}', '2013-09-14 12:53:52', '2013-09-14 12:53:52', 0, 'live', 0),
-(154, 'tdc_page', 'tdc_page', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text"},"title":{"key":"title","label":"A short title","type":"text","required":"1","min":"0","max":"255"},"nav":{"key":"nav","label":"Navigation title","type":"text","required":"0","min":"0","max":"20"},"type":{"key":"type","label":"type","type":"array"},"descr":{"key":"descr","label":"A short description","type":"textarea","required":"0","min":"0","max":"500"},"text":{"key":"text","label":"The text content","type":"textarea","required":"0","min":"0","max":"65035"},"url":{"key":"url","label":"The url","type":"text"},"system":{"key":"system","label":"System","type":"bool","required":"0"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"owner":{"key":"owner","label":"Owner","type":"text"},"status":{"key":"status","label":"Status","type":"text"},"version":{"key":"version","label":"version","type":"text"},"child":{"key":"child","label":"Children","valuestype":"bunch","values":[{"item":"page"}],"type":"multipleselect","required":"0"},"section":{"key":"section","label":"Zoning","valuestype":"bunch","values":[{"item":"section"}],"type":"multipleselect","required":"0"},"group":{"key":"group","label":"Only for","valuestype":"bunch","values":[{"item":"group"}],"type":"multipleselect","required":"0"}}', '2014-05-10 15:14:01', '2014-05-10 15:14:01', 0, 'live', 2),
+(154, 'tdc_page', 'tdc_page', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text"},"title":{"key":"title","label":"A short title","type":"text","required":"1","min":"0","max":"255"},"nav":{"key":"nav","label":"Navigation title","type":"text","required":"0","min":"0","max":"20"},"type":{"key":"type","label":"type","type":"pagetype"},"descr":{"key":"descr","label":"A short description","type":"textarea","required":"0","min":"0","max":"500"},"text":{"key":"text","label":"The text content","type":"textarea","required":"0","min":"0","max":"65035"},"url":{"key":"url","label":"The url","type":"text"},"system":{"key":"system","label":"System","type":"bool","required":"0"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"owner":{"key":"owner","label":"Owner","type":"text"},"status":{"key":"status","label":"Status","type":"text"},"version":{"key":"version","label":"version","type":"text"},"child":{"key":"child","label":"Children","valuestype":"bunch","values":[{"item":"page"}],"type":"multipleselect","required":"0"},"section":{"key":"section","label":"Zoning","valuestype":"bunch","values":[{"item":"section"}],"type":"multipleselect","required":"0"},"group":{"key":"group","label":"Only for","valuestype":"bunch","values":[{"item":"group"}],"type":"multipleselect","required":"0"}}', '2014-05-10 15:14:01', '2014-05-10 15:14:01', 0, 'live', 2),
 (155, 'tdc_item', 'tdc_item', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text","required":true},"title":{"key":"title","label":"A short title","type":"text","required":"1","min":"0","max":"255"},"descr":{"key":"descr","label":"A short description","type":"textarea","required":"0","min":"0","max":"500"},"system":{"key":"system","label":"Is system","type":"bool","required":"0"},"hasurl":{"key":"hasurl","label":"Has URL","type":"bool","required":"0"},"attr":{"key":"attr","label":"Attributes","type":"attr"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"status","type":"text"},"owner":{"key":"owner","label":"Owner","type":"text"}}', '2014-05-10 15:48:32', '2014-05-10 15:48:32', 0, 'live', 2),
 (156, 'tdc_site', 'tdc_site', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text"},"title":{"key":"title","label":"A short title","type":"text","required":"1","min":"0","max":"255"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"Status","type":"text"},"defaultversion":{"key":"defaultversion","label":"Default Version","type":"number","required":"0","min":"","max":""},"owner":{"key":"owner","label":"Owner","type":"text"},"favicon":{"key":"favicon","label":"Fav icon","type":"media","required":"0","min":"","max":"1"}}', '2014-05-10 16:30:55', '2014-05-10 16:30:55', 0, 'live', 2),
-(157, 'tdc_human', 'tdc_human', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text"},"firstname":{"key":"firstname","label":"First Name","type":"text","required":"0","min":"0","max":"255"},"lastname":{"key":"lastname","label":"Last Name","type":"text","required":"0","min":"0","max":"255"},"title":{"key":"title","label":"A short title","type":"text","required":"0","min":"0","max":"255"},"descr":{"key":"descr","label":"Short bio","type":"textarea","required":"0","min":"0","max":"1000"},"password":{"key":"password","label":"Password","type":"password","required":"0"},"group":{"key":"group","label":"group","valuestype":"bunch","values":[{"item":"group"}],"type":"multipleselect","required":"0"},"profilepic":{"key":"profilepic","label":"Profile Picture","type":"media","required":"0","min":"","max":""},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"owner":{"key":"owner","label":"Owner","type":"text"},"status":{"key":"status","label":"status","type":"text"},"system":{"key":"system","label":"system","type":"bool","required":"0"},"url":{"key":"url","label":"Url","type":"text"},"phone":{"key":"phone","label":"Phone number","type":"text","required":"0","min":"0","max":"30"},"function":{"key":"function","label":"Function","type":"text","required":"0","min":"0","max":"255"},"speciality":{"key":"speciality","label":"Speciality","type":"text","required":"0","min":"0","max":"255"},"country":{"key":"country","label":"Country","type":"text","required":"0","min":"0","max":"255"},"city":{"key":"city","label":"City","type":"text","required":"0","min":"0","max":"255"},"logo":{"key":"logo","label":"Logo","type":"media","required":"0","min":"","max":""},"logourl":{"key":"logourl","label":"Logo Url","type":"text","required":"0","min":"0","max":"255"},"usertitle":{"key":"usertitle","label":"User title","type":"text","required":"0","min":"0","max":"32"},"adminby":{"key":"adminby","label":"Admin by","valuestype":"bunch","values":[{"item":"human"}],"type":"multipleselect","required":"0"},"space":{"key":"space","label":"Custom your space","type":"textarea","required":"0","min":"0","max":"5000"}}', '2014-05-10 16:36:33', '2014-05-10 16:36:33', 0, 'live', 2),
+(157, 'tdc_human', 'tdc_human', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text"},"firstname":{"key":"firstname","label":"First Name","type":"text","required":"0","min":"0","max":"255"},"lastname":{"key":"lastname","label":"Last Name","type":"text","required":"0","min":"0","max":"255"},"title":{"key":"title","label":"A short title","type":"text","required":"0","min":"0","max":"255"},"descr":{"key":"descr","label":"Short bio","type":"textarea","required":"0","min":"0","max":"1000"},"password":{"key":"password","label":"Password","type":"password","required":"0"},"group":{"key":"group","label":"group","valuestype":"bunch","values":[{"item":"group"}],"type":"multipleselect","required":"0","min":"","max":""},"profilepic":{"key":"profilepic","label":"Profile Picture","type":"media","required":"0","min":"","max":""},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"owner":{"key":"owner","label":"Owner","type":"text"},"status":{"key":"status","label":"status","type":"text"},"system":{"key":"system","label":"system","type":"bool","required":"0"}}', '2014-05-10 16:36:33', '2014-05-10 17:51:39', 0, 'live', 2),
 (158, 'tdc_section', 'tdc_section', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text"},"title":{"key":"title","label":"A short title","type":"text","required":"1","min":"0","max":"255"},"descr":{"key":"descr","label":"A short description","type":"textarea","min":"0","max":"500"},"zone":{"key":"zone","label":"The zone","type":"text","min":"0","max":"255"},"app":{"key":"app","label":"The template","type":"app","required":"1"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"Status","type":"text"},"owner":{"key":"owner","label":"Owner","type":"text"}}', '2014-05-10 16:55:32', '2014-05-10 16:55:32', 0, 'live', 2);
 
 -- --------------------------------------------------------
@@ -168,7 +166,6 @@ INSERT INTO `form` (`id`, `key`, `title`, `descr`, `template`, `action`, `method
 -- Structure de la table `greenbutton`
 --
 
-DROP TABLE IF EXISTS `greenbutton`;
 CREATE TABLE `greenbutton` (
   `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -207,7 +204,6 @@ INSERT INTO `greenbutton` (`id`, `key`, `title`, `created`, `updated`, `status`,
 -- Structure de la table `item`
 --
 
-DROP TABLE IF EXISTS `item`;
 CREATE TABLE `item` (
   `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -247,7 +243,6 @@ INSERT INTO `item` (`id`, `key`, `title`, `descr`, `system`, `attr`, `created`, 
 -- Structure de la table `logbook`
 --
 
-DROP TABLE IF EXISTS `logbook`;
 CREATE TABLE `logbook` (
   `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -381,7 +376,6 @@ INSERT INTO `logbook` (`id`, `key`, `subject`, `subjectid`, `item`, `itemid`, `c
 -- Structure de la table `note`
 --
 
-DROP TABLE IF EXISTS `note`;
 CREATE TABLE `note` (
   `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -403,7 +397,6 @@ CREATE TABLE `note` (
 -- Structure de la table `page`
 --
 
-DROP TABLE IF EXISTS `page`;
 CREATE TABLE `page` (
   `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -427,23 +420,23 @@ CREATE TABLE `page` (
 --
 
 INSERT INTO `page` (`id`, `key`, `title`, `type`, `descr`, `text`, `url`, `system`, `created`, `updated`, `status`, `owner`) VALUES
-(1, 'home', 'Digest', '{"key":"content","http_status":"200 OK","content_type":"html","app":"content","template":"\\/master\\/master"}', 'Welcome home', '', '/', 0, '2013-10-03 08:28:48', '2014-05-02 15:31:57', 'live', 2),
-(2, 'error_404', 'Oups, that 404 thing again!', '{"key":"content","http_status":"200 OK","content_type":"html","app":"content","template":"\\/master\\/master"}', '', '', '/404', 1, '0000-00-00 00:00:00', '2013-08-26 01:28:27', 'live', 0),
-(3, 'post', 'Routine points', '{"key":"content","http_status":"200 OK","content_type":"routine","app":"content","template":"\\/master\\/post"}', 'Receives all the posts from the forms.', '', '/routine', 1, '0000-00-00 00:00:00', '2013-08-25 19:33:38', 'live', 0),
-(5, 'list', 'List', '{"key":"content","http_status":"200 OK","content_type":"html","app":"content","template":"\\/master\\/master"}', '', '', '/list', 0, '2013-10-13 01:05:53', '2014-04-25 10:03:37', 'live', 2),
-(6, 'edit', 'Edit', '{"key":"content","http_status":"200 OK","content_type":"html","app":"content","template":"\\/master\\/master"}', '', '', '/edit', 0, '2013-10-12 22:01:52', '2014-04-08 03:59:42', 'live', 2),
-(7, 'doc', 'Doc', '{"key":"content","http_status":"200 OK","content_type":"html","app":"content","template":"\\/master\\/master"}', 'About classes, methods and functions available to you, kind developer.', '', '/doc', 0, '2013-10-14 13:11:22', '2013-10-14 13:11:59', 'live', 0),
-(9, 'site', 'Environment', '{"key":"content","http_status":"200 OK","content_type":"html","app":"content","template":"\\/master\\/master"}', 'Structure', '', '/site', 0, '2014-04-08 19:54:46', '2014-04-08 19:54:46', 'live', 2),
-(10, 'content', 'Content', '{"key":"content","http_status":"200 OK","content_type":"html","app":"content","template":"\\/master\\/master"}', 'Publish', '', '/item', 0, '2013-10-19 15:27:46', '2014-04-08 19:54:26', 'live', 2),
-(11, 'app', 'Apps', '{"key":"content","http_status":"200 OK","content_type":"html","app":"content","template":"\\/master\\/master"}', 'Tweak', '', '/app', 0, '2013-10-18 18:40:46', '2013-10-20 22:50:45', 'live', 0),
-(29, 'logbook', 'Logbook', '{"key":"content","http_status":"200 OK","content_type":"html","app":"content","template":"\\/master\\/master"}', '', '', '/logbook', 0, '0000-00-00 00:00:00', '2013-03-06 06:21:38', 'live', 0),
-(30, 'login', 'Login', '{"key":"content","http_status":"200 OK","content_type":"html","app":"content","template":"\\/master\\/login"}', '', '', '/login', 1, '2013-10-03 04:16:31', '2013-10-03 04:16:31', 'live', 0),
-(31, 'api.json', 'API (json)', '{"key":"content","http_status":"200 OK","content_type":"json","app":"content","template":"\\/master\\/api"}', '', '', '/api.json', 1, '2013-03-06 03:21:46', '2013-03-22 12:56:52', 'live', 0),
-(32, 'me', 'My profile', '{"key":"content","http_status":"200 OK","content_type":"html","app":"content","template":"\\/master\\/master"}', 'dfsdf', '', '/me', 0, '0000-00-00 00:00:00', '2013-03-13 14:04:08', 'live', 0),
-(33, 'api.eventstream', 'API (event-stream)', '{"key":"content","http_status":"200 OK","content_type":"eventstream","app":"content","template":"\\/master\\/api"}', '', '', '/api.eventstream', 1, '2013-03-06 03:21:46', '2013-03-22 13:22:05', 'live', 0),
-(35, 'ajax.html', 'AJAX (hmtl)', '{"key":"content","http_status":"200 OK","content_type":"html","app":"content","template":"\\/master\\/ajax"}', '', '', '/ajax.html', 1, '2013-03-06 03:21:46', '2013-03-22 13:22:05', 'live', 0),
-(36, 'ajax.json', 'AJAX (json)', '{"key":"content","http_status":"200 OK","content_type":"json","app":"content","template":"\\/master\\/ajax"}', '', '', '/ajax.json', 1, '2013-03-06 03:21:46', '2013-03-22 12:56:52', 'live', 0),
-(37, 'lab', 'Lab', '{"key":"content","http_status":"200 OK","content_type":"html","app":"content","template":"\\/master\\/master"}', '', '', '/lab', 0, '2014-05-02 15:31:57', '2014-05-02 15:36:47', 'live', 2);
+(1, 'home', 'Digest', '{"key":"content","http_status":"200 OK","content_type":"html","master":{"app":"content","template":"/master/master"}}', 'Welcome home', '', '/', 0, '2013-10-03 08:28:48', '2014-05-02 15:31:57', 'live', 2),
+(2, 'error_404', 'Oups, that 404 thing again!', '{"key":"content","http_status":"200 OK","content_type":"html","master":{"app":"content","template":"/master/master"}}', '', '', '/404', 1, '0000-00-00 00:00:00', '2013-08-26 01:28:27', 'live', 0),
+(3, 'post', 'Routine points', '{"key":"content","http_status":"200 OK","content_type":"routine","master":{"app":"content","template":"/master/post"}}', 'Receives all the posts from the forms.', '', '/routine', 1, '0000-00-00 00:00:00', '2013-08-25 19:33:38', 'live', 0),
+(5, 'list', 'List', '{"key":"content","http_status":"200 OK","content_type":"html","master":{"app":"content","template":"/master/master"}}', '', '', '/list', 0, '2013-10-13 01:05:53', '2014-04-25 10:03:37', 'live', 2),
+(6, 'edit', 'Edit', '{"key":"content","http_status":"200 OK","content_type":"html","master":{"app":"content","template":"/master/master"}}', '', '', '/edit', 0, '2013-10-12 22:01:52', '2014-04-08 03:59:42', 'live', 2),
+(7, 'doc', 'Doc', '{"key":"content","http_status":"200 OK","content_type":"html","master":{"app":"content","template":"/master/master"}}', 'About classes, methods and functions available to you, kind developer.', '', '/doc', 0, '2013-10-14 13:11:22', '2013-10-14 13:11:59', 'live', 0),
+(9, 'site', 'Environment', '{"key":"content","http_status":"200 OK","content_type":"html","master":{"app":"content","template":"/master/master"}}', 'Structure', '', '/site', 0, '2014-04-08 19:54:46', '2014-04-08 19:54:46', 'live', 2),
+(10, 'content', 'Content', '{"key":"content","http_status":"200 OK","content_type":"html","master":{"app":"content","template":"/master/master"}}', 'Publish', '', '/item', 0, '2013-10-19 15:27:46', '2014-04-08 19:54:26', 'live', 2),
+(11, 'app', 'Apps', '{"key":"content","http_status":"200 OK","content_type":"html","master":{"app":"content","template":"/master/master"}}', 'Tweak', '', '/app', 0, '2013-10-18 18:40:46', '2013-10-20 22:50:45', 'live', 0),
+(29, 'logbook', 'Logbook', '{"key":"content","http_status":"200 OK","content_type":"html","master":{"app":"content","template":"/master/master"}}', '', '', '/logbook', 0, '0000-00-00 00:00:00', '2013-03-06 06:21:38', 'live', 0),
+(30, 'login', 'Login', '{"key":"content","http_status":"200 OK","content_type":"html","master":{"app":"content","template":"/master/login"}}', '', '', '/login', 1, '2013-10-03 04:16:31', '2013-10-03 04:16:31', 'live', 0),
+(31, 'api.json', 'API (json)', '{"key":"content","http_status":"200 OK","content_type":"json","master":{"app":"content","template":"/master/api"}}', '', '', '/api.json', 1, '2013-03-06 03:21:46', '2013-03-22 12:56:52', 'live', 0),
+(32, 'me', 'My profile', '{"key":"content","http_status":"200 OK","content_type":"html","master":{"app":"content","template":"/master/master"}}', 'dfsdf', '', '/me', 0, '0000-00-00 00:00:00', '2013-03-13 14:04:08', 'live', 0),
+(33, 'api.eventstream', 'API (event-stream)', '{"key":"content","http_status":"200 OK","content_type":"eventstream","master":{"app":"content","template":"/master/api"}}', '', '', '/api.eventstream', 1, '2013-03-06 03:21:46', '2013-03-22 13:22:05', 'live', 0),
+(35, 'ajax.html', 'AJAX (hmtl)', '{"key":"content","http_status":"200 OK","content_type":"html","master":{"app":"content","template":"/master/ajax"}}', '', '', '/ajax.html', 1, '2013-03-06 03:21:46', '2013-03-22 13:22:05', 'live', 0),
+(36, 'ajax.json', 'AJAX (json)', '{"key":"content","http_status":"200 OK","content_type":"json","master":{"app":"content","template":"/master/ajax"}}', '', '', '/ajax.json', 1, '2013-03-06 03:21:46', '2013-03-22 12:56:52', 'live', 0),
+(37, 'lab', 'Lab', '{"key":"content","http_status":"200 OK","content_type":"html","master":{"app":"content","template":"/master/master"}}', '', '', '/lab', 0, '2014-05-02 15:31:57', '2014-05-02 15:36:47', 'live', 2);
 
 -- --------------------------------------------------------
 
@@ -451,7 +444,6 @@ INSERT INTO `page` (`id`, `key`, `title`, `type`, `descr`, `text`, `url`, `syste
 -- Structure de la table `section`
 --
 
-DROP TABLE IF EXISTS `section`;
 CREATE TABLE `section` (
   `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -499,7 +491,6 @@ INSERT INTO `section` (`id`, `key`, `title`, `descr`, `zone`, `app`, `created`, 
 -- Structure de la table `site`
 --
 
-DROP TABLE IF EXISTS `site`;
 CREATE TABLE `site` (
   `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -512,7 +503,7 @@ CREATE TABLE `site` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `key` (`key`),
   KEY `status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
 -- Contenu de la table `site`
@@ -527,7 +518,6 @@ INSERT INTO `site` (`id`, `key`, `title`, `created`, `updated`, `status`, `defau
 -- Structure de la table `version`
 --
 
-DROP TABLE IF EXISTS `version`;
 CREATE TABLE `version` (
   `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -556,7 +546,6 @@ INSERT INTO `version` (`id`, `key`, `title`, `lang`, `created`, `updated`, `stat
 -- Structure de la table `_rel`
 --
 
-DROP TABLE IF EXISTS `_rel`;
 CREATE TABLE `_rel` (
   `item` varchar(32) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'undefined',
   `itemid` int(10) unsigned NOT NULL,
