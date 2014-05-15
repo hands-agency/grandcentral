@@ -1,0 +1,12 @@
+/********************************************************************************************/
+/* Link
+/********************************************************************************************/
+#adminContext [data-template="sirtrevor.link"] .external iframe
+{
+	height:50px;
+	width:60%;
+	float:left;
+}#adminContext [data-template="sirtrevor.link"] .external button
+{
+	float:right;
+}

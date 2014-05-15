@@ -822,8 +822,9 @@ footer
 #adminContext h1
 {
 	font-family:"Raleway-Regular";
-	font-size:45px;
+	font-size:40px;
 	margin:0 0 20px 0;
+	clear:left;
 }
 #adminContext h2
 {
