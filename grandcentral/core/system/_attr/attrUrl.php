@@ -69,7 +69,21 @@ class attrUrl extends _attrs
 		$this->params['env'] = $item->get_env();
 		$this->params['version'] = (isset($item['version']) && !$item['version']->is_empty()) ? $item['version'] : null;
 		$this->params['status'] = $item['status'];
-		$this->params['name'] = $item['title']->get();
+		$this->params['nickname'] = $item->get_nickname();
+		// hack i18n pour les champs titre
+		switch (true)
+		{
+			case !isset($item['title']) || $item['title']->is_empty():
+				$this->params['name'] = '';
+				break;
+			case is_array($item['title']->get()):
+				$tmp = array_values($this->params['name']);
+				$this->params['name'] = $tmp[0];
+				break;
+			default:
+				$this->params['name'] = $item['title']->get();
+				break;
+		}
 		// print'<pre>';print_r(registry::get_constants());print'</pre>';
 	}
 /**
@@ -160,7 +174,7 @@ class attrUrl extends _attrs
  */
 	public function abbr()
 	{
-	//	return '['.$this->item->get_nickname().']';
+		return '['.$this->params['nickname'].']';
 	}
 /**
  * Default field attributes for updated	
