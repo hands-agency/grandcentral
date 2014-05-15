@@ -29,6 +29,9 @@ $(document).ready(function ()
 	//	Open the right panel
 		if (!$panel.html() || $(this).hasClass('updateMe'))
 		{
+		//	Start loading
+			$panel.loading();
+			
 		//	Fetch content
 			$panel
 				.addClass('loading')
@@ -43,6 +46,7 @@ $(document).ready(function ()
 					{
 					//	Say it's loaded
 						$panel.removeClass('loading');
+						$panel.loaded();
 					}
 				});
 		}

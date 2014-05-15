@@ -32,9 +32,8 @@ $(document).off('keypress', '.noteForm form textarea').on('keypress', '.noteForm
 			{
 			//	Prevent further writing
 				textarea.attr('disabled','disabled');
-				$('<li class="loading" style="display:none"><progress value="00" max="100"></progress></li>').appendTo(list).slideDown('fast');
 			//	Loading
-				list.find('.loading progress').loading();
+				list.loading();
 			},
 			success: function(result)
 			{
@@ -43,6 +42,7 @@ $(document).off('keypress', '.noteForm form textarea').on('keypress', '.noteForm
 				
 			//	Start fresh for next time
 				textarea.val('').attr('disabled', null);
+				list.loaded();
 			//	mentions.html('<div></div>');
 			}
 		});

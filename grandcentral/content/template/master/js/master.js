@@ -155,32 +155,43 @@
 	})( jQuery );
 	
 /*********************************************************************************************
-/**	* Make the bubbles with the .warn class jump
+/**	* Create a loading
  	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
 	(function($)
 	{
+		var animate;
+		
 		$.fn.loading = function()
 		{
-			
-			var progressbar = $(this),
+		//	HTML
+			$loading = $('<div class="loading" style="display:none"><progress value="00" max="100"></progress></div>').appendTo($(this)).slideDown('fast');
+
+		//	Some vars
+			var progressbar = $loading.find('progress'),
 			max = progressbar.attr('max'),  
 			time = (1000/max)*2,      
-			value = progressbar.val();  
+			value = progressbar.val();
 
 			var loading = function()
 			{
 				value += 1;  
 				addValue = progressbar.val(value);  
-				$('.progress-value').html(value + '%');  
 				if (value == max) {  
-					clearInterval(animate);                      
+					clearInterval(animate);                  
 				}  
 			};  
 			var animate = setInterval(function()
 			{
 				loading();  
 			}, time);
+		};
+		
+		$.fn.loaded = function()
+		{
+			$loading = $(this).find('.loading');
+		//	$loading.find('progress').val(100);
+			$loading.hide('fast', function(){$(this).remove()});
 		};
 	})( jQuery );
 	

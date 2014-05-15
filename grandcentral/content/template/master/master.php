@@ -22,7 +22,7 @@
 //	Some tests
 /********************************************************************************************/
 //	Display entry ticket (minimum usage, right after booting)
-//	echo '<div style="font-family:arial;padding:30px 10px;background:#FE6022;color:#fff;font-size:20px;text-align:center"><strong style="color:#FE6022;background:#fff;padding:10px;margin-right:10px">Entry ticket</strong> '.sentinel::stopwatch().'s ● '.database::query_count().' queries ● using '.sentinel::memoryusage().'</div>';exit;
+	# echo '<div style="font-family:arial;padding:30px 10px;background:#FE6022;color:#fff;font-size:20px;text-align:center"><strong style="color:#FE6022;background:#fff;padding:10px;margin-right:10px">Entry ticket</strong> '.sentinel::stopwatch().'s ● '.database::query_count().' queries ● using '.sentinel::memoryusage().'</div>';exit;
 	
 /********************************************************************************************/
 //	Some vars
@@ -74,6 +74,7 @@
 /********************************************************************************************/
 //	First day at work ?
 /********************************************************************************************/
+/*
 	$p = array('subject' => 'human', 'subjectid' => $_SESSION['user']['id']->get());
 	if (count::get('logbook', $p, 'site') == 0) $_APP->bind_code("script", '$(document).ready(function () {openContext({app:"content",template:"master/welcome"})});');
 	

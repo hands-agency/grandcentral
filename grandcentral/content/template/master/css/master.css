@@ -124,13 +124,6 @@ a:visited
 }
 
 /********************************************************************************************/
-/* Loading
-/********************************************************************************************/
-.loading
-{
-}
-
-/********************************************************************************************/
 /*////////////////////////////////////////////////////////////////////////////////////////////
 /* General stuff
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -297,22 +290,26 @@ a.cc-badge:after
 /* Progress bars
 /////////////////////////////////////////////////////////////////////////////////////////////
 /********************************************************************************************/
-progress {
-	background-color: #f3f3f3;
+.loading
+{
+}
+.loading progress
+{
+	background-color: #fff;
 	border: 0;
 	height: 6px;
 	border-radius: 3px;
 }
 progress::-webkit-progress-bar {
-	background-color: #f3f3f3;
+	background-color: #fff;
 	border-radius: 3px;
 }
 progress::-moz-progress-bar {
-	background-color: #f3f3f3;
+	background-color: #fff;
 	border-radius: 3px;
 }
 progress::-webkit-progress-value {
-	background: #3eb4d6;
+	background: #ffc000;
 	border-radius: 3px;
 }
 .progress-value {
@@ -913,13 +910,7 @@ footer
 #adminContent section.loading
 {
 	text-align:center;
-}
-#adminContent section.virgin:before
-{
-	content:'virgin';
-	display:block;
-	padding:100px 0;
-	color:#ccc;
+	padding:150px 0;
 }
 #adminContent section.virgin
 {
