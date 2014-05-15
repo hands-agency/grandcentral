@@ -68,6 +68,7 @@ class attrUrl extends _attrs
 		$this->params['env'] = $item->get_env();
 		$this->params['version'] = (isset($item['version']) && !$item['version']->is_empty()) ? $item['version'] : null;
 		$this->params['status'] = $item['status'];
+		$this->params['nickname'] = $item->get_nickname();
 		// hack i18n pour les champs titre
 		switch (true)
 		{
@@ -172,7 +173,7 @@ class attrUrl extends _attrs
  */
 	public function abbr()
 	{
-		return '['.$this->item->get_nickname().']';
+		return '['.$this->params['nickname'].']';
 	}
 /**
  * Default field attributes for updated	
