@@ -104,6 +104,7 @@
 		'html' => 'HTML',
 		'xml' => 'XML',
 		'json' => 'JSON',
+		'routine' => 'Routine',
 	);
 //	field
 	$p = array(

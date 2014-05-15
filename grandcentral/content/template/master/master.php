@@ -22,7 +22,7 @@
 //	Some tests
 /********************************************************************************************/
 //	Display entry ticket (minimum usage, right after booting)
-	# echo '<div style="font-family:arial;padding:30px 10px;background:#FE6022;color:#fff;font-size:20px;text-align:center"><strong style="color:#FE6022;background:#fff;padding:10px;margin-right:10px">Entry ticket</strong> '.sentinel::stopwatch().'s ● '.database::query_count().' queries ● using '.sentinel::memoryusage().'</div>';exit;
+	#echo '<div style="font-family:arial;padding:30px 10px;background:#FE6022;color:#fff;font-size:20px;text-align:center"><strong style="color:#FE6022;background:#fff;padding:10px;margin-right:10px">Entry ticket</strong> '.sentinel::stopwatch().'s ● '.database::query_count().' queries ● using '.sentinel::memoryusage().'</div>';exit;
 	
 /********************************************************************************************/
 //	Some vars
@@ -34,7 +34,7 @@
 	if (isset($_GET['item']) && isset($_GET['id']))
 	{
 		$currentEditedItem = i($_GET['item'], $_GET['id'], 'site');
-		if (isset($currentEditedItem['url'])) $currentEditedItemUrl = $currentEditedItem['url'];
+		if (isset($currentEditedItem['url']) && $currentEditedItem['type']['content_type'] !='routine') $currentEditedItemUrl = $currentEditedItem['url'];
 	}
 
 //	The sections

@@ -60,7 +60,7 @@
 					'title' => 'er',
 					'display' => 'big',
 					'link' => 'page',
-					'bunch' => i('page', array('key' => array('logout.post'), 'order()' => 'inherit(key)'), 'site'),
+					'bunch' => i('page', array('key' => array('logout'), 'order()' => 'inherit(key)'), 'site'),
 				),
 			),
 		),
