@@ -37,6 +37,19 @@ class attrSirtrevor extends _attrs implements ArrayAccess
 	}
 	
 /**
+ * Turn nicknames into links
+ *
+ * @return	string	la définition mysql
+ * @access	public
+ */
+	public function read_links()
+	{
+	
+	//	retour
+		return $text;
+	}
+	
+/**
  * Get array attribute
  *
  * @param	string	la variable
@@ -71,7 +84,7 @@ class attrSirtrevor extends _attrs implements ArrayAccess
 						break;
 				//	Heading
 					case 'heading':
-						$return .= '<h2>'.strip_tags($text).'</h2>';
+						$return .= '<h2>'.strip_tags($text).'</h2>'; // Feels like Sir Trevors stores a <h1> in the db
 						break;
 				//	List
 					case 'list':

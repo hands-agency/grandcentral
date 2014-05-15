@@ -23,7 +23,6 @@
 /********************************************************************************************/
 	require 'adminItemForm.class.php';
 	
-	
 //	Env
 	$handled_env = $_SESSION['pref']['handled_env'];
 //	Item
@@ -38,7 +37,10 @@
 	{
 		$form = null;
 	}
+
 //	title
-	$title = (defined('item')) ? i(item, current)['title'] : i('page', current)['title'];
+	$title = ($handled_id) ? i($handled_item, $handled_id, $handled_env)['title'] : i('page', current)['title'];
+	# fallback
+	if (!$title) $title = $handled_item.' #'.$handled_id;
 	
 ?>

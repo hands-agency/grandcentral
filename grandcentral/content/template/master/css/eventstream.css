@@ -5,7 +5,7 @@
 #eventstream ul
 {
 	list-style-type:disc;
-	color:#6cbf2d;
+	color:rgba(62, 180, 214, 1);
 	padding:0 0 0 16px;
 }
 #eventstream ul li

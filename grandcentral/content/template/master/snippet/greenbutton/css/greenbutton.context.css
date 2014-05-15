@@ -1,19 +1,20 @@
 /********************************************************************************************/
 /* Choices
 /********************************************************************************************/
-#greenbutton-choices
+#adminContext [data-template="master/snippet/greenbutton/greenbutton.context"]
 {
 }
-#greenbutton-choices ul li
+#adminContext [data-template="master/snippet/greenbutton/greenbutton.context"] ul li
 {
-	border-bottom:1px solid #555;
+	border-bottom:1px solid #ddd;
+	padding:2px 0;
 }
-#greenbutton-choices ul li .title
+#adminContext [data-template="master/snippet/greenbutton/greenbutton.context"] ul li .title
 {
-	color:#fff;
+	color:#666;
 	margin:0;
 }
-#greenbutton-choices ul li .descr
+#adminContext [data-template="master/snippet/greenbutton/greenbutton.context"] ul li .descr
 {
 	color:#ccc;
 	font-size:0.8em;

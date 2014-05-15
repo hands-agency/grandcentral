@@ -24,16 +24,6 @@
 	-webkit-transition: 0.5s;
 	border:1px solid #e2e4e6;
 }
-.unlocked #options>li
-{
-	background:transparent!important;
-	color:#ffffff;
-	border-color:#fff;
-}
-.unlocked #options>li
-{
-	display:none;
-}
 #options>li.on
 {
 	display:block;
@@ -51,13 +41,6 @@
 	border-style: solid;
 	border-width: 0 7px 7px 7px;
 	border-color: transparent transparent #999 transparent;
-}
-
-/* Lock / unlock */
-#lock
-{
-	width:25px;
-	padding:0 !important;
 }
 
 /* Filter */

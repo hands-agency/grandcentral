@@ -14,6 +14,10 @@ li[data-type="sirtrevor"] .wrapper .st-text-block b
 {
 	font-family:'Raleway-Bold';
 }
+li[data-type="sirtrevor"] .wrapper .st-text-block i
+{
+	font-family:'Raleway-Regular-Italic';
+}
 li[data-type="sirtrevor"] .wrapper .st-text-block--heading
 {
 	font-style:'Raleway-Regular';

@@ -6,10 +6,6 @@
 	display:inline-block;
 	margin-left:10px;
 }
-.unlocked #tabs
-{
-	display:none;
-}
 #tabs>li
 {
 	position:relative;

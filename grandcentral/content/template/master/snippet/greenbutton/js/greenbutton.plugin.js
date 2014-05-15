@@ -92,8 +92,8 @@
 	//	Save
 		plugin.save = function(newStatus, callback)
 		{
-		//	Trigger regular submit for eventual plugin callbacks
-			$('#adminContent>section>form').submit();
+		//	Trigger regular submit for eventual plugin callbacks (like Sir Trevor)
+			$('#adminContent section>form').submit();
 		//	Id & status
 			id = $('input[name="'+SITE_KEY+'_'+_GET['item']+'[id]"]');
 			oldStatus = $('input[name="'+SITE_KEY+'_'+_GET['item']+'[status]"]');

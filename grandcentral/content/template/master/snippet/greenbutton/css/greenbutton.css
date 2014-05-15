@@ -8,13 +8,13 @@
 	z-index:3;
 }
 #greenbutton>a,
-#greenbutton-choices ul li a
+#adminContext [data-template="master/snippet/greenbutton/greenbutton.context"] ul li a
 {
 	font-family:"Raleway-Bold";
 	text-transform:uppercase;
 	font-size:13px;
-	padding:13px 20px;
-	margin:7px 0;
+	padding:13px;
+	margin:7px 0 7px 7px;
 	border-radius:2px;
 	-webkit-transition: all .1s ease-out; 
 	-moz-transition: all .1s ease-out; 
@@ -26,7 +26,7 @@
 	cursor:pointer;
 }
 #greenbutton>a,
-#greenbutton-choices ul li a:hover
+#adminContext [data-template="master/snippet/greenbutton/greenbutton.context"] ul li a:hover
 {
 	-moz-border-radius:1px;
 	-webkit-border-radius:1px;
@@ -40,8 +40,8 @@
 /********************************************************************************************/
 #greenbutton #greenbutton-default
 {
-	padding-left:20px;
-	padding-right:20px;
+	padding-left:25px;
+	padding-right:25px;
 	letter-spacing:1px;
 }
 #greenbutton #greenbutton-default:hover

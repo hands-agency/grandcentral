@@ -27,22 +27,6 @@
 	$_APP->bind_css('css/sirtrevor.css');
 //	Script
 	$_APP->bind_script('js/sirtrevor.js');
-	$_APP->bind_code('script', '
-	
-		var instances = $(".js-st-instance"),
-		l = instances.length, instance;
-
-		while (l--)
-		{
-			instance = $(instances[l]);
-		//	SirTrevor.LANGUAGE = "en";
-		    new SirTrevor.Editor(
-			{
-				el: instance,
-				blockTypes: ["Text", "Heading", "List"],
-			});
-		}
-	');
 
 /********************************************************************************************/
 //	Some vars

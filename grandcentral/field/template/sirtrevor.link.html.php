@@ -1,6 +1,6 @@
 <script type="text/javascript" charset="utf-8">
 //	External link
-	$(document).on('click', '#adminContext #sirtrevorlink .external button', function()
+	$(document).on('click', '#adminContext [data-template="sirtrevor.link"] .external button', function()
 	{
 		link = $('#externalLink').contents().find('input').val();
 		if(link && link.length > 0)
@@ -21,23 +21,23 @@
 	});
 </script>
 
-<div id="sirtrevorlink">
-	<div class="external">
-		<!-- Stored in an iframe to keep the focus on the highlighted link...-->
-		<iframe id="externalLink" src="http://localhost/link.html"></iframe>
-		<button>Add link</button>
-	</div>
-	<div class="internal">
-		<?php foreach ($items as $structure): ?>
-			<h2><span class="centered"><?=$structure['title']?></span></h2>
-			<?
-				$items = i($structure['key']->get(), array('order()' => 'title'), 'site');
-			?>
-			<ul>
-			<?php foreach ($items as $item): ?>
-				<li data-item="<?=$item['url']->abbr()?>"><button><?=$item['title']?></button></li>
-			<?php endforeach ?>
-			</ul>
+<h1>External Link</h1>
+<div class="external">
+	<!-- Stored in an iframe to keep the focus on the highlighted link...-->
+	<iframe id="externalLink" src="http://localhost/link.html"></iframe>
+	<button>⇠ Add link</button>
+</div>
+<h1>Internal Link</h1>
+<div class="internal">
+	<?php foreach ($items as $structure): ?>
+		<h2><span class="centered"><?=$structure['title']?></span></h2>
+		<?
+			$items = i($structure['key']->get(), array('order()' => 'title'), 'site');
+		?>
+		<ul>
+		<?php foreach ($items as $item): ?>
+			<li data-item="<?=$item['url']->abbr()?>"><button>⇠ <?=$item['title']?></button></li>
 		<?php endforeach ?>
-	</div>
+		</ul>
+	<?php endforeach ?>
 </div>

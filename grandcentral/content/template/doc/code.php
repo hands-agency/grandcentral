@@ -43,8 +43,8 @@
 		$html[$i] = array(
 			'key' => $app->get_key(),
 			'title' => $ini['about']['title'],
-			'descr' => $ini['about']['descr'],
 		);
+		$html[$i]['descr'] = (isset($ini['about']['descr'])) ? $ini['about']['descr'] : null;
 		
 	//	Files
 		$files = array('class', 'lib', 'routine');

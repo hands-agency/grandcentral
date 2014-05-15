@@ -12,7 +12,7 @@ jQuery(document).ready(function($)
 		$drop = $('#options_drop');
 
 	//	Toggle lock and unlock
-		$(document).on('click', '#lock', function(event)
+		$(document).on('click', '.lock', function(event)
 		{
 		//	Unlock
 			if ($('#adminContent').hasClass('locked')) unlock();
@@ -70,7 +70,7 @@ jQuery(document).ready(function($)
 	};
 
 //	Go	
-	$('#lock').lock();
+	$('.lock').lock();
 });	
 
 /*********************************************************************************************
