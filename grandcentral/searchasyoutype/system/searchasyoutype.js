@@ -38,9 +38,11 @@
 				{
 				//	Fetch the q value
 					q = $search.val();
+				//	Target can be a jQuery object or a selector
+					$target = (plugin.settings.target instanceof jQuery) ? plugin.settings.target : $(plugin.settings.target);
 					
 				//	Refresh the target
-				  	$(plugin.settings.target).ajx(
+				  	$target.ajx(
 					{
 						app:plugin.settings.app,
 						template:plugin.settings.template,

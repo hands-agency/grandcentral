@@ -17,21 +17,28 @@
  * @license		http://www.cafecentral.fr/fr/licences GNU Public License
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
- */	
-/********************************************************************************************/
-//	Some bind
-/********************************************************************************************/
-	$_APP->bind_file('css', 'css/sirtrevor.link.css');
-	$_APP->bind_file('script', 'js/sirtrevor.link.js');
-	
+ */
 /********************************************************************************************/
 //	Some vars
 /********************************************************************************************/
-//	Iframe Link (Worst.Method.Ever)
-	$iframeLink = SITE_URL.'/grandcentral/sirtrevor/template/link.html';
-//	Get the things you can link to
-	$items = i('item', array(
-		'hasurl' => true,
-	//	'order()' => 'title',
-	), 'site');
+//	item
+	$item = $_POST['param']['item'];
+	$p['order()'] = 'updated DESC';
+//	Param
+	
+//	We have a query
+	if ($_POST['q'])
+	{
+		$p['title'] = '%'.$_POST['q'].'%';
+	}
+//	No query
+	else
+	{
+		$p['limit()'] = 15;
+		$p['status'] = 'live';
+		$p['system'] = false;
+	}
+
+//	Get the items
+	$items = i($item, $p, 'site');
 ?>

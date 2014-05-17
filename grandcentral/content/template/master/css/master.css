@@ -834,6 +834,7 @@ footer
 	padding:0 0 5px 0;
 	text-align:center;
 	text-transform:uppercase;
+	clear:left;
 }
 #adminContext h2>.centered
 {
