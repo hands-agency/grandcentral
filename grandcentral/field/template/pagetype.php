@@ -104,6 +104,8 @@
 		'html' => 'HTML',
 		'xml' => 'XML',
 		'json' => 'JSON',
+		'eventstream' => 'Event Stream',
+		'jpg' => 'Jpeg image',
 		'routine' => 'Routine',
 	);
 //	field

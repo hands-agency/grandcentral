@@ -83,7 +83,7 @@
 			
 	//	App
 		case 'app':
-			$app = new app($_GET['app']);
+			$app = app($_GET['app']);
 			$ini = $app->get_ini();
 			$page = i('page', 'app');
 			$link = $page['url'];

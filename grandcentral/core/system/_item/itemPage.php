@@ -59,6 +59,7 @@ class itemPage extends _items
 			$hash = mb_substr(URLR, 0, mb_strrpos(URLR, '/'));
 			// chargement de la page de home
 			$this->get_by_url($hash);
+
 			if (!$this->exists() OR ($this->exists() && !$this->has_reader()))
 			{
 				$this->get_by_url('/404');
@@ -399,7 +400,7 @@ class itemPage extends _items
 			$urls['page_'.$page['id']] = $page['url'];
 		}
 		// on recherche les readers dans le table section
-		$q = 'SELECT `id`, `app` FROM `section` WHERE `app` LIKE "%\"key\":\"reader\"%"';
+		$q = 'SELECT `id`, `app` FROM `section` WHERE `app` LIKE "%\"app\":\"reader\"%"';
 		$r = $db->query($q);
 		// traitement de la requête pour stockage
 		$hash = null;

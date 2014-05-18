@@ -28,7 +28,7 @@ class master
 	//	instanciate the app master
 		$params['page'] = $page;
 		$tpl = (mb_strpos($page['type']['master']['template'], '/') === 0) ? $page['type']['master']['template'] : '/'.$page['type']['master']['template'];
-		$this->app = new app($page['type']['master']['app'], $tpl, $params);
+		$this->app = app($page['type']['master']['app'], $tpl, $params);
 	//	retrieve the template root
 		$root = $this->app->get_templateroot().$tpl.'.'.$page['type']['content_type'].'.php';
 	//	parse the template and parse zones
