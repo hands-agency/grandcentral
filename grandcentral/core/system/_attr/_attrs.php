@@ -182,13 +182,13 @@ abstract class _attrs
 			'readonly' => true,
 			'value' => mb_substr(mb_strtolower(get_called_class()), 4),
 		);
-		$params['title'] = array(
-			'name' => 'title',
-			'type' => 'text',
-			'label' => 'Title',
-			'max' => 255,
-			'required' => true
-		);
+		// $params['title'] = array(
+		// 	'name' => 'title',
+		// 	'type' => 'text',
+		// 	'label' => 'Title',
+		// 	'max' => 255,
+		// 	'required' => true
+		// );
 		$params['required'] = array(
 			'name' => 'required',
 			'type' => 'bool',
