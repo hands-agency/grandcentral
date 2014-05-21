@@ -21,7 +21,7 @@ class attrUrl extends _attrs
 	{
 		if (empty($this->data) && !empty($this->params['name']))
 		{
-			$this->data = $this->_slugify($this->params['name']->get());
+			$this->data = $this->_slugify($this->params['name']);
 		}
 		$this->data = preg_replace('#(\[[^\]]*\])#', '', $this->data);
 	//	nettoyage des [] existants
@@ -76,7 +76,7 @@ class attrUrl extends _attrs
 				$this->params['name'] = '';
 				break;
 			case is_array($item['title']->get()):
-				$tmp = array_values($this->params['name']);
+				$tmp = array_values($item['title']->get());
 				$this->params['name'] = $tmp[0];
 				break;
 			default:

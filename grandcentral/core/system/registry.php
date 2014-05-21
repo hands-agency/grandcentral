@@ -175,7 +175,7 @@ class registry
 			//	version
 			$datas['version'] = $datas[env];
 			//	mise en cache
-			file_put_contents($fileCache, serialize($datas));
+			//file_put_contents($fileCache, serialize($datas));
 	//	}
 		self::set(self::current_index, $datas);
 		//	page

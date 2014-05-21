@@ -288,7 +288,7 @@ class itemItem extends _items
 		
 		$fileCache = $cache->get_templateroot().'/registry/'.md5('structure');
 		
-		if (is_file($fileCache))
+		if (is_file($fileCache) && !SITE_DEBUG)
 		{
 			// print'<pre>';print_r('dans le cache des structures');print'</pre>';
 			$datas = unserialize(file_get_contents($fileCache));

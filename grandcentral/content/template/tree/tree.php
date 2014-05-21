@@ -53,6 +53,7 @@
 			$q = 'SELECT id FROM `page` WHERE `key` = "home" OR `system` = false';
 			$db = database::connect($_SESSION['pref']['handled_env']);
 			$r = $db->query($q);
+			
 			foreach ($r['data'] as $data)
 			{
 				$ids[] = $data['id'];
@@ -61,6 +62,7 @@
 			$this->pages = i('page', array
 			(
 				'id' => $ids,
+				'status' => array('live', 'asleep')
 			), $_SESSION['pref']['handled_env']);
 		//	DEBUG: our pages
 			// sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $this->pages);
