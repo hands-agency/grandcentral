@@ -134,10 +134,6 @@
 						if (callback['complete']) callback['complete']();
 					}
 				},
-			},{
-			//	Option
-				debug:false,
-				async:true,
 			});
 		}
 

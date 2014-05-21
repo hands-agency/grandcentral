@@ -118,7 +118,7 @@ $(function()
 		{
 			app:'section',
 			theme:'sitetree',
-			template:'order.routine',
+			template:'/order.routine',
 			sitetree:sitetree,
 		},
 		{

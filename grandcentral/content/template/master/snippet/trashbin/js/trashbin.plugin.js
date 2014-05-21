@@ -79,7 +79,7 @@
 			$.ajx(
 			{
 				app: 'content',
-				template: 'status',
+				template: '/master/status',
 				item:item,
 				status:$element.data('status'),
 			}, {

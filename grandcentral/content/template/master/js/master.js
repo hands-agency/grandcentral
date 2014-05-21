@@ -1,34 +1,36 @@
 /*********************************************************************************************
-/**	* Café Central ajax call (everything goes in POST)
+/**	* Grand Central ajax call (everything goes in POST, but current GET is rerooted)
  	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
-	(function( $ )
+(function($)
+{	
+//	Here we go!
+	$.ajx = function(options, callbacks, element)
 	{
-		$.ajx = function(param, callback, option)
-		{
-		//	Don't print the return
-			if (!option) option = Array;
-			option['print'] = false;
-			if (!option['mime']) option['mime'] = 'json';
-			$.fn.ajx(param, callback, option);
+	//	Use "plugin" to reference the current instance of the object
+		var plugin = this;
+	//	this will hold the merged default, and user-provided options
+		plugin.settings = {}
+		var $element = $(element), // reference to the jQuery version of DOM element
+		element = element;	// reference to the actual DOM element
+		
+	//	Plugin's variables
+		var vars = {
 		}
 
-		$.fn.ajx = function(param, callback, option)
+	//	The "constructor"
+		plugin.init = function()
 		{
-		//	Option
-			if (!option) option = Array;
-			debug = option['debug'] || false
-			async = option['async'] || true;
-			print = option['print'] || true;
-			mime = option['mime'] || 'html';
-			if (!callback) callback = Array;
-		
-		//	Params
-			var url = ADMIN_URL+'/ajax.'+mime;
+		//	the plugin's final properties are the merged default and user-provided options (if any)
+			plugin.settings = $.extend({}, vars, options);
+			
+		//	Some vars
+			mime = (typeof(plugin.settings.mime) != 'undefined') ? plugin.settings.mime : 'html';
+			async = (typeof(plugin.settings.async) != 'undefined') ? plugin.settings.async : true;
+			url = ADMIN_URL+'/ajax.'+mime;
+			
 		//	Reroute the _GET (currently declared in the master)
-			param['_GET'] = _GET;
-		//	Pass DEBUG via post
-			if (debug === true) param['DEBUG'] = 'true';
+			plugin.settings['_GET'] = _GET;
 
 		//	Call
 			$.ajax(
@@ -37,15 +39,14 @@
 				url:url,
 				async:async,
 				context:this,
-				data:param,
+				data:plugin.settings,
 			})
 			.done(function(html)
 			{
 			//	Return HTML
-			/* bug : option is global and must be reset !*/
-				if (print === true) $(this).html(html);
+				$element.html(html);
 			//	Execute callback (make sure the callback is a function)
-				if ((typeof(callback) != 'undefined') && (typeof(callback['done']) == "function")) callback['done'].call(this, html);
+				if ((typeof(callbacks) != 'undefined') && (typeof(callbacks['done']) == "function")) callbacks['done'].call(this, html);
 				
 			})
 			.fail(function( jqXHR, textStatus )
@@ -53,8 +54,26 @@
 			//	console.log( "Request failed: " + textStatus );
 				console.log( "Request failed: " + jqXHR.responseText );
 			});
-		};
-	})( jQuery );
+			
+		}
+
+	//	Fire up the plugin!
+		plugin.init();
+	}
+
+//	Add the plugin to the jQuery.fn object
+	$.fn.ajx = function(options, callbacks)
+	{
+		return this.each(function()
+		{
+			if (undefined == $(this).data('ajx'))
+			{
+				var plugin = new $.ajx(options, callbacks, this);
+				$(this).data('ajx', plugin);
+			}
+		});
+	}
+})(jQuery);
 
 /*********************************************************************************************
 /**	* Close all the shy elements when clicking outside

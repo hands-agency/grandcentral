@@ -20,7 +20,7 @@ $(document).ready(function()
 		$('#refine input').searchasyoutype(
 		{
 			app:'content',
-			template:'list/list',
+			template:'/list/list',
 			param:'<?=addslashes(json_encode($_PARAM))?>',
 			target:'#adminContent section.active',
 		});
@@ -31,7 +31,7 @@ $(document).ready(function()
 	container.infinitescroll(
 	{
 		app:'content',
-		template:'list/list.lines',
+		template:'/list/list.lines',
 		param:'<?=addslashes(json_encode($_PARAM))?>',
 		limit:<?=$limit?>,
 		autoscroll:true,
@@ -39,7 +39,6 @@ $(document).ready(function()
 	function()
 	{
 		var $container = $('section[data-template="/list/list"][data-pref-display="inmasonry"]>.infiniteScrollContainer>ol');
-		console.log($container);
 	//	initialize Masonry after all images have loaded  
 		$container.imagesLoaded( function()
 		{

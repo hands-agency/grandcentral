@@ -100,10 +100,6 @@
 					field = $(this).closest('li[data-type]');
 					plugin.resort(field)
 				},
-			},{
-			//	Option
-				debug:false,
-				async:true,
 			});
 
 		//	Delete a selected

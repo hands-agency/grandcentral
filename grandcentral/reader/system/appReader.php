@@ -18,35 +18,39 @@ class appReader extends _apps
  */
 	public function prepare()
 	{
-		$page = cc('page', current);
+	//	Some vars
+		$page = i('page', current);
 		$url = ('home' == $page['key']->get()) ? URLR : mb_substr(URLR, mb_strlen($page['url']->get()));
-		// detail
+		
+	//	Detail of an item
 		if (!empty($url))
 		{
-			// recherche de l'item à afficher
-			$item = cc($this->param['item']);
+		//	Look for our item
+			$item = i($this->param['item']);
 			$item->get(array('url' => $url));
+			
+		//	We have an item
 			if ($item->exists())
 			{
 				define('item', $this->param['item']);
 				registry::set(registry::current_index, item, $item);
-				echo cc($this->param['detail']);
+				echo i($this->param['detail']);
 			}
-			// 404
+		//	404
 			else
 			{
 				ob_clean();
-				$page = cc('page');
+				$page = i('page');
 				$page->get_by_url('/404');
 				registry::set(registry::current_index, 'page', $page);
 				echo $page;
 				exit;
 			}
 		}
-		// list
+	//	List of items
 		else
 		{
-			echo cc($this->param['list']);
+			echo i($this->param['list']);
 		}
 	}
 /**

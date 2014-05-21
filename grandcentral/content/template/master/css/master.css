@@ -823,7 +823,7 @@ footer
 {
 	font-family:"Raleway-Regular";
 	font-size:40px;
-	margin:0 0 20px 0;
+	margin-bottom:20px;
 	clear:left;
 }
 #adminContext h2
@@ -840,7 +840,7 @@ footer
 {
 	background:#eee;
 	padding:0 10px;
-	color:#aaa;
+	color:#888;
 	position:relative;
 	bottom:-13px;
 	display:inline;
@@ -907,6 +907,8 @@ footer
 	-o-transition: all .15s ease-out; 
 	transition: all .15s ease-out;
 	min-height:300px;
+	position:relative;
+	overflow-y:auto;
 }
 #adminContent section.virgin,
 #adminContent section.loading
@@ -1138,13 +1140,11 @@ footer
 {
 }
 
-/* Close */
+/* Close & delete */
 #grandCentralAdmin button.close,
 #grandCentralAdmin button.delete
 {
 	position:absolute;
-	top:10px;
-	right:10px;
 	z-index:3;
 	border:none;
 	background:transparent !important;

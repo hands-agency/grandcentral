@@ -24,7 +24,7 @@ section[data-template="/tree/tree"] li
 section[data-template="/tree/tree"] ol li .page
 {
 	padding:7px 10px;
-	height:140px;
+	height:120px;
 	margin-bottom:70px;
 	border:1px solid transparent;
 	white-space:normal;
@@ -37,7 +37,7 @@ section[data-template="/tree/tree"] ol li .page:hover
 /* The icon */
 section[data-template="/tree/tree"] ol li .page .icon
 {
-	width:120px;
+	width:100px;
 	height:100%;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
@@ -134,7 +134,7 @@ section[data-template="/tree/tree"] li.ui-sortable-placeholder
 {
 	border:1px dotted #ddd !important;
 	opacity:0.1 !important;
-	background:#ddd;
+	background:rgba(0, 0, 0, .5);
 	visibility:visible !important;
 }
 
@@ -194,7 +194,6 @@ section[data-template="/tree/tree"] li .page[data-type="header"] .icon .title
 section[data-template="/tree/tree"] li .page[data-type="link"] .icon
 {
 	height:60px;
-	border:1px solid #ccc;
 }
 
 /********************************************************************************************/

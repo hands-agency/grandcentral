@@ -80,11 +80,4 @@
 			}
 		}
 	}
-
-//	Some preprocessing
-	foreach ($bunch as $item)
-	{
-	//	Ensure we have a title, otherwise use the nickname
-		if (empty($item['title'])) $item['title'] = (empty($item['title'])) ? $item->get_nickname() : $item['title'];
-	}
 ?>

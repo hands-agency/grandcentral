@@ -26,6 +26,7 @@ $(document).ready(function ()
 	//	Hide options
 	//	TODO refresh content instead of hide
 		$('#options_drop').hide('fast');
+		
 	//	Open the right panel
 		if (!$panel.html() || $(this).hasClass('updateMe'))
 		{
@@ -134,7 +135,8 @@ $(document).ready(function ()
 					$.ajx(
 					{
 						app: 'content',
-						template: 'status',
+						template: '/master/status',
+						mime:'json',
 						item:item,
 						status:tab.data('status'),
 					}, {

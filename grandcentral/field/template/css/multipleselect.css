@@ -16,7 +16,6 @@ ol>li[data-type="multipleselect"] .field .available
 	-webkit-border-radius:3px;
 	border-radius:3px;
 	position:relative;
-	min-height:200px;
 }
 ol>li[data-type="multipleselect"] .field p
 {
@@ -95,6 +94,7 @@ ol>li[data-type="multipleselect"] .field li:not(.nodata)
 	text-shadow: 0 1px 0 rgba(255,255,255,0.9);
 	-moz-user-select:none;
 	-webkit-user-select:none;
+	position:relative;
 }
 ol>li[data-type="multipleselect"] .field li:not(.nodata):hover
 {
@@ -118,6 +118,6 @@ ol>li[data-type="multipleselect"] .field li .title
 }
 ol>li[data-type="multipleselect"] .field li .delete
 {
-	float:right;
-	margin:1px 3px 0 0 !important;
+	top:1px;
+	right:0px;
 }
