@@ -166,13 +166,14 @@
 				    	</div>
 					    <div class="face back">
 							<div class="action">
-								<a class="preview">Preview</a>
 								<a class="edit" href="'.$page->edit().'">Edit</a>
+								<a class="preview">Preview</a>
 								<a class="asleep">Put asleep</a>
+								<a class="live">Go live</a>
 							</div>
 					    </div>
 					
-						<div class="expand"></div>
+						<div class="add">+</div>
 					</div>
 					'.$type.'
 				</div>';

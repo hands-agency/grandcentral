@@ -123,7 +123,6 @@ section[data-template="/tree/tree"] ol li .page .icon
 {
 	width:100px;
 	height:120px;
-	line-height:90px;
 	text-align:center;
 	position:relative;
 	-moz-box-sizing:border-box;
@@ -136,13 +135,13 @@ section[data-template="/tree/tree"] ol li .page .icon
 	color:#000;
 	font-family: "Raleway-Regular";
 }
-section[data-template="/tree/tree"] ol li .page .icon .face:hover
+section[data-template="/tree/tree"] ol li .page .icon:hover .face
 {
 	border-color: #3eb4d6;
 	-webkit-box-shadow: 0 0 4px #3eb4d6;
 	box-shadow: 0 0 4px #3eb4d6;
 }
-section[data-template="/tree/tree"] ol li .page.preview .icon
+section[data-template="/tree/tree"] ol li .page .icon.preview
 {
 	width:200px;
 	height:240px;
@@ -165,8 +164,8 @@ section[data-template="/tree/tree"] ol li .page .icon iframe
 	-webkit-transform-origin:0% 0%; /* Chrome, Safari, Opera */
 }
 
-/* Expand */
-section[data-template="/tree/tree"] ol li .page .icon .expand
+/* add */
+section[data-template="/tree/tree"] ol li .page .icon .add
 {
 	background:#6cbf2d;
 	width:20px;
@@ -175,9 +174,12 @@ section[data-template="/tree/tree"] ol li .page .icon .expand
 	bottom:-10px;
 	margin-left:-10px;
 	left:50%;
-	z-index:11;
 	border-radius:50%;
 	opacity:0;
+	line-height:21px;
+	color:#fff;
+	font-size:34px;
+	z-index:100 !important;
 	transform:scale(0.1);
 	-moz-transform:scale(0.1);
 	-ms-transform:scale(0.1);
@@ -189,16 +191,16 @@ section[data-template="/tree/tree"] ol li .page .icon .expand
 	transition: all .1s ease-out;
 	cursor:pointer;
 }
-section[data-template="/tree/tree"] ol li .page .icon:hover .expand
+section[data-template="/tree/tree"] ol li:hover>.page>.icon>.add
 {
 	opacity:1;
-	transform:scale(0.5);
-	-moz-transform:scale(0.5);
-	-ms-transform:scale(0.5);
-	-webkit-transform:scale(0.5);
-	-o-transform:scale(0.5);
+	transform:scale(0.7);
+	-moz-transform:scale(0.7);
+	-ms-transform:scale(0.7);
+	-webkit-transform:scale(0.7);
+	-o-transform:scale(0.7);
 }
-section[data-template="/tree/tree"] ol li .page .icon .expand:hover 
+section[data-template="/tree/tree"] ol li .page .icon .add:hover 
 {
 	opacity:1;
 	transform:scale(1);
@@ -243,6 +245,7 @@ section[data-template="/tree/tree"] ol li .page[data-status="asleep"] .icon
 	opacity:0.6;
 }
 
+
 /* Home */
 section[data-template="/tree/tree"]>ol>li>.page
 {
@@ -254,13 +257,27 @@ section[data-template="/tree/tree"]>ol>li>.page
 /********************************************************************************************/
 section[data-template="/tree/tree"] ol li .page .icon .action
 {
-	line-height:14px;
 }
 section[data-template="/tree/tree"] ol li .page .icon .action a
 {
-	display:block;
-	color:#666;
-	padding:2px 0;
+	color:#fff;
+	padding:2px 5px;
+	background:#666;
+	cursor:pointer;
+	border-radius:1px;
+	font-size:10px;
+	text-transform:uppercase;
+	line-height:18px !important;
+	font-family: "Raleway-Bold";
+}
+section[data-template="/tree/tree"] ol li .page .icon .action a:hover
+{
+	background:#3eb4d6;
+}
+section[data-template="/tree/tree"] ol li .page[data-status="live"] .icon .action .live,
+section[data-template="/tree/tree"] ol li .page[data-status="asleep"] .icon .action .asleep
+{
+	display:none;
 }
 
 /********************************************************************************************/
@@ -369,8 +386,6 @@ section[data-template="/tree/tree"] li .page[data-type="link"] .url
     -webkit-perspective: 600px;
     -moz-perspective: 600px;
 }
-/* -- make sure to declare a default for every property that you want animated -- */
-/* -- general styles, including Y axis rotation -- */
 .icon .face
 {
     position: absolute;
@@ -390,17 +405,24 @@ section[data-template="/tree/tree"] li .page[data-type="link"] .url
 	box-sizing:border-box;
 	-moz-border-radius: 2px;
 	border-radius:2px;
-	background:#fff;
     -moz-transform-style: preserve-3d;
     -moz-backface-visibility: hidden;
     -webkit-transform-style: preserve-3d;
     -webkit-backface-visibility: hidden;
+	line-height:90px;
+}
+.icon .face>*
+{
+	vertical-align:middle;
+	display:inline-block;
+	line-height:normal; /* on rétablit le line-height */
 }
 .icon .face.front {
     z-index: 9;
 	width:100%;
     -webkit-transform: rotateX(0deg) rotateY(0deg);
     -moz-transform: rotateX(0deg) rotateY(0deg);
+	background:#fff;
 }
 .icon.flipped .face.front {
     -webkit-transform: rotateY(180deg);
@@ -410,7 +432,7 @@ section[data-template="/tree/tree"] li .page[data-type="link"] .url
     z-index: 8;
     -webkit-transform: rotateY(-180deg);
     -moz-transform: rotateY(-180deg);
-	line-height:15px;
+	background-color:#F9F9F9;
 }
 .icon.flipped .face.back {
     z-index: 10;

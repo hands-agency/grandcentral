@@ -27,20 +27,28 @@ $(function()
 	});
 */
 	
-//	Expand or add new page
+//	Expand
 	$('ol.tree').on('click', '.expand', function()
 	{
 	//	Some vars
 		$page = $(this).closest('.page');
-		$children = $page.next('ol').find('li');
+		$children = $childrenContainer.find('li');
 		
-	//	If has kids, open
-		if ($children.length != 0) $children.toggle('fast');
-	//	No kids? Common! Make some!
-		else
-		{
-			
-		};
+		$children.toggle('fast');
+	});
+	
+//	Add new page
+	$('ol.tree').on('click', '.add', function()
+	{
+	//	Some vars
+		$page = $(this).closest('.page');
+		$childrenContainer = $page.next('ol');
+		
+	//	Find the template
+		template = $page.closest('[data-item]')[0].outerHTML;
+	
+	//	Make some babies!
+		$(template).appendTo($childrenContainer);
 	});
 	
 //	Edit
@@ -53,21 +61,48 @@ $(function()
 		},
 		out: function()
 		{
-			$(this).removeClass('flipped');
+			$(this).removeClass('flipped preview');
 		}
 	};
 	$('ol.tree').find('.icon').hoverIntent( config );
 	
 //	Preview
-/*	$('ol.tree').on('click', '.page', function()
+	$('ol.tree .action').on('click', '.preview', function()
 	{
-		$page = $(this);
-		$icon = $(this).find('.icon');
+		$page = $(this).closest('.page');
+		$icon = $page.find('.icon');
+		$back = $icon.find('.back');
 		
-		$page.addClass('preview');
-		$icon.html('<iframe src="'+SITE_URL+'"></iframe>');
+		$icon.addClass('preview');
+		$back.html('<iframe src="'+SITE_URL+'"></iframe>');
 	});
-*/
+	
+//	Asleep / live
+	$('ol.tree .action').on('click', '.asleep, .live', function()
+	{
+	//	Some vars
+		$item = $(this).closest('[data-item]');
+		item = $item.data('item');
+		$page = $item.find('.page');
+		status = $(this).attr('class');
+		
+	//	Change status
+		$.ajx(
+		{
+			app: 'content',
+			template: '/master/status',
+			mime:'json',
+			item:item,
+			status:status,
+		}, {
+		//	Done
+			done:function()
+			{
+			//	Change the display status
+				$page.attr('data-status', status).data('status', status);
+			}
+		});
+	});
 });
 
 /*********************************************************************************************
