@@ -11,6 +11,31 @@ class attrI18n extends attrArray
 {
 	protected $field;
 /**
+ * xxxx
+ *
+ * @param	string	la variable
+ * @return	string	une string
+ * @access	public
+ */
+	public function cut($length, $add = '...')
+	{
+		$str = $this->__tostring();
+		if (mb_strlen($str) > $length)
+		{
+		//	On coupe
+			$string = mb_substr($str, 0, $length);
+		//	On enlève le dernier mot
+			$string = substr($string, 0, -(mb_strlen(mb_strrchr($string, ' '))));
+		//	On ajoute les ...
+			$string .= $add;
+		}
+		else
+		{
+			$string = $str;
+		}
+		return $string;
+	}
+/**
  * Get complete item url
  *
  * @return	string	url
