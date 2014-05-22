@@ -108,6 +108,7 @@ class attrUrl extends _attrs
  */
 	public function __tostring()
 	{
+		// print'<pre>';var_dump($this->params['version']);print'</pre>';
 		$url = '';
 		// version url
 		if (is_null($this->params['version']))
@@ -117,7 +118,7 @@ class attrUrl extends _attrs
 		else
 		{
 			$version = constant(mb_strtoupper($this->params['env']).'_VERSION');
-			$url = constant('VERSION_'.mb_strtoupper($version)).$url;
+			$url = constant('VERSION_'.mb_strtoupper($version));
 		}
 		// reader
 		if ($this->params['table'] != 'page')
@@ -126,7 +127,7 @@ class attrUrl extends _attrs
 			{
 				if (in_array($this->params['table'], $tables))
 				{
-					$url = registry::get(registry::url_index, $page);
+					$url .= registry::get(registry::url_index, $page);
 					break;
 				}
 			}

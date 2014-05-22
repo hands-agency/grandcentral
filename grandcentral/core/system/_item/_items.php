@@ -178,6 +178,13 @@ abstract class _items implements ArrayAccess, Iterator
  */
 	public function save()
 	{
+		foreach ($this->data as $key => $attr)
+		{
+			if (method_exists($attr, 'attach'))
+			{
+				$this[$key]->attach($this);
+			}
+		}
 	//	conect to db
 		$db = database::connect($this->get_env());
 	//	update

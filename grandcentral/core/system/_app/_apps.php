@@ -416,7 +416,7 @@ abstract class _apps
 		$cache = new app('cache');
 		$fileCache = $cache->get_templateroot().'/registry/'.md5('app');
 		//	dans le cache
-		if (is_file($fileCache) && filemtime(ADMIN_ROOT) < filemtime($fileCache))
+		if (is_file($fileCache) && filemtime(ADMIN_ROOT) < filemtime($fileCache) && !SITE_DEBUG)
 		{
 			// print'<pre>';print_r('dans le cache des apps');print'</pre>';
 			$datas = unserialize(file_get_contents($fileCache));
