@@ -34,7 +34,7 @@ $(document).ready(function()
 		template:'/list/list.lines',
 		param:'<?=addslashes(json_encode($_PARAM))?>',
 		limit:<?=$limit?>,
-		autoscroll:true,
+		autoscroll:true
 	},
 	function()
 	{

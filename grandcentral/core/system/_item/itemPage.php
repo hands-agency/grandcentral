@@ -233,7 +233,7 @@ class itemPage extends _items
 		return $this['child']->unfold();
 	}
 /**
- * Get a bunch with the direct parent of the page or all of his parents
+ * Get a bunch with the direct parent of the page
  *
  * @param	int		deep of the ancestors
  * @return	bunch	a bunch of pages
@@ -280,11 +280,13 @@ class itemPage extends _items
 	{
 		$tree = (array) registry::get(registry::legacy_index);
 		
+		$b = new bunch(null, null, $this->get_env());
+		
 		foreach ($tree as $parent => $children)
 		{
 			if (in_array($this->get_nickname(), $children))
 			{
-				$b = new bunch(null, null, $this->get_env());
+				
 				if ($self === false)
 				{
 					$index = array_search($this->get_nickname(), $children);
@@ -294,7 +296,7 @@ class itemPage extends _items
 			}
 		}
 	//	return
-		return null;
+		return $b;
 	}
 /**
  * Check if the page given in parameter is the parent of $this

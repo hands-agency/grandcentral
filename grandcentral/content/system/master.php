@@ -233,7 +233,7 @@ class master
  * @return	string	la clé de l'app
  * @access	public
  */
-	public static function bind_code($zone, $code)
+	public static function bind_code($zone, $code, $top = false)
 	{
 		if (isset(self::$zones[$zone]))
 		{
@@ -241,7 +241,15 @@ class master
 				'type' => 'code',
 				'data' => $code
 			);
-			self::$zones[$zone]['data'][] = $tmp;
+			if ($top === false)
+			{
+				self::$zones[$zone]['data'][] = $tmp;
+			}
+			else
+			{
+				array_unshift(self::$zones[$zone]['data'], $tmp);
+			}
+			
 		}
 		else
 		{

@@ -131,6 +131,7 @@ abstract class _items implements ArrayAccess, Iterator
 		}
 	//	limit
 		$param['limit()'] = 1;
+		$param['status'] = array('live', 'asleep');
 	//	query
 		$result = database::query_item($this->get_env(), $this->get_table(), $param);
 	//	affectation
@@ -178,6 +179,10 @@ abstract class _items implements ArrayAccess, Iterator
  */
 	public function save()
 	{
+		if ($this->get_table() == 'news')
+		{
+			print'<pre>';print_r($this);print'</pre>';
+		}
 		foreach ($this->data as $key => $attr)
 		{
 			if (method_exists($attr, 'attach'))
@@ -201,6 +206,7 @@ abstract class _items implements ArrayAccess, Iterator
 			$this['id']->database_set($db->flush_querystack());
 			$event = 'insert';
 		}
+		print'<pre>';print_r($this->get_table());print'</pre>';
 	//	Trigger event
 		event::trigger($this, $event);
 		// print'<pre>';print_r($db->_spooler);print'</pre>';

@@ -84,13 +84,13 @@ class attrDate extends _attrs
 		else
 		{
 			$chunks = array(
-				array(60 * 60 * 24 * 365 , DATE_YEAR),
-				array(60 * 60 * 24 * 30 , DATE_MONTH),
-				array(60 * 60 * 24 * 7, DATE_WEEK),
-				array(60 * 60 * 24 , DATE_DAY),
-				array(60 * 60 , DATE_HOUR),
-				array(60 , DATE_MINUTE),
-				array(1 , DATE_SECOND)
+				array(60 * 60 * 24 * 365 , cst('DATE_YEAR')),
+				array(60 * 60 * 24 * 30 , cst('DATE_MONTH')),
+				array(60 * 60 * 24 * 7, cst('DATE_WEEK')),
+				array(60 * 60 * 24 , cst('DATE_DAY')),
+				array(60 * 60 , cst('DATE_HOUR')),
+				array(60 , cst('DATE_MINUTE')),
+				array(1 , cst('DATE_SECOND'))
 			);
 
 			for ($i = 0, $j = count($chunks); $i < $j; $i++)

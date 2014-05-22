@@ -46,7 +46,12 @@
 				<? foreach ($bunch as $subpage): ?>
 				<?
 				//	Title & descr
-					$title = cst('ITEM_'.$subpage['key'].'_TITLE', $subpage['title']);
+					
+					$title = cst('ITEM_'.$subpage['key'].'_TITLE');
+					if ($title == 'ITEM_'.strtoupper($subpage['key']).'_TITLE')
+					{
+						$title = $subpage['title'];
+					}
 					
 				//	Find the link
 					switch ($link)

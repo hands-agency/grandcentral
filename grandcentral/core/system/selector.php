@@ -82,6 +82,22 @@
 		return i($table, $params, $env);
 	}
 /**
+ * Get constant by key
+ *
+ * @param	string	constant key
+ * @return	string	the constant or the key if undefined
+ * @access	public
+ */
+	function cst($key)
+	{
+		$key = strtoupper($key);
+		
+		$const = registry::get(env, 'const', $key);
+		$string = ($const) ? $const->__tostring() : $key;
+		
+		return $string;
+	}
+/**
  * Constant handling
  *
  * @param	string	table
@@ -90,13 +106,10 @@
  * @return	mixed	an item or a bunch
  * @access	public
  */
-	function cst($const, $label)
+	function t($value)
 	{
-		$const = strtoupper($const);
-		$return = (defined($const)) ? constant($const) : $label;
-		return $return;
+		return itemConst::t($value);
 	}
-	
 /**
  * Constant handling
  *

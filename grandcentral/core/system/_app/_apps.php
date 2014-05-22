@@ -256,7 +256,7 @@ abstract class _apps
  * @return	string	la clé de l'app
  * @access	public
  */
-	public function bind_snippet($zone, $snippet_key)
+	public function bind_snippet($zone, $snippet_key, $top = false)
 	{
 	//	Failsafe first slash
 		$snippet_key = (mb_strpos($snippet_key, '/') === 0) ? $snippet_key : '/'.$snippet_key;
@@ -274,7 +274,7 @@ abstract class _apps
 		$content = ob_get_contents();
 		ob_end_clean();
 		// print'<pre>';print_r(self::$zones);print'</pre>';
-		$this->bind_code($zone, $content);
+		$this->bind_code($zone, $content, $top);
 	}
 /**
  * 
@@ -334,9 +334,9 @@ abstract class _apps
  * @return	string	la clé de l'app
  * @access	public
  */
-	public function bind_code($zone, $data)
+	public function bind_code($zone, $data, $top = false)
 	{
-		master::bind_code($zone, $data);
+		master::bind_code($zone, $data, $top);
 	}
 /**
  * 

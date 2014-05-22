@@ -8,7 +8,7 @@
 		<div class="selected">
 			<ol>
 				<li class="nodata" <?=$hideNodata?>>
-					<?=MULTIPLESELECT_SELECTED_NODATA?>
+					<?= cst('MULTIPLESELECT_SELECTED_NODATA');?>
 					<span class="cc-bubble warning">Here!</span>
 				</li>
 				<? foreach ($selected as $li): ?>

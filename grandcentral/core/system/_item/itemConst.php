@@ -18,19 +18,36 @@ class itemConst extends _items
 	public function database_set($data)
 	{
 		parent::database_set($data);
-		$this->define();
+		registry::set($this->get_env(), 'const', $this['key']->get(), $this['title']);
 	}
 /**
- * Define a constant from key and title attribute
+ * Translate a constant text
  *
+ * @param	string 	string to translate
  * @access  public
  */
-	public function define()
+	public static function t($string)
 	{
-		if (!empty($this['key']) && !empty($this['title']) && !defined($this['key']))
+		// var
+		$lang = i(env, current)['version']['lang']->get();
+		// recherche de la traduction
+		$consts = registry::get(env, 'const');
+		foreach ($consts as $const)
 		{
-			define($this['key'], $this['title']);
+			foreach ($const as $value)
+			{
+				if ($string == $value)
+				{
+					return $const->__tostring();
+				}
+			}
 		}
+		// ajout
+		$const = i('const');
+		$const['title'][$lang] = $string;
+		$const->save();
+		registry::set($const->get_env(), 'const', $const['key']->get(), $const['title']);
+		return $const['title'][$lang];
 	}
 }
 ?>
