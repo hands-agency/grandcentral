@@ -56,7 +56,6 @@ class attrI18n extends attrArray
 		//print'<pre>là : ';print_r($this->data[i(env, current)['version']['lang']->get()]);print'</pre>';
 		switch (true) {
 			case is_string($this->data):
-				print'<pre>';print_r('ici');print'</pre>';
 				return $this->data;
 				break;
 			case empty($this->data):

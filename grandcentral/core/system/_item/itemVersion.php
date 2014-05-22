@@ -16,6 +16,11 @@ class itemVersion extends _items
  */
 	public function guess()
 	{
+	//	The currently displayed admin
+	//	$pref = $_SESSION['user']['pref'];
+	//	$pref['admin']['version'] = '1';
+	//	$_SESSION['user']['pref'] = $pref;
+
 	//	si on a une version qui nous a été donnée par la classe boot
 		if ($this->get_env() == 'site' && SITE_VERSION != null)
 		{

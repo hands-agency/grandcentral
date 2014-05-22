@@ -4,55 +4,70 @@
 **#******************************************************************************************/
 $(function()
 {
+/*	
 	$('ol.tree').sortable(
 	{
 		handle: '.icon',
 		items: '> li li[data-item]',
 		tolerance:'intersect',
 		
+	//	On start
+		start: function()
+		{
+		//	Collapse
+			
+		},
+		
 	//	On stop
 		stop: function()
 		{
-		//	Redo connections
-			connectPlumb();
-		},
-
-	});
-});
-
-/*********************************************************************************************
-/**	* jsPomb
-* 	* @author	mvd@cafecentral.fr
-**#******************************************************************************************/
-$(function()
-{
-	initPlumb = function()
-	{
-		jsPlumb.ready(function()
-		{
-		//	Some vars
-			var connectorLineWidth = 1;
-			var connectorColor = '#666';
-			
-		//	Some paintstyles
-			paintStyleAsleep = {
-				dashstyle:'2 4',
-				strokeStyle:connectorColor,
-				lineWidth:connectorLineWidth,
-			}
+		//	re-expand
 		
-			jsPlumb.importDefaults(
-			{			
-				Connector : [ 'Flowchart', { stub:[40, 40]} ],
-				PaintStyle : { strokeStyle:connectorColor, lineWidth:connectorLineWidth },
-				EndpointStyle : { radius:2, fillStyle:connectorColor },
-				HoverPaintStyle : {strokeStyle:'#ec9f2e' },
-				EndpointHoverStyle : {fillStyle:'#ec9f2e' },			
-				Anchors :  [ 'BottomCenter', 'TopCenter' ],
-			});
-		});
+		},
+	});
+*/
+	
+//	Expand or add new page
+	$('ol.tree').on('click', '.expand', function()
+	{
+	//	Some vars
+		$page = $(this).closest('.page');
+		$children = $page.next('ol').find('li');
+		
+	//	If has kids, open
+		if ($children.length != 0) $children.toggle('fast');
+	//	No kids? Common! Make some!
+		else
+		{
+			
+		};
+	});
+	
+//	Edit
+//	When hover intent
+	var config = {
+		timeout: 500,
+		over: function()
+		{
+			$(this).addClass('flipped');
+		},
+		out: function()
+		{
+			$(this).removeClass('flipped');
+		}
 	};
-	initPlumb();
+	$('ol.tree').find('.icon').hoverIntent( config );
+	
+//	Preview
+/*	$('ol.tree').on('click', '.page', function()
+	{
+		$page = $(this);
+		$icon = $(this).find('.icon');
+		
+		$page.addClass('preview');
+		$icon.html('<iframe src="'+SITE_URL+'"></iframe>');
+	});
+*/
 });
 
 /*********************************************************************************************

@@ -98,7 +98,7 @@
 				done:function()
 				{
 					field = $(this).closest('li[data-type]');
-					plugin.resort(field)
+					plugin.resort(field);
 				},
 			});
 

@@ -35,6 +35,7 @@
 				'app':'form',
 				'template':'validation',
 				'form':vars['key'],
+				'mime':'json',
 			};
 
 		//	Remember when a field has changed
