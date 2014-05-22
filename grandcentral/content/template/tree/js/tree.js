@@ -72,9 +72,10 @@ $(function()
 		$page = $(this).closest('.page');
 		$icon = $page.find('.icon');
 		$back = $icon.find('.back');
+		url = SITE_URL;
 		
 		$icon.addClass('preview');
-		$back.html('<iframe src="'+SITE_URL+'"></iframe>');
+		$back.find('.preview iframe').attr('src', url);
 	});
 	
 //	Asleep / live

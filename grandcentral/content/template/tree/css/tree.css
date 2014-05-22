@@ -141,6 +141,8 @@ section[data-template="/tree/tree"] ol li .page .icon:hover .face
 	-webkit-box-shadow: 0 0 4px #3eb4d6;
 	box-shadow: 0 0 4px #3eb4d6;
 }
+
+/* Preview */
 section[data-template="/tree/tree"] ol li .page .icon.preview
 {
 	width:200px;
@@ -148,8 +150,6 @@ section[data-template="/tree/tree"] ol li .page .icon.preview
 	padding:1px;
 	overflow:hidden;
 }
-
-/* Preview Iframe */
 section[data-template="/tree/tree"] ol li .page .icon iframe
 {
 	width:1024px;
@@ -162,6 +162,15 @@ section[data-template="/tree/tree"] ol li .page .icon iframe
 	transform-origin:0% 0%;
 	-ms-transform-origin:0% 0%; /* IE 9 */
 	-webkit-transform-origin:0% 0%; /* Chrome, Safari, Opera */
+	display:none;
+}
+section[data-template="/tree/tree"] ol li .page .icon.preview iframe
+{
+	display:block;
+}
+section[data-template="/tree/tree"] ol li .page .icon.preview .action
+{
+	display:none;
 }
 
 /* add */

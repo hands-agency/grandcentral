@@ -171,6 +171,7 @@
 								<a class="asleep">Put asleep</a>
 								<a class="live">Go live</a>
 							</div>
+							<div class="preview"><iframe></iframe></div>
 					    </div>
 					
 						<div class="add">+</div>
