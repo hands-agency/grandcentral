@@ -58,7 +58,28 @@ textarea
 }
 select
 {
+	display:inline-block;
 	margin:7px;
+	background:#fff;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+select:after
+{
+	position: absolute;
+	top: 50%;
+	right: 1.25rem;
+	display: inline-block;
+	content: "";
+	width: 0;
+	height: 0;
+	margin-top: -.15rem;
+	pointer-events: none;
+	border-top: .35rem solid;
+	border-right: .35rem solid transparent;
+	border-bottom: .35rem solid transparent;
+	border-left: .35rem solid transparent;
 }
 
 /********************************************************************************************/

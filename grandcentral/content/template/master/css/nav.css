@@ -446,6 +446,7 @@
 #adminNav>ul .sub ul.tiles li
 {
 	display:inline-block;
+	vertical-align:top;
 }
 #adminNav>ul .sub ul.tiles li a
 {
@@ -492,7 +493,8 @@
 	line-height:67px;
 	text-align:center;
 	color:#fff;
-	opacity:0.8;
+	opacity:0.9;
+	line-height:80px !important;
 }
 
 /* In masonry */

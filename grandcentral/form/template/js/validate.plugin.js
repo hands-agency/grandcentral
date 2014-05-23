@@ -88,14 +88,15 @@
 				{
 				//	DEBUG (what validation.routine sends back)
 				//	console.log(msg);
-			
+				
+				//	Some vars
 					$li = field;
 				
 				//	Field is OK
 					if (msg === true)
 					{
 						css = 'ok';
-						bounceDirection = 'up';
+						icon = '116';
 					//	Kill the todo list
 						$li.find('.todo').css({'text-decoration':'line-through'}).hide('fast', function() {$(this).remove();});
 						valid = true;
@@ -106,7 +107,7 @@
 					else
 					{
 						css = 'ko';
-						bounceDirection = 'left';
+						icon = '117';
 					//	Append (maybe) and fill the todo list
 						if ($li.find('.todo').length == 0) $li.find('.wrapper').append(todoCode);
 						$li.find('.todo').html('<li>'+msg.required['descr']+'</li>').show('fast');
@@ -119,7 +120,7 @@
 					showControl($li,
 					{
 					//	html:css,
-						feathericon:'&#xe116',
+						feathericon:icon,
 						timeout:vars['delay'][css],
 						control:css,
 					});
