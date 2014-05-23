@@ -76,6 +76,17 @@ abstract class _items implements ArrayAccess, Iterator
 	{
 		return $this->get_table().'_'.$this['id']->get();
 	}
+	
+/**
+ * Get the abbreviate link of the item
+ *
+ * @param	string le nom de l'attribut
+ * @access	public
+ */
+	public function get_abbr()
+	{
+		return '['.$this->get_nickname().']';
+	}
 /**
  * Obtenir la valeur d'un attribut
  *
@@ -179,10 +190,6 @@ abstract class _items implements ArrayAccess, Iterator
  */
 	public function save()
 	{
-		if ($this->get_table() == 'news')
-		{
-			print'<pre>';print_r($this);print'</pre>';
-		}
 		foreach ($this->data as $key => $attr)
 		{
 			if (method_exists($attr, 'attach'))

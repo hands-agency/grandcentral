@@ -168,15 +168,6 @@ class attrUrl extends _attrs
 		return '/'.$slug->makeSlugs($string);
 	}
 /**
- * Get the abbreviation of the link
- *
- * @access	public
- */
-	public function abbr()
-	{
-		return '['.$this->params['nickname'].']';
-	}
-/**
  * Default field attributes for updated	
  *
  * @param	string	la variable

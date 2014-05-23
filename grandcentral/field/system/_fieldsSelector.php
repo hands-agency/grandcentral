@@ -169,7 +169,7 @@ abstract class _fieldsSelector extends _fields
 		foreach ($this->values as $value)
 		{
 			$table = $value['item'];
-			$params = (isset($value['property'])) ? $value['property'] : null;
+			$params = (isset($value['param'])) ? $value['param'] : null;
 		//	Default order
 			$params['order()'] = 'title';
 		//	Refine ?
