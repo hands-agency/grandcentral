@@ -96,7 +96,7 @@
 					if (msg === true)
 					{
 						css = 'ok';
-						icon = '116';
+						icon = 	'';
 					//	Kill the todo list
 						$li.find('.todo').css({'text-decoration':'line-through'}).hide('fast', function() {$(this).remove();});
 						valid = true;
@@ -107,7 +107,7 @@
 					else
 					{
 						css = 'ko';
-						icon = '117';
+						icon = '';
 					//	Append (maybe) and fill the todo list
 						if ($li.find('.todo').length == 0) $li.find('.wrapper').append(todoCode);
 						$li.find('.todo').html('<li>'+msg.required['descr']+'</li>').show('fast');

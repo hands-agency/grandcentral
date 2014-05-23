@@ -64,6 +64,7 @@ select
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
+	position: relative;
 }
 select:after
 {
