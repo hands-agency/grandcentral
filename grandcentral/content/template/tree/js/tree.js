@@ -44,11 +44,16 @@ $(function()
 		$page = $(this).closest('.page');
 		$childrenContainer = $page.next('ol');
 		
-	//	Find the template
-		template = $page.closest('[data-item]')[0].outerHTML;
+	//	Find & append the template
+		template = $page.closest('[data-item]').clone();
+		template.data('item', '');
+		template.find('.page').data('type', 'content');
+		template.attr('style', 'display:none');
+		template.find('.action').html('<a href="">New page</a>');
+		template.find('ol').html('');
 	
 	//	Make some babies!
-		$(template).appendTo($childrenContainer);
+		$(template).appendTo($childrenContainer).show('fast');
 	});
 	
 //	Edit
@@ -72,7 +77,7 @@ $(function()
 		$page = $(this).closest('.page');
 		$icon = $page.find('.icon');
 		$back = $icon.find('.back');
-		url = SITE_URL;
+		url = $page.data('url');
 		
 		$icon.addClass('preview');
 		$back.find('.preview iframe').attr('src', url);

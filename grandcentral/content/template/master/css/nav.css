@@ -103,9 +103,10 @@
 	transition: all .15s ease-out;
 	overflow:hidden;
 }
-#adminNav>ul>li>.title[data-batchicon]
+#adminNav>ul>li>.title[data-feathericon]:before
 {
-	padding:0 10px;
+	padding:0 8px;
+	font-size:26px;
 }
 #adminNav>ul>li>.title span
 {

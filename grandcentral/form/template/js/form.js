@@ -36,8 +36,8 @@ $(document).ready(function ()
 		control.html('');
 		if (param.html) control.html(param.html);
 	//	Clear (and maybe add icon)
-	//	control.data('batchicon', '');
-	//	if (param.batchicon) control.data('batchicon', param.batchicon);
+		control.data('feathericon', '');
+		if (param.feathericon) control.attr('data-feathericon', param.feathericon);
 		
 	//	Timeout
 		if (param.timeout) li.delay(param.timeout).queue(function()

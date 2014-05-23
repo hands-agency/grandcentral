@@ -206,7 +206,7 @@ abstract class _items implements ArrayAccess, Iterator
 			$this['id']->database_set($db->flush_querystack());
 			$event = 'insert';
 		}
-		print'<pre>';print_r($this->get_table());print'</pre>';
+
 	//	Trigger event
 		event::trigger($this, $event);
 		// print'<pre>';print_r($db->_spooler);print'</pre>';

@@ -13,7 +13,7 @@
 [data-batchicon]:before
 {
 	font-family:Batch;
-	content: attr(data-batchicon);
+	content: attr(data-feathericon);
 	speak: none;
 	font-weight: normal;
 	line-height: 1;

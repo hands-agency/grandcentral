@@ -155,21 +155,21 @@
 				
 			//	Content
 				$content = '
-				<div class="page" data-status="'.$page['status'].'" data-type="'.$page['type']['key'].'">
+				<div class="page" data-status="'.$page['status'].'" data-type="'.$page['type']['key'].'" data-url="'.$page['url'].'">
 					<div class="connector"></div>
+					'.$badge.'
 					
 					<div class="icon" id="'.$page->get_nickname().'">
-						'.$badge.'
 						
 						<div class="face front">
 				            <div class="title">'.$page['title'].'</div>
 				    	</div>
 					    <div class="face back">
 							<div class="action">
-								<a class="edit" href="'.$page->edit().'">Edit</a>
-								<a class="preview">Preview</a>
-								<a class="asleep">Put asleep</a>
-								<a class="live">Go live</a>
+								<a class="edit" data-feathericon="&#xe095" href="'.$page->edit().'">Edit</a>
+								<a class="preview" data-feathericon="&#xe000">Preview</a>
+								<a class="asleep" data-feathericon="&#xe061">Put asleep</a>
+								<a class="live" data-feathericon="&#xe064">Go live</a>
 							</div>
 							<div class="preview"><iframe></iframe></div>
 					    </div>

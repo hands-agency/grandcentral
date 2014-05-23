@@ -113,6 +113,7 @@ section[data-template="/tree/tree"] ol li .page
 	border:1px solid transparent;
 	white-space:normal;
 	display:inline-block;
+	position:relative;
 }
 section[data-template="/tree/tree"] ol li .page:hover
 {
@@ -220,10 +221,10 @@ section[data-template="/tree/tree"] ol li .page .icon .add:hover
 }
 
 /* Badges */
-section[data-template="/tree/tree"] ol li .page .icon .cc-badge
+section[data-template="/tree/tree"] ol li .page .cc-badge
 {
-	top:-5px;
-	right:-5px;
+	top:4px;
+	right:4px;
 }
 
 /* The title */
@@ -278,6 +279,11 @@ section[data-template="/tree/tree"] ol li .page .icon .action a
 	text-transform:uppercase;
 	line-height:18px !important;
 	font-family: "Raleway-Bold";
+	text-align:left;
+}
+section[data-template="/tree/tree"] ol li .page .icon .action a:before
+{
+	margin:0 5px 0 0;
 }
 section[data-template="/tree/tree"] ol li .page .icon .action a:hover
 {

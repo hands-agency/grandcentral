@@ -118,8 +118,8 @@
 				//	Control!
 					showControl($li,
 					{
-						html:css,
-					//	batchicon:'&#xF03C;',
+					//	html:css,
+						feathericon:'&#xe116',
 						timeout:vars['delay'][css],
 						control:css,
 					});

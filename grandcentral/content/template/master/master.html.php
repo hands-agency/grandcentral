@@ -11,7 +11,7 @@
 	<div id="main" class="navClosed contextClosed">
 	
 		<div id="alert">
-			<div class="icon" data-batchicon="&#xF03C;"></div>
+			<div class="icon" data-feathericon="&#xe064"></div>
 			<div class="info">				
 				<div class="response"></div>
 				<div class="help">Tap to close</div>
@@ -21,7 +21,7 @@
 		<div id="grandCentralSite">
 			<div class="overlay">
 				<h1><?=i('site', current)['title']?></h1>
-				<span data-batchicon="&#xF09B;"></span>
+				<span data-feathericon="&#xe000"></span>
 			</div>
 		</div>
 
@@ -39,7 +39,7 @@
 					<? $greenbutton = ($section['greenbutton']->get()) ? i($section['greenbutton']->get()[0])->json() : null ?>
 					<? /* cst('GREENBUTTON_SECTION_NEW_TITLE') */ ?>
 					<li style="width:<?=$sectionWidth?>">
-						<span class="lock" data-batchicon="&#xF0C2;"></span>
+						<span class="lock" data-feathericon="&#xe007"></span>
 						<section id="section_<?= $section['key'] ?>" class="virgin" data-pref-display="<?=$prefDisplay?>" data-app="<?= $app['app'] ?>" data-template="<?= $app['template'] ?>" data-greenbutton='<?= $greenbutton ?>'></section>
 					</li>
 					<? endforeach; ?>

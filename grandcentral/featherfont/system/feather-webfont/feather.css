@@ -1,0 +1,29 @@
+@charset "UTF-8";
+ 
+@font-face {
+  font-family: "feather";
+  src:url("feather-webfont.eot");
+  src:url("feather-webfont.eot?#iefix") format("embedded-opentype"),
+    url("feather-webfont.woff") format("woff"),
+    url("feather-webfont.ttf") format("truetype"),
+    url("feather-webfont.svg#feather") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/* Character Mapping Method */
+ 
+[data-feathericon]:before {
+  display: inline-block;
+  font-family: "feather";
+  content: attr(data-feathericon);
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  speak: none;
+  line-height: 1;
+  position:relative;
+  top:-9%; /* Grand Central Optical Alignment*/
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
