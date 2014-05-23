@@ -8,7 +8,7 @@
 	<? $level2Bunch = (isset($config['subnav']) && is_array($config['subnav'])) ? $config['subnav'] : null ?>
 	<? $level2Content = (isset($config['subnav']) && is_string($config['subnav'])) ? $config['subnav'] : null ?>
 	<?
-		$icon = (isset($config['icon'])) ?  'data-feathericon="'.$config['icon'].'"' : null;
+		$icon = (isset($config['icon'])) ?  'data-batchicon="'.$config['icon'].'"' : null;
 		$image = (isset($config['image'])) ? media($config['image']) : null;
 	//	On / off ?
 		$on = null;
@@ -40,13 +40,18 @@
 			
 			<? if ($count > 0): ?>
 
-			<? if (count($level2Bunch) > 1) : ?><h1><span class="centered"><?=cst('NAV_SUB_H1_'.$key, $key)?></span></h1><? endif ?>
+			<? if (count($level2Bunch) > 1) : ?><h1><span class="centered"><?=cst('NAV_SUB_H1_'.$key)?></span></h1><? endif ?>
 			
 			<ul class="<?=$key?> <?=$display?>">
 				<? foreach ($bunch as $subpage): ?>
 				<?
 				//	Title & descr
-					$title = cst('ITEM_'.$subpage['key'].'_TITLE', $subpage['title']);
+					
+					$title = cst('ITEM_'.$subpage['key'].'_TITLE');
+					if ($title == 'ITEM_'.strtoupper($subpage['key']).'_TITLE')
+					{
+						$title = $subpage['title'];
+					}
 					
 				//	Find the link
 					switch ($link)
@@ -69,7 +74,7 @@
 					
 				<li>
 					<a href="<?=$url ?>">
-						<span class="icon" <? if (isset($subpage['icon']) && !$subpage['icon']->is_empty()): ?>data-feathericon="<?=$subpage['icon']?>"<? endif ?>></span>
+						<span class="icon" <? if (isset($subpage['icon']) && !$subpage['icon']->is_empty()): ?>data-batchicon="<?=$subpage['icon']?>"<? endif ?>></span>
 						<span class="title"><?=$title?></span>
 					</a>
 				</li>
