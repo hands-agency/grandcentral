@@ -88,7 +88,7 @@
 	//	Content
 		'content' => array(
 			'title' => 'Content',
-			'icon' => '&#xe078',
+			'icon' => '078',
 			'page' => 'list',
 		//	Subnav
 			'subnav' => array(
@@ -116,7 +116,7 @@
 		),
 	//	Apps
 		'app' => array(
-			'icon' => '&#xe079',
+			'icon' => '079',
 			'page' => 'edit',
 		//	Subnav
 			'subnav' => array(

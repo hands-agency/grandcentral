@@ -8,7 +8,7 @@
 	<? $level2Bunch = (isset($config['subnav']) && is_array($config['subnav'])) ? $config['subnav'] : null ?>
 	<? $level2Content = (isset($config['subnav']) && is_string($config['subnav'])) ? $config['subnav'] : null ?>
 	<?
-		$icon = (isset($config['icon'])) ?  'data-batchicon="'.$config['icon'].'"' : null;
+		$icon = (isset($config['icon'])) ?  'data-feathericon="&#xe'.$config['icon'].'"' : null;
 		$image = (isset($config['image'])) ? media($config['image']) : null;
 	//	On / off ?
 		$on = null;
@@ -74,7 +74,11 @@
 					
 				<li>
 					<a href="<?=$url ?>">
+<<<<<<< HEAD
 						<span class="icon" <? if (isset($subpage['icon']) && !$subpage['icon']->is_empty()): ?>data-batchicon="<?=$subpage['icon']?>"<? endif ?>></span>
+=======
+						<span class="icon" <? if (isset($subpage['icon']) && !$subpage['icon']->is_empty()): ?>data-feathericon="&#xe<?=$subpage['icon']?>"<? endif ?>></span>
+>>>>>>> FETCH_HEAD
 						<span class="title"><?=$title?></span>
 					</a>
 				</li>
