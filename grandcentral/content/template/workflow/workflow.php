@@ -42,7 +42,7 @@
 //	Fetch the workflows
 /********************************************************************************************/
 	$workflow = i('workflow', array(
-		'item' => 'structure_'.$structure['id'],
+		'item' => 'item_'.$structure['id'],
 	), 'site');
 
 	if ($workflow->count > 0) $workflowstatuses = $workflow[0]['workflowstatus']->unfold();

@@ -102,6 +102,22 @@ section[data-template="/tree/tree"] li:hover>ol>li:after
 	
 }
 
+/********************************************************************************************/
+/* Levels 
+/********************************************************************************************/
+/*
+section[data-template="/tree/tree"] [data-item]:before
+{
+	content:'1';
+	position:absolute;
+	left:0;
+	top:0;
+	height:100%;
+	border-bottom:1px solid #fff;
+	width:100px;
+	font-family: "Raleway-Thin";
+	font-size:50px;
+}
 
 /********************************************************************************************/
 /* Pages
@@ -135,8 +151,9 @@ section[data-template="/tree/tree"] ol li .page .icon
 	transition: all .1s ease-out;
 	color:#000;
 	font-family: "Raleway-Regular";
+	z-index:1;
 }
-section[data-template="/tree/tree"] ol li .page .icon:hover .face
+.locked section[data-template="/tree/tree"] ol li .page .icon:hover .face
 {
 	border-color: #3eb4d6;
 	-webkit-box-shadow: 0 0 4px #3eb4d6;
@@ -148,22 +165,36 @@ section[data-template="/tree/tree"] ol li .page .icon.preview
 {
 	width:200px;
 	height:240px;
-	padding:1px;
 	overflow:hidden;
+}
+section[data-template="/tree/tree"] ol li .page .icon.preview .face
+{
+	padding:10px 1px 1px 1px;
+}
+section[data-template="/tree/tree"] ol li .page .icon.preview:before
+{
+	content:'•••';
+	position:absolute;
+	top:-1px;
+	left:5px;
+	color:#fff;
+	z-index:12;
 }
 section[data-template="/tree/tree"] ol li .page .icon iframe
 {
 	width:1024px;
-	height:2000px;
+	height:1184px;
 	transform:scale(0.2);
 	-moz-transform:scale(0.2);
 	-ms-transform:scale(0.2);
-	-webkit-transform:scale(0.192);
+	-webkit-transform:scale(0.191);
 	-o-transform:scale(0.1);
 	transform-origin:0% 0%;
 	-ms-transform-origin:0% 0%; /* IE 9 */
 	-webkit-transform-origin:0% 0%; /* Chrome, Safari, Opera */
 	display:none;
+	position:relative;
+	background:#fff;
 }
 section[data-template="/tree/tree"] ol li .page .icon.preview iframe
 {
@@ -172,52 +203,6 @@ section[data-template="/tree/tree"] ol li .page .icon.preview iframe
 section[data-template="/tree/tree"] ol li .page .icon.preview .action
 {
 	display:none;
-}
-
-/* add */
-section[data-template="/tree/tree"] ol li .page .icon .add
-{
-	background:#6cbf2d;
-	width:20px;
-	height:20px;
-	position:absolute;
-	bottom:-10px;
-	margin-left:-10px;
-	left:50%;
-	border-radius:50%;
-	opacity:0;
-	line-height:21px;
-	color:#fff;
-	font-size:34px;
-	z-index:100 !important;
-	transform:scale(0.1);
-	-moz-transform:scale(0.1);
-	-ms-transform:scale(0.1);
-	-webkit-transform:scale(0.1);
-	-o-transform:scale(0.1);
-	-webkit-transition: all .1s ease-out; 
-	-moz-transition: all .1s ease-out; 
-	-o-transition: all .1s ease-out; 
-	transition: all .1s ease-out;
-	cursor:pointer;
-}
-section[data-template="/tree/tree"] ol li:hover>.page>.icon>.add
-{
-	opacity:1;
-	transform:scale(0.7);
-	-moz-transform:scale(0.7);
-	-ms-transform:scale(0.7);
-	-webkit-transform:scale(0.7);
-	-o-transform:scale(0.7);
-}
-section[data-template="/tree/tree"] ol li .page .icon .add:hover 
-{
-	opacity:1;
-	transform:scale(1);
-	-moz-transform:scale(1);
-	-ms-transform:scale(1);
-	-webkit-transform:scale(1);
-	-o-transform:scale(1);
 }
 
 /* Badges */
@@ -271,8 +256,7 @@ section[data-template="/tree/tree"] ol li .page .icon .action
 section[data-template="/tree/tree"] ol li .page .icon .action a
 {
 	color:#fff;
-	padding:2px 5px;
-	background:#666;
+	padding:2px;
 	cursor:pointer;
 	border-radius:1px;
 	font-size:10px;
@@ -280,6 +264,7 @@ section[data-template="/tree/tree"] ol li .page .icon .action a
 	line-height:18px !important;
 	font-family: "Raleway-Bold";
 	text-align:left;
+	display:block;
 }
 section[data-template="/tree/tree"] ol li .page .icon .action a:before
 {
@@ -307,8 +292,8 @@ section[data-template="/tree/tree"] ol li .page[data-status="asleep"] .icon .act
 /* Placeholder */
 section[data-template="/tree/tree"] li.ui-sortable-placeholder
 {
-	opacity:0.1 !important;
-	background:rgba(0, 0, 0, .5);
+	opacity:0.4 !important;
+	background:rgba(0, 0, 0, .15);
 	visibility:visible !important;
 }
 
@@ -316,9 +301,28 @@ section[data-template="/tree/tree"] li.ui-sortable-placeholder
 section[data-template="/tree/tree"] ol li.ui-sortable-helper 
 {
 }
+section[data-template="/tree/tree"] ol li.ui-sortable-helper:before,
+section[data-template="/tree/tree"] ol li.ui-sortable-helper:after
+{
+	border-color:transparent !important;
+}
+section[data-template="/tree/tree"] li.ui-sortable-helper .connector
+{
+	display:none;
+}
 section[data-template="/tree/tree"] ol li.ui-sortable-helper .page .icon
 {
 	box-shadow: 3px 3px 1px 0 rgba(0, 0, 0, .1) !important;
+}
+
+/********************************************************************************************/
+/* New
+/********************************************************************************************/
+section[data-template="/tree/tree"] li .page[data-type="new"] .icon .back
+{
+	border-color: #fff;
+	border-style:dotted;
+	background:transparent;
 }
 
 /********************************************************************************************/
@@ -384,14 +388,76 @@ section[data-template="/tree/tree"] li .page[data-type="link"] .url
 /********************************************************************************************/
 /* Unlocked 
 /********************************************************************************************/
-.unlocked section[data-template="/tree/tree"] li .page .icon
+/* Connectors */
+.unlocked section[data-template="/tree/tree"] ol ol:before,
+.unlocked section[data-template="/tree/tree"] ol ol:after,
+.unlocked section[data-template="/tree/tree"] ol ol li:before,
+.unlocked section[data-template="/tree/tree"] ol ol li:after
 {
-	background:rgba(255, 255, 255, 0.1) !important;
-	border:1px solid rgba(255, 255, 255, 0.4) !important;
+	border-color:#fff;
 }
-.unlocked section[data-template="/tree/tree"] li .page .icon a
+.unlocked section[data-template="/tree/tree"] ol ol li .connector
 {
-	color:#fff !important;
+	color:#fff;
+}
+/* Face */
+.unlocked section[data-template="/tree/tree"] ol li .icon .face
+{
+	background:rgba(255, 255, 255, .1);
+	border:1px solid #fff;
+}
+
+/* The title */
+.unlocked section[data-template="/tree/tree"] ol li .page .icon .title
+{
+	color:#fff;
+}
+
+/* add */
+.unlocked section[data-template="/tree/tree"] ol li .page .icon .add
+{
+	background:#3eb4d6;
+	width:30px;
+	height:30px;
+	position:absolute;
+	bottom:-15px;
+	margin-left:-15px;
+	left:50%;
+	border-radius:50%;
+	border:1px solid #fff;
+	opacity:0;
+	line-height:31px;
+	color:#fff;
+	font-size:40px;
+	z-index:100 !important;
+	transform:scale(0.1);
+	-moz-transform:scale(0.1);
+	-ms-transform:scale(0.1);
+	-webkit-transform:scale(0.1);
+	-o-transform:scale(0.1);
+	-webkit-transition: all .1s ease-out; 
+	-moz-transition: all .1s ease-out; 
+	-o-transition: all .1s ease-out; 
+	transition: all .1s ease-out;
+	cursor:pointer;
+}
+.unlocked section[data-template="/tree/tree"] ol li:hover>.page>.icon>.add
+{
+	opacity:1;
+	transform:scale(0.7);
+	-moz-transform:scale(0.7);
+	-ms-transform:scale(0.7);
+	-webkit-transform:scale(0.7);
+	-o-transform:scale(0.7);
+}
+.unlocked section[data-template="/tree/tree"] ol li .page .icon .add:hover 
+{
+	opacity:1;
+	transform:scale(1);
+	-moz-transform:scale(1);
+	-ms-transform:scale(1);
+	-webkit-transform:scale(1);
+	-o-transform:scale(1);
 }
 
 /********************************************************************************************/
@@ -407,14 +473,14 @@ section[data-template="/tree/tree"] li .page[data-type="link"] .url
     top: 0;
 	left:0;
 	width:100%;
-    width: inherit;
     height: inherit;
     -o-transition: all .4s ease-in-out;
     -ms-transition: all .4s ease-in-out;
     -moz-transition: all .4s ease-in-out;
     -webkit-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
-	padding:15px 10px;
+	padding:10px;
+	line-height:100px;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
@@ -424,7 +490,7 @@ section[data-template="/tree/tree"] li .page[data-type="link"] .url
     -moz-backface-visibility: hidden;
     -webkit-transform-style: preserve-3d;
     -webkit-backface-visibility: hidden;
-	line-height:90px;
+	border:1px solid transparent;
 }
 .icon .face>*
 {
@@ -438,6 +504,7 @@ section[data-template="/tree/tree"] li .page[data-type="link"] .url
     -webkit-transform: rotateX(0deg) rotateY(0deg);
     -moz-transform: rotateX(0deg) rotateY(0deg);
 	background:#fff;
+	cursor:pointer;
 }
 .icon.flipped .face.front {
     -webkit-transform: rotateY(180deg);
@@ -447,7 +514,7 @@ section[data-template="/tree/tree"] li .page[data-type="link"] .url
     z-index: 8;
     -webkit-transform: rotateY(-180deg);
     -moz-transform: rotateY(-180deg);
-	background-color:#F9F9F9;
+	background-color:#666;
 }
 .icon.flipped .face.back {
     z-index: 10;

@@ -97,7 +97,7 @@ abstract class _fields
 	protected function _error($error_id)
 	{
 		$this->errors[$error_id]['key'] = (isset($this->errors_message[$error_id])) ? $this->errors_message[$error_id] : $error_id;
-		$this->errors[$error_id]['descr'] = constant(strtoupper('FIELD_VALIDATION_ERROR_'.$this->errors[$error_id]['key']));
+		$this->errors[$error_id]['descr'] = cst(strtoupper('FIELD_VALIDATION_ERROR_'.$this->errors[$error_id]['key']));
 		$this->errors[$error_id]['value'] = $this->value;
 		
 		return $this;

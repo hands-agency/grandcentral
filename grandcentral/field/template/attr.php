@@ -53,7 +53,7 @@
 /********************************************************************************************/
 //	The list of add buttons
 /********************************************************************************************/
-	foreach ($available as $field) $addbuttons .= '<li><button type="button" data-type="'.mb_substr(mb_strtolower($field), 4).'">+ '.mb_substr(mb_strtolower($field), 4).'</button></li>';
+	foreach ($available as $field) $addbuttons .= '<li><button type="button" data-type="'.mb_substr(mb_strtolower($field), 4).'" data-feathericon="&#xe114"> '.mb_substr(mb_strtolower($field), 4).'</button></li>';
 
 /********************************************************************************************/
 //	Print the data from the Database
@@ -74,7 +74,7 @@
 			if (empty($hideRows)) $hideRows = 'style="display:none;"';
 		}
 		
-		$data .= '<li><ol>'.$li.'</ol><button type="button" class="delete"></button></li>';
+		$data .= '<li><span class="handle" data-feathericon="&#xe026"></span><ol>'.$li.'</ol><button type="button" class="delete"></button></li>';
 	}
 //	No data
 	if ($values) $hideNodata = 'style="display:none;"';
@@ -98,10 +98,10 @@
 			$class = 'field'.ucfirst($param['type']);
 			$field = new $class($_FIELD->get_name().'[]['.$param['name'].']', $param);
 		//	Li
-			$li .= '<li data-type="'.$field->get_type().'" data-key="'.$param['name'].'">'.$field.'</li>';
+			$li .= '<li data-type="'.$field->get_type().'" data-key="'.$param['name'].'"></span>'.$field.'</li>';
 		}
 	//	We store them in a <pre> tag, so that the addable.js plugin can retrieve them
-		$html = '<li style="display:none;"><ol>'.$li.'</ol><button type="button" class="delete"></button></li>';
+		$html = '<li style="display:none;"><span class="handle" data-feathericon="&#xe026"></span><ol>'.$li.'</ol><button type="button" class="delete"></button></li>';
 		$template[$key] = $html;
 	}
 ?>

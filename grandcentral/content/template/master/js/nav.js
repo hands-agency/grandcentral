@@ -41,15 +41,14 @@
 				var timeoutReopen = 500;
 				
 			//	When hover intent
-				var config = {
-					timeout: timeoutOpen,
-					over: function(){},
-					out: function(){}
-				};
-				this.find('> ul > li').hoverIntent( config );
+				this.find('> ul > li').hoverIntent(
+				{
+					timeout: timeoutOpen
+				});
 		
 			//	When out intended
-				var config = {    
+				this.hoverIntent(
+				{    
 					timeout: timeoutClose,
 					over: function() {},
 					out: function()
@@ -61,8 +60,7 @@
 					//	Hide all sub navs
 						$nav.find('ul li .sub').hide();
 					}
-				};
-				this.hoverIntent( config );
+				});
 				
 			//	Editing
 				this.find('li.editing a').click(function()

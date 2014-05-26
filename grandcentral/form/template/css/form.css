@@ -222,8 +222,13 @@ section[data-template="/edit/edit"] fieldset ol>li.ko [data-control]:after {
 /********************************************************************************************/
 section[data-template="/edit/edit"]>form>fieldset ol>li .wrapper .todo
 {
+	padding:10px 0 10px 30px;
+	border-left:1px solid #eee;
 	list-style-type:square;
-	padding:10px 0 5px 20px;
+}
+section[data-template="/edit/edit"]>form>fieldset ol>li.controlling.ko .wrapper .todo
+{
+	border-left-color:#FF0000;
 }
 
 /********************************************************************************************/

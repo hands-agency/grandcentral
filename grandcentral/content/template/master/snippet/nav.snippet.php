@@ -70,15 +70,10 @@
 							$url = $link.'?app='.$subpage['key'];
 							break;
 					}
-					?>
-					
+					?>					
 				<li>
 					<a href="<?=$url ?>">
-<<<<<<< HEAD
-						<span class="icon" <? if (isset($subpage['icon']) && !$subpage['icon']->is_empty()): ?>data-batchicon="<?=$subpage['icon']?>"<? endif ?>></span>
-=======
 						<span class="icon" <? if (isset($subpage['icon']) && !$subpage['icon']->is_empty()): ?>data-feathericon="&#xe<?=$subpage['icon']?>"<? endif ?>></span>
->>>>>>> FETCH_HEAD
 						<span class="title"><?=$title?></span>
 					</a>
 				</li>

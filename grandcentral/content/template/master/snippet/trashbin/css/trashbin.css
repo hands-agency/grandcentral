@@ -16,7 +16,8 @@
 	font-size:2.4em;
 	color:#fff;
 	text-align:center;
-	background:#aaa;
+	background:#000;
+	color:#fff;
 	opacity:0.8;
 	-webkit-transition: all .15s ease-out; 
 	-moz-transition: all .15s ease-out; 

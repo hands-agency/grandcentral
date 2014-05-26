@@ -1,6 +1,19 @@
 /********************************************************************************************/
 /* attr
 /********************************************************************************************/
+/* Actions */
+[data-type="attr"] li .handle
+{
+	position:absolute;
+	left:10px;
+	top:15px;
+	color:#999;
+	opacity:0;
+}
+[data-type="attr"] li:hover .handle
+{
+	opacity:1;
+}
 /* For all */
 [data-type="attr"] [data-key]
 {

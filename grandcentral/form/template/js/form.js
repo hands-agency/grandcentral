@@ -36,7 +36,7 @@ $(document).ready(function ()
 		control.html('');
 		if (param.html) control.html(param.html);
 	//	Clear (and maybe add icon)
-		control.data('feathericon', '');
+		control.attr('data-feathericon', '');
 		if (param.feathericon) control.attr('data-feathericon', param.feathericon);
 		
 	//	Timeout

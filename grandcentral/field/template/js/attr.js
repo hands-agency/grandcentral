@@ -1,9 +1,19 @@
 (function($)
 {
 //	Some vars
-	selector = 'li[data-type="attr"] input[data-associative="attr"]';
+	$field = $('li[data-type="attr"]');
+	attrSelector = 'input[data-associative="attr"]';
+	label = 'label';
+	
+//	Make sortable	
+	$field.sortable(
+	{
+		handle: '> .handle',
+		items: 'ol.data li',
+	});
+	
 //	Some binds the key
-	$(document).off('input', selector).on('input', selector, function()
+	$field.off('input', 'input[data-associative="attr"]').on('input', 'input[data-associative="attr"]', function()
 	{
 	//	Get the value
 	//	TODO @sf trouver meilleure manière d'empêcher les clef de contenir des accents, espaces...
@@ -19,14 +29,12 @@
 		{
 			input = $(this);
 			name = input.attr('name');
-			input.attr('name', name.replace(/\[attr\]\[[a-z0-9]*\]/i, "[attr]["+key+"]"));
+			input.attr('name', name.replace(/\[attr\]\[[a-z0-9_]*\]/i, "[attr]["+key+"]"));
 		});
 	});
 	
-//	Some vars
-	selector = 'li[data-type="attr"] label';
 //	Expand
-	$(document).on('click', selector, function()
+	$field.on('click', label, function()
 	{
 		$(this).closest('ol').find('li:not(:first-child)').toggle('fast');
 	});

@@ -323,47 +323,6 @@ progress::-webkit-progress-value {
 }
 
 /********************************************************************************************/
-/* Draggable / Droppable / Sortable
-/********************************************************************************************/
-/* Draggable, Sortable */
-.ui-draggable,
-.ui-sortable li:not(.nodata)
-{
-	cursor:move;
-}
-.ui-draggable:hover,
-.ui-sortable li:hover
-{
-}
-.ui-draggable-dragging,
-.ui-sortable-helper
-{
-}
-/* Draggable */
-.ui-draggable:hover
-{
-}
-.ui-draggable-dragging
-{
-}
-/* Sortable */
-.ui-sortable li:hover
-{
-}
-.ui-sortable-helper
-{
-}
-.ui-sortable-hover
-{
-	border-color:#6cbf2d !important;
-}
-/* Placeholder */
-.placeholder
-{
-	border:1px dotted #ddd !important;
-}
-
-/********************************************************************************************/
 /* Nodata
 /********************************************************************************************/
 .nodata
@@ -877,14 +836,16 @@ footer
 #adminContent #sectiontray>li>.lock
 {
 	position:absolute;
+	z-index:3;
 	top:10px;
-	right:30px;
+	right:35px;
 	opacity:0;
 	-webkit-transition: all .15s ease-out; 
 	-moz-transition: all .15s ease-out; 
 	-o-transition: all .15s ease-out; 
 	transition: all .15s ease-out;
 	cursor:pointer;
+	color:#000;
 }
 #adminContent #sectiontray>li:hover>.lock
 {
@@ -894,6 +855,7 @@ footer
 {
 	opacity:1;
 }
+
 #adminContent section
 {
 	border-radius:3px;

@@ -25,9 +25,7 @@ jQuery(document).ready(function($)
 		{
 		//	IOI unlocked
 			if ($('#adminContent').hasClass('unlocked'))
-			{				
-			//	Hide option drop
-				$drop.hide('fast');
+			{
 			//	Say it with a class
 				$('#adminContent').toggleClass('unlocked locked');
 				$button.toggleClass('icon-unlock icon-lock').toggleClass('on off');
@@ -43,9 +41,6 @@ jQuery(document).ready(function($)
 		//	IOI is locked
 			if ($('#adminContent').hasClass('locked'))
 			{				
-			//	Hide all the drops, so you can see what you're doing
-				$('.help').hide('fast');
-	
 			//	Load the options drop
 				$drop.ajx(
 				{
@@ -56,10 +51,9 @@ jQuery(document).ready(function($)
 					done:function()
 					{
 					//	Show option drop
-						$drop.show('fast');
+					//	$drop.show('fast');
 					//	Say it with a class
 						$('#adminContent').toggleClass('unlocked locked');
-						$button.toggleClass('on off').toggleClass('icon-unlock icon-lock');
 					}
 				});
 				

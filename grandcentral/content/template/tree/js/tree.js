@@ -4,28 +4,6 @@
 **#******************************************************************************************/
 $(function()
 {
-/*	
-	$('ol.tree').sortable(
-	{
-		handle: '.icon',
-		items: '> li li[data-item]',
-		tolerance:'intersect',
-		
-	//	On start
-		start: function()
-		{
-		//	Collapse
-			
-		},
-		
-	//	On stop
-		stop: function()
-		{
-		//	re-expand
-		
-		},
-	});
-*/
 	
 //	Expand
 	$('ol.tree').on('click', '.expand', function()
@@ -47,29 +25,45 @@ $(function()
 	//	Find & append the template
 		template = $page.closest('[data-item]').clone();
 		template.data('item', '');
-		template.find('.page').data('type', 'content');
+		template.find('.page').attr('data-type', 'new');
 		template.attr('style', 'display:none');
-		template.find('.action').html('<a href="">New page</a>');
+		template.find('.action').html('<a href="">Edit me!</a>');
 		template.find('ol').html('');
 	
 	//	Make some babies!
 		$(template).appendTo($childrenContainer).show('fast');
+		
+	//	And create a draft
+		$.ajx(
+		{
+			app: 'content',
+			template: '/master/workflow',
+			mime:'json',
+			item:'page',
+			status:'draft',
+		}, {
+		//	Done
+			done:function()
+			{
+			//	console.log(txt);
+			}
+		});
 	});
 	
-//	Edit
-//	When hover intent
-	var config = {
+//	Edit when hover intent
+	$(document).on('click', 'ol.tree .icon .front', function()
+	{
+		$(this).parent('.icon').addClass('flipped');
+	});
+	$('ol.tree .icon').hoverIntent(
+	{
 		timeout: 500,
-		over: function()
-		{
-			$(this).addClass('flipped');
-		},
+		over: function() {},
 		out: function()
 		{
 			$(this).removeClass('flipped preview');
 		}
-	};
-	$('ol.tree').find('.icon').hoverIntent( config );
+	});
 	
 //	Preview
 	$('ol.tree .action').on('click', '.preview', function()
@@ -89,7 +83,7 @@ $(function()
 	//	Some vars
 		$item = $(this).closest('[data-item]');
 		item = $item.data('item');
-		$page = $item.find('.page');
+		$page = $item.children('.page');
 		status = $(this).attr('class');
 		
 	//	Change status
@@ -105,57 +99,57 @@ $(function()
 			done:function()
 			{
 			//	Change the display status
-				$page.attr('data-status', status).data('status', status);
+				$page.attr('data-status', status).data('status', status);	
+			//	Asleep? Put all kids asleep as well
+				if (status == 'asleep')
+				{
+					$item.find('[data-item]').each(function()
+					{
+						$(this).find('.asleep').click();
+					});
+				}
 			}
 		});
 	});
-});
 
 /*********************************************************************************************
 /**	* Site tree
 * 	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
 //	Start nested sortable
-/*	$(document).bind('unlock', function()
+	$(document).bind('unlock', function()
 	{
-		console.log('nested sortable !');
-		$('ol.tree').nestedSortable(
+	//	Make sortable	
+		$('ol.tree').sortable(
 		{
 			handle: '.icon',
-            items: 'li',
-			toleranceElement: '>div',
-			helper:	'clone',
-			opacity: .6,
-			placeholder: 'placeholder',
-			protectRoot: true,
-			revert: 250,
-			tolerance: 'pointer',
-			isTree: true,
-			update: function(event, ui)
+			items: '> li li[data-item]',
+			tolerance:'intersect',
+		
+		//	On start
+			start: function()
 			{
-			//	Reorder the keys visualy
-				parentLevel = $(this).data().sortable.currentItem.closest('ol');
-				parent = parentLevel.closest('li');
-				parentKey = parent.find('.icon').html();
-			//	Haaa, The home page!
-				if (parentKey == '0') parentKey = '';
-				else parentKey += '.';
-			//	
-				siblings = parentLevel.find('>li>*>.icon');
-				i = 1;
-				siblings.each(function()
-				{
-					$(this).html(parentKey+i);
-					i++;
-				});
-			}
+			//	Show trash
+				$('#trashbin').data('trashbin').show();
+			//	Collapse
+			
+			},
+		
+		//	On stop
+			stop: function()
+			{
+			//	Hide trash
+				$('#trashbin').data('trashbin').hide();
+			//	re-expand
+		
+			},
 		});
 	});
-	*/
 	
 //	Save the curent sitetree
 	$(document).bind('lock', function()
 	{
+		/*
 	//	Get the order
 		pages = $('ol.sitetree').find('li[data-item]');
 		sitetree = Array();
@@ -181,55 +175,6 @@ $(function()
 			done:function(html){console.log(html);}
 		}
 		);
+		*/
 	});
-
-(function ($) {
-	
-/*
-	$('.disclose').on('click', function() {
-		$(this).closest('li').toggleClass('mjs-nestedSortable-collapsed').toggleClass('mjs-nestedSortable-expanded');
-	})
-	
-	$('#serialize').click(function(){
-			serialized = $('ol.sitetree').nestedSortable('serialize');
-			$('#serializeOutput').text(serialized+'\n\n');
-		})
-	$('#toHierarchy').click(function(e){
-			hiered = $('ol.sitetree').nestedSortable('toHierarchy', {startDepthCount: 0});
-			hiered = dump(hiered);
-			(typeof($('#toHierarchyOutput')[0].textContent) != 'undefined') ?
-			$('#toHierarchyOutput')[0].textContent = hiered : $('#toHierarchyOutput')[0].innerText = hiered;
-		})
-
-		$('#toArray').click(function(e){
-			arraied = $('ol.sitetree').nestedSortable('toArray', {startDepthCount: 0});
-			arraied = dump(arraied);
-			(typeof($('#toArrayOutput')[0].textContent) != 'undefined') ?
-			$('#toArrayOutput')[0].textContent = arraied : $('#toArrayOutput')[0].innerText = arraied;
-		})
-	function dump(arr,level) {
-		var dumped_text = "";
-		if(!level) level = 0;
-
-		//The padding given at the beginning of the line.
-		var level_padding = "";
-		for(var j=0;j<level+1;j++) level_padding += "    ";
-
-		if(typeof(arr) == 'object') { //Array/Hashes/Objects
-			for(var item in arr) {
-				var value = arr[item];
-
-				if(typeof(value) == 'object') { //If it is an array,
-					dumped_text += level_padding + "'" + item + "' ...\n";
-					dumped_text += dump(value,level+1);
-				} else {
-					dumped_text += level_padding + "'" + item + "' => \"" + value + "\"\n";
-				}
-			}
-		} else { //Strings/Chars/Numbers etc.
-			dumped_text = "===>"+arr+"<===("+typeof(arr)+")";
-		}
-		return dumped_text;
-	}
-*/
-})(jQuery);
+});

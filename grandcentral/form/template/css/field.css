@@ -59,12 +59,12 @@ textarea
 select
 {
 	display:inline-block;
-	margin:7px;
 	background:#fff;
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
 	position: relative;
+	border-radius:2px;
 }
 select:after
 {
@@ -77,7 +77,7 @@ select:after
 	height: 0;
 	margin-top: -.15rem;
 	pointer-events: none;
-	border-top: .35rem solid;
+	border-top: .35rem solid #000;
 	border-right: .35rem solid transparent;
 	border-bottom: .35rem solid transparent;
 	border-left: .35rem solid transparent;
