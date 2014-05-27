@@ -74,7 +74,7 @@ abstract class _items implements ArrayAccess, Iterator
  */
 	public function get_nickname()
 	{
-		return (!$this->exists()) ? $this->get_table().'_'.$this['id']->get() : null;
+		return ($this->exists()) ? $this->get_table().'_'.$this['id']->get() : null;
 	}
 	
 /**
