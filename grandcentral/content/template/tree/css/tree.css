@@ -145,19 +145,9 @@ section[data-template="/tree/tree"] ol li .page .icon
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
-	-webkit-transition: all .1s ease-out; 
-	-moz-transition: all .1s ease-out; 
-	-o-transition: all .1s ease-out; 
-	transition: all .1s ease-out;
 	color:#000;
 	font-family: "Raleway-Regular";
 	z-index:1;
-}
-.locked section[data-template="/tree/tree"] ol li .page .icon:hover .face
-{
-	border-color: #3eb4d6;
-	-webkit-box-shadow: 0 0 4px #3eb4d6;
-	box-shadow: 0 0 4px #3eb4d6;
 }
 
 /* Preview */
@@ -401,7 +391,13 @@ section[data-template="/tree/tree"] li .page[data-type="link"] .url
 	color:#fff;
 }
 /* Face */
-.unlocked section[data-template="/tree/tree"] ol li .icon .face
+.locked section[data-template="/tree/tree"] ol li .page .icon:hover .face
+{
+	border-color: #3eb4d6;
+	-webkit-box-shadow: 0 0 4px #3eb4d6;
+	box-shadow: 0 0 4px #3eb4d6;
+}
+.unlocked section[data-template="/tree/tree"] ol li .page .icon .face
 {
 	background:rgba(255, 255, 255, .1);
 	border:1px solid #fff;
@@ -416,7 +412,7 @@ section[data-template="/tree/tree"] li .page[data-type="link"] .url
 /* add */
 .unlocked section[data-template="/tree/tree"] ol li .page .icon .add
 {
-	background:#3eb4d6;
+	background:#007EE5;
 	width:30px;
 	height:30px;
 	position:absolute;

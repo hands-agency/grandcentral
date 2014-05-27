@@ -42,9 +42,11 @@
 			{
 				items:'li:not(.nodata)',
 				axis:'y',
+			/*	containment: 'parent', */
 				revert: 100,
 				placeholder:'placeholder',
 				tolerance:'pointer',
+				handle: '> .handle',
 				over:function(event, ui)
 				{
 				//	Always get rid of the nodata

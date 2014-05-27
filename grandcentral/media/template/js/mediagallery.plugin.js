@@ -101,17 +101,17 @@
 		
 	//	Method
 		plugin.loadList = function()
-		{	
+		{
 		//	Load the library
 			$element.ajx(
 			{
 				app: 'media',
-				theme: plugin.settings.theme,
 				template: plugin.settings.tpl_list,
 				root: plugin.settings.root + '/' + plugin.settings.current
 			},{
-				done:function()
+				done:function(html)
 				{
+					console.log(html);
 				//	ajout du bouton de retour
 					if (plugin.settings.current != '')
 					{
@@ -167,7 +167,6 @@
 			$element.find('.files').ajx(
 			{
 				app: 'media',
-				theme: plugin.settings.theme,
 				template: plugin.settings.tpl_detail,
 				root: plugin.settings.root + '/' + plugin.settings.current + '/' + plugin.settings.file
 			},{

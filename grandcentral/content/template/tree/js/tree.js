@@ -105,6 +105,7 @@ $(function()
 				{
 					$item.find('[data-item]').each(function()
 					{
+						
 						$(this).find('.asleep').click();
 					});
 				}

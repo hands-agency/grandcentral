@@ -888,7 +888,8 @@ footer
 }
 #adminContent.unlocked section
 {
-	background-color:#3eb4d6 !important;
+/*	background-color:#3eb4d6 !important; */
+	background-color:#007EE5 !important;
 }
 #adminContent section>p,
 #adminContent section>ul,

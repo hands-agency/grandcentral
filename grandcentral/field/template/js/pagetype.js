@@ -16,7 +16,11 @@
 //	Change options based on page type
 	$fieldKey.change(function()
 	{
+	//	Some vars
 		type = $(this).val();
+		
+	//	Close contest
+		closeContext();
 	//	Display options based on page type
 		switch(type)
 		{

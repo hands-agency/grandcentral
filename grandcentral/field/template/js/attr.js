@@ -9,7 +9,9 @@
 	$field.sortable(
 	{
 		handle: '> .handle',
-		items: 'ol.data li',
+		items: 'ol.data>li',
+		axis: 'y',
+		containment: 'parent',
 	});
 	
 //	Some binds the key

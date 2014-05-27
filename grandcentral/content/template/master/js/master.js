@@ -66,11 +66,11 @@
 	{
 		return this.each(function()
 		{
-			if (undefined == $(this).data('ajx'))
-			{
+		//	if (undefined == $(this).data('ajx'))
+		//	{
 				var plugin = new $.ajx(options, callbacks, this);
 				$(this).data('ajx', plugin);
-			}
+		//	}
 		});
 	}
 })(jQuery);
