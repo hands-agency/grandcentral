@@ -90,11 +90,9 @@
  */
 	function cst($key)
 	{
-		$key = strtoupper($key);
-		
+		$key = mb_strtoupper($key);
 		$const = registry::get(env, 'const', $key);
-		$string = ($const) ? $const->__tostring() : $key;
-		
+		$string = (is_a($const, '_attrs')) ? $const->__tostring() : $key;
 		return $string;
 	}
 /**
