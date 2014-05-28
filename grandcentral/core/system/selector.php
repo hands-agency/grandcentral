@@ -85,14 +85,28 @@
  * Get constant by key
  *
  * @param	string	constant key
+ * @param	array	values to replace in the string
  * @return	string	the constant or the key if undefined
  * @access	public
  */
-	function cst($key)
+	function cst($key, $data = null)
 	{
+		// get the constants
 		$key = mb_strtoupper($key);
 		$const = registry::get(env, 'const', $key);
 		$string = (is_a($const, '_attrs')) ? $const->__tostring() : $key;
+		// insert the data into the string
+		if (!is_null($data) && is_array($data))
+		{
+			$from = array_map(function($n)
+			{
+				return '['.$n.']';
+			}, array_keys($data));
+			$to = array_values($data);
+			
+			$string = str_replace($from, $to, $string);
+		}
+		
 		return $string;
 	}
 /**

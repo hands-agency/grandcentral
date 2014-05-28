@@ -30,9 +30,9 @@ class attrRel extends _attrs implements ArrayAccess, Iterator
  */
 	public function set($rel)
 	{
+		$this->data = array();
 		if (empty($rel))
 		{
-			$this->data = array();
 			return $this;
 		}
 	//	mise en conformité de l'objet

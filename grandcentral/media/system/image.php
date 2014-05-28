@@ -106,7 +106,7 @@ class image extends media
  *
  * @access	public
  */
-	public function thumbnail($width, $height, $quality = 75)
+	public function thumbnail($width, $height, $quality = 100)
 	{
 		$app = app('cache');
 		$root = $app->get_templateroot('site').'/media/thumbnail_w'.$width.'_h'.$height;

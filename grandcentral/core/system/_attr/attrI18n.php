@@ -17,6 +17,21 @@ class attrI18n extends attrArray
  * @return	string	une string
  * @access	public
  */
+	public function is_empty()
+	{
+		foreach ((array) $this->data as $data)
+		{
+			if (!empty($data)) return false;
+		}
+		return true;
+	}
+/**
+ * xxxx
+ *
+ * @param	string	la variable
+ * @return	string	une string
+ * @access	public
+ */
 	public function cut($length, $add = '...')
 	{
 		$str = $this->__tostring();

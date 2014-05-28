@@ -142,7 +142,7 @@ abstract class _items implements ArrayAccess, Iterator
 		}
 	//	limit
 		$param['limit()'] = 1;
-		$param['status'] = array('live', 'asleep');
+		if (!isset($param['status'])) $param['status'] = 'live';
 	//	query
 		$result = database::query_item($this->get_env(), $this->get_table(), $param);
 	//	affectation
@@ -161,10 +161,17 @@ abstract class _items implements ArrayAccess, Iterator
  */
 	public function database_set($datas)
 	{
+		// remise à zéro
+		foreach ($this->data as $attr)
+		{
+			$attr->database_set(null);
+		}
+		// insertion des nouvelles valeurs des attributs
 		foreach ($datas as $attr => $data)
 		{
 			if (isset($this->data[$attr]) && is_a($this->data[$attr], '_attrs'))
 			{
+				// print'<pre>';print_r($attr);print'</pre>';
 				$this->data[$attr]->database_set($data);
 			}
 			else
@@ -213,7 +220,7 @@ abstract class _items implements ArrayAccess, Iterator
 			$this['id']->database_set($db->flush_querystack());
 			$event = 'insert';
 		}
-
+		// print'<pre>';print_r($this->get_table());print'</pre>';
 	//	Trigger event
 		event::trigger($this, $event);
 		// print'<pre>';print_r($db->_spooler);print'</pre>';

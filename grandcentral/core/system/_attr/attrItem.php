@@ -16,6 +16,17 @@ class attrItem extends _attrs
  * @return	string	une string
  * @access	public
  */
+	public function unfold()
+	{
+		return i($this->data);
+	}
+/**
+ * Set attribute
+ *
+ * @param	string	la variable
+ * @return	string	une string
+ * @access	public
+ */
 	public function set($data)
 	{
 		$this->data = (string) $data;

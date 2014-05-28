@@ -28,26 +28,26 @@ class itemConst extends _items
  */
 	public static function t($string)
 	{
+		$key = mb_strtoupper($string);
 		// var
 		$lang = i(env, current)['version']['lang']->get();
 		// recherche de la traduction
-		$consts = registry::get(env, 'const');
-		foreach ($consts as $const)
+		$const = registry::get(env, 'const', $key);
+		// print'<pre>';print_r($consts);print'</pre>';
+		if (!empty($const))
 		{
-			foreach ($const as $value)
-			{
-				if ($string == $value)
-				{
-					return $const->__tostring();
-				}
-			}
+			return $const;
 		}
 		// ajout
-		$const = i('const');
-		$const['title'][$lang] = $string;
-		$const->save();
-		registry::set($const->get_env(), 'const', $const['key']->get(), $const['title']);
-		return $const['title'][$lang];
+		else
+		{
+			$const = i('const');
+			$const['title'][$lang] = $string;
+			$const['key'] = mb_strtoupper($string);
+			$const->save();
+			registry::set($const->get_env(), 'const', $const['key']->get(), $const['title']);
+			return $const['title'][$lang];
+		}
 	}
 }
 ?>
