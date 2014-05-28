@@ -232,7 +232,7 @@ section[data-template="/tree/tree"] ol li .page[data-status="asleep"] .icon
 
 
 /* Home */
-section[data-template="/tree/tree"]>ol>li>.page
+section[data-template="/tree/tree"]>ol>li>.node>.page
 {
 /*	margin-left:30%; */
 }
@@ -262,7 +262,7 @@ section[data-template="/tree/tree"] ol li .page .icon .action a:before
 }
 section[data-template="/tree/tree"] ol li .page .icon .action a:hover
 {
-	background:#3eb4d6;
+	color:#3eb4d6;
 }
 section[data-template="/tree/tree"] ol li .page[data-status="live"] .icon .action .live,
 section[data-template="/tree/tree"] ol li .page[data-status="asleep"] .icon .action .asleep
@@ -308,11 +308,10 @@ section[data-template="/tree/tree"] ol li.ui-sortable-helper .page .icon
 /********************************************************************************************/
 /* New
 /********************************************************************************************/
-section[data-template="/tree/tree"] li .page[data-type="new"] .icon .back
+section[data-template="/tree/tree"] li .page[data-type="new"] .icon .face
 {
-	border-color: #fff;
-	border-style:dotted;
-	background:transparent;
+	border-style:dotted !important;
+	background:transparent !important;
 }
 
 /********************************************************************************************/
@@ -390,6 +389,7 @@ section[data-template="/tree/tree"] li .page[data-type="link"] .url
 {
 	color:#fff;
 }
+
 /* Face */
 .locked section[data-template="/tree/tree"] ol li .page .icon:hover .face
 {
@@ -437,7 +437,7 @@ section[data-template="/tree/tree"] li .page[data-type="link"] .url
 	transition: all .1s ease-out;
 	cursor:pointer;
 }
-.unlocked section[data-template="/tree/tree"] ol li:hover>.page>.icon>.add
+.unlocked section[data-template="/tree/tree"] ol li:hover>.node>.page>.icon>.add
 {
 	opacity:1;
 	transform:scale(0.7);

@@ -392,16 +392,22 @@ abstract class _items implements ArrayAccess, Iterator
  */
 	public function json($filter = null)
 	{
-		$return = array();
-		foreach ($this->data as $value)
+	//	Only if item exits
+		if ($this->exists())
 		{
-		//	Filter attributes
-			if ($filter === null OR empty($filter) OR in_array($value->get_key(), $filter))
+		//	Return data in Json
+			$return = array();
+			foreach ($this->data as $value)
 			{
-				$return[$value->get_key()] = $value->get();
+			//	Filter attributes
+				if ($filter === null OR empty($filter) OR in_array($value->get_key(), $filter))
+				{
+					$return[$value->get_key()] = $value->get();
+				}
 			}
+		//	Encode
+			if (!empty($return)) return json_encode($return, JSON_UNESCAPED_UNICODE);
 		}
-		if (!empty($return)) return json_encode($return, JSON_UNESCAPED_UNICODE);
 	}
 	
 /********************************************************************************************/

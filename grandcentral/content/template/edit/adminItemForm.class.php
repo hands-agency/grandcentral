@@ -23,21 +23,21 @@ class adminItemForm
  * @param	mixed	l'identifiant ou la clé de l'objet à éditer
  * @access	public
  */
-	public function __construct($env, $table, $id = null)
+	public function __construct(_items $item)
 	{
-		$this->env = $env;
-		$this->table = $table;
+		$this->env = $item->get_env();
+		$this->table = $item->get_table();
 	//	recherche du formulaire
-		$key = constant(mb_strtoupper($env).'_KEY').'_'.$table;
+		$key = constant(mb_strtoupper($this->env).'_KEY').'_'.$this->table;
 		$this->form = i('form', $key, 'admin');
 		$this->form['key'] = $key;
 		$this->form['title'] = $key;
 		$this->form['template'] = 'default';
 		$this->form['action'] = 'post';
 		$this->form['method'] = 'post';
-		$this->form['system'] = $env == 'admin' ? true : false;
+		$this->form['system'] = $this->env == 'admin' ? true : false;
 	//	recherche de l'item à injecter dans le form
-		$this->item = i($table, $id, $env);
+		$this->item = i($this->table, $item['id']->get(), $this->env);
 	}
 /**
  * Mettre en conformité le formulaire et la structure d'un item

@@ -21,25 +21,28 @@
 /********************************************************************************************/
 //	Some vars
 /********************************************************************************************/
-//	list($item, $id) = explode('_', $_POST['item']);
 	$item = isset($_POST['item']) ? $_POST['item'] : trigger_error('Sorry, you need to give me an item to work with', E_USER_ERROR);
+	$parent = isset($_POST['parent']) ? $_POST['parent'] : trigger_error('Sorry, you need to give me a parent for this page', E_USER_ERROR);
 	$status = isset($_POST['status']) ? $_POST['status'] : trigger_error('Sorry, you need to give me a workflow status', E_USER_ERROR);
-//	The original and the new copy in the workflow
+	
+//	The original and the new draft in the workflow
 	$original = i($item);
-	$copy = i('workflow', null, $_SESSION['pref']['handled_env']);
+	$draft = i('workflow', null, $_SESSION['pref']['handled_env']);
 	
 /********************************************************************************************/
 //	Do the workflow thinggie
 /********************************************************************************************/
-//	Fetch our item
-	$original['title'] = 'success';
+//	Edit our original
+	$original['title'] = 'New '.$item;
+	$original['item'] = $item;
+
 //	Create a new workflow
-	$copy->grab($original, $status);
-	
+	$draft->grab($original, $status);
+
 //	$workflow->unleash();
 
 /********************************************************************************************/
 //	Return
 /********************************************************************************************/
-	$return = json_encode('ok');
+	$return = json_encode($draft['id']->get());
 ?>

@@ -28,10 +28,35 @@
 //	Item
 	$handled_item = (isset($_GET['item'])) ? $_GET['item'] : null;
 	$handled_id = (isset($_GET['id'])) ? $_GET['id'] : null;
+	$item = i($handled_item);
+	if ($handled_item && $handled_id)
+	{
+		$item->get(array
+		(
+			'id' => $handled_id,
+			'status' => 'draft',
+		), $handled_env)[0];
+	}
 
+/********************************************************************************************/
+//	One exception for the workflow
+/********************************************************************************************/
+	if ($handled_item == 'workflow')
+	{
+	//	Create a new temporaroy item
+		$tmp = i($item['item']->get(), null, $handled_env);
+	//	Fetch the data from the workflow
+		$data = json_decode($item['data']->get()[0]);
+		foreach ($data as $key => $value) $tmp[$key] = $value;
+		$item = $tmp;
+	}
+	
+/********************************************************************************************/
+//	Build front
+/********************************************************************************************/
 	if (!empty($handled_item))
 	{
-		$form = new adminItemForm($handled_env, $handled_item, $handled_id);
+		$form = new adminItemForm($item);
 	}
 	else
 	{

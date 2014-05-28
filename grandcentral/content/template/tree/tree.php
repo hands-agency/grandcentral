@@ -158,9 +158,9 @@
 				<div class="page" data-status="'.$page['status'].'" data-type="'.$page['type']['key'].'" data-url="'.$page['url'].'">
 					<div class="connector"></div>
 					'.$badge.'
-					
+				
 					<div class="icon" id="'.$page->get_nickname().'">
-						
+					
 						<div class="face front">
 				            <div class="title">'.$page['title'].'</div>
 				    	</div>
@@ -173,7 +173,7 @@
 							</div>
 							<div class="preview"><iframe></iframe></div>
 					    </div>
-					
+				
 						<div class="add">+</div>
 					</div>
 					'.$type.'
@@ -191,7 +191,7 @@
 					$content .= '<ol></ol>';
 				}
 			//	Build the <li>
-				$li .= '<li data-item="'.$page->get_nickname().'">'.$content.'</li>';
+				$li .= '<li data-item="'.$page->get_nickname().'"><div class="node">'.$content.'</div></li>';
 			}
 			if (!is_null($class)) $class = ' class="'.$class.'"';
 			

@@ -31,7 +31,7 @@ class itemWorkflow extends _items
 		/* todo */
 	}
 /**
- * Unleach a workflow item into the wild
+ * Unleash a workflow item into the wild
  *
  * @param	array 	attributes array
  * @access  public
