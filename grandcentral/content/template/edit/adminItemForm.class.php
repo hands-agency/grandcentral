@@ -37,7 +37,7 @@ class adminItemForm
 		$this->form['method'] = 'post';
 		$this->form['system'] = $this->env == 'admin' ? true : false;
 	//	recherche de l'item à injecter dans le form
-		$this->item = i($this->table, $item['id']->get(), $this->env);
+		$this->item = $item;
 	}
 /**
  * Mettre en conformité le formulaire et la structure d'un item

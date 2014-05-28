@@ -28,16 +28,16 @@
 //	Item
 	$handled_item = (isset($_GET['item'])) ? $_GET['item'] : null;
 	$handled_id = (isset($_GET['id'])) ? $_GET['id'] : null;
-	$item = i($handled_item);
+	$item = i($handled_item, null, $handled_env);
 	if ($handled_item && $handled_id)
 	{
 		$item->get(array
 		(
 			'id' => $handled_id,
-			'status' => 'draft',
-		), $handled_env)[0];
+			'status' => null,
+		));
 	}
-
+	
 /********************************************************************************************/
 //	One exception for the workflow
 /********************************************************************************************/

@@ -314,7 +314,7 @@ class database
 						$operator = $matches[1];
 						$value = $matches[2];
 						break;
-					case in_array($attrs[$key]['type'], array('string', 'date', 'array', 'key', 'updated', 'created')):
+					case in_array($attrs[$key]['type'], array('string', 'date', 'array', 'key', 'updated', 'created', 'i18n')):
 						$operator = 'LIKE';
 						break;
 					default:
@@ -403,7 +403,6 @@ class database
 		{
 			$preparedQuery = 'SELECT COUNT(*) as count FROM `'.$table.'`'.$cJoin.$cWhere.$cGroupby.$cLimit;
 		}
-		
 	//	requête
 		$db = database::connect($env);
 		$results = $db->query($preparedQuery, $preparedData);
