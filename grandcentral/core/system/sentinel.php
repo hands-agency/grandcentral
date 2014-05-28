@@ -230,172 +230,187 @@ class sentinel
  */
 	public static function debug($title, $descr, $flag = 'debug')
 	{
-	//	A little bit of fancy styling
-		if (!self::$debugcss)
+	//	Display varies depending on content type
+		$contentType = master::get_content_type();
+		
+		switch ($contentType)
 		{
-			$css = '
-			<style type="text/css">
-				.gc-sentinel 
+		//	Json
+			case 'json':
+				echo $flag.': '.$title.' ('.$descr.')';
+				break;
+		
+		//	HTML & more
+			default:
+			//	A little bit of fancy styling
+				if (!self::$debugcss)
 				{
-					position: relative;
-					-moz-border-radius: 2px;
-					border-radius: 2px;
-					margin:50px;
-					position: relative;
-					background:#f9f9f9;
-					font-family:"HelveticaNeue", helvetica, arial, "Lucida Grande", Geneva, Verdana, sans-serif;
-					-webkit-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.4);
-					-moz-box-shadow:    0px 1px 1px 0px rgba(50, 50, 50, 0.4);
-					box-shadow:         0px 1px 1px 0px rgba(50, 50, 50, 0.4);
-					display: table;
-				}
-				.gc-sentinel:after
-				{
-					position:absolute;
-					top:10px;
-					right:10px;
-					content:"×";
-					color:rgba(0, 0, 0, 0.2);
-					cursor:pointer;
-				}
-				.gc-sentinel:after:hover
-				{
-					color:rgba(0, 0, 0, 1);
-				}
-				.gc-sentinel dfn
-				{
-					border-bottom:1px dotted #999999;
-					font-style:normal;
-				}
-				.gc-sentinel dfn:hover
-				{
-					color:#FFFFFF;
-				}
+					$css = '
+					<style type="text/css">
+						.gc-sentinel 
+						{
+							position: relative;
+							-moz-border-radius: 2px;
+							border-radius: 2px;
+							margin:50px;
+							position: relative;
+							background:#f9f9f9;
+							font-family:"HelveticaNeue", helvetica, arial, "Lucida Grande", Geneva, Verdana, sans-serif;
+							-webkit-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.4);
+							-moz-box-shadow:    0px 1px 1px 0px rgba(50, 50, 50, 0.4);
+							box-shadow:         0px 1px 1px 0px rgba(50, 50, 50, 0.4);
+							display: table;
+						}
+						.gc-sentinel:after
+						{
+							position:absolute;
+							top:10px;
+							right:10px;
+							content:"×";
+							color:rgba(0, 0, 0, 0.2);
+							cursor:pointer;
+						}
+						.gc-sentinel:after:hover
+						{
+							color:rgba(0, 0, 0, 1);
+						}
+						.gc-sentinel dfn
+						{
+							border-bottom:1px dotted #999999;
+							font-style:normal;
+						}
+						.gc-sentinel dfn:hover
+						{
+							color:#FFFFFF;
+						}
 				
-				/* Flag */
-				.gc-sentinel-flag {
-					width:60px;
-					height:140px;
-					display: table-cell;
-					margin:0 40px 0 0;
-					background:#000;
-					padding:10px;
-					color:#fff;
-					text-align:center;
-					position:relative;
-				}
-				.gc-sentinel-flag:after{
-					position:absolute;
-					top:50%;
-					left:50%;
-					content:"";
-					width:50px;
-					height:50px;
-					background:rgba(0, 0, 0, 0.2);
-					margin:-25px 0 0 -25px;
-					border-radius:50%;
-					font-size:30px;
-					line-height:50px;
-					font-weight:bold;
-				}
+						/* Flag */
+						.gc-sentinel-flag {
+							width:60px;
+							height:140px;
+							display: table-cell;
+							margin:0 40px 0 0;
+							background:#000;
+							padding:10px;
+							color:#fff;
+							text-align:center;
+							position:relative;
+						}
+						.gc-sentinel-flag:after{
+							position:absolute;
+							top:50%;
+							left:50%;
+							content:"";
+							width:50px;
+							height:50px;
+							background:rgba(0, 0, 0, 0.2);
+							margin:-25px 0 0 -25px;
+							border-radius:50%;
+							font-size:30px;
+							line-height:50px;
+							font-weight:bold;
+						}
 				
-				/* Colours */
-				.gc-sentinel-flag.ok
-				{
-					background:#01B255;
-					color:#01B255;
-				}
-				.gc-sentinel-flag.ok:after
-				{
-					content:"✔"
-				}
+						/* Colours */
+						.gc-sentinel-flag.ok
+						{
+							background:#01B255;
+							color:#01B255;
+						}
+						.gc-sentinel-flag.ok:after
+						{
+							content:"✔"
+						}
 				
-				.gc-sentinel-flag.debug
-				{
-					background:#1B44B2;
-					color:#1B44B2;
-				}
-				.gc-sentinel-flag.debug:after
-				{
-					content:"—"
-				}
+						.gc-sentinel-flag.debug
+						{
+							background:#1B44B2;
+							color:#1B44B2;
+						}
+						.gc-sentinel-flag.debug:after
+						{
+							content:"—"
+						}
 				
-				.gc-sentinel-flag.notice
-				{
-					background:#FFD059;
-					color:#FFD059;
-				}
-				.gc-sentinel-flag.notice:after
-				{
-					content:"!"
-				}
+						.gc-sentinel-flag.notice
+						{
+							background:#FFD059;
+							color:#FFD059;
+						}
+						.gc-sentinel-flag.notice:after
+						{
+							content:"!"
+						}
 				
-				.gc-sentinel-flag.warning,
-				.gc-sentinel-flag.strict
-				{
-					color:#FFD500;
-				}
-				.gc-sentinel-flag.warning:after,
-				.gc-sentinel-flag.strict:after
-				{
-					content:"!"
-				}
+						.gc-sentinel-flag.warning,
+						.gc-sentinel-flag.strict
+						{
+							color:#FFD500;
+						}
+						.gc-sentinel-flag.warning:after,
+						.gc-sentinel-flag.strict:after
+						{
+							content:"!"
+						}
 				
-				.gc-sentinel-flag.parse
-				{
-					background:#FFD059;
-					color:#FFD059;
-				}
-				.gc-sentinel-flag.parse:after
-				{
-					content:"?"
-				}
+						.gc-sentinel-flag.parse
+						{
+							background:#FFD059;
+							color:#FFD059;
+						}
+						.gc-sentinel-flag.parse:after
+						{
+							content:"?"
+						}
 				
-				.gc-sentinel-flag.error
-				{
-					background:#FF1A02;
-					color:#FF1A02;
-				}
-				.gc-sentinel-flag.error:after
-				{
-					content:"!"
-				}
+						.gc-sentinel-flag.error
+						{
+							background:#FF1A02;
+							color:#FF1A02;
+						}
+						.gc-sentinel-flag.error:after
+						{
+							content:"!"
+						}
 
-				/* Lines */
-				.gc-sentinel-title
-				{
-					font-size:16px;
-					padding:30px 30px 10px 30px;
-					font-weight:bold;
+						/* Lines */
+						.gc-sentinel-title
+						{
+							font-size:16px;
+							padding:30px 30px 10px 30px;
+							font-weight:bold;
+						}
+						.gc-sentinel-descr
+						{
+							padding:0 30px 30px 30px;
+							font-size:12px;
+							white-space:pre-wrap;
+							margin:0;
+						}
+						.gc-sentinel-descr pre
+						{
+							white-space:pre-wrap;
+							color:#999;
+							margin: 10px 0 0 0px;
+							padding: 5px 0 5px 10px;
+							border-left:1px solid #ccc
+						}
+					</style>';
+				//	We're good once and for all
+					self::$debugcss = true;
 				}
-				.gc-sentinel-descr
-				{
-					padding:0 30px 30px 30px;
-					font-size:12px;
-					white-space:pre-wrap;
-					margin:0;
-				}
-				.gc-sentinel-descr pre
-				{
-					white-space:pre-wrap;
-					color:#999;
-					margin: 10px 0 0 0px;
-					padding: 5px 0 5px 10px;
-					border-left:1px solid #ccc
-				}
-			</style>';
-		//	We're good once and for all
-			self::$debugcss = true;
+		
+			//	Print the debug
+				if (isset($css)) echo $css;
+				echo '
+				<div class="gc-sentinel">
+					<div class="gc-sentinel-flag '.$flag.'"></div>
+					<div class="gc-sentinel-title">'.$title.'</div>
+					<div class="gc-sentinel-descr">'.print_r($descr, true).'</div>
+				</div>';
+				break;
 		}
 		
-	//	Print the debug
-		if (isset($css)) echo $css;
-		echo '
-		<div class="gc-sentinel">
-			<div class="gc-sentinel-flag '.$flag.'"></div>
-			<div class="gc-sentinel-title">'.$title.'</div>
-			<div class="gc-sentinel-descr">'.print_r($descr, true).'</div>
-		</div>';
 	}
 
 /**
