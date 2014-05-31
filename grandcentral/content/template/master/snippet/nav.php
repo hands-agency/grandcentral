@@ -77,7 +77,7 @@
 					'link' => 'list',
 					'bunch' => i('item', array('key' => array('page', 'item', 'site', 'version'), 'order()' => 'inherit(key)'), $_SESSION['pref']['handled_env']),
 				),
-				'play and fix' =>  array(
+				'playandfix' =>  array(
 					'title' => 'er',
 					'display' => 'big',
 					'link' => 'page',

@@ -1,0 +1,18 @@
+/********************************************************************************************/
+/* i18n
+/********************************************************************************************/
+ol>li[data-type="i18n"] .field label
+{
+	border-radius:2px;
+	padding:2px 5px;
+	margin:0 10px;
+	color:#fff;
+	background:#ccc;
+	text-transform:uppercase;
+	font-size:10px;
+}
+ol>li[data-type="i18n"] .field .wrapper .field
+{
+	padding:0 !important;
+	border:none !important;
+}

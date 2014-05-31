@@ -65,9 +65,9 @@ section[data-template="/edit/edit"]>form>fieldset ol>li.multipleselect>.wrapper 
 section[data-template="/edit/edit"]>form>fieldset ol>li.rel>.wrapper .field	
 {
 	border:1px solid #ccc;
-	-moz-border-radius:3px;
-	-webkit-border-radius:3px;
-	border-radius:3px;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
 	background:#fff;
 	-webkit-transition:border-color .3s ease-in;
 	-moz-transition:border-color .3s ease-in;

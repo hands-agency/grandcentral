@@ -16,7 +16,7 @@ section[data-template="/tree/tree"] li
 	display:inline-block;
 	white-space:nowrap;
 	vertical-align:top;
-	border-radius:3px;
+	border-radius:2px;
 	position:relative; /* Connectors */
 }
 

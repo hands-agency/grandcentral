@@ -20,7 +20,7 @@
 	?>
 	<div class="icon <?=$empty?>"><a href="<?=$item->edit()?>"><?=$thumbnail?></a></div>
 	
-	<div class="title"><a href="<?=$item->edit()?>"><?= (isset($item['title']) && !$item['title']->is_empty()) ? $item['title'] : $item['key'] ?></a></div>
+	<div class="title"><a href="<?=$item->edit()?>"><?= (isset($item['title']) && !$item['title']->is_empty()) ? $item['title'] : $item->get_table().'#'.$item['id'] ?></a></div>
 	
 	<? /* if (isset($item['descr'])): ?><div class="descr"><?=$item['descr']->cut(200)?></div><? endif */ ?>
 	

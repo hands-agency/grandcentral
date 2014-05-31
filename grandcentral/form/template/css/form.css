@@ -25,9 +25,9 @@ section[data-template="/edit/edit"]>form>fieldset>.descr
 section[data-template="/edit/edit"]>form>fieldset>ol>li[data-type]
 {
 	background:#fff;
-	-moz-border-radius:3px;
-	-webkit-border-radius:3px;
-	border-radius:3px;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
 	position:relative;
 	margin:0 0 10px 0;
 	border:1px solid #eee;
@@ -63,9 +63,9 @@ section[data-template="/edit/edit"]>form>fieldset ol>li[data-type] .wrapper
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
-	-moz-border-radius:3px;
-	-webkit-border-radius:3px;
-	border-radius:3px;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
 }
 section[data-template="/edit/edit"]>form>fieldset ol>li[data-type] .wrapper .field
 {
@@ -124,9 +124,9 @@ section[data-template="/edit/edit"] fieldset ol>li [data-control]
 	width:35px;
 	text-align:center;
 	color:#fff;
-	-moz-border-radius:3px;
-	-webkit-border-radius:3px;
-	border-radius:3px;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
 	background:#eee;
 	opacity:0;
 	-webkit-transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);

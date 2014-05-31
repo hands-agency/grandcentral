@@ -59,7 +59,6 @@
 	{
 	//	Fetch item
 		$item = i((string)$logbook['item'], (string)$logbook['itemid'], $_SESSION['pref']['handled_env']);
-		$item['title'] = (empty($item['title'])) ? $item->get_nickname() : $item['title'];
 		
 	//	Aging
 		$date = new DateTime($logbook['updated']);

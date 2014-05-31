@@ -28,13 +28,15 @@
 //	Item
 	$handled_item = (isset($_GET['item'])) ? $_GET['item'] : null;
 	$handled_id = (isset($_GET['id'])) ? $_GET['id'] : null;
+//	Fetch item
 	$item = i($handled_item, null, $handled_env);
 	if ($handled_item && $handled_id)
 	{
 		$item->get(array
 		(
 			'id' => $handled_id,
-			'status' => null,
+			'status' => null, /* THIS IS NOT WORKING FOR ME */
+		//	'status' => 'draft',
 		));
 	}
 	
@@ -43,14 +45,14 @@
 /********************************************************************************************/
 	if ($handled_item == 'workflow')
 	{
-	//	Create a new temporaroy item
+	//	Create a new temporary item
 		$tmp = i($item['item']->get(), null, $handled_env);
 	//	Fetch the data from the workflow
-		$data = json_decode($item['data']->get()[0]);
-		foreach ($data as $key => $value) $tmp[$key] = $value;
+		$data = $item['data']->get();
+		if ($data) foreach (json_decode($data[0]) as $key => $value) $tmp[$key] = $value;
 		$item = $tmp;
 	}
-	
+
 /********************************************************************************************/
 //	Build front
 /********************************************************************************************/

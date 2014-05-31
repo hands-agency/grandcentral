@@ -17,13 +17,14 @@ class itemWorkflow extends _items
  */
 	public function grab($item, $status)
 	{
-	//	Our item
+	//	Our original item
+		$this['item'] = $item->get_table();
 		$this['original'] = $item->get_nickname();
 	//	The item data
 		$this['data'] = $item->json();
 	//	The status
 		$this['status'] = $status;
-		
+
 	//	Save
 		$this->save();
 		

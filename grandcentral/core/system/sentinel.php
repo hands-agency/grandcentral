@@ -231,7 +231,8 @@ class sentinel
 	public static function debug($title, $descr, $flag = 'debug')
 	{
 	//	Display varies depending on content type
-		$contentType = master::get_content_type();
+	//	$contentType = master::get_content_type();
+		$contentType = 'html';
 		
 		switch ($contentType)
 		{
@@ -296,11 +297,11 @@ class sentinel
 							text-align:center;
 							position:relative;
 						}
-						.gc-sentinel-flag:after{
+						.gc-sentinel-flag:before{
 							position:absolute;
 							top:50%;
 							left:50%;
-							content:"";
+							color:#fff;
 							width:50px;
 							height:50px;
 							background:rgba(0, 0, 0, 0.2);
@@ -317,19 +318,11 @@ class sentinel
 							background:#01B255;
 							color:#01B255;
 						}
-						.gc-sentinel-flag.ok:after
-						{
-							content:"✔"
-						}
 				
 						.gc-sentinel-flag.debug
 						{
 							background:#1B44B2;
 							color:#1B44B2;
-						}
-						.gc-sentinel-flag.debug:after
-						{
-							content:"—"
 						}
 				
 						.gc-sentinel-flag.notice
@@ -337,20 +330,11 @@ class sentinel
 							background:#FFD059;
 							color:#FFD059;
 						}
-						.gc-sentinel-flag.notice:after
-						{
-							content:"!"
-						}
 				
 						.gc-sentinel-flag.warning,
 						.gc-sentinel-flag.strict
 						{
 							color:#FFD500;
-						}
-						.gc-sentinel-flag.warning:after,
-						.gc-sentinel-flag.strict:after
-						{
-							content:"!"
 						}
 				
 						.gc-sentinel-flag.parse
@@ -399,12 +383,20 @@ class sentinel
 				//	We're good once and for all
 					self::$debugcss = true;
 				}
+			//	Icons
+				$icon = array(
+					'ok' => '116',
+					'debug' => '076',
+					'notice' => '006',
+					'warning' => '117',
+					'strict' => '117',
+				);
 		
 			//	Print the debug
 				if (isset($css)) echo $css;
 				echo '
 				<div class="gc-sentinel">
-					<div class="gc-sentinel-flag '.$flag.'"></div>
+					<div class="gc-sentinel-flag '.$flag.'" data-feathericon="&#xe'.$icon[strtolower($flag)].'"></div>
 					<div class="gc-sentinel-title">'.$title.'</div>
 					<div class="gc-sentinel-descr">'.print_r($descr, true).'</div>
 				</div>';

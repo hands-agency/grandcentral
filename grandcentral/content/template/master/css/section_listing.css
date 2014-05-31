@@ -18,9 +18,9 @@ section.listing
 }
 .instack section.listing ol li .title .flag
 {
-	-moz-border-radius:3px;
-	-webkit-border-radius:3px;
-	border-radius:3px;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
 	background:#F2F2F2;
 	color:#aaaaaa;
 	font-size:0.8em;

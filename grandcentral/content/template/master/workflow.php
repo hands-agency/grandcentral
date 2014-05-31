@@ -26,7 +26,7 @@
 	$status = isset($_POST['status']) ? $_POST['status'] : trigger_error('Sorry, you need to give me a workflow status', E_USER_ERROR);
 	
 //	The original and the new draft in the workflow
-	$original = i($item);
+	$original = i($item, null, $_SESSION['pref']['handled_env']);
 	$draft = i('workflow', null, $_SESSION['pref']['handled_env']);
 	
 /********************************************************************************************/
@@ -34,7 +34,7 @@
 /********************************************************************************************/
 //	Edit our original
 	$original['title'] = 'New '.$item;
-	$original['item'] = $item;
+	$original['parent'] = $parent;
 
 //	Create a new workflow
 	$draft->grab($original, $status);

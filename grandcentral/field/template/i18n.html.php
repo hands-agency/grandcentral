@@ -3,6 +3,12 @@
 	<span class="help"></span>
 </label>
 
-<?php foreach ($fields as $field): ?>
-	<?php echo $field; ?>
-<?php endforeach ?>
+<div class="wrapper">
+	<span class="field">
+		<ul>	
+		<?php foreach ($fields as $field): ?>
+			<li><?= $field; ?></li>
+		<?php endforeach ?>
+		</ul>
+	</span>
+</div>

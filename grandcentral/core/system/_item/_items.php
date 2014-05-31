@@ -224,6 +224,9 @@ abstract class _items implements ArrayAccess, Iterator
 	//	Trigger event
 		event::trigger($this, $event);
 		// print'<pre>';print_r($db->_spooler);print'</pre>';
+		
+	//	Here, we need to delete all the workflow items having this item as their original
+		/* todo */
 	}
 /**
  * Build queries to update an item
@@ -399,8 +402,8 @@ abstract class _items implements ArrayAccess, Iterator
  */
 	public function json($filter = null)
 	{
-	//	Only if item exits
-		if ($this->exists())
+	//	Only if item instanciated
+		if ($this)
 		{
 		//	Return data in Json
 			$return = array();

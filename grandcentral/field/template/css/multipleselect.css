@@ -12,9 +12,9 @@ ol>li[data-type="multipleselect"] .field .available
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
 	padding:10px;
-	-moz-border-radius:3px;
-	-webkit-border-radius:3px;
-	border-radius:3px;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
 	position:relative;
 }
 ol>li[data-type="multipleselect"] .field p

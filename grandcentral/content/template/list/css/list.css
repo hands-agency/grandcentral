@@ -102,7 +102,7 @@ section[data-template="/list/list"][data-pref-display="instack"]>div>ol
 	margin:0 0 30px 0;
 	padding:10px;
 	background:#fff;
-	border-radius:3px;
+	border-radius:2px;
 }
 section[data-template="/list/list"][data-pref-display="instack"]>div>ol>li
 {
@@ -179,7 +179,7 @@ section[data-template="/list/list"][data-pref-display="inmasonry"]>div>ol
 section[data-template="/list/list"][data-pref-display="inmasonry"]>div>ol>li
 {
 	background:#fff;
-	border-radius:3px;
+	border-radius:2px;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;

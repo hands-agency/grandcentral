@@ -18,7 +18,7 @@ section[data-template="/timeline/timeline"]>ol>li>.padding
 	background:#fff;
 	padding:15px;
 	margin:0 0px 0 65px;
-	border-radius:3px;
+	border-radius:2px;
 	position:relative;
 }
 section[data-template="/timeline/timeline"]>ol>li>.padding:before
@@ -76,11 +76,6 @@ section[data-template="/timeline/timeline"]>ol>li>.icon
 }
 section[data-template="/timeline/timeline"]>ol>li>.icon:hover
 {
-	transform:scale(1.2);
-	-moz-transform:scale(1.2);
-	-ms-transform:scale(1.2);
-	-webkit-transform:scale(1.2);
-	-o-transform:scale(1.2);
 }
 section[data-template="/timeline/timeline"]>ol>li>.icon.empty
 {
