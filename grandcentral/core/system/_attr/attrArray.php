@@ -17,10 +17,10 @@ class attrArray extends _attrs implements ArrayAccess, Iterator
  * @return	string	une string
  * @access	public
  */
-	// public function get()
-	// {
-	// 	return (array) $this->data;
-	// }
+	public function get()
+	{
+		return (array) $this->data;
+	}
 /**
  * Set array attribute
  *
