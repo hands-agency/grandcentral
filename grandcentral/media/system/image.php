@@ -127,7 +127,90 @@ class image extends media
 			return $thumb;
 		}
 	}
+    
+    public function square($width)
+    {
+        $app = app('cache');
+        $root = $app->get_templateroot('site').'/media/square_w'.$width;
+        
+        $file = $root.'/'.$this->get_key();    
+        if (!is_dir($file))
+        {
+            $thumb = new image($file);
+        //    création du thumbnail
+            if (!$thumb->exists() || $thumb->get_created() < $this->get_created())
+            {
+                $this->copy($root);
+                $thumb = new image($root.'/'.$this->get_key());
+                
+                if($this->get_width()>$this->get_height())
+                    $thumb->resize(0,$width, true);
+                else
+                    $thumb->resize($width,0, true);
+                
+                
+                $thumb->crop($width,$width,$width,$width);
+                $thumb->save(true);
+                
+            }
+        //    Return
+            return $thumb;
+        }
+    }
 	
+    public function crop($src_w,$src_h,$dst_w,$dst_h,$src_x=false,$src_y=false)
+    {
+        
+        $format = $this->get_width()/$this->get_height();
+        if($src_x===FALSE && $src_y===FALSE){
+            if($format >= 1 ){
+               
+                $dims = $this->calculate_dimensions(0,$dst_h);
+                $src_x = round(($dims['width'] - $src_w) / 2);
+                $src_y = 0;
+            }
+            else
+            {
+                $dims = $this->calculate_dimensions($dst_w,0);
+                $src_y = round(( $dims['height'] - $src_h ) / 2);
+                $src_x = 0;
+            }    
+        }
+        
+        
+        $new_image = $this->make_image( 0,0, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h);
+        
+        $this->data = $new_image;
+        unset($new_image);
+        return $this;    
+    }
+    
+    private function calculate_dimensions($width,$height,$keep_proportions = true){
+    //    si on ne reçoit que la largeur
+        if (empty($height))
+        {
+            $ratio = $width / $this->get_width();
+            $height = $this->get_height() * $ratio;
+        }
+    //    si on ne reçoit que la hauteur
+        if (empty($width))
+        {
+            $ratio = $height / $this->get_height();
+            $width = $this->get_width() * $ratio;
+        }    
+    //    si on souhaite garder les proportions de l'image
+        if ($keep_proportions === true)
+        {
+            // print '<pre>original ratio : ';print_r($this->get_width()/$this->get_height());print'</pre>';
+            // print '<pre>new ratio : ';print_r($width/$height);print'</pre>';
+            if ($this->get_width() / $this->get_height() >= $width/$height) $height = 0;
+            else $width = 0;
+            
+            if ($width == 0) $width = $height / $this->get_height() * $this->get_width();
+            if ($height == 0) $height = $width / $this->get_width() * $this->get_height();
+        }
+        return array('width'=>$width,'height'=>$height);
+    }
 /**
  * Redimensionne une image
  * 
@@ -139,60 +222,47 @@ class image extends media
 	{
 		if (!$this->exists() || (empty($width) && empty($height))) return $this;
 		$this->get();
-	//	si on ne reçoit que la largeur
-		if (empty($height))
-		{
-			$ratio = $width / $this->get_width();
-			$height = $this->get_height() * $ratio;
-		}
-	//	si on ne reçoit que la hauteur
-		if (empty($width))
-		{
-			$ratio = $height / $this->get_height();
-			$width = $this->get_width() * $ratio;
-		}
-	//	si on souhaite garder les proportions de l'image
-		if ($keep_proportions === true)
-		{
-			// print '<pre>original ratio : ';print_r($this->get_width()/$this->get_height());print'</pre>';
-			// print '<pre>new ratio : ';print_r($width/$height);print'</pre>';
-			if ($this->get_width() / $this->get_height() >= $width/$height) $height = 0;
-			else $width = 0;
-			
-			if ($width == 0) $width = $height / $this->get_height() * $this->get_width();
-			if ($height == 0) $height = $width / $this->get_width() * $this->get_height();
-		}
+	    
+        $dimensions = $this->calculate_dimensions($width, $height, $keep_proportions);
+        $width = $dimensions['width'];
+        $height = $dimensions['height'];
+        
 		// print '<pre>width / original : '.$this->get_width().' / new : ';print_r($width);print'</pre>';
 		// print '<pre>height / original : '.$this->get_height().' / new : ';print_r($height);print'</pre>';
 		
-		$new_image = imagecreatetruecolor($width, $height);
-		
-		if ($this->mime == IMAGETYPE_GIF || $this->mime == IMAGETYPE_PNG)
-		{
-			$current_transparent = imagecolortransparent($this->data);
-			if($current_transparent != -1)
-			{
-				$transparent_color = imagecolorsforindex($this->data, $current_transparent);
-				$current_transparent = imagecolorallocate($new_image, $transparent_color['red'], $transparent_color['green'], $transparent_color['blue']);
-				imagefill($new_image, 0, 0, $current_transparent);
-				imagecolortransparent($new_image, $current_transparent);
-			}
-			elseif( $this->mime == IMAGETYPE_PNG)
-			{
-				imagealphablending($new_image, false);
-				$color = imagecolorallocatealpha($new_image, 0, 0, 0, 127);
-				imagefill($new_image, 0, 0, $color);
-				imagesavealpha($new_image, true);
-			}
-		}
-		
-		imagecopyresampled($new_image, $this->data, 0, 0, 0, 0, $width, $height, $this->get_width(), $this->get_height());
-		
+		$new_image = $this->make_image( 0, 0, 0, 0, $width, $height, $this->get_width(), $this->get_height());
+		//var_dump('here',$new_image);die;
 		$this->data = $new_image;
 		unset($new_image);
 		return $this;
 	}
 
+    private function make_image($dst_x,$dst_y,$src_x,$src_y,$dst_w,$dst_h,$src_w,$src_h){
+        $new_image = imagecreatetruecolor($dst_w, $dst_h);
+        
+        if ($this->mime == IMAGETYPE_GIF || $this->mime == IMAGETYPE_PNG)
+        {
+            $current_transparent = imagecolortransparent($this->data);
+            if($current_transparent != -1)
+            {
+                $transparent_color = imagecolorsforindex($this->data, $current_transparent);
+                $current_transparent = imagecolorallocate($new_image, $transparent_color['red'], $transparent_color['green'], $transparent_color['blue']);
+                imagefill($new_image, 0, 0, $current_transparent);
+                imagecolortransparent($new_image, $current_transparent);
+            }
+            elseif( $this->mime == IMAGETYPE_PNG)
+            {
+                imagealphablending($new_image, false);
+                $color = imagecolorallocatealpha($new_image, 0, 0, 0, 127);
+                imagefill($new_image, 0, 0, $color);
+                imagesavealpha($new_image, true);
+            }
+        }
+        
+        imagecopyresampled($new_image, $this->data, $dst_x,$dst_y,$src_x,$src_y,$dst_w,$dst_h,$src_w,$src_h);
+        
+        return $new_image; 
+    }
 	/**
 	 * Prints the image in a <img tag>
 	 *
