@@ -66,7 +66,7 @@
 	}
 
 //	title
-	$title = ($handled_id) ? i($handled_item, $handled_id, $handled_env)['title'] : i('page', current)['title'];
+	$title = ($handled_id) ? '<a href="'.$item->listing().'">'.i('item', $item->get_table(), $handled_env)['title'].'</a> '.$item['title'] : 'New <a href="'.$item->listing().'">'.i('item', $item->get_table(), $handled_env)['title'].'</a>';
 	# fallback
 	if (!$title) $title = $handled_item.' #'.$handled_id;
 	

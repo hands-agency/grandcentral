@@ -122,10 +122,8 @@
 						url = '?item='+_GET['item']+'&id='+result;
 						if (window.location.hash) url += window.location.hash;
 						window.history.pushState('string', 'chose', url);
-					//	Callback	
-						if ((typeof(callback) != 'undefined') && (typeof(callback) == "function")) callback.call(this, result);
 					//	Pop alert
-						popAlert('success', 'Yep. That\'s saved.');
+						popAlert('success', 'Yep. That\'s saved.', callback);
 					};
 				},
 			});
@@ -168,6 +166,16 @@
 		//	Get rid of id and save
 			$('input[name="'+SITE_KEY+'_'+_GET['item']+'[id]"]').val('');
 			plugin.save();
+		}
+
+	//	Save and go back to the list
+		plugin.save_list = function()
+		{
+			plugin.save('live', function()
+			{
+			//	Go to the list page
+				document.location.href = ADMIN_URL+'/list?item='+_GET['item'];
+			});
 		}
 
 	//	Save and start anew

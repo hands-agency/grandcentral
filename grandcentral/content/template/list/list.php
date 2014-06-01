@@ -36,6 +36,8 @@
 	$handled_env = $_SESSION['pref']['handled_env'];
 //	Object
 	$handled_item = (isset($_GET['item'])) ? $_GET['item'] : trigger_error('You should have an Item by now', E_USER_WARNING);
+//	Item
+	$item = i('item', $handled_item, $handled_env);
 
 //	Reuse sent params
 	if (isset($_POST['param'])) $_PARAM = $_POST['param'];
@@ -47,7 +49,7 @@
 	
 //	Count
 	$count = count::get($handled_item, $_PARAM, $handled_env);
-	
+
 //	Pref
 	$pref_filter = isset($_POST['filter']) ? $_POST['filter'] : null;
 	$pref_value = isset($_POST['value']) ? $_POST['value'] : null;
@@ -58,10 +60,16 @@
 /********************************************************************************************/
 	function save_pref($pref)
 	{
-		$human = i('human', $_SESSION['user']['id']->get());
-		$human['pref'] = $pref;
-		sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $human['pref']);exit;
-		$human->save();
+		$cat = key($pref);
+		$item = key($pref[$cat]);
+		$pref = $pref[$cat][$item];
+		
+		$p = $_SESSION['user']['pref'];
+		$p[$cat][$item] = $pref;
+		
+	//	$_SESSION['user']['pref'] = $p;
+	//	$_SESSION['user']->save();
+	//	sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $_SESSION['user']);
 	}
 	
 /********************************************************************************************/

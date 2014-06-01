@@ -92,29 +92,29 @@
 	$(document).on('click', 'ul.action a.notes', function(event)
 	{
 	//	Some vars
-		item = $(this).parents('li[data-item]');
-		notes = item.find('div.notes').first();
+		$item = $(this).parents('li[data-item]');
+		$notes = $item.find('div.notes').first();
 
 	//	First timer: fill up and show
-		if (notes.is(':empty'))
+		if ($notes.is(':empty'))
 		{
 		//	Load the notes drop
-			notes.ajx(
+			$notes.ajx(
 			{
-				app:'section',
-				template:'notes',
+				app:'content',
+				template:'/notes/notes',
 				displayNotes:5,
-				item:item.data('item'),
+				item:$item.data('item'),
 			},{
 				done:function()
 				{
 				//	Show the notes
-					notes.show('fast');
+					$notes.show('fast');
 				}
 			});
 		}
 	//	Already loaded: toggle
-		else notes.toggle('fast');
+		else $notes.toggle('fast');
 		
 	//	Focus
 	//	notes.find('textarea').focus();
@@ -270,10 +270,15 @@
 	//	window.history.pushState('string', 'chose', '/');
 	}
 	
-//	alert
-	popAlert = function(type, label)
+//	Alert
+	popAlert = function(type, label, callback)
 	{
-		$('#main').addClass('poppedAlert').delay(1000).queue(function(){$(this).removeClass('poppedAlert').dequeue();});
+		$('#main').addClass('poppedAlert').delay(1000).queue(function()
+		{
+			$(this).removeClass('poppedAlert').dequeue();
+		//	Callback
+			if ((typeof(callback) != 'undefined') && (typeof(callback) == "function")) callback.call(this);
+		});
 		$('#alert').attr('class', type);
 		$('#alert .response').html(label);
 	}

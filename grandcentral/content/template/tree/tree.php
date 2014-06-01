@@ -37,6 +37,7 @@
 		private $tree;
 		private $pages;
 		private $ref;
+		public $count = 0;
 		
 		public function __construct()
 		{
@@ -195,16 +196,19 @@
 			}
 			if (!is_null($class)) $class = ' class="'.$class.'"';
 			
+		//	Plus 1
+			$this->count++;
+			
 		//	Return
 			return '<ol'.$class.'>'.$li.'</ol>';
 		}	
 		
 		public function __tostring()
 		{
-			
 			return $this->make_tree($this->tree, $this->class);
 		}
 	}
 //	Build the tree
 	$tree = new tree();	
+	$count = $tree->count;
 ?>

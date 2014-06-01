@@ -1,7 +1,7 @@
 <? if ($count == 0) : ?>
 <div class="nodata">Nope, sorry, nothing. Zero. Zilch.</div>
 <? else : ?>
-<h1><?=$_GET['item']?></h1>
+<h1><?=$count?> <a href=""><?=$item['title']?></a> by title</h1>
 <div class="infiniteScrollContainer"></div>
 <div class="infiniteScrollWantsMore">More <?=$_GET['item']?>! Miam miam miam...</div>
 <div class="infiniteScrollStopper">It's all I have.</div>

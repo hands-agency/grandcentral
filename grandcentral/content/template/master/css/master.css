@@ -451,12 +451,7 @@ progress::-webkit-progress-value {
 /********************************************************************************************/
 /* The structure Whatever happens
 /********************************************************************************************/
-/* Our 2 main bands */
-#grandCentralSite,
-#grandCentralAdmin
-{
-	
-}
+/* Our 2 main ribbons */
 #grandCentralAdmin
 {
 	position:absolute;
@@ -551,6 +546,10 @@ progress::-webkit-progress-value {
 	-o-filter: blur(5px);
 	-ms-filter: blur(5px);
 	*/
+}
+.siteOpened #grandCentralSite iframe
+{
+	height:100%;
 }
 #grandCentralSite:hover iframe
 {
@@ -750,6 +749,18 @@ progress::-webkit-progress-value {
 	font-size:35px;
 	margin:0 0 30px 0;
 	text-align:center;
+}
+#adminContent section>h1 a
+{
+	border:1px solid rgba(0, 0, 0, 0.1);
+	border-radius:2px;
+	padding:6px 12px;
+	color:#999;
+	margin:0 5px;
+	text-transform:uppercase;
+	font-size:0.8em;
+	position:relative;
+	top:-1px; /* optical alignment */
 }
 #adminContent.unlocked section>h1
 {
@@ -988,8 +999,15 @@ footer
 	position:relative;
 	top:-5px;
 }
-#adminContent section>h2
+#adminContent.unlocked section>h2,
+#adminContent.unlocked section>div>h2
 {
+	border-bottom-color:1px solid #fff;
+	color:#fff;
+}
+#adminContent.unlocked section h2>.centered
+{
+	background:#007EE5;
 }
 
 /* #adminContent section h3 */

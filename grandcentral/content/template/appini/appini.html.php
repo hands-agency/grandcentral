@@ -18,7 +18,7 @@
 				$content .= '
 				<table>
 					<tr>
-						<th>'.cst('APPINI_H3_'.$h3, $h3).'</th>
+						<th>'.$h3.'</th>
 						<td>'.$td.'</td>
 					</tr>
 				</table>';

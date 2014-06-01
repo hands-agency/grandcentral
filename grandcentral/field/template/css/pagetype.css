@@ -1,25 +1,153 @@
 /********************************************************************************************/
 /* All
 /********************************************************************************************/
-[data-type="pagetype"] .field>div
+[data-type="pagetype"]>.wrapper>.field>div
 {
 	padding:5px;
 	display:inline-block;
-	width:49.6%;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
-	vertical-align:top;
-}
-[data-type="pagetype"] .field>div.option>ol
-{
-	background:#F2F2F2;
+	vertical-align:middle;
 }
 [data-type="pagetype"] .field>div>ol>li
 {
 	overflow:auto;
 }
-[data-type="pagetype"] .field>div>ol>li .field
+
+/* Type */
+[data-type="pagetype"] .field .type
 {
-	border-color:#fff !important;
+	position:relative;
+	width:60%;
+}
+[data-type="pagetype"] .field .type:after
+{
+	content:'';
+	position:absolute;
+	width:0;
+	height:0;
+	border-top:15px solid transparent;
+	border-bottom:15px solid transparent;
+	border-left:15px solid #F2F2F2;
+	top:50%;
+	margin-top:-15px;
+	right:-10px;
+}
+[data-type="pagetype"] .field .type [data-key="key"]
+{
+	background:#F2F2F2;
+	padding:20px;
+}
+[data-type="pagetype"] .field .type [data-key="key"] .wrapper
+{
+	width:100%;
+}
+[data-type="pagetype"] .field .type [data-key="key"]>label
+{
+	display:none;
+}
+[data-type="pagetype"] .field .type [data-key="key"] ol
+{
+	text-align:center;
+}
+[data-type="pagetype"] .field .type [data-key="key"] ol li
+{
+	display:inline-block;
+	padding:0;
+	margin:10px;
+	vertical-align:top;
+}
+[data-type="pagetype"] .field .type [data-key="key"] ol li input
+{
+	display:none;
+}
+[data-type="pagetype"] .field .type [data-key="key"] ol li label
+{
+	text-align:center;
+	width:100px;
+	height:120px;
+	line-height:100px;
+	padding:10px;
+	border-radius:2px;
+	background:#fff;
+	display:block;
+	border:1px solid transparent;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	opacity:0.5;
+	position:relative;
+	cursor:pointer;
+}
+[data-type="pagetype"] .field .type [data-key="key"] ol li label:hover
+{
+	opacity:0.8;
+	border-color: #3eb4d6;
+	-webkit-box-shadow: 0 0 4px #3eb4d6;
+	box-shadow: 0 0 4px #3eb4d6;
+}
+[data-type="pagetype"] .field .type [data-key="key"] ol li label .title
+{
+	margin:0;
+	display:inline-block;
+	vertical-align:middle;
+	line-height:normal;
+	font-size:11px;
+	padding:7px 10px;
+}
+
+
+[data-type="pagetype"] .field .type [data-key="key"] ol li input[value="header"]+label
+{
+	border:1px dashed #000;
+	background:transparent;
+}
+[data-type="pagetype"] .field .type [data-key="key"] ol li input[value="link"]
+{
+}
+[data-type="pagetype"] .field .type [data-key="key"] ol li input[value="link"]+label
+{
+	height:60px;
+	line-height:35px !important;
+}
+
+[data-type="pagetype"] .field .type [data-key="key"] ol li input:checked+label
+{
+	opacity:1;
+}
+[data-type="pagetype"] .field .type [data-key="key"] ol li input:checked+label:before
+{
+	content:'●';
+	color:#666;
+	position:absolute;
+	top:-50px;
+	width:10px;
+	margin-left:-4px;
+	left:50%;
+	text-align:center;
+}
+[data-type="pagetype"] .field .type [data-key="key"] ol li input+label:after
+{
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
+	content:'';
+	position:absolute;
+	height:43px;
+	border-left:1px solid #ccc;
+	top:-100px;
+	left:50%;
+}
+[data-type="pagetype"] .field .type [data-key="key"] ol li input:checked+label:after
+{
+	top:-45px;
+	border-color:#666;
+}
+
+/* Options */
+[data-type="pagetype"] .field .option
+{
+	width:39%;
 }

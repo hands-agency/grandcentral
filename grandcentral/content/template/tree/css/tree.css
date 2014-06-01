@@ -364,8 +364,8 @@ section[data-template="/tree/tree"] li .page[data-type="header"] .icon .face .ti
 section[data-template="/tree/tree"] li .page[data-type="link"] .icon .face
 {
 	height:60px;
-	line-height:30px !important;
-	background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+	line-height:35px !important;
+/*	background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); */
 }
 section[data-template="/tree/tree"] li .page[data-type="link"] .url
 {

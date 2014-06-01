@@ -69,8 +69,11 @@
 				//	Show eventstream
 					$('#eventstream').show();
 					
+				//	Link to the title
+					title = (data['url']) ? '<a href=\"'+data['url']+'\">'+data['title']+'</a>' : data['title'];
+					
 				//	Add the new line
-					li = '<li data-item=\"'+item+'\" style=\"display:none;opacity:'+data['opacity']+'\"><a href=\"'+data['editauthor']+'\">'+data['author']+'</a> <span>'+data['event']+'</span> <a href=\"'+data['edit']+'\">'+data['title']+'</a> <span>'+data['timeSince']+'</span> <a href=\"\" class=\"undo\">Undo</a><a href=\"\" class=\"compare\">What\'s new?</a></li>';
+					li = '<li data-item=\"'+item+'\" style=\"display:none;opacity:'+data['opacity']+'\"><a href=\"'+data['editauthor']+'\">'+data['author']+'</a> <span>'+data['event']+'</span> '+title+' <span>'+data['timeSince']+'</span> <a href=\"'+data['edit']+'\" class=\"edit\">Edit</a></li>';
 					$(li).prependTo(ul).show('fast').fadeTo(300000, 0.3, function() {\$(this).hide('fast', function(){\$(this).remove()})});
 
 				//	No more than
