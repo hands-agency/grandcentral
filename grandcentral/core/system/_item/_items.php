@@ -142,7 +142,6 @@ abstract class _items implements ArrayAccess, Iterator
 		}
 	//	limit
 		$param['limit()'] = 1;
-		if (!isset($param['status'])) $param['status'] = 'live';
 	//	query
 		$result = database::query_item($this->get_env(), $this->get_table(), $param);
 	//	affectation

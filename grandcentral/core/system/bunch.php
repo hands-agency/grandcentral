@@ -226,8 +226,6 @@ class bunch implements ArrayAccess, Iterator, Countable
  */
 	public function get($table, $params = null)
 	{
-	//	default status
-		if (!isset($param['status'])) $param['status'] = 'live';
 	//	query
 		$results = database::query_item($this->get_env(), $table, $params);
 	//	création des objets et affectation des valeurs

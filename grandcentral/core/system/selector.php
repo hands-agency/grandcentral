@@ -24,7 +24,7 @@
 		//	bunch de tous les items de la table
 			case $params == all:
 				// print '<pre>';print_r('all');print'</pre>';
-				return new bunch($table, null, $env);
+				return new bunch($table, array('status' => null), $env);
 				break;
 		//	item de l'environnement
 			case $params == current:
