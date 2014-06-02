@@ -29,13 +29,13 @@ class adminItemForm
 		$this->table = $item->get_table();
 	//	recherche du formulaire
 		$key = constant(mb_strtoupper($this->env).'_KEY').'_'.$this->table;
-		$this->form = i('form', $key, 'admin');
+		$this->form = i('form', $key, $this->env);
 		$this->form['key'] = $key;
 		$this->form['title'] = $key;
 		$this->form['template'] = 'default';
 		$this->form['action'] = 'post';
 		$this->form['method'] = 'post';
-		$this->form['system'] = $this->env == 'admin' ? true : false;
+		$this->form['system'] = true
 	//	recherche de l'item à injecter dans le form
 		$this->item = $item;
 	}

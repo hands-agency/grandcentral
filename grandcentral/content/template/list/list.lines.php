@@ -25,12 +25,14 @@
 	$handled_env = $_SESSION['pref']['handled_env'];
 //	Object
 	$handled_item = $_GET['item'];
-//	Default order
+//	Default order & sort
 	$defaultOrder = 'updated';
+	$defaultSort = 'DESC';
 
 //	Falling from the sky
 	$limit = (isset($_POST['limit'])) ? $_POST['limit'] : trigger_error('You should have a limit', E_USER_WARNING);
-	$order = (isset($_SESSION['list'][$handled_item]['order'])) ? $_SESSION['list'][$handled_item]['order'] : $defaultOrder;
+	$order = (isset($_SESSION['user']['pref']['list'][$handled_item]['order'])) ? $_SESSION['user']['pref']['list'][$handled_item]['order'] : $defaultOrder;
+	$sort = (isset($_SESSION['user']['pref']['list'][$handled_item]['sort'])) ? $_SESSION['user']['pref']['list'][$handled_item]['sort'] : $defaultSort;
 
 /********************************************************************************************/
 //	Some functions
@@ -58,7 +60,7 @@
 /********************************************************************************************/
 //	Build the params
 	$param = (isset($_POST['param'])) ? $_POST['param'] : null;
-	$param['order()'] = $order;
+	$param['order()'] = $order.' '.$sort;
 	$param['limit()'] = $limit;
 
 //	Fetch the bunch

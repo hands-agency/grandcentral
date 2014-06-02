@@ -40,7 +40,7 @@
 			case is_null($params) && mb_strpos($table, '_'):
 				list($table, $id) = explode('_', $table);
 				// print'<pre>';print_r($table);print'</pre>';
-				return item::create($table, $id, $env);
+				return item::create($table, array('id' => $id, 'status' => null), $env);
 				break;
 		//	nouvel item
 			case is_null($params):

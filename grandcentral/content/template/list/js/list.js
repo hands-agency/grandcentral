@@ -23,13 +23,3 @@ $(document).bind('unlock', function()
 			}
 		});
 });
-
-/*********************************************************************************************
-/**	* On unlock
- 	* @author	mvd@cafecentral.fr
-**#******************************************************************************************/
-	$(document).on('click', '#options_drop li[data-value]', function()
-	{
-		order = $(this).data('value');
-		$('#tabs li.on').trigger('click');
-	});

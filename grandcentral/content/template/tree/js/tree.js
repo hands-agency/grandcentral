@@ -697,7 +697,7 @@ $(function()
 	//	Some vars
 		$item = $(this).closest('[data-item]');
 		item = $item.data('item');
-		$page = $item.children('.page');
+		$page = $item.find('.page');
 		status = $(this).attr('class');
 		
 	//	Change status
@@ -713,16 +713,17 @@ $(function()
 			done:function()
 			{
 			//	Change the display status
-				$page.attr('data-status', status).data('status', status);	
+				$page.attr('data-status', status).data('status', status);
+
 			//	Asleep? Put all kids asleep as well
-			/*	if (status == 'asleep')
+				if (status == 'asleep')
 				{
-					$item.find('[data-item]').each(function()
-					{
-						$(this).find('.asleep').click();
-					});
+				//	$item.find('[data-item]').each(function()
+				//	{
+				//		$(this).find('.asleep').click();
+				//	});
 				}
-			*/
+			
 			}
 		});
 	});

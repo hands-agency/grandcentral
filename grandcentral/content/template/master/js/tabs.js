@@ -4,7 +4,7 @@
 **#******************************************************************************************/
 $(document).ready(function ()
 {
-	$('#tabs li').click(function()
+	$(document).on('click', '#tabs > li', function()
 	{
 	//	Set to off all the tabs, and set to on just "the one"
 		$(this).siblings('.on').removeClass('on');
@@ -26,6 +26,7 @@ $(document).ready(function ()
 	//	Hide options
 	//	TODO refresh content instead of hide
 		$('#options_drop').hide('fast');
+		
 		
 	//	Open the right panel
 		if (!$panel.html() || $(this).hasClass('updateMe'))

@@ -97,7 +97,7 @@ jQuery(document).ready(function($)
 /**	* Filtering content of a section, ordering it.
  	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
-	$(document).on('click', '#options_drop li li', function()
+	$(document).on('click', '#options_drop li li[data-value]', function()
 	{
 	//	Some vars
 		panel = $('#adminContent section.active');
@@ -114,6 +114,8 @@ jQuery(document).ready(function($)
 		{
 		//	Reorder
 			case 'order':
+		//	Sort
+			case 'sort':
 				panel.ajx(
 				{
 					app:'content',
