@@ -19,17 +19,12 @@
 	position:relative;
 	cursor:pointer !important;
 	text-align:center;
-	/* 3D flip */
-	-webkit-transform-style: preserve-3d;
-	-webkit-transition: 0.5s;
-	border:1px solid #e2e4e6;
+	border:1px solid #dedede;
 }
 #options>li.on
 {
 	display:block;
 	background:transparent;
-	/* 3D flip */
-	-webkit-transform: rotatey(180deg);
 }
 #options>li.on:after
 {
@@ -48,6 +43,7 @@
 {
 	width:25px;
 	padding:0 !important;
+	background:#F2F2F2 !important;
 }
 
 /* Local search */

@@ -36,8 +36,7 @@
 					<? foreach($sections as $section) : ?>
 					<? $app = $section['app'] ?>
 					<? $prefDisplay = isset($_SESSION['user']['pref'][$section['key']->get()]['display']) ? $_SESSION['user']['pref'][$section['key']]['display'] : 'inmasonry' ?>
-					<? $greenbutton = ($section['greenbutton']->get()) ? i($section['greenbutton']->get()[0])->json() : null ?>
-					<? /* cst('GREENBUTTON_SECTION_NEW_TITLE') */ ?>
+					<? $greenbutton = ($section['greenbutton']->get()) ? htmlspecialchars(i($section['greenbutton']->get()[0])->json(), ENT_QUOTES) : null ?>
 					<li style="width:<?=$sectionWidth?>">
 						<span class="lock" data-feathericon="&#xe007"></span>
 						<section id="section_<?= $section['key'] ?>" class="virgin" data-pref-display="<?=$prefDisplay?>" data-app="<?= $app['app'] ?>" data-template="<?= $app['template'] ?>" data-greenbutton='<?= $greenbutton ?>'></section>

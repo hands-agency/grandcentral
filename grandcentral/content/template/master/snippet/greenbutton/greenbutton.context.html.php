@@ -1,5 +1,5 @@
 <h1>Other actions</h1>
-<ul>
+<ul id="greenbutton-choices">
 	<? foreach ($actions as $action): ?>
 	<li>
 		<a data-action="<?=$action['key']?>" class="title">

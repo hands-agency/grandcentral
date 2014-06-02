@@ -6,16 +6,27 @@
 }
 #adminContext [data-template="master/snippet/greenbutton/greenbutton.context"] ul li
 {
-	border-bottom:1px solid #ddd;
-	padding:2px 0;
+	text-align:center;
 }
 #adminContext [data-template="master/snippet/greenbutton/greenbutton.context"] ul li .title
 {
 	color:#666;
-	margin:0;
+	margin:0 0 20px 0;
+	border:1px solid #ddd;
+	padding:10px 20px;
+	border-radius:2px;
+	text-transform:uppercase;
+	font-family:"Raleway-Regular";
+	/* Linin numerals for Raleway */
+	font-feature-settings: 'lnum';
+	-moz-font-feature-settings: 'lnum=1';
+	-ms-font-feature-settings: 'lnum';
+	-webkit-font-feature-settings: 'lnum';
+	-o-font-feature-settings: 'lnum';
+	cursor:pointer;
 }
-#adminContext [data-template="master/snippet/greenbutton/greenbutton.context"] ul li .descr
+#adminContext [data-template="master/snippet/greenbutton/greenbutton.context"] ul li a:hover
 {
-	color:#ccc;
-	font-size:0.8em;
+	background:#6cbf2d;
+	color:#fff;
 }
