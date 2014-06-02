@@ -29,10 +29,10 @@ class item extends _items
 		
 	//	création de la liste des attributs vide
 		$attrs = registry::get($this->get_env(), registry::attr_index, $this->get_table(), 'attr');
-		
+		// print'<pre>'.$table.' : ';print_r(registry::get($this->get_env(), registry::attr_index, 'greenbutton'));print'</pre>';
 		if (empty($attrs))
 		{
-			trigger_error('Can not find <strong>'.$this->get_table().'</strong> structure', E_USER_ERROR);
+			trigger_error('Can not find <strong>'.$this->get_env().'/'.$this->get_table().'</strong> structure', E_USER_ERROR);
 		}
 		foreach ($attrs as $key => $attr)
 		{

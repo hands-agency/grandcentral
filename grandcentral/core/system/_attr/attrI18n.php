@@ -84,6 +84,26 @@ class attrI18n extends attrArray
 		return $this->field;
 	}
 /**
+ * Définir le type du champ à internationaliser
+ * 
+ * @return	string	le nom du champ
+ * @access	public
+ */
+	public function set_attr($attr)
+	{
+		$this->attr = $attr;
+	}
+/**
+ * Définir le type du champ à internationaliser
+ * 
+ * @return	string	le nom du champ
+ * @access	public
+ */
+	public function get_attr($attr)
+	{
+		return $this->attr;
+	}
+/**
  * xxxx
  *
  * @param	string	la variable
@@ -92,6 +112,10 @@ class attrI18n extends attrArray
  */
 	public function __tostring()
 	{
+		// print'<pre>';print_r($this);print'</pre>';
+		// $data = $this->data[i($this->params['env'], current)['version']['lang']->get()];
+		// $class = 'attr'.mb_substr()
+		// print'<pre>';print_r($data);print'</pre>';
 		//print'<pre>';print_r(i(env, current)['version']['lang']);print'</pre>';
 		//print'<pre>là : ';print_r($this->data[i(env, current)['version']['lang']->get()]);print'</pre>';
 		switch (true) {
