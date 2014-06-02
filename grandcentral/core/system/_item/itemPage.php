@@ -12,13 +12,27 @@ class itemPage extends _items
 	const child = 'child';
 	protected $child = false;
 /**
- * Détermine si la page dispose d'une section reader
+ * Tells whether a page is a reader of another item
  *
  * @access	public
  */
-	public function has_reader()
+	public function is_reader()
 	{
 		return (is_array(registry::get(registry::reader_index, $this->get_nickname()))) ? true : false;
+	}
+/**
+ * Get the read object of this reader
+ *
+ * @access	public
+ */
+	public function get_reader()
+	{
+		if ($this->is_reader())
+		{
+			$readItem = registry::get(registry::reader_index, $this->get_nickname());
+			return $readItem[0];
+		}
+		else return false;
 	}
 /**
  * Rechercher une page avec une url
@@ -60,7 +74,7 @@ class itemPage extends _items
 			// chargement de la page de home
 			$this->get_by_url($hash);
 
-			if (!$this->exists() OR ($this->exists() && !$this->has_reader()))
+			if (!$this->exists() OR ($this->exists() && !$this->is_reader()))
 			{
 				$this->get_by_url('/404');
 			}

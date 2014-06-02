@@ -6,33 +6,25 @@
 	top:7px;
 	right:20px;
 	z-index:3;
-}
-#greenbutton>a,
-#adminContext [data-template="master/snippet/greenbutton/greenbutton.context"] ul li a
-{
+	border-radius:2px;
 	font-family:"Raleway-Bold";
 	text-transform:uppercase;
 	font-size:13px;
+	margin:7px 0;
+	-moz-user-select:none;
+	-webkit-user-select:none;
+	cursor:pointer;
+	background:#6cbf2d;
+}
+#greenbutton>a
+{
+	display:inline-block;
+	color:#ffffff;
 	padding:13px;
-	margin:7px 0 7px 7px;
-	border-radius:2px;
 	-webkit-transition: all .1s ease-out; 
 	-moz-transition: all .1s ease-out; 
 	-o-transition: all .1s ease-out; 
 	transition: all .1s ease-out;
-	display:inline-block;
-	-moz-user-select:none;
-	-webkit-user-select:none;
-	cursor:pointer;
-}
-#greenbutton>a,
-#adminContext [data-template="master/snippet/greenbutton/greenbutton.context"] ul li a:hover
-{
-	-moz-border-radius:1px;
-	-webkit-border-radius:1px;
-	border-radius:1px;
-	color:#ffffff;
-	background:#6cbf2d;
 }
 
 /********************************************************************************************/
@@ -40,9 +32,9 @@
 /********************************************************************************************/
 #greenbutton #greenbutton-default
 {
-	padding-left:25px;
-	padding-right:25px;
 	letter-spacing:1px;
+	padding-left:30px;
+	padding-right:30px;
 }
 #greenbutton #greenbutton-default:hover
 {
@@ -70,9 +62,8 @@
 /********************************************************************************************/
 #greenbutton #greenbutton-or
 {
-	background:#F2F2F2;
-	color:#555555;
-	font-family:"Raleway-Regular";
+	font-family:"Raleway-Thin";
+	border-left:1px solid rgba(255, 255, 255, 0.1);
 }
 .contextOpened #greenbutton #greenbutton-or
 {
@@ -80,12 +71,7 @@
 }
 #greenbutton #greenbutton-or:hover
 {
-	background:#ddd;
 }
 #greenbutton #greenbutton-or.on
 {
-	background:#363f48;
-	color:#F2F2F2;
-	position:relative;
-    -webkit-transition-duration: 0.3s;
 }

@@ -14,7 +14,5 @@
 </ul>
 <? endforeach ?>
 <? else: ?>
-	<div class="nodata">
-		Nope, nothing. Nada. Zero. Zilch.
-	</div>
+	<div class="nodata"><?=cst('nodata')?></div>
 <? endif ?>

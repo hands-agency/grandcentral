@@ -37,7 +37,7 @@
 				if (dflt)
 				{
 					$('#greenbutton-default')
-						.html(dflt['title'])
+						.html(dflt['title'][$('html').attr('lang')])
 						.data('action', dflt['key']);
 				}
 			//	No choices

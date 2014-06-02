@@ -154,11 +154,10 @@
 				}
 			//	Depending on sections
 				$badge = null;
-				if ($page->has_reader())
+				if ($page->is_reader())
 				{
-					$icon = '031';
-					$title = 'Name of this item';
-					$badge = '<a class="cc-badge" title="'.$title.'"><span data-feathericon="&#xe'.$icon.'"></span></a>';
+					$readItem = i('item', 'photo', $_SESSION['pref']['handled_env']);
+					$badge = '<a href="'.$readItem->listing().'" class="cc-badge" title="'.$readItem['title'].'"><span data-feathericon="&#xe'.$readItem['icon'].'"></span></a>';
 				}
 				
 			//	Content

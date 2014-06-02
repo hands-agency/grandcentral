@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?= i('version', current)->get_attr('key') ?>">
+<html lang="<?= i('admin', current)['version']['key'] ?>">
 <head>
 	<!-- ZONE:meta-->
 	<!-- ZONE:css -->

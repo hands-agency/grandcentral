@@ -321,7 +321,9 @@
 #adminNav>ul .sub ul.big li .icon
 {
 	margin:0 5px 0 0;
-	opacity:0.5;
+	opacity:0.3;
+	position:relative;
+	top:-3px;
 }
 #adminNav>ul .sub ul.big li .title
 {
@@ -450,7 +452,7 @@
 	width:80px;
 	height:80px;
 	margin:5px;
-	background:#ccc;
+	border:1px solid rgba(254,255,255,0.1);
 	position: relative;
 	border-radius:2px;
 	opacity:0.8;
@@ -463,6 +465,18 @@
 {
 	opacity:1;
 }
+#adminNav>ul .sub ul.tiles li .icon
+{
+	font-size:37px;
+	line-height:68px;
+	text-align:center;
+	color:rgba(254,255,255,0.35);
+}
+#adminNav>ul .sub ul.tiles li:hover .icon:before
+{
+	color:#3eb4d6;
+}
+
 #adminNav>ul .sub ul.tiles li .title
 {
 	font-size:11px;
@@ -472,25 +486,8 @@
 	z-index:1;
 	font-family:'Raleway-Regular';
 	font-size:9px;
-	color:#333;
-	text-transform:uppercase;
-}
-#adminNav>ul .sub ul.tiles li a:hover:before
-{
-	border-bottom-color:#3eb4d6;
-}
-#adminNav>ul .sub ul.tiles li a:hover:after
-{
-	border-top-color:#3eb4d6;
-}
-#adminNav>ul .sub ul.tiles li .icon
-{
-	font-size:40px;
-	line-height:67px;
-	text-align:center;
 	color:#fff;
-	opacity:0.9;
-	line-height:80px !important;
+	text-transform:uppercase;
 }
 
 /* In masonry */

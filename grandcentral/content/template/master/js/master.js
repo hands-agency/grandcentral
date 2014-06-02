@@ -208,7 +208,8 @@
 		
 		$.fn.loaded = function()
 		{
-			$loading = $(this).find('.loading');
+		//	Get the element with only the loading class
+			$loading = $(this).find('>[class="loading"]');
 		//	$loading.find('progress').val(100);
 			$loading.hide('fast', function(){$(this).remove()});
 		};

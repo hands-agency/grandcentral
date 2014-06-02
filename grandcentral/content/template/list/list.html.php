@@ -1,10 +1,10 @@
 <? if ($count == 0) : ?>
-<div class="nodata">Nope, sorry, nothing. Zero. Zilch.</div>
+<div class="nodata"><?=cst('nodata')?></div>
 <? else : ?>
-<h1><?=$count?> <a href=""><?=$item['title']?></a> by title</h1>
+<h1><?=$count?> <a href=""><?=$item['title']?></a></h1>
 <div class="infiniteScrollContainer"></div>
-<div class="infiniteScrollWantsMore">More <?=$_GET['item']?>! Miam miam miam...</div>
-<div class="infiniteScrollStopper">It's all I have.</div>
+<div class="infiniteScrollWantsMore" data-feathericon="&#xe129"></div>
+<div class="infiniteScrollStopper"><?=cst('stopper')?></div>
 
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function()
