@@ -109,6 +109,11 @@
 			}
 		}
 		
+		public function count()
+		{
+			return $this->pages->count;
+		}
+		
 		private function add_norel()
 		{
 			foreach ($this->pages as $page)
@@ -151,7 +156,9 @@
 				$badge = null;
 				if ($page->has_reader())
 				{
-					$badge = '<a href="" class="cc-badge">12</a>';
+					$icon = '031';
+					$title = 'Name of this item';
+					$badge = '<a class="cc-badge" title="'.$title.'"><span data-feathericon="&#xe'.$icon.'"></span></a>';
 				}
 				
 			//	Content
@@ -197,7 +204,7 @@
 			if (!is_null($class)) $class = ' class="'.$class.'"';
 			
 		//	Plus 1
-			$this->count++;
+			$this->count = '234';
 			
 		//	Return
 			return '<ol'.$class.'>'.$li.'</ol>';
@@ -208,7 +215,8 @@
 			return $this->make_tree($this->tree, $this->class);
 		}
 	}
+
 //	Build the tree
 	$tree = new tree();	
-	$count = $tree->count;
+	$count = $tree->count();
 ?>

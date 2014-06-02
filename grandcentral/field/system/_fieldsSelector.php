@@ -172,6 +172,8 @@ abstract class _fieldsSelector extends _fields
 			$params = (isset($value['param'])) ? $value['param'] : null;
 		//	Default order
 			$params['order()'] = 'title';
+		//	Get all status
+			$params['status'] = null;
 		//	Refine ?
 			if (isset($refine)) $params['title'] = '%'.$refine.'%';
 			// print'<pre>';print_r($value);print'</pre>';

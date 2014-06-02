@@ -22,9 +22,6 @@
 //	Some vars
 /********************************************************************************************/
 	$_FORM = $_PARAM['form'];
-//	Logo
-	$master = app('content');
-	$logo = new image($master->get_templateroot().'/image/logo_grandcentral.jpg');
 
 /********************************************************************************************/
 //	on change la routine du formulaire

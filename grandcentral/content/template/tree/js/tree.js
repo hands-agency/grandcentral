@@ -715,14 +715,14 @@ $(function()
 			//	Change the display status
 				$page.attr('data-status', status).data('status', status);	
 			//	Asleep? Put all kids asleep as well
-				if (status == 'asleep')
+			/*	if (status == 'asleep')
 				{
 					$item.find('[data-item]').each(function()
 					{
-						
 						$(this).find('.asleep').click();
 					});
 				}
+			*/
 			}
 		});
 	});

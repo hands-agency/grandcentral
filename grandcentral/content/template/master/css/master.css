@@ -237,7 +237,7 @@ a.cc-badge
 	line-height:22px;
 	color:#eee;
 	position:absolute;
-	font-size:11px;
+	font-size:14px;
 	font-family:"Raleway-Regular";
 	/* Linin numerals for Raleway */
 	font-feature-settings: 'lnum';
@@ -245,7 +245,6 @@ a.cc-badge
 	-ms-font-feature-settings: 'lnum';
 	-webkit-font-feature-settings: 'lnum';
 	-o-font-feature-settings: 'lnum';
-	text-shadow:0px 0px 1px rgba(0, 0, 0, 0.5);
 	opacity:0.8;
 	z-index:1000;
 	-moz-box-shadow: 0 10px 10px -7px rgba(0, 0, 0, 0.4) !important;
