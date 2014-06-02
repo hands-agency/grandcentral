@@ -1,4 +1,4 @@
-<h1>Other actions</h1>
+<h1>More actions</h1>
 <ul id="greenbutton-choices">
 	<? foreach ($actions as $action): ?>
 	<li>

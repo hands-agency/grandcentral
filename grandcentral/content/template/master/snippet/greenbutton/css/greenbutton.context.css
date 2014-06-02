@@ -7,6 +7,7 @@
 #adminContext [data-template="master/snippet/greenbutton/greenbutton.context"] ul li
 {
 	text-align:center;
+	margin:30px 0;
 }
 #adminContext [data-template="master/snippet/greenbutton/greenbutton.context"] ul li .title
 {
