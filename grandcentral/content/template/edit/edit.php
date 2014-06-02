@@ -35,8 +35,7 @@
 		$item->get(array
 		(
 			'id' => $handled_id,
-			'status' => null, /* THIS IS NOT WORKING FOR ME */
-		//	'status' => 'draft',
+			'status' => null,
 		));
 	}
 	

@@ -148,6 +148,10 @@ section[data-template="/tree/tree"] ol li .page .icon
 	color:#000;
 	font-family: "Raleway-Regular";
 	z-index:1;
+	-webkit-transition: all .1s ease-out; 
+	-moz-transition: all .1s ease-out; 
+	-o-transition: all .1s ease-out; 
+	transition: all .1s ease-out;
 }
 
 /* Preview */
@@ -470,11 +474,11 @@ section[data-template="/tree/tree"] li .page[data-type="link"] .url
 	left:0;
 	width:100%;
     height: inherit;
-    -o-transition: all .4s ease-in-out;
-    -ms-transition: all .4s ease-in-out;
-    -moz-transition: all .4s ease-in-out;
-    -webkit-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
 	padding:10px;
 	line-height:100px;
 	-moz-box-sizing:border-box;

@@ -18,9 +18,10 @@
 			$title = isset($cell['title']) ? $cell['title'] : $cell['key'];
 			$descr = isset($cell['descr']) ? $cell['descr'] : null;
 		}
-		
+	//	on/off
+		$class = (isset($_SESSION['user']['pref']['list'][$handled_item][$filter]) && $key == $_SESSION['user']['pref']['list'][$handled_item][$filter]) ? 'on' : 'off';
 	?>
-	<li data-value="<?=$key?>" class="off">
+	<li data-value="<?=$key?>" class="<?=$class?>">
 		<div class="title"><?=$title ?></div>
 		<? if (isset($descr)) : ?><div class="descr"><?=$descr?></div><? endif ?>
 	</li>

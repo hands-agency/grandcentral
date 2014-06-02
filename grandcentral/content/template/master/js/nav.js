@@ -36,15 +36,7 @@
 				});
 				
 			//	Some var
-				var timeoutOpen = 500;
 				var timeoutClose = 500;
-				var timeoutReopen = 500;
-				
-			//	When hover intent
-				this.find('> ul > li').hoverIntent(
-				{
-					timeout: timeoutOpen
-				});
 		
 			//	When out intended
 				this.hoverIntent(
@@ -62,18 +54,6 @@
 					}
 				});
 				
-			//	Editing
-				this.find('li.editing a').click(function()
-				{
-					openAdmin();
-				});
-			//	Edit
-				this.find('li.edit a').click(function()
-				{
-					nickname = $('#grandCentralSite iframe').contents().find('head meta[property="gc:item"]').attr('content').split('_');
-					window.location = ADMIN_URL+'/edit?item='+nickname[0]+'&id='+nickname[1];
-				});
-				
 			//	Close the nav by click
 				this.find('button.close').click(function()
 				{
@@ -86,6 +66,14 @@
 					app:'page',
 					template:'snippet/cc-search',
 				}, '#globalsearch-container');
+
+				
+			//	Edit
+				this.find('li.edit a').click(function()
+				{
+					nickname = $('#grandCentralSite iframe').contents().find('head meta[property="gc:item"]').attr('content').split('_');
+					window.location = ADMIN_URL+'/edit?item='+nickname[0]+'&id='+nickname[1];
+				});
 			*/
 			};
 		})( jQuery );
