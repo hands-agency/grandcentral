@@ -214,7 +214,8 @@ class itemHuman extends _items
 		array_pop($path_el);
 		$count = count($path_el);
         
-        $arr_ref =& $this->data['pref'];
+		$data = $this->data['pref']->get();
+        $arr_ref =& $data;
         
         for($i = 0; $i < $count; $i++)
         {
@@ -222,6 +223,8 @@ class itemHuman extends _items
         }
         
         $arr_ref = $value;
+		
+		$this->data['pref']->set($data);
 	}
 }
 ?>
