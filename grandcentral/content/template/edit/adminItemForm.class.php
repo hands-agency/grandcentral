@@ -263,8 +263,10 @@ class adminItemForm
 		
 		if ($this->item->exists()) $this->_populate_with_item();
 		// print'<pre>';print_r($this);print'</pre>';
+		$form = $this->form->prepare();
+		$form->set_action(i('page', 'post', 'admin')['url']);
 	//	affichage
-		return $this->form->__tostring();
+		return $form->__tostring();
 	}
 }
 ?>
