@@ -12,6 +12,7 @@ class fieldText extends _fieldsInput
 {
 	protected $autocomplete = false;
 	protected $regexp;
+	protected $datalist = false;
 	protected $datatype = array('string');
 /**
  * Créer un nouveau champ text et le peupler de ses attributs
@@ -40,6 +41,28 @@ class fieldText extends _fieldsInput
 	{
 		parent::__construct($name, $attrs);
 		$this->attrs['type'] = 'text';
+	}
+/**
+ * Affecte un liste de choix à l'input
+ *
+ * @param	array ou bunch	la liste à afficher
+ * @access	public
+ */
+	public function set_datalist($array)
+	{
+		$this->attrs['list'] = 'list'.$this->get_name();
+		$this->datalist = $array;
+		return $this;
+	}
+/**
+ * Obtenir la liste des suggestions
+ *
+ * @return	array	la liste de suggestions
+ * @access	public
+ */
+	public function get_datalist()
+	{
+		return $this->datalist;
 	}
 /**
  * Définit la valeur de l'attribut autocomplete du champ

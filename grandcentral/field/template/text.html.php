@@ -8,3 +8,11 @@
 		<input<?=$_FIELD->get_attrs();?> />
 	</span>
 </div>
+
+<?php if ($_FIELD->get_datalist()): ?>
+<datalist id="<?= 'list'.$_FIELD->get_name(); ?>">
+	<?php foreach ($_FIELD->get_datalist() as $data): ?>
+	<option value="<?= $data ?>">
+	<?php endforeach ?>
+</datalist>
+<?php endif ?>
