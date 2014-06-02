@@ -44,10 +44,9 @@
 			.done(function(html)
 			{
 			//	Return HTML
-				$element.html(html);
+				if ($element.length) $element.html(html);
 			//	Execute callback (make sure the callback is a function)
-				if ((typeof(callbacks) != 'undefined') && (typeof(callbacks['done']) == "function")) callbacks['done'].call($element, html);
-				
+				if ((typeof(callbacks) != 'undefined') && (typeof(callbacks['done']) == "function")) callbacks['done'].call($element, html);	
 			})
 			.fail(function( jqXHR, textStatus )
 			{

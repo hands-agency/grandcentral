@@ -1,4 +1,4 @@
-<h1>Or...</h1>
+<h1>Other actions</h1>
 <ul>
 	<? foreach ($actions as $action): ?>
 	<li>
