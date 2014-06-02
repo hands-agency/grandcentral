@@ -33,7 +33,7 @@
 	$currentEditedItemUrl = SITE_URL;
 	if (isset($_GET['item']) && isset($_GET['id']))
 	{
-		$currentEditedItem = i($_GET['item'], $_GET['id']);
+		$currentEditedItem = i($_GET['item'], $_GET['id'], $_SESSION['pref']['handled_env']);
 		if (isset($currentEditedItem['url']) && $currentEditedItem['type']['content_type'] !='routine') $currentEditedItemUrl = $currentEditedItem['url'];
 	}
 

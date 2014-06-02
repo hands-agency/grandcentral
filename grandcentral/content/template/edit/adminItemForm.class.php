@@ -148,6 +148,12 @@ class adminItemForm
 			case $attr['type'] == 'status':
 				$field['type'] = 'text';
 				break;
+		//	item
+			case $attr['type'] == 'item':
+				$field['type'] = 'select';
+				$field['valuestype'] = 'bunch';
+				$field['values'] = $attr['param'];
+				break;
 		//	url
 			case $attr['type'] == 'url':
 				$field['type'] = 'text';
