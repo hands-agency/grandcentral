@@ -7,7 +7,7 @@
 	<span class="field">
 		<ul>	
 		<?php foreach ($fields as $field): ?>
-			<li><?= $field; ?></li>
+			<li data-type="<?=$field->get_type()?>"><?= $field; ?></li>
 		<?php endforeach ?>
 		</ul>
 	</span>

@@ -20,11 +20,6 @@
 {
 	color:#aaa;
 }
-#adminNav>ul,
-#adminNav>ul .sub
-{
-	position:relative;
-}
 #adminNav>button.close
 {
 	position:absolute;
@@ -242,7 +237,7 @@
 	padding:30px 15px;
 	margin:0;
 	width:70% !important;
-	height:800px; /* TMP */
+	height:100%; /* TMP */
 	overflow:auto;
 	z-index:2;
 	-moz-box-sizing:border-box;
