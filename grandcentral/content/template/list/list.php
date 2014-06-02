@@ -53,27 +53,9 @@
 //	Pref
 	$pref_filter = isset($_POST['filter']) ? $_POST['filter'] : null;
 	$pref_value = isset($_POST['value']) ? $_POST['value'] : null;
-	$pref = array('list' => array($handled_item => array($pref_filter => $pref_value)));
-	
-/********************************************************************************************/
-//	Some fonctions
-/********************************************************************************************/
-	function save_pref($pref)
-	{
-		$cat = key($pref);
-		$item = key($pref[$cat]);
-		$pref = $pref[$cat][$item];
-		
-		$p = $_SESSION['user']['pref'];
-		$p[$cat][$item] = $pref;
-		
-	//	$_SESSION['user']['pref'] = $p;
-	//	$_SESSION['user']->save();
-	//	sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $_SESSION['user']);
-	}
 	
 /********************************************************************************************/
 //	Save pref
 /********************************************************************************************/
-	if ($pref_filter && $pref_value) save_pref($pref);
+	if ($pref_filter && $pref_value) $_SESSION['user']->set_pref('list', $handled_item, $pref_filter, $pref_value);;
 ?>

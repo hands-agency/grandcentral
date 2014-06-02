@@ -201,5 +201,27 @@ class itemHuman extends _items
 	{
 		return (!$this->data['id']->is_empty() && $this->data['key']->get() != 'anonymous') ? true : false;
 	}
+/**
+ * Add a pref in the preference table
+ *
+ * @return  bool    true ou false
+ * @access  public
+ */
+	public function set_pref()
+	{
+		$path_el = func_get_args();
+		$value = end($path_el);
+		array_pop($path_el);
+		$count = count($path_el);
+        
+        $arr_ref =& $this->data['pref'];
+        
+        for($i = 0; $i < $count; $i++)
+        {
+            $arr_ref =& $arr_ref[$path_el[$i]];
+        }
+        
+        $arr_ref = $value;
+	}
 }
 ?>
