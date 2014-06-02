@@ -57,5 +57,5 @@
 /********************************************************************************************/
 //	Save pref
 /********************************************************************************************/
-	if ($pref_filter && $pref_value) $_SESSION['user']->set_pref('list', $handled_item, $pref_filter, $pref_value);;
+	if ($pref_filter && $pref_value) $_SESSION['user']->set_pref('list', $handled_item, $pref_filter, $pref_value);
 ?>
