@@ -35,7 +35,7 @@ class adminItemForm
 		$this->form['template'] = 'default';
 		$this->form['action'] = 'post';
 		$this->form['method'] = 'post';
-		$this->form['system'] = true
+		$this->form['system'] = true;
 	//	recherche de l'item à injecter dans le form
 		$this->item = $item;
 	}
