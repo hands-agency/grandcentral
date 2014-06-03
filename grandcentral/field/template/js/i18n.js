@@ -2,12 +2,13 @@
 {
 //	Some vars
 	selector = 'li[data-type="i18n"]';
-	$fields = $(selector).find('> .wrapper > .field > ul');
 	
 //	Open the tabs
 	$(selector).on('click', '.labels li', function()
 	{
 	//	Some vars
+		$field = $(this).closest(selector);
+		$fields = $field.find('> .wrapper > .field > ul');
 		lang = $(this).data('lang');
 		
 	//	Hide all the fields and show the right oen

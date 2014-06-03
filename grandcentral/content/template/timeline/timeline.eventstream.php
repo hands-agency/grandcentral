@@ -52,10 +52,15 @@
 /********************************************************************************************/
 	foreach ($logbooks as $logbook)
 	{
-	//	Author
-		$author = i($logbook['subject'], $logbook['subjectid'])['title'];
+	//	Label
+		$author = i($logbook['subject'], $logbook['subjectid']->get());
+		$icon = null;
+	//	$item = i($logbook['item'], $logbook['itemid']->get());
+	//	$label = $author['key'].' '.$logbook['key'].' '.$item['key'];
+		$label = '<a href=\''.$author->edit().'\' class=\'user\'>'.$author['title'].'</a> '.cst('TIMELINE_EVENT_'.$logbook['key'], $logbook['key']).' <a>Something</a>';
+
 	//	Message
-		$msg = '{"id": "'.$logbook['id'].'", "event": "'.$logbook['key'].'", "author": "'.$author.'", "item": "'.$logbook['item'].'", "itemid": "'.$logbook['itemid'].'"}';
+		$msg = '{"id": "'.$logbook['id'].'", "event": "'.$logbook['key'].'", "label": "'.$label.'", "icon": "'.$icon.'"}';
 	//	Send message
 		sendMsg($logbook['id'], $msg);
 	}

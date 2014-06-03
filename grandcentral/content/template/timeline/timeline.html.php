@@ -95,22 +95,19 @@
 		{
 		//	Get the data
 			data = JSON.parse(e.data);
+
 			item = data['item']+'_'+e.lastEventId;
 		//	Ensure the items get loaded just one time
 			if ($('.logbookList>li[data-item='+item+']').length == 0) 
 			{
 			//	Delete loadings
 				$('.logbookList .loading').remove();
-				
-			//	Add user
-				author = '';	
-				if (data['author']) author = '<div class="title"><a href="" class="user">'+data['author']+'</a></div>';
-			//	Add descr
-				descr = '';
-				if (data['descr']) descr = '<div class="descr">'+data['descr']+'</div>';
+
+			//	Add user	
+				if (data['label']) label = '<div class="title">'+data['label']+'</div>';
 				
 			//	LI
-				li = '<li data-item="'+item+'" style="display:none"><div class="icon"></div><div class="padding">'+author+descr+'</div></li>';
+				li = '<li data-item="'+item+'" style="display:none"><div class="icon"></div><div class="padding">'+label+'</div></li>';
 				$(li).prependTo('.logbookList').show('fast');
 				
 			//	No data ?
