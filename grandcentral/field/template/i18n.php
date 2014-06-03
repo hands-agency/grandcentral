@@ -53,7 +53,8 @@
 		$value = (isset($value[$lang['lang']])) ? $value[$lang['lang']] : '';
 		$params = array(
 		//	'label' => null,
-			'value' => $value
+			'value' => $value,
+			'disabled' => $_FIELD->is_disabled()
 		);
 		$fields[] = new $class($_FIELD->get_name().'['.$lang['lang'].']', $params);
 	}
