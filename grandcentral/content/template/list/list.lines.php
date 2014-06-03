@@ -47,7 +47,7 @@
 			break;
 		case 'created':
 		case 'updated':
-			function formatSeparator($val) {return $val->format('d m Y');}
+			function formatSeparator($val) {return $val->format('l d F Y');}
 			break;
 		
 		default:
