@@ -157,7 +157,7 @@
 				if ($page->is_reader())
 				{
 					$readItem = i('item', $page->get_reader(), $_SESSION['pref']['handled_env']);
-					$badge = '<a href="'.$readItem->listing().'" class="cc-badge" title="'.$readItem['title'].'"><span data-feathericon="&#xe'.$readItem['icon'].'"></span></a>';
+					$badge = '<a href="'.ADMIN_URL.'/list?item='.$page->get_reader().'" class="cc-badge" title="'.$readItem['title'].'"><span data-feathericon="&#xe'.$readItem['icon'].'"></span></a>';
 				}
 				
 			//	Content

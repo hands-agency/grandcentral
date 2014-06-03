@@ -654,6 +654,7 @@ $(function()
 				template.find('.page').attr('data-type', 'new');
 				template.attr('style', 'display:none');
 				template.find('.action a').not('.edit').remove();
+				template.find('.cc-badge').remove();
 				template.find('.action a.edit').attr('href', 'edit?item=workflow&id='+id);
 				template.find('ol').html('');
 				template.find('.icon').addClass('flipped');

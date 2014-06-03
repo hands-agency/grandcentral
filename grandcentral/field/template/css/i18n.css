@@ -1,19 +1,50 @@
 /********************************************************************************************/
 /* i18n
 /********************************************************************************************/
+/* The labels */
+ol>li[data-type="i18n"] .labels
+{
+	background:#fcfcfc;
+	border-bottom:1px solid #eee;
+	border-left:1px solid #eee;
+	padding:5px 15px 0 15px;
+
+}
+ol>li[data-type="i18n"] .labels li
+{
+	display:inline-block;
+	padding: 10px 15px 8px 15px;
+	margin:0 10px 0 0;
+	font-family:"Raleway-Bold";
+	position:relative;
+	bottom:-1px;
+	border:1px solid #eee;
+	border-bottom:none;
+	font-size:10px;
+	opacity:0.7;
+	cursor:pointer;
+	text-transform:uppercase;
+}
+ol>li[data-type="i18n"] .labels li.on
+{
+	background:#fff;
+	opacity:1;
+}
+ol>li[data-type="i18n"] .labels li:hover
+{
+	background:#fff;
+}
+/* The field */
 ol>li[data-type="i18n"] .field li
 {
 }
 ol>li[data-type="i18n"] .field label
 {
-	border-radius:2px;
-	padding:2px 5px;
-	margin:10px 10px 0 0;
-	color:#fff;
-	background:#ccc;
-	text-transform:uppercase;
-	font-size:10px;
-	vertical-align:top;
+
+}
+ol>li[data-type="i18n"] .field .wrapper
+{
+	width:100% !important;
 }
 ol>li[data-type="i18n"] .field .wrapper .field
 {

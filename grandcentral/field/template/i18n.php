@@ -26,10 +26,14 @@
 //	Env
 	$handled_env = $_SESSION['pref']['handled_env'];
 	
+//	A fake counter to keep track of the labels and field arrays
+	$i = 0;
+	
 /********************************************************************************************/
 //	Some binds
 /********************************************************************************************/
 	$_APP->bind_file('css', 'css/i18n.css');
+	$_APP->bind_file('script', 'js/i18n.js');
 	
 /********************************************************************************************/
 //	Fetch the versions
@@ -41,11 +45,14 @@
 //	Loop through the versions
 	foreach ($r['data'] as $lang)
 	{
+	//	Build the label
+		$labels[] = $lang['lang'];
+	//	Build the field
 		$class = $_FIELD->get_field();
 		$value = $_FIELD->get_value();
 		$value = (isset($value[$lang['lang']])) ? $value[$lang['lang']] : '';
 		$params = array(
-			'label' => $lang['lang'],
+		//	'label' => null,
 			'value' => $value
 		);
 		$fields[] = new $class($_FIELD->get_name().'['.$lang['lang'].']', $params);

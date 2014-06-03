@@ -4,11 +4,24 @@
 </label>
 
 <div class="wrapper">
+	<ul class="labels">
+		<?php foreach ($r['data'] as $lang): ?>
+		<?
+			$onOff = (!isset($onOff)) ? 'on' : 'off';
+		?>
+		<li class="<?=$onOff?>" data-lang="<?=$lang['lang']?>"><?=$lang['lang']?></li>
+		<?php endforeach ?>
+	</ul>
 	<span class="field">
 		<ul>	
-		<?php foreach ($fields as $field): ?>
-			<li data-type="<?=$field->get_type()?>"><?= $field; ?></li>
-		<?php endforeach ?>
+			<?php foreach ($fields as $field): ?>
+			<?
+				$hide = (!isset($hide)) ? '' : 'style="display:none"';
+				$lang = $r['data'][$i]['lang'];
+				$i++;
+			?>
+			<li data-type="<?=$field->get_type()?>" data-lang="<?=$lang?>" <?=$hide?>><?= $field; ?></li>
+			<?php endforeach ?>
 		</ul>
 	</span>
 </div>

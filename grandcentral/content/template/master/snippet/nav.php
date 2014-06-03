@@ -56,6 +56,12 @@
 					'link' => 'page',
 					'bunch' => i('page', array('key' => array('home'), 'order()' => 'inherit(key)'), 'admin'),
 				),
+				'playandfix' =>  array(
+					'title' => 'er',
+					'display' => 'big',
+					'link' => 'page',
+					'bunch' => i('page', array('key' => array('doc', 'lab'), 'order()' => 'inherit(key)'), 'admin'),
+				),
 				'byebye' =>  array(
 					'title' => 'er',
 					'display' => 'big',
@@ -77,21 +83,6 @@
 					'link' => 'list',
 					'bunch' => i('item', array('key' => array('page', 'item', 'site', 'version'), 'order()' => 'inherit(key)'), $_SESSION['pref']['handled_env']),
 				),
-				'playandfix' =>  array(
-					'title' => 'er',
-					'display' => 'big',
-					'link' => 'page',
-					'bunch' => i('page', array('key' => array('doc', 'lab'), 'order()' => 'inherit(key)'), 'admin'),
-				),
-			),
-		),
-	//	Content
-		'content' => array(
-			'title' => 'Content',
-			'icon' => '078',
-			'page' => 'list',
-		//	Subnav
-			'subnav' => array(
 				'major' => array(
 					'display' => 'tiles',
 					'link' => 'list',

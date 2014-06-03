@@ -246,7 +246,7 @@ a.cc-badge
 	-webkit-font-feature-settings: 'lnum';
 	-o-font-feature-settings: 'lnum';
 	opacity:0.8;
-	z-index:1000;
+	z-index:2;
 	-moz-box-shadow: 0 10px 10px -7px rgba(0, 0, 0, 0.4) !important;
 	box-shadow: 0 10px 10px -7px rgba(0, 0, 0, 0.4) !important;
 	-webkit-transition: all .15s ease-out; 
@@ -765,6 +765,11 @@ progress::-webkit-progress-value {
 {
 	color:#fff;
 }
+#adminContent.unlocked section>h1 a
+{
+	color:rgba(255, 255, 255, 0.8);
+	border:1px solid rgba(255, 255, 255, 0.1);
+}
 /* Footer */
 footer
 {
@@ -847,7 +852,7 @@ footer
 #adminContent #sectiontray>li>.lock
 {
 	position:absolute;
-	z-index:3;
+	z-index:1;
 	top:0px;
 	right:20px;
 	opacity:0;
@@ -861,6 +866,10 @@ footer
 	transition: all .15s ease-out;
 	cursor:pointer;
 	color:#000;
+}
+#adminContent.unlocked #sectiontray>li>.lock
+{
+	color:#fff;
 }
 /*
 #adminContent #sectiontray>li>.lock:after
@@ -1144,7 +1153,7 @@ footer
 #grandCentralAdmin button.delete
 {
 	position:absolute;
-	z-index:3;
+	z-index:2;
 	border:none;
 	background:transparent !important;
 	color:#000;
