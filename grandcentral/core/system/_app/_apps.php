@@ -284,11 +284,9 @@ abstract class _apps
  */
 	public function bind_file($zone, $file, $system = false)
 	{
-	//	Failsafe first slash
-		$file = (mb_strpos($file, '/') === 0) ? $file : '/'.$file;
-		// print'<pre>';print_r($file);print'</pre>';
 		if (filter_var($file, FILTER_VALIDATE_URL) === false)
 		{
+			//	Failsafe first slash
 			$file = (mb_strpos($file, '/') === 0) ? $file : '/'.$file;
 			if ($system === false)
 			{

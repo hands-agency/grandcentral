@@ -38,6 +38,10 @@ class item extends _items
 		{
 			$attrClass = 'attr'.ucfirst($attr['type']);
 			$this->data[$key] = new $attrClass(null, $attr);
+		}
+		foreach ($attrs as $key => $attr)
+		{
+			$attrClass = 'attr'.ucfirst($attr['type']);
 			if (method_exists($attrClass, 'attach'))
 			{
 				// print'<pre>';print_r($key);print'</pre>';
