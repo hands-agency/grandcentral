@@ -78,7 +78,7 @@ class attrDate extends _attrs
 		$since = $timeSecond - $timeFirst;
 	
 	//	Just now (< 30 second ago)
-		if ($since < 30) $return = DATE_NOW;
+		if ($since < 30) $return = cst('DATE_NOW');
 		
 	//	Otherwise
 		else

@@ -61,6 +61,10 @@
 {
 	border-color:#3eb4d6;
 }
+#adminContent.unlocked #tabs>li.on a:before
+{
+	border-color:#007EE5;
+}
 #tabs>li:hover:not(.on) a:before
 {
 	border-color:#eee;
