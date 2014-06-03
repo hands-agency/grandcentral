@@ -28,7 +28,7 @@
 //	Some vars
 /********************************************************************************************/
 //	Iframe Link (Worst.Method.Ever)
-	$iframeLink = SITE_URL.'/grandcentral/sirtrevor/template/link.html';
+	$iframeLink = '/grandcentral/sirtrevor/template/link.html';
 //	Get the things you can link to
 	$items = i('item', array(
 		'hasurl' => true,
