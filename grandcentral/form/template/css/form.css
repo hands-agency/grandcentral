@@ -21,6 +21,22 @@ section[data-template="/edit/edit"]>form>fieldset>.descr
 	color:#ccc;
 }
 
+/* Fieldsets & legend */
+section[data-template="/edit/edit"]>form>fieldset
+{
+	border-top:1px solid #ddd;
+	margin:50px 0 0 0;
+}
+section[data-template="/edit/edit"]>form>fieldset legend
+{
+	text-align:center;
+	font-family: "Raleway-Regular";
+	text-transform:uppercase;
+	margin:0 0 20px 0;
+	padding:0 15px;
+	color:#999;
+}
+
 /* Lines */
 section[data-template="/edit/edit"]>form>fieldset>ol>li[data-type]
 {
