@@ -32,6 +32,7 @@ class appReader extends _apps
 		//	We have an item
 			if ($item->exists())
 			{
+				define('reader', $this->param['item']);
 				define('item', $this->param['item']);
 				registry::set(registry::current_index, item, $item);
 				echo i($this->param['detail']);
@@ -50,6 +51,7 @@ class appReader extends _apps
 	//	List of items
 		else
 		{
+			define('reader', $this->param['item']);
 			echo i($this->param['list']);
 		}
 	}
