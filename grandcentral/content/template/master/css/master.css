@@ -761,6 +761,10 @@ progress::-webkit-progress-value {
 	position:relative;
 	top:-2px; /* optical alignment */
 }
+#adminContent.locked section>h1 a:hover
+{
+	border-color:#3eb4d6 !important;
+}
 #adminContent.unlocked section>h1
 {
 	color:#fff;

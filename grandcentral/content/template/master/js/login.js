@@ -21,6 +21,8 @@ $(document).ready(function ()
 			{
 			//	OK
 				case 'success':
+				//	Go! go! go!
+					form.hide('fast');
 					window.location = document.URL;
 					break;
 			//	KO

@@ -36,6 +36,7 @@
 			app: 'field',
 			template: '/app.context',
 			env: $field.data('env'),
+			item:_GET.item+'_'+_GET.id,
 			name: $field.data('name'),
 			valueApp: valueApp,
 			valueContenttype: valueContenttype,

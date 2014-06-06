@@ -12,7 +12,7 @@
 		<span class="configure">
 			<span class="template">
 		<?php if ($template): ?>
-				<input type="hidden" name="<?= $_FIELD->get_name(); ?>[template]" value="<?=$value['template']?>" />
+				<input type="hidden" name="<?= $_FIELD->get_name(); ?>[template]" value="<?=$template?>" />
 		<?php endif ?>
 			</span>
 			<span class="param">
