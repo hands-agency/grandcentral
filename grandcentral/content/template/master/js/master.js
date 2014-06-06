@@ -239,17 +239,24 @@
 	}
 
 //	Context
-	openContext = function(param)
+	openContext = function(param, callback)
 	{
 		$('#main').removeClass('contextClosed').addClass('contextOpened');
-		$('#adminContext>div').attr('data-template', param.template).ajx(param);
+		$('#adminContext>div').attr('data-template', param.template).ajx(
+			param,
+			{
+				done:function()
+				{					
+				//	Callback
+					if ((typeof(callback) != 'undefined') && (typeof(callback) == "function")) callback.call(this);
+				}
+			}
+		);
 		/* TODO Hacky way to recenter the panel */
 		setTimeout(function()
 		{
 			$('#tabs li a'+pseudo).parent().trigger('click');
 		}, 220);
-
-		
 	}
 	closeContext = function()
 	{

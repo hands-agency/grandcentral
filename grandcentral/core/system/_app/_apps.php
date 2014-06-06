@@ -18,7 +18,7 @@ abstract class _apps
 	protected $template_url;
 	protected $template;
 	protected $ini;
-	protected $param;
+	protected $param = array();
 	protected static $loaded_file = array();
 /**
  * Class constructor (Don't forget it is an abstract class)
@@ -164,6 +164,20 @@ abstract class _apps
 		{
 			$this->param[$key] = $param;
 		}
+	}
+	
+	public function get_default_param()
+	{
+		$params = array();
+		if (isset($this->ini['param']))
+		{
+			
+			foreach ($this->ini['param'] as $key => $param)
+			{
+				$params[$key] = $this->param[$key];
+			}
+		}
+		return $params;
 	}
 	
 	public function set_template($key)

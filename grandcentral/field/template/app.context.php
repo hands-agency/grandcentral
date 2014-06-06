@@ -23,17 +23,21 @@
 /********************************************************************************************/	
 //	Value template
 	$valueTemplate = (isset($_POST['valueTemplate'])) ? $_POST['valueTemplate'] : null;
-	
+
 //	Value param
 	parse_str(urldecode($_POST['name']), $name);
 	$form = key($name);
 	$field = key($name[$form]);
+	$valueParam = array();
 	if ($_POST['valueParam'])
 	{
-		parse_str(urldecode($_POST['valueParam']), $param);
-		$valueParam = $param[$form][$field]['param'];
+		foreach ($_POST['valueParam'] as $param)
+		{
+			$pattern = '/\[([a-zA-Z0-9_\-]*)\]$/';
+			preg_match($pattern, $param['name'], $matches);
+			$valueParam[$matches[1]] = $param['value'];
+		}
 	}
-	else $valueParam = array();
 	$app = app($_POST['valueApp'], null, $valueParam);
 
 //	Content-type
@@ -44,6 +48,7 @@
 /********************************************************************************************/
 //	Check if the app has some templates
 	$templates = $app->get_templates($valueContenttype, $_POST['env']);
+	// print'<pre>';print_r($templates);print'</pre>';
 	if ($templates)
 	{
 	//	We need templates, not indexes
@@ -57,12 +62,12 @@
 		);
 		$fieldTemplate = new fieldSelect($_POST['name'].'[template]', $fparams);
 	}	
-
 /********************************************************************************************/
 //	FROM APP.PARAM Champ paramètres des apps
 /********************************************************************************************/	
 //	récupération des paramètres de l'app
-	$params = $app->get_param();
+	$params = $app->get_default_param();
+	// print'<pre>';print_r($params);print'</pre>';exit;
 	// print '<pre>';print_r($APP);print'</pre>';
 	$fields = array();
 //	construction de la liste des champs
@@ -112,5 +117,5 @@
 				$fields[$key] = new fieldSelect($key, $p);
 			}
 		}
-	}	
+	}
 ?>
