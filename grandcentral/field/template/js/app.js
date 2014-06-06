@@ -7,6 +7,7 @@
 	$configureContainer = $field.find('.configure');
 	$contentTemplate = $configureContainer.find('.template');
 	$contentParam = $configureContainer.find('.param');
+	
 //	Some vars context-side
 	contextDom = '#adminContext [data-template="/app.context"]';
 	
@@ -25,24 +26,31 @@
 	{
 	//	Some vars
 		valueApp = $contentApp.val();
-		valueTemplate = $contentTemplate.find('[name$="\[template\]"]').val()
-		valueParam = $contentParam.find('[name*="\[param\]"]').serialize();
+		valueTemplate = $contentTemplate.find('[name$="\[template\]"]').val();
+		valueParam = $contentParam.find('[name*="\[param\]"]').serializeArray();
 		// Sometimes we have a content-type as a template filter
 		valueContenttype = ($('[data-type="pagetype"]').length != 0) ? $('[data-type="pagetype"] [name$="\[content_type\]"]').val() : undefined;
 		
 	//	Open Context to configure
+		// console.log($('input[data-key="key"]').val())
 		openContext(
 		{
 			app: 'field',
 			template: '/app.context',
 			env: $field.data('env'),
 			item:_GET.item+'_'+_GET.id,
+			itemKey:$('input[data-key="key"]').val(),
 			name: $field.data('name'),
 			valueApp: valueApp,
 			valueContenttype: valueContenttype,
 			valueTemplate: valueTemplate,
 			valueParam: valueParam,
-		});
+		}, function()
+			{
+				console.log('of')
+				$(contextDom+' .template select').trigger('change');
+			}
+		);
 	});
 	
 //	Send template and params to content
@@ -78,5 +86,28 @@
 	//	Close the context & validate field
 		closeContext();
 		$('#section_edit form').data('validate').field($li);
+	});
+	
+//	Open context when the app changes
+	$(document).on('change', contextDom+' .template select', function()
+	{
+		var $ol = $(contextDom+' .param ol');
+		$ol.find('li[data-type="param"]').remove();
+		valueParam = $contentParam.find('[name*="\[param\]"]').serializeArray();
+		// console.log($(this).val())
+		$.ajx({
+			app: 'field',
+			template: '/app.param',
+			env: $field.data('env'),
+			valueApp: $contentApp.val(),
+			valueTemplate: $(this).val(),
+			valueParam: valueParam
+		},{
+			done:function(data)
+			{
+				// console.log(data)
+				$(contextDom+' .param ol').html($(contextDom+' .param ol').html() + data);
+			}
+		});
 	});
 })(jQuery);  
