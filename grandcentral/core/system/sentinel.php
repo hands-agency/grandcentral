@@ -390,6 +390,8 @@ class sentinel
 					'notice' => '006',
 					'warning' => '117',
 					'strict' => '117',
+					'parse' => '117',
+					'error' => '117',
 				);
 		
 			//	Print the debug
