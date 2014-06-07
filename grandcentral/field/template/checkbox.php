@@ -23,12 +23,21 @@
 /********************************************************************************************/
 	$_FIELD = $_PARAM['field'];
 	$values = $_FIELD->prepare_values();
+	// print'<pre>';print_r($values);print'</pre>';
 	// TODO : colgroup
 	
 	$li = '';
 	$i = 0;
+	$item = null;
+	
 	foreach ($values as $key => $option)
 	{
+		//	entête si plusieurs items
+		if (isset($option['item']) && $option['item'] != $item)
+		{
+			$li .= '<li><h4>'.$option['item'].'</h4></li>';
+			$option['item'] = $item;
+		}
 	//	checked
 		$checked = (in_array($option['id'], (array) $_FIELD->get_value())) ? ' checked="checked"' : null;
 	//	descr

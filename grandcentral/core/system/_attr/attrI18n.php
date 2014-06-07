@@ -35,6 +35,7 @@ class attrI18n extends attrArray
 	public function cut($length, $add = '...')
 	{
 		$str = $this->__tostring();
+		
 		if (mb_strlen($str) > $length)
 		{
 		//	On coupe
@@ -104,7 +105,7 @@ class attrI18n extends attrArray
 		return $this->attr;
 	}
 /**
- * xxxx
+ * Afficher le contenu de l'attribut
  *
  * @param	string	la variable
  * @return	string	une string
@@ -112,19 +113,18 @@ class attrI18n extends attrArray
  */
 	public function __tostring()
 	{
-		// print'<pre>';print_r($this);print'</pre>';
-		// $data = $this->data[i($this->params['env'], current)['version']['lang']->get()];
-		// $class = 'attr'.mb_substr()
-		// print'<pre>';print_r($data);print'</pre>';
-		//print'<pre>';print_r(i(env, current)['version']['lang']);print'</pre>';
-		//print'<pre>là : ';print_r($this->data[i(env, current)['version']['lang']->get()]);print'</pre>';
+		//	HACK à refaire
 		switch (true) {
-			case is_string($this->data):
-				return $this->data;
-				break;
-			case empty($this->data):
+			case $this->is_empty():
 			case empty($this->data[i($this->params['env'], current)['version']['lang']->get()]):
 				return 'empty';
+				break;
+			case $this->field == 'fieldSirtrevor':
+				$attr = new attrSirtrevor($this->data[i($this->params['env'], current)['version']['lang']->get()]);
+				return $attr->__tostring();
+				break;
+			case is_string($this->data):
+				return $this->data;
 				break;
 			default:
 				return $this->data[i($this->params['env'], current)['version']['lang']->get()];

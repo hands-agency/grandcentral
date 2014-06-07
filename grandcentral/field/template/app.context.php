@@ -23,19 +23,37 @@
 /********************************************************************************************/	
 //	Value template
 	$valueTemplate = (isset($_POST['valueTemplate'])) ? $_POST['valueTemplate'] : null;
-
+	// print'<pre>';print_r($_POST);print'</pre>';
 //	Value param
 	parse_str(urldecode($_POST['name']), $name);
 	$form = key($name);
 	$field = key($name[$form]);
 	$valueParam = array();
-	if ($_POST['valueParam'])
+	if (isset($_POST['valueParam']))
 	{
+		$pattern = '/'.str_replace(array('[',']'), array('\[','\]'),$_POST['name']).'\[param\](\[([a-zA-Z0-9_\-]*)\])(\[([a-zA-Z0-9_\-]*)\])?$/';
 		foreach ($_POST['valueParam'] as $param)
 		{
-			$pattern = '/\[([a-zA-Z0-9_\-]*)\]$/';
+			
 			preg_match($pattern, $param['name'], $matches);
-			$valueParam[$matches[1]] = $param['value'];
+			// print'<pre>';print_r($matches);print'</pre>';
+			if (isset($matches[4]))
+			{
+				// print'<pre>';print_r($matches[4]);print'</pre>';
+				if (empty($matches[4]))
+				{
+					$valueParam[$matches[2]][] = $param['value'];
+				}
+				else
+				{
+					$valueParam[$matches[2]][$matches[4]] = $param['value'];
+				}
+			}
+			else
+			{
+				$valueParam[$matches[2]] = $param['value'];
+			}
+			
 		}
 	}
 	$app = app($_POST['valueApp'], null, $valueParam);
@@ -70,6 +88,7 @@
 	// print'<pre>';print_r($params);print'</pre>';exit;
 	// print '<pre>';print_r($APP);print'</pre>';
 	$fields = array();
+		// print'<pre>valueparam : ';print_r($valueParam);print'</pre>';
 //	construction de la liste des champs
 	foreach ((array) $params as $key => $value)
 	{
@@ -79,7 +98,8 @@
 		$value = str_replace(array(' ','[', ']'), '', $value);
 	//	création des listes
 		$values = explode(',', $value);
-
+		print'<pre>value : ';print_r($value);print'</pre>';
+		// $value = 
 	//	champ text et number
 		if (count($values) == 1)
 		{
@@ -88,13 +108,19 @@
 				'value' => $value
 			);
 		//	number
-			if (is_numeric($value)) $fields[$key] = new fieldNumber($key, $p);
+			if (is_numeric($value)) $field = new fieldNumber($key, $p);
 		//	text
-			else $fields[$key] = new fieldText($key, $p);
+			else $field = new fieldText($key, $p);
 		}
 	//	champ bool et select
 		else
 		{
+			$tmp = array();
+			foreach ($values as $value)
+			{
+				$tmp[$value] = $value;
+			}
+			$values = $tmp;
 		//	bool
 			if (count($values) == 2 && in_array('true', $values) && in_array('false', $values))
 			{
@@ -103,7 +129,7 @@
 					'labelbefore' => true
 				);
 				if (isset($matches[1]) && $matches[1] == 'true') $p['value'] = $matches[1];
-				$fields[$key] = new fieldBool($key, $p);
+				$field = new fieldBool($key, $p);
 			}
 		//	select
 			else
@@ -114,8 +140,15 @@
 					'valuestype' => 'array'
 				);
 				if (isset($matches[1])) $p['value'] = $matches[1];
-				$fields[$key] = new fieldSelect($key, $p);
+				$field = new fieldSelect($key, $p);
 			}
 		}
+		
+		if (isset($valueParam[$key]))
+		{
+			$field->set_value($valueParam[$key]);
+		}
+		
+		$fields[$key] = $field;
 	}
 ?>

@@ -168,16 +168,7 @@ abstract class _apps
 	
 	public function get_default_param()
 	{
-		$params = array();
-		if (isset($this->ini['param']))
-		{
-			
-			foreach ($this->ini['param'] as $key => $param)
-			{
-				$params[$key] = $this->param[$key];
-			}
-		}
-		return $params;
+		return isset($this->ini['param']) ? $this->ini['param'] : array();
 	}
 	
 	public function set_template($key)

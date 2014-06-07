@@ -26,6 +26,7 @@
 	{
 	//	Some vars
 		valueApp = $contentApp.val();
+		if (valueApp == '') return false;
 		valueTemplate = $contentTemplate.find('[name$="\[template\]"]').val();
 		valueParam = $contentParam.find('[name*="\[param\]"]').serializeArray();
 		// Sometimes we have a content-type as a template filter
@@ -47,7 +48,6 @@
 			valueParam: valueParam,
 		}, function()
 			{
-				console.log('of')
 				$(contextDom+' .template select').trigger('change');
 			}
 		);
@@ -79,7 +79,19 @@
 		{
 			for (var i=0; i < param.length; i++)
 			{
-				input = '<input type="hidden" name="'+$field.data('name')+'[param]['+param[i]['name'] +']" value="'+param[i]['value']+'" />';
+				var name;
+				//	field selectors
+				if (param[i]['name'].indexOf("[") != -1)
+				{
+					var d = param[i]['name'].match(/([a-zA-Z_0-9\-]*)\[([a-zA-Z_0-9\-]*)\]/);
+					name = $field.data('name')+'[param]['+ d[1] +']['+ d[2] +']';
+				}
+				// others
+				else
+				{
+					name = $field.data('name')+'[param]['+ param[i]['name'] +']';
+				}
+				input = '<input type="hidden" name="'+name+'" value="'+param[i]['value']+'" />';
 				$contentParam.append(input);
 			}
 		}
@@ -99,6 +111,7 @@
 			app: 'field',
 			template: '/app.param',
 			env: $field.data('env'),
+			name: $field.data('name'),
 			valueApp: $contentApp.val(),
 			valueTemplate: $(this).val(),
 			valueParam: valueParam

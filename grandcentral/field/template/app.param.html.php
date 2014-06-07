@@ -11,13 +11,39 @@
 	
 //	on remplir les valeurs de chaque champ		
 	// $valueParam = array();
-	if ($_POST['valueParam'])
+	if (isset($_POST['valueParam']))
 	{
+		$pattern = '/'.str_replace(array('[',']'), array('\[','\]'),$_POST['name']).'\[param\](\[([a-zA-Z0-9_\-]*)\])(\[([a-zA-Z0-9_\-]*)\])?$/';
 		foreach ($_POST['valueParam'] as $param)
 		{
-			$pattern = '/\[([a-zA-Z0-9_\-]*)\]$/';
+			
 			preg_match($pattern, $param['name'], $matches);
-			$fields[$matches[1]]->set_value($param['value']);
+			// print'<pre>';print_r($matches);print'</pre>';
+			if (isset($matches[4]))
+			{
+				// print'<pre>';print_r($matches[4]);print'</pre>';
+				if (empty($matches[4]))
+				{
+					$valueParam[$matches[2]][] = $param['value'];
+				}
+				else
+				{
+					$valueParam[$matches[2]][$matches[4]] = $param['value'];
+				}
+			}
+			else
+			{
+				$valueParam[$matches[2]] = $param['value'];
+			}
+			
+		}
+	}
+	
+	if (isset($valueParam))
+	{
+		foreach ($valueParam as $key => $param)
+		{
+			$fields[$key]->set_value($param);
 		}
 	}
 ?>

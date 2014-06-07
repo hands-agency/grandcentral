@@ -18,7 +18,13 @@
 			<span class="param">
 		<?php if ($param): ?>
 		<?php foreach ($value['param'] as $key => $value): ?>
+				<?php if (!is_array($value)): ?>
 				<input type="hidden" name="<?= $_FIELD->get_name(); ?>[param][<?=$key?>]" value="<?=$value?>" />
+				<?php else: ?>
+				<?php foreach ($value as $k => $v): ?>
+				<input type="hidden" name="<?= $_FIELD->get_name(); ?>[param][<?=$key?>][<?=$k?>]" value="<?=$v?>" />
+				<?php endforeach ?>
+				<?php endif ?>
 		<?php endforeach ?>
 		<?php endif ?>
 			</span>

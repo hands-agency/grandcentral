@@ -185,12 +185,15 @@ abstract class _fieldsSelector extends _fields
 		{
 			$table = $value->get_table();
 		//	Prepare id, title and descr for values
-			$id = $table.'_'.$value['id'];
+			// $id = $table.'_'.$value['id'];
 			$title = (isset($value['title']) && !empty($value['title'])) ? $value['title'] : $value['key'];
 			$descr = (isset($value['descr']) && !empty($value['descr'])) ? $value['descr'] : null;
 		//	BAM
-			if ($countTable > 1) $values[$table][] = array('id' => $id, 'title' => $title, 'descr' => $descr);
-			else $values[] = array('id' => $id, 'title' => $title, 'descr' => $descr);
+			// if ($countTable > 1) $values[$table][] = array('id' => $value->get_nickname(), 'title' => $title, 'descr' => $descr);
+			// else 
+			$data = array('id' => $value->get_nickname(), 'title' => $title, 'descr' => $descr);
+			if ($countTable > 1) $data['item'] = $table;
+			$values[] = $data;
 		}
 		return $values;
 	}
