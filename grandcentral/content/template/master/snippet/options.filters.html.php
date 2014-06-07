@@ -1,8 +1,8 @@
 <? foreach ($filter as $filter => $array) : ?>
 <li>
-	<ul data-filter="<?=$filter?>">
+	<ul data-filter="<?=$filter?>" data-type="<?=$array['type']?>">
 	<li class="legend"><?=cst('OPTIONS_FILTERS_LEGEND_'.$filter, $filter)?></li>
-	<? foreach ($array as $cell) : ?>
+	<? foreach ($array['data'] as $cell) : ?>
 	<?
 	//	We can either have a bunch or some data
 		$title = $descr = $key = null;

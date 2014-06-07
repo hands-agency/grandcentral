@@ -42,29 +42,53 @@
 	//	List
 		case '/list/list':
 		//	Display
-			$filter['display'] = array('instack', 'inmasonry');
+			$filter['display'] = array(
+				'type' => 'exclusive',
+				'data' => array('instack', 'inmasonry'),
+			);
 		//	Order
-			$filter['order'] = registry::get($handled_env, registry::attr_index, $handled_item, 'attr');
+			$filter['order'] = array(
+				'type' => 'exclusive',
+				'data' => registry::get($handled_env, registry::attr_index, $handled_item, 'attr'),
+			);
 		//	Sort
-			$filter['sort'] = array('asc', 'desc');
+			$filter['sort'] = array(
+				'type' => 'exclusive',
+				'data' => array('asc', 'desc'),
+			);
 			break;
 		
 	//	Form
 		case '/edit/edit':
 		//	Importance
-			$filter['required'] = array('compulsory', 'optional');
+			$filter['required'] = array(
+				'type' => 'exclusive',
+				'data' => array('compulsory', 'optional'),
+			);
 			break;
 			
 	//	Notes
 		case '/notes':
 		//	Labels
-			$filter['label'] = array('note' , 'bug', 'enhancement', 'question');
+			$filter['label'] = array(
+				'type' => 'exclusive',
+				'data' => array('note' , 'bug', 'enhancement', 'question'),
+			);
 		//	About
-			$filter['about'] = array('cosmetic', 'seo', 'xplat', 'devfeat', 'item', 'content', 'layout', 'performance');
+			$filter['about'] = array(
+				'type' => 'exclusive',
+				'data' => array('cosmetic', 'seo', 'xplat', 'devfeat', 'item', 'content', 'layout', 'performance'),
+			);
 		//	Visibility
-			$filter['visibility'] = array('me', 'groups');
+			$filter['visibility'] = array(
+				'type' => 'exclusive',
+				'data' => array('me', 'groups'),
+			);
 		//	Severity
-			$filter['severity'] = array('trivial', 'minor', 'normal', 'major', 'critical', 'blocker');
+			$filter['severity'] = array(
+				'type' => 'exclusive',
+				'data' => array('trivial', 'minor', 'normal', 'major', 'critical', 'blocker'),
+			);
 			/*
 				array(
 					'key' => 'trivial',

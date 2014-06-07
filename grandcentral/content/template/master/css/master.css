@@ -1192,27 +1192,27 @@ body[data-env="admin"]:before
 	display:block;
 	height:5px;
 	content:'';
-	position:relative;
-	top:0px;
+	position:absolute;
+	top:0;
 	width:100%;
 	z-index:10;
+	background-color:rgba(0, 0, 0, .2);
 	-webkit-background-size: 40px 40px;
 	-moz-background-size: 40px 40px;
 	background-size: 40px 40px; /* Controls the size of the stripes */
-	background-color: #FF0000;
-	background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, .7) 25%, transparent 25%,
-		transparent 50%, rgba(255, 255, 255, .7) 50%, rgba(255, 255, 255, .7) 75%,
+	background-image: -webkit-linear-gradient(-45deg, #FF0000 25%, transparent 25%,
+		transparent 50%, #FF0000 50%, #FF0000 75%,
 		transparent 75%, transparent);
-	background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, .7) 25%, transparent 25%,
-		transparent 50%, rgba(255, 255, 255, .7) 50%, rgba(255, 255, 255, .7) 75%,
+	background-image: -moz-linear-gradient(-45deg, #FF0000 25%, transparent 25%,
+		transparent 50%, #FF0000 50%, #FF0000 75%,
 		transparent 75%, transparent);
-	background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, .7) 25%, transparent 25%,
-		transparent 50%, rgba(255, 255, 255, .7) 50%, rgba(255, 255, 255, .7) 75%,
+	background-image: -ms-linear-gradient(-45deg, #FF0000 25%, transparent 25%,
+		transparent 50%, #FF0000 50%, #FF0000 75%,
 		transparent 75%, transparent);
-	background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, .7) 25%, transparent 25%,
-		transparent 50%, rgba(255, 255, 255, .7) 50%, rgba(255, 255, 255, .7) 75%,
+	background-image: -o-linear-gradient(-45deg, #FF0000 25%, transparent 25%,
+		transparent 50%, #FF0000 50%, #FF0000 75%,
 		transparent 75%, transparent);
-	background-image: linear-gradient(-45deg, rgba(255, 255, 255, .7) 25%, transparent 25%,
-		transparent 50%, rgba(255, 255, 255, .7) 50%, rgba(255, 255, 255, .7) 75%,
+	background-image: linear-gradient(-45deg, #FF0000 25%, transparent 25%,
+		transparent 50%, #FF0000 50%, #FF0000 75%,
 		transparent 75%, transparent);	
 }

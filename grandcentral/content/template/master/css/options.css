@@ -55,7 +55,7 @@
 #options_drop
 {
 	margin-top:19px;
-	border-top:1px solid #ccc;
+	border-top:1px solid #eee;
 	padding:7px 0;
 /*	display:none; */
 }
@@ -69,7 +69,7 @@
 }
 #options_drop ul li
 {
-	padding:5px 0;
+	padding:5px 10px;
 	border-bottom:1px solid #eee;
 }
 #options_drop ul li[data-value]

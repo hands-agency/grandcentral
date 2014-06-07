@@ -37,14 +37,23 @@
 /********************************************************************************************/
 //	Some functions
 /********************************************************************************************/
-	switch ($order)
+	$attrOrder = registry::get($handled_env, registry::attr_index, $handled_item, 'attr', $order, 'type');
+	switch ($attrOrder)
 	{
-		case 'title':
+		case 'id':
+			function formatSeparator($val)
+			{
+				$h = (ceil($val->get()/100))*100;
+				return ($h-100).' - '.($h-1);
+			}
+			break;
+		case 'string':
 			function formatSeparator($val) {return strtoupper(mb_substr($val, 0, 1));}
 			break;
 		case 'key':
 			function formatSeparator($val) {return explode('_', $val)[0];}
 			break;
+		case 'date':
 		case 'created':
 		case 'updated':
 			function formatSeparator($val) {return $val->format('l d F Y');}

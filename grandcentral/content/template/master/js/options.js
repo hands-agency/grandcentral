@@ -12,7 +12,7 @@ jQuery(document).ready(function($)
 		$drop = $('#options_drop');
 
 	//	Toggle lock and unlock
-		$(document).on('click', '.lock', function(event)
+		$(document).on('click', '.lock', function()
 		{
 		//	Unlock
 			if ($('#adminContent').hasClass('locked')) unlock();
@@ -100,13 +100,15 @@ jQuery(document).ready(function($)
 	$(document).on('click', '#options_drop li li[data-value]', function()
 	{
 	//	Some vars
-		panel = $('#adminContent section.active');
-		filter = $(this).parent('ul').data('filter');
-		section = panel.attr('id').replace('section_', '');
+		$panel = $('#adminContent section.active');
+		$filter = $(this).parent('ul');
+		filter = $filter.data('filter');
+		section = $panel.attr('id').replace('section_', '');
 		value = $(this).data('value');
-		template = panel.data('template');
+		template = $panel.data('template');
 		
 	//	Toggle
+		if ($filter.data('type') == 'exclusive') $filter.children().removeClass('on').addClass('off');
 		$(this).toggleClass('on off');
 		
 	//	Go
@@ -116,7 +118,7 @@ jQuery(document).ready(function($)
 			case 'order':
 		//	Sort
 			case 'sort':
-				panel.ajx(
+				$panel.ajx(
 				{
 					app:'content',
 					template:template,
@@ -127,7 +129,7 @@ jQuery(document).ready(function($)
 				break;
 		//	Change display
 			case 'display':
-				panel.attr('data-pref-display', value);
+				$panel.attr('data-pref-display', value);
 			  break;
 		}
 		
