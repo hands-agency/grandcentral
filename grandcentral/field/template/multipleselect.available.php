@@ -38,16 +38,4 @@
 	
 //	Get the available values
 	$available = $multipleselect->prepare_values($refine);
-	
-//	HACK MULTI TABLE
-	if (count($param['values']) > 1 && is_array($param['values']))
-	{
-		$tmp = array();
-		foreach ($available as $key => $value)
-		{
-			$tmp = array_merge($tmp, $value);
-		}
-	// print '<pre>';print_r($tmp);print'</pre>';
-		$available = $tmp;
-	}
 ?>

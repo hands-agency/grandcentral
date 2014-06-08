@@ -54,7 +54,7 @@
 	});
 	
 //	Send template and params to content
-	$(document).on('click', contextDom+' button', function()
+	$(document).on('click', contextDom+' button.done', function()
 	{
 	//	Some vars
 		$context = $(contextDom);
@@ -104,10 +104,11 @@
 	$(document).on('change', contextDom+' .template select', function()
 	{
 		var $ol = $(contextDom+' .param ol');
-		$ol.find('li[data-type="param"]').remove();
+		$ol.find('li[data-specialdataname="param"]').remove();
 		valueParam = $contentParam.find('[name*="\[param\]"]').serializeArray();
 		// console.log($(this).val())
-		$.ajx({
+		$.ajx(
+		{
 			app: 'field',
 			template: '/app.param',
 			env: $field.data('env'),

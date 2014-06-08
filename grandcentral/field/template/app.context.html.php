@@ -7,18 +7,15 @@
 
 <div class="param">
 	<h1>Params</h1>
-	<ol>
-	<?php foreach ($fields as $field) : ?>
-		<li class="<?= $field->get_type(); ?>">
-			<label for="<?= $field->get_name(); ?>"><?= $field->get_label(); ?><span class="help"></span></label>
-			<? $field->set_label(''); ?>
-			<div class="wrapper">
-				<? if ($field->get_descr() != null) : ?><div class="help"><?= $field->get_descr(); ?></div><?php endif ?>
-				<?= $field; ?>
-			</div>
-		</li>
-	<?php endforeach; ?>
-	</ol>
+	<form>
+		<fieldset>
+			<ol>
+			<?php foreach ($fields as $field) : ?>
+				<li data-type="<?= $field->get_type(); ?>" data-key="<?= $field->get_key(); ?>"><?= $field; ?></li>
+			<?php endforeach; ?>
+			</ol>
+		</fieldset>
+	</form>
 </div>
 
-<button>⇠ Done</button>
+<button class="done" data-feathericon="&#xe094"> Done</button>

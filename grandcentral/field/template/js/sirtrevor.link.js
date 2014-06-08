@@ -1,7 +1,7 @@
 (function($)
 {
 //	External link
-	$(document).on('click', '#adminContext [data-template="sirtrevor.link"] .external button', function()
+	$(document).on('click', '#adminContext [data-template="sirtrevor.link"] .external button.done', function()
 	{
 	//	Get the value from the iframe
 		link = $('#externalLink').contents().find('input').val();

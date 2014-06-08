@@ -158,8 +158,6 @@
 						height:$(this).height(),
 						width:$(this).width()
 					});
-				//	Help buble
-					field.find('.cc-bubble').effect('bounce', {distance:'10', times:'2'}, 250).delay(1000).hide('fast');
 				//	Hide available
 					$(this).hide();
 				},

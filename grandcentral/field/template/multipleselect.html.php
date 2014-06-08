@@ -9,7 +9,6 @@
 			<ol>
 				<li class="nodata" <?=$hideNodata?>>
 					<?= cst('MULTIPLESELECT_SELECTED_NODATA');?>
-					<span class="cc-bubble warning">Here!</span>
 				</li>
 				<? foreach ($selected as $li): ?>
 				<li class="">

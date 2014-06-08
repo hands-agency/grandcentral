@@ -98,7 +98,7 @@
 		$value = str_replace(array(' ','[', ']'), '', $value);
 	//	création des listes
 		$values = explode(',', $value);
-		print'<pre>value : ';print_r($value);print'</pre>';
+		//print'<pre>value : ';print_r($value);print'</pre>';
 		// $value = 
 	//	champ text et number
 		if (count($values) == 1)

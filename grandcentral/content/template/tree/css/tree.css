@@ -3,6 +3,19 @@
 /********************************************************************************************/
 section[data-template="/tree/tree"]
 {
+	height:750px;
+}
+section[data-template="/tree/tree"] ol.tree
+{
+	cursor:grab;
+	cursor: -webkit-grab;
+	cursor: -moz-grab;
+}
+section[data-template="/tree/tree"] ol.tree.grabbing
+{
+	cursor:grabbing;
+	cursor: -webkit-grabbing;
+	cursor: -moz-grabbing;
 }
 
 section[data-template="/tree/tree"] ol

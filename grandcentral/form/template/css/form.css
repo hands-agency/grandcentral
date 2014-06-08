@@ -8,37 +8,34 @@ section[data-template="/edit/edit"]
 {
 	background:#F0F0F0;
 }
-section[data-template="/edit/edit"]>form>fieldset
+form>fieldset
 {
 }
-section[data-template="/edit/edit"]>form>fieldset>legend
+form>fieldset>legend
 {
 	font-weight:bold;
 }
-section[data-template="/edit/edit"]>form>fieldset>.descr
+form>fieldset>.descr
 {
 	margin-bottom:10px;
 	color:#ccc;
 }
 
 /* Fieldsets & legend */
-section[data-template="/edit/edit"]>form>fieldset
+form>fieldset
 {
-	border-top:1px solid #ddd;
-	margin:50px 0 0 0;
 }
-section[data-template="/edit/edit"]>form>fieldset legend
+form>fieldset legend
 {
 	text-align:center;
 	font-family: "Raleway-Regular";
 	text-transform:uppercase;
-	margin:0 0 20px 0;
-	padding:0 15px;
+	padding:40px 0 20px 0;
 	color:#999;
 }
 
 /* Lines */
-section[data-template="/edit/edit"]>form>fieldset>ol>li[data-type]
+form>fieldset>ol>li[data-type]
 {
 	background:#fff;
 	-moz-border-radius:2px;
@@ -56,7 +53,7 @@ section[data-template="/edit/edit"]>form>fieldset>ol>li[data-type]
 }
 
 /* Labels */
-section[data-template="/edit/edit"]>form>fieldset ol>li[data-type]>label
+form>fieldset ol>li[data-type]>label
 {
 	color:#333333;
 	width:25%;
@@ -72,7 +69,7 @@ section[data-template="/edit/edit"]>form>fieldset ol>li[data-type]>label
 }
 
 /* Field */
-section[data-template="/edit/edit"]>form>fieldset ol>li[data-type] .wrapper
+form>fieldset ol>li[data-type] .wrapper
 {
 	width:75%;
 	display:inline-block;
@@ -83,7 +80,7 @@ section[data-template="/edit/edit"]>form>fieldset ol>li[data-type] .wrapper
 	-webkit-border-radius:2px;
 	border-radius:2px;
 }
-section[data-template="/edit/edit"]>form>fieldset ol>li[data-type] .wrapper .field
+form>fieldset ol>li[data-type] .wrapper .field
 {
 	position:relative;
 	display: block;
@@ -94,15 +91,21 @@ section[data-template="/edit/edit"]>form>fieldset ol>li[data-type] .wrapper .fie
 	transition:border-color .3s ease-in;
 	font-family:'Raleway-Regular';
 }
-section[data-template="/edit/edit"]>form>fieldset ol>li[data-type] .wrapper .field
+form>fieldset ol>li[data-type] .wrapper .field
 {
 	border-left:1px solid #eee;
+}
+
+/* Descrease font size for all forms in the context bar */
+#adminContext form
+{
+	font-size:0.85em !important;
 }
 
 /********************************************************************************************/
 /* Help
 /********************************************************************************************/
-section[data-template="/edit/edit"]>form>fieldset ol>li[data-type] .wrapper .help
+form>fieldset ol>li[data-type] .wrapper .help
 {
 	padding:10px 0;
 	display:none;
@@ -236,13 +239,13 @@ section[data-template="/edit/edit"] fieldset ol>li.ko [data-control]:after {
 /********************************************************************************************/
 /* Todo
 /********************************************************************************************/
-section[data-template="/edit/edit"]>form>fieldset ol>li .wrapper .todo
+form>fieldset ol>li .wrapper .todo
 {
 	padding:10px 0 10px 30px;
 	border-left:1px solid #eee;
 	list-style-type:square;
 }
-section[data-template="/edit/edit"]>form>fieldset ol>li.controlling.ko .wrapper .todo
+form>fieldset ol>li.controlling.ko .wrapper .todo
 {
 	border-left-color:#FF0000;
 }
@@ -250,16 +253,16 @@ section[data-template="/edit/edit"]>form>fieldset ol>li.controlling.ko .wrapper 
 /********************************************************************************************/
 /* Editing
 /********************************************************************************************/
-section[data-template="/edit/edit"]>form>fieldset .editing
+form>fieldset .editing
 {
 }
 /* The form to edit the form */
-section[data-template="/edit/edit"]>form>fieldset .editWrapper
+form>fieldset .editWrapper
 {
 	position:relative;
 	border-top:1px solid #fff;
 }
-section[data-template="/edit/edit"]>form>fieldset .editWrapper>ol>li
+form>fieldset .editWrapper>ol>li
 {
 	padding:5px;
 }
@@ -278,8 +281,8 @@ section[data-template="/edit/edit"]>form>fieldset .editWrapper>ol>li
 }
 
 
-section[data-template="/edit/edit"]>form>fieldset .editable label,
-section[data-template="/edit/edit"]>form>fieldset .editing label
+form>fieldset .editable label,
+form>fieldset .editing label
 {
 	float:none !important;
 	display:block !important;
@@ -293,18 +296,18 @@ section[data-template="/edit/edit"]>form>fieldset .editing label
 /********************************************************************************************/
 /* Unlocked 
 /********************************************************************************************/
-.unlocked section[data-template="/edit/edit"]>form>fieldset>ol>li
+.unlocked form>fieldset>ol>li
 {
 	background:rgba(255, 255, 255, 0.2) !important;
 	border:1px solid #fff !important;
 	margin-left:50px;
 	margin-right:50px;
 }
-.unlocked section[data-template="/edit/edit"]>form>fieldset ol>li>label
+.unlocked form>fieldset ol>li>label
 {
 	color:#fff !important;
 }
-.unlocked section[data-template="/edit/edit"]>form>fieldset>ol>li .field
+.unlocked form>fieldset>ol>li .field
 {
 	display:none;
 }
