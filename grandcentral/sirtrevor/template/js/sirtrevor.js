@@ -12,7 +12,7 @@
 	    new SirTrevor.Editor(
 		{
 			el: instance,
-			blockTypes: ["Text", "Heading", "List", "Quote"],
+			blockTypes: ["Text", "Heading", "List", "Quote", "HR"],
 		});
 	}
 })(jQuery); 
