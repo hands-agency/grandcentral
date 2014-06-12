@@ -22,8 +22,8 @@
 //	Some binds
 /********************************************************************************************/
 	$_APP->bind_file('css', 'css/zoning.css');
-//	$_APP->bind_file('script', 'js/multipleselect.js');
-//	$_APP->bind_file('script', 'js/zoning.js');
+	$_APP->bind_file('script', 'js/multipleselect.plugin.js');
+	$_APP->bind_file('script', 'js/zoning.js');
 		
 /********************************************************************************************/
 //	Some vars
@@ -39,10 +39,13 @@
 	
 //	Fetch the zones
 	$page = i('page', $handled_id, $handled_env);
-	$app = $page['type']['app'];
-	$template = $page['type']['template'];
-	$root = SITE_ROOT.'/'.$app.'/'.$template.'.html.php';
+	$master = $page['type']['master'];
+	$app = $master['app'];
+	$template = $master['template'];
+	$root = SITE_ROOT.'/'.$app.$template.'.html.php';
 	$zones = master::get_zones($root);
+//	Zones that are out of the zoning
+	$outZones = array('css', 'script');
 		
 //	Fetch the sections
 	$sections = $page['section']->unfold();
@@ -55,12 +58,6 @@
 	foreach ($sections as $section)
 	{
 		if (isset($zones[$section['zone']->get()])) $zones[$section['zone']->get()]['section'][] = $section;
-	}
-//	Show/hide Noda
-	foreach ($zones as $key => $zone)
-	{
-		if (isset($zone['section'])) $zones[$key]['hideNodata'] = 'style="display:none;"';
-		else $zones[$key]['hideNodata'] = null;
 	}
 
 //	DEBUG

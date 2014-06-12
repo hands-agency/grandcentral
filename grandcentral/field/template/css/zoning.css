@@ -1,29 +1,46 @@
 /********************************************************************************************/
 /* Browser
 /********************************************************************************************/
+li[data-type="zoning"]
+{
+	background:transparent !important;
+}
+li[data-type="zoning"] .zoningselected,
+li[data-type="zoning"] .zoningavailable
+{
+	float:left;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+li[data-type="zoning"] .zoningselected
+{
+	width:60%;
+}
+li[data-type="zoning"] .zoningavailable
+{
+	width:40%;
+}
+
+/********************************************************************************************/
+/* Browser
+/********************************************************************************************/
 li[data-type="zoning"] .browser
 {
-	-moz-border-radius:2px;
-	-webkit-border-radius:2px;
-	border-radius:2px;
-	margin:0 100px 20px 100px;
-	width:660px;
-	float:left;
-	-webkit-box-shadow: 0px 3px 0px 3px rgba(50, 50, 50, 0.1);
-	-moz-box-shadow:    0px 3px 0px 3px rgba(50, 50, 50, 0.1);
-	box-shadow:         0px 3px 0px 3px rgba(50, 50, 50, 0.1);
-	background:#F9F9F9;
+	margin:0 60px 20px 100px;
+	background:#fff;
 	-moz-user-select:none;
 	-webkit-user-select:none;
 	position:relative;
+	border:1px solid #ccc;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 }
 li[data-type="zoning"] .browser:before
 {
 	content:'';
-	border-top-left-radius: 7px;
-	border-top-right-radius: 7px;
 	color:#999;
-	background-color: #F2F2F2;
+	background-color: #ccc;
 	height: 30px;
 	display: block;
 	position: relative;
@@ -33,20 +50,16 @@ li[data-type="zoning"] .browser:before
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
-	margin-bottom:10px;
+	margin-bottom:15px;
 }
-li[data-type="zoning"] .legend
+li[data-type="zoning"] .browser:after
 {
-	color:#bbbbbb;
-	text-align:center;
-	font-size:0.9em;
-}
-/* Bubble */
-li[data-type="zoning"] .cc-bubble
-{
-	top:-15px;
-	right:-7px;
-	display:none;
+	content:'•••';
+	color:#fff;
+	position:absolute;
+	top:-1px;
+	left:10px;
+	font-size:26px;
 }
 
 /********************************************************************************************/
@@ -56,7 +69,7 @@ li[data-type="zoning"] .browser .zone
 {
 	position:relative;
 	clear:both;
-	margin:0 0 10px 0;
+	margin:0 0 15px 0;
 }
 
 /* Zone title */
@@ -64,7 +77,10 @@ li[data-type="zoning"] .browser .zone>.title
 {
 	position:absolute;
 	left:-100px;
-	top:15px;
+	top:50%;
+	margin-top:	-10px;
+	height:20px;
+	line-height:20px;
 	padding:0 10px 0 0;
 	border-right:1px solid #cccccc;
 	width:75px;
@@ -80,15 +96,14 @@ li[data-type="zoning"] .browser .zone>.title:after
 	content:"●";
 	position:absolute;
 	right:-39px;
-	top:5px;
+	top:10px;
 	z-index:1;
 	border-bottom:1px solid #cccccc;
 	width:38px;
-	line-height:0.1px;
+	line-height:0.17px;
 	letter-spacing:-4px;
 	font-size:10px;
 	color:#666666;
-	box-shadow:0 1px 0px 0 rgba(255, 255, 255, 0.6);
 }
 .unlocked li[data-type="zoning"] .browser .zone>.title
 {
@@ -112,11 +127,12 @@ li[data-type="zoning"] .browser .zone.right>.title:after
 li[data-type="zoning"] .tabs
 {
 	margin-bottom:10px;
+	display:none;
 }
 
 /* Champs */
-li[data-type="zoning"] .selected li:not(.nodata),
-li[data-type="zoning"] .available li:not(.nodata)
+li[data-type="zoning"] .selected li,
+li[data-type="zoning"] .available li
 {
 	border:1px solid #dedede;
 	background:#fff;
@@ -127,12 +143,12 @@ li[data-type="zoning"] .available li:not(.nodata)
 	-moz-border-radius:2px;
 	-webkit-border-radius:2px;
 	border-radius:2px;
-	text-shadow: 0 1px 0 rgba(255,255,255,0.9);
 	-moz-user-select:none;
 	-webkit-user-select:none;
+	position:relative;
 }
-li[data-type="zoning"] .selected li:not(.nodata):hover,
-li[data-type="zoning"] .available li:not(.nodata):hover
+li[data-type="zoning"] .selected li:hover,
+li[data-type="zoning"] .available li:hover
 {
 	border-color: #3eb4d6;
 	-webkit-box-shadow: 0 0 4px #3eb4d6;
@@ -150,20 +166,35 @@ li[data-type="zoning"] .available li .icon
 li[data-type="zoning"] li .title
 {
 	margin:2px 0 0 23px;
+	font-family:"Raleway-Regular";
+}
+li[data-type="zoning"] li .title .flag
+{
+	background:#ccc;
+	border-radius:2px;
+	margin-right:5px;
+	padding:3px 5px;
+	color:#fff;
+	text-transform:uppercase;
+	font-size:9px;
+	position:relative;
+	top:-1px;
 }
 li[data-type="zoning"] li .descr
 {
 	color:#ccc;
 	margin-left:23px;
 }
+li[data-type="zoning"] li .handle
+{
+	position:absolute;
+	top:5px;
+	left:5px;
+}
 li[data-type="zoning"] li .delete
 {
-	float:right;
-	width:13px;
-	height:13px;
-	font-size:8px;
-	padding:0;
-	line-height:10px;
+	top:2px;
+	right:2px;
 }
 
 /********************************************************************************************/
@@ -187,16 +218,9 @@ li[data-type="zoning"] .selected .right
 /* Sections */
 li[data-type="zoning"] .selected ol
 {
-	border:1px dashed #ddd;
-	padding:5px;
-	-moz-border-radius:2px;
-	-webkit-border-radius:2px;
-	border-radius:2px;
-	margin:0 10px !important;
-	background:#fff;
-}
-li[data-type="zoning"] .selected ol li:not(.nodata)
-{
+	padding:7px;
+	margin:0 15px !important;
+	background:#F2F2F2;
 }
 li[data-type="zoning"] .selected ol li .delete
 {
@@ -214,40 +238,30 @@ li[data-type="zoning"] .selected ol li .config
 }
 
 /* Nodata */
-li[data-type="zoning"] .selected ol li.nodata
+ol>li[data-type="zoning"] .selected ol
 {
-	padding:5px 0 !important;
-	font-size:12px;
+	min-height:20px;
 }
-
-/* Placeholder */
-li[data-type="zoning"] .selected .placeholder
+ol>li[data-type="zoning"] .selected ol:before:empty
 {
-	height:20px;
+	line-height:20px;
 }
 
 /********************************************************************************************/
-/* Available apps
+/* Available apps & sections
 /********************************************************************************************/
 li[data-type="zoning"] .available
 {
-	float:right;
-	width:250px;
 	background:#F5F5F5;
 	padding:10px;
 	-moz-border-radius:2px;
 	-webkit-border-radius:2px;
 	border-radius:2px;
-	-webkit-box-shadow: 0px 2px 2px rgba(0,0,0,0.027);
-	-moz-box-shadow: 0px 2px 2px rgba(0,0,0,0.027);
-	-o-box-shadow: 0px 2px 2px rgba(0,0,0,0.027);
-	box-shadow: 0px 2px 2px rgba(0,0,0,0.027);
 }
 li[data-type="zoning"] .available p
 {
 	margin:0 0 5px 0;
 	color:#999;
-	text-shadow: 0px 1px 0px rgba(255,255,255,0.69);
 }
 
 /* Refine */
@@ -270,6 +284,7 @@ li[data-type="zoning"] .available ul {
 	overflow:auto;
 	max-height:500px;	
 }
+li[data-type="zoning"] .available li .handle,
 li[data-type="zoning"] .available li .delete
 {
 	display:none;

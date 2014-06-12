@@ -68,7 +68,7 @@
 //	Field
 	$p = array(
 		'label' => 'Link URL',
-		'placeholder' => 'The link URL',
+		'placeholder' => 'http://www.your.link',
 		'value' => $value['url'],
 	);
 	$fieldUrl = new fieldText($name, $p);

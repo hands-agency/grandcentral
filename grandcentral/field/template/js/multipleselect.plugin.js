@@ -40,7 +40,7 @@
 		//	Make the selected sortable
 			$element.find('.selected ol').sortable(
 			{
-				items:'li:not(.nodata)',
+				items:'li',
 				axis:'y',
 			/*	containment: 'parent', */
 				revert: 100,
@@ -49,17 +49,11 @@
 				handle: '> .handle',
 				over:function(event, ui)
 				{
-				//	Always get rid of the nodata
-					$(this).find('.nodata').hide();
 					received = false;
 					$(this).addClass('ui-sortable-hover');
 				},
 				out:function(event, ui)
 				{
-				//	Maybe bring back the nodata
-					if (received === false) {adjust = -1;}
-					else adjust = null;
-					plugin.nodata($(this).data().sortable.currentItem, adjust);
 					$(this).removeClass('ui-sortable-hover');
 				},
 				receive:function(event, ui)
@@ -81,8 +75,6 @@
 				//	Accept otherwise
 					else
 					{
-					//	Hide eventual Nodata
-						plugin.nodata($(this).data().sortable.currentItem);
 					//	Find the name
 						name = $(this).closest('[data-type]').find('.available').data('name');
 					//	Add the hidden input which contains the value
@@ -109,11 +101,8 @@
 			{
 				$(this).parent().hide('slide', { direction: "down" }, 100, function()
 				{
-				//	Keep a handle before removing, to to find the parents
-					tmp = $(this).siblings('.nodata');
 					$(this).remove();
-				//	Eventually show nodata
-					plugin.nodata(tmp);
+
 				});
 			});
 			
@@ -129,17 +118,6 @@
 			});
 		}
 
-	//	Show or hide the nodata LI
-		plugin.nodata = function(item, adjust)
-		{
-		//	Some vars
-			sortable = item.parent();
-			count = sortable.children().not('.nodata').not('.placeholder').length;
-			if (adjust) {count = count + adjust;}
-		//	Toggle
-			if (count == 0) sortable.find('.nodata').show();
-			else sortable.find('.nodata').hide();
-		}
 	
 	//	Make the available choices draggable and connected to the sortable
 		plugin.resort = function(field)

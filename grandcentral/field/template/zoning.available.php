@@ -19,13 +19,22 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	Get and process from ajax
+//	Some vars
 /********************************************************************************************/
+//	Handled env
+	$env = $_SESSION['pref']['handled_env'];
 //	The field name
 //	$name = $_POST['name'];
-	$name = $_SESSION['pref']['handled_env'].'_section';
+	$name = $env.'_section';
+//	Refine values?
+	$p['title'] = (isset($_POST['q'])) ? '%'.$_POST['q'].'%' : null;
+	$p['order()'] = 'title ASC';
+
+/********************************************************************************************/
+//	Get and process from ajax
+/********************************************************************************************/
 //	Get the available values
-	$available = i('app', all);
+	$available = i('section', $p, $env);
 //	Refine
 	if (isset($_POST['q'])) {
 		echo 'TODO refined with '.$_POST['q'];

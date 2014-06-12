@@ -5,6 +5,6 @@
 <ul>
 <?php foreach ($labs as $dir => $content): ?>
 	<li><a href="openlabs/<?=$dir?>/<?=$dir?>"><?=$dir?></a></li>
-</ul>
 <?php endforeach ?>
+</ul>
 <?php endif ?>
