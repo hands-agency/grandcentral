@@ -3,8 +3,9 @@
 <? else: ?>
 <h1>Open labs</h1>
 <ul>
-<?php foreach ($labs as $dir => $content): ?>
+	<?php foreach ($labs as $dir => $content): ?>
 	<li><a href="openlabs/<?=$dir?>/<?=$dir?>"><?=$dir?></a></li>
+	<?php endforeach ?>
 </ul>
-<?php endforeach ?>
+
 <?php endif ?>
