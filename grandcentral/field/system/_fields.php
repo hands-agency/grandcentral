@@ -425,11 +425,13 @@ abstract class _fields
  */
 	public function __tostring()
 	{
+		$app = registry::get(registry::class_index, get_called_class());
+		// print'<pre>';print_r($app);print'</pre>';
 		if (empty($this->template))
 		{
 			$this->template = mb_substr(mb_strtolower(get_called_class()), 5);
 		}
-		$app = app('field', $this->template, array('field' => $this));
+		$app = app($app, $this->template, array('field' => $this));
 		return $app->__tostring();
 	}
 /**
