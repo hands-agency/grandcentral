@@ -7,5 +7,3 @@
 	<li><a href="openlabs/<?=$dir?>/<?=$dir?>"><?=$dir?></a></li>
 	<?php endforeach ?>
 </ul>
-
-<?php endif ?>

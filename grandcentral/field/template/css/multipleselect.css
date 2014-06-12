@@ -40,6 +40,15 @@ ol>li[data-type="multipleselect"] .field .selected li:hover .delete
 {
 	opacity:1;
 }
+/* Nodata */
+ol>li[data-type="multipleselect"] .field .selected ol
+{
+	min-height:100px;
+}
+ol>li[data-type="multipleselect"] .field .selected ol:empty
+{
+	line-height:100px;
+}
 
 /********************************************************************************************/
 /* Available */

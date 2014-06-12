@@ -121,7 +121,14 @@ class itemForm extends _items
 					}
 					else
 					{
-						$form->set_field($data['type'], $this['key'].'['.$data['key'].']', $data);
+						if (mb_strstr($data['key'], '['))
+						{
+							$form->set_field($data['type'], $this['key'].$data['key'], $data);
+						}
+						else
+						{
+							$form->set_field($data['type'], $this['key'].'['.$data['key'].']', $data);
+						}
 					}
 				}
 			}

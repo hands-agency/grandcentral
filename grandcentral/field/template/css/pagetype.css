@@ -76,13 +76,11 @@
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
-	opacity:0.3;
 	position:relative;
 	cursor:pointer;
 }
 [data-type="pagetype"] .field .type [data-key="key"] ol li label:hover
 {
-	opacity:0.8;
 	border-color: #3eb4d6;
 	-webkit-box-shadow: 0 0 4px #3eb4d6;
 	box-shadow: 0 0 4px #3eb4d6;
@@ -114,7 +112,9 @@
 
 [data-type="pagetype"] .field .type [data-key="key"] ol li input:checked+label
 {
-	opacity:1;
+	border-color: #3eb4d6;
+	-webkit-box-shadow: 0 0 4px #3eb4d6;
+	box-shadow: 0 0 4px #3eb4d6;
 }
 [data-type="pagetype"] .field .type [data-key="key"] ol li input:checked+label:before
 {

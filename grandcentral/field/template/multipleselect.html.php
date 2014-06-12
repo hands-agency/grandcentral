@@ -6,20 +6,15 @@
 	<div class="field">
 		<input  type="hidden" name="<?= $_FIELD->get_name(); ?>" <?php if ($_FIELD->is_disabled()): ?>disabled="disabled"<?php endif ?>value="">
 		<div class="selected">
-			<ol>
-				<li class="nodata" <?=$hideNodata?>>
-					<?= cst('MULTIPLESELECT_SELECTED_NODATA');?>
-				</li>
-				<? foreach ($selected as $li): ?>
-				<li class="">
+			<ol data-nodata="<?= cst('MULTIPLESELECT_SELECTED_NODATA');?>"><? foreach ($selected as $li): ?>
+				<li>
 					<span class="handle" data-feathericon="&#xe026"></span>
 					<button class="delete" type="button"></button>
 					<div class="icon"></div>
 					<div class="title"><?=$li['title']?></div>
 					<input type="hidden" name="<?=$_FIELD->get_name()?>[]" value="<?=$li->get_nickname()?>" />
 				</li>
-				<? endforeach ?>
-			</ol>
+				<? endforeach ?></ol>
 		</div>
 		<div class="available" data-name="<?=$name?>" data-values="<?=$values?>" data-valuestype="<?=$valuestype?>">
 			<div class="refine"><input type="search" placeholder="Refine" /></div>

@@ -21,8 +21,11 @@
 /********************************************************************************************/
 //	We start from the form and the field
 /********************************************************************************************/
+//	Env
+	$handled_env = $_SESSION['pref']['handled_env'];
+	
 //	The form
-	$form = i('form', $_POST['form']);
+	$form = i('form', $_POST['form'], $handled_env);
 //	The field
 	$field = $form['field'][$_POST['field']];
 //	création du champ de test
