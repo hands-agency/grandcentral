@@ -288,13 +288,13 @@ class itemItem extends _items
 		
 		$fileCache = $cache->get_templateroot().'/registry/'.md5('structure');
 		
-		if (is_file($fileCache) && !SITE_DEBUG)
-		{
-			// print'<pre>';print_r('dans le cache des structures');print'</pre>';
-			$datas = unserialize(file_get_contents($fileCache));
-		}
-		else
-		{
+		// if (is_file($fileCache) && !SITE_DEBUG)
+		// {
+		// 	// print'<pre>';print_r('dans le cache des structures');print'</pre>';
+		// 	$datas = unserialize(file_get_contents($fileCache));
+		// }
+		// else
+		// {
 			//print'<pre>';print_r('génération du cache des structures');print'</pre>';
 			//	pour les deux environnements, on charge tous les attributs
 			foreach (array('admin', 'site') as $env)
@@ -311,8 +311,8 @@ class itemItem extends _items
 				}
 			}
 			// mise en cache
-			file_put_contents($fileCache, serialize($datas));
-		}
+			// file_put_contents($fileCache, serialize($datas));
+			// 	}
 		
 		registry::set('admin', $datas['admin']);
 		registry::set('site', $datas['site']);
