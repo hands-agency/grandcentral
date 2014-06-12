@@ -34,7 +34,7 @@ class attrI18n extends attrArray
  */
 	public function cut($length, $add = '...')
 	{
-		$str = $this->__tostring();
+		$str = strip_tags($this->__tostring());
 		
 		if (mb_strlen($str) > $length)
 		{
