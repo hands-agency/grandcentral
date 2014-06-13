@@ -2224,23 +2224,6 @@
       this.getTextBlock().html(SirTrevor.toHTML(data.text, this.type));
     }
   });
-  /*
-    HR Block
-  */
-  SirTrevor.Blocks.HR = SirTrevor.Block.extend({
-  
-    type: 'HR',
-  
-    title: function(){ return i18n.t('blocks:HR:title'); },
-  
-    editorHTML: '<div class="st-required st-text-block st-text-block--HR" contenteditable="true"></div>',
-  
-    icon_name: 'HR',
-  
-    loadData: function(data){
-      this.getTextBlock().html(SirTrevor.toHTML(data.text, this.type));
-    }
-  });
   /* Default Formatters */
   /* Our base formatters */
   (function(){
