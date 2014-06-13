@@ -71,10 +71,8 @@ class attrSirtrevor extends _attrs implements ArrayAccess
 			{
 				$type = $block['type'];
 				$data = $block['data']['text'];
-
 			//	Markdown to HTML
 				$text = trim(Markdown::defaultTransform($data));
-			
 			//	HTML formatting
 				switch ($type)
 				{
@@ -84,13 +82,17 @@ class attrSirtrevor extends _attrs implements ArrayAccess
 						break;
 				//	Heading
 					case 'heading':
-						$return .= '<h2>'.strip_tags($text).'</h2>'; // Feels like Sir Trevors stores a <h1> in the db
+						$return .= '<h3>'.strip_tags($text).'</h3>'; // Feels like Sir Trevors stores a <h1> in the db
 						break;
 				//	List
 					case 'list':
 				//	Quote
 					case 'quote':
 						$return .= $text;
+						break;
+				//	Break
+					case 'break':
+						$return .= '<hr />';
 						break;
 				}
 			}

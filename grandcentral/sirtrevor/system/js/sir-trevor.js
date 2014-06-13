@@ -291,9 +291,6 @@
         },
         heading: {
           'title': "Heading"
-        },
-		HR: {
-          'title': "HR"
         }
       }
     }
@@ -1096,19 +1093,35 @@
   
       onDrop: function(ev) {
         ev.preventDefault();
+  		
+		//	hack pour le block image gc
+		if (typeof ev.originalEvent.dataTransfer != 'undefined')
+		{
+		//	hack pour le block image gc
+			var dropped_on = this.$block,
+			item_id = ev.originalEvent.dataTransfer.getData("text/plain"),
+			block = $('#' + item_id);
   
-        var dropped_on = this.$block,
-            item_id = ev.originalEvent.dataTransfer.getData("text/plain"),
-            block = $('#' + item_id);
-  
-        if (!_.isUndefined(item_id) &&
-          !_.isEmpty(block) &&
-          dropped_on.attr('id') != item_id &&
-          dropped_on.attr('data-instance') == block.attr('data-instance')
-        ) {
-          dropped_on.after(block);
-        }
-        SirTrevor.EventBus.trigger("block:reorder:dropped", item_id);
+	        if (!_.isUndefined(item_id) &&
+	          !_.isEmpty(block) &&
+	          dropped_on.attr('id') != item_id &&
+	          dropped_on.attr('data-instance') == block.attr('data-instance')
+	        ) {
+	          dropped_on.after(block);
+	        }
+			
+			SirTrevor.EventBus.trigger("block:reorder:dropped", item_id);
+		//	hack pour le block image gc
+		}
+		else
+		{
+			
+			// console.log(this.$block[0].id)
+			// console.log(ev.toElement)
+			// this.$block.html(ev.toElement)
+			SirTrevor.EventBus.trigger("block:reorder:dropped");
+		}
+		//	hack pour le block image gc
       },
   
       onDragStart: function(ev) {
@@ -2207,23 +2220,7 @@
     });
   
   })();
-/*
-    Heading Block
-  */
-  SirTrevor.Blocks.Heading = SirTrevor.Block.extend({
-  
-    type: 'Heading',
-  
-    title: function(){ return i18n.t('blocks:heading:title'); },
-  
-    editorHTML: '<div class="st-required st-text-block st-text-block--heading" contenteditable="true"></div>',
-  
-    icon_name: 'heading',
-  
-    loadData: function(data){
-      this.getTextBlock().html(SirTrevor.toHTML(data.text, this.type));
-    }
-  });
+
   /* Default Formatters */
   /* Our base formatters */
   (function(){
