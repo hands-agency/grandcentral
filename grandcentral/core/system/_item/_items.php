@@ -202,7 +202,7 @@ abstract class _items implements ArrayAccess, Iterator
 	{
 		foreach ($this->data as $key => $attr)
 		{
-			if (method_exists($attr, 'attach'))
+			if (is_a($attr, '_attrs') && method_exists($attr, 'attach'))
 			{
 				$this[$key]->attach($this);
 			}
