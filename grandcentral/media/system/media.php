@@ -17,7 +17,7 @@ class media extends file
  */
 	public function get_path()
 	{
-		$path = mb_substr($this->get_root(), mb_strpos($this->get_root(), '/media/') + 7);
+		$path = mb_substr($this->get_root(), mb_strpos($this->get_root(), '/media') + 6);
 		
 		return $path;
 	}

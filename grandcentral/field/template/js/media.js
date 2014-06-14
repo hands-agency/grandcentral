@@ -1,14 +1,14 @@
 (function($)
 {
 //	Our media
-	field = $('li[data-type="media"] .wrapper');
-	data = field.find('ol.data');
-	media = data.find('li');
-	path = media.find('input').val();
-	upload = $('li[data-type="media"] .wrapper ol.data li.upload');
+	$field = $('li[data-type="media"] .wrapper');
+	$data = $field.find('ol.data');
+	$media = $data.find('li');
+	$upload = $('li[data-type="media"] .wrapper ol.data li.upload');
+	path = $media.find('input').val();
 	
 //	Upload droppable
-	upload.droppable(
+	$upload.droppable(
 	{
 		hoverClass:'hover',
 		tolerance:'pointer',
@@ -33,12 +33,12 @@
 			$(code).find('.title').html(media.data('title'));
 			$(code).find('.info').html(media.data('info'));
 		//	Sortable
-			data.sortable();
+			$data.sortable();
 		}
 	});
 
 //	Edit a media
-	media.find('.preview').on('click', function()
+	$media.find('.preview').on('click', function()
 	{
 	//	Launch
 		openContext(
@@ -51,7 +51,7 @@
 	});
 	
 //	Add media
-	upload.on('click', function()
+	$upload.on('click', function()
 	{
 		openContext(
 		{
@@ -61,7 +61,7 @@
 	});
 
 //	Delete media
-	$(document).find(field).on('click', '.delete', function()
+	$(document).find($field).on('click', '.delete', function()
 	{
 		$(this).parent('li').hide('fast', function()
 		{
@@ -71,6 +71,6 @@
 	});
 
 //	Sortable
-	data.sortable();
+	$data.sortable();
 	
 })(jQuery); 

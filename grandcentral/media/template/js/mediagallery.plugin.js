@@ -102,6 +102,8 @@
 	//	Method
 		plugin.loadList = function()
 		{
+		//	Start loading
+			$element.loading();
 		//	Load the library
 			$element.ajx(
 			{
@@ -111,7 +113,6 @@
 			},{
 				done:function(html)
 				{
-					console.log(html);
 				//	ajout du bouton de retour
 					if (plugin.settings.current != '')
 					{
@@ -119,6 +120,8 @@
 					}
 				//	Init
 					plugin.initList();
+				//	End loading
+					$element.loaded();
 				}
 			});
 		}
