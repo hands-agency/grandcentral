@@ -49,7 +49,7 @@ class image extends media
  * @param	bool	créer le répertoire du fichier si celui-ci n'existe pas. "false" par défaut.
  * @access	public
  */
-	public function save($mkdir = false, $chmod = 0755, $quality = 75)
+	public function save($mkdir = false, $chmod = 0755, $quality = 100)
 	{
 		if (!is_dir($this->dir) && $mkdir === true) mkdir($this->dir, $chmod, true);
 		
@@ -109,17 +109,16 @@ class image extends media
 	public function thumbnail($width, $height, $quality = 100)
 	{
 		$app = app('cache');
-		$root = $app->get_templateroot('site').'/media/thumbnail_w'.$width.'_h'.$height;
+		$file = $app->get_templateroot('site').'/media/thumbnail_w'.$width.'_h'.$height.$this->get_path();
 		
-		$file = $root.'/'.$this->get_key();
 		if (!is_dir($file))
 		{
 			$thumb = new image($file);
 		//	création du thumbnail
 			if (!$thumb->exists() || $thumb->get_created() < $this->get_created())
 			{
-				$this->copy($root);
-				$thumb = new image($root.'/'.$this->get_key());
+				$this->copy($thumb->get_dir());
+				$thumb = new image($file);
 				$thumb->resize($width, $height, true);
 				$thumb->save(true);
 			}
