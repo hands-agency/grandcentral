@@ -6,57 +6,90 @@
 
 SirTrevor.Blocks.Imagegc = SirTrevor.Block.extend({
 	
-	type: "imagegc",
-	title: function() { return i18n.t('blocks:image:title'); },
+	type: 'imagegc',
 	
-	droppable: false,
-	uploadable: false,
+	title: function() {return i18n.t('blocks:image:title');},
 	
 	icon_name: 'image',
 		
-	editorHTML: function() {
-      return '<div class="st-image-block" contenteditable="false"><ol class="data"><li class="upload" data-feathericon="&#xe010"></li></ol></div>';
+	editorHTML: function()
+	{
+		return '<pre class="template"><li><button class="delete"></button><a><span class="preview"><img src="" /></span><span class="title"></span></a><input type="hidden" name="url" disabled="disabled" /><input type="hidden" name="title" disabled="disabled" /></li></pre><ol class="data"><li class="upload" data-feathericon="&#xe010"></li>';
     },
+
+	loadData: function(data)
+	{
+	//	Some vars
+		$editor = this.$editor;
+		$data = this.$('.data');
+		$upload = this.$('.upload');
+		$template = this.$('.template');
+		thumbnailWidth = 120;
 		
-	loadData: function(data){
-		// Create our image tag
-		// this.$editor.html($('<img>', { src: data.file.url }));
+	//	Print stored images
+		$(data).each(function()
+		{
+		//	Template
+			code = $($template.html());
+		//	Append and enable
+			$upload.before(code);
+			$(code).find('*:disabled').prop('disabled', false);
+		//	Add data
+			media = data;
+			thumbnail = SITE_URL+'/cache/media/thumbnail_w'+thumbnailWidth+'_h'+media.url;
+			$(code).find('.preview img').attr('src', thumbnail);
+			$(code).find('input').val(media.url);
+			$(code).find('.title').html(media.title);
+		});
 	},
 	
-	onBlockRender: function(){
-		/* Open the context */
-		var upload = this.$editor.find('li.upload');
-		// 	Create zone draggable
-		upload.droppable(
+	onBlockRender: function()
+	{
+	//	Some vars
+		$data = this.$('.data');
+		$upload = this.$('.upload');
+		$template = this.$('.template');
+		
+	// 	Create zone draggable
+		$upload.droppable(
 		{
 			hoverClass:'hover',
-			tolerance:'pointer'
+			tolerance:'pointer',
+			drop:function(event, ui)
+			{
+			//	Template
+				code = $($template.html());
+			//	Append and enable
+				$(this).before(code);
+				$(code).show('fast').find('*:disabled').prop('disabled', false);
+			//	Add data
+				media = ui.helper;
+				$(code).find('.preview img').attr('src', media.find('.preview img').attr('src'));
+				$(code).find('input').val(media.data('path'));
+				$(code).find('.title').html(media.data('title'));
+			}
 		});
-		//	Event open context
-		upload.click(function()
+		
+	//	Open context for upload
+		$upload.click(function()
 		{
 			openContext(
 			{
 				app:'media',
 				template:'admin'
 			});
-		})
-		
+		})	
+
+	//	Delete media
+		$(document).find($data).on('click', '.delete', function()
+		{
+			$(this).parent('li').hide('fast', function()
+			{
+				$(this).remove();
+			});
+			return false;
+		});
 	},
-	
-	onUploadSuccess : function(data) {
-		this.setData(data);
-		this.ready();
-	},
-	
-	onUploadError : function(jqXHR, status, errorThrown){
-		this.addMessage(i18n.t('blocks:image:upload_error'));
-		this.ready();
-	},
-	
-	onDrop: function(transferData){
-		console.log(transferData)
-	}
 });
 
 })(jQuery); 

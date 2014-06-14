@@ -70,26 +70,49 @@ class attrSirtrevor extends _attrs implements ArrayAccess
 			foreach ($json['data'] as $block)
 			{
 				$type = $block['type'];
-				$data = $block['data']['text'];
-			//	Markdown to HTML
-				$text = trim(Markdown::defaultTransform($data));
+				
 			//	HTML formatting
 				switch ($type)
 				{
 				//	Text
 					case 'text':
+					//	Markdown to HTML
+						$text = trim(Markdown::defaultTransform($block['data']['text']));
+					//	Return
 						$return .= str_replace("\n", "</p>\n<p>", $text);
 						break;
+						
 				//	Heading
 					case 'heading':
+					//	Markdown to HTML
+						$text = trim(Markdown::defaultTransform($block['data']['text']));
+					//	Return
 						$return .= '<h3>'.strip_tags($text).'</h3>'; // Feels like Sir Trevors stores a <h1> in the db
 						break;
+						
 				//	List
 					case 'list':
+					//	Markdown to HTML
+						$text = trim(Markdown::defaultTransform($block['data']['text']));
+					//	Return
+						break;
+						
 				//	Quote
 					case 'quote':
+					//	Markdown to HTML
+						$text = trim(Markdown::defaultTransform($block['data']['text']));
+						$cite = trim(Markdown::defaultTransform($block['data']['cite']));
+					//	Return
+						$return .= '<blockquote><p>'.$text.'</p><cite>'.$cite.'</cite></blockquote>';
+						break;
+						
+				//	Image-Gc
+					case 'imagegc':
+						sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $block);
+					//	Return
 						$return .= $text;
 						break;
+						
 				//	Break
 					case 'break':
 						$return .= '<hr />';

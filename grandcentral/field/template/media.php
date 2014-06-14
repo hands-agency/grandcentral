@@ -53,12 +53,11 @@
 			$path = mb_substr($media->get_root(), mb_strpos($media->get_root(), '/media/') + 7); /* TODO Make a method out of this*/
 			$title = (isset($value['title'])) ? $value['title'] : null;
 			$data .= '
-			<li>
+			<li title="'.strtoupper($media->get_extension()).' • '.$media->get_size().'">
 				<button class="delete"></button>
 				<a>
 					<span class="preview">'.$media->thumbnail(120, null).'</span>
 					<span class="title">'.$media->get_key().'</span>
-					<span class="info">'.strtoupper($media->get_extension()).' • '.$media->get_size().'</span>
 				</a>
 				<input type="hidden" name="'.$_FIELD->get_name().'['.$count.'][url]" value="'.$path.'" />
 				<input type="hidden" name="'.$_FIELD->get_name().'['.$count.'][title]" value="'.$title.'" />
@@ -76,7 +75,6 @@
 		<a>
 			<span class="preview"><img src="" /></span>
 			<span class="title"></span>
-			<span class="info"></span>
 		</a>
 		<input type="hidden" name="'.$_FIELD->get_name().'[][url]" value="" disabled="disabled" />
 	</li>';

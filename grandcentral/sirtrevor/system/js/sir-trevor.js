@@ -1090,8 +1090,30 @@
       onMouseDown: function() {
         SirTrevor.EventBus.trigger("block:reorder:down", this.blockID);
       },
-  
-      onDrop: function(ev) {
+     
+	// GRAND CENTRAL OVERRRIDE
+
+/*
+     onDrop: function(ev) {
+            ev.preventDefault();
+      		console.log('st default');
+     		
+     		var dropped_on = this.$block,
+     		item_id = ev.originalEvent.dataTransfer.getData("text/plain"),
+     		block = $('#' + item_id);
+     
+            if (!_.isUndefined(item_id) &&
+              !_.isEmpty(block) &&
+              dropped_on.attr('id') != item_id &&
+              dropped_on.attr('data-instance') == block.attr('data-instance')
+            ) {
+              dropped_on.after(block);
+            }
+     		
+     		SirTrevor.EventBus.trigger("block:reorder:dropped", item_id);
+     	
+          },*/
+		onDrop: function(ev) {
         ev.preventDefault();
   		
 		//	hack pour le block image gc
@@ -1115,7 +1137,6 @@
 		}
 		else
 		{
-			
 			// console.log(this.$block[0].id)
 			// console.log(ev.toElement)
 			// this.$block.html(ev.toElement)
@@ -2082,6 +2103,7 @@
         var url = transferData.getData('text/plain');
         this.handleTwitterDropPaste(url);
       }
+
     });
   
   })();
