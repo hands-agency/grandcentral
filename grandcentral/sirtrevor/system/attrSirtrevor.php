@@ -108,9 +108,9 @@ class attrSirtrevor extends _attrs implements ArrayAccess
 						
 				//	Image-Gc
 					case 'imagegc':
-						sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $block);
+						sentinel::debug('Il faut construire la vue dans '.__FILE__.' line '.__LINE__, $block);
 					//	Return
-						$return .= $text;
+					//	$return .= $text;
 						break;
 						
 				//	Break

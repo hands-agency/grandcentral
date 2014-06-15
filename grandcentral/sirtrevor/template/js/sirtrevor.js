@@ -33,4 +33,4 @@
 			blockTypes: ["Text", "Heading", "List", "Quote", "Break", "Imagegc"]
 		});
 	}
-})(jQuery); 
+})(jQuery);

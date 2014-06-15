@@ -36,7 +36,7 @@ SirTrevor.Blocks.Imagegc = SirTrevor.Block.extend({
 			$(code).find('*:disabled').prop('disabled', false);
 		//	Add data
 			media = data;
-			thumbnail = SITE_URL+'/cache/media/thumbnail_w'+thumbnailWidth+'_h'+media.url;
+			thumbnail = SITE_URL+'/www/'+SITE_KEY+'/cache/media/thumbnail_w'+thumbnailWidth+'_h'+media.url;
 			$(code).find('.preview img').attr('src', thumbnail);
 			$(code).find('input').val(media.url);
 			$(code).find('.title').html(media.title);

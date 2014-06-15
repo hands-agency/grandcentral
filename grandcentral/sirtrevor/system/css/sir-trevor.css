@@ -569,9 +569,9 @@ li[data-type="sirtrevor"] .wrapper .st-block__inner ol.data li .title {
 li[data-type="sirtrevor"] .wrapper .st-block__inner ol.data li.upload
 {
 	height:120px;
-	line-height:120px;
+	line-height:130px;
 	border:1px dashed #ddd;
-	font-size:4em;
+	font-size:40px;
 	-webkit-transition: all .15s ease-out; 
 	-moz-transition: all .15s ease-out; 
 	-o-transition: all .15s ease-out; 
