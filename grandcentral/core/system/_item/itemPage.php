@@ -97,32 +97,19 @@ class itemPage extends _items
  */
 	public function save()
 	{
+	//	If this page has a specified parent...
+		if (!$this['parent']->is_empty())
+		{
+		//	...hook'em up
+			$parent = $this['parent']->unfold();
+			$parent['child']->add($this['parent']);
+			sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $parent);exit;
+			$parent->save();
+		//	Clean the instruction
+			$this['parent'] = null;
+		}
 	//	Sauvegarde
 		parent::save();
-	//	gestion du parent de la page
-		if ($this['system']->get() === false && $this['key']->get() != 'home')
-		{
-			$parent = false;
-		//	si la page existe
-			if (!$this['id']->is_empty())
-			{
-			//	on vérifie si la page à un parent
-				$q = 'SELECT COUNT(item) as count FROM _rel WHERE item ="page" AND `key` = "child" AND rel="page" AND relid='.$this['id']->get();
-				$db = database::connect($this->get_env());
-				$r = $db->query($q);
-				if ($r['data'][0]['count'] > 0)
-				{
-					$parent = true;
-				}
-			}
-			
-			if ($parent === false)
-			{
-				$home = i('page', 'home', $this->get_env());
-				$home['child']->add($this);
-				$home->save();
-			}
-		}
 	}
 /**
  * Envoie les entêtes HTTP de la page

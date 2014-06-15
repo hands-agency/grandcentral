@@ -506,6 +506,13 @@ li[data-type="sirtrevor"] .wrapper .st-block__inner:hover .st-block__control-ui 
   text-decoration: line-through; }
 
 /* GRAND CENTRAL OVERRIDE */
+li[data-type="sirtrevor"] .st-block-controls [data-feathericon]
+{
+	font-size:45px;
+	margin-bottom:5px;
+	display:block;
+}
+
 li[data-type="sirtrevor"] .wrapper .st-block__inner .data
 {
 	text-align:center;

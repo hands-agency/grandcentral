@@ -262,7 +262,7 @@ class adminItemForm
 		// 	'value' => 'save'
 		// );
 		
-		if ($this->item->exists()) $this->_populate_with_item();
+		$this->_populate_with_item();
 		// print'<pre>';print_r($this);print'</pre>';
 		$form = $this->form->prepare();
 		$form->set_action(i('page', 'post', 'admin')['url']);

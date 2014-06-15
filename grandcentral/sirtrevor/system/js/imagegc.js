@@ -11,10 +11,11 @@ SirTrevor.Blocks.Imagegc = SirTrevor.Block.extend({
 	title: function() {return i18n.t('blocks:image:title');},
 	
 	icon_name: 'image',
+	feathericon_name: '010',
 		
 	editorHTML: function()
 	{
-		return '<pre class="template"><li><button class="delete"></button><a><span class="preview"><img src="" /></span><span class="title"></span></a><input type="hidden" name="url" disabled="disabled" /><input type="hidden" name="title" disabled="disabled" /></li></pre><ol class="data"><li class="upload" data-feathericon="&#xe010"></li>';
+		return '<pre class="template"><li><button class="delete"></button><a><span class="preview"><img src="" /></span><span class="title"></span></a><input type="hidden" name="data[url]" disabled="disabled" /><input type="hidden" name="data[title]" disabled="disabled" /></li></pre><ol class="data"><li class="upload" data-feathericon="&#xe010"></li>';
     },
 
 	loadData: function(data)

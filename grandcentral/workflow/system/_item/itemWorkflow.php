@@ -21,7 +21,7 @@ class itemWorkflow extends _items
 		$this['item'] = $item->get_table();
 		$this['original'] = $item->get_nickname();
 	//	The item data
-		$this['data'] = $item->json();
+		$this['data'] = $item;
 	//	The status
 		$this['status'] = $status;
 

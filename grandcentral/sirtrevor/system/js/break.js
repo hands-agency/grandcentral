@@ -15,6 +15,8 @@ SirTrevor.Blocks.Break = (function(){
     // Eg example_block should be ExampleBlock
     type: 'break',
 
+	feathericon_name: '115',
+
     // Function; the title displayed in the toolbar
     // Can return a translated string (if required)
     title: function() {
