@@ -21,8 +21,8 @@
 /********************************************************************************************/
 //	Some binds
 /********************************************************************************************/	
-	$_APP->bind_file('css', 'openlabs/const/css/const.css');
-	$_APP->bind_file('script', 'openlabs/const/js/const.js');
+	$_APP->bind_css('openlabs/const/css/const.css');
+	$_APP->bind_script('openlabs/const/js/const.js');
 	
 /********************************************************************************************/
 //	Some vars

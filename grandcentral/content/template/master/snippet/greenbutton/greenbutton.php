@@ -21,9 +21,9 @@
 /********************************************************************************************/
 //	Some binds
 /********************************************************************************************/
-	$_APP->bind_file('script', 'master/snippet/greenbutton/js/greenbutton.plugin.js');
-	$_APP->bind_file('script', 'master/snippet/greenbutton/js/greenbutton.js');
-	$_APP->bind_file('css', 'master/snippet/greenbutton/css/greenbutton.css');
+	$_APP->bind_script('master/snippet/greenbutton/js/greenbutton.plugin.js');
+	$_APP->bind_script('master/snippet/greenbutton/js/greenbutton.js');
+	$_APP->bind_css('master/snippet/greenbutton/css/greenbutton.css');
 	
 /********************************************************************************************/
 //	Prepare the labels

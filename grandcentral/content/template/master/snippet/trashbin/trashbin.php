@@ -21,8 +21,8 @@
 /********************************************************************************************/
 //	Some binds
 /********************************************************************************************/
-	$_APP->bind_file('script', 'master/snippet/trashbin/js/trashbin.plugin.js');
+	$_APP->bind_script('master/snippet/trashbin/js/trashbin.plugin.js');
 	$_APP->bind_code('script', '$("#trashbin").trashbin();');
 //	CSS
-	$_APP->bind_file('css', 'master/snippet/trashbin/css/trashbin.css');
+	$_APP->bind_css('master/snippet/trashbin/css/trashbin.css');
 ?>

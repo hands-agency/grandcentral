@@ -21,10 +21,10 @@
 /********************************************************************************************/
 //	Some binds
 /********************************************************************************************/
-	$_APP->bind_file('css', 'css/wysiwyg.css');
-	$_APP->bind_file('script', 'js/wysiwyg/wysihtml5-0.3.0.min.js');
-	$_APP->bind_file('script', 'js/wysiwyg/advanced.js');
-	$_APP->bind_file('script', 'js/wysiwyg.js');
+	$_APP->bind_css('css/wysiwyg.css');
+	$_APP->bind_script('js/wysiwyg/wysihtml5-0.3.0.min.js');
+	$_APP->bind_script('js/wysiwyg/advanced.js');
+	$_APP->bind_script('js/wysiwyg.js');
 
 /********************************************************************************************/
 //	Some vars

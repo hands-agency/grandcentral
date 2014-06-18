@@ -97,19 +97,20 @@ class itemPage extends _items
  */
 	public function save()
 	{
+	//	Save first
+		parent::save();
+	
 	//	If this page has a specified parent...
-		if (!$this['parent']->is_empty())
+		if (isset($this['parent']) && !$this['parent']->is_empty())
 		{
 		//	...hook'em up
 			$parent = $this['parent']->unfold();
-			$parent['child']->add($this['parent']);
-			sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $parent);exit;
+			// sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $parent);
+			$parent['child']->add($this);
 			$parent->save();
 		//	Clean the instruction
 			$this['parent'] = null;
 		}
-	//	Sauvegarde
-		parent::save();
 	}
 /**
  * Envoie les entêtes HTTP de la page
