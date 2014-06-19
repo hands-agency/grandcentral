@@ -12,17 +12,17 @@
 		<span class="configure">
 			<span class="template">
 		<?php if ($template): ?>
-				<input type="hidden" name="<?= $_FIELD->get_name(); ?>[template]" value="<?=$template?>" />
+			<input type="hidden" name="<?= $_FIELD->get_name(); ?>[template]" value="<?=$template?>" />
 		<?php endif ?>
 			</span>
 			<span class="param">
 		<?php if ($param): ?>
 		<?php foreach ($value['param'] as $key => $value): ?>
 				<?php if (!is_array($value)): ?>
-				<input type="hidden" name="<?= $_FIELD->get_name(); ?>[param][<?=$key?>]" value="<?=$value?>" />
+				<textarea name="<?= $_FIELD->get_name(); ?>[param][<?=$key?>]" style="display:block"><?=$value?></textarea>
 				<?php else: ?>
 				<?php foreach ($value as $k => $v): ?>
-				<input type="hidden" name="<?= $_FIELD->get_name(); ?>[param][<?=$key?>][<?=$k?>]" value="<?=$v?>" />
+				<textarea name="<?= $_FIELD->get_name(); ?>[param][<?=$key?>][<?=$k?>]" style="display:block"><?=$v?></textarea>
 				<?php endforeach ?>
 				<?php endif ?>
 		<?php endforeach ?>

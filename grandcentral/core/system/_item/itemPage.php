@@ -234,6 +234,10 @@ class itemPage extends _items
 		{
 			header('Location:'.$this['type']['url'], false);
 		}
+		else
+		{
+			header('Location:'.i($this->get_env(), current)['version']->get_url().$this['type']['url'], false);
+		}
 	//	erreur
 		trigger_error('This link page needs a valid <strong>url</strong> to work properly.', E_USER_ERROR);
 	}

@@ -91,7 +91,7 @@
 				{
 					name = $field.data('name')+'[param]['+ param[i]['name'] +']';
 				}
-				input = '<input type="hidden" name="'+name+'" value="'+param[i]['value']+'" />';
+				input = '<textarea name="'+name+'" style="display:block">'+param[i]['value']+'</textarea>';
 				$contentParam.append(input);
 			}
 		}

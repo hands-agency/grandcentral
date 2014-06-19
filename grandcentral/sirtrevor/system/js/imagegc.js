@@ -19,6 +19,7 @@ SirTrevor.Blocks.Imagegc = SirTrevor.Block.extend({
 
 	loadData: function(data)
 	{
+		// console.log(SirTrevor)
 	//	Some vars
 		$editor = this.$editor;
 		$data = this.$('.data');
@@ -37,6 +38,7 @@ SirTrevor.Blocks.Imagegc = SirTrevor.Block.extend({
 		//	Add data
 			media = data;
 			thumbnail = SITE_URL+'/cache/media/thumbnail_w'+thumbnailWidth+'_h'+media.url;
+			// console.log(thumbnail)
 			$(code).find('.preview img').attr('src', thumbnail);
 			$(code).find('input').val(media.url);
 			$(code).find('.title').html(media.title);

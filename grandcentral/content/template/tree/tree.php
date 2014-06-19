@@ -144,8 +144,8 @@
 				switch ($page['type']['key'])
 				{
 					case 'link':
-						$parse = parse_url($page['type']['url']);
-						$type = '<a class="url" href="'.$page['type']['url'].'">'.$parse['host'].'</a>';
+						// $parse = parse_url($page['type']['url']);
+						$type = '<a class="url" href="'.$page['type']['url'].'">'.$page['type']['url'].'</a>';
 						break;
 					
 					default:

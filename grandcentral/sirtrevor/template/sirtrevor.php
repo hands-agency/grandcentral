@@ -24,9 +24,9 @@
 //	Apps
 	load('sirtrevor');
 //	Css
-	$_APP->bind_css('css/sirtrevor.css');
+	$_APP->bind_css('/css/sirtrevor.css');
 //	Script
-	$_APP->bind_script('js/sirtrevor.js');
+	$_APP->bind_script('/js/sirtrevor.js');
 
 /********************************************************************************************/
 //	Some vars

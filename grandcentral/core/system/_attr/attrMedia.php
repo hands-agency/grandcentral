@@ -63,6 +63,17 @@ class attrMedia extends attrArray
  * @return	string	une string
  * @access	public
  */
+	public function is_empty()
+	{
+		return (empty($this->data) || (is_array($this->data) && count($this->data) == 1 && !$this->unfold()[0]->exists())) ? true : false;
+	}
+/**
+ * xxxx
+ *
+ * @param	string	la variable
+ * @return	string	une string
+ * @access	public
+ */
 	public function unfold()
 	{
 		$return = array();
