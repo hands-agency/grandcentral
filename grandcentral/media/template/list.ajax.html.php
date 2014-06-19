@@ -27,7 +27,6 @@
 					<span class="preview"><?= $file->thumbnail(120, null); ?></span>
 				<? endif ?>
 				<span class="title"><?= $file->get_key() ?></span>
-				<span class="info"><?= $file->get_extension() ?> • <?= $file->get_size() ?></span>
 			</a>
 		</li>
 		<? endforeach ?>

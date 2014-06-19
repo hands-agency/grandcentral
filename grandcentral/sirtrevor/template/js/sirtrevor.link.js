@@ -36,7 +36,7 @@
 	//	Search as you type
 		$input.searchasyoutype(
 		{
-			app:'field',
+			app:'sirtrevor',
 			template:'sirtrevor.link.internal',
 			param:'{"item":"'+item+'"}',
 			target:$target,

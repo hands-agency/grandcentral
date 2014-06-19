@@ -19,10 +19,10 @@
 		<?php if ($param): ?>
 		<?php foreach ($value['param'] as $key => $value): ?>
 				<?php if (!is_array($value)): ?>
-				<textarea name="<?= $_FIELD->get_name(); ?>[param][<?=$key?>]" style="display:block"><?=$value?></textarea>
+				<textarea style="display:none" name="<?= $_FIELD->get_name(); ?>[param][<?=$key?>]"><?=$value?></textarea>
 				<?php else: ?>
 				<?php foreach ($value as $k => $v): ?>
-				<textarea name="<?= $_FIELD->get_name(); ?>[param][<?=$key?>][<?=$k?>]" style="display:block"><?=$v?></textarea>
+				<textarea style="display:none" name="<?= $_FIELD->get_name(); ?>[param][<?=$key?>][<?=$k?>]"><?=$v?></textarea>
 				<?php endforeach ?>
 				<?php endif ?>
 		<?php endforeach ?>

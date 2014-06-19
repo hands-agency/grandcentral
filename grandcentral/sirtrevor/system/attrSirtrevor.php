@@ -59,57 +59,62 @@ class attrSirtrevor extends _attrs implements ArrayAccess
 	public function __toString()
 	{
 	//	Some vars
-		$return = '';
+		$return = null;
 		
 		if ($this->get())
 		{
 		//	Decode json stored as a string
 			$json = json_decode($this->get(), true);
+		//	Instanciate a new Parsedown object
+			$Parsedown = new Parsedown();
+			$Parsedown->setBreaksEnabled(true);
 		
 		//	Loop through blocks
 			foreach ($json['data'] as $block)
-			{
-				$type = $block['type'];
+			{	
+			//	Decode
+				foreach ($block['data'] as $key => $value)
+				{
+				//	Build GC urls
+				// $block['data'][$key] = str_replace('[page_1]', 'http://www.google.com', $block['data'][$key]);
+				}
 				
 			//	HTML formatting
-				switch ($type)
+				switch ($block['type'])
 				{
 				//	Text
 					case 'text':
-					//	Markdown to HTML
-						$text = trim(Markdown::defaultTransform($block['data']['text']));
 					//	Return
-						$return .= str_replace("\n", "</p>\n<p>", $text);
+					//	$return .= str_replace("\n", '</p><p>', $block['data']['text']);
+						$return .= $Parsedown->text($block['data']['text']);
 						break;
 						
 				//	Heading
 					case 'heading':
-					//	Markdown to HTML
-						$text = trim(Markdown::defaultTransform($block['data']['text']));
 					//	Return
-						$return .= '<h3>'.strip_tags($text).'</h3>'; // Feels like Sir Trevors stores a <h1> in the db
+						$text = $Parsedown->text($block['data']['text']);
+						$return .= '<h2>'.str_replace(array('<p>', '</p>'),array('', '<br/>'), $text).'</h2>';
 						break;
 						
 				//	List
 					case 'list':
-					//	Markdown to HTML
-						$text = trim(Markdown::defaultTransform($block['data']['text']));
 					//	Return
+						$text = $Parsedown->text($block['data']['text']);
+						$return .= str_replace(array('<p>', '</p>'),array('', ''), $text);
 						break;
 						
 				//	Quote
 					case 'quote':
-					//	Markdown to HTML
-						$text = trim(Markdown::defaultTransform($block['data']['text']));
-						$cite = trim(Markdown::defaultTransform($block['data']['cite']));
 					//	Return
-						$return .= '<blockquote><p>'.$text.'</p><cite>'.$cite.'</cite></blockquote>';
+						$text = $Parsedown->text($block['data']['text']);
+						// $cite = $Parsedown->text($block['data']['cite']);
+						$return .= '<blockquote>'.$text.'<cite>'.$block['data']['cite'].'</cite></blockquote>';
 						break;
 						
 				//	Image-Gc
 					case 'imagegc':
 					//	Return
-						$return .= media($block['data']['url']);
+						$return .= media($block['data']['data[url]']);
 						break;
 						
 				//	Break

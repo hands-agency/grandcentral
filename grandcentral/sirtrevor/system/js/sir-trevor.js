@@ -660,8 +660,9 @@
     }
   
     if (shouldWrap) {
-      html = html.replace(/\r?\n\r?\n/gm, "</div><div><br></div><div>");
-      html = html.replace(/\r?\n/gm, "</div><div>");
+      // html = html.replace(/\r?\n\r?\n/gm, "</div><div><br></div><div>");
+		html = html.replace(/\r?\n\r?\n/gm, "</div><div>");
+      html = html.replace(/\r?\n/gm, "<br/>");
     }
   
     html = html.replace(/\t/g, "&nbsp;&nbsp;&nbsp;&nbsp;")
@@ -685,6 +686,7 @@
     return html;
   };
   SirTrevor.toMarkdown = function(content, type) {
+
     type = _.classify(type);
   
     var markdown = content;
@@ -758,13 +760,20 @@
     }
   
     // Do our generic stripping out
-    markdown = markdown.replace(/([^<>]+)(<div>)/g,"$1\n$2")                                 // Divitis style line breaks (handle the first line)
-                   .replace(/<div><div>/g,'\n<div>')                                         // ^ (double opening divs with one close from Chrome)
-                   .replace(/(?:<div>)([^<>]+)(?:<div>)/g,"$1\n")                            // ^ (handle nested divs that start with content)
-                   .replace(/(?:<div>)(?:<br>)?([^<>]+)(?:<br>)?(?:<\/div>)/g,"$1\n")        // ^ (handle content inside divs)
-                   .replace(/<\/p>/g,"\n\n")                                               // P tags as line breaks
-                   .replace(/<(.)?br(.)?>/g,"\n")                                            // Convert normal line breaks
-                   .replace(/&lt;/g,"<").replace(/&gt;/g,">");                                 // Encoding
+    // markdown = markdown.replace(/([^<>]+)(<div>)/g,"$1\n\n$2")                                 // Divitis style line breaks (handle the first line)
+    //                .replace(/<div><div>/g,'\n\n<div>')                                         // ^ (double opening divs with one close from Chrome)
+    //                .replace(/(?:<div>)([^<>]+)(?:<div>)/g,"$1\n\n")                            // ^ (handle nested divs that start with content)
+    //                .replace(/(?:<div>)(?:<br>)?([^<>]+)(?:<br>)?(?:<\/div>)/g,"$1\n\n")        // ^ (handle content inside divs)
+    //                .replace(/<\/p>/g,"\n\n")                                               // P tags as line breaks
+    //                .replace(/<(.)?br(.)?>/g,"\n")                                            // Convert normal line breaks
+    //                .replace(/&lt;/g,"<").replace(/&gt;/g,">");                                 // Encoding
+
+//	GRAND CENTRAL OVERRIDE
+	markdown = markdown.replace(/([^<>]+)(<div>)/g,"$1\n\n$2")                                 // Divitis style line breaks (handle the first line)
+                .replace(/<div><div>/g,'\n<div>')                                         // ^ (double opening divs with one close from Chrome)
+                .replace(/<\/div>/g,"\n\n")                                               // P tags as line breaks
+                .replace(/<(.)?br(.)?>/g,"\n")                                            // Convert normal line breaks
+                .replace(/&lt;/g,"<").replace(/&gt;/g,">");                                 // Encoding
   
     // Use custom block toMarkdown functions (if any exist)
     var block;
@@ -1899,6 +1908,7 @@
       title: function(){ return i18n.t('blocks:quote:title'); },
   
       icon_name: 'quote',
+	feathericon_name: '076',
   
       editorHTML: function() {
         return template(this);
@@ -1910,7 +1920,8 @@
       },
   
       toMarkdown: function(markdown) {
-        return markdown.replace(/^(.+)$/mg,"> $1");
+	//	return markdown.replace(/^(.+)$/mg,"> $1");
+		return markdown.replace(/^(.+)$/mg,"$1");
       }
   
     });
@@ -1928,6 +1939,7 @@
     editorHTML: '<div class="st-required st-text-block st-text-block--heading" contenteditable="true"></div>',
   
     icon_name: 'heading',
+	feathericon_name: '025',
   
     loadData: function(data){
       this.getTextBlock().html(SirTrevor.toHTML(data.text, this.type));
@@ -1946,6 +1958,7 @@
     uploadable: true,
   
     icon_name: 'image',
+	feathericon_name: '010',
   
     loadData: function(data){
       // Create our image tag
@@ -1997,6 +2010,7 @@
     editorHTML: '<div class="st-required st-text-block" contenteditable="true"></div>',
   
     icon_name: 'text',
+	feathericon_name: '027',
   
     loadData: function(data){
       this.getTextBlock().html(SirTrevor.toHTML(data.text, this.type));
@@ -2031,6 +2045,7 @@
       },
   
       icon_name: 'twitter',
+	feathericon_name: '011',
   
       loadData: function(data) {
         if (_.isUndefined(data.status_url)) { data.status_url = ''; }
@@ -2122,6 +2137,7 @@
       title: function() { return i18n.t('blocks:list:title'); },
   
       icon_name: 'list',
+	feathericon_name: '129',
   
       editorHTML: function() {
         return _.template(template, this);
@@ -2192,6 +2208,7 @@
       pastable: true,
   
       icon_name: 'video',
+	feathericon_name: '018',
   
       loadData: function(data){
         if (!this.providers.hasOwnProperty(data.source)) { return; }
@@ -2271,10 +2288,10 @@
       onClick: function() {
 	
 	// GRAND CENTRAL OVERRRIDE
-  	openContext({
-		app:'field',
-		template:'sirtrevor.link',
-	});
+  		openContext({
+			app:'sirtrevor',
+			template:'sirtrevor.link',
+		});
   /*
         var link = prompt(i18n.t("general:link")),
             link_regex = /((ftp|http|https):\/\/.)|mailto(?=\:[-\.\w]+@)/;
@@ -2344,7 +2361,10 @@
       },
   
       render: function() {
-        this.$el.html('<span class="st-icon">'+ _.result(this.block_type, 'icon_name') +'</span>' + _.result(this.block_type, 'title'));
+	//	GRAND CENTRAL OVERRIDE
+    //    this.$el.html('<span class="st-icon">'+ _.result(this.block_type, 'icon_name') +'</span>' + _.result(this.block_type, 'title'));
+
+        this.$el.html('<span data-feathericon="&#xe'+ _.result(this.block_type, 'feathericon_name') +'"></span>' + _.result(this.block_type, 'title'));
         return this;
       }
     });

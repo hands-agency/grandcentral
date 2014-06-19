@@ -921,8 +921,10 @@ $.fn.dragscrollable = function( options ){
 		},options || {});
 	 
 	
-	var dragscroll= {
-		mouseDownHandler : function(event) {
+	var dragscroll =
+	{
+		mouseDownHandler : function(event)
+		{
 			// mousedown, left click, check propagation
 			if (event.which!=1 ||
 				(!event.data.acceptPropagatedEvent && event.target != this)){ 
@@ -941,7 +943,9 @@ $.fn.dragscrollable = function( options ){
                 return false;
             }
 		},
-		mouseMoveHandler : function(event) { // User is dragging
+	 // User is dragging
+		mouseMoveHandler : function(event)
+		{
 		//	Grabbing
 			$('ol.tree').addClass('grabbing');
 			// How much did the mouse move?
@@ -962,7 +966,9 @@ $.fn.dragscrollable = function( options ){
             }
 
 		},
-		mouseUpHandler : function(event) { // Stop scrolling
+	 // Stop scrolling
+		mouseUpHandler : function(event)
+		{
 		//	Grabbing
 			$('ol.tree').removeClass('grabbing');
 			$.event.remove( document, "mousemove", dragscroll.mouseMoveHandler);
@@ -975,7 +981,8 @@ $.fn.dragscrollable = function( options ){
 	}
 	
 	// set up the initial events
-	this.each(function() {
+	this.each(function()
+	{
 		// closure object data for each scrollable element
 		var data = {scrollable : $(this),
 					acceptPropagatedEvent : settings.acceptPropagatedEvent,

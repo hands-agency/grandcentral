@@ -11,10 +11,11 @@ SirTrevor.Blocks.Imagegc = SirTrevor.Block.extend({
 	title: function() {return i18n.t('blocks:image:title');},
 	
 	icon_name: 'image',
+	feathericon_name: '010',
 		
 	editorHTML: function()
 	{
-		return '<pre class="template"><li><button class="delete"></button><a><span class="preview"><img src="" /></span><span class="title"></span></a><input type="hidden" name="url" disabled="disabled" /><input type="hidden" name="title" disabled="disabled" /></li></pre><ol class="data"><li class="upload" data-feathericon="&#xe010"></li>';
+		return '<pre class="template"><li><button class="delete"></button><a><span class="preview"><img src="" /></span><span class="title"></span></a><input type="hidden" name="data[url]" disabled="disabled" /><input type="hidden" name="data[title]" disabled="disabled" /></li></pre><ol class="data"><li class="upload" data-feathericon="&#xe010"></li>';
     },
 
 	loadData: function(data)
@@ -37,8 +38,7 @@ SirTrevor.Blocks.Imagegc = SirTrevor.Block.extend({
 			$(code).find('*:disabled').prop('disabled', false);
 		//	Add data
 			media = data;
-			thumbnail = SITE_URL+'/cache/media/thumbnail_w'+thumbnailWidth+'_h'+media.url;
-			// console.log(thumbnail)
+			thumbnail = SITE_URL+'/www/'+SITE_KEY+'/cache/media/thumbnail_w'+thumbnailWidth+'_h'+media.url;
 			$(code).find('.preview img').attr('src', thumbnail);
 			$(code).find('input').val(media.url);
 			$(code).find('.title').html(media.title);

@@ -21,11 +21,11 @@
 /********************************************************************************************/
 //	Some binds
 /********************************************************************************************/	
-	$_APP->bind_file('css', 'tree/css/tree.css');
-//	$_APP->bind_file('script', 'tree/js/nestedSortable/jquery.mjs.nestedSortable.js');
-//	$_APP->bind_file('script', 'tree/js/nestedSortable/jquery.ui.touch-punch.js');
-//	$_APP->bind_file('script', 'tree/js/jquery-sortable.js');
-	$_APP->bind_file('script', 'tree/js/tree.js');
+	$_APP->bind_css('tree/css/tree.css');
+//	$_APP->bind_script('tree/js/nestedSortable/jquery.mjs.nestedSortable.js');
+//	$_APP->bind_script('tree/js/nestedSortable/jquery.ui.touch-punch.js');
+//	$_APP->bind_script('tree/js/jquery-sortable.js');
+	$_APP->bind_script('tree/js/tree.js');
 
 /********************************************************************************************/
 //	Make the tree

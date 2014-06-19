@@ -18,7 +18,7 @@ class attrItem extends _attrs
  */
 	public function unfold()
 	{
-		return i($this->data);
+		return i($this->data, null, $this->params['env']);
 	}
 /**
  * Set attribute
@@ -31,6 +31,18 @@ class attrItem extends _attrs
 	{
 		$this->data = (string) $data;
 		return $this;
+	}
+/**
+ * Get complete item url
+ *
+ * @return	string	url
+ * @access	public
+ */
+	public function attach(_items $item)
+	{
+		$this->params['env'] = $item->get_env();
+		$this->params['table'] = $item->get_table();
+		$this->params['id'] = $item['id']->get();
 	}
 /**
  * Definition mysqld

@@ -21,12 +21,12 @@
 /********************************************************************************************/
 //	Some binds
 /********************************************************************************************/
-	$_APP->bind_file('css', 'master/css/header.css');
-	$_APP->bind_file('script', 'master/js/header.js');
-	$_APP->bind_file('css', 'master/css/tabs.css');
-	$_APP->bind_file('script', 'master/js/tabs.js');
-	$_APP->bind_file('css', 'master/css/options.css');
-	$_APP->bind_file('script', 'master/js/options.js');
+	$_APP->bind_css('master/css/header.css');
+	$_APP->bind_script('master/js/header.js');
+	$_APP->bind_css('master/css/tabs.css');
+	$_APP->bind_script('master/js/tabs.js');
+	$_APP->bind_css('master/css/options.css');
+	$_APP->bind_script('master/js/options.js');
 	
 /********************************************************************************************/
 //	Some vars

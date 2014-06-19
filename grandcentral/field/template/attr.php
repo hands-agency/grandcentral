@@ -21,10 +21,10 @@
 /********************************************************************************************/
 //	Some binds
 /********************************************************************************************/
-	$_APP->bind_file('css', 'css/addable.css');
-	$_APP->bind_file('css', 'css/attr.css');
-	$_APP->bind_file('script', 'js/addable.js');
-	$_APP->bind_file('script', 'js/attr.js');
+	$_APP->bind_css('css/addable.css');
+	$_APP->bind_css('css/attr.css');
+	$_APP->bind_script('js/addable.js');
+	$_APP->bind_script('js/attr.js');
 	$_APP->bind_code('script', '$(\'li[data-type="attr"]\').addable();');
 	
 /********************************************************************************************/

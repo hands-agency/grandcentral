@@ -26,9 +26,9 @@
 /********************************************************************************************/
 //	Some binds
 /********************************************************************************************/
-	$_APP->bind_file('css', 'css/multipleselect.css');
-	$_APP->bind_file('script', 'js/multipleselect.plugin.js');
-	$_APP->bind_file('script', 'js/multipleselect.js');
+	$_APP->bind_css('css/multipleselect.css');
+	$_APP->bind_script('js/multipleselect.plugin.js');
+	$_APP->bind_script('js/multipleselect.js');
 	
 /********************************************************************************************/
 //	The rel

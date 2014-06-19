@@ -22,10 +22,10 @@
 //	General binding of scripts & css files
 /********************************************************************************************/
 //	jQuery
-//	$_APP->bind_file('script', 'https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js');
-//	$_APP->bind_file('script', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js');
-	$_APP->bind_file('script', 'master/js/jquery-1.10.2.min.js');
-	$_APP->bind_file('script', 'master/js/jquery-ui-1.9.1.custom.min.js');
+//	$_APP->bind_script('https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js');
+//	$_APP->bind_script('https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js');
+	$_APP->bind_script('master/js/jquery-1.10.2.min.js');
+	$_APP->bind_script('master/js/jquery-ui-1.9.1.custom.min.js');
 	
 //	Constants
 	$_APP->bind_code('script', "
@@ -38,15 +38,15 @@
 //	Local binding scripts & css files
 /********************************************************************************************/
 //	Script
-	$_APP->bind_file('script', 'master/js/master.js');
+	$_APP->bind_script('master/js/master.js');
 
 /********************************************************************************************/
 //	Local binding scripts & css files
 /********************************************************************************************/
 //	Script
-	$_APP->bind_file('script', 'master/js/login.js');
+	$_APP->bind_script('master/js/login.js');
 //	css
-	$_APP->bind_file('css', 'master/css/login.css');
+	$_APP->bind_css('master/css/login.css');
 
 /********************************************************************************************/
 //	Meta

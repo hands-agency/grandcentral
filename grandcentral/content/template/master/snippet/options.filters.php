@@ -21,8 +21,8 @@
 /********************************************************************************************/
 //	Some binds
 /********************************************************************************************/
-//	$_APP->bind_file('script', 'master/js/options.filters.js');
-//	$_APP->bind_file('css', 'master/css/options.filters.css');
+//	$_APP->bind_script('master/js/options.filters.js');
+//	$_APP->bind_css('master/css/options.filters.css');
 	
 /********************************************************************************************/
 //	Some vars

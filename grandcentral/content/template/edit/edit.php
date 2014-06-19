@@ -47,9 +47,7 @@
 	//	Create a new temporary item
 		$tmp = i($item['item']->get(), null, $handled_env);
 	//	Fetch the data from the workflow
-		$data = $item['data']->get();
-		if ($data) foreach (json_decode($data[0]) as $key => $value) $tmp[$key] = $value;
-		$item = $tmp;
+		$item = $item['data']->get();
 	}
 
 /********************************************************************************************/
