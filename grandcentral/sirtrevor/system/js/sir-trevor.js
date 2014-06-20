@@ -2614,6 +2614,7 @@
         // Do we have a click function defined on this formatter?
         if(!_.isUndefined(format.onClick) && _.isFunction(format.onClick)) {
           format.onClick(); // Delegate
+
         } else {
           // Call default
           document.execCommand(btn.attr('data-cmd'), false, format.param);

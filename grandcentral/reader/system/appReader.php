@@ -21,7 +21,7 @@ class appReader extends _apps
 	//	Some vars
 		$page = i('page', current);
 		$url = ('home' == $page['key']->get()) ? URLR : mb_substr(URLR, mb_strlen($page['url']->get()));
-		
+
 	//	Detail of an item
 		if (!empty($url))
 		{

@@ -4,39 +4,51 @@
 **#******************************************************************************************/
 jQuery(document).ready(function($)
 {
-//	Plugin
-	$.fn.lock = function(options)
+//	Here we go!
+	$.lock = function(element, options)
 	{
-	//	Some vars
-		$button = $(this);
-		$drop = $('#options_drop');
+	//	Use "plugin" to reference the current instance of the object
+		var plugin = this;
+	//	this will hold the merged default, and user-provided options
+		plugin.settings = {}
+		var $element = $(element), // reference to the jQuery version of DOM element
+		element = element;	// reference to the actual DOM element
+		
+	//	Plugin's variables
+		var vars = {
+		}
 
-	//	Toggle lock and unlock
-		$(document).on('click', '.lock', function()
+	//	The "constructor"
+		plugin.init = function()
 		{
-		//	Unlock
-			if ($('#adminContent').hasClass('locked')) unlock();
-		//	Or Lock
-			else lock();
-		});
+		//	Some vars
+			$drop = $('#options_drop');
 
+		//	Toggle lock and unlock
+			$element.on('click', function()
+			{
+				if ($('#adminContent').hasClass('locked')) plugin.unlock();
+				else plugin.lock();
+			});
+		}
+		
 	//	Lock the page to prevent further editing
-		function lock()
+		plugin.lock = function()
 		{
 		//	IOI unlocked
 			if ($('#adminContent').hasClass('unlocked'))
 			{
 			//	Say it with a class
 				$('#adminContent').toggleClass('unlocked locked');
-				$button.toggleClass('icon-unlock icon-lock').toggleClass('on off');
-			
+				$element.toggleClass('icon-unlock icon-lock').toggleClass('on off');
+		
 			//	Trigger lock events
 				$(document).trigger('lock');
 			}
 		}
 
 	//	Unlock the page to allow editing
-		function unlock()
+		plugin.unlock = function()
 		{
 		//	IOI is locked
 			if ($('#adminContent').hasClass('locked'))
@@ -56,12 +68,28 @@ jQuery(document).ready(function($)
 						$('#adminContent').toggleClass('unlocked locked');
 					}
 				});
-				
+			
 			//	And then trigger the unlock events
 				$(document).trigger('unlock');
 			}
 		}
-	};
+
+	//	Fire up the plugin!
+		plugin.init();
+	}
+
+//	Add the plugin to the jQuery.fn object
+	$.fn.lock = function(options)
+	{
+		return this.each(function()
+		{
+			if (undefined == $(this).data('lock'))
+			{
+				var plugin = new $.lock(this, options);
+				$(this).data('lock', plugin);
+			}
+		});
+	}
 
 //	Go	
 	$('.lock').lock();
