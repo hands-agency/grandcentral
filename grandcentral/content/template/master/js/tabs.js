@@ -83,12 +83,12 @@ $(document).ready(function ()
 	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
 	var $main = $('#main');
-	var $header = $('header');
-	var stickyNavTop = $header.offset().top;
+	var $admin = $('#grandCentralAdmin');
   
 	var stickyNav = function()
 	{  
 		var scrollTop = $(document).scrollTop();
+		var stickyNavTop = $admin.offset().top;
 
 	//	parallax
 		$('#grandCentralSite iframe').css('top', scrollTop/2);

@@ -27,6 +27,8 @@
 
 		<div id="grandCentralAdmin">
 			
+			<nav id="siteNav"><!-- ZONE:sitenav --></nav>
+			
 			<nav id="adminNav"><!-- ZONE:nav --></nav>
 
 			<div id="adminContent" class="locked">

@@ -422,7 +422,7 @@ ol .placeholder
 }
 .siteOpened #grandCentralSite
 {
-	height:730px;
+	height:100%;
 }
 #grandCentralSite .overlay
 {
@@ -511,6 +511,23 @@ ol .placeholder
 	-moz-filter: blur(0);
 	-o-filter: blur(0);
 	-ms-filter: blur(0);
+}
+
+/* The site nav */
+#siteNav
+{
+	height:55px;
+	background:#fff;
+	padding:10px 20px;
+	position:absolute;
+	top:-55px;
+	width:100%;
+	z-index:2;
+	display:none;
+}
+.siteOpened #siteNav
+{
+	display:block;
 }
 
 /* Our 3 main lanes */
