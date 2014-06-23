@@ -59,7 +59,7 @@ class attrSirtrevor extends _attrs implements ArrayAccess
 	public function __toString()
 	{
 	//	Some vars
-		$return = null;
+		$return = '';
 		
 		if ($this->get())
 		{

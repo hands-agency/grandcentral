@@ -4,7 +4,6 @@
 #siteNav
 {
 	background:#111;
-
     z-index: 2;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
@@ -35,6 +34,10 @@
 #siteNav ul li.center p
 {
 	cursor:s-resize;
+}
+#siteNav ul li.center p:hover
+{
+	color:#ccc;
 }
 #siteNav ul li.right
 {
