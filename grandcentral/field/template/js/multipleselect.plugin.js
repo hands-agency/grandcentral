@@ -30,12 +30,12 @@
 			var received;
 			
 		//	Ajax parameters
-			param = $.extend(options,
+			options.param =
 			{
 				name:$available.data('name'),
 				values:$available.data('values'),
 				valuestype:$available.data('valuestype'),
-			});
+			};
 			
 		//	Make the selected sortable
 			$element.find('.selected ol').sortable(
@@ -86,7 +86,7 @@
 			});
 						
 		//	Load the available choices
-			$element.find('.available ul.choices').ajx(param,
+			$element.find('.available ul.choices').ajx(options,
 			{
 			//	Callback
 				done:function()
@@ -107,7 +107,13 @@
 			});
 			
 		//	Refine on the available choices
-			$element.find('.refine input[type="search"]').searchasyoutype(param, $element.find('ul.choices'),
+			$element.find('.refine input[type="search"]').searchasyoutype(
+			{	
+				app:'field',
+				template:'/multipleselect.available',
+				param:options.param,
+				target:$element.find('ul.choices'),
+			},
 			{
 			//	Callback
 				done:function()

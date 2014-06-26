@@ -32,7 +32,7 @@
 //	Some vars
 	$app = $_POST['app'];
 	$key = $_POST['template'];
-	$_POST['param'] = $param = isset($_POST['param']) ? json_decode($_POST['param'], true) : null;
+	$_POST['param'] = $param = (isset($_POST['param']) && is_string($_POST['param'])) ? json_decode($_POST['param'], true) : $_POST['param'];
 	
 //	Reroute original $_GET passed as $_POST['_GET'] the $_GET
 	if (isset($_POST['_GET']))

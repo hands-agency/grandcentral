@@ -22,7 +22,9 @@
 //	Some vars
 /********************************************************************************************/
 //	The field name & idz
-	$name = $_POST['name'];
+	$name = $_POST['param']['name'];
+	$values = $_POST['param']['values'];
+	$valuestype = $_POST['param']['valuestype'];
 //	Refine values?
 	$refine = (isset($_POST['q'])) ? $_POST['q'] : null;
 	
@@ -31,8 +33,8 @@
 /********************************************************************************************/
 //	Create a blank field (tweak)
 	$param = array(
-		'values' => $_POST['values'],
-		'valuestype' => $_POST['valuestype'],
+		'values' => $values,
+		'valuestype' => $valuestype,
 	);
 	$multipleselect = new fieldMultipleselect(null, $param);
 	
