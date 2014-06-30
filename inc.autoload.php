@@ -115,6 +115,7 @@ class boot
 		if (!isset($admin) || !isset($site)) self::error('no-param');
 	//	root
 		$this->relative_root = (isset($directory)) ? $directory : null;
+		$this->domain .= (isset($directory)) ? $directory : null;
 		$this->root = (isset($root)) ? $root : $_SERVER['DOCUMENT_ROOT'].$this->relative_root;
 	//	recherche du site actif
 		foreach ($site as $param)

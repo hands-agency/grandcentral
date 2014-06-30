@@ -113,7 +113,7 @@ class attrUrl extends _attrs
 		// version url
 		if (is_null($this->params['version']))
 		{
-			$url = cc($this->params['env'], current)['version']->get_url();
+			$url = i($this->params['env'], current)['version']->get_url();
 		}
 		else
 		{
@@ -123,9 +123,9 @@ class attrUrl extends _attrs
 		// reader
 		if ($this->params['table'] != 'page')
 		{
-			foreach (registry::get(registry::reader_index) as $page => $tables)
+			foreach (registry::get(registry::reader_index) as $page => $table)
 			{
-				if (in_array($this->params['table'], $tables))
+				if ($this->params['table'] == $table)
 				{
 					$url .= registry::get(registry::url_index, $page);
 					break;

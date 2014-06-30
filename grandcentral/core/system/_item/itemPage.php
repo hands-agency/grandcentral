@@ -18,8 +18,9 @@ class itemPage extends _items
  */
 	public function is_reader()
 	{
-		return (is_array(registry::get(registry::reader_index, $this->get_nickname()))) ? true : false;
+		return (registry::get(registry::reader_index, $this->get_nickname())) ? true : false;
 	}
+	
 /**
  * Get the read object of this reader
  *
@@ -30,7 +31,7 @@ class itemPage extends _items
 		if ($this->is_reader())
 		{
 			$readItem = registry::get(registry::reader_index, $this->get_nickname());
-			return $readItem[0];
+			return $readItem;
 		}
 		else return false;
 	}
@@ -73,7 +74,7 @@ class itemPage extends _items
 			$hash = mb_substr(URLR, 0, mb_strrpos(URLR, '/'));
 			// chargement de la page de home
 			$this->get_by_url($hash);
-
+			
 			if (!$this->exists() OR ($this->exists() && !$this->is_reader()))
 			{
 				$this->get_by_url('/404');
@@ -100,7 +101,6 @@ class itemPage extends _items
 		{
 		//	...hook'em up
 			$parent = $this['parent']->unfold();
-			// sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $parent);
 			$parent['child']->add($this);
 			$parent->save();
 		//	Clean the instruction

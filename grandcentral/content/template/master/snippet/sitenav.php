@@ -19,25 +19,7 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	Some vars
+//	Some binds
 /********************************************************************************************/
-//	The field name & idz
-	$name = $_POST['param']['name'];
-	$values = $_POST['param']['values'];
-	$valuestype = $_POST['param']['valuestype'];
-//	Refine values?
-	$refine = (isset($_POST['q'])) ? $_POST['q'] : null;
-	
-/********************************************************************************************/
-//	Get and process from ajax
-/********************************************************************************************/
-//	Create a blank field (tweak)
-	$param = array(
-		'values' => $values,
-		'valuestype' => $valuestype,
-	);
-	$multipleselect = new fieldMultipleselect(null, $param);
-	
-//	Get the available values
-	$available = $multipleselect->prepare_values($refine);
+	$_APP->bind_css('master/css/sitenav.css');
 ?>

@@ -213,7 +213,8 @@
 	//	New page
 		plugin.newpage = function()
 		{
-			document.location.href = ADMIN_URL+'/edit?item=page';
+			$('.lock').data('lock').unlock();
+			$('#greenbutton-default').removeClass('on');
 		}
 
 	//	Fire up the plugin!

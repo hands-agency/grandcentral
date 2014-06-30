@@ -168,6 +168,12 @@
 		    if (document.readyState === 'complete') 
 			{
 				$('#grandCentralSite').append('<iframe src="'+CURRENTEDITED_URL+'"></iframe>');
+				
+				$('#grandCentralSite iframe').load(function()
+				{
+					currentTitle = $(this).contents().find('meta[property="gc:title"]').html();
+					if (currentTitle) $('#siteNav .edit').html('Edit '+currentTitle+'');
+				});
 			}
 		}
 	})( jQuery );
@@ -272,8 +278,44 @@
 //	Site
 	openSite = function(url)
 	{
+	//	Some vars
+		$siteNav = $('#siteNav');
+		$iframe = $('#grandCentralSite iframe');
+		
+		$sitetree = $siteNav.find('.sitetree');
+		$edit = $siteNav.find('.edit');
+		$admin = $siteNav.find('.admin');
+		
+	//	Open at the right page
 		$('#main').addClass('siteOpened');
-		if (url) $('#grandCentralSite').find('iframe').attr('src', url);
+		if (url) $iframe.attr('src', url);
+		
+	//	sitetree
+		$sitetree.on('click', function()
+		{
+		//	Go to edit page
+			document.location.href = ADMIN_URL+'/list?item=page';
+		});
+		
+	//	Edit
+		$edit.on('click', function()
+		{			
+			nickname = $iframe.contents().find('meta[property="gc:item"]').attr('content');
+			item = nickname.split('_')[0];
+			id = nickname.split('_')[1];
+		//	Go to edit page
+			document.location.href = ADMIN_URL+'/edit?item='+item+'&id='+id;
+		});
+		
+	//	Back to admin
+		$admin.on('click', function()
+		{
+			$('html, body').animate({
+       			 scrollTop: 150
+			    }, 300);
+		});
+		
+	//	Update edit button
 	//	window.history.pushState('string', 'chose', '/');
 	}
 	

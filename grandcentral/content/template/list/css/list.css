@@ -1,9 +1,14 @@
 /********************************************************************************************/
 /* Common
 /********************************************************************************************/
-section[data-template="/list/list"]>div>.nodata
+/* Nodata */
+section[data-template="/list/list"]
 {
-	padding:100px 0;
+	min-height:100px;
+}
+section[data-template="/list/list"]:empty
+{
+	line-height:100px;
 	font-size:50px;
 }
 
