@@ -30,6 +30,19 @@ class attrUrl extends _attrs
 		// 			$slug = new slug();
 		// 			$this->data .= '['.$slug->makeSlugs($this->params['status']).']';
 		// 		}
+		
+	//	Check for existing URL
+		$db = database::connect($this->params['env']);
+	 	$q = 'SELECT COUNT(`id`) as `count` FROM `'.$this->params['table'].'` WHERE `url` = "'.$this->data.'" AND id != "'.$this->params['id'].'"';
+		$r = $db->query($q);
+		if ($r['data'][0]['count'] > 0)
+		{
+			$letters = 'abcefghijklmnopqrstuvwxyz1234567890';
+ 			$rand = substr(str_shuffle($letters), 0, 6);
+			$this->data .= '-'.$rand;
+		}
+		
+	//	Return
 		return $this->data;
 	}
 /**
@@ -69,11 +82,12 @@ class attrUrl extends _attrs
 		$this->params['version'] = (isset($item['version']) && !$item['version']->is_empty()) ? $item['version'] : null;
 		$this->params['status'] = $item['status'];
 		$this->params['nickname'] = $item->get_nickname();
+		$this->params['id'] = $item['id']->get();
 		// hack i18n pour les champs titre
 		switch (true)
 		{
 			case !isset($item['title']) || $item['title']->is_empty():
-				$this->params['name'] = '';
+				$this->params['name'] = $item['key']->get();
 				break;
 			case is_array($item['title']->get()):
 				$tmp = array_values($item['title']->get());
