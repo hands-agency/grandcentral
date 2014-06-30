@@ -14,8 +14,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-require_once "Google/Exception.php";
 
-class Google_Cache_Exception extends Google_Exception
+class Google_Exception extends Exception
 {
+    function __construct($str){
+        //var_dump($str);
+    }
 }

@@ -21,7 +21,7 @@
  * @author Stuart Langley <slangley@google.com>
  */
 
-require_once 'Google/IO/Abstract.php';
+//require_once 'Google/IO/Abstract.php';
 
 class Google_IO_Stream extends Google_IO_Abstract
 {

@@ -1,6 +1,7 @@
 <?php
 
-require_once "Google/Model.php";
+//require_once "Google/Model.php";
+require_once "grandcentral/google.api/system/Google/Google_Model.php";
 
 /**
  * Extension to the regular Google_Model that automatically

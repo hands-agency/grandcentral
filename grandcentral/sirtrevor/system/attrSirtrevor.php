@@ -42,11 +42,31 @@ class attrSirtrevor extends _attrs implements ArrayAccess
  * @return	string	la définition mysql
  * @access	public
  */
-	public function read_links()
+	public function read_links($txt)
 	{
-	
+		$from = array();
+		$to = array();
+		$pattern = '/<a href=\"([^\"]*)\">.*<\/a>/iU';
+		preg_match_all($pattern, $txt, $matches, PREG_SET_ORDER);
+		foreach ($matches as $match)
+		{
+			if(!filter_var($match[1], FILTER_VALIDATE_URL))
+			{
+				$key = $match[1];
+				// $tmp[$key] = $match[1];
+				$from[] = $match[1];
+				$to[] = i(str_replace(array('[', ']', '\\'), '', $match[1]))['url']->__tostring();
+			}
+			else
+			{
+				$from[] = $match[1];
+				$to[] = str_replace('\-', '-', $match[1]);
+			}
+		}
+		// print'<pre>';print_r($tmp);print'</pre>';
 	//	retour
-		return $text;
+		return str_replace($from, $to, $txt);
+		// return '';
 	}
 	
 /**
@@ -86,14 +106,15 @@ class attrSirtrevor extends _attrs implements ArrayAccess
 					case 'text':
 					//	Return
 					//	$return .= str_replace("\n", '</p><p>', $block['data']['text']);
-						$return .= $Parsedown->text($block['data']['text']);
+					// print'<pre>';print_r($block['data']['text']);print'</pre>';
+						$return .= $this->read_links($Parsedown->text($block['data']['text']));
 						break;
 						
 				//	Heading
 					case 'heading':
 					//	Return
 						$text = $Parsedown->text($block['data']['text']);
-						$return .= '<h2>'.str_replace(array('<p>', '</p>'),array('', '<br/>'), $text).'</h2>';
+						$return .= '<h3>'.str_replace(array('<p>', '</p>'),array('', '<br/>'), $text).'</h3>';
 						break;
 						
 				//	List
@@ -120,6 +141,17 @@ class attrSirtrevor extends _attrs implements ArrayAccess
 				//	Break
 					case 'break':
 						$return .= '<hr />';
+						break;
+				//	Video
+					case 'video':
+						$class = 'attr'.ucfirst($block['data']['source']);
+						$video = new $class($block['data']['remote_id']);
+						$video->set_format('video');
+						$p = array(
+							'width' => '100%',
+							'height' => 320
+						);
+						$return .= $video->get_iframe($p);
 						break;
 				}
 			}

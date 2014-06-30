@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
-class Google_Exception extends Exception
+//require_once "Google/Exception.php";
+
+class Google_Auth_Exception extends Google_Exception
 {
 }

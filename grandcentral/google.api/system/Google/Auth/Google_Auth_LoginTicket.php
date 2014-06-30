@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-require_once "Google/Auth/Exception.php";
+//require_once "Google/Auth/Exception.php";
 
 /**
  * Class to hold information about an authenticated login.

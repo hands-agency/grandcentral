@@ -12,6 +12,7 @@
 class file
 {
 	protected $key;
+	protected $name;
 	protected $dir;
 	protected $url;
 	protected $root;
@@ -44,6 +45,7 @@ class file
 	protected function _set_var()
 	{
 		$this->key = mb_substr($this->root, mb_strrpos($this->root, '/') + 1);
+		$this->name = mb_substr($this->key, 0, mb_strrpos($this->key, '.'));
 		$this->dir = dirname($this->root);
 		$this->url = DOMAIN_URL.mb_substr($this->root, mb_strlen(DOCUMENT_ROOT));
 	}
@@ -198,6 +200,17 @@ class file
 	public function get_key()
 	{
 		return $this->key;
+	}
+	
+/**
+ * Obtenir le nom du fichier
+ *
+ * @return	string	le nom du fichier
+ * @access	private
+ */
+	public function get_name()
+	{
+		return $this->name;
 	}
 	
 /**

@@ -416,61 +416,41 @@ abstract class _apps
  */
 	public static function register()
 	{
-		$cache = new app('cache');
-		$fileCache = $cache->get_templateroot().'/registry/'.md5('app');
-		//	dans le cache
-		if (is_file($fileCache) && filemtime(ADMIN_ROOT) < filemtime($fileCache) && !SITE_DEBUG)
+		$root = new dir(ADMIN_ROOT);
+		$root->get();
+		$classes = array();
+	
+		foreach ($root as $dir)
 		{
-			// print'<pre>';print_r('dans le cache des apps');print'</pre>';
-			$datas = unserialize(file_get_contents($fileCache));
-		}
-		//	création du cache
-		else
-		{
-			//print'<pre>';print_r('génération du cache des apps');print'</pre>';
-			$root = new dir(ADMIN_ROOT);
-		
-			$root->get();
-			$classes = array();
-		
-			foreach ($root as $dir)
+			$key = $dir->get_key();
+			$app = new app($key);
+			$files = $app->get_ini('system');
+		//	on charge automatiquement les librairies
+			if (isset($files['lib']))
 			{
-				$key = $dir->get_key();
-				$app = new app($key);
-				$files = $app->get_ini('system');
-			//	on charge automatiquement les librairies
-				if (isset($files['lib']))
+				foreach ($files['lib'] as $file)
 				{
-					foreach ($files['lib'] as $file)
-					{
-						$libs[] = $app->get_systemroot().$file;
-					}
+					$libs[] = $app->get_systemroot().$file;
 				}
-			//	préparation du tableau pour la mise en registre des classes pour l'autoloader
-				if (isset($files['class']))
-				{
-					foreach ($files['class'] as $file)
-					{
-						preg_match('/([a-z0-9A-Z_-]*).php$/u', $file, $class);
-						if (isset($class[1])) $classes[$class[1]] = $app->get_key();
-					}
-				}
-			//	préparation du tableau pour la mise en registre des apps
-				$apps[$key] = $app;
 			}
-			
-			$datas[registry::app_index] = $apps;
-			$datas[registry::class_index] = $classes;
-			$datas['libraries'] = $libs;
-			//	mise en cache
-			file_put_contents($fileCache, serialize($datas));
+		//	préparation du tableau pour la mise en registre des classes pour l'autoloader
+			if (isset($files['class']))
+			{
+				foreach ($files['class'] as $file)
+				{
+					preg_match('/([a-z0-9A-Z_-]*).php$/u', $file, $class);
+					if (isset($class[1])) $classes[$class[1]] = $app->get_key();
+				}
+			}
+		//	préparation du tableau pour la mise en registre des apps
+			$apps[$key] = $app;
 		}
 	//	mise en registre des apps
-		registry::set(registry::app_index, $datas[registry::app_index]);
+		registry::set(registry::app_index, $apps);
 	//	mise en registre du nom des classes pour l'autload
-		registry::set(registry::class_index, $datas[registry::class_index]);
+		registry::set(registry::class_index, $classes);
 	//	chargement des librairies
-		foreach ($datas['libraries'] as $file)
+		foreach ($libs as $file)
 		{
 			require_once($file);
 		}

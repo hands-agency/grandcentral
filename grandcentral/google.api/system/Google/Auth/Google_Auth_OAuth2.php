@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+/*
 require_once "Google/Auth/Abstract.php";
 require_once "Google/Auth/AssertionCredentials.php";
 require_once "Google/Auth/Exception.php";
@@ -23,7 +23,7 @@ require_once "Google/Client.php";
 require_once "Google/Http/Request.php";
 require_once "Google/Utils.php";
 require_once "Google/Verifier/Pem.php";
-
+*/
 /**
  * Authentication class that deals with the OAuth 2 web-server authentication flow
  *
@@ -111,7 +111,7 @@ class Google_Auth_OAuth2 extends Google_Auth_Abstract
     );
     $request->disableGzip();
     $response = $this->client->getIo()->makeRequest($request);
-
+    //var_dump($response);
     if ($response->getResponseHttpCode() == 200) {
       $this->setAccessToken($response->getResponseBody());
       $this->token['created'] = time();
@@ -307,7 +307,7 @@ class Google_Auth_OAuth2 extends Google_Auth_Abstract
     );
     $http->disableGzip();
     $request = $this->client->getIo()->makeRequest($http);
-
+    
     $code = $request->getResponseHttpCode();
     $body = $request->getResponseBody();
     if (200 == $code) {

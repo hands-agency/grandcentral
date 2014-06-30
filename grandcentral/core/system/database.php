@@ -292,7 +292,8 @@ class database
 		//	suppression des params inconnus
 			elseif (!isset($attrs[$key]))
 			{
-				unset($params[$key]);
+				
+                unset($params[$key]);
 			}
 			elseif (is_null($value)) {
 				unset($params[$key]);

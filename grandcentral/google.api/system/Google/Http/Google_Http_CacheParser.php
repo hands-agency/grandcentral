@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-require_once 'Google/Http/Request.php';
+//require_once 'Google/Http/Request.php';
 
 /**
  * Implement the caching directives specified in rfc2616. This

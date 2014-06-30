@@ -230,6 +230,18 @@ abstract class _items implements ArrayAccess, Iterator
 		
 	//	Here, we need to delete all the workflow items having this item as their original
 		/* todo */
+		if (method_exists(get_class($this), 'register'))
+		{
+			foreach (array('site', 'admin') as $env)
+			{
+				$cache = app('cache', null, null, $env);
+				$dir = new dir($cache->get_templateroot().'/registry');
+				foreach ($dir->get() as $file)
+				{
+					$file->delete();
+				}
+			}
+		}
 	}
 /**
  * Build queries to update an item

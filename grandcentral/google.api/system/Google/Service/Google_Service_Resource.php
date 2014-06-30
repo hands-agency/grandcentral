@@ -14,14 +14,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+ /*
 require_once 'Google/Client.php';
 require_once 'Google/Exception.php';
 require_once 'Google/Utils.php';
 require_once 'Google/Http/Request.php';
 require_once 'Google/Http/MediaFileUpload.php';
 require_once 'Google/Http/REST.php';
-
+*/
 /**
  * Implements the actual methods/resources of the discovered Google API using magic function
  * calling overloading (__call()), which on call will see if the method name (plus.activities.list)

@@ -15,9 +15,10 @@
  * limitations under the License.
  */
  
+/*
 require_once 'Google/Auth/Exception.php';
 require_once 'Google/Verifier/Abstract.php';
-
+*/
 /**
  * Verifies signatures using PEM encoded certificates.
  *

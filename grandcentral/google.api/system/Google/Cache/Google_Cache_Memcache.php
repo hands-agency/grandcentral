@@ -14,10 +14,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+/*
 require_once "Google/Cache/Abstract.php";
 require_once "Google/Cache/Exception.php";
-
+*/
 /**
  * A persistent storage class based on the memcache, which is not
  * really very persistent, as soon as you restart your memcache daemon

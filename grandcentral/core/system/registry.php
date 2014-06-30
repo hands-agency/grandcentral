@@ -39,6 +39,21 @@ class registry
 		define('all', self::all_index);
 		// load apps into registry
 		app::register();
+		// beurk
+		$app_index = registry::get(registry::app_index);
+		$class_index = registry::get(registry::class_index);
+		// cache
+		if (!SITE_DEBUG)
+		{
+			$cache = app('cache');
+			$url = $cache->get_templateroot().'/registry/'.md5(URL);
+			$file = new file($url);
+			self::$data = unserialize($file->get());
+			unset($file);
+		}
+		// beurk
+		registry::set(registry::app_index, $app_index);
+		registry::set(registry::class_index, $class_index);
 		// load structures into registry
 		itemItem::register();
 		// load user
@@ -52,6 +67,15 @@ class registry
 		$this->_prepare_current();
 		//	constants
 		i('const', all);
+		
+		if (!SITE_DEBUG)
+		{
+			$cache = app('cache');
+			$url = $cache->get_templateroot().'/registry/'.md5(URL);
+			$file = new file($url);
+			$file->set(serialize(self::$data));
+			$file->save(true);
+		}
 	}
 /**
  * Create only one instance of the Registry
@@ -145,21 +169,11 @@ class registry
  */
 	protected function _prepare_current()
 	{
-		//	Env
-		if (!isset($_SESSION['pref']['handled_env'])) $_SESSION['pref']['handled_env'] = 'site';
-		if (isset($_GET['env'])) $_SESSION['pref']['handled_env'] = $_GET['env'];
-		// print'<pre>';print_r(self::get_constants());print'</pre>';
-		$cache = app('cache');
-		$fileCache = $cache->get_templateroot().'/registry/'.md5(URL);
-		//	dans le cache
-	//	if (is_file($fileCache))
-	//	{
-			//print'<pre>';print_r('dans le cache site et admin + versions');print'</pre>';
-	//		$datas = unserialize(file_get_contents($fileCache));
-	//	}
-		//	création du cache
-	//	else
-	//	{
+		if (!registry::get(registry::current_index))
+		{
+			//	Env
+			if (!isset($_SESSION['pref']['handled_env'])) $_SESSION['pref']['handled_env'] = 'site';
+			if (isset($_GET['env'])) $_SESSION['pref']['handled_env'] = $_GET['env'];
 			//	admin
 			$admin = item::create('site', 'admin', 'admin');
 			$tmp = item::create('version', null, 'admin');
@@ -174,15 +188,13 @@ class registry
 			$datas['site'] = $site;
 			//	version
 			$datas['version'] = $datas[env];
-			//	mise en cache
-			//file_put_contents($fileCache, serialize($datas));
-	//	}
-		self::set(self::current_index, $datas);
-		//	page
-		$page = item::create('page');
-		$page->guess();
-		self::set(self::current_index, 'page', $page);
-		// print'<pre>';print_r($datas);print'</pre>';
+			// registre
+			self::set(self::current_index, $datas);
+			//	page
+			$page = item::create('page');
+			$page->guess();
+			self::set(self::current_index, 'page', $page);
+		}
 	}
 /**
  * Obtenir les classes disponibles
@@ -208,6 +220,20 @@ class registry
 		}
 		
 		return $classes;
+	}
+/**
+ * Cache System
+ *
+ * @access	public
+ */
+	public function __destruct()
+	{
+		// print'<pre style="position:fixed;z-index: 2000;top:0;left:0">';print_r(i('page', current)['key']->get());print'</pre>';
+		// if (master::get_content_type() == 'html')
+		// {
+		// 	print'<pre style="position:fixed;z-index: 2000;top:0;left:0">';print_r(sentinel::stopwatch().'s ('.database::query_count().' queries), using '.sentinel::memoryusage());print'</pre>';
+		// }
+		// 
 	}
 }
 ?>

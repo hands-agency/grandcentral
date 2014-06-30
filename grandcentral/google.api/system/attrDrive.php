@@ -7,7 +7,7 @@
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
  */
-class attrYoutube extends _attrs
+class attrDrive extends _attrs
 {
 /**
  * Set string attribute

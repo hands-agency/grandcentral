@@ -28,12 +28,11 @@ class itemConst extends _items
  */
 	public static function t($string)
 	{
-		$key = mb_strtoupper($string);
+		$key = mb_strtoupper(mb_substr($string, 0, 64));
 		// var
 		$lang = i(env, current)['version']['lang']->get();
 		// recherche de la traduction
 		$const = registry::get(env, 'const', $key);
-		// print'<pre>';print_r($consts);print'</pre>';
 		if (!empty($const))
 		{
 			return $const;
@@ -43,7 +42,7 @@ class itemConst extends _items
 		{
 			$const = i('const');
 			$const['title'][$lang] = $string;
-			$const['key'] = mb_strtoupper($string);
+			$const['key'] = $key;
 			$const->save();
 			registry::set($const->get_env(), 'const', $const['key']->get(), $const['title']);
 			return $const['title'][$lang];

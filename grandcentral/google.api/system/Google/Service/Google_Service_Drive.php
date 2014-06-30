@@ -29,6 +29,8 @@
  *
  * @author Google, Inc.
  */
+require_once "grandcentral/google.api/system/Google/Google_Collection.php";
+
 class Google_Service_Drive extends Google_Service
 {
   /** View and manage the files and documents in your Google Drive. */

@@ -14,10 +14,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+/*
 require_once "Google/Cache/Abstract.php";
 require_once "Google/Cache/Exception.php";
-
+*/
 /*
  * This class implements a basic on disk storage. While that does
  * work quite well it's not the most elegant and scalable solution.

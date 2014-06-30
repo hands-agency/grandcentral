@@ -9,7 +9,7 @@
  * @access   public
  * @see      http://www.cafecentral.fr/fr/wiki
  */
-class cache
+class appCache extends _apps
 {
 	
 }

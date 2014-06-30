@@ -79,11 +79,6 @@ class itemPage extends _items
 				$this->get_by_url('/404');
 			}
 		}
-		// application des droits
-		if ($this->exists() && !$_SESSION['user']->can('see', $this))
-		{
-			$this->get('login');
-		}
 		// si on ne trouve rien, on renvoi une erreur
 		if (!$this->exists())
 		{
@@ -166,6 +161,11 @@ class itemPage extends _items
  */
 	public function __tostring()
 	{
+		// application des droits
+		if (!$_SESSION['user']->can('see', $this))
+		{
+			$this->get('login');
+		}
 	//	prepare page display
 		$prepareFunction = '_prepare_'.$this['type']['key'];
 	//	error
@@ -399,63 +399,50 @@ class itemPage extends _items
  */
 	public static function register()
 	{
-		$db = database::connect('site');
-		// on recherche toutes les urls des pages
-		$q = 'SELECT `id`, `url` FROM `page`';
-		$r = $db->query($q);
-		foreach ($r['data'] as $page)
+		if (!registry::get(registry::url_index) && !registry::get(registry::legacy_index) && !registry::get(registry::reader_index))
 		{
-			$urls['page_'.$page['id']] = $page['url'];
-		}
-		// on recherche les readers dans le table section
-		$q = 'SELECT `id`, `app` FROM `section` WHERE `app` LIKE "%\"app\":\"reader\"%"';
-		$r = $db->query($q);
-		// traitement de la requête pour stockage
-		$hash = null;
-		$readersid = array();
-		if ($r['count'] > 0)
-		{
-			foreach ($r['data'] as $reader)
+			$db = database::connect('site');
+			// on recherche toutes les urls des pages
+			$q = 'SELECT `id`, `url` FROM `page`';
+			$r = $db->query($q);
+			foreach ($r['data'] as $page)
 			{
-				$readersId[] = $reader['id'];
-				$readersTable[$reader['id']] = json_decode($reader['app'], true);
+				$urls['page_'.$page['id']] = $page['url'];
 			}
-			$hash = ' OR (`rel`="section" AND `relid` IN ('.implode(',',$readersId).'))';
-		}
-		// on recherche les pages liées aux readers et les liaisans entre les pages
-		$q = 'SELECT * FROM `_rel` WHERE `item`="page" AND (`key`="child"'.$hash.') ORDER BY `itemid`, `position`';
-		$r = $db->query($q);
-		$readers = $tree = array();
-		foreach ($r['data'] as $rel)
-		{
-			if ('child' == $rel['key'])
+			// on recherche les readers dans le table section
+			$q = 'SELECT `id`, `app` FROM `section` WHERE `app` LIKE "%\"app\":\"reader\"%"';
+			$r = $db->query($q);
+			// traitement de la requête pour stockage
+			$hash = null;
+			$readersid = array();
+			if ($r['count'] > 0)
 			{
-				$tree[$rel['item'].'_'.$rel['itemid']][] = $rel['rel'].'_'.$rel['relid'];
+				foreach ($r['data'] as $reader)
+				{
+					$readersId[] = $reader['id'];
+					$readersTable[$reader['id']] = json_decode($reader['app'], true);
+				}
+				$hash = ' OR (`rel`="section" AND `relid` IN ('.implode(',',$readersId).'))';
 			}
-			else
+			// on recherche les pages liées aux readers et les liaisans entre les pages
+			$q = 'SELECT * FROM `_rel` WHERE `item`="page" AND (`key`="child"'.$hash.') ORDER BY `itemid`, `position`';
+			$r = $db->query($q);
+			$readers = $tree = array();
+			foreach ($r['data'] as $rel)
 			{
-				$readers[$rel['item'].'_'.$rel['itemid']][] = $readersTable[$rel['relid']]['param']['item'];
+				if ('child' == $rel['key'])
+				{
+					$tree[$rel['item'].'_'.$rel['itemid']][] = $rel['rel'].'_'.$rel['relid'];
+				}
+				else
+				{
+					$readers[$rel['item'].'_'.$rel['itemid']][] = $readersTable[$rel['relid']]['param']['item'];
+				}
 			}
-		}
-		// mise en registre
-		registry::set(registry::url_index, $urls);
-		registry::set(registry::legacy_index, $tree);
-		registry::set(registry::reader_index, $readers);
-	}
-	
-/**
- * Delete cache file of the structures loaded into the registry
- *
- * @access  public
- */
-	private function register_reset()
-	{
-		$cache = app('cache');
-		$fileCache = $cache->get_templateroot().'registry/'.md5('url');
-		
-		if (is_file($fileCache))
-		{
-			unlink($fileCache);
+			// mise en registre
+			registry::set(registry::url_index, $urls);
+			registry::set(registry::legacy_index, $tree);
+			registry::set(registry::reader_index, $readers);
 		}
 	}
 }

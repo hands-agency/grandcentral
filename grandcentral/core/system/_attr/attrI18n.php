@@ -113,11 +113,12 @@ class attrI18n extends attrArray
  */
 	public function __tostring()
 	{
+		if (empty($this->params['env'])) $this->params['env'] = env;
 		//	HACK à refaire
 		switch (true) {
 			case $this->is_empty():
 			case empty($this->data[i($this->params['env'], current)['version']['lang']->get()]):
-				return 'empty';
+				return '';
 				break;
 			case $this->field == 'fieldSirtrevor':
 				$attr = new attrSirtrevor($this->data[i($this->params['env'], current)['version']['lang']->get()]);

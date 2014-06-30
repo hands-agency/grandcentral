@@ -43,7 +43,6 @@ class itemItem extends _items
 	{
 		$this->_prepare_attr();
 		parent::save();
-		self::register_reset();
 	}
 /**
  * Build queries to insert an item
@@ -258,7 +257,7 @@ class itemItem extends _items
 	//	insert data into table structure
 		parent::_delete();
 		// print'<pre>';print_r($db->_spooler);print'</pre>';
-		self::register_reset();
+		// self::register_reset();
     }
 /**
  * ALTER - Obtenir la définition mysql de la position d'une colonne
@@ -284,18 +283,8 @@ class itemItem extends _items
  */
 	public static function register()
 	{
-		$cache = app('cache');
-		
-		$fileCache = $cache->get_templateroot().'/registry/'.md5('structure');
-		
-		// if (is_file($fileCache) && !SITE_DEBUG)
-		// {
-		// 	// print'<pre>';print_r('dans le cache des structures');print'</pre>';
-		// 	$datas = unserialize(file_get_contents($fileCache));
-		// }
-		// else
-		// {
-			//print'<pre>';print_r('génération du cache des structures');print'</pre>';
+		if (!registry::get('admin') && !registry::get('site'))
+		{
 			//	pour les deux environnements, on charge tous les attributs
 			foreach (array('admin', 'site') as $env)
 			{
@@ -310,28 +299,9 @@ class itemItem extends _items
 					//self::set($env, self::attr_index, $result['key'], $result);
 				}
 			}
-			// mise en cache
-			// file_put_contents($fileCache, serialize($datas));
-			// 	}
-		
-		registry::set('admin', $datas['admin']);
-		registry::set('site', $datas['site']);
-		// registry::set(registry::reader_index, $datas['reader']);
-	}
-	
-/**
- * Delete cache file of the structures loaded into the registry
- *
- * @access  public
- */
-	private function register_reset()
-	{
-		$cache = app('cache');
-		$fileCache = $cache->get_templateroot().'/registry/'.md5('structure');
-		
-		if (is_file($fileCache))
-		{
-			unlink($fileCache);
+			// registry
+			registry::set('admin', $datas['admin']);
+			registry::set('site', $datas['site']);
 		}
 	}
 }
