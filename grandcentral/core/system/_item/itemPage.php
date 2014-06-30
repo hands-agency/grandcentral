@@ -436,7 +436,7 @@ class itemPage extends _items
 				}
 				else
 				{
-					$readers[$rel['item'].'_'.$rel['itemid']][] = $readersTable[$rel['relid']]['param']['item'];
+					$readers[$rel['item'].'_'.$rel['itemid']] = $readersTable[$rel['relid']]['param']['item'];
 				}
 			}
 			// mise en registre
