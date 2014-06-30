@@ -30,8 +30,6 @@ class boot
 	const app_maintenance 	= 'maintenance';		//	le répertoire de la maintenance
 	
 	private $boot 			= 'core';			//	l'app à charger par défaut
-	// private $buffer_callback= 'ob_gzhandler';	//	le paramètre du tampon
-	private $buffer_callback= null;
 	private $root;
 	// private $directory;
 	private $relative_root;
@@ -52,7 +50,7 @@ class boot
 	{
 	
 	//	ouverture du tampon
-		ob_start($this->buffer_callback);
+		if(!ob_start("ob_gzhandler")) ob_start();
 	//	recherche de l'url active
 		// $this->root = $_SERVER['DOCUMENT_ROOT'];
 		$this->get_url();
