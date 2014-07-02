@@ -34,7 +34,7 @@
 	if (isset($_GET['item']) && isset($_GET['id']))
 	{
 		$currentEditedItem = i($_GET['item'], $_GET['id'], $_SESSION['pref']['handled_env']);
-		if (isset($currentEditedItem['url']) && $currentEditedItem['type']['content_type'] !='routine') $currentEditedItemUrl = $currentEditedItem['url'];
+		if (isset($currentEditedItem['url']) && $currentEditedItem['type']['content_type'] !='routine' && $currentEditedItem['system'] ===false) $currentEditedItemUrl = $currentEditedItem['url'];
 	}
 
 //	The sections
@@ -103,12 +103,7 @@
 	$_APP->bind_snippet('meta', 'master/snippet/meta');
 	
 /********************************************************************************************/
-//	Site Nav
-/********************************************************************************************/
-	$_APP->bind_snippet('sitenav', 'master/snippet/sitenav');
-	
-/********************************************************************************************/
-//	Admin Nav
+//	Nav CC
 /********************************************************************************************/
 	$_APP->bind_snippet('nav', 'master/snippet/nav');
 	
