@@ -21,6 +21,11 @@ class media extends file
 		
 		return $path;
 	}
+	
+	public function thumbnail($width, $height, $quality = 100)
+	{
+		return '';
+	}
 
 	public function __call($method, $args)
 	{

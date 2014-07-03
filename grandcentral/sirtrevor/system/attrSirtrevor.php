@@ -50,17 +50,17 @@ class attrSirtrevor extends _attrs implements ArrayAccess
 		preg_match_all($pattern, $txt, $matches, PREG_SET_ORDER);
 		foreach ($matches as $match)
 		{
-			if(!filter_var($match[1], FILTER_VALIDATE_URL))
+			
+			$url = str_replace('\-', '-', $match[1]);
+			if(!filter_var($url, FILTER_VALIDATE_URL))
 			{
-				$key = $match[1];
-				// $tmp[$key] = $match[1];
 				$from[] = $match[1];
-				$to[] = i(str_replace(array('[', ']', '\\'), '', $match[1]))['url']->__tostring();
+				$to[] = i(str_replace(array('[', ']', '\\'), '', $url))['url']->__tostring();
 			}
 			else
 			{
 				$from[] = $match[1];
-				$to[] = str_replace('\-', '-', $match[1]);
+				$to[] = $url;
 			}
 		}
 		// print'<pre>';print_r($tmp);print'</pre>';

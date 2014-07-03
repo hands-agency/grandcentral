@@ -169,11 +169,12 @@ class registry
  */
 	protected function _prepare_current()
 	{
+		//	Env
+		if (!isset($_SESSION['pref']['handled_env'])) $_SESSION['pref']['handled_env'] = 'site';
+		if (isset($_GET['env'])) $_SESSION['pref']['handled_env'] = $_GET['env'];
+		// not cached
 		if (!registry::get(registry::current_index))
 		{
-			//	Env
-			if (!isset($_SESSION['pref']['handled_env'])) $_SESSION['pref']['handled_env'] = 'site';
-			if (isset($_GET['env'])) $_SESSION['pref']['handled_env'] = $_GET['env'];
 			//	admin
 			$admin = item::create('site', 'admin', 'admin');
 			$tmp = item::create('version', null, 'admin');
@@ -220,20 +221,6 @@ class registry
 		}
 		
 		return $classes;
-	}
-/**
- * Cache System
- *
- * @access	public
- */
-	public function __destruct()
-	{
-		// print'<pre style="position:fixed;z-index: 2000;top:0;left:0">';print_r(i('page', current)['key']->get());print'</pre>';
-		// if (master::get_content_type() == 'html')
-		// {
-		// 	print'<pre style="position:fixed;z-index: 2000;top:0;left:0">';print_r(sentinel::stopwatch().'s ('.database::query_count().' queries), using '.sentinel::memoryusage());print'</pre>';
-		// }
-		// 
 	}
 }
 ?>

@@ -2198,9 +2198,13 @@
         youtube: {
           regex: /(?:http[s]?:\/\/)?(?:www.)?(?:(?:youtube.com\/watch\?(?:.*)(?:v=))|(?:youtu.be\/))([^&].+)/,
           html: "<iframe src=\"{{protocol}}//www.youtube.com/embed/{{remote_id}}\" width=\"580\" height=\"320\" frameborder=\"0\" allowfullscreen></iframe>"
+        },
+		dailymotion: {
+          regex: /(?:http[s]?:\/\/)?(?:www.)?dailymotion.com\/video\/([^_]+)/,
+          html: "<iframe src=\"{{protocol}}//www.dailymotion.com/embed/video/{{remote_id}}\" width=\"580\" height=\"320\" frameborder=\"0\" allowfullscreen></iframe>"
         }
       },
-  
+
       type: 'video',
       title: function() { return i18n.t('blocks:video:title'); },
   
@@ -2614,7 +2618,6 @@
         // Do we have a click function defined on this formatter?
         if(!_.isUndefined(format.onClick) && _.isFunction(format.onClick)) {
           format.onClick(); // Delegate
-
         } else {
           // Call default
           document.execCommand(btn.attr('data-cmd'), false, format.param);

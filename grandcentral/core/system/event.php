@@ -83,10 +83,13 @@ class event
 		if ($item->get_table() == 'logbook') return false;
 	
 	//	Otherwise proceed
-		$log = i('logbook', null, $_SESSION['pref']['handled_env']);
+		$env = is_a($item, '_items') ? $item->get_env() : env;
+		$log = i('logbook', null, $env);
+		$user = isset($_SESSION) && isset($_SESSION['user']) ? $_SESSION['user'] : i('human');
+		
 		$attr = array(
-			'subject' => $_SESSION['user']->get_table(),
-			'subjectid' => $_SESSION['user']['id']->get(),
+			'subject' => $user->get_table(),
+			'subjectid' => $user['id']->get(),
 			'key' => $action,
 			'item' => $item->get_table(),
 			'itemid' => $item['id']->get(),

@@ -99,7 +99,6 @@
 # 	Since we're sending far-future expires, we don't need ETags for static content.
 #	developer.yahoo.com/performance/rules.html#etags
 	FileETag None
-
 #********************************************************************************************/
 #	Ordres à Apache pour la réécriture d'URL
 #********************************************************************************************/
@@ -107,15 +106,13 @@
 	RewriteEngine on
 #	Directory index (allows for a temporary index.html)
 	DirectoryIndex index.html node.php
-
 #********************************************************************************************/
-#	Genral Rewriting
+#	General Rewriting
 #********************************************************************************************/	
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d
 	RewriteCond %{QUERY_STRING} (.*)
 	RewriteRule ^(.*) node.php [L]
-	
 #********************************************************************************************/
 #	UTF-8 encoding
 #********************************************************************************************/
@@ -123,12 +120,10 @@
 	AddDefaultCharset utf-8
 #	force utf-8 for a number of file formats
 	AddCharset utf-8 .html .css .js .xml .json .rss
-	
 #********************************************************************************************/
 #	GZIP
 #********************************************************************************************/
-	AddOutputFilterByType DEFLATE text/css application/javascript
-	
+    AddOutputFilterByType DEFLATE text/css application/javascript
 #********************************************************************************************/
 #	A little more security
 #********************************************************************************************/

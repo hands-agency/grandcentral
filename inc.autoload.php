@@ -61,12 +61,13 @@ class boot
 		{
 		//	maintenance
 			case $this->site['maintenance'] === true && $this->env == 'site':
-				$this->boot = 'maintenance';
+				// $this->boot = 'maintenance';
 			//	définition des constantes
 				$this->define_config();
-				$this->core_root = '';
-				require($this->site['root'].'/'.self::app_maintenance.'/'.self::app_maintenance.'.php');
-				exit;
+				spl_autoload_register('boot::autoload');
+				self::get($this->core_root);
+				// require($this->site['root'].'/'.self::app_maintenance.'/'.self::app_maintenance.'.php');
+				// exit;
 				break;
 		//	dans tous les autres cas
 			default:

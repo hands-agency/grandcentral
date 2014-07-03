@@ -27,9 +27,11 @@ abstract class _items implements ArrayAccess, Iterator
 		$this->table = mb_substr(mb_strtolower(get_called_class()), 4);
 		$this->env = (in_array($env, array('site', 'admin'))) ? $env : trigger_error('Environment should be <strong>admin</strong> or <strong>site</strong>.Not '.$env.'.', E_USER_ERROR);
 		
+        
 	//	création de la liste des attributs vide
 		$attrs = registry::get($this->get_env(), registry::attr_index, $this->get_table(), 'attr');
-		if (empty($attrs))
+		
+        if (empty($attrs))
 		{
 			trigger_error('Can not find <strong>'.$this->get_table().'</strong> structure', E_USER_ERROR);
 		}
