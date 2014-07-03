@@ -41,7 +41,7 @@
 		(
 			'app' => 'content',
 			'template' => 'master/eventstream',
-			'item' => $_GET['item'],
+		//	'item' => $_GET['item'], /* Just for current item */
 		));
 
 	//	Some binds script
