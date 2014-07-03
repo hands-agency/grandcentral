@@ -43,7 +43,7 @@
 				{
 				//	Our item's nickname
 					item = $(ui.draggable).data('item');
-				//	Send to the trashbon !
+				//	Send to the trashbin!
 					plugin.send(item, function()
 					{						
 					//	Get rid of the objet

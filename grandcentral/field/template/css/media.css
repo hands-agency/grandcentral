@@ -24,6 +24,13 @@ li[data-type="media"] .wrapper ol.data li:not(.upload)
 	-moz-box-shadow: 0 1px 2px rgba(34,25,25,0.4);
 	-webkit-box-shadow: 0 1px 3px rgba(34,25,25,0.4);
 }
+li[data-type="media"] .wrapper ol.data li:not(.upload):hover
+{
+	border-color: #3eb4d6;
+	-webkit-box-shadow: 0 0 4px #3eb4d6;
+	box-shadow: 0 0 4px #3eb4d6;
+	cursor:move;
+}
 li[data-type="media"] .wrapper ol.data li .delete
 {
 	position:absolute;
@@ -41,20 +48,38 @@ li[data-type="media"] .wrapper ol.data li.upload
 {
 	height:120px;
 	line-height:130px;
-	border:1px dashed #ddd;
 	font-size:40px;
-	-webkit-transition: all .15s ease-out; 
-	-moz-transition: all .15s ease-out; 
-	-o-transition: all .15s ease-out; 
-	transition: all .15s ease-out;
+	border:1px dashed transparent;
+	-webkit-transition: all .1s ease-out; 
+	-moz-transition: all .1s ease-out; 
+	-o-transition: all .1s ease-out; 
+	transition: all .1s ease-out;
+	cursor:pointer;
 }
-li[data-type="media"] .wrapper ol.data li.upload:hover
+.contextOpened li[data-type="media"] .wrapper ol.data li.upload
+{
+	border-color:#ddd;
+}
+.contextOpened li[data-type="media"] .wrapper ol.data li.upload:before
+{
+	content:'';
+}
+li[data-type="media"] .wrapper ol.data li.upload:before
+{
+	content:"+";
+	font-size:90px;
+	text-align:center;
+	color:#666;
+	line-height:120px;
+}
+li[data-type="media"] .wrapper ol.data li.upload:hover:before
 {
 	color:#3eb4d6;
-	cursor:pointer;
 }
 li[data-type="media"] .wrapper ol.data li.upload.hover
 {
+	color:#3eb4d6;
+	cursor:pointer;
 	color:#FE9400;
 	border-color:#FE9400;
 	-moz-transform: scale(1.1);

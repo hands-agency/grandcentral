@@ -1002,6 +1002,6 @@ $(function() {
 //		scrollsync({targetSelector: '#viewport', axis : 'x'});
 	
 	// Set drag scroll on first descendant of class dragger on both selected elements
-	$('section#section_tree').dragscrollable({dragSelector: 'ol.tree'});
+//	$('section#section_tree').dragscrollable({dragSelector: 'ol.tree'});
 	 
   });

@@ -1,9 +1,9 @@
-<div class="detail">
+<div class="detail" data-path="<?=$file->get_path()?>" data-info="<?= $file->get_extension() ?> • <?= $file->get_size() ?>" data-title="<?= $file->get_key() ?>">
 	<? if (isset($thumbnail)): ?>
-	<div class="media">
-		<?= $thumbnail ?>
-	</div>
+	<div class="preview"><?= $thumbnail; ?></div>
 	<? endif ?>
+
+	<h2><span class="centered">About</span></h2>
 	<table class="about">
 		<tr>
 			<td>File</td>

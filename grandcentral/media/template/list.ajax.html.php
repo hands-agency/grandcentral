@@ -21,7 +21,7 @@
 		</li>
 		<? if (isset($files)) : ?>
 		<? foreach ($files as $file): ?>
-		<li data-path="<?=$file->get_path()?>" data-info="<?= $file->get_extension() ?> • <?= $file->get_size() ?>" data-title="<?= $file->get_key() ?>" >
+		<li data-path="<?=$file->get_path()?>" data-info="<?= $file->get_extension() ?> • <?= $file->get_size() ?>" data-title="<?= $file->get_key() ?>">
 			<a href="#" class="file">
 				<? if (is_a($file, 'image')): ?>
 					<span class="preview"><?= $file->thumbnail(120, null); ?></span>
@@ -53,9 +53,7 @@
 			});
 		?>
 		<li>
-			<div class="title">
-				<a href="#" class="dir"><?= $dir->get_key() ?></a>
-			</div>
+			<div class="title"><?= $dir->get_key() ?></div>
 			<ul class="preview">
 				<?php for ($i=0; $i < $maxPreviews ; $i++) : ?>
 					<?php if (isset($files[$i])): ?>

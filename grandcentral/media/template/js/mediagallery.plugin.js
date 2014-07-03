@@ -51,13 +51,14 @@
 			}
 			
 		//	Click on a folder
-			$element.on('click', 'a.dir', function()
+			$element.on('click', '.folder>ul>li', function()
 			{
+				dir = $(this).find('.title').html();
 				if (plugin.settings.current != '')
 				{
 					plugin.settings.current = plugin.settings.current + '/';
 				}
-				plugin.settings.current = plugin.settings.current + $(this).html();
+				plugin.settings.current = plugin.settings.current + dir;
 				plugin.loadList();
 				return false;
 			});
@@ -103,6 +104,7 @@
 		plugin.loadList = function()
 		{
 		//	Start loading
+			$element.html('');
 			$element.loading();
 		//	Load the library
 			$element.ajx(
@@ -149,6 +151,7 @@
 				revertDuration: 100,
 				appendTo:'body',
 				helper: 'clone',
+				cursor: 'move',
 				start:function()
 				{
         			$(this).hide();
@@ -176,6 +179,29 @@
 			//	Done !
 				done:function()
 				{
+				//	Make li draggable
+					$element.find('.files:not(.empty) .detail').draggable(
+					{
+						revert: true,
+						revertDuration: 100,
+						appendTo:'body',
+						helper: 'clone',
+						cursorAt:{top:40,left:40},
+						start:function()
+						{
+		        			$(this).css('opacity', '0.5');
+						//	Show trashbin
+							$('#trashbin').data('trashbin').toggle();
+						},
+						stop:function()
+						{
+		        			$(this).css('opacity', '1');
+						//	Hide trashbin
+							$('#trashbin').data('trashbin').toggle();
+						}
+					});
+			
+				/*
 				//	Setup callback function
 					if (plugin.settings.onSelect)
 					{
@@ -192,6 +218,7 @@
 							});
 						})
 					}
+					*/
 				}
 			});
 		}

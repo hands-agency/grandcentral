@@ -28,6 +28,11 @@
 	border:1px solid #ddd;
 	height:23px;
 }
+#mediaLibrary .loading
+{
+	text-align:center;
+	margin:200px 0;
+}
 
 /********************************************************************************************/
 /* Directories 
@@ -109,7 +114,7 @@
 	float: left;
 	width:110px;
 	position:relative;
-	margin-bottom:15px;
+	margin-bottom:10px;
 }
 #mediaLibrary .files li:not(.upload)
 {
@@ -122,7 +127,9 @@
 }
 #mediaLibrary .files li:not(.upload):hover
 {
-
+	border-color: #3eb4d6;
+	-webkit-box-shadow: 0 0 4px #3eb4d6;
+	box-shadow: 0 0 4px #3eb4d6;
 }
 #mediaLibrary .files li a
 {
@@ -130,7 +137,7 @@
 }
 
 /* Draggable TODO (it's bound to the document..) */
-li.ui-draggable-dragging
+.ui-draggable-dragging
 {
 	display:block;
 	width:80px !important;
@@ -144,6 +151,10 @@ li.ui-draggable-dragging *
 {
 	white-space:nowrap;
 }
+.ui-draggable-dragging img
+{
+	width:140%;
+}
 
 /* fields*/
 #mediaLibrary .files li .preview
@@ -151,11 +162,11 @@ li.ui-draggable-dragging *
 	border-bottom:1px solid #ddd;
 	display:block;
 	background: 
-	linear-gradient(115deg, transparent 75%, rgba(255,255,255,.8) 75%) 0 0,
-	linear-gradient(245deg, transparent 75%, rgba(255,255,255,.8) 75%) 0 0,
-	linear-gradient(115deg, transparent 75%, rgba(255,255,255,.8) 75%) 7px -15px,
-	linear-gradient(245deg, transparent 75%, rgba(255,255,255,.8) 75%) 7px -15px,
-	#F2F2F2;
+		linear-gradient(115deg, transparent 75%, rgba(255,255,255,.8) 75%) 0 0,
+		linear-gradient(245deg, transparent 75%, rgba(255,255,255,.8) 75%) 0 0,
+		linear-gradient(115deg, transparent 75%, rgba(255,255,255,.8) 75%) 7px -15px,
+		linear-gradient(245deg, transparent 75%, rgba(255,255,255,.8) 75%) 7px -15px,
+		#F2F2F2;
 	background-size: 15px 30px
 }
 #mediaLibrary .files li .preview img
@@ -165,7 +176,6 @@ li.ui-draggable-dragging *
 }
 #mediaLibrary .files li .title
 {
-	border-top:1px solid #ddd;
 	font-size:11px;
 	display:block;
 	color:#333;
@@ -260,6 +270,13 @@ li.ui-draggable-dragging *
 	border-radius:2px;
 	background-color:#eee;
 	height:85px;
+	cursor:pointer;
+}
+#mediaLibrary .folder>ul>li:hover
+{
+	border-color: #3eb4d6;
+	-webkit-box-shadow: 0 0 4px #3eb4d6;
+	box-shadow: 0 0 4px #3eb4d6;
 }
 #mediaLibrary .folder>ul>li:nth-child(odd)
 {
@@ -302,16 +319,46 @@ li.ui-draggable-dragging *
 /********************************************************************************************/
 /* Detail 
 /********************************************************************************************/
-#mediaLibrary .detail .media
+#mediaLibrary .detail .preview
 {
-	float:left;
-	margin-right:15px;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+	border:1px solid #ddd;
+	margin-bottom:15px;
+	display:block;
+	background: 
+		linear-gradient(115deg, transparent 75%, rgba(255,255,255,.8) 75%) 0 0,
+		linear-gradient(245deg, transparent 75%, rgba(255,255,255,.8) 75%) 0 0,
+		linear-gradient(115deg, transparent 75%, rgba(255,255,255,.8) 75%) 7px -15px,
+		linear-gradient(245deg, transparent 75%, rgba(255,255,255,.8) 75%) 7px -15px,
+		#F2F2F2;
+	background-size: 15px 30px;
+	cursor:move;
 }
+#mediaLibrary .detail .preview:hover
+{
+	border-color: #3eb4d6;
+	-webkit-box-shadow: 0 0 4px #3eb4d6;
+	box-shadow: 0 0 4px #3eb4d6;
+}
+#mediaLibrary .detail .preview img
+{
+	display:block;
+}
+
 #mediaLibrary .detail .about
 {
-	font-size:0.8em;
+	font-size:11px;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+	background:#fff;
+	border:1px solid #ddd;
+	margin-bottom:15px;
 }
 #mediaLibrary .detail .about td
 {
-	padding:5px
+	padding:10px;
+	border-bottom:1px solid #eee;
 }
