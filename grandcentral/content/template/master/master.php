@@ -33,8 +33,9 @@
 	$currentEditedItemUrl = SITE_URL;
 	if (isset($_GET['item']) && isset($_GET['id']))
 	{
+	//	We want only the html pages with a URL
 		$currentEditedItem = i($_GET['item'], $_GET['id'], $_SESSION['pref']['handled_env']);
-		if (isset($currentEditedItem['url']) && $currentEditedItem['type']['content_type'] !='routine' && $currentEditedItem['system'] ===false) $currentEditedItemUrl = $currentEditedItem['url'];
+		if (isset($currentEditedItem['url']) && $currentEditedItem['type']['content_type'] == 'html') $currentEditedItemUrl = $currentEditedItem['url'];
 	}
 
 //	The sections
