@@ -61,7 +61,7 @@ class attrRel extends _attrs implements ArrayAccess, Iterator
 			$rel = $rel->get_nickname();
 		}
 	//	affectation
-		$this->data[] = $rel;
+		if (!in_array($rel, $this->data)) $this->data[] = $rel;
 		return $this;
 	}
 /**
