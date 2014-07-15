@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 3.5.7
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Jul 13, 2014 at 08:47 PM
--- Server version: 5.5.25
--- PHP Version: 5.4.4
+-- Client: localhost
+-- Généré le: Lun 14 Juillet 2014 à 19:31
+-- Version du serveur: 5.5.29
+-- Version de PHP: 5.4.10
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,15 +17,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `ccv4_default`
+-- Base de données: `gc_site`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `api`
+-- Structure de la table `api`
 --
 
+DROP TABLE IF EXISTS `api`;
 CREATE TABLE `api` (
   `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
@@ -44,9 +45,10 @@ CREATE TABLE `api` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `const`
+-- Structure de la table `const`
 --
 
+DROP TABLE IF EXISTS `const`;
 CREATE TABLE `const` (
   `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -65,9 +67,10 @@ CREATE TABLE `const` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `form`
+-- Structure de la table `form`
 --
 
+DROP TABLE IF EXISTS `form`;
 CREATE TABLE `form` (
   `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT COMMENT 'The unique identifier',
   `key` varchar(32) COLLATE utf8_unicode_ci NOT NULL COMMENT 'The key',
@@ -90,9 +93,10 @@ CREATE TABLE `form` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `group`
+-- Structure de la table `group`
 --
 
+DROP TABLE IF EXISTS `group`;
 CREATE TABLE `group` (
   `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT COMMENT 'The unique identifier',
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL COMMENT 'The key',
@@ -108,7 +112,7 @@ CREATE TABLE `group` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `group`
+-- Contenu de la table `group`
 --
 
 INSERT INTO `group` (`id`, `key`, `title`, `admin`, `created`, `updated`, `status`) VALUES
@@ -117,9 +121,10 @@ INSERT INTO `group` (`id`, `key`, `title`, `admin`, `created`, `updated`, `statu
 -- --------------------------------------------------------
 
 --
--- Table structure for table `human`
+-- Structure de la table `human`
 --
 
+DROP TABLE IF EXISTS `human`;
 CREATE TABLE `human` (
   `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -138,21 +143,23 @@ CREATE TABLE `human` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `key` (`key`),
   KEY `status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 --
--- Dumping data for table `human`
+-- Contenu de la table `human`
 --
 
 INSERT INTO `human` (`id`, `key`, `title`, `descr`, `password`, `created`, `updated`, `status`, `system`, `profilepic`, `cover`, `owner`, `firstname`, `lastname`) VALUES
-(1, 'anonymous', 'Anonymous User', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live', 1, '', '', 0, '', '');
+(1, 'anonymous', '', '', 'Anonymous User', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live', 1, '', '', 0, '', ''),
+(2, 'admin', '', '', 'Administrator', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live', 1, '', '', 0, '', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `item`
+-- Structure de la table `item`
 --
 
+DROP TABLE IF EXISTS `item`;
 CREATE TABLE `item` (
   `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -172,7 +179,7 @@ CREATE TABLE `item` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=38 ;
 
 --
--- Dumping data for table `item`
+-- Contenu de la table `item`
 --
 
 INSERT INTO `item` (`id`, `key`, `title`, `descr`, `system`, `attr`, `created`, `updated`, `status`, `hasurl`, `owner`, `icon`) VALUES
@@ -193,9 +200,10 @@ INSERT INTO `item` (`id`, `key`, `title`, `descr`, `system`, `attr`, `created`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `logbook`
+-- Structure de la table `logbook`
 --
 
+DROP TABLE IF EXISTS `logbook`;
 CREATE TABLE `logbook` (
   `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
@@ -215,9 +223,10 @@ CREATE TABLE `logbook` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `machine`
+-- Structure de la table `machine`
 --
 
+DROP TABLE IF EXISTS `machine`;
 CREATE TABLE `machine` (
   `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -235,9 +244,10 @@ CREATE TABLE `machine` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `note`
+-- Structure de la table `note`
 --
 
+DROP TABLE IF EXISTS `note`;
 CREATE TABLE `note` (
   `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
   `item` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -257,9 +267,10 @@ CREATE TABLE `note` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `page`
+-- Structure de la table `page`
 --
 
+DROP TABLE IF EXISTS `page`;
 CREATE TABLE `page` (
   `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -281,7 +292,7 @@ CREATE TABLE `page` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=15 ;
 
 --
--- Dumping data for table `page`
+-- Contenu de la table `page`
 --
 
 INSERT INTO `page` (`id`, `key`, `title`, `type`, `descr`, `text`, `url`, `system`, `created`, `updated`, `status`, `version`, `owner`) VALUES
@@ -298,9 +309,10 @@ INSERT INTO `page` (`id`, `key`, `title`, `type`, `descr`, `text`, `url`, `syste
 -- --------------------------------------------------------
 
 --
--- Table structure for table `section`
+-- Structure de la table `section`
 --
 
+DROP TABLE IF EXISTS `section`;
 CREATE TABLE `section` (
   `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -320,9 +332,10 @@ CREATE TABLE `section` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `site`
+-- Structure de la table `site`
 --
 
+DROP TABLE IF EXISTS `site`;
 CREATE TABLE `site` (
   `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -339,7 +352,7 @@ CREATE TABLE `site` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `site`
+-- Contenu de la table `site`
 --
 
 INSERT INTO `site` (`id`, `key`, `title`, `descr`, `created`, `updated`, `status`, `defaultversion`, `owner`) VALUES
@@ -348,9 +361,10 @@ INSERT INTO `site` (`id`, `key`, `title`, `descr`, `created`, `updated`, `status
 -- --------------------------------------------------------
 
 --
--- Table structure for table `version`
+-- Structure de la table `version`
 --
 
+DROP TABLE IF EXISTS `version`;
 CREATE TABLE `version` (
   `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -366,7 +380,7 @@ CREATE TABLE `version` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `version`
+-- Contenu de la table `version`
 --
 
 INSERT INTO `version` (`id`, `key`, `title`, `lang`, `created`, `updated`, `status`, `owner`) VALUES
@@ -375,9 +389,10 @@ INSERT INTO `version` (`id`, `key`, `title`, `lang`, `created`, `updated`, `stat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `workflow`
+-- Structure de la table `workflow`
 --
 
+DROP TABLE IF EXISTS `workflow`;
 CREATE TABLE `workflow` (
   `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -398,9 +413,10 @@ CREATE TABLE `workflow` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `_rel`
+-- Structure de la table `_rel`
 --
 
+DROP TABLE IF EXISTS `_rel`;
 CREATE TABLE `_rel` (
   `item` varchar(32) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'undefined',
   `itemid` int(10) unsigned NOT NULL,
@@ -414,6 +430,13 @@ CREATE TABLE `_rel` (
   KEY `relid` (`relid`),
   KEY `objectid` (`itemid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Relations of page';
+
+--
+-- Contenu de la table `_rel`
+--
+
+INSERT INTO `_rel` (`item`, `itemid`, `key`, `rel`, `relid`, `position`) VALUES
+('human', 2, 'group', 'group', 1, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

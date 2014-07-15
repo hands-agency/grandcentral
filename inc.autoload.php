@@ -48,39 +48,34 @@ class boot
  */
 	public function __construct()
 	{
-	//	Ouverture du tampon
-		if (!ob_start('ob_gzhandler')) ob_start();
-	//	recherche de l'url active
-		// $this->root = $_SERVER['DOCUMENT_ROOT'];
-		$this->get_url();
-		$this->get_config();
-	//	chargement d'un coeur alternatif
-		if (empty($this->site)) $this->boot = (self::index_enabled === true) ? 'index' : trigger_error('Sorry, can\'t find your site definition in the <strong>inc.config.php</strong> file.', E_USER_ERROR);
-		// elseif ($this->site['maintenance'] === true && $this->env == 'site') $this->boot = 'maintenance';
-		switch (true)
-		{
-		//	maintenance
-			case $this->site['maintenance'] === true && $this->env == 'site':
-				// $this->boot = 'maintenance';
-			//	définition des constantes
-				$this->define_config();
-				spl_autoload_register('boot::autoload');
-				self::get($this->core_root);
-				// require($this->site['root'].'/'.self::app_maintenance.'/'.self::app_maintenance.'.php');
-				// exit;
-				break;
-		//	dans tous les autres cas
-			default:
-			//	définition des constantes
-				$this->define_config();
-			//	prise en charge de l'autoload des classes
-				spl_autoload_register('boot::autoload');
-			//	chargement du coeur
-				self::get($this->core_root);
-				
-				break;
-		}
 	
+		//	ouverture du tampon
+		if(!ob_start("ob_gzhandler")) ob_start();
+		//	prise en charge de l'autoload des classes
+		spl_autoload_register('boot::autoload');
+		//	recherche de l'url active
+		$this->get_url();
+		// chargement du fichier de config
+		if ($this->get_config())
+		{
+			//	définition des constantes
+			$this->define_config();
+			//	chargement du coeur
+			self::get($this->core_root);
+		}
+		// installation
+		else
+		{
+			$this->env = 'admin';
+			$this->boot = 'install';
+			$this->root = $_SERVER['DOCUMENT_ROOT'];
+			$this->admin['root'] = $this->root.'/'.self::admin_dir;
+			$this->define('SITE_ROOT', $this->root.'/'.self::site_dir);
+			$this->core_root = $this->admin['root'].'/'.$this->boot;
+			$this->define_config();
+			self::get($this->core_root);
+			exit;
+		}
 	}
 
 /**
@@ -98,17 +93,22 @@ class boot
 	}
 
 /**
- * What is this method about
+ * Get data form the config file
  *
- * @param	string  $sample the sample data
- * @author	mvd@cafecentral.fr
- * @return	array	all of the exciting sample options
- * @access	public
+ * @return	mixed	$this or false 
+ * @access	private
  */
 	private function get_config()
 	{
 	//	chargement du fichier de config
-		(is_file(self::ini_file)) ? require(self::ini_file) : self::error('no-boot');
+		if (is_file(self::ini_file))
+		{
+			require(self::ini_file);
+		}
+		else
+		{
+			return false;
+		}
 	//	vérification des paramètres
 		if (!isset($admin) || !isset($site)) self::error('no-param');
 	//	root
@@ -164,6 +164,7 @@ class boot
 			$this->env = (mb_strpos($this->site['urlr'].'/', '/'.$this->admin['key'].'/') === 0) ? 'admin' : 'site';
 			if ($this->env === 'site') unset($this->admin['urlr']);
 		}
+		return true;
 	}
 
 /**
@@ -187,12 +188,12 @@ class boot
 		{
 			$this->define('site', $this->site);
 			$this->define('KEY', constant(ENV.'_KEY'));
-			$this->define('DOMAIN_URL', $this->domain);
-			$this->define('URI', $this->uri);
-			$this->define('URL', $this->url);
 			$this->define('URLR', constant(ENV.'_URLR'));
-			$this->define('ROOT', constant(ENV.'_ROOT'));
 		}
+		$this->define('URI', $this->uri);
+		$this->define('URL', $this->url);
+		$this->define('DOMAIN_URL', $this->domain);
+		$this->define('ROOT', constant(ENV.'_ROOT'));
 	}
 
 /**
@@ -235,7 +236,7 @@ class boot
 				{
 					foreach ($files as $file)
 					{
-						$root = $app_root.'/'.self::app_system_dir.'/'.$file;
+						$root = $app_root.'/'.self::app_system_dir.'/'.trim($file, '/');
 						self::load($root);
 					}
 				}
@@ -256,10 +257,10 @@ class boot
  * @access	public
  */
 	private static function load($file)
-	{	
+	{
 		if (is_file($file))
 		{
-			require_once $file;
+		    require_once $file;
 		}
 		else self::error('no-file', $file);
 	}
