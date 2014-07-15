@@ -76,9 +76,9 @@ class dir implements Iterator
  *
  * @access	private
  */
-	private function _save()
+	public function save()
 	{
-		if (!$this->exists($this->root)) mkdir($this->root, 0777, true);
+		if (!$this->exists($this->root)) mkdir($this->root, 0775, true);
 	}
 	
 /**
@@ -90,7 +90,7 @@ class dir implements Iterator
 	public function copy($path)
 	{
 		$copy = new dir($path);
-		$copy->_save();
+		$copy->save();
 		$this->get();
 		
 		foreach ($this->data as $key => $value)

@@ -81,7 +81,7 @@ class file
  */
 	public function save($mkdir = false)
 	{
-		if (!is_dir($this->dir) && $mkdir === true) mkdir($this->dir, 0777, true);
+		if (!is_dir($this->dir) && $mkdir === true) mkdir($this->dir, 0775, true);
 		file_put_contents($this->root, $this->data);
 	}
 	
@@ -93,7 +93,7 @@ class file
  */
 	public function copy($dir, $key = null)
 	{
-		if (!is_dir($dir)) mkdir($dir, 0755, true);
+		if (!is_dir($dir)) mkdir($dir, 0775, true);
 		
 		if (is_null($key)) $key = $this->key;
 		copy($this->root, $dir.'/'.$key);
