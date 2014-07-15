@@ -68,7 +68,7 @@ class boot
 		{
 			$this->env = 'admin';
 			$this->boot = 'install';
-			$this->root = $_SERVER['DOCUMENT_ROOT'];
+			$this->root = realpath(dirname(__FILE__));
 			$this->admin['root'] = $this->root.'/'.self::admin_dir;
 			$this->define('SITE_ROOT', $this->root.'/'.self::site_dir);
 			$this->core_root = $this->admin['root'].'/'.$this->boot;
