@@ -74,6 +74,7 @@ class boot
 			$this->core_root = $this->admin['root'].'/'.$this->boot;
 			$this->define_config();
 			self::get($this->core_root);
+			require $this->core_root.'/system/install.php';
 			exit;
 		}
 	}
