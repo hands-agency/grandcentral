@@ -36,7 +36,8 @@
 //	Get the available values
 	$available = i('section', $p, $env);
 //	Refine
-	if (isset($_POST['q'])) {
+	if (isset($_POST['q']))
+	{
 		echo 'TODO refined with '.$_POST['q'];
 	}
 ?>

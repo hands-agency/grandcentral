@@ -81,8 +81,7 @@ li[data-type="zoning"] .browser .zone>.title
 	margin-top:	-10px;
 	height:20px;
 	line-height:20px;
-	padding:0 10px 0 0;
-	border-right:1px solid #cccccc;
+	padding:0 5px 0 0;
 	width:75px;
 	color:#666666;
 	font-size:10px;
@@ -95,7 +94,7 @@ li[data-type="zoning"] .browser .zone>.title:after
 {
 	content:"●";
 	position:absolute;
-	right:-39px;
+	right:-40px;
 	top:10px;
 	z-index:1;
 	border-bottom:1px solid #cccccc;
@@ -218,12 +217,17 @@ li[data-type="zoning"] .selected .right
 /* Sections */
 li[data-type="zoning"] .selected ol
 {
-	padding:7px;
+	padding:10px;
 	margin:0 15px !important;
-	background:#F2F2F2;
+	background:#FEFEFE;
+	border:1px dashed #ddd;
 }
 li[data-type="zoning"] .selected ol li .delete
 {
+}
+li[data-type="zoning"] .selected ol li .title
+{
+	cursor:pointer;
 }
 li[data-type="zoning"] .selected ol li .title:hover
 {
@@ -279,24 +283,17 @@ li[data-type="zoning"] .available .refine input
 	padding:5px;
 }
 
+/* New */
+li[data-type="zoning"] .available button
+{
+}
+
 /* Available */
 li[data-type="zoning"] .available ul {
 	overflow:auto;
 	max-height:500px;	
 }
 li[data-type="zoning"] .available li .handle,
-li[data-type="zoning"] .available li .delete
-{
-	display:none;
-}
-
-
-/* Fav */
-li[data-type="zoning"] .available ul.fav {
-	padding-bottom:10px;
-	margin-bottom:10px;
-	border-bottom:1px dashed #ccc;
-}
 li[data-type="zoning"] .available li .delete
 {
 	display:none;

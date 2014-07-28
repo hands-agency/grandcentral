@@ -217,6 +217,13 @@
 			$('#greenbutton-default').removeClass('on');
 		}
 
+	//	New system page
+		plugin.newsystem = function()
+		{
+		//	Go to the form page
+			document.location.href = ADMIN_URL+'/edit?item='+_GET['item']+'&fill[system]=1';
+		}
+
 	//	Fire up the plugin!
 		plugin.init();
 	}

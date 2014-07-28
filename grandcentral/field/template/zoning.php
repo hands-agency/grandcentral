@@ -44,17 +44,15 @@
 	$template = $master['template'];
 	$root = SITE_ROOT.'/'.$app.$template.'.html.php';
 	$zones = master::get_zones($root);
-//	Zones that are out of the zoning
+//	TODO Zones that are out of the zoning
 	$outZones = array('css', 'script');
 		
 //	Fetch the sections
 	$sections = $page['section']->unfold();
 	
 /********************************************************************************************/
-//	?
-/********************************************************************************************/
-
 //	Add the existing sections to the zones
+/********************************************************************************************/
 	foreach ($sections as $section)
 	{
 		if (isset($zones[$section['zone']->get()])) $zones[$section['zone']->get()]['section'][] = $section;
@@ -62,11 +60,6 @@
 
 //	DEBUG
 //	sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $zones);
-
-/********************************************************************************************/
-//	Favourites items
-/********************************************************************************************/
-	$favs = array();
 
 /********************************************************************************************/
 //	Sort of a repository of data for Ajax

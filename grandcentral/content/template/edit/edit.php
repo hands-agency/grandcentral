@@ -38,6 +38,14 @@
 			'status' => null,
 		));
 	}
+//	You can prefill the form through _GET (&fill[title]=something&fill[system]=0...)
+	if (isset($_GET['fill']))
+	{
+		foreach ($_GET['fill'] as $key => $value)
+		{
+			if (isset($item[$key])) $item[$key] = $value;
+		}
+	}
 	
 /********************************************************************************************/
 //	One exception for the workflow

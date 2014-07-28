@@ -11,13 +11,13 @@
 		
 		<span class="configure">
 			<span class="template">
-		<?php if ($template): ?>
+			<?php if ($template): ?>
 			<input type="hidden" name="<?= $_FIELD->get_name(); ?>[template]" value="<?=$template?>" />
-		<?php endif ?>
+			<?php endif ?>
 			</span>
 			<span class="param">
-		<?php if ($param): ?>
-		<?php foreach ($value['param'] as $key => $value): ?>
+			<?php if ($param): ?>
+			<?php foreach ($value['param'] as $key => $value): ?>
 				<?php if (!is_array($value)): ?>
 				<textarea style="display:none" name="<?= $_FIELD->get_name(); ?>[param][<?=$key?>]"><?=$value?></textarea>
 				<?php else: ?>
@@ -25,8 +25,8 @@
 				<textarea style="display:none" name="<?= $_FIELD->get_name(); ?>[param][<?=$key?>][<?=$k?>]"><?=$v?></textarea>
 				<?php endforeach ?>
 				<?php endif ?>
-		<?php endforeach ?>
-		<?php endif ?>
+			<?php endforeach ?>
+			<?php endif ?>
 			</span>
 		</span>
 	

@@ -46,11 +46,11 @@
 			valueContenttype: valueContenttype,
 			valueTemplate: valueTemplate,
 			valueParam: valueParam,
-		}, function()
-			{
-				$(contextDom+' .template select').trigger('change');
-			}
-		);
+		},
+		function()
+		{
+			$(contextDom+' .template select').trigger('change');
+		});
 	});
 	
 //	Send template and params to content

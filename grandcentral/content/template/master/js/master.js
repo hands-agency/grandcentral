@@ -262,7 +262,7 @@
 		setTimeout(function()
 		{
 			$('#tabs li a'+pseudo).parent().trigger('click');
-		}, 220);
+		}, 300);
 	}
 	closeContext = function()
 	{
@@ -272,7 +272,7 @@
 		setTimeout(function()
 		{
 			$('#tabs li a'+pseudo).parent().trigger('click');
-		}, 220);
+		}, 300);
 	}
 	
 //	Site
