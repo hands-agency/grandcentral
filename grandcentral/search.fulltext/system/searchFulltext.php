@@ -11,9 +11,9 @@ class searchFulltext
 {
 	// nom de la table dans la base de données
 	const table = 'searchfulltext';
-	// relation blacklistées
+	// pondération
 	public $relevance = array('title' => 10, 'txt' => 3, 'rel' => 0.5);
-	// relation blacklistées
+	// tables blacklistées
 	public $notable = array('tag');
 	// relation blacklistées
 	public $norel = array('child','section','page');
