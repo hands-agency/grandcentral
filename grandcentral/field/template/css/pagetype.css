@@ -98,7 +98,7 @@
 
 [data-type="pagetype"] .field .type [data-key="key"] ol li input[value="header"]+label
 {
-	border:1px dashed #000;
+	border:1px solid rgba(0, 0, 0, .4);
 	background:transparent;
 }
 [data-type="pagetype"] .field .type [data-key="key"] ol li input[value="link"]

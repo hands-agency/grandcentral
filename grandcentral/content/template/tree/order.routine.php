@@ -19,28 +19,26 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	Reorder the sitetree
+//	Reorder the tree
 /********************************************************************************************/
 //	Our new list of pages
-	$sitetree = $_POST['sitetree'];
+	$tree = $_POST['tree'];
 
-//	Loop through the pages
-	foreach ($sitetree as $sitetree)
+//	Loop through the branches of pages
+	foreach ($tree as $branch)
 	{
-		if (isset($sitetree['children']))
+		if (isset($branch['children']))
 		{
 		//	fetch the complete page
-			list($item, $id) = explode('_', $sitetree['item']);
-			$page = i($item, $id, $_SESSION['pref']['handled_env']);
-		//	Reset the children pages
-			$page->set_rel('child', null);
-		//	Add the new one by one
-			foreach ($sitetree['children'] as $child)
+			$page = i($branch['item'], null, $_SESSION['pref']['handled_env']);
+		//	Check if the children have changed
+			if ($page['child']->get() != $branch['children'])
 			{
-				$page->add_rel('child', $child);
+			//	Assign new children
+				$page['child']->set($branch['children']);
+			//	Save
+				$page->save();
 			}
-		//	Save
-			$page->save();
 		}
 	}
 //	TODO !!!

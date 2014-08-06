@@ -3,7 +3,7 @@
 /********************************************************************************************/
 section[data-template="/tree/tree"]
 {
-	height:750px;
+/*	height:750px; */
 }
 section[data-template="/tree/tree"] ol.tree
 {
@@ -41,11 +41,12 @@ section[data-template="/tree/tree"] ol ol li .connector
 {
 	position:absolute;
 	width:20px;
-	top:1px;
+	top:0px;
 	left:50%;
 	margin-left:-10px;
 	font-size:10px;
 	color:#666;
+	z-index:2;
 }
 section[data-template="/tree/tree"] ol ol li .connector:before
 {
@@ -356,7 +357,7 @@ section[data-template="/tree/tree"] li .page[data-type="header"] .connector
 }
 section[data-template="/tree/tree"] li .page[data-type="header"] .icon .face
 {
-	border:1px dashed rgba(0, 0, 0, .4);
+	border:1px solid rgba(0, 0, 0, .4);
 	background:transparent !important;
 }
 section[data-template="/tree/tree"] li .page[data-type="header"] .icon .face:before
@@ -377,6 +378,13 @@ section[data-template="/tree/tree"] li .page[data-type="header"] .icon .face .ti
 	z-index:5;
 	background:#eee !important;
 	position:relative;
+}
+section[data-template="/tree/tree"] li .page[data-type="header"] .icon .face .action a
+{
+	z-index:5;
+	position:relative;
+	color:#000;
+	background:#eee;
 }
 .unlocked section[data-template="/tree/tree"] li .page[data-type="header"] .icon .face .title
 {
@@ -435,6 +443,10 @@ section[data-template="/tree/tree"] li .page[data-type="link"] .url
 }
 
 /* add */
+.locked section[data-template="/tree/tree"] ol li .page .icon .add
+{
+	display:none;
+}
 .unlocked section[data-template="/tree/tree"] ol li .page .icon .add
 {
 	background:#007EE5;

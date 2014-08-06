@@ -37,6 +37,14 @@
 <h2><span class="centered">Folders</span></h2>
 <div class="folder">
 	<ul>
+		<li class="add" data-path="<?=$here?>">
+			<div class="title">
+				<form method="post" accept-charset="utf-8">
+					<input type="text" placeholder="Name this folder">
+				</form>
+			</div>
+			<div class="button">+</div>
+		</li>
 		<? foreach ($directories as $dir): ?>
 		<?
 			$reg = $dir->get_root().'/*.jpg';

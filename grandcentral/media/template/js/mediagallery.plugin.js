@@ -51,7 +51,7 @@
 			}
 			
 		//	Click on a folder
-			$element.on('click', '.folder>ul>li', function()
+			$element.on('click', '.folder>ul>li:not(.add)', function()
 			{
 				dir = $(this).find('.title').html();
 				if (plugin.settings.current != '')
@@ -60,6 +60,57 @@
 				}
 				plugin.settings.current = plugin.settings.current + dir;
 				plugin.loadList();
+				return false;
+			});
+
+		//	Start adding folder
+			$element.on('click', '.folder>ul>li.add .button', function()
+			{	
+			//	Show title, hide button
+				$(this).parent().find('.title').show('fast').find('input').focus();
+				$(this).hide('fast');
+				
+			});
+			$element.on('mouseleave', '.folder>ul>li.add', function()
+			{	
+			//	Hide title, show button
+				$(this).find('.title').hide('fast');
+				$(this).find('.button').show('fast');
+			});
+
+		//	Add on a folder
+			$element.on('submit', '.folder>ul>li.add form', function()
+			{	
+			//	Some vars
+				$folders = $(this).closest('ul');
+				$folder = $(this).closest('li');
+				path = $folder.data('path');
+				$input = $(this).find('input');
+				dir = $input.val();
+			
+			//	Create!
+				$.ajx(
+				{
+					app: 'media',
+					template: 'addfolder',
+					path: path+dir,
+				},{
+					done:function(html)
+					{
+						if (html != 'ko')
+						{
+							$input.val('');
+							el = $('<li style="display:none"><div class="title">'+html+'</div></li>');
+							$folder.after(el);
+							el.show('fast');
+						}
+						else
+						{
+							$folder.effect('shake', { times:3 }, 300);
+							console.log(html);
+						}
+					}
+				});
 				return false;
 			});
 		

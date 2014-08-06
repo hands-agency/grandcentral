@@ -769,33 +769,29 @@ $(function()
 //	Save the curent sitetree
 	$(document).bind('lock', function()
 	{
-		/*
 	//	Get the order
-		pages = $('ol.sitetree').find('li[data-item]');
-		sitetree = Array();
+		pages = $('#section_tree ol.tree').find('li[data-item]');
+		tree = new Object();
 	//	Loop through the pages
 		pages.each(function(i)
 		{
 		//	Get the nickname and the children
 			item = $(this).data('item');
-			children = Array();
-			$(this).find('>ol>li[data-item]').each(function(){children.push($(this).data('item'));});
+			children = new Array();
+			$(this).find('>.node>ol>li[data-item]').each(function()
+			{
+				children.push($(this).data('item'));
+			});
 		//	Store the data
-			sitetree[i] = {item:item, children:children};
+			tree[i] = {item:item, children:children}
 		});
 	//	Send the new order to ajax
 		$.ajx(
 		{
-			app:'section',
-			theme:'sitetree',
-			template:'/order.routine',
-			sitetree:sitetree,
-		},
-		{
-			done:function(html){console.log(html);}
-		}
-		);
-		*/
+			app:'content',
+			template:'tree/order.routine',
+			tree:tree,
+		});
 	});
 	
 });

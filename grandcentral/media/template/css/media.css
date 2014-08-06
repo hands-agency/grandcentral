@@ -286,7 +286,8 @@ li.ui-draggable-dragging *
 {
 	float:right;
 }
-#mediaLibrary .folder>ul>li .title
+#mediaLibrary .folder>ul>li .title,
+#mediaLibrary .folder>ul>li .title input
 {
 	text-align:center;
 	line-height:35px;
@@ -295,6 +296,11 @@ li.ui-draggable-dragging *
 	font-family:'Raleway-Regular';
 	text-transform:uppercase;
 	background-color:#fff;
+}
+#mediaLibrary .folder>ul>li .title input
+{
+	padding:0;
+	background:transparent;
 }
 #mediaLibrary .folder>ul>li .title a
 {
@@ -314,6 +320,22 @@ li.ui-draggable-dragging *
 	height:50px;
     background-position: center center;
     background-size: cover;
+}
+/* Add */
+#mediaLibrary .folder .add .button
+{
+	font-size:50px;
+	line-height:80px;
+	color:#ddd;
+	text-align:center;
+}
+#mediaLibrary .folder .add:hover .button
+{
+	color:#3eb4d6;
+}
+#mediaLibrary .folder .add .title
+{
+	display:none;
 }
 
 /********************************************************************************************/

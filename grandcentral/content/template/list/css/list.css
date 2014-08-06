@@ -17,7 +17,6 @@ section[data-template="/list/list"]>div>ol
 }
 section[data-template="/list/list"]>div>ol>li
 {
-	border:1px solid transparent;
 }
 
 section[data-template="/list/list"]>div>ol>li>.title
