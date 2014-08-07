@@ -42,15 +42,15 @@
 				drop:function(event, ui)
 				{
 				//	Our item or file
-					if ($(ui.draggable).data('item')) trash = $(ui.draggable).data('item');
-					if ($(ui.draggable).data('path')) trash = $(ui.draggable).data('path');
-					
+					var dragged = $(ui.draggable);
+					if (dragged.data('item')) trash = $(ui.draggable).data('item');
+					if (dragged.data('path')) trash = $(ui.draggable).data('path');
+
 				//	Send to the trashbin!
 					plugin.send(trash, function()
 					{				
-					//	Get rid of the objet
-						byebye = $(ui.draggable);
-						byebye.hide('drop', {direction:'down'});
+					//	Get rid visually of the objet
+						dragged.hide('drop', {direction:'down'});
 					});
 				}
 			});
@@ -78,23 +78,31 @@
 		plugin.send = function(trash, callback)
 		{
 		//	Build params
-			p = 
-			{
+			p = {
 				app: 'content',
 				template: '/master/status',
 				status:$element.data('status'),
+				mime:'json',
 			};
 			if (trash.charAt(0) == '/') p.path = trash; else p.item = trash;
-		//	Go to trash
+			
+		//	Send to trash
 			$.ajx(p,
 			{
 			//	Done
-				done:function(html)
+				done:function(response)
 				{
-				//	Confirm trash
-					$element.effect('bounce', {distance:'30', times:'2'}, 250);
-				//	Callback
-					if ((typeof(callback) != 'undefined') && (typeof(callback) == "function")) callback.call(this, html);
+					if (response == 'ok')
+					{
+					//	Confirm trash
+						$element.effect('bounce', {distance:'30', times:'2'}, 250);
+					//	Callback
+						if ((typeof(callback) != 'undefined') && (typeof(callback) == "function")) callback.call(this, response);
+					}
+					else
+					{
+						$element.effect('shake', { times:3 }, 300);
+					}
 				}
 			});
 		}

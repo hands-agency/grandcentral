@@ -1,1 +1,1 @@
-<?=$return?>
+<?=json_encode($return)?>

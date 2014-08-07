@@ -119,7 +119,7 @@ class file
  */
 	public function delete()
 	{
-		if ($this->exists()) unlink($this->root);
+		if ($this->exists()) return unlink($this->root);
 	}
 
 /**

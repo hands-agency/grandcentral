@@ -22,10 +22,11 @@
 //	Some vars
 /********************************************************************************************/
 	$media = new app('media');
-	$root = SITE_ROOT.'/media';
+	$root = $media->get_templateroot('site');
 	$path = ($_POST['path'][0] != '/') ? '/'.$_POST['path'] : $_POST['path'];
 	if ($path == '/') $path = null;
 	$dir = ($_POST['dir'][0] != '/') ? '/'.$_POST['dir'] : $_POST['dir'];
+
 	
 /********************************************************************************************/
 //	Create a directory
