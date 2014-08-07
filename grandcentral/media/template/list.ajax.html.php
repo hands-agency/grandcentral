@@ -115,7 +115,8 @@ $(document).ready(function()
 	{
 	//	Some vars
 		container = $('#mediaLibrary .files ul');
-		media = '<li class="new"><span class="preview"></span><span class="title">' + file.name + '</span><span class="info">' + file.type + ' • ' + (file.size ? (file.size/1024|0) + ' K' : '') + '</span></li>';
+
+		media = '<li class="new" data-info="'+file.type+' • '+(file.size ? (file.size/1024|0)+' K' : '')+'"><a href="#"><span class="preview"></span><span class="title">' + file.name + '</span></a></li>';
 			
 	//	Preview images
 		if (tests.filereader === true)

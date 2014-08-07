@@ -32,13 +32,12 @@
 /********************************************************************************************/
 //	Make the Library
 /********************************************************************************************/
-//	print '<pre>';print_r($_POST);print'</pre>';
-	
 	$gallery = new dir(SITE_ROOT.'/media'.$here);
 	$gallery->get();
 	
 	foreach ((array) $gallery->data as $value)
 	{
+	//	We split dirs and files
 		if (is_a($value, 'dir')) $directories[] = $value; 
 		else $files[] = media($value->get_root());
 	}

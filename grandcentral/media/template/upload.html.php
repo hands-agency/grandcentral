@@ -21,16 +21,23 @@
 /********************************************************************************************/
 //	Upload files
 /********************************************************************************************/
-//	Build path
-	if ($_POST['root'] != '/') $_POST['root'] .= '/'; /* Final slash */
-	$path = SITE_ROOT.'/'.$_POST['app'].$_POST['root'];
-	
-//	Loop through received files
-	foreach($_FILES as $id => $file)
+	if ($_SESSION['user']->is_admin())
 	{
-	//	Complete path
-		$filePath = $path.$file['name'];
-	//	Move file
-		if (!move_uploaded_file($file['tmp_name'], $filePath)) echo 'Nope, impossible to move this file';
+	//	Build path
+		$path = app('media')->get_templateroot('site').'/';
+	
+	//	Loop through received files
+		$return = 'ok';
+		foreach($_FILES as $id => $file)
+		{
+		//	Complete path
+			$filePath = $path.$file['name'];
+		//	Move file
+			if (!move_uploaded_file($file['tmp_name'], $filePath)) $return = 'ko';
+		}
+	}
+	else
+	{
+		$return = 'ko';
 	}
 ?>
