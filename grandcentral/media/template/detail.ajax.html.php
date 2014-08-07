@@ -10,10 +10,6 @@
 			<td><?= $key; ?></td>
 		</tr>
 		<tr>
-			<td>Root</td>
-			<td><?= $root; ?></td>
-		</tr>
-		<tr>
 			<td>Url</td>
 			<td><?= $url; ?></td>
 		</tr>

@@ -33,7 +33,6 @@
 		<? endif;?>
 	</ul>
 </div>
-<? if (isset($directories)): ?>
 <h2><span class="centered">Folders</span></h2>
 <div class="folder">
 	<ul>
@@ -45,6 +44,7 @@
 			</div>
 			<div class="button">+</div>
 		</li>
+		<? if (isset($directories)): ?>
 		<? foreach ($directories as $dir): ?>
 		<?
 			$reg = $dir->get_root().'/*.jpg';
@@ -71,9 +71,9 @@
 			</ul>
 		</li>
 		<? endforeach ?>
+		<? endif ?>
 	</ul>
 </div>
-<? endif ?>
 
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function()

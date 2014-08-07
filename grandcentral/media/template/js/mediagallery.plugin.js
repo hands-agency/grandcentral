@@ -93,7 +93,8 @@
 				{
 					app: 'media',
 					template: 'addfolder',
-					path: path+dir,
+					path: path,
+					dir: dir,
 				},{
 					done:function(html)
 					{

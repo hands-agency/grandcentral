@@ -24,7 +24,7 @@
 	$file = media(stripslashes($_POST['root']));
 	// print '<pre>';print_r($file);print'</pre>';
 	$key = $file->get_key();
-	$root = $file->get_root();
+//	$root = $file->get_root();
 	$url = $file->get_url();
 	$path = null;
 	$type = $file->get_mime();

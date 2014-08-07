@@ -41,11 +41,13 @@
 				},
 				drop:function(event, ui)
 				{
-				//	Our item's nickname
-					item = $(ui.draggable).data('item');
+				//	Our item or file
+					if ($(ui.draggable).data('item')) trash = $(ui.draggable).data('item');
+					if ($(ui.draggable).data('path')) trash = $(ui.draggable).data('path');
+					
 				//	Send to the trashbin!
-					plugin.send(item, function()
-					{						
+					plugin.send(trash, function()
+					{				
 					//	Get rid of the objet
 						byebye = $(ui.draggable);
 						byebye.hide('drop', {direction:'down'});
@@ -73,16 +75,19 @@
 		}
 		
 	//	Send
-		plugin.send = function(item, callback)
+		plugin.send = function(trash, callback)
 		{
-		//	Go to trash
-			$.ajx(
+		//	Build params
+			p = 
 			{
 				app: 'content',
 				template: '/master/status',
-				item:item,
 				status:$element.data('status'),
-			}, {
+			};
+			if (trash.charAt(0) == '/') p.path = trash; else p.item = trash;
+		//	Go to trash
+			$.ajx(p,
+			{
 			//	Done
 				done:function(html)
 				{
