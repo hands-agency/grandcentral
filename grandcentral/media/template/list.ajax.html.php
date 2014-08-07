@@ -114,9 +114,9 @@ $(document).ready(function()
 	function appendFile(file)
 	{
 	//	Some vars
-		container = $('#mediaLibrary .files ul');
-
-		media = '<li class="new" data-info="'+file.type+' • '+(file.size ? (file.size/1024|0)+' K' : '')+'"><a href="#"><span class="preview"></span><span class="title">' + file.name + '</span></a></li>';
+		$container = $('#mediaLibrary .files ul');
+		$upload = $('#mediaLibrary .files ul li.upload');
+		media = $('<li class="new" data-info="'+file.type+' • '+(file.size ? (file.size/1024|0)+' K' : '')+'"><a href="#"><span class="preview"></span><span class="title">' + file.name + '</span></a></li>');
 			
 	//	Preview images
 		if (tests.filereader === true)
@@ -124,8 +124,8 @@ $(document).ready(function()
 			var reader = new FileReader();
 			reader.onload = function (event)
 			{
-			//	Add
-				appendedMedia = $(media).appendTo(container);
+			//	Add				
+				$upload.after(media);
 				
 			//	If it's an image
 				if (acceptedTypes[file.type] === true)
@@ -134,17 +134,17 @@ $(document).ready(function()
 					image.src = event.target.result;
 					image.width = 173; // a fake resize
 				//	Add the image preview
-					appendedMedia.find('.preview').html(image);
+					media.find('.preview').html(image);
 				}
 				
 			//	Remasonry
-				if (container.parents('.files').hasClass('empty'))
+				if ($container.parents('.files').hasClass('empty'))
 				{
 				//	Say the media lib is not empty anymore
-					container.parents('.files').removeClass('empty');
+					$container.parents('.files').removeClass('empty');
 					$('#mediaLibrary').data('mediaGallery').initList();
 				}
-				else container.masonry( 'prepended', appendedMedia );
+				else $container.masonry( 'prepended', media );
 			};
 			reader.readAsDataURL(file);
 		}
