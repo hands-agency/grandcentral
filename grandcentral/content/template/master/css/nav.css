@@ -368,73 +368,94 @@
 /* In hives */
 #adminNav>ul .sub ul.hive
 {
+	padding-left:40px;
+	font-size:0;
+}
+#adminNav>ul .sub ul.hive li
+{
+	background:#333;
+	display:inline-block;
+	margin:15px 0;
+	position:relative;
+	margin-left:-40px !important;
+	vertical-align:top;
+	-webkit-transition: all .1s ease-out; 
+	-moz-transition: all .1s ease-out; 
+	-o-transition: all .1s ease-out; 
+	transition: all .1s ease-out;
+}
+#adminNav>ul .sub ul.hive li:hover
+{
+	background:#3eb4d6;
+}
+#adminNav>ul .sub ul.hive li:nth-child(even)
+{
+	margin-top:95px !important; /* Optical alignment */
+}
 
+#adminNav>ul .sub ul.hive li, #adminNav>ul .sub ul.hive li:before, #adminNav>ul .sub ul.hive li:after {
+	/* easy way: width is height * 1.732
+	actual formula is 2*(width/(2*Math.tan(Math.PI/6)))
+	remove border-radius for straight edges on hexagons */
+	height: 50px;
+	width: 86px;;
+	border-radius: 5%/20%;
+}
+#adminNav>ul .sub ul.hive li:before {
+	background-color: inherit;
+	content: "";
+	position: absolute;
+	left: 0;
+	transform: rotate(-60deg);
+}
+#adminNav>ul .sub ul.hive li:after {
+	background-color: inherit;
+	content: "";
+	position: absolute;
+	left: 0;
+	transform: rotate(60deg);
+}
+
+#adminNav>ul .sub ul.hive li a,
+#adminNav>ul .sub ul.hive li .icon
+{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	text-align:center;
 }
 #adminNav>ul .sub ul.hive li a
 {
-	display:block;
-	margin:30px -49px 86px 0;
-	float:left;
-	font-size:0.8em;
-	text-align:center;
-	width: 100px;
-	height: 53px;
-	background:#eee;
-	position: relative;
-	color:#333;
-}
-#adminNav>ul .sub ul.hive li a:hover
-{
-	background:#3eb4d6 !important;
-}
-#adminNav>ul .sub ul.hive li:nth-child(even) a
-{
-	top:85px;
-}
-#adminNav>ul .sub ul.hive li a:before {
-	content: "";
-	position: absolute;
-	top: -30px;
-	left: 0;
-	width: 0;
-	height: 0;
-	border-left: 50px solid transparent;
-	border-right: 50px solid transparent;
-	border-bottom: 30px solid #eee;
-}
-#adminNav>ul .sub ul.hive li a:after {
-	content: "";
-	position: absolute;
-	bottom: -30px;
-	left: 0;
-	width: 0;
-	height: 0;
-	border-left: 50px solid transparent;
-	border-right: 50px solid transparent;
-	border-top: 30px solid #eee;
+	z-index:2;
+	line-height:66px; /* Optical alignment */
+	overflow:hidden;
 }
 #adminNav>ul .sub ul.hive li .title
 {
-	font-size:0.85em;
-	width:100%;
-	position:absolute;
-	top:40px;
-	z-index:1;
-	font-family:'Raleway-Regular';
+	font-family:'Raleway-Bold';
+	letter-spacing:1px;
+	text-transform:uppercase;
+	font-size:8px;
+	display:inline-block;
+	vertical-align:middle;
+	line-height:normal;
+	z-index:10;
+	position:relative;
+	margin:0 10px;
+	padding:0 0 3px 0;
+	color:#fff;
+	border-bottom:3px solid transparent;
 }
-#adminNav>ul .sub ul.hive li a:hover:before
+#adminNav>ul .sub ul.hive li:hover .title
 {
-	border-bottom-color:#3eb4d6;
-}
-#adminNav>ul .sub ul.hive li a:hover:after
-{
-	border-top-color:#3eb4d6;
+	border-color:#fff;
 }
 #adminNav>ul .sub ul.hive li .icon
 {
-	font-size:3.1em;
-	background:transparent;
-	text-align:center;
+	color:rgba(0,0,0,0.1);
+	font-size:50px;
+	line-height:0;
 }
 
 /* In tiles */

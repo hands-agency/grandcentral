@@ -719,6 +719,12 @@ ol .placeholder
 	font-size:35px;
 	margin:0 0 30px 0;
 	text-align:center;
+	/* Linin numerals for Raleway */
+	font-feature-settings: 'lnum';
+	-moz-font-feature-settings: 'lnum=1';
+	-ms-font-feature-settings: 'lnum';
+	-webkit-font-feature-settings: 'lnum';
+	-o-font-feature-settings: 'lnum';
 }
 #adminContent section>h1 a
 {

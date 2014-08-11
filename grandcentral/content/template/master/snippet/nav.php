@@ -78,7 +78,7 @@
 		//	Subnav
 			'subnav' => array(
 				'major' => array(
-					'display' => 'tiles',
+					'display' => 'hive',
 					'link' => 'list',
 					'bunch' => i('item', array('system' => false, 'hasurl' => true, 'order()' => 'title'), $_SESSION['pref']['handled_env']),
 				),
@@ -94,7 +94,7 @@
 					'bunch' => i('item', array('key' => array('human', 'machine', 'group'), 'order()' => 'inherit(key)'), 'site'),
 				),
 				'minor' => array(
-					'display' => 'tiles',
+					'display' => 'hive',
 					'link' => 'list',
 					'bunch' => i('item', array('system' => false, 'hasurl' => false, 'order()' => 'title'), $_SESSION['pref']['handled_env']),
 				),
@@ -112,7 +112,7 @@
 		//	Subnav
 			'subnav' => array(
 				'apps' => array(
-					'display' => 'tiles',
+					'display' => 'hive',
 					'link' => i('page', 'app')['url'],
 					'array' => $apps,
 				),

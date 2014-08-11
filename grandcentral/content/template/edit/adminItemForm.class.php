@@ -142,7 +142,7 @@ class adminItemForm
 				break;
 		//	date, created, updated
 			case in_array($attr['type'], array('created', 'updated', 'date')):
-				$field['type'] = 'text';
+				$field['type'] = 'date';
 				break;
 		//	status
 			case $attr['type'] == 'status':
