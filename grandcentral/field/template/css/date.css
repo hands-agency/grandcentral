@@ -1,0 +1,84 @@
+#ui-datepicker-div
+{
+	background:#fff;
+	border:1px solid #ccc;
+	padding:10px;
+	/* Linin numerals for Raleway */
+	font-feature-settings: 'lnum';
+	-moz-font-feature-settings: 'lnum=1';
+	-ms-font-feature-settings: 'lnum';
+	-webkit-font-feature-settings: 'lnum';
+	-o-font-feature-settings: 'lnum';
+	font-family:'raleway-thin';
+	text-align:center;
+	border-radius:2px;
+}
+
+#ui-datepicker-div .ui-datepicker-title
+{
+	text-transform:uppercase;
+	font-size:10px;
+	padding:5px 0 10px 0;
+	font-family:'raleway-bold';
+	border-bottom:1px dotted #ddd;
+	margin:0 0 5px 0;
+}
+
+/* Prev + next */
+#ui-datepicker-div .ui-datepicker-prev,
+#ui-datepicker-div .ui-datepicker-next
+{
+	border:1px solid transparent;
+	border-radius:2px;
+	padding:4px 7px;
+	font-size:10px;
+	text-transform:uppercase;
+	cursor:pointer;
+}
+#ui-datepicker-div .ui-datepicker-prev:hover,
+#ui-datepicker-div .ui-datepicker-next:hover
+{
+	border-color:#F2F2F2;
+}
+#ui-datepicker-div .ui-datepicker-prev
+{
+	float:left;
+}
+#ui-datepicker-div .ui-datepicker-next
+{
+	float:right;
+}
+
+/* Months */
+#ui-datepicker-div th
+{
+	text-transform:uppercase;
+	font-size:10px !important;
+}
+
+/* Days */	
+#ui-datepicker-div td,
+#ui-datepicker-div th
+{
+	height:30px;
+	width:30px;
+	line-height:30px;
+	font-size:13px;
+	cursor:pointer;
+}
+#ui-datepicker-div td:hover
+{
+	background:#F2F2F2;
+}
+#ui-datepicker-div td.ui-datepicker-today
+{
+	border:1px solid #F2F2F2;
+}
+#ui-datepicker-div td.ui-datepicker-current-day
+{
+	background:#3eb4d6;
+}
+#ui-datepicker-div td.ui-datepicker-current-day a
+{
+	color:#fff !important;
+}
