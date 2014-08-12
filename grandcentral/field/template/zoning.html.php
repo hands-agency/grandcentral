@@ -1,11 +1,11 @@
 <div class="zoningselected">
 	
-	<div class="browser">
+	<div class="browser" data-name="<?= $_FIELD->get_name(); ?>" data-env="<?= $handled_env; ?>">
 		<? if (!empty($zones)): foreach($zones as $zone): ?>
 		<div class="zone selected <? if (isset($zone['float'])) :?><?=$zone['float']?><? endif ?>">
 			<div class="title"><?=$zone['key']?></div>
 			<ol data-nodata="<?=cst('ZONING_SELECTED_NODATA')?>"><? if (isset($zone['section'])): foreach($zone['section'] as $section): ?>
-				<li class="z_<?=$section['key']?>">
+				<li data-section="<?=$section['key']?>" data-app="<?=$section['app']['app']?>" data-template="<?=$section['app']['template']?>" data-param="<?=serialize($section['app']['param'])?>">
 					<span class="handle" data-feathericon="&#xe026"></span>
 					<button class="delete" type="button"></button>
 					<div class="icon"></div>

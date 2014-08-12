@@ -217,6 +217,13 @@
 			$('#greenbutton-default').removeClass('on');
 		}
 
+	//	New workflow
+		plugin.newworkflow = function()
+		{
+		//	Go to the form page
+			document.location.href = ADMIN_URL+'/edit?item=workflow';
+		}
+
 	//	New system page
 		plugin.newsystem = function()
 		{

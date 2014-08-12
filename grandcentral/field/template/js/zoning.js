@@ -18,7 +18,8 @@ $(document).ready(function ()
 	{
 	//	Some vars content-side
 		$li = $('[data-type="zoning"]');
-		$field = $li.find('.field');
+		$field = $li.find('.browser');
+		$section = $(this).closest('li');
 		$contentApp = $field.find('[name$="\[app\]"]');
 		$configureContainer = $field.find('.configure');
 		$contentTemplate = $configureContainer.find('.template');
@@ -41,7 +42,7 @@ $(document).ready(function ()
 			template: '/app.context',
 			env: $field.data('env'),
 			item:_GET.item+'_'+_GET.id,
-			itemKey:$('input[data-key="key"]').val(),
+			itemKey:$section.data('section'),
 			name: $field.data('name'),
 			valueApp: valueApp,
 			valueContenttype: valueContenttype,

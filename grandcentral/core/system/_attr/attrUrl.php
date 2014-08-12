@@ -142,7 +142,8 @@ class attrUrl extends _attrs
 			{
 				if ($this->params['table'] == $table[0])
 				{
-					$url .= registry::get(registry::url_index, $page);
+					$tmp = registry::get(registry::url_index, $page);
+					if ($tmp != '/') $url .= $tmp;
 					break;
 				}
 			}

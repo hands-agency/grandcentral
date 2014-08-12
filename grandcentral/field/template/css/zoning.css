@@ -146,6 +146,10 @@ li[data-type="zoning"] .available li
 	-webkit-user-select:none;
 	position:relative;
 }
+li[data-type="zoning"] .available li
+{
+	cursor:move;
+}
 li[data-type="zoning"] .selected li:hover,
 li[data-type="zoning"] .available li:hover
 {
@@ -244,7 +248,7 @@ li[data-type="zoning"] .selected ol li .config
 /* Nodata */
 ol>li[data-type="zoning"] .selected ol
 {
-	min-height:20px;
+	min-height:31px; /* Optical alignment */
 }
 ol>li[data-type="zoning"] .selected ol:before:empty
 {

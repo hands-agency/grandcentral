@@ -1,5 +1,5 @@
 <? foreach ($available as $li): ?>
-<li class="">
+<li data-section="<?=$li['key']?>" data-app="<?=$li['app']['app']?>" data-template="<?=$li['app']['template']?>">
 	<span class="handle" data-feathericon="&#xe026"></span>
 	<button class="delete" type="button"></button>
 	<div class="icon"></div>
