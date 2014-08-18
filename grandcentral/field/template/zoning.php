@@ -45,9 +45,15 @@
 	$app = $master['app'];
 	$template = $master['template'];
 	$root = SITE_ROOT.'/'.$app.$template.'.html.php';
-	$zones = master::get_zones($root);
-//	TODO Zones that are out of the zoning
-	$outZones = array('css', 'script');
+	$z = master::get_zones($root);
+//	Separate in-zones and out-zones
+	$outZones = array('meta', 'css', 'script');
+	$zones = array('in' => array(), 'out' => array());
+	foreach ($z as $key => $value)
+	{
+		if (in_array($key, $outZones)) $zones['out'][$key] = $value;
+		else $zones['in'][$key] = $value;
+	}
 		
 //	Fetch the sections
 	$sections = $page['section']->unfold();

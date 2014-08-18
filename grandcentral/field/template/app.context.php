@@ -23,7 +23,6 @@
 /********************************************************************************************/	
 //	Value template
 	$valueTemplate = (isset($_POST['valueTemplate'])) ? $_POST['valueTemplate'] : null;
-	print'<pre>';print_r($_POST);print'</pre>';
 //	Value param
 	parse_str(urldecode($_POST['name']), $name);
 	$form = key($name);

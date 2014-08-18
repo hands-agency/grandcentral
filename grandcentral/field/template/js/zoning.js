@@ -29,7 +29,7 @@ $(document).ready(function ()
 		contextDom = '#adminContext [data-template="/app.context"]';
 	
 	//	Some vars
-		valueApp = $contentApp.val();
+		valueApp = $section.data('app');
 		if (valueApp == '') return false;
 		valueTemplate = $contentTemplate.find('[name$="\[template\]"]').val();
 		valueParam = $contentParam.find('[name*="\[param\]"]').serializeArray();
