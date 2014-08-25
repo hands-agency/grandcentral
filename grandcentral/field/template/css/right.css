@@ -1,0 +1,86 @@
+/********************************************************************************************/
+/* right
+/********************************************************************************************/
+/* level */
+li[data-type="right"] .level
+{
+	background:#fcfcfc;
+	border-bottom:1px solid #eee;
+	border-left:1px solid #eee;
+	padding:5px 15px;
+}
+li[data-type="right"] .level li
+{
+	margin:10px 0;
+}
+li[data-type="right"] .level li input
+{
+	float:left;
+}
+li[data-type="right"] .level li div
+{
+	margin-left:25px;
+}
+li[data-type="right"] .level li .title
+{
+	font-family:'Raleway-Bold';
+	margin-bottom:3px;
+}
+li[data-type="right"] .level li .descr
+{
+	font-family:'Raleway-Regular';
+	color:#999;
+}
+
+/* The field */
+li[data-type="right"] .field li
+{
+	position:relative;
+}
+li[data-type="right"] .field li .delete
+{
+	position:absolute;
+	right:10px;
+	top:10px;
+}
+li[data-type="right"] .field li ul
+{
+	display:inline-block;
+	vertical-align:middle;
+}
+li[data-type="right"] .field label
+{
+
+}
+li[data-type="right"] .field .data
+{
+	padding:0 !important;
+	border:none !important;
+}
+li[data-type="right"] .field .data>li
+{
+	padding:5px 10px;
+	background:#fcfcfc;
+	border-radius:2px;
+	margin-bottom:5px;
+}
+li[data-type="right"] .field .data>li.add
+{
+	text-align:center;
+	font-size:30px;
+	margin:0;
+	cursor:pointer;
+	background:transparent;
+}
+li[data-type="right"] .field .data>li.add:hover
+{
+	color:#3eb4d6;
+}
+
+/********************************************************************************************/
+/* Template
+/********************************************************************************************/
+li[data-type="right"] .wrapper .template
+{
+	display:none;
+}

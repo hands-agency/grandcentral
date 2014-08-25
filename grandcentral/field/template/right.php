@@ -19,34 +19,96 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	GO
+//	Some vars
 /********************************************************************************************/
-	$attrs = $_APP->get_attr();
+	$_FIELD = $_PARAM['field'];
+	$handled_env = $_SESSION['pref']['handled_env'];
+	$items = i('item', array('order()' => 'title ASC'), 'site');
+	$rights = array('insert' => 'add', 'update' => 'edit', 'delete' => 'delete');
+//	$workflows = i('workflowstatus', array('order()' => 'title ASC'), 'site');
+	$values = $_FIELD->get_value();
+	$data = '';
 	
-	$admin_structures = i('item', all, 'admin');
-	// print '<pre>admin : ';print_r($admin_structures->get_attr('title'));print'</pre>';
-	// print '<pre>';print_r($admin_rights->get_attr('title'));print'</pre>';
-	$site_structures = i('item', all, 'site');
-	// print '<pre>site : ';print_r($site_structures->get_attr('title'));print'</pre>';
-	// print '<pre>';print_r($site_rights->get_attr('title'));print'</pre>';
+/********************************************************************************************/
+//	Some binds
+/********************************************************************************************/
+	$_APP->bind_css('css/right.css');
+	$_APP->bind_script('js/right.js');
 	
-	foreach ($admin_structures as $structure)
+/********************************************************************************************/
+//	Build the right-level selector
+/********************************************************************************************/
+	$levels = array(
+		array(
+			'key' => 'viewer',
+			'title' => 'Viewers',
+			'descr' => 'They have no access to Grand Central and can do limited things on '.i('site', current)['title'],
+		),
+		array(
+			'key' => 'manager',
+			'title' => 'Managers',
+			'descr' => 'They can access to Grand Central and edit part of the content',
+		),
+		array(
+			'key' => 'admin',
+			'title' => 'Admins',
+			'descr' => 'They have god-like privileges and can do whatever they please',
+		)
+	);
+	$radioLevel = '';
+
+	foreach ($levels as $level)
 	{
-		$items = i($structure['key'], all, 'admin');
+		$checked = (!isset($checked) && !isset($values['level']) OR ($values['level'] == $level['key'])) ? 'checked="checked"' : '';
+		$radioLevel .= '<li><input type="radio" name="'.$_FIELD->get_name().'[level]" value="'.$level['key'].'" '.$checked.'><div class="title">'.$level['title'].'</div><div class="descr">'.$level['descr'].'</div></li>';
+	}
+
+/********************************************************************************************/
+//	Print the data from the Database
+/********************************************************************************************/
+	foreach ((array) $values['allow'] as $table => $value)
+	{
+	//	Options for rights
+		$liRights = '';
+		foreach ($rights as $key => $right)
+		{
+			$checked = (isset($values['allow'][$table][$key])) ? 'checked="checked"' : '';
+			$liRights .= '<li><input type="checkbox" name="'.$_FIELD->get_name().'[allow]['.$table.']['.$key.']" value="1" '.$checked.'>'.$right.'</li>';
+		}
+	//	Options for items
+		$optionItems = '';
 		foreach ($items as $item)
 		{
-			$matrix['admin'][$structure['key']][$item['id']] = (!empty($item['title'])) ? $item['title'] : $item['key'];
+			$selected = ($item['key'] == $table) ? 'selected="selected"' : '';
+			$optionItems .= '<option value="'.$item['key'].'" '.$selected.'>'.$item['title'].'</option>';
 		}
+
+	//	Template
+		$data .= '
+		<li>
+			<button class="delete"></button>
+			<span>They can</span>
+			<ul>'.$liRights.'</ul>
+			<select>'.$optionItems.'</select>
+		</li>';
 	}
 	
-	foreach ($site_structures as $structure)
-	{
-		$items = i($structure['key'], all, 'site');
-		foreach ($items as $item)
-		{
-			$matrix['site'][$structure['key']][$item['id']] = (!empty($item['title'])) ? $item['title'] : $item['key'];
-		}
-	}
-	
-	// print '<pre>';print_r($matrix);print'</pre>';
+/********************************************************************************************/
+//	Now we can build the templates used when creating new fields
+/********************************************************************************************/
+//	Options for rights
+	$liRights = '';
+	foreach ($rights as $key => $right) $liRights .= '<li><input type="checkbox" name="'.$_FIELD->get_name().'[allow][]['.$key.']" value="1">'.$right.'</li>';
+//	Options for items
+	$optionItems = '';
+	foreach ($items as $item) $optionItems .= '<option value="'.$item['key'].'">'.$item['title'].'</option>';
+
+//	Template
+	$template = '
+	<li style="display:none;">
+		<button class="delete"></button>
+		<span>They can</span>
+		<ul>'.$liRights.'</ul>
+		<select disabled="disabled">'.$optionItems.'</select>
+	</li>';
 ?>

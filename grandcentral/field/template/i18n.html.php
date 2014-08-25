@@ -13,7 +13,7 @@
 		<?php endforeach ?>
 	</ul>
 	<span class="field">
-		<ul>	
+		<ul>
 			<?php foreach ($fields as $field): ?>
 			<?
 				$hide = (!isset($hide)) ? '' : 'style="display:none"';

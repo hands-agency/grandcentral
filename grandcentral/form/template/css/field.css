@@ -23,12 +23,14 @@ form button[type="submit"]
 /********************************************************************************************/
 /* Text fields
 /********************************************************************************************/
-ol>li input,
+ol>li input[type="text"],
+ol>li input[type="number"],
 ol>li select,
 ol>li textarea
 {
 }
-ol>li input,
+ol>li input[type="text"],
+ol>li input[type="number"],
 ol>li textarea
 {
 	width:100%;
@@ -36,7 +38,8 @@ ol>li textarea
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
 }
-input,
+input[type="text"],
+input[type="number"],
 select,
 textarea
 {
