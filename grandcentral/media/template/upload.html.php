@@ -25,6 +25,8 @@
 	{
 	//	Build path
 		$path = app('media')->get_templateroot('site').'/';
+	//	Add user folder
+		if (isset($_POST['folder'])) $path = str_replace('//', '/', $path.$_POST['folder'].'/');
 	
 	//	Loop through received files
 		$return = 'ok';
@@ -40,4 +42,6 @@
 	{
 		$return = 'ko';
 	}
+//	Return code
+	echo $return;
 ?>

@@ -158,7 +158,7 @@ $(document).ready(function()
 	//	Add the ajx params
 		formData.append('app', 'media');
 		formData.append('template', 'upload');
-		formData.append('root', '<?= $_POST['root'] ?>');
+		formData.append('folder', '<?= $_POST['root'] ?>');
 	
 	//	Append the files
 	    for (var i = 0; i < files.length; i++)
