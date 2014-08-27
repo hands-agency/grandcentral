@@ -67,7 +67,7 @@ class searchFulltext
  */
 	public function query($search, $alloweditems = array(), $limit = null)
 	{
-		$where = empty($alloweditems) ? null : 'AND item IN ('.explode(',', $alloweditems).')';
+		$where = empty($alloweditems) ? null : 'AND item IN ("'.implode('","', $alloweditems).'")';
 		$limit = is_null($limit) ? null : 'LIMIT '.$limit;
 		
 		$search = $this->sanitize($search);
