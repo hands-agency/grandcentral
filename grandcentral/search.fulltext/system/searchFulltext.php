@@ -39,14 +39,15 @@ class searchFulltext
  *
  * @param	string	la recherche
  * @param	array	les items à rechercher
+ * @param	array	limiter la recherche
  * @return	array	les résultats de la recherche
  * @access	public
  */
-	public function search($search, $alloweditems)
+	public function search($search, $alloweditems = array(), $limit = null)
 	{
 		$results = new bunch();
 		$nicknames = array();
-		$r = $this->query($search);
+		$r = $this->query($search, $alloweditems, $limit);
 		
 		foreach ($r['data'] as $result)
 		{
@@ -59,11 +60,16 @@ class searchFulltext
  * Query the index
  *
  * @param	string	la recherche
+ * @param	array	les items à rechercher
+ * @param	array	limiter la recherche
  * @return	array	les résultats de la recherche
  * @access	public
  */
-	public function query($search)
+	public function query($search, $alloweditems = array(), $limit = null)
 	{
+		$where = empty($alloweditems) ? null : 'AND item IN ('.explode(',', $alloweditems).')';
+		$limit = is_null($limit) ? null : 'LIMIT '.$limit;
+		
 		$search = $this->sanitize($search);
 		$q = '
 			SELECT `item`, `nickname`,
@@ -72,7 +78,9 @@ class searchFulltext
 			MATCH (`rel`) AGAINST ("'.$search.'" IN NATURAL LANGUAGE MODE) AS rel_relevance
 			FROM `'.self::table.'`
 			WHERE MATCH (`title`,`txt`,`rel`) AGAINST ("*'.$search.'*" IN NATURAL LANGUAGE MODE)
+			'.$where.'
 			ORDER BY (title_relevance*'.$this->relevance['title'].')+(txt_relevance*'.$this->relevance['txt'].')+(rel_relevance*'.$this->relevance['rel'].') DESC
+			'.$limit.'
 		';
 		$db = database::connect('site');
 		$r = $db->query($q);
@@ -86,7 +94,9 @@ class searchFulltext
 				MATCH (`rel`) AGAINST ("*'.$search.'*" IN BOOLEAN MODE) AS rel_relevance
 				FROM `'.self::table.'`
 				WHERE MATCH (`title`,`txt`,`rel`) AGAINST ("*'.$search.'*" IN BOOLEAN MODE)
+				'.$where.'
 				ORDER BY (title_relevance*'.$this->relevance['title'].')+(txt_relevance*'.$this->relevance['txt'].')+(rel_relevance*'.$this->relevance['rel'].') DESC
+				'.$limit.'
 			';
 			$r = $db->query($q);
 		}
@@ -122,14 +132,18 @@ class searchFulltext
  */
 	public function save_index()
 	{
+	//	Some vars
 		$i = 0;
 		$e = 0;
+	//	Insert lines by sets of...
+		$lines = 100;
 		foreach ($this->get_index() as $row)
 		{
 			$values[$e][] = '("'.$row['item'].'", "'.$row['nickname'].'", "'.$row['title'].'", "'.$row['txt'].'", "'.$row['rel'].'")';
 			$i++;
-			if ($i == 10)
+			if ($i == $lines)
 			{
+				$i = 0;
 				$e++;
 			}
 		}
@@ -139,12 +153,9 @@ class searchFulltext
 		$db->query($q);
 		foreach ($values as $value)
 		{
-			$q = 'INSERT INTO `'.self::table.'` (`item`, `nickname`, `title`, `txt`, `rel`) VALUES '.implode(',', $value).';
-			';
+			$q = 'INSERT INTO `'.self::table.'` (`item`, `nickname`, `title`, `txt`, `rel`) VALUES '.implode(',', $value).';';
 			$db->query($q);
 		}
-		// print'<pre>';print_r($q);print'</pre>';
-		// $db->query($q);
 	}
 /**
  * Prepare a table for indexing
