@@ -48,6 +48,7 @@ class attrSirtrevor extends _attrs implements ArrayAccess
 		$to = array();
 		$pattern = '/<a href=\"([^\"]*)\">.*<\/a>/iU';
 		preg_match_all($pattern, $txt, $matches, PREG_SET_ORDER);
+		// print'<pre>';print_r($matches);print'</pre>';
 		foreach ($matches as $match)
 		{
 			
@@ -63,7 +64,6 @@ class attrSirtrevor extends _attrs implements ArrayAccess
 				$to[] = $url;
 			}
 		}
-		// print'<pre>';print_r($tmp);print'</pre>';
 	//	retour
 		return str_replace($from, $to, $txt);
 		// return '';
@@ -129,7 +129,7 @@ class attrSirtrevor extends _attrs implements ArrayAccess
 					//	Return
 						$text = $Parsedown->text($block['data']['text']);
 						// $cite = $Parsedown->text($block['data']['cite']);
-						$return .= '<blockquote>'.$text.'<cite>'.$block['data']['cite'].'</cite></blockquote>';
+						$return .= '<blockquote>'.$this->read_links($text).'<cite>'.$block['data']['cite'].'</cite></blockquote>';
 						break;
 						
 				//	Image-Gc
