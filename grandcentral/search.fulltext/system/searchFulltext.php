@@ -24,7 +24,7 @@ class searchFulltext
 	// une bonne vieille statique dégueu pour éviter de faire trop de requêtes
 	public static $relTables = array();
 /**
- * Sanitize the search string
+ * Sanitize the serach string
  *
  * @param	string	la recherche
  * @return	array	les résultats de la recherche
@@ -41,7 +41,7 @@ class searchFulltext
  * @return	array	les résultats de la recherche
  * @access	public
  */
-	public function search($search)
+	public function search($search, $param)
 	{
 		$results = new bunch();
 		$nicknames = array();
@@ -52,7 +52,7 @@ class searchFulltext
 			$nicknames[] = $result['nickname'];
 		}
 		
-		return $results->get_by_nickname($nicknames);
+		return $results->get_by_nickname($nicknames, $param);
 	}
 /**
  * Query the index
@@ -121,27 +121,31 @@ class searchFulltext
  */
 	public function save_index()
 	{
+	//	Some vars
 		$i = 0;
 		$e = 0;
+	//	Insert lines by sets of...
+		$lines = 100;
 		foreach ($this->get_index() as $row)
 		{
 			$values[$e][] = '("'.$row['item'].'", "'.$row['nickname'].'", "'.$row['title'].'", "'.$row['txt'].'", "'.$row['rel'].'")';
 			$i++;
-			if ($i == 10)
+			if ($i == $lines)
 			{
+				$i = 0;
 				$e++;
 			}
 		}
 		
 		$db = database::connect('site');
 		$q = 'TRUNCATE TABLE `'.self::table.'`;';
+		$db->query($q);
 		foreach ($values as $value)
 		{
-			$q .= 'INSERT INTO `'.self::table.'` (`item`, `nickname`, `title`, `txt`, `rel`) VALUES '.implode(',', $value).';
+			$q = 'INSERT INTO `'.self::table.'` (`item`, `nickname`, `title`, `txt`, `rel`) VALUES '.implode(',', $value).';
 			';
+			$db->query($q);
 		}
-		// print'<pre>';print_r($q);print'</pre>';
-		$db->query($q);
 	}
 /**
  * Prepare a table for indexing
