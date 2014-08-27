@@ -48,6 +48,18 @@ class attrDate extends _attrs
 		return $date->format($format);
 	}
 /**
+ * xxxx
+ *
+ * @param	string	la variable
+ * @return	string	une string
+ * @access	public
+ */
+	public function modify($modif)
+	{
+		$date = new DateTime($this->data);
+		return $date->modify($modif);
+	}
+/**
  * Definition mysql
  * ex : `datetimeinsert` datetime NOT NULL
  *
