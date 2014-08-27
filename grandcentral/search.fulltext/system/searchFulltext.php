@@ -121,15 +121,26 @@ class searchFulltext
  */
 	public function save_index()
 	{
+		$i = 0;
+		$e = 0;
 		foreach ($this->get_index() as $row)
 		{
-			$values[] = '("'.$row['item'].'", "'.$row['nickname'].'", "'.$row['title'].'", "'.$row['txt'].'", "'.$row['rel'].'")';
+			$values[$e][] = '("'.$row['item'].'", "'.$row['nickname'].'", "'.$row['title'].'", "'.$row['txt'].'", "'.$row['rel'].'")';
+			$i++;
+			if ($i == 10)
+			{
+				$e++;
+			}
 		}
 		
 		$db = database::connect('site');
-		$q = '
-		TRUNCATE TABLE `'.self::table.'`;
-		INSERT INTO `'.self::table.'` (`item`, `nickname`, `title`, `txt`, `rel`) VALUES '.implode(',', $values).';';
+		$q = 'TRUNCATE TABLE `'.self::table.'`;';
+		foreach ($values as $value)
+		{
+			$q .= 'INSERT INTO `'.self::table.'` (`item`, `nickname`, `title`, `txt`, `rel`) VALUES '.implode(',', $value).';
+			';
+		}
+		// print'<pre>';print_r($q);print'</pre>';
 		$db->query($q);
 	}
 /**
