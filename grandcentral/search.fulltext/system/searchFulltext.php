@@ -38,10 +38,11 @@ class searchFulltext
  * Search the index and get some items
  *
  * @param	string	la recherche
+ * @param	array	les items à rechercher
  * @return	array	les résultats de la recherche
  * @access	public
  */
-	public function search($search)
+	public function search($search, $alloweditems)
 	{
 		$results = new bunch();
 		$nicknames = array();
@@ -135,13 +136,15 @@ class searchFulltext
 		
 		$db = database::connect('site');
 		$q = 'TRUNCATE TABLE `'.self::table.'`;';
+		$db->query($q);
 		foreach ($values as $value)
 		{
-			$q .= 'INSERT INTO `'.self::table.'` (`item`, `nickname`, `title`, `txt`, `rel`) VALUES '.implode(',', $value).';
+			$q = 'INSERT INTO `'.self::table.'` (`item`, `nickname`, `title`, `txt`, `rel`) VALUES '.implode(',', $value).';
 			';
+			$db->query($q);
 		}
 		// print'<pre>';print_r($q);print'</pre>';
-		$db->query($q);
+		// $db->query($q);
 	}
 /**
  * Prepare a table for indexing
