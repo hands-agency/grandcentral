@@ -24,7 +24,7 @@ class searchFulltext
 	// une bonne vieille statique dégueu pour éviter de faire trop de requêtes
 	public static $relTables = array();
 /**
- * Sanitize the serach string
+ * Sanitize the search string
  *
  * @param	string	la recherche
  * @return	array	les résultats de la recherche
