@@ -113,7 +113,7 @@ class adminItemForm
 			case $attr['type'] == 'int':
 				$field['type'] = 'number';
 				break;
-		//	int
+		//	media
 			case $attr['type'] == 'media':
 				$field['type'] = 'media';
 				break;
@@ -139,6 +139,16 @@ class adminItemForm
 		//	bool
 			case $attr['type'] == 'bool':
 				$field['type'] = 'bool';
+				break;
+		//	list
+			case $attr['type'] == 'list':
+				$tmp = new attrList();
+				$tmp->set_values($attr['values']);
+				$tmp->set_placholder($attr['placeholder']);
+				$field['type'] = 'select';
+				$field['valuestype'] = 'array';
+				$field['placeholder'] = $tmp->get_placeholder();
+				$field['values'] = $tmp->get_values();
 				break;
 		//	date, created, updated
 			case in_array($attr['type'], array('created', 'updated', 'date')):
