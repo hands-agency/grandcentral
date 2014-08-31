@@ -144,7 +144,7 @@ class adminItemForm
 			case $attr['type'] == 'list':
 				$tmp = new attrList();
 				$tmp->set_values($attr['values']);
-				$tmp->set_placholder($attr['placeholder']);
+				$tmp->set_placeholder($attr['placeholder']);
 				$field['type'] = 'select';
 				$field['valuestype'] = 'array';
 				$field['placeholder'] = $tmp->get_placeholder();
