@@ -43,7 +43,7 @@ class searchFulltext
  * @return	array	les résultats de la recherche
  * @access	public
  */
-	public function search($search, $alloweditems = array(), $limit = null)
+	public function search($search, $alloweditems = array(), $limit = null, $param = null)
 	{
 		$results = new bunch();
 		$nicknames = array();
@@ -54,7 +54,7 @@ class searchFulltext
 			$nicknames[] = $result['nickname'];
 		}
 		
-		return $results->get_by_nickname($nicknames);
+		return $results->get_by_nickname($nicknames, $param);
 	}
 /**
  * Query the index
