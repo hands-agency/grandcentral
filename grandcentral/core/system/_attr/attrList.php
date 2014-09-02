@@ -20,11 +20,12 @@ class attrList extends _attrs
  */
 	public function set($data)
 	{
-		if (is_array($this->values) && in_array($data, $this->values))
-		{
-			$this->data = (string) $data;
-		}
-		return $this;
+		$this->data = (string) $data;
+		// if (is_array($this->values) && in_array($data, $this->values))
+		// {
+			// $this->data = (string) $data;
+		// }
+		// return $this;
 	}
 /**
  * Ajouter la liste des valeurs disponibles
