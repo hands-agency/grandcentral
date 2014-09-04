@@ -187,15 +187,22 @@ class searchFulltext
  */
 	public function prepare_item(_items $item, $norelation = false)
 	{
+	//	Use the key as a failsafe for title
+		if (isset($item['title']))
+		{
+			$title = $this->prepare_attr($item['title']);
+			$item['title'] = '';
+		}
+		else $title = $item['key'];
+		
 		// tableau de retour
 		$toindex = array(
 			'item' => $item->get_table(),
 			'nickname' => $item->get_nickname(),
-			'title' => $this->prepare_attr($item['title']),
+			'title' => $title,
 			'txt' => '',
 			'rel' => ''
 		);
-		$item['title'] = '';
 		// boucle sur les attributs
 		foreach ($item as $attr)
 		{
