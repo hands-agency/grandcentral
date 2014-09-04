@@ -43,7 +43,7 @@ class searchFulltext
  * @return	array	les résultats de la recherche
  * @access	public
  */
-	public function search($search, $alloweditems = array(), $limit = null, $param = null)
+	public function search($search, $alloweditems = array(), $limit = null)
 	{
 		$results = new bunch();
 		$nicknames = array();
@@ -54,7 +54,7 @@ class searchFulltext
 			$nicknames[] = $result['nickname'];
 		}
 		
-		return $results->get_by_nickname($nicknames, $param);
+		return $results->get_by_nickname($nicknames);
 	}
 /**
  * Query the index
@@ -168,9 +168,12 @@ class searchFulltext
 	{
 		$toindex = array();
 		
-		foreach (i($table, all) as $item)
+		if (!in_array($table, $this->notable))
 		{
-			$toindex[] = $this->prepare_item($item);
+			foreach (i($table, all) as $item)
+			{
+				$toindex[] = $this->prepare_item($item);
+			}
 		}
 		
 		return $toindex;
