@@ -199,7 +199,7 @@ class itemHuman extends _items
  */
 	public function exists()
 	{
-		return (!$this->data['id']->is_empty() && $this->data['key']->get() != 'anonymous') ? true : false;
+		return (!$this->data['id']->is_empty()) ? true : false;
 	}
 /**
  * Add a pref in the preference table
