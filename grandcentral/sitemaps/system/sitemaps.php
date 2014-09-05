@@ -41,7 +41,26 @@ class sitemaps
 		foreach ($items as $structure)
 		{
 		//	Get the items
-			$items = i($structure['key']->get(), array('status' => 'live'));
+			switch ($structure['key'])
+			{
+				case 'page':
+					$p = array(
+						'status' => 'live',
+						'system' => false,
+						'type' => '%"content_type":"html"%',
+					));
+					break;
+				
+				default:
+					$p = array(
+						'status' => 'live',
+						'system' => false,
+					));
+					break;
+			}
+			$items = i($structure['key']->get(), $p);
+			
+		//	Loop through items
 			foreach ($items as $item)
 			{
 				$url .= "<url>\n";
