@@ -76,6 +76,35 @@ class itemHuman extends _items
 		return $this->_admin;
 	}
 /**
+ * Détermine si l'objet courant fait partie du groupe passé en paramètre
+ *
+ * @param	string	La clef du groupe
+ * @return	bool	true ou false
+ * @access	public
+ */
+	public function is_a($groupkey)
+	{
+		$allGroups = registry::get($this->get_env(), 'group');
+		if ($allGroups === false)
+		{
+			$groups = i('group', all);
+			$data = array();
+			foreach ($groups as $group)
+			{
+				$allGroups[$group->get_nickname()] = $group['key']->get();
+			}
+			registry::set($this->get_env(), 'group', $allGroups);
+		}
+		
+		$userGroups = array();
+		foreach ($this['group'] as $userGroup)
+		{
+			$userGroups[] = $allGroups[$userGroup];
+		}
+		
+		return in_array($groupkey, $userGroups) ? true : false;
+	}
+/**
  * Returns the right to perform an action on an item
  *
  * @param	mixed	le tag d'un objet ou un objet
