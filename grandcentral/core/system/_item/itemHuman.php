@@ -57,6 +57,7 @@ class itemHuman extends _items
  * @param	mixed	le tag d'un objet ou un objet
  * @return	bool	true ou false
  * @access	public
+ * @deprecated deprecated since is_a() method
  */
 	public function is_admin()
 	{
@@ -76,7 +77,7 @@ class itemHuman extends _items
 		return $this->_admin;
 	}
 /**
- * Détermine si l'objet courant fait partie du groupe passé en paramètre
+ * Détermine si l'utilisateur fait partie du groupe passé en paramètre
  *
  * @param	string	La clef du groupe
  * @return	bool	true ou false
