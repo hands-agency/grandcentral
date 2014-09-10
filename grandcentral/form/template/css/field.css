@@ -25,12 +25,14 @@ form button[type="submit"]
 /********************************************************************************************/
 ol>li input[type="text"],
 ol>li input[type="number"],
+ol>li input[type="password"],
 ol>li select,
 ol>li textarea
 {
 }
 ol>li input[type="text"],
 ol>li input[type="number"],
+ol>li input[type="password"],
 ol>li textarea
 {
 	width:100%;
@@ -40,6 +42,7 @@ ol>li textarea
 }
 input[type="text"],
 input[type="number"],
+input[type="password"],
 select,
 textarea
 {

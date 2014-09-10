@@ -36,8 +36,8 @@ class sitemaps
 	{
 	//	Get the structures with url
 		$items = i('item', array('hasurl' => true));
+		
 	//	Loop through structures with url
-		$url = null;
 		foreach ($items as $structure)
 		{
 		//	Get the items
@@ -61,6 +61,7 @@ class sitemaps
 			$items = i($structure['key']->get(), $p);
 			
 		//	Loop through items
+			$url = '';
 			foreach ($items as $item)
 			{
 				$url .= "<url>\n";
