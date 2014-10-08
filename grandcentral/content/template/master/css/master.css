@@ -977,18 +977,6 @@ footer
 	display:inline;
 	font-size:12px;
 }
-#adminContent section>h2 span.flag
-{
-	font-family:"Raleway-Regular";
-	text-transform:uppercase;
-	background:#fff;
-	border-radius:4px;
-	padding:4px 5px;
-	margin-right:10px;
-	font-size:10px;
-	position:relative;
-	top:-5px;
-}
 #adminContent.unlocked section>h2,
 #adminContent.unlocked section>div>h2
 {

@@ -4,10 +4,12 @@
  *
  * Créer une connexion à la bdd et exécuter des requêtes préparées
  *
- * ex :
+ * Example:
+ * <pre>
  * $db = database::connect('site');
  * $param = array('key' => 'home');
  * $home = $db->query('SELECT * FROM page WHERE `key` = :key', $param);
+ * </pre>
  *
  * @package  Core
  * @author   Sylvain Frigui <sf@cafecentral.fr>

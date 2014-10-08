@@ -2,7 +2,8 @@
 /**
  * Get count from database using parameters
  * 
- * Example:
+ * Example usage:
+ * <pre>
  * $param = array(
  * 	'key' => 'home%',
  * 	'type' => array('html', 'ajax'),
@@ -11,6 +12,7 @@
  * 	'limit()' => 10 
  * );
  * $count = count::get('page', $param);
+ * </pre>
  *
  * @package  Core
  * @author   Sylvain Frigui <sf@cafecentral.fr>
