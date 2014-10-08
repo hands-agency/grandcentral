@@ -48,14 +48,14 @@ class sitemaps
 						'status' => 'live',
 						'system' => false,
 						'type' => '%"content_type":"html"%',
-					));
+					);
 					break;
 				
 				default:
 					$p = array(
 						'status' => 'live',
 						'system' => false,
-					));
+					);
 					break;
 			}
 			$items = i($structure['key']->get(), $p);
