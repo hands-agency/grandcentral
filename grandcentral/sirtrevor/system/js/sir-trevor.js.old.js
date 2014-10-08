@@ -4,7 +4,7 @@
  * Released under the MIT license
  * www.opensource.org/licenses/MIT
  *
- * 2014-09-08
+ * 2014-03-22
  */
 
 (function ($, _){
@@ -296,7 +296,7 @@
     }
   };
   
-  if (window.i18n === undefined || window.i18n.init === undefined) {
+  if (window.i18n === undefined) {
     // Minimal i18n stub that only reads the English strings
     SirTrevor.log("Using i18n stub");
     window.i18n = {
@@ -660,8 +660,9 @@
     }
   
     if (shouldWrap) {
-      html = html.replace(/\r?\n\r?\n/gm, "</div><div><br></div><div>");
-      html = html.replace(/\r?\n/gm, "</div><div>");
+      // html = html.replace(/\r?\n\r?\n/gm, "</div><div><br></div><div>");
+		html = html.replace(/\r?\n\r?\n/gm, "</div><div>");
+      html = html.replace(/\r?\n/gm, "<br/>");
     }
   
     html = html.replace(/\t/g, "&nbsp;&nbsp;&nbsp;&nbsp;")
@@ -685,6 +686,7 @@
     return html;
   };
   SirTrevor.toMarkdown = function(content, type) {
+
     type = _.classify(type);
   
     var markdown = content;
@@ -758,13 +760,20 @@
     }
   
     // Do our generic stripping out
-    markdown = markdown.replace(/([^<>]+)(<div>)/g,"$1\n$2")                                 // Divitis style line breaks (handle the first line)
-                   .replace(/<div><div>/g,'\n<div>')                                         // ^ (double opening divs with one close from Chrome)
-                   .replace(/(?:<div>)([^<>]+)(?:<div>)/g,"$1\n")                            // ^ (handle nested divs that start with content)
-                   .replace(/(?:<div>)(?:<br>)?([^<>]+)(?:<br>)?(?:<\/div>)/g,"$1\n")        // ^ (handle content inside divs)
-                   .replace(/<\/p>/g,"\n\n")                                               // P tags as line breaks
-                   .replace(/<(.)?br(.)?>/g,"\n")                                            // Convert normal line breaks
-                   .replace(/&lt;/g,"<").replace(/&gt;/g,">");                                 // Encoding
+    // markdown = markdown.replace(/([^<>]+)(<div>)/g,"$1\n\n$2")                                 // Divitis style line breaks (handle the first line)
+    //                .replace(/<div><div>/g,'\n\n<div>')                                         // ^ (double opening divs with one close from Chrome)
+    //                .replace(/(?:<div>)([^<>]+)(?:<div>)/g,"$1\n\n")                            // ^ (handle nested divs that start with content)
+    //                .replace(/(?:<div>)(?:<br>)?([^<>]+)(?:<br>)?(?:<\/div>)/g,"$1\n\n")        // ^ (handle content inside divs)
+    //                .replace(/<\/p>/g,"\n\n")                                               // P tags as line breaks
+    //                .replace(/<(.)?br(.)?>/g,"\n")                                            // Convert normal line breaks
+    //                .replace(/&lt;/g,"<").replace(/&gt;/g,">");                                 // Encoding
+
+//	GRAND CENTRAL OVERRIDE
+	markdown = markdown.replace(/([^<>]+)(<div>)/g,"$1\n\n$2")                                 // Divitis style line breaks (handle the first line)
+                .replace(/<div><div>/g,'\n<div>')                                         // ^ (double opening divs with one close from Chrome)
+                .replace(/<\/div>/g,"\n\n")                                               // P tags as line breaks
+                .replace(/<(.)?br(.)?>/g,"\n")                                            // Convert normal line breaks
+                .replace(/&lt;/g,"<").replace(/&gt;/g,">");                                 // Encoding
   
     // Use custom block toMarkdown functions (if any exist)
     var block;
@@ -799,11 +808,11 @@
       this._queued = [];
     },
   
-    addQueuedItem: function(name, deferred) {
+    addQueuedItem: function(name, deffered) {
       SirTrevor.log("Adding queued item for " + this.blockID + " called " + name);
       SirTrevor.EventBus.trigger("onUploadStart", this.blockID);
   
-      this._queued.push({ name: name, deferred: deferred });
+      this._queued.push({ name: name, deffered: deffered });
     },
   
     removeQueuedItem: function(name) {
@@ -820,7 +829,7 @@
     resolveAllInQueue: function() {
       _.each(this._queued, function(item){
         SirTrevor.log("Aborting queued request: " + item.name);
-        item.deferred.abort();
+        item.deffered.abort();
       }, this);
     }
   
@@ -1090,22 +1099,59 @@
       onMouseDown: function() {
         SirTrevor.EventBus.trigger("block:reorder:down", this.blockID);
       },
-  
-      onDrop: function(ev) {
+     
+	// GRAND CENTRAL OVERRRIDE
+
+/*
+     onDrop: function(ev) {
+            ev.preventDefault();
+      		console.log('st default');
+     		
+     		var dropped_on = this.$block,
+     		item_id = ev.originalEvent.dataTransfer.getData("text/plain"),
+     		block = $('#' + item_id);
+     
+            if (!_.isUndefined(item_id) &&
+              !_.isEmpty(block) &&
+              dropped_on.attr('id') != item_id &&
+              dropped_on.attr('data-instance') == block.attr('data-instance')
+            ) {
+              dropped_on.after(block);
+            }
+     		
+     		SirTrevor.EventBus.trigger("block:reorder:dropped", item_id);
+     	
+          },*/
+		onDrop: function(ev) {
         ev.preventDefault();
+  		
+		//	hack pour le block image gc
+		if (typeof ev.originalEvent.dataTransfer != 'undefined')
+		{
+		//	hack pour le block image gc
+			var dropped_on = this.$block,
+			item_id = ev.originalEvent.dataTransfer.getData("text/plain"),
+			block = $('#' + item_id);
   
-        var dropped_on = this.$block,
-            item_id = ev.originalEvent.dataTransfer.getData("text/plain"),
-            block = $('#' + item_id);
-  
-        if (!_.isUndefined(item_id) &&
-          !_.isEmpty(block) &&
-          dropped_on.attr('id') != item_id &&
-          dropped_on.attr('data-instance') == block.attr('data-instance')
-        ) {
-          dropped_on.after(block);
-        }
-        SirTrevor.EventBus.trigger("block:reorder:dropped", item_id);
+	        if (!_.isUndefined(item_id) &&
+	          !_.isEmpty(block) &&
+	          dropped_on.attr('id') != item_id &&
+	          dropped_on.attr('data-instance') == block.attr('data-instance')
+	        ) {
+	          dropped_on.after(block);
+	        }
+			
+			SirTrevor.EventBus.trigger("block:reorder:dropped", item_id);
+		//	hack pour le block image gc
+		}
+		else
+		{
+			// console.log(this.$block[0].id)
+			// console.log(ev.toElement)
+			// this.$block.html(ev.toElement)
+			SirTrevor.EventBus.trigger("block:reorder:dropped");
+		}
+		//	hack pour le block image gc
       },
   
       onDragStart: function(ev) {
@@ -1738,13 +1784,13 @@
       },
   
       getSelectionForFormatter: function() {
-        _.defer(function(block){
+        _.defer(function(){
           var selection = window.getSelection(),
              selectionStr = selection.toString().trim(),
              eventType = (selectionStr === '') ? 'hide' : 'position';
   
-          SirTrevor.EventBus.trigger('formatter:' + eventType, block);
-        }, this);
+          SirTrevor.EventBus.trigger('formatter:' + eventType , this);
+        });
        },
   
       clearInsertedStyles: function(e) {
@@ -1862,6 +1908,7 @@
       title: function(){ return i18n.t('blocks:quote:title'); },
   
       icon_name: 'quote',
+	feathericon_name: '076',
   
       editorHTML: function() {
         return template(this);
@@ -1873,7 +1920,8 @@
       },
   
       toMarkdown: function(markdown) {
-        return markdown.replace(/^(.+)$/mg,"> $1");
+	//	return markdown.replace(/^(.+)$/mg,"> $1");
+		return markdown.replace(/^(.+)$/mg,"$1");
       }
   
     });
@@ -1884,13 +1932,14 @@
   */
   SirTrevor.Blocks.Heading = SirTrevor.Block.extend({
   
-    type: 'heading',
+    type: 'Heading',
   
     title: function(){ return i18n.t('blocks:heading:title'); },
   
     editorHTML: '<div class="st-required st-text-block st-text-block--heading" contenteditable="true"></div>',
   
     icon_name: 'heading',
+	feathericon_name: '025',
   
     loadData: function(data){
       this.getTextBlock().html(SirTrevor.toHTML(data.text, this.type));
@@ -1909,6 +1958,7 @@
     uploadable: true,
   
     icon_name: 'image',
+	feathericon_name: '010',
   
     loadData: function(data){
       // Create our image tag
@@ -1960,6 +2010,7 @@
     editorHTML: '<div class="st-required st-text-block" contenteditable="true"></div>',
   
     icon_name: 'text',
+	feathericon_name: '027',
   
     loadData: function(data){
       this.getTextBlock().html(SirTrevor.toHTML(data.text, this.type));
@@ -1994,6 +2045,7 @@
       },
   
       icon_name: 'twitter',
+	feathericon_name: '011',
   
       loadData: function(data) {
         if (_.isUndefined(data.status_url)) { data.status_url = ''; }
@@ -2066,6 +2118,7 @@
         var url = transferData.getData('text/plain');
         this.handleTwitterDropPaste(url);
       }
+
     });
   
   })();
@@ -2084,6 +2137,7 @@
       title: function() { return i18n.t('blocks:list:title'); },
   
       icon_name: 'list',
+	feathericon_name: '129',
   
       editorHTML: function() {
         return _.template(template, this);
@@ -2144,9 +2198,13 @@
         youtube: {
           regex: /(?:http[s]?:\/\/)?(?:www.)?(?:(?:youtube.com\/watch\?(?:.*)(?:v=))|(?:youtu.be\/))([^&].+)/,
           html: "<iframe src=\"{{protocol}}//www.youtube.com/embed/{{remote_id}}\" width=\"580\" height=\"320\" frameborder=\"0\" allowfullscreen></iframe>"
+        },
+		dailymotion: {
+          regex: /(?:http[s]?:\/\/)?(?:www.)?dailymotion.com\/video\/([^_]+)/,
+          html: "<iframe src=\"{{protocol}}//www.dailymotion.com/embed/video/{{remote_id}}\" width=\"580\" height=\"320\" frameborder=\"0\" allowfullscreen></iframe>"
         }
       },
-  
+
       type: 'video',
       title: function() { return i18n.t('blocks:video:title'); },
   
@@ -2154,6 +2212,7 @@
       pastable: true,
   
       icon_name: 'video',
+	feathericon_name: '018',
   
       loadData: function(data){
         if (!this.providers.hasOwnProperty(data.source)) { return; }
@@ -2204,6 +2263,7 @@
     });
   
   })();
+
   /* Default Formatters */
   /* Our base formatters */
   (function(){
@@ -2230,7 +2290,13 @@
       text : "link",
   
       onClick: function() {
-  
+	
+	// GRAND CENTRAL OVERRRIDE
+  		openContext({
+			app:'sirtrevor',
+			template:'sirtrevor.link',
+		});
+  /*
         var link = prompt(i18n.t("general:link")),
             link_regex = /((ftp|http|https):\/\/.)|mailto(?=\:[-\.\w]+@)/;
   
@@ -2242,6 +2308,7 @@
   
          document.execCommand(this.cmd, false, link);
         }
+*/
       },
   
       isActive: function() {
@@ -2298,7 +2365,10 @@
       },
   
       render: function() {
-        this.$el.html('<span class="st-icon">'+ _.result(this.block_type, 'icon_name') +'</span>' + _.result(this.block_type, 'title'));
+	//	GRAND CENTRAL OVERRIDE
+    //    this.$el.html('<span class="st-icon">'+ _.result(this.block_type, 'icon_name') +'</span>' + _.result(this.block_type, 'title'));
+
+        this.$el.html('<span data-feathericon="&#xe'+ _.result(this.block_type, 'feathericon_name') +'"></span>' + _.result(this.block_type, 'title'));
         return this;
       }
     });
@@ -2645,7 +2715,7 @@
         $(document.body).append(this.formatBar.render().$el);
         this.$outer.append(this.block_controls.render().$el);
   
-        $(window).bind('click.sirtrevor', this.hideAllTheThings);
+        $(window).bind('click', this.hideAllTheThings);
   
         var store = this.store("read");
   
@@ -2775,10 +2845,8 @@
       },
   
       onNewBlockCreated: function(block) {
-        if (block.instanceID === this.ID) {
-          this.hideBlockControls();
-          this.scrollTo(block.$el);
-        }
+        this.hideBlockControls();
+      //  this.scrollTo(block.$el);
       },
   
       scrollTo: function(element) {
@@ -3110,7 +3178,7 @@
   SirTrevor.bindFormSubmit = function(form) {
     if (!formBound) {
       new SirTrevor.Submittable(form);
-      form.on('submit.sirtrevor', this.onFormSubmit);
+      form.bind('submit', this.onFormSubmit);
       formBound = true;
     }
   };
