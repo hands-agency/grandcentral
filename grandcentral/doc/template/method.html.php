@@ -7,7 +7,8 @@ $var = new [classname]();
 $var-><?=$method['key']?>(<?=$arg?>);
 </pre>
 
-<h3>Parameters</h3>
+<h3>Arguments</h3>
+<?php if (isset($method['param'])): ?>
 <table>
 <? for ($i=0; $i < count($method['param']) ; $i++) : ?>
 	<tr>
@@ -21,7 +22,10 @@ $var-><?=$method['key']?>(<?=$arg?>);
 		</td>
 	</tr>
 <? endfor; ?>
-</table>
+</table>	
+<?php else: ?>
+<p>This method takes no arguments</p>
+<?php endif ?>
 
 <?php if (isset($method['return'])): ?>
 <h3>Return</h3>

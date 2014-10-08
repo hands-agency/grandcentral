@@ -21,7 +21,14 @@
 /********************************************************************************************/
 //	?
 /********************************************************************************************/
+//	Fetch methods
 	$method = $_PARAM['doc']->data;
-	for ($i=0; $i < count($method['param']) ; $i++) $arg[] = $method['param'][$i]['name'];
-	$arg = implode(', ', $arg);
+
+//	Fetch args
+	if (isset($method['param']))
+	{
+		for ($i=0; $i < count($method['param']) ; $i++) $arg[] = $method['param'][$i]['name'];
+		$arg = implode(', ', $arg);
+	}
+	else $arg = null;
 ?>
