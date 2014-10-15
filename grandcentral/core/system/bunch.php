@@ -7,6 +7,7 @@
  * at the same time, like pairs of socks, jumpers and t-shirts.
  *
  * Example:
+ * <pre>
  * $param = array(
  * 	'key' => 'home%',
  * 	'type' => array('html', 'ajax'),
@@ -16,6 +17,7 @@
  * 	'limit()' => 10 
  * );
  * $bunch = new bunch('page', $param, 'admin');
+ * </pre>
  *
  * @package  Core
  * @author   Sylvain Frigui <sf@cafecentral.fr>
@@ -210,6 +212,7 @@ class bunch implements ArrayAccess, Iterator, Countable
  * Get data from database using parameters
  * 
  * Example:
+ * <pre>
  * $param = array(
  * 	'key' => 'home%',
  * 	'type' => array('html', 'ajax'),
@@ -219,6 +222,7 @@ class bunch implements ArrayAccess, Iterator, Countable
  * 	'limit()' => 10 
  * );
  * $bunch->get('page', $param);
+ * </pre>
  *
  * @param	string  le type d'objet recherché
  * @param	array  	Le tableau de paramètres

@@ -58,6 +58,27 @@ class fieldBool extends _fields
 		return $this;
 	}
 /**
+ * Affecte un placeholder au champ
+ * 
+ * @param	string	le placeholder
+ * @access	public
+ */
+	public function set_placeholder($text)
+	{
+		if (!empty($text)) $this->attrs['placeholder'] = $text;
+		return $this;
+	}
+/**
+ * Retourne le placeholder au champ
+ * 
+ * @return	string	le placeholder
+ * @access	public
+ */
+	public function get_placeholder()
+	{
+		return (isset($this->attrs['placeholder'])) ? $this->attrs['placeholder'] : '';
+	}
+/**
  * Obtenir la définition des propriétés du champ
  * 
  * @return	array 	la liste des propriétés et leurs définitions

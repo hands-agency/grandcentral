@@ -5,6 +5,6 @@
 <div class="wrapper">
 	<?php if ($_FIELD->get_descr() != null) : ?><div class="help"><?= $_FIELD->get_descr(); ?></div><?php endif ?>
 	<span class="field">
-		<textarea <?=$attrs?> data-cache="<?= app('cache')->get_templateroot('site'); ?>"><?=$value?></textarea>
+		<textarea <?=$attrs?>><?=$value?></textarea>
 	</span>
 </div>

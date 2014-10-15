@@ -3,7 +3,7 @@
  * Description: This is the description of the document.
  * You can add as many lines as you want.
  * Remember you're not coding for yourself. The world needs your doc.
- * Example usage:
+ * Example:
  * <pre>
  * if (Example_Class::example()) {
  *    echo "I am an example.";

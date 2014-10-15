@@ -1,17 +1,17 @@
 /* External links */
-#adminContext [data-template="sirtrevor.link"] .external iframe
+#adminContext [data-template="/field/link"] .external iframe
 {
 	height:50px;
 	width:60%;
 	float:left;
 }
-#adminContext [data-template="sirtrevor.link"] .external button
+#adminContext [data-template="/field/link"] .external button
 {
 	float:right;
 }
 
 /* Internal links */
-#adminContext [data-template="sirtrevor.link"] .internal input
+#adminContext [data-template="/field/link"] .internal input
 {
 	width:100%;
 	background:#fff;
@@ -20,7 +20,7 @@
 	margin:0 0 10px 0;
 	border-radius:2px;
 }
-#adminContext [data-template="sirtrevor.link"] .internal button
+#adminContext [data-template="/field/link"] .internal button
 {
 	margin:0 5px 5px 0;
 	float:left;

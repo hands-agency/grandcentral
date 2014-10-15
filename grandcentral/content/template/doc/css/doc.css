@@ -1,8 +1,33 @@
 /********************************************************************************************/
-/* Common
+/* Nav
 /********************************************************************************************/
-section[data-template^="/doc/"] h2
+section[data-template^="/doc/"] nav
 {
+	float:left;
+	width:20%;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	padding-right:30px;
+	background:#E2E2E2;
+	padding:15px;
+}
+section[data-template^="/doc/"] nav a
+{
+	color:#000;
+}
+
+/********************************************************************************************/
+/* Content
+/********************************************************************************************/
+section[data-template^="/doc/"] .content
+{
+	float:left;
+	width:80%;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	padding-left:30px;
 }
 section[data-template^="/doc/"] .padding
 {
@@ -13,11 +38,62 @@ section[data-template^="/doc/"] .padding
 	box-sizing:border-box;
 	padding:15px;
 	margin-bottom:30px;
+	overflow:auto;
+}
+
+section[data-template^="/doc/"] h2
+{
+	margin:0 0 10px;
+	font-size:24px;
+}
+section[data-template^="/doc/"] h2 span.flag
+{
+	font-family:"Raleway-Regular";
+	text-transform:uppercase;
+	background:#F2F2F2;
+	border-radius:2px;
+	padding:4px 5px;
+	margin-right:10px;
+	font-size:10px;
+	position:relative;
+	top:-5px;
+}
+section[data-template^="/doc/"] h3
+{
+	border-top:1px solid #F2F2F2;
+	font-size:18px;
+	float:left;
+	width:20%;
+	margin:0 !important;
+	padding:10px 0 0 0;
+}
+section[data-template^="/doc/"] h4
+{
+	font-family:"Raleway-Bold" !important;
+	margin-bottom:5px;
+}
+section[data-template^="/doc/"] h4:not(:first-child)
+{
+	border-top:1px solid #F2F2F2;
+	font-size:14px;
+	padding-top:15px;
+	margin-top:15px;
 }
 section[data-template^="/doc/"] .descr
 {
 	color:#888;
 	margin-bottom:10px;
+}
+section[data-template^="/doc/"] .section
+{
+	float:right;
+	width:80%;
+	padding:10px 0 0 15px;
+	border-left:1px solid #ddd;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	border-top:1px solid #F2F2F2;
 }
 /* Code */
 section[data-template^="/doc/"] code,

@@ -13,10 +13,12 @@ li[data-type="sirtrevor"] .wrapper .st-text-block
 li[data-type="sirtrevor"] .wrapper .st-text-block b
 {
 	font-family:'Raleway-Bold';
+	font-weight:bold; /* take that away and un-bold won't work */
 }
 li[data-type="sirtrevor"] .wrapper .st-text-block i
 {
 	font-family:'Raleway-Regular-Italic';
+	font-style:italic; /* take that away and un-italic won't work */
 }
 li[data-type="sirtrevor"] .wrapper .st-text-block--heading
 {
