@@ -90,12 +90,7 @@
 /********************************************************************************************/
 //	Apps
 /********************************************************************************************/
-	$apps = array('searchasyoutype', 'jquery.masonry', 'jquery.imagesloaded', 'jquery.hoverintent', 'jquery.sse', 'jquery.pace', 'featherfont');
-	foreach ($apps as $app)
-	{
-		$app = app($app);
-		$app->load();
-	}
+	load('searchasyoutype', 'jquery.masonry', 'jquery.imagesloaded', 'jquery.hoverintent', 'jquery.sse', 'jquery.pace', 'featherfont', 'jquery.clockpicker');
 	$_APP->bind_code("script", "$(document).ajaxStart(function() { Pace.restart(); });");
 	
 /********************************************************************************************/
