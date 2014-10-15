@@ -28,4 +28,10 @@
 //	Some vars
 /********************************************************************************************/
 	$_FIELD = $_PARAM['field'];
+	sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $_FIELD->get_value());
+	if ($_FIELD->get_value() == '')
+	{
+		list($date, $time) = explode(' ', $_FIELD->get_value());
+	}
+	else $date = $time = null;
 ?>
