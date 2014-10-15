@@ -21,16 +21,10 @@
 /********************************************************************************************/
 //	Some binds
 /********************************************************************************************/
-//	Apps
-	// load('sirtrevor');
-	$_APP->bind_script('js/underscore.js', true);
-	$_APP->bind_script('js/eventable.js', true);
-	$_APP->bind_script('js/sir-trevor.js', true);
-	$_APP->bind_script('js/break.js', true);
-	$_APP->bind_script('js/imagegc.js', true);
 //	CSS & Scripts
-	$_APP->bind_css('css/sirtrevor.css');
-	$_APP->bind_script('js/sirtrevor.js');
+	$_APP->bind_script('field/js/sir-trevor-gc.js');
+	// $_APP->bind_script('field/custom-blocks/Code.js');
+	$_APP->bind_css('field/css/sirtrevor.css');
 
 /********************************************************************************************/
 //	Some vars

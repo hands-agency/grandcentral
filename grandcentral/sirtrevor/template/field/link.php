@@ -21,14 +21,14 @@
 /********************************************************************************************/
 //	Some bind
 /********************************************************************************************/
-	$_APP->bind_css('css/sirtrevor.link.css');
-	$_APP->bind_script('js/sirtrevor.link.js');
+	$_APP->bind_css('field/css/link.css');
+	$_APP->bind_script('field/js/link.js');
 	
 /********************************************************************************************/
 //	Some vars
 /********************************************************************************************/
 //	Iframe Link (Worst.Method.Ever)
-	$iframeLink = '/grandcentral/sirtrevor/template/link.html';
+	$iframeLink = '/grandcentral/sirtrevor/template/field/link.html';
 //	Get the things you can link to
 	$items = i('item', array(
 		'hasurl' => true,

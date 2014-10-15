@@ -1,7 +1,7 @@
 (function($)
 {
 //	External link
-	$(document).on('click', '#adminContext [data-template="sirtrevor.link"] .external button.done', function()
+	$(document).on('click', '#adminContext [data-template="/field/link"] .external button.done', function()
 	{
 	//	Get the value from the iframe
 		link = $('#externalLink').contents().find('input').val();
@@ -19,7 +19,7 @@
 	});
 	
 //	Internal link
-	$(document).on('click', '#adminContext [data-template="sirtrevor.link"] .internal [data-item] button', function()
+	$(document).on('click', '#adminContext [data-template="/field/link"] .internal [data-item] button', function()
 	{
 		link = $(this).parent().data('item');
 		document.execCommand('CreateLink', false, link);
@@ -27,7 +27,7 @@
 	});
 	
 //	Refine item lists
-	$('#adminContext [data-template="sirtrevor.link"] .internal input[type="search"]').each(function()
+	$('#adminContext [data-template="/field/link"] .internal input[type="search"]').each(function()
 	{
 	//	Some vars
 		$input = $(this);
@@ -37,7 +37,7 @@
 		$input.searchasyoutype(
 		{
 			app:'sirtrevor',
-			template:'sirtrevor.link.internal',
+			template:'/field/link.internal',
 			param:'{"item":"'+item+'"}',
 			target:$target,
 		})

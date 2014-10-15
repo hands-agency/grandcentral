@@ -8,8 +8,9 @@
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
  */
-class fieldSirtrevor extends _fields
+class fieldSirtrevor extends fieldTextarea
 {
 	protected $datatype = array('string');
+	protected $template = 'field/sirtrevor';
 }
 ?>
