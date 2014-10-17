@@ -22,4 +22,5 @@
 //	Some binds
 /********************************************************************************************/
 	$_APP->bind_css('master/css/footer.css');
+	$_APP->bind_script('master/js/footer.js');
 ?>
