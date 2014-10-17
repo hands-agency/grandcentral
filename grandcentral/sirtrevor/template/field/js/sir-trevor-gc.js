@@ -1,22 +1,63 @@
 jQuery(document).ready(function()
-{	
+{
+//	Override onDrop
+	SirTrevor.BlockReorder.prototype.onDrop = function(ev)
+	{
+        ev.preventDefault();
+		//	hack pour le block image gc
+		if (typeof ev.originalEvent.dataTransfer != 'undefined')
+		{
+		//	hack pour le block image gc
+			var dropped_on = this.$block,
+			item_id = ev.originalEvent.dataTransfer.getData("text/plain"),
+			block = $('#' + item_id);
+  
+	        if (!_.isUndefined(item_id) &&
+	          !_.isEmpty(block) &&
+	          dropped_on.attr('id') != item_id &&
+	          dropped_on.attr('data-instance') == block.attr('data-instance')
+	        ) {
+	          dropped_on.after(block);
+	        }
+			
+			SirTrevor.EventBus.trigger("block:reorder:dropped", item_id);
+		//	hack pour le block image gc
+		}
+		else
+		{
+			// console.log(this.$block[0].id)
+			// console.log(ev.toElement)
+			// this.$block.html(ev.toElement)
+			SirTrevor.EventBus.trigger("block:reorder:dropped");
+		}
+	}
+//	Override onNewBlockCreated
+	SirTrevor.Editor.prototype.onNewBlockCreated = function(block)
+	{
+		if (block.instanceID === this.ID)
+		{
+			this.hideBlockControls();
+		//	this.scrollTo(block.$el);
+        }
+	}
+
 //	Instantiate editors
 	jQuery('[data-type="sirtrevor"] textarea').each( function()
 	{
 		new SirTrevor.Editor(
 		{
 			el: jQuery(this),
-			blockTypes: ["Heading", "Text", "Image", "List", "Video", "Quote"]
+			blockTypes: ["Text", "ImageGc", "Heading", "List", "Quote"]
 		});
 	});
 	
 //	Override link formatter
 	var Link = SirTrevor.Formatter.extend(
 	{
-		title: "link",
-		iconName: "link",
-		cmd: "CreateLink",
-		text : "link",
+		title: 'link',
+		iconName: 'link',
+		cmd: 'CreateLink',
+		text : 'link',
 		
 		onClick: function()
 		{
@@ -41,7 +82,16 @@ jQuery(document).ready(function()
 		}
 	});
 	SirTrevor.Formatters.Link = new Link();
-
+	
+	// _.extend(SirTrevor.Editor.prototype,
+	// {
+	//     	onNewBlockCreated: function()
+	// 	{
+	// 		console.log('onNewBlockCreated')
+	// 	}
+	// }
+	
+	
 	// Add Button to Use Normal Editor (Only for New Posts)
 	// if(window.location.href.indexOf('?') == -1){
 	// 	jQuery('#edit-slug-box').append('<a href="?stwp_off" class="right button button-small">Use Code Editor</a>');

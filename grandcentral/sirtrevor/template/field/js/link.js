@@ -1,5 +1,5 @@
 (function($)
-{
+{	
 //	External link
 	$(document).on('click', '#adminContext [data-template="/field/link"] .external button.done', function()
 	{

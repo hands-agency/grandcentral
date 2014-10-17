@@ -22,8 +22,10 @@
 //	Some binds
 /********************************************************************************************/
 //	CSS & Scripts
+	$_APP->bind_script('field/custom-blocks/ImageGc.js');
+	$_APP->bind_css('field/custom-blocks/ImageGc.css');
+	
 	$_APP->bind_script('field/js/sir-trevor-gc.js');
-	// $_APP->bind_script('field/custom-blocks/Code.js');
 	$_APP->bind_css('field/css/sirtrevor.css');
 
 /********************************************************************************************/
