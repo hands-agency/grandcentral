@@ -1,5 +1,5 @@
 /********************************************************************************************/
-/* Toolbar
+/* Some styling
 /********************************************************************************************/
 li[data-type="sirtrevor"] .wrapper .st-block__inner
 {
@@ -28,4 +28,14 @@ li[data-type="sirtrevor"] .wrapper .st-text-block--heading
 li[data-type="sirtrevor"] .wrapper .st-text-block>div
 {
 	margin-bottom:10px;
+}
+li[data-type="sirtrevor"] .wrapper .st-text-block>ul
+{
+	display: block;
+	list-style-type: disc; /* take that away and list block won't work */
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	-webkit-padding-start: 40px;
 }
