@@ -90,7 +90,7 @@
 /********************************************************************************************/
 //	Apps
 /********************************************************************************************/
-	load('searchasyoutype', 'jquery.masonry', 'jquery.imagesloaded', 'jquery.hoverintent', 'jquery.sse', 'jquery.pace', 'featherfont', 'jquery.clockpicker');
+	load('searchasyoutype', 'jquery.masonry', 'jquery.imagesloaded', 'jquery.hoverintent', 'jquery.sse', 'jquery.pace', 'featherfont');
 	$_APP->bind_code("script", "$(document).ajaxStart(function() { Pace.restart(); });");
 	
 /********************************************************************************************/

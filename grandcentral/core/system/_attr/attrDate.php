@@ -9,6 +9,7 @@
  */
 class attrDate extends _attrs
 {
+	protected $data = '0000-00-00 00:00:00';
 	protected $params = array(
 		'type' => 'datetime'
 	);

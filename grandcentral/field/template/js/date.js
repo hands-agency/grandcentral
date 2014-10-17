@@ -21,19 +21,16 @@ $(function()
 	{
 		placement: 'bottom',
 		align: 'left',
-		autoclose: true,
-		afterDone:function()
-		{
-			console.log(this);
-		//	Current date time
-			$field = $(this).parent().find('.datetime');
-			date = $field.val().substr(0, 10);
-		//	New date
-			val = $(this).val();
-			time = val.substr(11, 16);
-		//	Add new date to datetime
-			$field.val(date+' '+time);
-		}
+		autoclose: true
+	})
+	.change(function()
+	{
+		$field = $(this).parent().find('.datetime');
+		date = $field.val().substr(0, 10);
+	//	New date
+		// val = $(this).val();
+	//	Add new date to datetime
+		$field.val(date+' '+this.value+':00');
 	});
 
 });

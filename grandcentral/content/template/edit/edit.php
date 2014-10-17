@@ -71,7 +71,8 @@
 	}
 
 //	title
-	$title = ($handled_id) ? '<a href="'.$item->listing().'">'.i('item', $item->get_table(), $handled_env)['title'].'</a> '.$item['title']->cut(45) : 'New <a href="'.$item->listing().'">'.i('item', $item->get_table(), $handled_env)['title'].'</a>';
+	$str = isset($item['title']) ? $item['title']->cut(45) : '';
+	$title = ($handled_id) ? '<a href="'.$item->listing().'">'.i('item', $item->get_table(), $handled_env)['title'].'</a> '.$str : 'New <a href="'.$item->listing().'">'.i('item', $item->get_table(), $handled_env)['title'].'</a>';
 	# fallback
 	if (!$title) $title = $handled_item.' #'.$handled_id;
 	
