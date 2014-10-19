@@ -9,6 +9,7 @@ li[data-type="sirtrevor"] .wrapper .st-text-block
 {
 	font-family:'Raleway-Regular';
 	font-size:0.8em;
+	line-height:1.6em;
 }
 li[data-type="sirtrevor"] .wrapper .st-text-block b
 {
@@ -27,7 +28,7 @@ li[data-type="sirtrevor"] .wrapper .st-text-block--heading
 }
 li[data-type="sirtrevor"] .wrapper .st-text-block>div
 {
-	margin-bottom:10px;
+/*	margin-bottom:10px;*/
 }
 li[data-type="sirtrevor"] .wrapper .st-text-block>ul
 {

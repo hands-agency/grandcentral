@@ -47,7 +47,7 @@ jQuery(document).ready(function()
 		new SirTrevor.Editor(
 		{
 			el: jQuery(this),
-			blockTypes: ["Text", "ImageGc", "Heading", "List", "Quote"]
+			blockTypes: ["Text", "Image", "Heading", "List", "Quote", "Video", "Break"]
 		});
 	});
 	

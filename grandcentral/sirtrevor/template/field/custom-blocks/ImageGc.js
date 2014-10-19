@@ -1,6 +1,6 @@
-SirTrevor.Blocks.ImageGc = SirTrevor.Block.extend(
+SirTrevor.Blocks.Image = SirTrevor.Block.extend(
 {
-	type: 'image_gc',
+	type: 'image',
 	
 	title: function() {return i18n.t('blocks:image:title');},
 	

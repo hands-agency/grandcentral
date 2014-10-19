@@ -1,0 +1,1 @@
+<?= Michelf\Markdown::defaultTransform($_PARAM['block']['data']['text']) ?>
