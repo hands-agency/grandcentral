@@ -502,7 +502,10 @@ class Markdown implements MarkdownInterface {
 	
 	protected function doHardBreaks($text) {
 		# Do hard breaks:
-		return preg_replace_callback('/ {2,}\n/', 
+		# hack : no more need for a space before line break
+		// return preg_replace_callback('/ {2,}\n/', 
+		return preg_replace_callback('/\n/', 
+		# hack
 			array($this, '_doHardBreaks_callback'), $text);
 	}
 	protected function _doHardBreaks_callback($matches) {
