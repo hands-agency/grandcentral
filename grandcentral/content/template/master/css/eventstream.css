@@ -7,6 +7,7 @@
 	list-style-type:disc;
 	color:rgba(62, 180, 214, 1);
 	padding:0 0 0 96px;
+	text-align:left;
 }
 #eventstream ul li
 {
