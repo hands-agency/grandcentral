@@ -151,7 +151,7 @@ a:visited
 @font-face
 {
 	font-family:'ProximaNova-Thin';
-	src:url('../font/ProximaNova/ProximaNova-Thin.ttf') format('truetype');
+	src:url('../font/ProximaNova/Mark Simonson - Proxima Nova Thin.otf') format('truetype');
 	font-weight:normal;
 	font-style:normal;
 }
@@ -159,15 +159,7 @@ a:visited
 @font-face
 {
 	font-family:'ProximaNova-Regular';
-	src:url('../font/ProximaNova/ProximaNova-Regular.ttf') format('truetype');
-	font-weight:normal;
-	font-style:normal;
-}
-/* ProximaNova Regular */
-@font-face
-{
-	font-family:'ProximaNova-Regular-Italic';
-	src:url('../font/ProximaNova/ProximaNova-Regular-Italic.ttf') format('truetype');
+	src:url('../font/ProximaNova/Mark Simonson - Proxima Nova Alt Regular.otf') format('truetype');
 	font-weight:normal;
 	font-style:normal;
 }
@@ -175,7 +167,7 @@ a:visited
 @font-face
 {
 	font-family:'ProximaNova-Bold';
-	src:url('../font/ProximaNova/ProximaNova-Bold.ttf') format('truetype');
+	src:url('../font/ProximaNova/Mark Simonson - Proxima Nova Bold.otf') format('truetype');
 	font-weight:normal;
 	font-style:normal;
 }
