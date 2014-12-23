@@ -55,13 +55,32 @@ class attrRel extends _attrs implements ArrayAccess, Iterator
  */
 	public function add($rel)
 	{
-	//	on transforme l'objet en nickname
-		if (is_a($rel, '_items'))
+		switch (true)
 		{
-			$rel = $rel->get_nickname();
+			case empty($rel):
+				return $this;
+				break;
+			case is_a($rel, '_items'):
+				$add[] = $rel->get_nickname();
+				break;
+			case is_string($rel):
+				$add[] = $rel;
+				break;
+			case is_array($rel):
+				$add = $rel;
+				break;
+			case is_a($rel, 'bunch'):
+				$add = $rel->get_nickname();
+				break;
+			default:
+				return $this;
+				break;
 		}
 	//	affectation
-		if (!in_array($rel, $this->data)) $this->data[] = $rel;
+		foreach ($add as $rel)
+		{
+			if (!in_array($rel, $this->data)) $this->data[] = $rel;
+		}
 		return $this;
 	}
 /**
