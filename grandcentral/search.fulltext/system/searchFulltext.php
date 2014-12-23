@@ -115,7 +115,7 @@ class searchFulltext
 		$items = i('item', array(
 			'hasurl' => true,
 			// 'limit()' => 2
-		));
+		), 'site');
 		// construction de l'index
 		$toindex = array();
 		foreach ($items as $item)
@@ -170,7 +170,7 @@ class searchFulltext
 		
 		if (!in_array($table, $this->notable))
 		{
-			foreach (i($table, all) as $item)
+			foreach (i($table, all, 'site') as $item)
 			{
 				$toindex[] = $this->prepare_item($item);
 			}
