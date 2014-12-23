@@ -766,7 +766,7 @@ $(function()
 		});
 	});
 	
-//	Save the curent sitetree
+//	Save the current sitetree
 	$(document).bind('lock', function()
 	{
 	//	Get the order

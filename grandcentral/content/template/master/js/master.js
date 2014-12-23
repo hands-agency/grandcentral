@@ -82,7 +82,6 @@
 	{
 		$('.shy').hide('fast');
 	});
-	
 
 /*********************************************************************************************
 /**	* Open notes from the action list
@@ -127,17 +126,13 @@
 /**	* Open / close lanes
  	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
-	$('#grandCentralAdmin>#adminContent>button.close').on('click', function()
-	{
-		closeAdmin();
-	});
 	$('#grandCentralAdmin>#adminContext>button.close').on('click', function()
 	{
 		closeContext();
 	});
-	$('#grandCentralSite>.overlay').on('click', function()
+	$('#switchEnv').on('click', function()
 	{
-		openSite();
+		openSite(CURRENTEDITED_URL);
 	});
 	
 	
@@ -161,6 +156,7 @@
 /**	* Load the site
  	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
+/*
 	(function($)
 	{
 		document.onreadystatechange = function()
@@ -177,73 +173,49 @@
 			}
 		}
 	})( jQuery );
-	
+
+
 /*********************************************************************************************
-/**	* Create a loading
+/**	* Confort loading
  	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
-	(function($)
+(function($)
+{	
+	//	Here we go!
+	$.loading = function(callback, element)
 	{
-		var animate;
+	//	Use "plugin" to reference the current instance of the object
+		var plugin = this;
+	//	this will hold the merged default, and user-provided options
+		plugin.settings = {}
+		var $element = $(element), // reference to the jQuery version of DOM element
+		element = element;	// reference to the actual DOM element
 		
-		$.fn.loading = function()
-		{
-		//	HTML
-			$loading = $('<div class="loading" style="display:none"><progress value="00" max="100"></progress></div>').appendTo($(this)).slideDown('fast');
-
-		//	Some vars
-			var progressbar = $loading.find('progress'),
-			max = progressbar.attr('max'),  
-			time = (1000/max)*2,      
-			value = progressbar.val();
-
-			var loading = function()
-			{
-				value += 1;  
-				addValue = progressbar.val(value);  
-				if (value == max) {  
-					clearInterval(animate);                  
-				}  
-			};  
-			var animate = setInterval(function()
-			{
-				loading();  
-			}, time);
-		};
+		spinner = '<div	class="loadingbox"><svg class="spinner" width="50px" height="50px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="1" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div>';
+		$element.html('').append(spinner);
 		
-		$.fn.loaded = function()
+	//	Execute callback (make sure the callback is a function)
+		if ((typeof(callback) != 'undefined') && (typeof(callback) == "function")) callback.call($element);
+	}
+
+//	Add the plugin to the jQuery.fn object
+	$.fn.loading = function(callback)
+	{
+		return this.each(function()
 		{
-		//	Get the element with only the loading class
-			$loading = $(this).find('>[class="loading"]');
-		//	$loading.find('progress').val(100);
-			$loading.hide('fast', function(){$(this).remove()});
-		};
-	})( jQuery );
+		//	if (undefined == $(this).data('loading'))
+		//	{
+				var plugin = new $.loading(callback, this);
+				$(this).data('loading', plugin);
+		//	}
+		});
+	}
+})( jQuery );
 	
 /*********************************************************************************************
 /**	* Opening and closing Lanes
  	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
-//	Nav
-	openNav = function()
-	{
-		$('#main').removeClass('navClosed').addClass('navOpened');
-	}
-	closeNav = function()
-	{
-		$('#main').removeClass('navOpened').addClass('navClosed');
-	}
-
-//	Admin
-	openAdmin = function()
-	{
-		$('#main').removeClass('adminClosed').addClass('adminOpened');
-	}
-	closeAdmin = function()
-	{
-		$('#main').removeClass('adminOpened').addClass('adminClosed');
-	}
-
 //	Context
 	openContext = function(param, callback)
 	{
@@ -258,21 +230,21 @@
 				}
 			}
 		);
-		/* TODO Hacky way to recenter the panel */
-		setTimeout(function()
+		/* Recenter the panel after transition */
+		$("#adminContext").bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function()
 		{
 			$('#tabs li a'+pseudo).parent().trigger('click');
-		}, 300);
+		});
 	}
 	closeContext = function()
 	{
 		$('#main').removeClass('contextOpened').addClass('contextClosed');
 		$('#adminContext>div').attr('data-template', '').html('');
-		/* TODO Hacky way to recenter the panel */
-		setTimeout(function()
+		/* Recenter the panel after transition */
+		$("#adminContext").bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function()
 		{
 			$('#tabs li a'+pseudo).parent().trigger('click');
-		}, 300);
+		});
 	}
 	
 //	Site
@@ -286,37 +258,47 @@
 		$edit = $siteNav.find('.edit');
 		$admin = $siteNav.find('.admin');
 		
-	//	Open at the right page
-		$('#main').addClass('siteOpened');
-		if (url) $iframe.attr('src', url);
-		
-	//	sitetree
-		$sitetree.on('click', function()
+		if ($('#main').hasClass('siteOpened') === false)
 		{
-		//	Go to edit page
-			document.location.href = ADMIN_URL+'/list?item=page';
-		});
+		//	Open at the right page
+			$('#main').addClass('siteOpened');
+			if (url && $iframe.is(':empty')) $iframe.attr('src', url);
 		
-	//	Edit
-		$edit.on('click', function()
-		{			
-			nickname = $iframe.contents().find('meta[property="gc:item"]').attr('content');
-			item = nickname.split('_')[0];
-			id = nickname.split('_')[1];
-		//	Go to edit page
-			document.location.href = ADMIN_URL+'/edit?item='+item+'&id='+id;
-		});
+			$('#grandCentralSite').height($(window).height());
 		
-	//	Back to admin
-		$admin.on('click', function()
+		//	sitetree
+			$sitetree.on('click', function()
+			{
+			//	Go to edit page
+				document.location.href = ADMIN_URL+'/list?item=page';
+			});
+		
+		//	Edit
+			$edit.on('click', function()
+			{			
+				nickname = $iframe.contents().find('meta[property="gc:item"]').attr('content');
+				item = nickname.split('_')[0];
+				id = nickname.split('_')[1];
+			//	Go to edit page
+				document.location.href = ADMIN_URL+'/edit?item='+item+'&id='+id;
+			});
+		
+		//	Back to admin
+			$admin.on('click', function()
+			{
+				$('html, body').animate({
+	       			 scrollTop: 150
+				    }, 300);
+			});
+		
+		//	Update edit button
+		//	window.history.pushState('string', 'chose', '/');
+		}
+		else
 		{
-			$('html, body').animate({
-       			 scrollTop: 150
-			    }, 300);
-		});
-		
-	//	Update edit button
-	//	window.history.pushState('string', 'chose', '/');
+			$('#main').removeClass('siteOpened');
+			$('#grandCentralSite').height('0');
+		}
 	}
 	
 //	Alert
@@ -334,6 +316,34 @@
 	$(document).on('click', '#alert', function()
 	{
 		$('#main').removeClass('poppedAlert');
+	});
+
+/*********************************************************************************************
+/**	* Nav
+ 	* @author	mvd@cafecentral.fr
+**#******************************************************************************************/
+	$(document).on('click', '#openNav', function()
+	{
+	//	Some vars
+		$nav = $('#nav');
+		
+	//	Load the options drop
+		$nav.ajx(
+		{
+			app:'content',
+			template:'/master/nav',
+		//	sectiontype:$('#adminContent section.active').data('template'),
+		},{
+			done:function()
+			{
+				$('#main').addClass('poppedNav');
+			}
+		});
+		
+	});
+	$(document).on('click', '#closeNav', function()
+	{
+		$('#main').removeClass('poppedNav');
 	});
 
 /*********************************************************************************************

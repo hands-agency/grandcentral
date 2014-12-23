@@ -19,55 +19,35 @@
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
+//	Some binds
+/********************************************************************************************/
+//	$_APP->bind_script('master/js/options.filters.js');
+//	$_APP->bind_css('master/css/options.filters.css');
+	
+/********************************************************************************************/
 //	Some vars
 /********************************************************************************************/
-	require 'adminItemForm.class.php';
-	
-//	Env
 	$handled_env = $_SESSION['pref']['handled_env'];
-//	Item
-	$handled_item = (isset($_GET['item'])) ? $_GET['item'] : null;
-	$handled_id = (isset($_GET['id'])) ? $_GET['id'] : null;
-//	Fetch item
-	$item = i($handled_item, null, $handled_env);
-	if ($handled_item && $handled_id)
-	{
-		$item->get(array
-		(
-			'id' => $handled_id,
-			'status' => null,
-		));
-	}
-//	You can prefill the form through _GET (&fill[title]=something&fill[system]=0...)
-	if (isset($_GET['fill']))
-	{
-		foreach ($_GET['fill'] as $key => $value)
-		{
-			if (isset($item[$key])) $item[$key] = $value;
-		}
-	}
-	
-/********************************************************************************************/
-//	One exception for the workflow
-/********************************************************************************************/
-	if ($handled_item == 'workflow')
-	{
-	//	Create a new temporary item
-		$tmp = i($item['item']->get(), null, $handled_env);
-	//	Fetch the data from the workflow
-		$item = $item['data']->get();
-	}
 
-/********************************************************************************************/
-//	Build front
-/********************************************************************************************/
-	if (!empty($handled_item))
+	$q = $_POST['q'];
+		
+//	Our Query
+	if (isset($_POST['search']))
 	{
-		$form = new adminItemForm($item);
+		$tables = array('page');
+		$param = array();
+		$limit = 20;
+		$nodata = '(Nothing!)';
 	}
-	else
-	{
-		$form = null;
-	}
+	else $nodata = '(We have just refined the list below looking for \''.$q.'\'. Hit ↵ to search.)';
 	
+/********************************************************************************************/
+//	Fetch items
+/********************************************************************************************/
+	if (isset($tables))
+	{
+		$search = new searchFulltext();
+		$results = $search->search($q, $tables, $limit, $param);
+		$results=i('human', all, 'site');
+	}
 ?>

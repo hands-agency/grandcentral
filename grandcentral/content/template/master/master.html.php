@@ -9,6 +9,11 @@
 	<!-- ZONE:body -->
 		
 	<div id="main" class="navClosed contextClosed">
+			
+		<button id="openNav" data-feathericon="&#xe120"></button>
+		<button id="closeNav" data-feathericon="&#xe117"></button>
+		
+		<button id="switchEnv" data-feathericon="&#xe032"></button>
 	
 		<div id="alert">
 			<div class="icon" data-feathericon="&#xe064"></div>
@@ -18,22 +23,22 @@
 			</div>
 		</div>
 		
+		<div id="nav"></div>
+				
+		<header>
+			<div class="site"><!-- ZONE:headersite --></div>
+			<div class="admin"><!-- ZONE:headeradmin --></div>
+		</header>
+		
 		<div id="grandCentralSite">
-			<div class="overlay">
-				<h1><?=i('site', current)['title']?></h1>
-				<span data-feathericon="&#xe000"></span>
-			</div>
+			<iframe></iframe>
 		</div>
 
 		<div id="grandCentralAdmin">
-			
-			<nav id="siteNav"><!-- ZONE:sitenav --></nav>
-			
-			<nav id="adminNav"><!-- ZONE:nav --></nav>
 
 			<div id="adminContent" class="locked">
-				<header><!-- ZONE:header --></header>
 				<!-- ZONE:content|left -->
+				<div id="currentItem"></div>
 				<ul id="sectiontray" style="width:<?=$sectionTrayWidth?>">
 					<? foreach($sections as $section) : ?>
 					<? $app = $section['app'] ?>
@@ -41,7 +46,7 @@
 					<? $greenbutton = ($section['greenbutton']->get()) ? htmlspecialchars(i($section['greenbutton']->get()[0])->json(), ENT_QUOTES) : null ?>
 					<li style="width:<?=$sectionWidth?>">
 						<span class="lock" data-feathericon="&#xe007"></span>
-						<section id="section_<?= $section['key'] ?>" class="virgin" data-pref-display="<?=$prefDisplay?>" data-app="<?= $app['app'] ?>" data-template="<?= $app['template'] ?>" data-greenbutton='<?= $greenbutton ?>' data-nodata="<?=cst('nodata')?>"></section>
+						<section id="section_<?= $section['key'] ?>" class="virgin" data-pref-display="<?=$prefDisplay?>" data-app="<?= $app['app'] ?>" data-template="<?= $app['template'] ?>" data-greenbutton='<?= $greenbutton ?>' data-nodata="<?=$section['nodata']?>"></section>
 					</li>
 					<? endforeach; ?>
 				</ul>

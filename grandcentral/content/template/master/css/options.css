@@ -3,7 +3,8 @@
 /********************************************************************************************/
 #options
 {
-	display:inline-block;
+	position:absolute;
+	padding-left:80px;
 }
 #options>li
 {
@@ -11,55 +12,52 @@
 	-moz-border-radius:2px;
 	-webkit-border-radius:2px;
 	border-radius:2px;
-	height:25px;
-	line-height:27px;
+	height:30px;
+	line-height:30px;
 	font-size:14px;
 	padding:0 10px;
 	display:inline-block !important;
 	position:relative;
 	cursor:pointer !important;
 	text-align:center;
-	border:1px solid #dedede;
 }
 
 /* Filter */
 #filter
 {
-	width:25px;
+	width:30px;
 	padding:0 !important;
-	background:#F2F2F2 !important;
+	background:#777 !important;
 }
 #filter.on
 {
-	color:#fff !important;
 	background:#3eb4d6 !important;
+	color:#fff !important;
 }
 
 /* Local search */
 #options #refine
 {
-	padding:0 0 0 5px;
+	padding:0 0 0 7px;
 	display:none; /* Starts hidden, show if necessary */
 }
 #options #refine input
 {
 	border:0;
-	padding:3px 7px;
-	width:100px;
+	font-size:12px;
+	padding:0 7px;
+	width:115px;
 	background:transparent;
 }
 
 /********************************************************************************************/
 /* Options drop
 /********************************************************************************************/
-#options_drop
+.optionsList
 {
-	margin-top:19px;
-	border-top:1px solid #eee;
-	padding:7px 0;
 /*	display:none; */
 }
-#options_drop ul
+.optionsList ul
 {
 	float:left;
 	min-width:150px;
@@ -67,43 +65,70 @@
 	max-height:250px;
 	overflow:auto;
 }
-#options_drop ul li
+.optionsList ul li
 {
 	padding:5px 10px;
-	border-bottom:1px solid #eee;
+	border-bottom:1px solid #666;
 }
-#options_drop ul li[data-value]
+.optionsList ul li[data-value]
 {
 	cursor:pointer;
 }
-#options_drop ul li.legend
+.optionsList ul li.legend
 {
 	font-family:'ProximaNova-Bold';
 	font-size:13px;
 	text-transform:uppercase;
 	border-bottom:1px solid #ccc;
+	color:#F2F2F2;
 }
-#options_drop ul li .title
+.optionsList ul li .title
 {
 	font-family:'ProximaNova-Regular';
 	font-size:11px;
+	color:#ccc;
 }
-#options_drop ul li:hover .title
+.optionsList ul li:hover .title
 {
 	color:#3eb4d6;
 }
-#options_drop ul li.on
+.optionsList ul li.on
 {
 	background:#3eb4d6;
 }
-#options_drop ul li.on .title
+.optionsList ul li.on .title
 {
 	color:#fff;
 }
-#options_drop ul li .descr
+.optionsList ul li .descr
 {
 	display:none;
 }
-#options_drop ul:first-child
+.optionsList ul:first-child
 {
+}
+
+/********************************************************************************************/
+/* Search drop
+/********************************************************************************************/
+.searchList
+{
+}
+.searchList
+{
+	position:relative;
+}
+.searchList li
+{
+	padding:10px;
+	border:1px solid #666;
+	display:inline-block;
+	width:150px;
+	height:50px;
+	border-radius:2px;
+	margin:5px;
+	font-family:'ProximaNova-Regular';
+	font-size:12px;
+	text-align:center;
+	vertical-align:top;
 }

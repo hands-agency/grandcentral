@@ -35,19 +35,6 @@
 //	Amount of thumbnails to be displayed (where available)
 	$displayThumbnails = 3;
 	
-//	Current item ?
-	if (isset($_GET['item']) && isset($_GET['id']))
-	{
-		$item = i($_GET['item'], $_GET['id'], $handled_env);
-		$title = '<a href="'.$item->listing().'">'.$item['title']->cut(50).'</a> ';
-	}
-	else if (isset($_GET['item']))
-	{
-		$item = i('item', $_GET['item'], $handled_env);
-		$title = '<a href="'.$item->listing().'">'.$item['title']->cut(50).'</a> ';
-	}
-	else $title = null;
-	
 /********************************************************************************************/
 //	Some dates
 /********************************************************************************************/

@@ -1,6 +1,6 @@
 <ul id="options">
-	<li id="filter" class="off" data-feathericon="&#xe120"></li>
-	<li id="refine" class="off" data-feathericon="&#xe036"><input type="text" placeholder="<?=$current?>" /></li>
+	<li id="refine" class="off" data-feathericon="&#xe036"><input type="text" placeholder="Refine or ↵ search" /></li>
+	<li id="filter" class="off" data-feathericon="&#xe023"></li>
 </ul>
 <ul id="tabs" data-target="content" <? if (isset($defaultSection)): ?>data-default="<?=$defaultSection?>"<? endif ?>>
 	<? foreach($sections as $section) : ?>
@@ -21,4 +21,4 @@
 		</li>
 	<? endforeach; ?>
 </ul>
-<ul id="options_drop"><!-- Welcome Ajax --></ul>
+<div class="drawer closed"><!-- Welcome Ajax --></div>

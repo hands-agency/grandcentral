@@ -1,41 +1,66 @@
 /********************************************************************************************/
-/* Clap along
+/* Header
 /********************************************************************************************/
 header
 {
-	position:relative;
-	background:#fff;
-	padding:20px;
+	background:rgba(0, 0, 0, 0.7);
 	width:100%;
+    position: fixed;
+    right: 0;
+	top:-72px;
+    z-index: 5;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
+	text-align:center;
+}
+.siteOpened header
+{
+	top:auto;
+    bottom:-72px;
+}
+.contextOpened header
+{
+	width:65%;
+	left:0;
+}
+header>div
+{
+	min-height:72px;
+	height:100%;
+	padding:20px;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
-	-webkit-transition: -webkit-box-shadow .15s ease-out; 
-	-moz-transition: -moz-box-shadow .15s ease-out; 
-	-o-transition: -o-box-shadow .15s ease-out; 
-	transition: box-shadow .15s ease-out;
+	position:relative;
 }
-.sticky header
+header>div.site
 {
-    position: fixed;
-    right: 0;  
-    top: 0;  
-    z-index: 3;
-	-webkit-box-shadow: 0px 25px 5px -20px rgba(50, 50, 50, 0.1);
-	-moz-box-shadow:    0px 25px 5px -20px rgba(50, 50, 50, 0.1);
-	box-shadow:         0px 25px 5px -20px rgba(50, 50, 50, 0.1);
-	width:95%;
+	border-bottom:1px solid #555;
 }
 
-.contextOpened.sticky header
+/* Drawer */
+header .drawer
 {
-	width:60%;
-	left:5%;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
+/*	max-height:600px;
+	overflow:auto;
+	*/
 }
-
-.navOpened.sticky header
+header .drawer.closed
 {
-	width:55%;
-	-webkit-transition: width 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	transition:         width 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	height:0 !important;
+	overflow:hidden;
+}
+header .drawer.opened
+{
+	height:auto;
+	color:#fff;
+	padding:20px 0 5px 0;
+	border-top:1px solid #555;
+	margin-top:22px;
 }

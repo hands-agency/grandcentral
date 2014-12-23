@@ -93,7 +93,7 @@ jQuery(document).ready(function($)
 
 //	Go	
 	$('.lock').lock();
-});	
+});
 
 /*********************************************************************************************
 /**	* FILTERS : filtering content of a section, ordering it.
@@ -103,22 +103,33 @@ jQuery(document).ready(function($)
 	{
 	//	Some vars
 		$button = $(this);
-		$drop = $('#options_drop');
+		$drawer = $('header .admin .drawer');
 		
-	//	Load the options drop
-		$drop.ajx(
+		if ($drawer.hasClass('closed'))
 		{
-			app:'content',
-			template:'/master/snippet/options.filters',
-			sectiontype:$('#adminContent section.active').data('template'),
-		},{
-			done:function()
+		//	Open Drawer
+			$drawer.toggleClass('closed opened');
+		//	Load the options drop
+			$drawer.ajx(
 			{
-			//	Toggle option drop and button
-				$drop.toggle('fast');
-				$button.toggleClass('on off');
-			}
-		});
+				app:'content',
+				template:'/master/snippet/options.filters',
+				sectiontype:$('#adminContent section.active').data('template'),
+			},{
+				done:function()
+				{
+				//	Toggle option drop and button
+					$button.toggleClass('on off');
+				//	Resize the header after
+					$drawer.bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function()
+					{
+						height = $('header .admin').outerHeight();
+						$('#adminContent').css('padding-top', height+'px');
+					});
+				}
+			});
+		}
+		else $drawer.toggleClass('opened closed');
 	});
 
 /*********************************************************************************************

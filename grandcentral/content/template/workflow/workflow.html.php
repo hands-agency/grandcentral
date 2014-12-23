@@ -1,6 +1,4 @@
-<? if (!isset($workflowstatuses)): ?>
-<div class="nodata">There are no workflows for this item.</div>
-<? else: ?>
+<? if (isset($workflowstatuses)): ?>
 <h1>Workflow</h1>
 	<?
 		foreach ($workflowstatuses as $workflowstatus)
@@ -18,7 +16,6 @@
 			$td .= '<td><ul>'.$li.'</ul></td>';
 		}
 	?>
-
 	<table>
 		<tr><?=$th?></tr>
 		<tr><?=$td?></tr>

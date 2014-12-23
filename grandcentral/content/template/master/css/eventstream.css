@@ -6,7 +6,7 @@
 {
 	list-style-type:disc;
 	color:rgba(62, 180, 214, 1);
-	padding:0 0 0 16px;
+	padding:0 0 0 96px;
 }
 #eventstream ul li
 {
@@ -17,7 +17,7 @@
 }
 #eventstream ul li a
 {
-	color:#666;
+	color:#F2F2F2;
 }
 #eventstream ul li span
 {
@@ -25,7 +25,7 @@
 }
 #eventstream ul li span.item
 {
-	border:1px solid #ccc;
+	border:1px solid rgba(255, 255, 255, 0.1);
 	text-transform:uppercase;
 	border-radius:2px;
 	font-size:10px;

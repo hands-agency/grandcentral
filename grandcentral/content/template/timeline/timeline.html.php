@@ -1,7 +1,6 @@
 <? if (!$events): ?>
 <div class="nodata">As soon as something happens, we'll let you know right here</div>
 <? else : ?>
-<h1><?=$title?>Digest</h1>
 <ol class="logbookList">
 	<? foreach ($events as $period => $subject): ?>
 	<!--h2><?=$period?></h2-->

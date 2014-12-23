@@ -101,23 +101,26 @@
 /********************************************************************************************/
 //	Nav CC
 /********************************************************************************************/
-	$_APP->bind_snippet('sitenav', 'master/snippet/sitenav');
+//	$_APP->bind_snippet('sitenav', 'master/snippet/sitenav');
 	
 /********************************************************************************************/
 //	Nav CC
 /********************************************************************************************/
-	$_APP->bind_snippet('nav', 'master/snippet/nav');
+//	$_APP->bind_snippet('nav', 'master/snippet/nav');
 	
 /********************************************************************************************/
-//	Header
+//	Headers
 /********************************************************************************************/
+//Site
+	$_APP->bind_snippet('headersite', 'master/snippet/headersite');
+	
 //	Even stream
-	$_APP->bind_code('header', '<div id="eventstream"><ul class="mine"></ul><ul class="everybodyelses"></ul></div>');
-	$_APP->bind_snippet('header', 'master/snippet/eventstream');
+	$_APP->bind_code('headeradmin', '<div id="eventstream"><ul class="mine"></ul><ul class="everybodyelses"></ul></div>');
+	$_APP->bind_snippet('headeradmin', 'master/snippet/eventstream');
 //	Green button
-	$_APP->bind_snippet('header', 'master/snippet/greenbutton/greenbutton');
+	$_APP->bind_snippet('headeradmin', 'master/snippet/greenbutton/greenbutton');
 //	Header (here, i need the section var)
-	$_APP->bind_snippet('header', 'master/snippet/header');
+	$_APP->bind_snippet('headeradmin', 'master/snippet/headeradmin');
 
 /********************************************************************************************/
 //	Content

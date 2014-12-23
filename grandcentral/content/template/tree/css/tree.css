@@ -10,6 +10,7 @@ section[data-template="/tree/tree"] ol.tree
 	cursor:grab;
 	cursor: -webkit-grab;
 	cursor: -moz-grab;
+	padding-top:70px !important;
 }
 section[data-template="/tree/tree"] ol.tree.grabbing
 {
@@ -40,11 +41,11 @@ section[data-template="/tree/tree"] li
 section[data-template="/tree/tree"] ol ol li .connector
 {
 	position:absolute;
-	width:20px;
+	width:19px;
 	top:0px;
 	left:50%;
 	margin-left:-10px;
-	font-size:10px;
+	font-size:9px;
 	color:#666;
 	z-index:2;
 }
