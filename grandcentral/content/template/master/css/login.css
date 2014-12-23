@@ -41,7 +41,7 @@ body, html
 @font-face
 {
 	font-family:'ProximaNova-Thin';
-	src:url('../font/ProximaNova/ProximaNova-Thin.ttf') format('truetype');
+	src:url('../font/ProximaNova/Mark Simonson - Proxima Nova Thin.otf') format('truetype');
 	font-weight:normal;
 	font-style:normal;
 }
@@ -49,7 +49,15 @@ body, html
 @font-face
 {
 	font-family:'ProximaNova-Regular';
-	src:url('../font/ProximaNova/ProximaNova-Regular.ttf') format('truetype');
+	src:url('../font/ProximaNova/Mark Simonson - Proxima Nova Alt Regular.otf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+/* ProximaNova Bold */
+@font-face
+{
+	font-family:'ProximaNova-Bold';
+	src:url('../font/ProximaNova/Mark Simonson - Proxima Nova Bold.otf') format('truetype');
 	font-weight:normal;
 	font-style:normal;
 }
