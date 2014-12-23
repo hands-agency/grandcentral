@@ -100,7 +100,7 @@ section .noteList>li>.text
 	font-size:12px;
 	line-height:1.4em;
 	color:#333;
-	font-family:"Raleway-Regular";
+	font-family:"ProximaNova-Regular";
 	box-shadow:0 1px 1px 0 rgba(0, 0, 0, 0.18);
 }
 section .noteList>li>.text:before
@@ -135,7 +135,7 @@ section .noteForm form textarea
 	font-size:12px;
 	line-height:1.4em;
 	color:#666;
-	font-family:"Raleway-Regular";
+	font-family:"ProximaNova-Regular";
 	padding:15px;
 	border-radius:2px;
 	box-shadow:0 1px 1px 0 rgba(0, 0, 0, 0.18);

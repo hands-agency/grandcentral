@@ -48,7 +48,7 @@ section[data-template^="/doc/"] h2
 }
 section[data-template^="/doc/"] h2 span.flag
 {
-	font-family:"Raleway-Regular";
+	font-family:"ProximaNova-Regular";
 	text-transform:uppercase;
 	background:#F2F2F2;
 	border-radius:2px;
@@ -69,7 +69,7 @@ section[data-template^="/doc/"] h3
 }
 section[data-template^="/doc/"] h4
 {
-	font-family:"Raleway-Bold" !important;
+	font-family:"ProximaNova-Bold" !important;
 	margin-bottom:5px;
 }
 section[data-template^="/doc/"] h4:not(:first-child)

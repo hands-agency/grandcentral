@@ -78,14 +78,14 @@
 }
 #options_drop ul li.legend
 {
-	font-family:'Raleway-Bold';
+	font-family:'ProximaNova-Bold';
 	font-size:13px;
 	text-transform:uppercase;
 	border-bottom:1px solid #ccc;
 }
 #options_drop ul li .title
 {
-	font-family:'Raleway-Regular';
+	font-family:'ProximaNova-Regular';
 	font-size:11px;
 }
 #options_drop ul li:hover .title

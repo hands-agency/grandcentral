@@ -3,6 +3,21 @@
 /* A Form Section
 /////////////////////////////////////////////////////////////////////////////////////////////
 /********************************************************************************************/
+form.left
+{
+	float:left;
+	width:70%;
+}
+form.right
+{
+	padding-left:30px;
+	float:left;
+	width:30%;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+
 /* Fieldsets */
 section[data-template="/edit/edit"]
 {
@@ -28,7 +43,7 @@ form>fieldset
 form>fieldset legend
 {
 	text-align:center;
-	font-family: "Raleway-Regular";
+	font-family: "ProximaNova-Regular";
 	text-transform:uppercase;
 	padding:40px 0 20px 0;
 	color:#999;
@@ -63,7 +78,7 @@ form>fieldset ol>li[data-type]>label
 	box-sizing:border-box;
 	text-align:right;
 	padding:15px 15px 0 15px;
-	font-family: "Raleway-Regular";
+	font-family: "ProximaNova-Regular";
 	vertical-align:top;
 }
 
@@ -88,7 +103,7 @@ form>fieldset ol>li[data-type] .wrapper .field
 	-moz-transition:border-color .3s ease-in;
 	-o-transition:border-color .3s ease-in;
 	transition:border-color .3s ease-in;
-	font-family:'Raleway-Regular';
+	font-family:'ProximaNova-Regular';
 }
 form>fieldset ol>li[data-type] .wrapper .field
 {

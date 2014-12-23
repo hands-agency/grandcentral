@@ -51,11 +51,11 @@ textarea
 	padding:7px;
 	margin:0;
 	resize:none;
-	font-family: "Raleway-Regular";
+	font-family: "ProximaNova-Regular";
 	color:#666666;
 	font-size:1em;
 	line-height:1.4em;
-	/* Linin numerals for Raleway */
+	/* Linin numerals for ProximaNova */
 	font-feature-settings: 'lnum';
 	-moz-font-feature-settings: 'lnum=1';
 	-ms-font-feature-settings: 'lnum';

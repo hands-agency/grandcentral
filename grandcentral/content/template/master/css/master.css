@@ -147,35 +147,35 @@ a:visited
 /* Fonts
 /////////////////////////////////////////////////////////////////////////////////////////////
 /********************************************************************************************/
-/* Raleway Thin */
+/* ProximaNova Thin */
 @font-face
 {
-	font-family:'Raleway-Thin';
-	src:url('../font/Raleway/Raleway-Thin.ttf') format('truetype');
+	font-family:'ProximaNova-Thin';
+	src:url('../font/ProximaNova/ProximaNova-Thin.ttf') format('truetype');
 	font-weight:normal;
 	font-style:normal;
 }
-/* Raleway Regular */
+/* ProximaNova Regular */
 @font-face
 {
-	font-family:'Raleway-Regular';
-	src:url('../font/Raleway/Raleway-Regular.ttf') format('truetype');
+	font-family:'ProximaNova-Regular';
+	src:url('../font/ProximaNova/ProximaNova-Regular.ttf') format('truetype');
 	font-weight:normal;
 	font-style:normal;
 }
-/* Raleway Regular */
+/* ProximaNova Regular */
 @font-face
 {
-	font-family:'Raleway-Regular-Italic';
-	src:url('../font/Raleway/Raleway-Regular-Italic.ttf') format('truetype');
+	font-family:'ProximaNova-Regular-Italic';
+	src:url('../font/ProximaNova/ProximaNova-Regular-Italic.ttf') format('truetype');
 	font-weight:normal;
 	font-style:normal;
 }
-/* Raleway Bold */
+/* ProximaNova Bold */
 @font-face
 {
-	font-family:'Raleway-Bold';
-	src:url('../font/Raleway/Raleway-Bold.ttf') format('truetype');
+	font-family:'ProximaNova-Bold';
+	src:url('../font/ProximaNova/ProximaNova-Bold.ttf') format('truetype');
 	font-weight:normal;
 	font-style:normal;
 }
@@ -196,7 +196,7 @@ a:visited
 	color:#eee;
 	position:absolute;
 	font-size:10px;
-	font-family:"Raleway-Thin";
+	font-family:"ProximaNova-Thin";
 	text-shadow:0px 1px 1px rgba(0, 0, 0, 0.5);
 	opacity:0.8;
 	text-transform:uppercase;
@@ -238,8 +238,8 @@ a.cc-badge
 	color:#eee;
 	position:absolute;
 	font-size:14px;
-	font-family:"Raleway-Regular";
-	/* Linin numerals for Raleway */
+	font-family:"ProximaNova-Regular";
+	/* Linin numerals for ProximaNova */
 	font-feature-settings: 'lnum';
 	-moz-font-feature-settings: 'lnum=1';
 	-ms-font-feature-settings: 'lnum';
@@ -331,7 +331,7 @@ progress::-webkit-progress-value {
 [data-nodata]:empty:before
 {
 	color:#ccc;
-	font-family: "Raleway-Thin";
+	font-family: "ProximaNova-Thin";
 	text-align:center;
 	content: attr(data-nodata);
 	pointer-events:auto;
@@ -447,7 +447,7 @@ ol .placeholder
 }
 #grandCentralSite .overlay h1
 {
-	font-family: "Raleway-Thin";
+	font-family: "ProximaNova-Thin";
 	letter-spacing:3px;
 	color:#fff;
 	font-size:3em;
@@ -669,7 +669,7 @@ ol .placeholder
 	position:absolute;
 	bottom:100px;
 	color:#fff;
-	font-family: "Raleway-Regular";
+	font-family: "ProximaNova-Regular";
 	width:100%;
 	text-align:center;
 }
@@ -715,11 +715,11 @@ ol .placeholder
 }
 #adminContent section>h1
 {
-	font-family: "Raleway-Thin";
+	font-family: "ProximaNova-Thin";
 	font-size:35px;
 	margin:0 0 30px 0;
 	text-align:center;
-	/* Linin numerals for Raleway */
+	/* Linin numerals for ProximaNova */
 	font-feature-settings: 'lnum';
 	-moz-font-feature-settings: 'lnum=1';
 	-ms-font-feature-settings: 'lnum';
@@ -776,7 +776,7 @@ footer
 }
 #adminContext h1
 {
-	font-family:"Raleway-Regular";
+	font-family:"ProximaNova-Regular";
 	font-size:40px;
 	margin-bottom:20px;
 	clear:left;
@@ -784,7 +784,7 @@ footer
 }
 #adminContext h2
 {
-	font-family:"Raleway-Regular";
+	font-family:"ProximaNova-Regular";
 	margin:0 0 20px 0;
 	border-bottom:1px solid #ccc;
 	padding:0 0 5px 0;
@@ -939,8 +939,8 @@ footer
 #adminContent section h4,
 #adminContent section h5
 {
-	font-family:"Raleway-Regular";
-	/* Linin numerals for Raleway */
+	font-family:"ProximaNova-Regular";
+	/* Linin numerals for ProximaNova */
 	font-feature-settings: 'lnum';
 	-moz-font-feature-settings: 'lnum=1';
 	-ms-font-feature-settings: 'lnum';
@@ -1101,7 +1101,7 @@ footer
 	color:#fff;
 	cursor: pointer;
 	text-transform:uppercase;
-	font-family:'Raleway-Bold';
+	font-family:'ProximaNova-Bold';
 	letter-spacing:1px;
 	-webkit-transition: all .1s ease-out; 
 	-moz-transition: all .1s ease-out; 

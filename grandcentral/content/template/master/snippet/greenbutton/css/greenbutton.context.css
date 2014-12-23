@@ -17,8 +17,8 @@
 	padding:10px 20px;
 	border-radius:2px;
 	text-transform:uppercase;
-	font-family:"Raleway-Regular";
-	/* Linin numerals for Raleway */
+	font-family:"ProximaNova-Regular";
+	/* Linin numerals for ProximaNova */
 	font-feature-settings: 'lnum';
 	-moz-font-feature-settings: 'lnum=1';
 	-ms-font-feature-settings: 'lnum';

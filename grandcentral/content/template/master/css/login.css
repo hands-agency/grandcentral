@@ -37,19 +37,19 @@ body, html
 /* Fonts
 /////////////////////////////////////////////////////////////////////////////////////////////
 /********************************************************************************************/
-/* Raleway Thin */
+/* ProximaNova Thin */
 @font-face
 {
-	font-family:'Raleway-Thin';
-	src:url('../font/Raleway/Raleway-Thin.ttf') format('truetype');
+	font-family:'ProximaNova-Thin';
+	src:url('../font/ProximaNova/ProximaNova-Thin.ttf') format('truetype');
 	font-weight:normal;
 	font-style:normal;
 }
-/* Raleway Regular */
+/* ProximaNova Regular */
 @font-face
 {
-	font-family:'Raleway-Regular';
-	src:url('../font/Raleway/Raleway-Regular.ttf') format('truetype');
+	font-family:'ProximaNova-Regular';
+	src:url('../font/ProximaNova/ProximaNova-Regular.ttf') format('truetype');
 	font-weight:normal;
 	font-style:normal;
 }
@@ -105,7 +105,7 @@ button
 	font-size:40px;
 	border:none;
 	background:transparent;
-	font-family:"Raleway-Thin";
+	font-family:"ProximaNova-Thin";
 	color:#eee !important;
 	padding:10px 10px 5px 10px;
 	border-radius:2px;

@@ -12,12 +12,12 @@ section[data-template="/appini/appini"] table th
 {
 	width:140px;
 	text-align:right;
-	font-family: "Raleway-Thin";
+	font-family: "ProximaNova-Thin";
 }
 section[data-template="/appini/appini"] table td
 {
 	background:#fff;
-	font-family: "Raleway-Regular";
+	font-family: "ProximaNova-Regular";
 	line-height:1.6em;
 }
 section[data-template="/appini/appini"] table ul li

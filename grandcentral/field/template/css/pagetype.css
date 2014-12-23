@@ -78,12 +78,14 @@
 	box-sizing:border-box;
 	position:relative;
 	cursor:pointer;
+	opacity:0.4;
 }
 [data-type="pagetype"] .field .type [data-key="key"] ol li label:hover
 {
 	border-color: #3eb4d6;
 	-webkit-box-shadow: 0 0 4px #3eb4d6;
 	box-shadow: 0 0 4px #3eb4d6;
+	opacity:0.8;
 }
 [data-type="pagetype"] .field .type [data-key="key"] ol li label .title
 {
@@ -115,6 +117,7 @@
 	border-color: #3eb4d6;
 	-webkit-box-shadow: 0 0 4px #3eb4d6;
 	box-shadow: 0 0 4px #3eb4d6;
+	opacity:1;
 }
 [data-type="pagetype"] .field .type [data-key="key"] ol li input:checked+label:before
 {

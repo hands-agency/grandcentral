@@ -19,15 +19,16 @@
 	background:#fff;
 	border:1px solid #ccc;
 	padding:10px;
-	/* Linin numerals for Raleway */
+	/* Linin numerals for ProximaNova */
 	font-feature-settings: 'lnum';
 	-moz-font-feature-settings: 'lnum=1';
 	-ms-font-feature-settings: 'lnum';
 	-webkit-font-feature-settings: 'lnum';
 	-o-font-feature-settings: 'lnum';
-	font-family:'raleway-thin';
+	font-family:'ProximaNova-Thin';
 	text-align:center;
 	border-radius:2px;
+	display:none;
 }
 
 #ui-datepicker-div .ui-datepicker-title
@@ -35,7 +36,7 @@
 	text-transform:uppercase;
 	font-size:10px;
 	padding:5px 0 10px 0;
-	font-family:'raleway-bold';
+	font-family:'ProximaNova-bold';
 	border-bottom:1px dotted #ddd;
 	margin:0 0 5px 0;
 }

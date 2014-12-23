@@ -111,7 +111,7 @@ li[data-type="zoning"] .zones .zone>.title
 	width:75px;
 	color:#666666;
 	font-size:10px;
-	font-family:"Raleway-Regular";
+	font-family:"ProximaNova-Regular";
 	letter-spacing:0.5px;
 	text-transform:uppercase;
 	text-align:right;
@@ -195,7 +195,7 @@ li[data-type="zoning"] .available li .icon
 li[data-type="zoning"] li .title
 {
 	margin:2px 0 0 23px;
-	font-family:"Raleway-Regular";
+	font-family:"ProximaNova-Regular";
 }
 li[data-type="zoning"] li .title .flag
 {

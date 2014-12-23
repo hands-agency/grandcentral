@@ -7,23 +7,23 @@ li[data-type="sirtrevor"] .wrapper .st-block__inner
 }
 li[data-type="sirtrevor"] .wrapper .st-text-block
 {
-	font-family:'Raleway-Regular';
+	font-family:'ProximaNova-Regular';
 	font-size:0.8em;
 	line-height:1.6em;
 }
 li[data-type="sirtrevor"] .wrapper .st-text-block b
 {
-	font-family:'Raleway-Bold';
+	font-family:'ProximaNova-Bold';
 	font-weight:bold; /* take that away and un-bold won't work */
 }
 li[data-type="sirtrevor"] .wrapper .st-text-block i
 {
-	font-family:'Raleway-Regular-Italic';
+	font-family:'ProximaNova-Regular-Italic';
 	font-style:italic; /* take that away and un-italic won't work */
 }
 li[data-type="sirtrevor"] .wrapper .st-text-block--heading
 {
-	font-style:'Raleway-Regular';
+	font-style:'ProximaNova-Regular';
 	font-size:1.4em;
 }
 li[data-type="sirtrevor"] .wrapper .st-text-block>div

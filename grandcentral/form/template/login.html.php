@@ -1,6 +1,6 @@
 <div id="overlay">
 	<form <?= $_FORM->get_attrs(); ?>>
-		<!--div id="grandCentralLogo"><?=$logo?></div-->
+		<div id="profilepic"><?=$profilepic?></div>
 		<?php foreach($_FORM->get_hiddens() as $hidden) : ?>
 			<?= $_FORM->get_field($hidden); ?>
 		<?php endforeach; ?>

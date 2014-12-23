@@ -106,7 +106,7 @@
 }
 #adminNav>ul>li>.title span
 {
-	font-family:"Raleway-Thin";
+	font-family:"ProximaNova-Thin";
 	font-size:0.7em;
 	color:#fff;
 	display:none;
@@ -186,7 +186,7 @@
 	padding:3px 5px;
 	color:#ccc;
 	font-size:10px;
-	font-family:"Raleway-Regular";
+	font-family:"ProximaNova-Regular";
 	border:1px solid transparent;
 }
 #adminNav>ul li.edit:hover a,
@@ -248,7 +248,7 @@
 /* Titles */
 #adminNav>ul .sub h1
 {
-	font-family:"Raleway-Bold";
+	font-family:"ProximaNova-Bold";
 	margin:0 0 20px 0;
 	border-bottom:1px solid #333;
 	padding:0 0 5px 0;
@@ -298,7 +298,7 @@
 }
 #adminNav>ul .sub ul li .title
 {
-	font-family:"Raleway-Thin";
+	font-family:"ProximaNova-Thin";
 	display:block;
 }
 
@@ -393,7 +393,10 @@
 	margin-top:95px !important; /* Optical alignment */
 }
 
-#adminNav>ul .sub ul.hive li, #adminNav>ul .sub ul.hive li:before, #adminNav>ul .sub ul.hive li:after {
+#adminNav>ul .sub ul.hive li,
+#adminNav>ul .sub ul.hive li:before,
+#adminNav>ul .sub ul.hive li:after
+{
 	/* easy way: width is height * 1.732
 	actual formula is 2*(width/(2*Math.tan(Math.PI/6)))
 	remove border-radius for straight edges on hexagons */
@@ -401,19 +404,29 @@
 	width: 86px;;
 	border-radius: 5%/20%;
 }
-#adminNav>ul .sub ul.hive li:before {
+#adminNav>ul .sub ul.hive li:before
+{
 	background-color: inherit;
 	content: "";
 	position: absolute;
 	left: 0;
-	transform: rotate(-60deg);
+    -webkit-transform: rotate(-60deg);
+       -moz-transform: rotate(-60deg);
+        -ms-transform: rotate(-60deg);
+         -o-transform: rotate(-60deg);
+	        transform: rotate(-60deg);
 }
-#adminNav>ul .sub ul.hive li:after {
+#adminNav>ul .sub ul.hive li:after
+{
 	background-color: inherit;
 	content: "";
 	position: absolute;
 	left: 0;
-	transform: rotate(60deg);
+    -webkit-transform: rotate(60deg);
+       -moz-transform: rotate(60deg);
+        -ms-transform: rotate(60deg);
+         -o-transform: rotate(60deg);
+	        transform: rotate(60deg);
 }
 
 #adminNav>ul .sub ul.hive li a,
@@ -433,7 +446,7 @@
 }
 #adminNav>ul .sub ul.hive li .title
 {
-	font-family:'Raleway-Bold';
+	font-family:'ProximaNova-Bold';
 	letter-spacing:1px;
 	text-transform:uppercase;
 	font-size:8px;
@@ -506,7 +519,7 @@
 	position:absolute;
 	bottom:10px;
 	z-index:1;
-	font-family:'Raleway-Regular';
+	font-family:'ProximaNova-Regular';
 	font-size:9px;
 	color:#fff;
 	text-transform:uppercase;

@@ -23,7 +23,7 @@
   speak: none;
   line-height: 1;
   position:relative;
-  top:-9%; /* Grand Central Optical Alignment*/
+  top:-7%; /* Grand Central Optical Alignment*/
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

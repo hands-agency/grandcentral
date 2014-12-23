@@ -129,7 +129,7 @@ section[data-template="/tree/tree"] [data-item]:before
 	height:100%;
 	border-bottom:1px solid #fff;
 	width:100px;
-	font-family: "Raleway-Thin";
+	font-family: "ProximaNova-Thin";
 	font-size:50px;
 }
 
@@ -160,7 +160,7 @@ section[data-template="/tree/tree"] ol li .page .icon
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
 	color:#000;
-	font-family: "Raleway-Regular";
+	font-family: "ProximaNova-Regular";
 	z-index:1;
 	-webkit-transition: all .1s ease-out; 
 	-moz-transition: all .1s ease-out; 
@@ -270,7 +270,7 @@ section[data-template="/tree/tree"] ol li .page .icon .action a
 	font-size:10px;
 	text-transform:uppercase;
 	line-height:18px !important;
-	font-family: "Raleway-Bold";
+	font-family: "ProximaNova-Bold";
 	text-align:left;
 	display:block;
 }

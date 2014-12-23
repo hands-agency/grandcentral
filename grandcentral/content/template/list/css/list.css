@@ -21,7 +21,7 @@ section[data-template="/list/list"]>div>ol>li
 
 section[data-template="/list/list"]>div>ol>li>.title
 {
-	font-family:"Raleway-Regular";
+	font-family:"ProximaNova-Regular";
 	line-height:1.4em;
 }
 section[data-template="/list/list"]>div>ol>li>.title a
@@ -30,7 +30,7 @@ section[data-template="/list/list"]>div>ol>li>.title a
 }
 section[data-template="/list/list"]>div>ol>li>.descr
 {
-	font-family:"Raleway-Light";
+	font-family:"ProximaNova-Light";
 	line-height:1.4em;
 	color:#999;
 }
@@ -66,7 +66,7 @@ section[data-template="/list/list"]>.infiniteScrollWantsMore
 	clear:left;
 	cursor:pointer;
 	text-align:center;
-	font-family:'Raleway-Regular';
+	font-family:'ProximaNova-Regular';
 	text-transform:uppercase;
 	margin:100px auto;
 	opacity:0.3;
@@ -87,7 +87,7 @@ section[data-template="/list/list"]>.infiniteScrollStopper
 {
 	clear:left;
 	text-align:center;
-	font-family:'Raleway-Regular';
+	font-family:'ProximaNova-Regular';
 	text-transform:uppercase;
 	color:#ddd;
 }
