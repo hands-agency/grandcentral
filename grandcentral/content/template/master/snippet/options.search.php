@@ -59,6 +59,6 @@
 	//	Fetch results
 		$results = $search->search($q, $tables, $limit, $param);
 	*/
-	//	$results = i('human', all, 'site');
+		$results = i('human', all, 'site');
 	}
 ?>

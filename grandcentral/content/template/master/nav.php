@@ -51,8 +51,6 @@
 	
 //	List page
 	$listPage = i('page', 'list');
-//	Edit page
-	$editPage = i('page', 'edit');
 //	App pate
 	$appPage = i('page', 'app');
 ?>

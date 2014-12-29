@@ -425,16 +425,17 @@ progress::-webkit-progress-value {
 /********************************************************************************************/
 [data-nodata]:empty
 {
-	/* line-height:200px; */
 }
 [data-nodata]:empty:before
 {
-	color:#333;
+	color:#666;
 	font-family: "ProximaNova-Thin";
 	text-align:center;
 	content: attr(data-nodata);
 	pointer-events:auto;
 	width:100%;
+	height:100%;
+	line-height:normal;
 	display:inline-block;
 	vertical-align:middle;
 	line-height:normal;
@@ -945,7 +946,6 @@ footer
 #adminContent section.loading
 {
 	text-align:center;
-	padding:150px 0;
 	background:#fff;
 }
 #adminContent section.virgin
@@ -1048,9 +1048,17 @@ footer
 }
 
 /* Nodata */
+#adminContent section:empty
+{
+	line-height:300px;
+}
 #adminContent section:empty:before
 {
 	font-size:30px;
+}
+#adminContent section.virgin:empty:before
+{
+	display:none;
 }
 
 /* The lines */

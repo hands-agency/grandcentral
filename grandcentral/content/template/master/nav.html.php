@@ -3,7 +3,7 @@
 		<span class="title">Digest</span>
 		<span class="icon"><?=$sitePic?></span>
 	</a>
-	<a href="<?=$editPage['url']->args(array('item' => 'human', 'id' => $_SESSION['user']['id']->get()))?>" class="profile">
+	<a href="<?=$_SESSION['user']->edit()?>" class="profile">
 		<span class="icon"><?=$profilePic?></span>
 		<span class="title">Profile</span>
 	</a>
