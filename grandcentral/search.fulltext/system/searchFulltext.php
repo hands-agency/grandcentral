@@ -13,8 +13,10 @@ class searchFulltext
 	private $key;
 	// pondération
 	public $relevance = array('title' => 10, 'txt' => 3, 'rel' => 0.5);
+	// n'explorez que les items qui ont des urls
+	public $url = true;
 	// tables blacklistées
-	public $notable = array('tag');
+	public $notable = array();
 	// relation blacklistées
 	public $norel = array('child','section','page');
 	// liste des attributs texte
@@ -125,32 +127,9 @@ class searchFulltext
  */
 	public function get_index()
 	{
+		$p = $this->url ? array('hasurl' => true) : array();
 		// recherche des items à indexer. On prendi
-		$items = i('item', array(
-			'hasurl' => true,
-			// 'limit()' => 2
-		), 'site');
-		// construction de l'index
-		$toindex = array();
-		foreach ($items as $item)
-		{
-			$toindex = array_merge($toindex, $this->prepare_items($item['key']->get()));
-		}
-		
-		return $toindex;
-	}
-/**
- * Create the search index from items with url
- *
- * @return	array	l'index des contenus
- * @access	public
- */
-	public function get_full_index()
-	{
-		// recherche des items à indexer. On prendi
-		$items = i('item', array(
-			// 'limit()' => 2
-		), 'site');
+		$items = i('item', $p, 'site');
 		// construction de l'index
 		$toindex = array();
 		foreach ($items as $item)
@@ -167,6 +146,7 @@ class searchFulltext
  */
 	public function save_index()
 	{
+		$this->create_table();
 	//	Some vars
 		$i = 0;
 		$e = 0;
