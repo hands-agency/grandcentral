@@ -10,7 +10,7 @@
 class searchFulltext
 {
 	// nom de la table dans la base de données
-	const table = 'searchfulltext';
+	private $key;
 	// pondération
 	public $relevance = array('title' => 10, 'txt' => 3, 'rel' => 0.5);
 	// tables blacklistées
@@ -23,6 +23,20 @@ class searchFulltext
 	public $attrRel = array('attrRel', 'attrItem');
 	// une bonne vieille statique dégueu pour éviter de faire trop de requêtes
 	public static $relTables = array();
+/**
+ * Sanitize the serach string
+ *
+ * @param	string	la clef de l'index. Servira pour le nom de la table
+ * @access	public
+ */
+	public function __construct($key)
+	{
+		if (empty($key))
+		{
+			trigger_error('I need a key.', E_USER_ERROR);
+		}
+		$this->key = 'sft_'.$key;
+	}
 /**
  * Sanitize the serach string
  *
@@ -76,7 +90,7 @@ class searchFulltext
 			MATCH (`title`) AGAINST ("'.$search.'" IN NATURAL LANGUAGE MODE) AS title_relevance,
 			MATCH (`txt`) AGAINST ("'.$search.'" IN NATURAL LANGUAGE MODE) AS txt_relevance,
 			MATCH (`rel`) AGAINST ("'.$search.'" IN NATURAL LANGUAGE MODE) AS rel_relevance
-			FROM `'.self::table.'`
+			FROM `'.$this->key.'`
 			WHERE MATCH (`title`,`txt`,`rel`) AGAINST ("*'.$search.'*" IN NATURAL LANGUAGE MODE)
 			'.$where.'
 			ORDER BY (title_relevance*'.$this->relevance['title'].')+(txt_relevance*'.$this->relevance['txt'].')+(rel_relevance*'.$this->relevance['rel'].') DESC
@@ -92,7 +106,7 @@ class searchFulltext
 				MATCH (`title`) AGAINST ("*'.$search.'*" IN BOOLEAN MODE) AS title_relevance,
 				MATCH (`txt`) AGAINST ("*'.$search.'*" IN BOOLEAN MODE) AS txt_relevance,
 				MATCH (`rel`) AGAINST ("*'.$search.'*" IN BOOLEAN MODE) AS rel_relevance
-				FROM `'.self::table.'`
+				FROM `'.$this->key.'`
 				WHERE MATCH (`title`,`txt`,`rel`) AGAINST ("*'.$search.'*" IN BOOLEAN MODE)
 				'.$where.'
 				ORDER BY (title_relevance*'.$this->relevance['title'].')+(txt_relevance*'.$this->relevance['txt'].')+(rel_relevance*'.$this->relevance['rel'].') DESC
@@ -104,7 +118,7 @@ class searchFulltext
 		return $r;
 	}
 /**
- * Create the search index from item tables with url
+ * Create the search index from items with url
  *
  * @return	array	l'index des contenus
  * @access	public
@@ -114,6 +128,27 @@ class searchFulltext
 		// recherche des items à indexer. On prendi
 		$items = i('item', array(
 			'hasurl' => true,
+			// 'limit()' => 2
+		), 'site');
+		// construction de l'index
+		$toindex = array();
+		foreach ($items as $item)
+		{
+			$toindex = array_merge($toindex, $this->prepare_items($item['key']->get()));
+		}
+		
+		return $toindex;
+	}
+/**
+ * Create the search index from items with url
+ *
+ * @return	array	l'index des contenus
+ * @access	public
+ */
+	public function get_full_index()
+	{
+		// recherche des items à indexer. On prendi
+		$items = i('item', array(
 			// 'limit()' => 2
 		), 'site');
 		// construction de l'index
@@ -149,11 +184,11 @@ class searchFulltext
 		}
 		
 		$db = database::connect('site');
-		$q = 'TRUNCATE TABLE `'.self::table.'`;';
+		$q = 'TRUNCATE TABLE `'.$this->key.'`;';
 		$db->query($q);
 		foreach ($values as $value)
 		{
-			$q = 'INSERT INTO `'.self::table.'` (`item`, `nickname`, `title`, `txt`, `rel`) VALUES '.implode(',', $value).';';
+			$q = 'INSERT INTO `'.$this->key.'` (`item`, `nickname`, `title`, `txt`, `rel`) VALUES '.implode(',', $value).';';
 			$db->query($q);
 		}
 	}
@@ -343,8 +378,8 @@ class searchFulltext
 	{
 		$db= database::connect('site');
 		$q = '
-		DROP TABLE IF EXISTS `'.self::table.'`;
-		CREATE TABLE `searchfulltext` 
+		DROP TABLE IF EXISTS `'.$this->key.'`;
+		CREATE TABLE `'.$this->key.'` 
 		(
 			`item` varchar(32) COLLATE '.database::collation.' NOT NULL,
 			`nickname` varchar(64) COLLATE '.database::collation.' NOT NULL,
