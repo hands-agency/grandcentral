@@ -34,16 +34,16 @@
 	$item = i($handled_item, $handled_id, $handled_env);
 	$structure = i('item', $handled_item, $handled_env);
 	
-//	Preparing the <table>
-	$th = null;
-	$td = null;
+//	Preparing the flow
+	$flow = null;
 	
 /********************************************************************************************/
 //	Fetch the workflows
 /********************************************************************************************/
 	$workflow = i('workflow', array(
+		'item' => $structure['key'],
 		'item' => 'item_'.$structure['id'],
 	), 'site');
 
-	if ($workflow->count > 0) $workflowstatuses = $workflow[0]['workflowstatus']->unfold();
+	$workflowstatuses = $structure['workflowstatus']->unfold();
 ?>

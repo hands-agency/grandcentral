@@ -22,11 +22,11 @@
 //	Some vars
 /********************************************************************************************/
 	$_FORM = $_PARAM['form'];
-	$profilepic = null;
+	$profilepic = 'http://i.telegraph.co.uk/multimedia/archive/02467/newyork2_2467494b.jpg';
 
 /********************************************************************************************/
-//	on change la routine du formulaire
+//	Send the login to the site login target
 /********************************************************************************************/
-	$routine = i('page', 'login.post', 'site');
-	$_FORM->set_action($routine['url']);
+	$target = i('page', 'login.post', 'site');
+	$_FORM->set_action($target['url']);
 ?> 

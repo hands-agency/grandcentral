@@ -15,15 +15,21 @@ $(document).ready(function ()
 		{
 		//	DEBUG
 		//	console.log(response);
+		//	console.log(response.code);
+		//	console.log(response.data);
 			
 		//	What should i do know?
-			switch(response)
+			switch(response.code)
 			{
 			//	OK
 				case 'success':
-				//	Go! go! go!
-					form.hide('fast');
-					window.location = document.URL;
+				//	Show your face
+					$('#profilepic').attr('style', 'background-image:url('+response.data.profilepic+')');
+					setTimeout(function()
+					{
+					//	Go! go! go!
+						window.location = document.URL;	
+					}, 200)
 					break;
 			//	KO
 				case 'fail':

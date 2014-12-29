@@ -35,9 +35,9 @@
 		});
 	});
 	
-//	Expand
+//	Expand / Collapse attr
 	$field.on('click', label, function()
 	{
-		$(this).closest('ol').find('li:not(:first-child)').toggle('fast');
+		$(this).closest('ol').find('>li:not([data-key="key"], [data-key="type"])').toggle();
 	});
 })(jQuery); 

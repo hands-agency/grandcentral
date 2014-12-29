@@ -25,7 +25,7 @@ $(document).ready(function ()
 		$('#adminContent section').removeClass('active');
 	//	Hide options
 	//	TODO refresh content instead of hide
-		$('#options_drop').hide('fast');
+	//	$('header .drawer').html('');
 		
 		
 	//	Open the right panel

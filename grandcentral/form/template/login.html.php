@@ -1,6 +1,6 @@
 <div id="overlay">
 	<form <?= $_FORM->get_attrs(); ?>>
-		<div id="profilepic"><?=$profilepic?></div>
+		<div id="profilepic" style="background-image:url(<?=$profilepic?>)"></div>
 		<?php foreach($_FORM->get_hiddens() as $hidden) : ?>
 			<?= $_FORM->get_field($hidden); ?>
 		<?php endforeach; ?>

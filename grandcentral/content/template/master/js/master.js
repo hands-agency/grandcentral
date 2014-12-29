@@ -45,6 +45,8 @@
 			{
 			//	Return HTML
 				if ($element.length) $element.html(html);
+			//	Move script and link up to the header
+				$element.find('script, link').appendTo('head');
 			//	Execute callback (make sure the callback is a function)
 				if ((typeof(callbacks) != 'undefined') && (typeof(callbacks['done']) == "function")) callbacks['done'].call($element, html);	
 			})

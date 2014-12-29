@@ -32,15 +32,15 @@
 /********************************************************************************************/
 //	For easier access
 	$_FIELD = $_PARAM['field'];
-	
-//	Hide or show the nodata
-	$hideNodata = '';
+
 //	The data from the DB
 	$data = '';
 //	The add buttons
 	$addbuttons = '';
 //	The html templates for jQuery
 	$template = '';
+//	Hide everything except
+	$donthide = array('key', 'type');
 	
 /********************************************************************************************/
 //	Set defaults
@@ -49,7 +49,7 @@
 	$available = registry::get_class('attr');
 //	Get the properties for each attr
 	foreach ($available as $attr) $fields[mb_substr(mb_strtolower($attr), 4)] = $attr::get_properties();
-	// print'<pre>';print_r($fields);print'</pre>';
+
 /********************************************************************************************/
 //	The list of add buttons
 /********************************************************************************************/
@@ -62,7 +62,6 @@
 	foreach ((array) $values as $key => $value)
 	{
 		$li = '';
-		$hideRows = '';
 		foreach ($fields[$value['type']] as $param)
 		{
 		//	Field
@@ -70,14 +69,12 @@
 			$field = new $class($_FIELD->get_name().'['.$key.']['.$param['name'].']', $param);
 			if (isset($value[$param['name']])) $field->set_value($value[$param['name']]);
 		//	LI
+			$hideRows = (in_array($param['name'], $donthide)) ? null : 'style="display:none;"';
 			$li .= '<li data-type="'.$field->get_type().'" data-key="'.$param['name'].'" '.$hideRows.'>'.$field.'</li>';
-			if (empty($hideRows)) $hideRows = 'style="display:none;"';
 		}
 		
 		$data .= '<li><span class="handle" data-feathericon="&#xe026"></span><ol>'.$li.'</ol><button type="button" class="delete"></button></li>';
 	}
-//	No data
-	if ($values) $hideNodata = 'style="display:none;"';
 	
 /********************************************************************************************/
 //	Now we can build the templates used when creating new fields

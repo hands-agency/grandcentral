@@ -1,11 +1,11 @@
 <? if (isset($workflowstatuses)): ?>
-<h1>Workflow</h1>
+
 	<?
 		foreach ($workflowstatuses as $workflowstatus)
 		{
 	
 			$on = (isset($item['workflow']) && $item['workflow'] == $workflowstatus) ? 'on' : null;
-			$th .= '<th class="'.$on.'">'.$workflowstatus['title'].'</th>';
+			$htmlStatus = '<div class="status '.$on.'">'.$workflowstatus['title'].'</div>';
 	
 			$groups = $workflowstatus['group']->unfold();
 			$li = null;
@@ -13,11 +13,11 @@
 			{
 				$li .= '<li>'.$group['title'].'</li>';
 			}
-			$td .= '<td><ul>'.$li.'</ul></td>';
+			$htmlGroup = '<div class="group"><ul>'.$li.'</ul></div>';
+			
+		//	Add to the flow
+			$flow .= '<li>'.$htmlStatus.$htmlGroup.'</li>';
 		}
 	?>
-	<table>
-		<tr><?=$th?></tr>
-		<tr><?=$td?></tr>
-	</table>
+	<ul class="flow"><?=$flow?></ul>
 <?php endif ?>

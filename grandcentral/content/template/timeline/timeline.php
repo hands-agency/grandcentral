@@ -153,5 +153,4 @@
 		'app' => 'content',
 		'template' => 'timeline/timeline',
 	));
-
 ?>

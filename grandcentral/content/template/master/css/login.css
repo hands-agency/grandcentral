@@ -66,7 +66,6 @@ body, html, #main
 	background: -o-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.85) 100%); /* Opera 12+ */
 	background: -ms-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.85) 100%); /* IE10+ */
 	background: radial-gradient(ellipse at center,  rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.85) 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#d9000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
 /********************************************************************************************/
@@ -92,10 +91,17 @@ form #profilepic
 {
 	height:90px;
 	width:90px;
-	border:1px solid #ccc;
 	border-radius:50%;
 	margin:0 auto 20px auto;
-	background:rgba(255,255,255,0.1);
+	background-color:rgba(255,255,255,0.1);
+	background-size:cover;
+	background-repeat:no-repeat;
+	background-position:center center;
+	overflow:none;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
 }
 form fieldset
 {
@@ -123,7 +129,7 @@ button
 {
 	font-size:16px;
 	background:transparent;
-	font-family:"ProximaNova-Thin";
+	font-family:"ProximaNova-Regular";
 	color:#eee !important;
 	padding:7px 10px;
 	border-radius:2px;
@@ -151,15 +157,19 @@ button
 /* Placeholder */
 ::-webkit-input-placeholder {
    color: rgba(255,255,255,0.5);
+	font-family:"ProximaNova-Thin";
 }
 :-moz-placeholder { /* Firefox 18- */
    color: rgba(255,255,255,0.5);
+	font-family:"ProximaNova-Thin";
 }
 ::-moz-placeholder {  /* Firefox 19+ */
    color: rgba(255,255,255,0.5);
+	font-family:"ProximaNova-Thin";
 }
 :-ms-input-placeholder {  
    color: rgba(255,255,255,0.5);
+	font-family:"ProximaNova-Thin";
 }
 input:-webkit-autofill {
 	background: transparent !important;

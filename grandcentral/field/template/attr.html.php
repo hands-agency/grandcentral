@@ -6,8 +6,7 @@
 	<? if ($_FIELD->get_descr() != null) : ?><div class="help"><?= $_FIELD->get_descr(); ?></div><? endif ?>
 	<div class="field">
 		
-		<div class="nodata" <?= $hideNodata ?>>Add an attribute to store more data about an item. For instance, store a description or a quantity.</div>
-		<ol class="data"><?= $data; ?></ol>
+		<ol class="data" data-nodata="Add an attribute to store data in this item. For instance, store a title, a description or a quantity."><?= $data; ?></ol>
 		<ul class="add"><?= $addbuttons; ?></ul>
 
 		<pre class="template">

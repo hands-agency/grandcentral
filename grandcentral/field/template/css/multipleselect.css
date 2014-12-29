@@ -39,9 +39,9 @@ ol>li[data-type="multipleselect"] .field li:not(.nodata)
 }
 ol>li[data-type="multipleselect"] .field li:not(.nodata):hover
 {
-	border-color: #3eb4d6;
-	-webkit-box-shadow: 0 0 4px #3eb4d6;
-	box-shadow: 0 0 4px #3eb4d6;
+	border-color: #419BF9;
+	-webkit-box-shadow: 0 0 4px #419BF9;
+	box-shadow: 0 0 4px #419BF9;
 }
 
 /* Fields */

@@ -1,6 +1,4 @@
-<? if ($count == 0) : ?>
-<div class="nodata"><?=cst('nodata')?></div>
-<? else : ?>
+<? if ($count != 0) : ?>
 <div class="infiniteScrollContainer"></div>
 <div class="infiniteScrollWantsMore" data-feathericon="&#xe129"></div>
 <div class="infiniteScrollStopper"><?=cst('stopper')?></div>

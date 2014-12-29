@@ -33,8 +33,6 @@
 //	For easier access
 	$_FIELD = $_PARAM['field'];
 
-//	Hide or show the nodata
-	$hideNodata = '';
 //	The data from the DB
 	$data = '';
 //	The add buttons
@@ -108,8 +106,6 @@
 		}
 		$data .= '<li><ol>'.$li.'</ol><button type="button" class="delete"></button></li>';
 	}
-//	No data
-	if ($values) $hideNodata = 'style="display:none;"';
 
 /********************************************************************************************/
 //	Now we can build the templates used when creating new fields

@@ -127,9 +127,9 @@
 }
 #mediaLibrary .files li:not(.upload):hover
 {
-	border-color: #3eb4d6;
-	-webkit-box-shadow: 0 0 4px #3eb4d6;
-	box-shadow: 0 0 4px #3eb4d6;
+	border-color: #419BF9;
+	-webkit-box-shadow: 0 0 4px #419BF9;
+	box-shadow: 0 0 4px #419BF9;
 }
 #mediaLibrary .files li a
 {
@@ -240,7 +240,7 @@ li.ui-draggable-dragging *
 }
 #holder.hover
 {
-	border-color:#3eb4d6 !important;
+	border-color:#419BF9 !important;
 }
 #holder progress
 {
@@ -274,9 +274,9 @@ li.ui-draggable-dragging *
 }
 #mediaLibrary .folder>ul>li:hover
 {
-	border-color: #3eb4d6;
-	-webkit-box-shadow: 0 0 4px #3eb4d6;
-	box-shadow: 0 0 4px #3eb4d6;
+	border-color: #419BF9;
+	-webkit-box-shadow: 0 0 4px #419BF9;
+	box-shadow: 0 0 4px #419BF9;
 }
 #mediaLibrary .folder>ul>li:nth-child(odd)
 {
@@ -331,7 +331,7 @@ li.ui-draggable-dragging *
 }
 #mediaLibrary .folder .add:hover .button
 {
-	color:#3eb4d6;
+	color:#419BF9;
 }
 #mediaLibrary .folder .add .title
 {
@@ -360,13 +360,14 @@ li.ui-draggable-dragging *
 }
 #mediaLibrary .detail .preview:hover
 {
-	border-color: #3eb4d6;
-	-webkit-box-shadow: 0 0 4px #3eb4d6;
-	box-shadow: 0 0 4px #3eb4d6;
+	border-color: #419BF9;
+	-webkit-box-shadow: 0 0 4px #419BF9;
+	box-shadow: 0 0 4px #419BF9;
 }
 #mediaLibrary .detail .preview img
 {
 	display:block;
+	width:100%;
 }
 
 #mediaLibrary .detail .about
@@ -378,6 +379,8 @@ li.ui-draggable-dragging *
 	background:#fff;
 	border:1px solid #ddd;
 	margin-bottom:15px;
+	max-width:100%;
+	overflow:hidden;
 }
 #mediaLibrary .detail .about td
 {

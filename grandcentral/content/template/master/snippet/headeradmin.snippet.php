@@ -1,5 +1,5 @@
 <ul id="options">
-	<li id="refine" class="off" data-feathericon="&#xe036"><input type="text" placeholder="Refine or ↵ search" /></li>
+	<li id="refine" class="off" data-feathericon="&#xe036"><input type="search" placeholder="Refine or ↵ search" /></li>
 	<li id="filter" class="off" data-feathericon="&#xe023"></li>
 </ul>
 <ul id="tabs" data-target="content" <? if (isset($defaultSection)): ?>data-default="<?=$defaultSection?>"<? endif ?>>

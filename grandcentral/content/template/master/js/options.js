@@ -22,7 +22,7 @@ jQuery(document).ready(function($)
 		plugin.init = function()
 		{
 		//	Some vars
-			$drop = $('#options_drop');
+			$drop = $('header .drawer');
 
 		//	Toggle lock and unlock
 			$element.on('click', function()
@@ -34,7 +34,7 @@ jQuery(document).ready(function($)
 		
 	//	Lock the page to prevent further editing
 		plugin.lock = function()
-		{
+		{	
 		//	IOI unlocked
 			if ($('#adminContent').hasClass('unlocked'))
 			{
@@ -52,7 +52,7 @@ jQuery(document).ready(function($)
 		{
 		//	IOI is locked
 			if ($('#adminContent').hasClass('locked'))
-			{				
+			{
 			//	Load the options drop
 				$drop.ajx(
 				{
@@ -136,7 +136,7 @@ jQuery(document).ready(function($)
 /**	* Filtering content of a section, ordering it.
  	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
-	$(document).on('click', '#options_drop li li[data-value]', function()
+	$(document).on('click', 'header .drawer li li[data-value]', function()
 	{
 	//	Some vars
 		$panel = $('#adminContent section.active');

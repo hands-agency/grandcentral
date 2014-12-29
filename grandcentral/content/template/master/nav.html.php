@@ -1,12 +1,12 @@
 <div id="general">
-	<div class="site">
-		<div class="title">Digest</div>
-		<div class="icon"><?=$sitePic?></div>
-	</div>
-	<div class="profile">
-		<div class="icon"><?=$profilePic?></div>
-		<div class="title">Profile</div>
-	</div>
+	<a href="<?=ADMIN_URL?>" class="site">
+		<span class="title">Digest</span>
+		<span class="icon"><?=$sitePic?></span>
+	</a>
+	<a href="<?=$editPage['url']->args(array('item' => 'human', 'id' => $_SESSION['user']['id']->get()))?>" class="profile">
+		<span class="icon"><?=$profilePic?></span>
+		<span class="title">Profile</span>
+	</a>
 </div>
 <ul>
 	<li class="structure">
@@ -51,15 +51,15 @@
 				</a>
 			</li>
 			<li>
-				<a href="<?=$listPage['url']->args(array('item' => 'item'))?>">
-					<span class="icon"></span>
-					<span class="title">Items</span>
-				</a>
-			</li>
-			<li>
 				<a href="<?=$listPage['url']->args(array('item' => 'version'))?>">
 					<span class="icon"></span>
 					<span class="title">Versions</span>
+				</a>
+			</li>
+			<li>
+				<a href="<?=$listPage['url']->args(array('item' => 'item'))?>">
+					<span class="icon"></span>
+					<span class="title">Items</span>
 				</a>
 			</li>
 		</ul>

@@ -7,8 +7,7 @@
 	<? if ($_FIELD->get_descr() != null) : ?><div class="help"><?= $_FIELD->get_descr() ?></div><? endif ?>
 	<div class="field">
 		
-		<div class="nodata" <?= $hideNodata ?>>Add an array of parameters to refine your bunch of items.</div>
-		<ol class="data"><?= $data; ?></ol>
+		<ol class="data" data-nodata="Add an array of parameters to refine your bunch of items."><?= $data; ?></ol>
 		<ul class="add"><?= $addbuttons; ?></ul>
 
 		<pre class="template">

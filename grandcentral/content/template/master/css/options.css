@@ -31,7 +31,7 @@
 }
 #filter.on
 {
-	background:#3eb4d6 !important;
+	background:#419BF9 !important;
 	color:#fff !important;
 }
 
@@ -45,8 +45,8 @@
 {
 	border:0;
 	font-size:12px;
-	padding:0 7px;
-	width:115px;
+	padding:0;
+	width:130px;
 	background:transparent;
 }
 
@@ -90,11 +90,11 @@
 }
 .optionsList ul li:hover .title
 {
-	color:#3eb4d6;
+	color:#419BF9;
 }
 .optionsList ul li.on
 {
-	background:#3eb4d6;
+	background:#419BF9;
 }
 .optionsList ul li.on .title
 {

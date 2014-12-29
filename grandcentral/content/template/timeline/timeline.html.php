@@ -1,6 +1,4 @@
-<? if (!$events): ?>
-<div class="nodata">As soon as something happens, we'll let you know right here</div>
-<? else : ?>
+<? if (!empty($events)): ?>
 <ol class="logbookList">
 	<? foreach ($events as $period => $subject): ?>
 	<!--h2><?=$period?></h2-->
@@ -80,9 +78,7 @@
 <? endforeach ?>
 </ol>
 <? endif ?>
-
 <?/*=sentinel::stopwatch().'s ('.database::query_count().' queries), using '.sentinel::memoryusage()*/?>
-
 <? if (isset($EventSource)) : ?>
 <script type="text/javascript" charset="utf-8">
 //	truc
@@ -114,5 +110,4 @@
 			}
 		}
 	});
-</script>
-<? endif ?>
+</script><? endif ?>

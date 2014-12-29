@@ -281,7 +281,7 @@ section[data-template="/tree/tree"] ol li .page .icon .action a:before
 }
 section[data-template="/tree/tree"] ol li .page .icon .action a:hover
 {
-	color:#3eb4d6;
+	color:#419BF9;
 }
 section[data-template="/tree/tree"] ol li .page[data-status="live"] .icon .action .live,
 section[data-template="/tree/tree"] ol li .page[data-status="asleep"] .icon .action .asleep
@@ -427,9 +427,9 @@ section[data-template="/tree/tree"] li .page[data-type="link"] .url
 /* Face */
 .locked section[data-template="/tree/tree"] ol li .page .icon:hover .face
 {
-	border-color: #3eb4d6;
-	-webkit-box-shadow: 0 0 4px #3eb4d6;
-	box-shadow: 0 0 4px #3eb4d6;
+	border-color: #419BF9;
+	-webkit-box-shadow: 0 0 4px #419BF9;
+	box-shadow: 0 0 4px #419BF9;
 }
 .unlocked section[data-template="/tree/tree"] ol li .page .icon .face
 {

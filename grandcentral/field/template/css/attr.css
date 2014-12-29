@@ -15,6 +15,14 @@
 	opacity:1;
 }
 /* For all */
+[data-type="attr"] .data:empty
+{
+	padding:50px 0;
+}
+[data-type="attr"] .data>li
+{
+	border:1px solid #F2F2F2;
+}
 [data-type="attr"] [data-key]
 {
 	-moz-box-sizing:border-box;
@@ -41,9 +49,19 @@
 {
 	width:20%;
 }
+[data-type="attr"] [data-key="type"] label
+{
+	display:none;
+}
 [data-type="attr"] [data-key="type"] .wrapper
 {
 	width:100%;
+}
+[data-type="attr"] [data-key="type"] .wrapper,
+[data-type="attr"] [data-key="type"] .wrapper input
+{
+	background:#F2F2F2;
+	text-transform:uppercase;
 }
 
 /* min, max, required */
