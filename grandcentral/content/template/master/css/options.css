@@ -113,10 +113,11 @@
 /********************************************************************************************/
 .searchList
 {
-}
-.searchList
-{
 	position:relative;
+}
+.searchList:before
+{
+	color:#bbb !important;
 }
 .searchList li
 {

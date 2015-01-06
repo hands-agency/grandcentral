@@ -28,10 +28,11 @@
 //	Some vars
 /********************************************************************************************/
 	$handled_env = $_SESSION['pref']['handled_env'];
-
 	$q = $_POST['q'];
-		
-//	Our Query
+
+/********************************************************************************************/		
+//	Build the query
+/********************************************************************************************/
 	if (isset($_POST['search']))
 	{
 		$tables = array();
@@ -45,20 +46,17 @@
 //	Fetch items
 /********************************************************************************************/
 	if (isset($tables))
-	{
-	/*
+	{		
 	//	Instanciate a new search
-		$search = new searchFulltext();
+		$search = new searchFulltext('full');
 		
 	//	Custom rules
-		$search->norel = array('child','section','page');
+		$search->url = false;
+		$search->notable = array('logbook');
 	//	Go index
-		$search->create_table();
 		$search->save_index();
 	
 	//	Fetch results
 		$results = $search->search($q, $tables, $limit, $param);
-	*/
-		$results = i('human', all, 'site');
 	}
 ?>

@@ -61,7 +61,7 @@ class searchFulltext
  */
 	public function search($search, $alloweditems = array(), $limit = null)
 	{
-		$results = new bunch();
+		$results = new bunch(null, null, 'site');
 		$nicknames = array();
 		$r = $this->query($search, $alloweditems, $limit);
 		

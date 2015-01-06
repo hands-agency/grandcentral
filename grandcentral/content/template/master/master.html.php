@@ -38,6 +38,7 @@
 
 			<div id="adminContent" class="locked">
 				<!-- ZONE:content|left -->
+				<div id="currentList"></div>
 				<div id="currentItem"></div>
 				<ul id="sectiontray" style="width:<?=$sectionTrayWidth?>">
 					<? foreach($sections as $section) : ?>

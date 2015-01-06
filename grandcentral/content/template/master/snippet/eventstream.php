@@ -77,7 +77,15 @@
 					
 				//	Add the new line
 					li = '<li data-item=\"'+item+'\" style=\"display:none;opacity:'+data['opacity']+'\"><a href=\"'+data['editauthor']+'\">'+data['author']+'</a> <span>'+data['event']+'</span> <a href=\"'+itemList+data['item']+'\" class=\"item\">'+data['item']+'</a> '+title+' <span>'+data['timeSince']+'</span> <a href=\"'+data['edit']+'\" class=\"edit\">Edit</a></li>';
-					$(li).prependTo(ul).show('fast').fadeTo(300000, 0.3, function() {\$(this).hide('fast', function(){\$(this).remove()})});
+					$(li).prependTo(ul).show('fast', function()
+					{		
+					//	Resize the header after
+						height = $('header .admin').outerHeight();
+						$('#adminContent').css('padding-top', height+'px');
+					}).fadeTo(300000, 0.3, function()
+					{
+						\$(this).hide('fast', function(){\$(this).remove()});
+					});
 
 				//	No more than
 					max = ".$maxItems.";
