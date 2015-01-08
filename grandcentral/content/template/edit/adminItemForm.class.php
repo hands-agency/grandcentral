@@ -214,6 +214,7 @@ class adminItemForm
 			case $attr['type'] == 'rel':
 				$field['valuestype'] = 'bunch';
 				$field['values'] = $attr['param'];
+				$field['placeholder'] = '...';
 				$field['type'] = (isset($attr['max']) && $attr['max'] == 1) ? 'select' : 'multipleselect';
 				break;
 				

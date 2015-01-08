@@ -50,7 +50,7 @@
 /********************************************************************************************/
 //	One exception for the workflow
 /********************************************************************************************/
-	if ($handled_item == 'workflow')
+	if ($handled_item == 'workflow' && $item->exists())
 	{
 	//	Create a new temporary item
 		$tmp = i($item['item']->get(), null, $handled_env);
@@ -69,5 +69,11 @@
 	{
 		$form = null;
 	}
+
+//	title
+	$str = isset($item['title']) ? $item['title']->cut(45) : '';
+	$title = ($handled_id) ? '<a href="'.$item->listing().'">'.i('item', $item->get_table(), $handled_env)['title'].'</a> '.$str : 'New <a href="'.$item->listing().'">'.i('item', $item->get_table(), $handled_env)['title'].'</a>';
+	# fallback
+	if (!$title) $title = $handled_item.' #'.$handled_id;
 	
 ?>
