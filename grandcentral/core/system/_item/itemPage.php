@@ -100,6 +100,7 @@ class itemPage extends _items
 		{
 		//	...hook'em up
 			$parent = $this['parent']->unfold();
+			if (is_a($parent, 'bunch')) $parent = $parent[0];
 			// sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $parent);
 			$parent['child']->add($this);
 			$parent->save();
