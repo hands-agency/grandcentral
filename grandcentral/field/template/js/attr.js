@@ -31,13 +31,13 @@
 		{
 			input = $(this);
 			name = input.attr('name');
-			input.attr('name', name.replace(/\[attr\]\[[a-z0-9_]*\]/i, "[attr]["+key+"]"));
+			input.attr('name', name.replace(/\[attr\]\[[a-z0-9_-]*\]/i, "[attr]["+key+"]"));
 		});
 	});
 	
-//	Expand / Collapse attr
+//	Expand
 	$field.on('click', label, function()
 	{
-		$(this).closest('ol').find('>li:not([data-key="key"], [data-key="type"])').toggle();
+		$(this).closest('ol').find('li:not(:first-child)').toggle('fast');
 	});
 })(jQuery); 
