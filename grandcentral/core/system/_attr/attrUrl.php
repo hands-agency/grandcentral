@@ -181,7 +181,10 @@ class attrUrl extends _attrs
 		}
 		
 		$slug = new slug();
-		return '/'.$slug->makeSlugs($string);
+		$return = '/'.$slug->makeSlugs($string);
+		$return = str_replace('--', '-', $return);
+		
+		return $return;
 	}
 /**
  * Default field attributes for updated	
