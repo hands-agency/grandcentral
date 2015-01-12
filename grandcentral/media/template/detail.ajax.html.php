@@ -3,7 +3,7 @@
 	<div class="preview"><?= $thumbnail; ?></div>
 	<? endif ?>
 
-	<h2><span class="centered">About</span></h2>
+	<h2><span class="rule">About</span></h2>
 	<table class="about">
 		<tr>
 			<td>File</td>

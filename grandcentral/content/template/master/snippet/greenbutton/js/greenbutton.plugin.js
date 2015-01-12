@@ -68,7 +68,7 @@
 			});
 
 		//	A click a button triggers a method
-			$(document).on('click', '#greenbutton-default, #greenbutton-choices a', function()
+			$(document).on('click', '#greenbutton-default, .greenbutton-choices a', function()
 			{
 				method = $(this).data('action');
 			//	Create & execute the method
@@ -159,6 +159,20 @@
 		{
 		//	Submit all forms	
 			plugin.save('asleep');
+		}
+
+	//	Googlepreview
+		plugin.googlepreview = function()
+		{
+			
+		//	Open the context
+			openContext(
+			{
+				app:'content',
+				template:'master/snippet/googlepreview',
+				item:'page',
+				id:1,
+			});
 		}
 
 	//	Save a copy

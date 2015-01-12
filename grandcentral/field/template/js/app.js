@@ -9,7 +9,7 @@
 	$contentParam = $configureContainer.find('.param');
 	
 //	Some vars context-side
-	contextDom = '#adminContext [data-template="/app.context"]';
+	contextDom = '.adminContext[data-template="/app.context"]';
 	
 //	Open context when the app changes
 	$contentApp.change(function()
@@ -96,7 +96,7 @@
 			}
 		}
 	//	Close the context & validate field
-		closeContext();
+		closeContext('/app.context');
 		$('#section_edit form').data('validate').field($li);
 	});
 	

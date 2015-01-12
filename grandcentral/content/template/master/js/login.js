@@ -10,8 +10,10 @@ $(document).ready(function ()
 	//	Prevent POST
 		e.preventDefault();
 	//	Some vars
-		var form = $(this);
-		$.post(form.attr('action'), form.serialize(), function(response)
+		var $form = $(this);
+		var $profilePic = $('#profilepic');
+		
+		$.post($form.attr('action'), $form.serialize(), function(response)
 		{
 		//	DEBUG
 		//	console.log(response);
@@ -24,17 +26,18 @@ $(document).ready(function ()
 			//	OK
 				case 'success':
 				//	Show your face
-					$('#profilepic').attr('style', 'background-image:url('+response.data.profilepic+')');
+					$profilePic.find('.back').attr('style', 'background-image:url('+response.data.profilepic+')');
+					$profilePic.addClass('flipped');
+				//	Go! go! go!
 					setTimeout(function()
 					{
-					//	Go! go! go!
 						window.location = document.URL;	
 					}, 200)
 					break;
 			//	KO
 				case 'fail':
 				//	And shake your head to say No, No, No...
-					form.effect('shake', { times:3 }, 300);
+					$profilePic.effect('shake', { times:3 }, 300);
 					break;
 			}
 		});

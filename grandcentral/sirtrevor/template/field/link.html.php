@@ -7,7 +7,7 @@
 <h1>Internal Link</h1>
 <div class="internal">
 	<?php foreach ($items as $structure): ?>
-		<h2><span class="centered"><?=$structure['title']?></span></h2>
+		<h2><span class="rule"><?=$structure['title']?></span></h2>
 		<input type="search" data-item="<?=$structure['key']?>" placeholder="Refine <?=$structure['title']?>" />
 		<ul><!-- Welcome Ajax --></ul>
 	<?php endforeach ?>

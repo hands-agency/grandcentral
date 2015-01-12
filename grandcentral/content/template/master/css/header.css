@@ -6,24 +6,15 @@ header
 	background:rgba(0, 0, 0, 0.7);
 	width:100%;
     position: fixed;
-    right: 0;
+    left: 0;
 	top:-72px;
     z-index: 5;
-	-webkit-transition: all .15s ease-out; 
-	-moz-transition: all .15s ease-out; 
-	-o-transition: all .15s ease-out; 
-	transition: all .15s ease-out;
 	text-align:center;
 }
 .siteOpened header
 {
 	top:auto;
     bottom:-72px;
-}
-.contextOpened header
-{
-	width:65%;
-	left:0;
 }
 header>div
 {

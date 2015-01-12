@@ -23,134 +23,34 @@
 /********************************************************************************************/
 	$_APP->bind_script('timeline/js/timeline.js');
 	$_APP->bind_css('timeline/css/timeline.css');
+	
+/********************************************************************************************/
+//	Some apps
+/********************************************************************************************/
+	load('jquery.infinitescroll', 'jquery.viewport');
 
 /********************************************************************************************/
 //	Some vars
 /********************************************************************************************/
 //	Env
 	$handled_env = $_SESSION['pref']['handled_env'];
-	
-//	Amount of items displayed before grouping
-	$displayItems = 5;
-//	Amount of thumbnails to be displayed (where available)
-	$displayThumbnails = 3;
-	
-/********************************************************************************************/
-//	Some dates
-/********************************************************************************************/
-//	Tomorrow
-	$tomorrow = new DateTime('tomorrow');
-	$tomorrow_dawn = $tomorrow->format('Y-m-d 06:00:00');
+	$handled_item = isset($_GET['item']) ? $_GET['item'] : null;
+	$handled_id = isset($_GET['id']) ? $_GET['id'] : null;
 
-//	Today
-	$now = new DateTime();
-	$night = $now->format('Y-m-d 23:00:00');
-	$dusk = $now->format('Y-m-d 22:00:00');
-	$evening = $now->format('Y-m-d 19:00:00');
-	$afternoon = $now->format('Y-m-d 14:00:00');
-	$noon = $now->format('Y-m-d 12:00:00');
-	$morning = $now->format('Y-m-d 08:00:00');
-	$dawn = $now->format('Y-m-d 06:00:00');
+//	Reuse sent params
+	if (isset($_POST['param'])) $_PARAM = $_POST['param'];
+//	Refine
+	if (isset($_POST['q'])) $_PARAM['title'] = '%'.$_POST['q'].'%';
 	
-//	Yesterday
-	$yesterday = new DateTime('yesterday');
-	$yesterday_night = $yesterday->format('Y-m-d 23:00:00');
-	$yesterday_dusk = $yesterday->format('Y-m-d 22:00:00');
-	$yesterday_evening = $yesterday->format('Y-m-d 19:00:00');
-	$yesterday_afternoon = $yesterday->format('Y-m-d 14:00:00');
-	$yesterday_noon = $yesterday->format('Y-m-d 12:00:00');
-	$yesterday_morning = $yesterday->format('Y-m-d 08:00:00');
-	$yesterday_dawn = $yesterday->format('Y-m-d 06:00:00');
-	
-/********************************************************************************************/
-//	Periods
-/********************************************************************************************/
-	$periods = array(
-	//	Today
-		'night' => array(
-			'updated' => array('> '.$night, '< '.$tomorrow_dawn),
-		),
-		'dusk' => array(
-			'updated' => array('> '.$dusk, '< '.$night),
-		),
-		'evening' => array(
-			'updated' => array('> '.$evening, '< '.$dusk),
-		),
-		'afternoon' => array(
-			'updated' => array('> '.$afternoon, '< '.$evening),
-		),
-		'noon' => array(
-			'updated' => array('> '.$noon, '< '.$afternoon),
-		),
-		'morning' => array(
-			'updated' => array('> '.$morning, '< '.$noon),
-		),
-		'dawn' => array(
-			'updated' => array('> '.$dawn, '< '.$morning),
-		),
-	//	Yesterday
-		'yesterday_night' => array(
-			'updated' => array('> '.$yesterday_night, '< '.$dawn),
-		),
-		'yesterday_dusk' => array(
-			'updated' => array('> '.$yesterday_dusk, '< '.$yesterday_night),
-		),
-		'yesterday_evening' => array(
-			'updated' => array('> '.$yesterday_evening, '< '.$yesterday_dusk),
-		),
-		'yesterday_afternoon' => array(
-			'updated' => array('> '.$yesterday_afternoon, '< '.$yesterday_evening),
-		),
-		'yesterday_noon' => array(
-			'updated' => array('> '.$yesterday_noon, '< '.$yesterday_afternoon),
-		),
-		'yesterday_morning' => array(
-			'updated' => array('> '.$yesterday_morning, '< '.$yesterday_noon),
-		),
-		'yesterday_dawn' => array(
-			'updated' => array('> '.$yesterday_dawn, '< '.$yesterday_morning),
-		),
-	//	Days of this week if we're not tuesday
-	//	'before' => array(
-	//		'updated' => '< '.$yesterday_dawn,
-	//	),
-	);
-	
-//	Last week
+//	Amount of items to be displayed at one time
+	$limit = 300;
 
+//	Pref
+	$pref_filter = isset($_POST['filter']) ? $_POST['filter'] : null;
+	$pref_value = isset($_POST['value']) ? $_POST['value'] : null;
 	
 /********************************************************************************************/
-//	Get events of the logbook accordning to periods
+//	Save pref
 /********************************************************************************************/
-//	An array of cc events
-	$events = array();
-	
-//	Fetch the data
-	foreach ($periods as $period => $p)
-	{
-	//	Params
-		$p['order()'] = 'updated DESC';
-		
-	//	Only for one item
-		$only = array('item' => 'item', 'id' => 'itemid', 'subject' => 'subject', 'subjectid' => 'subjectid');
-		foreach ($only as $get => $only) if (isset($_GET[$get])) $p[$only] = $_GET[$get];
-		
-	//	Fetch the logbook
-		$logbook = i('logbook', $p, $_SESSION['pref']['handled_env']);
-
-	//	Reorder by user and actions
-		foreach ($logbook as $e)
-		{
-			$events[$period][$e['subjectid']->get()][$e['key']->get()][$e['item']->get()][$e['itemid']->get()] = $e;
-		}
-	}
-
-/********************************************************************************************/
-//	Event Source
-/********************************************************************************************/
-	$EventSource = i('page', 'api.eventstream')['url']->args(array
-	(
-		'app' => 'content',
-		'template' => 'timeline/timeline',
-	));
+	if ($pref_filter && $pref_value) $_SESSION['user']->set_pref('timeline', $handled_item, $pref_filter, $pref_value);
 ?>

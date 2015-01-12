@@ -515,6 +515,7 @@ ol .placeholder
 {
 	height:0;
 	min-height:0 !important;
+	overflow:hidden;
 }
 .poppedNav #grandCentralAdmin
 {
@@ -537,6 +538,7 @@ ol .placeholder
 	overflow:hidden;
 	position:relative;
 	height:0;
+	overflow:hidden;
 }
 .siteOpened #grandCentralSite
 {
@@ -560,7 +562,7 @@ ol .placeholder
 
 /* Our 2 main lanes */
 #adminContent,
-#adminContext
+.adminContext
 {
 	float:left;
 	position:relative;
@@ -577,15 +579,10 @@ ol .placeholder
 {
 	z-index:1;
 	width:100%;
-
-}
-.contextOpened #adminContent
-{
-	width:65%;
 }
 
 /* The content & context */
-#adminContext
+.adminContext
 {
 	width:0;
 	height:100%;
@@ -593,10 +590,33 @@ ol .placeholder
 	top:0;
 	right:0;
 }
-.contextOpened #adminContext
+
+/* Open Context Rules */
+.contextOpened1 #adminContent,
+.contextOpened1 #siteContent,
+.contextOpened1 header
+{
+	width:65%;
+}
+.contextOpened2 #adminContent,
+.contextOpened2 #siteContent,
+.contextOpened2 header
+{
+	width:50%;
+}
+.contextOpened1 .adminContext
 {
 	width:35%;
-	padding:30px;
+	padding:75px 45px 45px 45px;
+}
+.contextOpened2 .adminContext
+{
+	width:25%;
+	padding:75px 45px 45px 45px;
+}
+.contextOpened2 .adminContext:nth-last-child(2)
+{
+	right:25%;
 }
 
 /********************************************************************************************/
@@ -839,20 +859,29 @@ footer
 /* Context
 /////////////////////////////////////////////////////////////////////////////////////////////
 /********************************************************************************************/
-#adminContext
+.adminContext
 {
 	overflow:auto;
 	background:#eee;
 	border-left:1px solid #ddd;
 }
-#adminContext>button.close
+.adminContext>button.close
 {
 	position:absolute;
 	top:15px;
-	right:15px;
+	left:50%;
+	margin-left:-25px !important;
 	z-index:2;
+	width:50px !important;
+	height:50px !important;
 }
-#adminContext h1
+.adminContext>button.close:after
+{
+	font-size:30px !important;
+	line-height:50px !important;
+	color:#999;
+}
+.adminContext h1
 {
 	font-family:"ProximaNova-Regular";
 	font-size:40px;
@@ -860,7 +889,7 @@ footer
 	clear:left;
 	text-align:center;
 }
-#adminContext h2
+.adminContext h2
 {
 	font-family:"ProximaNova-Regular";
 	margin:0 0 20px 0;
@@ -870,7 +899,7 @@ footer
 	text-transform:uppercase;
 	clear:left;
 }
-#adminContext h2>.centered
+.adminContext h2>.centered
 {
 	background:#eee;
 	padding:0 10px;
@@ -1031,12 +1060,12 @@ footer
 #adminContent section>div>h2
 {
 	margin:0 0 20px 0;
-	border-bottom:1px solid #ccc;
+	border-bottom:1px solid #ddd;
 	padding:0 0 5px 0;
 	text-align:center;
 	text-transform:uppercase;
 }
-#adminContent section h2>.centered
+#adminContent section h2>.rule
 {
 	background:#eee;
 	padding:0 10px;

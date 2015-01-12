@@ -1,0 +1,62 @@
+/********************************************************************************************/
+/* Google Preview
+/********************************************************************************************/
+.adminContext[data-template="master/snippet/googlepreview"]
+{
+	font-family:arial,sans-serif;
+	color:#000000;
+	max-width:500px;
+	background:#fff;
+}
+.adminContext[data-template="master/snippet/googlepreview"]>div:empty
+{
+	padding:150px 0;
+}
+.adminContext[data-template="master/snippet/googlepreview"] li
+{
+	margin-bottom:15px;
+}
+.adminContext[data-template="master/snippet/googlepreview"] li.true a:hover
+{
+	background:#FFFBCC !important;
+	border:none !important;
+}
+.adminContext[data-template="master/snippet/googlepreview"] li.false
+{
+	opacity:0.2;
+}
+.adminContext[data-template="master/snippet/googlepreview"] .title
+{
+	font-size:18px;
+	line-height:20px;
+	margin:0 0 3px 0 !important;
+}
+.adminContext[data-template="master/snippet/googlepreview"] .title a
+{
+	color:#1a0dab;
+	text-decoration:none;
+}
+.adminContext[data-template="master/snippet/googlepreview"] .descr
+{
+	font-size:13px;
+	line-height:15px;
+	margin:0 0 3px 0 !important;
+}
+.adminContext[data-template="master/snippet/googlepreview"] .descr a
+{
+	color:#000000 !important;
+}
+.adminContext[data-template="master/snippet/googlepreview"] .option
+{
+	font-size:14px;
+	line-height:16px;
+}
+.adminContext[data-template="master/snippet/googlepreview"] .url a
+{
+	color:#006621;
+}
+.adminContext[data-template="master/snippet/googlepreview"] .option .wsnw span
+{
+	text-decoration:underline;
+	color:#7777CC;
+}

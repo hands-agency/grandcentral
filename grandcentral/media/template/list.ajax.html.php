@@ -33,7 +33,7 @@
 		<? endif;?>
 	</ul>
 </div>
-<h2><span class="centered">Folders</span></h2>
+<h2><span class="rule">Folders</span></h2>
 <div class="folder">
 	<ul>
 		<li class="add" data-path="<?=$here?>">

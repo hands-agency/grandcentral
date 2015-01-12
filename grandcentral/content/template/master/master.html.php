@@ -8,7 +8,7 @@
 	
 	<!-- ZONE:body -->
 		
-	<div id="main" class="navClosed contextClosed">
+	<div id="main" class="navClosed">
 			
 		<button id="openNav" data-feathericon="&#xe120"></button>
 		<button id="closeNav" data-feathericon="&#xe117"></button>
@@ -31,7 +31,7 @@
 		</header>
 		
 		<div id="grandCentralSite">
-			<iframe></iframe>
+			<iframe id="siteContent"></iframe>
 		</div>
 
 		<div id="grandCentralAdmin">
@@ -54,10 +54,7 @@
 				<footer><!-- ZONE:footer --></footer>
 			</div>
 			
-			<aside id="adminContext">
-				<button type="button" class="close"></button>
-				<div><!-- Welcome Ajax --></div>
-			</aside>
+			<!-- <aside> adminContext will be appended here -->
 						
 		</div>
 	</div>

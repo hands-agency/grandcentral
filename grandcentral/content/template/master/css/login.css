@@ -103,6 +103,68 @@ form #profilepic
 	-o-transition: all .15s ease-out; 
 	transition: all .15s ease-out;
 }
+form #profilepic
+{
+	height:90px;
+	width:90px;
+	border-radius:50%;
+	margin:0 auto 20px auto;
+	overflow:none;
+}
+
+
+/* Flipping profile pics */
+#profilepic
+{
+    -webkit-perspective: 600px;
+    -moz-perspective: 600px;
+}
+#profilepic>*
+{
+    position: absolute;
+    top: 0;
+	left:0;
+	height:100%;
+	width:100%;
+	background-size:cover;
+	background-repeat:no-repeat;
+	background-position:center center;
+    -o-transition: all .15s ease-in-out;
+    -ms-transition: all .15s ease-in-out;
+    -moz-transition: all .15s ease-in-out;
+    -webkit-transition: all .15s ease-in-out;
+    transition: all .15s ease-in-out;
+    -moz-transform-style: preserve-3d;
+    -moz-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+	overflow:hidden !important;
+	border-radius:50%;
+}
+#profilepic .front {
+    z-index: 9;
+    -webkit-transform: rotateX(0deg) rotateY(0deg);
+    -moz-transform: rotateX(0deg) rotateY(0deg);
+}
+#profilepic.flipped .front {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+}
+#profilepic .back {
+    z-index: 8;
+    -webkit-transform: rotateY(-180deg);
+    -moz-transform: rotateY(-180deg);
+}
+#profilepic .back img{
+    opacity:0.5;
+}
+#profilepic.flipped .back {
+    z-index: 10;
+    -webkit-transform: rotateX(0deg) rotateY(0deg);
+    -moz-transform: rotateX(0deg) rotateY(0deg);
+}
+
+
 form fieldset
 {
 	padding:0;

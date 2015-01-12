@@ -27,7 +27,7 @@
 	?>
 	
 	<? if ($content): ?>
-		<h2><span class="centered"><?=cst('APPINI_H2_'.$h2, $h2)?></span></h2>
+		<h2><span class="rule"><?=cst('APPINI_H2_'.$h2, $h2)?></span></h2>
 		<?=$content?>
 	<? endif ?>
 	

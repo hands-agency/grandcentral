@@ -113,7 +113,7 @@ form>fieldset ol>li[data-type] .wrapper .field
 }
 
 /* Descrease font size for all forms in the context bar */
-#adminContext form
+.adminContext form
 {
 	font-size:0.85em !important;
 }

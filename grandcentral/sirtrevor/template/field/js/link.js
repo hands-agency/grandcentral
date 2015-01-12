@@ -1,7 +1,10 @@
 (function($)
-{	
+{
+//	Some vars
+	template = '/field/link';
+	
 //	External link
-	$(document).on('click', '#adminContext [data-template="/field/link"] .external button.done', function()
+	$(document).on('click', '.adminContext[data-template="'.template.'"] .external button.done', function()
 	{
 	//	Get the value from the iframe
 		link = $('#externalLink').contents().find('input').val();
@@ -12,22 +15,22 @@
 			link_regex = /(ftp|http|https):\/\/./;
 			if (!link_regex.test(link)) link = "http://" + link;
 			document.execCommand('CreateLink', false, link);
-			closeContext();
+			closeContext(template);
 		}
 	//	Bad link
 		else console.log('That is not a valid URL, buddy');
 	});
 	
 //	Internal link
-	$(document).on('click', '#adminContext [data-template="/field/link"] .internal [data-item] button', function()
+	$(document).on('click', '.adminContext[data-template="'.template.'"] .internal [data-item] button', function()
 	{
 		link = $(this).parent().data('item');
 		document.execCommand('CreateLink', false, link);
-		closeContext();
+		closeContext(template);
 	});
 	
 //	Refine item lists
-	$('#adminContext [data-template="/field/link"] .internal input[type="search"]').each(function()
+	$('.adminContext[data-template="'.template.'"] .internal input[type="search"]').each(function()
 	{
 	//	Some vars
 		$input = $(this);

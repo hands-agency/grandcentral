@@ -26,7 +26,7 @@ $(document).ready(function ()
 		$contentParam = $configureContainer.find('.param');
 	
 	//	Some vars context-side
-		contextDom = '#adminContext [data-template="/app.context"]';
+		contextDom = '.adminContext[data-template="/app.context"]';
 	
 	//	Some vars
 		valueApp = $section.data('app');

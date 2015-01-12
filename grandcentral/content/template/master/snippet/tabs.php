@@ -102,6 +102,7 @@
 //	List
 	$onlyfor['list'] = array(
 		'tree' => array('page'),
+		'edit' => array('page'),
 	);
 	$stripfrom['list'] = array(
 		'live' => array('page'),

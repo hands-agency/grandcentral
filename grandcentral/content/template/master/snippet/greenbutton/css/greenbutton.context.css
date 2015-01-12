@@ -1,26 +1,72 @@
 /********************************************************************************************/
 /* Choices
 /********************************************************************************************/
-#adminContext [data-template="master/snippet/greenbutton/greenbutton.context"]
+.adminContext[data-template="master/snippet/greenbutton/greenbutton.context"]
 {
 }
-#adminContext [data-template="master/snippet/greenbutton/greenbutton.context"] ul li
+.adminContext[data-template="master/snippet/greenbutton/greenbutton.context"] ul
 {
+	border-radius:3px;
+	margin:auto auto 15px auto;
+	background:#fff;
+	font-family:"ProximaNova-Regular";
+	overflow:hidden;
+	position:relative;
+}
+.adminContext[data-template="master/snippet/greenbutton/greenbutton.context"] ul li
+{
+	margin:-10px 0 -10px 30px;
+}
+.adminContext[data-template="master/snippet/greenbutton/greenbutton.context"] ul li:nth-child(2)
+{
+	margin-top:0;
+}
+.adminContext[data-template="master/snippet/greenbutton/greenbutton.context"] ul li:last-child
+{
+	margin-bottom:0;
+}
+.adminContext[data-template="master/snippet/greenbutton/greenbutton.context"] ul li.title
+{
+	text-transform:uppercase;
 	text-align:center;
-	margin:30px 0;
+	font-size:11px;
+	background:#fcfcfc;
+	letter-spacing:2px;
+	font-family:"ProximaNova-Bold";
+	color:#999;
+	position:absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width:30px;
+	margin:0;
+	opacity:0.7;
 }
-#adminContext [data-template="master/snippet/greenbutton/greenbutton.context"] ul li .title
+.adminContext[data-template="master/snippet/greenbutton/greenbutton.context"] ul:hover li.title
+{
+	background:#6cbf2d;
+	color:#fff;
+}
+.adminContext[data-template="master/snippet/greenbutton/greenbutton.context"] ul li.title span
+{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-moz-transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+	-webkit-transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+	transform:  translateX(-50%) translateY(-50%) rotate(-90deg);
+}
+.adminContext[data-template="master/snippet/greenbutton/greenbutton.context"] ul li a
+{
+	padding:15px 20px;
+	display:block;
+}
+.adminContext[data-template="master/snippet/greenbutton/greenbutton.context"] ul li .title
 {
 	color:#666;
-	margin:0 0 20px 0;
-	border:1px solid #ddd;
-	padding:10px 20px;
-	border-radius:2px;
-	text-transform:uppercase;
-	font-family:"ProximaNova-Regular";
 	cursor:pointer;
 }
-#adminContext [data-template="master/snippet/greenbutton/greenbutton.context"] ul li a:hover
+.adminContext[data-template="master/snippet/greenbutton/greenbutton.context"] ul li a:hover
 {
 	background:#6cbf2d;
 	color:#fff;

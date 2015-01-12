@@ -16,7 +16,7 @@
 			$interval = $oldDate->diff($currentDate);
 
 			if ($interval->format('%i') > $minuteDivider) {
-				echo '</ul><h2><span class="centered">'.$note['created']->time_since().'</span></h2><ul class="noteList">';
+				echo '</ul><h2><span class="rule">'.$note['created']->time_since().'</span></h2><ul class="noteList">';
 			}
 		}
 		$oldDate = new dateTime($note['created']);

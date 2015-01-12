@@ -59,7 +59,7 @@ class itemItem extends _items
 			$attrs['id'] = array(
 				'key' => 'id',
 				'type' => 'id',
-				// 'title' => 'The unique identifier'
+				// 'title' => 'ID'
 			);
 			$attrs = array_reverse($attrs, true);
 		}

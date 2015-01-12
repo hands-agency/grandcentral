@@ -3,8 +3,8 @@
 //	format Current Separator
 	$currentSeparator = formatSeparator($item[$order]);
 //	Change separators
-	if (!isset($lastSeparator)) echo '<h2><span class="centered">'.$currentSeparator.'</span></h2><ol>';
-	else if ($lastSeparator != $currentSeparator) echo '</ol><h2><span class="centered">'.$currentSeparator.'</span></h2><ol>';
+	if (!isset($lastSeparator)) echo '<h2><span class="rule">'.$currentSeparator.'</span></h2><ol>';
+	else if ($lastSeparator != $currentSeparator) echo '</ol><h2><span class="rule">'.$currentSeparator.'</span></h2><ol>';
 //	Save & format last Separator	
 	$lastSeparator = formatSeparator($item[$order]);
 ?>	

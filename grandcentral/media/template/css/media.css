@@ -3,30 +3,47 @@
 /********************************************************************************************/
 #mediaLibrary
 {
-	padding:15px;
 }
 #mediaLibraryNav
 {
-	height:40px;
 	position:relative;
+	margin-bottom:10px;
 }
 #mediaLibraryNav li
 {
-	float:left;
-	height:26px;
-	line-height:26px;
-	margin:7px 0;
-	padding:0 10px;
+	height:40px;
 	font-size:12px;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+#mediaLibraryNav li.dir
+{
+	position:absolute;
+	left:0;
+	width:70px;
 }
 #mediaLibraryNav li.dir button
 {
-
+	width:100%;
+	height:35px;
+	line-height:35px;
+	padding:0 !important;
 }
-#mediaLibraryNav li input
+#mediaLibraryNav li.search
 {
-	border:1px solid #ddd;
-	height:23px;
+	padding-left:80px;
+	width:100%;
+}
+#mediaLibraryNav li.search input
+{
+	border:none;
+	height:35px;
+	line-height:35px;
+	width:100%;
+	padding:0 !important;
+	border-radius:2px;
+	margin:0 !important;
 }
 #mediaLibrary .loading
 {
@@ -230,7 +247,7 @@ li.ui-draggable-dragging *
 #mediaLibrary .files.empty li.upload
 {
 	float:none;
-	width:99%;
+	width:100%;
 }
 #mediaLibrary .files.empty li.upload #holder
 {

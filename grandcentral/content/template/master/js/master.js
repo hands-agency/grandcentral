@@ -45,7 +45,7 @@
 			{
 			//	Return HTML
 				if ($element.length) $element.html(html);
-			//	Move script and link up to the header
+			//	Move <script> and <link> up to the header
 				$element.find('script, link').appendTo('head');
 			//	Execute callback (make sure the callback is a function)
 				if ((typeof(callbacks) != 'undefined') && (typeof(callbacks['done']) == "function")) callbacks['done'].call($element, html);	
@@ -128,9 +128,10 @@
 /**	* Open / close lanes
  	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
-	$('#grandCentralAdmin>#adminContext>button.close').on('click', function()
+	$('#grandCentralAdmin').on('click', '.adminContext>button.close', function()
 	{
-		closeContext();
+		template = $(this).parent('.adminContext').data('template');
+		closeContext(template);
 	});
 	$('#switchEnv').on('click', function()
 	{
@@ -221,8 +222,27 @@
 //	Context
 	openContext = function(param, callback)
 	{
-		$('#main').removeClass('contextClosed').addClass('contextOpened');
-		$('#adminContext>div').attr('data-template', param.template).ajx(
+	//	Some vars
+		maxContext = 2;
+		
+	//	If context already exists, refresh it
+		if ($('.adminContext[data-template="'+param.template+'"]').length > 0)
+		{
+			context = $('.adminContext[data-template="'+param.template+'"]');
+		}
+	//	Other wise, append a new Context area
+		else
+		{
+			adminContext = '<aside class="adminContext"><button type="button" class="close"></button><div><!-- Welcome Ajax --></div></aside>';
+			context = $(adminContext).appendTo('#grandCentralAdmin');
+		}
+		
+	//	Resize Content & Context
+		countContext = $('#grandCentralAdmin').find('.adminContext').length;
+		$('#main').addClass('contextOpened'+countContext);
+	
+	//	Load
+		$(context).attr('data-template', param.template).find('> div').ajx(
 			param,
 			{
 				done:function()
@@ -232,18 +252,24 @@
 				}
 			}
 		);
-		/* Recenter the panel after transition */
-		$("#adminContext").bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function()
+		
+	//	Recenter the panel after transition
+		$('#adminContent').bind('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function()
 		{
 			$('#tabs li a'+pseudo).parent().trigger('click');
 		});
 	}
-	closeContext = function()
+	closeContext = function(template)
 	{
-		$('#main').removeClass('contextOpened').addClass('contextClosed');
-		$('#adminContext>div').attr('data-template', '').html('');
-		/* Recenter the panel after transition */
-		$("#adminContext").bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function()
+	//	Resize
+		countContext = $('#grandCentralAdmin').find('.adminContext').length;
+		$('#main').removeClass('contextOpened'+countContext);
+		
+	//	Kill
+		$('.adminContext[data-template="'+template+'"]').remove();
+		
+	//	Recenter the panel after transition
+		$('#adminContent').bind('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function()
 		{
 			$('#tabs li a'+pseudo).parent().trigger('click');
 		});
