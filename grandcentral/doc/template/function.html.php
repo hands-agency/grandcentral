@@ -11,18 +11,18 @@
 
 <h3>Parameters</h3>
 <table>
-<? for ($i=0; $i < count($function['param']) ; $i++) : ?>
+<?php for ($i=0; $i < count($function['param']) ; $i++) : ?>
 	<tr>
 		<th><?=$function['param'][$i]['name']?></th>
 		<td>
 			<ul>
-			<? foreach($function['param'][$i] as $param => $value) : ?>
+			<?php foreach($function['param'][$i] as $param => $value) : ?>
 				<li><strong><?=$param?></strong> : <?=$value?></li>
-			<? endforeach; ?>
+			<?php endforeach; ?>
 			</ul>
 		</td>
 	</tr>
-<? endfor; ?>
+<?php endfor; ?>
 </table>
 
 <?php if (isset($function['return'])): ?>
@@ -38,7 +38,7 @@
 <?php if (isset($function['author'])): ?>
 <h3>Author(s)</h3>
 <ul>
-	<? foreach($function['author'] as $email) : ?><li><?=$email?></li><? endforeach; ?>
+	<?php foreach($function['author'] as $email) : ?><li><?=$email?></li><?php endforeach; ?>
 </ul>
 <?php endif ?>
 

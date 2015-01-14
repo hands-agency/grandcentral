@@ -6,7 +6,7 @@
 ?>
 <h2><?=$class['access'][0]?> class <?=$class['key']?> <?=$parent?></h2>
 <p><?=$class['descr']?></p>
-<? if (isset($class['link'])) : ?><p>More info: <a href="<?=$class['link'][0]?>"><?=$class['link'][0]?></a></p><? endif; ?>
+<?php if (isset($class['link'])) : ?><p>More info: <a href="<?=$class['link'][0]?>"><?=$class['link'][0]?></a></p><?php endif; ?>
 
 <h3>Methods</h3>
 <ul class="toc">
@@ -17,11 +17,11 @@
 
 <h3>Find it</h3>
 <p>Written in <?=$class['file']?>. Starts line <?=$class['line']['start']?>, ends line <?=$class['line']['end']?> (that's <?=$class['line']['end']-$class['line']['start']?> lines of code)</p>
-<? if (isset($class['package'])) : ?><p>Package <?=$class['package'][0]?></p><? endif; ?>
+<?php if (isset($class['package'])) : ?><p>Package <?=$class['package'][0]?></p><?php endif; ?>
 
-<? if (isset($class['author'])) : ?>
+<?php if (isset($class['author'])) : ?>
 <h3>Author(s)</h3>
 <ul class="in2col">
-<? foreach($class['author'] as $email) : ?><li><?=$email?></li><? endforeach; ?>
+<?php foreach($class['author'] as $email) : ?><li><?=$email?></li><?php endforeach; ?>
 </ul>
-<? endif; ?>
+<?php endif; ?>

@@ -7,11 +7,11 @@
 		<?php if (isset($fieldset['title'])): ?><legend><?= $fieldset['title']; ?></legend><?php endif; ?>
 		<ol>
 		<?php foreach($fieldset['fields'] as $field) : ?>
-			<? $f = $_FORM->get_field($field); ?>
-			<? if ($f->get_key()) $key = 'data-key="'.$f->get_key().'"' ; else $key = '';?>
+			<?php $f = $_FORM->get_field($field); ?>
+			<?php if ($f->get_key()) $key = 'data-key="'.$f->get_key().'"' ; else $key = '';?>
 			
 			<?php if (in_array($f->get_key(), $asideFields)): ?>
-			<? $asides[] = '<li data-type="'.$f->get_type().'" '.$key.'>'.$f.'</li>'; ?>
+			<?php $asides[] = '<li data-type="'.$f->get_type().'" '.$key.'>'.$f.'</li>'; ?>
 			<?php else: ?>
 			<li data-type="<?= $f->get_type(); ?>" <?= $key ?>><?= $f; ?></li>
 			<?php endif ?>

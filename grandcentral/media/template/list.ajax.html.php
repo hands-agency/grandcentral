@@ -1,13 +1,13 @@
 <div class="dirs">
 	<ul>
-		<? if (isset($directories)): ?>
-		<? foreach ($directories as $dir): ?>
+		<?php if (isset($directories)): ?>
+		<?php foreach ($directories as $dir): ?>
 		<li><a href="#" class="dir"><?= $dir->get_key() ?></a></li>
-		<? endforeach ?>
-		<? endif ?>
+		<?php endforeach ?>
+		<?php endif ?>
 	</ul>
 </div>
-<div class="files <?if (!isset($files)): ?>empty<?php endif ?>">
+<div class="files <?phpif (!isset($files)): ?>empty<?php endif ?>">
 	<ul>
 		<li class="upload">
 			<div id="holder">
@@ -19,18 +19,18 @@
 			<p id="formdata">XHR2's FormData is not supported</p>
 			<p id="progress">XHR2's upload progress isn't supported</p>
 		</li>
-		<? if (isset($files)) : ?>
-		<? foreach ($files as $file): ?>
+		<?php if (isset($files)) : ?>
+		<?php foreach ($files as $file): ?>
 		<li data-path="<?=$file->get_path()?>" data-info="<?= $file->get_extension() ?> • <?= $file->get_size() ?>" data-title="<?= $file->get_key() ?>">
 			<a href="#" class="file">
-				<? if (is_a($file, 'image')): ?>
+				<?php if (is_a($file, 'image')): ?>
 					<span class="preview"><?= $file->thumbnail(120, null); ?></span>
-				<? endif ?>
+				<?php endif ?>
 				<span class="title"><?= $file->get_key() ?></span>
 			</a>
 		</li>
-		<? endforeach ?>
-		<? endif;?>
+		<?php endforeach ?>
+		<?php endif;?>
 	</ul>
 </div>
 <h2><span class="rule">Folders</span></h2>
@@ -44,9 +44,9 @@
 			</div>
 			<div class="button">+</div>
 		</li>
-		<? if (isset($directories)): ?>
-		<? foreach ($directories as $dir): ?>
-		<?
+		<?php if (isset($directories)): ?>
+		<?php foreach ($directories as $dir): ?>
+		<?php
 			$reg = $dir->get_root().'/*.jpg';
 			$files = glob($reg);
 			usort($files, function($file_1, $file_2)
@@ -70,8 +70,8 @@
 				<?php endfor; ?>
 			</ul>
 		</li>
-		<? endforeach ?>
-		<? endif ?>
+		<?php endforeach ?>
+		<?php endif ?>
 	</ul>
 </div>
 

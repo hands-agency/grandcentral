@@ -1,11 +1,11 @@
 <table>
-	<? for ($irow=1; $irow <= $row ; $irow++) : ?>
+	<?php for ($irow=1; $irow <= $row ; $irow++) : ?>
 		<tr>
-			<? for ($icol=1; $icol <= $col ; $icol++) : ?>
+			<?php for ($icol=1; $icol <= $col ; $icol++) : ?>
 			<td data-row="<?=$irow?>" data-col="<?=$icol?>"></td>
-			<? endfor ?>
+			<?php endfor ?>
 		</tr>
-	<? endfor ?>
+	<?php endfor ?>
 </table>
 <style type="text/css">
 	table {

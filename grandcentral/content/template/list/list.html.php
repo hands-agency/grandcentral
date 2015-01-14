@@ -1,4 +1,4 @@
-<? if ($count != 0) : ?>
+<?php if ($count != 0) : ?>
 <div class="infiniteScrollContainer"></div>
 <div class="infiniteScrollWantsMore" data-feathericon="&#xe129"></div>
 <div class="infiniteScrollStopper"><?=cst('stopper')?></div>
@@ -49,4 +49,4 @@ $(document).ready(function()
 	});
 });
 </script>
-<? endif ?>
+<?php endif ?>

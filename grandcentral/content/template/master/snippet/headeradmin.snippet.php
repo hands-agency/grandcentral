@@ -2,10 +2,10 @@
 	<li id="refine" class="off" data-feathericon="&#xe036"><input type="search" placeholder="Refine or ↵ search" /></li>
 	<li id="filter" class="off" data-feathericon="&#xe023"></li>
 </ul>
-<ul id="tabs" data-target="content" <? if (isset($defaultSection)): ?>data-default="<?=$defaultSection?>"<? endif ?>>
-	<? foreach($sections as $section) : ?>
-	<? $app = $section['app']; ?>
-	<?
+<ul id="tabs" data-target="content" <?php if (isset($defaultSection)): ?>data-default="<?=$defaultSection?>"<?php endif ?>>
+	<?php foreach($sections as $section) : ?>
+	<?php $app = $section['app']; ?>
+	<?php
 	//	Try to find the right title for the tab
 		$const = strtoupper('TABS_'.$handled_item.'_'.$section['key']);
 		$title = (defined($const.'_TITLE')) ? constant($const.'_TITLE') : $section['title'];
@@ -16,9 +16,9 @@
 				<span class="title"><?=$title?></span>
 				<span class="descr"><?=$descr?></span>
 			</a>
-			<? if (isset($section['count'])) : ?><span class="cc-bubble"><?=$section['count']?></span><? endif; ?>
+			<?php if (isset($section['count'])) : ?><span class="cc-bubble"><?=$section['count']?></span><?php endif; ?>
 			<div class="droppable"></div>
 		</li>
-	<? endforeach; ?>
+	<?php endforeach; ?>
 </ul>
 <div class="drawer closed"><!-- Welcome Ajax --></div>

@@ -10,18 +10,18 @@ $var-><?=$method['key']?>(<?=$arg?>);
 <h3>Arguments</h3>
 <?php if (isset($method['param'])): ?>
 <table>
-<? for ($i=0; $i < count($method['param']) ; $i++) : ?>
+<?php for ($i=0; $i < count($method['param']) ; $i++) : ?>
 	<tr>
 		<th><?=$method['param'][$i]['name']?></th>
 		<td>
 			<ul>
-			<? foreach($method['param'][$i] as $param => $value) : ?>
+			<?php foreach($method['param'][$i] as $param => $value) : ?>
 				<li><strong><?=$param?></strong> : <?=$value?></li>
-			<? endforeach; ?>
+			<?php endforeach; ?>
 			</ul>
 		</td>
 	</tr>
-<? endfor; ?>
+<?php endfor; ?>
 </table>	
 <?php else: ?>
 <p>This method takes no arguments</p>
@@ -40,7 +40,7 @@ $var-><?=$method['key']?>(<?=$arg?>);
 <?php if (isset($method['author'])): ?>
 <h3>Author(s)</h3>
 <ul>
-	<? foreach($method['author'] as $email) : ?><li><?=$email?></li><? endforeach; ?>
+	<?php foreach($method['author'] as $email) : ?><li><?=$email?></li><?php endforeach; ?>
 </ul>
 <?php endif ?>
 

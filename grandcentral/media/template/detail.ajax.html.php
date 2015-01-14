@@ -1,7 +1,7 @@
 <div class="detail" data-path="<?=$file->get_path()?>" data-info="<?= $file->get_extension() ?> • <?= $file->get_size() ?>" data-title="<?= $file->get_key() ?>">
-	<? if (isset($thumbnail)): ?>
+	<?php if (isset($thumbnail)): ?>
 	<div class="preview"><?= $thumbnail; ?></div>
-	<? endif ?>
+	<?php endif ?>
 
 	<h2><span class="rule">About</span></h2>
 	<table class="about">
@@ -17,12 +17,12 @@
 			<td>Type</td>
 			<td><?= $type; ?></td>
 		</tr>
-		<? if (isset($dimensions)) : ?>
+		<?php if (isset($dimensions)) : ?>
 		<tr>
 			<td>Dimensions</td>
 			<td><?= $dimensions['width'] ?> x <?= $dimensions['height'] ?></td>
 		</tr>
-		<? endif ?>
+		<?php endif ?>
 		<tr>
 			<td>Size</td>
 			<td><?= $size; ?></td>

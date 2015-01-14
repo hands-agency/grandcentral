@@ -2,16 +2,16 @@
 	
 	<div class="field" data-name="<?= $_FIELD->get_name(); ?>" data-env="<?= $handled_env; ?>">
 		
-		<? if (!empty($zones)): ?>
+		<?php if (!empty($zones)): ?>
 		<?php foreach ($zones as $inout => $zones): ?>	
 			<div class="zones <?=$inout?>">
 				
 
 		<?php foreach ($zones as $zone): ?>
 				
-		<div class="zone selected <? if (isset($zone['float'])) :?><?=$zone['float']?><? endif ?>">
+		<div class="zone selected <?php if (isset($zone['float'])) :?><?=$zone['float']?><?php endif ?>">
 			<div class="title"><?=$zone['key']?></div>
-			<ol data-nodata="<?=cst('ZONING_SELECTED_NODATA')?>"><? if (isset($zone['section'])): foreach($zone['section'] as $section): ?>
+			<ol data-nodata="<?=cst('ZONING_SELECTED_NODATA')?>"><?php if (isset($zone['section'])): foreach($zone['section'] as $section): ?>
 				<li data-section="<?=$section['key']?>" data-app="<?=$section['app']['app']?>">
 					<span class="handle" data-feathericon="&#xe026"></span>
 					<button class="delete" type="button"></button>
@@ -20,7 +20,7 @@
 					<input type="hidden" name="<?=$fieldName?>[]" value="<?=$section->get_nickname()?>" />
 					
 					<span class="configure">
-						<?
+						<?php
 						//	template
 							$template = (isset($section['app']['template']) & !empty($section['app']['template'])) ? $section['app']['template'] : null;
 						//	param
@@ -52,9 +52,9 @@
 		</div>
 			<?php endforeach ?>
 			</div>
-		<? endforeach; else: ?>
+		<?php endforeach; else: ?>
 		<div class="nodata">This master template has no zone</div>
-		<? endif; ?>
+		<?php endif; ?>
 	</div>
 </div>
 

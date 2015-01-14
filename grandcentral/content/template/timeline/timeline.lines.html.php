@@ -1,5 +1,5 @@
-<? foreach($clusters as $cluster) : ?>
-<?
+<?php foreach($clusters as $cluster) : ?>
+<?php
 //	Get the current bunch, author
 	$bunch = $cluster['bunch'];
 	$date = $cluster['date'];
@@ -14,7 +14,7 @@
 	$lastSeparator = formatSeparator($date, $period);
 ?>	
 <li>
-	<?
+	<?php
 	$authorIcon = (!$author['profilepic']->is_empty()) ? $author['profilepic']->unfold()[0]->get_url(true) : null;
 	?>
 	<div class="icon"><a href="<?=$author->edit()?>" style="background-image:url(<?=$authorIcon?>);"></a></div>
@@ -23,14 +23,14 @@
 		
 		<div class="title">
 			<a href="<?=$author->edit()?>" class="item"><?=$cluster['item']?></a>
-			<?
+			<?php
 				$authorName = ($author == $_SESSION['user']) ? 'You' : $author['firstname'].' '.$author['lastname'];
 			?>
 			<a href="<?=$author->edit()?>" class="author"><?=$authorName?></a> <?=cst('eventstream_'.$cluster['key'])?>
 			
-			<? $iTitle = 0; ?>
+			<?php $iTitle = 0; ?>
 			<?php foreach ($bunch as $item): ?>
-			<?
+			<?php
 				echo '<a href="'.$item->edit().'">'.$item['title']->cut(50).'</a>,';
 			//	Ok, we have one
 				$iTitle ++;
@@ -48,9 +48,9 @@
 		
 		<?php if (isset($iconField[$bunch[0]->get_table()])): ?>
 			
-			<? $iThumbnail = 0; $li = null; ?>
+			<?php $iThumbnail = 0; $li = null; ?>
 			<?php foreach ($bunch as $item): ?>
-			<?
+			<?php
 				$field = $iconField[$item->get_table()];
 				if (!$item[$field]->is_empty())
 				{
@@ -66,7 +66,7 @@
 				if ($iThumbnail == $maxThumbnail) break;
 			?>
 			<?php endforeach ?>
-		<?
+		<?php
 		//	We have some thumbnails
 			if ($li) echo '<ul class="thumbnails">'.$li.'</ul>';
 		?>
@@ -74,4 +74,4 @@
 		
 	</div>
 </li>
-<? endforeach ?>
+<?php endforeach ?>

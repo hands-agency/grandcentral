@@ -26,4 +26,4 @@
 		<div class="descr"><a><?=$lorem->cut(155)?></a></div>
 	</li>
 </ul>
-<? endif ?></div>
+<?php endif ?></div>

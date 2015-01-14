@@ -1,10 +1,10 @@
 <ul class="optionsList">
-	<? foreach ($filter as $filter => $array) : ?>
+	<?php foreach ($filter as $filter => $array) : ?>
 	<li>
 		<ul data-filter="<?=$filter?>" data-type="<?=$array['type']?>">
 		<li class="legend"><?=cst('OPTIONS_FILTERS_LEGEND_'.$filter, $filter)?></li>
-		<? foreach ($array['data'] as $cell) : ?>
-		<?
+		<?php foreach ($array['data'] as $cell) : ?>
+		<?php
 		//	We can either have a bunch or some data
 			$title = $descr = $key = null;
 			if (is_string($cell))
@@ -24,11 +24,11 @@
 		?>
 		<li data-value="<?=$key?>" class="<?=$class?>">
 			<div class="title"><?=$title ?></div>
-			<? if (isset($descr)) : ?><div class="descr"><?=$descr?></div><? endif ?>
+			<?php if (isset($descr)) : ?><div class="descr"><?=$descr?></div><?php endif ?>
 		</li>
-		<? endforeach; ?>
+		<?php endforeach; ?>
 		</ul>
 	</li>
-	<? endforeach; ?>
+	<?php endforeach; ?>
 	<li class="clear"><!-- Clearing floats --></li>
 </ul>

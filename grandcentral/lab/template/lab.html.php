@@ -1,6 +1,6 @@
-<? if (!isset($labs)): ?>
+<?php if (!isset($labs)): ?>
 <div class="nodata">There are no open labs.</div>
-<? else: ?>
+<?php else: ?>
 <h1>Open labs</h1>
 <ul>
 	<?php foreach ($labs as $dir => $content): ?>

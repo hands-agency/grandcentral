@@ -1,6 +1,6 @@
-<? if (!isset($versions)): ?>
+<?php if (!isset($versions)): ?>
 <div class="nodata">There are no const to translate.</div>
-<? else: ?>
+<?php else: ?>
 <h1>Translate constants</h1>
 <table>
 	<tr>

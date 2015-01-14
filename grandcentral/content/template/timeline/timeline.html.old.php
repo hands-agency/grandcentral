@@ -1,23 +1,23 @@
-<? if (!empty($events)): ?>
+<?php if (!empty($events)): ?>
 <ol class="logbookList">
-	<? foreach ($events as $period => $subject): ?>
+	<?php foreach ($events as $period => $subject): ?>
 	<!--h2><?=$period?></h2-->
-	<?
+	<?php
 	//	Divider
 		if (!isset($lastPeriod) OR $lastPeriod != $period) echo '<li class="divider"><h2>'.cst('TIMELINE_PERIOD_'.$period, $period).'</h2></li>';
 		$lastPeriod = $period;
 	?>
-	<? foreach ($subject as $subject => $event): ?>
+	<?php foreach ($subject as $subject => $event): ?>
 		<!-- <h3>user <?=$subject?></h3> -->
-		<? foreach ($event as $event => $items): ?>
+		<?php foreach ($event as $event => $items): ?>
 			<!-- <h4><?=$event?></h4> -->
-			<? foreach ($items as $structure => $items): ?>
+			<?php foreach ($items as $structure => $items): ?>
 				<!-- <h5><?=$structure?> </h5> -->
-				<? $logbook = current($items) ?>
-				<? $user = i('human', $subject, 'site') ?>
-				<? $structure = i('item', $logbook['item']->get(), 'site') ?>
+				<?php $logbook = current($items) ?>
+				<?php $user = i('human', $subject, 'site') ?>
+				<?php $structure = i('item', $logbook['item']->get(), 'site') ?>
 				<li data-item="<?=$logbook->get_nickname()?>">
-					<?
+					<?php
 						$profilepic = (!$user['profilepic']->is_empty()) ? $user['profilepic']->unfold()[0]->thumbnail(100, null) : null;
 					?>
 					<div class="icon" data-item="human_<?=$user['owner'] ?>" data-item-link="timeline"><?=$profilepic?></div>
@@ -41,25 +41,25 @@
 							
 							<a href="<?=$user->edit() ?>" class="user"><?=$user['title'] ?></a>
 							<?=cst('TIMELINE_EVENT_'.$event, $event)?>
-							<? if (!isset($_GET['item'])): ?><a href="<?=$structure->edit()?>"><?=count($items)?> <?=$structure['title'] ?></a> :<? endif ?>
+							<?php if (!isset($_GET['item'])): ?><a href="<?=$structure->edit()?>"><?=count($items)?> <?=$structure['title'] ?></a> :<?php endif ?>
 							
-							<? $i = $and = 0 ?>
-							<? foreach ($items as $item): ?>
-								<? $item = i($item['item']->get(), $item['itemid']->get(), $_SESSION['pref']['handled_env']) ?>
+							<?php $i = $and = 0 ?>
+							<?php foreach ($items as $item): ?>
+								<?php $item = i($item['item']->get(), $item['itemid']->get(), $_SESSION['pref']['handled_env']) ?>
 
-								<? if (($item->exists()) && ($i < $displayItems)) : ?>
-									<a href="<?= $item->edit()?>"><?= ($item['title']) ? $item['title'] : $item['key']; ?></a><? if ($i != count($items)-1): ?>, <? else : ?>.<? endif ?>
-								<? else : $and++; endif ?>
-								<? $i++ ?>
-							<? endforeach ?>
-							<? if ($and > 0): ?>
+								<?php if (($item->exists()) && ($i < $displayItems)) : ?>
+									<a href="<?= $item->edit()?>"><?= ($item['title']) ? $item['title'] : $item['key']; ?></a><?php if ($i != count($items)-1): ?>, <?php else : ?>.<?php endif ?>
+								<?php else : $and++; endif ?>
+								<?php $i++ ?>
+							<?php endforeach ?>
+							<?php if ($and > 0): ?>
 								and <a href=""><?=$and?> others</a>.
-							<? endif ?>
+							<?php endif ?>
 						</div>
 					
 						<ul class="action">
 							<li><a href="" class="notes">Discussion</a></li>
-							<? if ($event == 'update' && count($items) == 1): ?><li><a href="" class="compare">What's new</a></li><? endif ?>
+							<?php if ($event == 'update' && count($items) == 1): ?><li><a href="" class="compare">What's new</a></li><?php endif ?>
 							<li class="icon-time"><?=$logbook['created']->time_since() ?></li>
 						</ul>
 					
@@ -67,14 +67,14 @@
 											
 					</div>
 				</li>
-			<? endforeach ?>
-		<? endforeach ?>
-	<? endforeach ?>
-<? endforeach ?>
+			<?php endforeach ?>
+		<?php endforeach ?>
+	<?php endforeach ?>
+<?php endforeach ?>
 </ol>
-<? endif ?>
-<?/*=sentinel::stopwatch().'s ('.database::query_count().' queries), using '.sentinel::memoryusage()*/?>
-<? if (isset($EventSource)) : ?>
+<?php endif ?>
+<?php/*=sentinel::stopwatch().'s ('.database::query_count().' queries), using '.sentinel::memoryusage()*/?>
+<?php if (isset($EventSource)) : ?>
 <script type="text/javascript" charset="utf-8">
 //	truc
 	$.sse(
@@ -105,4 +105,4 @@
 			}
 		}
 	});
-</script><? endif ?>
+</script><?php endif ?>

@@ -41,15 +41,15 @@
 				<div id="currentList"></div>
 				<div id="currentItem"></div>
 				<ul id="sectiontray" style="width:<?=$sectionTrayWidth?>">
-					<? foreach($sections as $section) : ?>
-					<? $app = $section['app'] ?>
-					<? $prefDisplay = isset($_SESSION['user']['pref'][$section['key']->get()]['display']) ? $_SESSION['user']['pref'][$section['key']]['display'] : 'inmasonry' ?>
-					<? $greenbutton = ($section['greenbutton']->get()) ? htmlspecialchars(i($section['greenbutton']->get()[0])->json(), ENT_QUOTES) : null ?>
+					<?php foreach($sections as $section) : ?>
+					<?php $app = $section['app'] ?>
+					<?php $prefDisplay = isset($_SESSION['user']['pref'][$section['key']->get()]['display']) ? $_SESSION['user']['pref'][$section['key']]['display'] : 'inmasonry' ?>
+					<?php $greenbutton = ($section['greenbutton']->get()) ? htmlspecialchars(i($section['greenbutton']->get()[0])->json(), ENT_QUOTES) : null ?>
 					<li style="width:<?=$sectionWidth?>">
 						<span class="lock" data-feathericon="&#xe007"></span>
 						<section id="section_<?= $section['key'] ?>" class="virgin" data-pref-display="<?=$prefDisplay?>" data-app="<?= $app['app'] ?>" data-template="<?= $app['template'] ?>" data-greenbutton='<?= $greenbutton ?>' data-nodata="<?=$section['nodata']?>"></section>
 					</li>
-					<? endforeach; ?>
+					<?php endforeach; ?>
 				</ul>
 				<footer><!-- ZONE:footer --></footer>
 			</div>

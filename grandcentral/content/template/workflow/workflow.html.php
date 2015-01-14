@@ -1,6 +1,6 @@
-<? if (isset($workflowstatuses)): ?>
+<?php if (isset($workflowstatuses)): ?>
 
-	<?
+	<?php
 		foreach ($workflowstatuses as $workflowstatus)
 		{
 	

@@ -65,7 +65,7 @@
 		</ul>
 		<ul class="inhive">
 		<?php foreach ($items as $item): ?>
-			<?
+			<?php
 				$class = ($item['hasurl']->get() === true) ? null : 'class="minor"';
 			?>
 			<li <?=$class?>>

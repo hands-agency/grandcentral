@@ -12,8 +12,8 @@
 			<?php if (isset($fieldset['title'])): ?><legend><?= $fieldset['title']; ?></legend><?php endif; ?>
 			<ol>
 			<?php foreach($fieldset['fields'] as $field) : ?>
-				<? $f = $_FORM->get_field($field); ?>
-				<? if ($f->get_key()) $key = 'data-key="'.$f->get_key().'"' ; else $key = '';?>
+				<?php $f = $_FORM->get_field($field); ?>
+				<?php if ($f->get_key()) $key = 'data-key="'.$f->get_key().'"' ; else $key = '';?>
 				<li data-type="<?= $f->get_type(); ?>" <?= $key ?>><?= $f; ?></li>
 			<?php endforeach; ?>
 			</ol>		
