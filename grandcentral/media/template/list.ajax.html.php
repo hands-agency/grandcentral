@@ -7,7 +7,7 @@
 		<?php endif ?>
 	</ul>
 </div>
-<div class="files <?phpif (!isset($files)): ?>empty<?php endif ?>">
+<div class="files <?php if (!isset($files)): ?>empty<?php endif ?>">
 	<ul>
 		<li class="upload">
 			<div id="holder">
