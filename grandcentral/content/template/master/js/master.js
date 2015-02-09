@@ -29,8 +29,8 @@
 			async = (typeof(plugin.settings.async) != 'undefined') ? plugin.settings.async : true;
 			url = ADMIN_URL+'/ajax.'+mime;
 			
-		//	Reroute the _GET (currently declared in the master)
-			plugin.settings['_GET'] = _GET;
+		//	Reroute the _GET otherwise overriden (currently declared in the master)
+			if (typeof(plugin.settings['_GET']) == 'undefined') plugin.settings['_GET'] = _GET;
 
 		//	Call
 			$.ajax(
@@ -198,7 +198,7 @@
 		$element.html('').append(spinner);
 		
 	//	Execute callback (make sure the callback is a function)
-		if ((typeof(callback) != 'undefined') && (typeof(callback) == "function")) callback.call($element);
+		if ((typeof(callback) != 'undefined') && (typeof(callback) == 'function')) callback.call($element);
 	}
 
 //	Add the plugin to the jQuery.fn object
@@ -248,7 +248,7 @@
 				done:function()
 				{					
 				//	Callback
-					if ((typeof(callback) != 'undefined') && (typeof(callback) == "function")) callback.call(this);
+					if ((typeof(callback) != 'undefined') && (typeof(callback) == 'function')) callback.call(this);
 				}
 			}
 		);
@@ -336,8 +336,10 @@
 		{
 			$(this).removeClass('poppedAlert').dequeue();
 		//	Callback
-			if ((typeof(callback) != 'undefined') && (typeof(callback) == "function")) callback.call(this);
+			if ((typeof(callback) != 'undefined') && (typeof(callback) == 'function')) callback.call(this);
 		});
+	//	Give type and label
+	console.log(type);
 		$('#alert').attr('class', type);
 		$('#alert .response').html(label);
 	}
@@ -354,19 +356,23 @@
 	{
 	//	Some vars
 		$nav = $('#nav');
+		$('#main').addClass('poppedNav');
 		
-	//	Load the options drop
-		$nav.ajx(
+	//	Load nav just once
+		if ($nav.is(':empty'))
 		{
-			app:'content',
-			template:'/master/nav',
-		//	sectiontype:$('#adminContent section.active').data('template'),
-		},{
-			done:function()
+			$nav.loading();
+			$nav.ajx(
 			{
-				$('#main').addClass('poppedNav');
-			}
-		});
+				app:'content',
+				template:'/master/nav',
+			//	sectiontype:$('#adminContent section.active').data('template'),
+			},{
+				done:function()
+				{
+				}
+			});
+		}
 		
 	});
 	$(document).on('click', '#closeNav', function()

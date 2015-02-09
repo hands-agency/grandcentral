@@ -11,28 +11,6 @@ class itemPage extends _items
 {
 	const child = 'child';
 	protected $child = false;
-	protected $zoning = false;
-/**
- * Active ou désactive l'encapsulage des zones et des sections sur la page pour le mode d'édition
- *
- * @param	bool
- * @access	public
- */
-	public function set_zoning($bool = true)
-	{
-		$this->zoning = (bool) $bool;
-		return $this;
-	}
-/**
- * Retourne la valeur de $this->zoning
- *
- * @return	bool
- * @access	public
- */
-	public function get_zoning()
-	{
-		return $this->zoning;
-	}
 /**
  * Tells whether a page is a reader of another item
  *

@@ -519,6 +519,7 @@ ol .placeholder
 }
 .poppedNav #grandCentralAdmin
 {
+	/* Too slow...
 	-webkit-filter: saturate(0.5);
 	-moz-filter: saturate(0.5);
 	-ms-filter: saturate(0.5);
@@ -529,6 +530,7 @@ ol .placeholder
 	-ms-filter: blur(5px);
 	-o-filter: blur(5px);
 	filter: blur(5px);
+	*/
 }
 
 /* The site */
@@ -570,8 +572,10 @@ ol .placeholder
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
-	-webkit-transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	transition:         all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
 }
 
 /* The Content */
@@ -670,15 +674,53 @@ ol .placeholder
 	border-radius:50%;
 	background:#000;
 	font-size:100px;
-	line-height:210px;
+	line-height:180px;
+	background:#666;
 }
-#alert.success .icon
+#alert .icon:before
+{
+	font-family: "feather";
+	line-height:100px;
+}
+#alert.live .icon
 {
 	background:#6cbf2d;
+}
+#alert.live .icon:before
+{
+	content:'';
+}
+#alert.asleep .icon
+{
+	background:#419BF9;
+}
+#alert.asleep .icon:before
+{
+	content:'';
+}
+#alert.draft .icon
+{
+	background:#ffc000;
+}
+#alert.draft .icon:before
+{
+	content:'';
+}
+#alert.trash .icon
+{
+	background:#333;
+}
+#alert.trash .icon:before
+{
+	content:'';
 }
 #alert.error .icon
 {
 	background:#FF0000;
+}
+#alert.error .icon:before
+{
+	content:'';
 }
 #alert .info
 {
@@ -917,10 +959,12 @@ footer
 /********************************************************************************************/
 #adminContent #sectiontray
 {
-	-webkit-transition: left 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	transition:         left 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	position:relative;
 	/* width:500%; Width is in master.js */
+	-webkit-transition: left .15s ease-out; 
+	-moz-transition: left .15s ease-out; 
+	-o-transition: left .15s ease-out; 
+	transition: left .15s ease-out;
 }
 #adminContent #sectiontray>li
 {

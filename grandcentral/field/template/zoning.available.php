@@ -25,7 +25,7 @@
 	$env = $_SESSION['pref']['handled_env'];
 //	The field name
 //	$name = $_POST['name'];
-	$name = $env.'_section';
+	$name = $env.'_page_zoning';
 //	Refine values?
 	$p['title'] = (isset($_POST['q'])) ? '%'.$_POST['q'].'%' : null;
 	$p['order()'] = 'title ASC';
@@ -34,7 +34,12 @@
 //	Get and process from ajax
 /********************************************************************************************/
 //	Get the available values
-	$available = i('section', $p, $env);
+	foreach (registry::get(registry::app_index) as $app)
+	{
+		$array = $app->get_ini()['about'];
+		$array['key'] = $app->get_key();
+		$apps[] = $array;
+	}
 //	Refine
 	if (isset($_POST['q']))
 	{

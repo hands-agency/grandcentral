@@ -19,7 +19,7 @@ class appForm extends _apps
 	public function prepare()
 	{
 		//	on recherche dans la base le form correspondant au param['key']
-		$form = i('form', $this->param['key']);
+		$form = i('form', $this->param['key'], 'admin');
 		//	si le form existe, on le monte dans les paramètres
 		if ($form->exists())
 		{

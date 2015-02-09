@@ -74,6 +74,8 @@
 			//	Create & execute the method
 				var fn = plugin[method];
 				fn();
+			//	Save as the prefered method
+				console.log('save '+method+' as prefered method !');
 			});
 			
 		//	Prevent regular submit
@@ -97,18 +99,30 @@
 			$('#adminContent section>form').submit();
 		//	Id & status
 			id = $('input[name="'+SITE_KEY+'_'+_GET['item']+'[id]"]');
-			oldStatus = $('input[name="'+SITE_KEY+'_'+_GET['item']+'[status]"]');
-			form = $('#adminContent section>form');
+			$oldStatus = $('input[name="'+SITE_KEY+'_'+_GET['item']+'[status]"]');
+			$form = $('#adminContent section>form');
 			
 		//	Change status ?
-			if (newStatus) oldStatus.val(newStatus);
+			if (newStatus) 
+			{
+				$oldStatus.val(newStatus);
+				status = newStatus;
+			}
+		//	Keep old status
+			else if ($oldStatus.val()) status = $oldStatus.val();
+		//	No status = draft
+			else
+			{
+				$oldStatus.val('draft');
+				status = 'draft';
+			}
 
 		//	Ajaxify forms
 			$.ajax(
 			{
-				url: form.attr('action'),
-				type: form.attr('method'),
-				data: form.serialize(),
+				url: $form.attr('action'),
+				type: $form.attr('method'),
+				data: $form.serialize(),
 				success: function(result)
 				{
 				//	DEBUG
@@ -119,14 +133,38 @@
 					//	Bring it to the form
 						id.val(result);
 						$('#greenbutton-default').removeClass('on');
-					//	Rewrite URL
-						url = '?item='+_GET['item']+'&id='+result;
-						if (window.location.hash) url += window.location.hash;
-						window.history.pushState('string', 'chose', url);
+					//	Rewrite URL if changed
+						if (!_GET['id'])
+						{
+							_GET['id'] = result;
+							url = '?item='+_GET['item']+'&id='+_GET['id'];
+							if (window.location.hash) url += window.location.hash;
+							window.history.pushState('string', 'chose', url);
+						}
 					//	Pop alert
-						popAlert('success', 'Yep. That\'s saved.', callback);
+						popAlert(status, status, callback);
 					};
 				},
+			});
+		}
+
+	//	Save and back
+		plugin.save_back = function()
+		{
+			plugin.save(null, function()
+			{
+			//	Go to the list page
+				document.location.href = ADMIN_URL+'/list?item='+_GET['item'];
+			});
+		}
+
+	//	Save and reach
+		plugin.save_reach = function()
+		{
+			plugin.save(null, function()
+			{
+			//	Reach
+				document.location.href = CURRENTEDITED_URL;
 			});
 		}
 
@@ -154,6 +192,26 @@
 			});
 		}
 
+	//	Go live and go back to the list
+		plugin.live_back = function()
+		{
+			plugin.live(function()
+			{
+			//	Go to the list page
+				document.location.href = ADMIN_URL+'/list?item='+_GET['item'];
+			});
+		}
+
+	//	Go live and reach
+		plugin.live_reach = function()
+		{
+			plugin.live(function()
+			{
+			//	Reach
+				document.location.href = CURRENTEDITED_URL;
+			});
+		}
+
 	//	Asleep
 		plugin.asleep = function()
 		{
@@ -161,17 +219,41 @@
 			plugin.save('asleep');
 		}
 
+	//	Asleep and go back to the list
+		plugin.asleep_back = function()
+		{
+			plugin.save('asleep', function()
+			{
+			//	Go to the list page
+				document.location.href = ADMIN_URL+'/list?item='+_GET['item'];
+			});
+		}
+
 	//	Googlepreview
 		plugin.googlepreview = function()
 		{
-			
-		//	Open the context
-			openContext(
+		//	Save a draft
+			plugin.save('draft', function()
 			{
-				app:'content',
-				template:'master/snippet/googlepreview',
-				item:'page',
-				id:1,
+			//	Open preview
+				openSite(CURRENTEDITED_URL);
+			//	Open the context
+				openContext(
+				{
+					app:'content',
+					template:'master/snippet/googlepreview',
+					item:'page',
+					id:1,
+				}, function()
+				{	
+					$site = $('#siteContent');
+					//	Trigger when iframe is loaded
+					title = $site.contents().find('title').html();
+					descr = $site.contents().find('meta[name="description"]').attr('content');
+					$preview = $('.adminContext[data-template="master/snippet/googlepreview"] .true');
+					$preview.find('.title a').html(title);
+					$preview.find('.descr a').html(descr);
+				});
 			});
 		}
 
@@ -184,9 +266,9 @@
 		}
 
 	//	Save and go back to the list
-		plugin.save_list = function()
+		plugin.save_back = function()
 		{
-			plugin.save('live', function()
+			plugin.save(null, function()
 			{
 			//	Go to the list page
 				document.location.href = ADMIN_URL+'/list?item='+_GET['item'];
@@ -214,7 +296,7 @@
 		{
 			plugin.save('draft', function()
 			{
-				openSite();
+				openSite(CURRENTEDITED_URL);
 			});
 		}
 

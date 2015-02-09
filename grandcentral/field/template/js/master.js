@@ -7,7 +7,8 @@
 		$mainContainer = $this.closest('.fieldMasterContainer');
 		$templateContainer = $mainContainer.find('.fieldMasterTemplateSelect');
 		
-		$templateContainer.ajx({
+		$templateContainer.ajx(
+		{
 			app: 'field',
 			template: 'master.template',
 			search: 'template',

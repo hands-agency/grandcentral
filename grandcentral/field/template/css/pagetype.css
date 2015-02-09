@@ -29,10 +29,10 @@
 	height:0;
 	border-top:15px solid transparent;
 	border-bottom:15px solid transparent;
-	border-left:15px solid #F2F2F2;
+	border-right:15px solid #fff;
 	top:50%;
 	margin-top:-15px;
-	right:-10px;
+	right:5px;
 }
 [data-type="pagetype"] .field .type [data-key="key"]
 {

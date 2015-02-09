@@ -57,7 +57,7 @@
 //	Set defaults
 /********************************************************************************************/
 //	List of available rel
-	$available = array('array');
+	$available = array('line');
 	
 //	Default field attributes for all fields
 	$params[] = array(
@@ -127,7 +127,7 @@
 	
 //	We store them in jscript vars, so that the addable.js plugin can retrieve them
 	$html = '<li style="display:none;"><ol>'.$li.'</ol><button type="button" class="delete"></li>';
-	$template['array'] = $html;
+	$template['line'] = $html;
 	
 	} /* end Nasty Hack */
 ?>

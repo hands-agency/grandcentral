@@ -3,13 +3,7 @@
  	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
 (function($)
-{
-//	Resize header
-	$('#header').on('resize', function()
-	{
-		console.log('var');
-	});
-	
+{	
 //	Prepare for fullsearch
 	$('#refine input').on('input', function()
 	{

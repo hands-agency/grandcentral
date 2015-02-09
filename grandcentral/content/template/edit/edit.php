@@ -22,12 +22,15 @@
 //	Some vars
 /********************************************************************************************/
 	require 'adminItemForm.class.php';
-	
+
 //	Env
 	$handled_env = $_SESSION['pref']['handled_env'];
 //	Item
 	$handled_item = (isset($_GET['item'])) ? $_GET['item'] : null;
 	$handled_id = (isset($_GET['id'])) ? $_GET['id'] : null;
+//	Mode
+	$mode = (isset($_POST['mode'])) ? $_POST['mode'] : null;
+	
 //	Fetch item
 	$item = i($handled_item, null, $handled_env);
 	if ($handled_item && $handled_id)
@@ -59,21 +62,25 @@
 	}
 
 /********************************************************************************************/
-//	Build front
+//	Build form
 /********************************************************************************************/
 	if (!empty($handled_item))
 	{
-		$form = new adminItemForm($item);
+	//	Skip some attr
+		switch ($handled_item)
+		{
+			case 'page':
+				$skip = array('section', 'parent', 'child');
+				break;
+			default:
+				$skip = null;
+				break;
+		}
+	//	Build
+		$form = new adminItemForm($item, $skip);
 	}
 	else
 	{
 		$form = null;
 	}
-
-//	title
-	$str = isset($item['title']) ? $item['title']->cut(45) : '';
-	$title = ($handled_id) ? '<a href="'.$item->listing().'">'.i('item', $item->get_table(), $handled_env)['title'].'</a> '.$str : 'New <a href="'.$item->listing().'">'.i('item', $item->get_table(), $handled_env)['title'].'</a>';
-	# fallback
-	if (!$title) $title = $handled_item.' #'.$handled_id;
-	
 ?>

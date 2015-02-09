@@ -45,8 +45,8 @@
 			?>			
 			<?php endforeach ?>
 		</div>
-		
-		<?php if (isset($iconField[$bunch[0]->get_table()])): ?>
+				
+		<?php if ($bunch->count > 0 && isset($iconField[$bunch[0]->get_table()])): ?>
 			
 			<?php $iThumbnail = 0; $li = null; ?>
 			<?php foreach ($bunch as $item): ?>

@@ -17,7 +17,7 @@
  * @return	mixed	an item or a bunch
  * @access	public
  */
-	function i($table, $params = null, $env = env)
+	function i($table, $params = null, $env = 'site')
 	{
 		switch (true)
 		{

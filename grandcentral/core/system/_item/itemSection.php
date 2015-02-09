@@ -17,8 +17,8 @@ class itemSection extends _items
  */
 	public function __tostring()
 	{
-		$app = app($this['app']['app'], $this['app']['template'], $this['app']['param']);
-		master::bind_code($this['zone']->get(), $app->__tostring());
+		$app = app($this['app']['app'], $this['app']['template'], $this['app']['param'], $this->get_env());
+		master::bind_code($this['zone']->get(), $app->__tostring(), false, $this->get_nickname());
 		return '';
 	}
 }

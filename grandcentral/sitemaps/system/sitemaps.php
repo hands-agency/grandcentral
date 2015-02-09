@@ -34,10 +34,11 @@ class sitemaps
  */
 	public function create()
 	{
-	//	Get the structures with url
+	//	Get the items with url
 		$items = i('item', array('hasurl' => true));
 		
 	//	Loop through structures with url
+		$url = '';
 		foreach ($items as $structure)
 		{
 		//	Get the items
@@ -61,7 +62,6 @@ class sitemaps
 			$items = i($structure['key']->get(), $p);
 			
 		//	Loop through items
-			$url = '';
 			foreach ($items as $item)
 			{
 				$url .= "<url>\n";

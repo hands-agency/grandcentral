@@ -65,7 +65,7 @@
 /********************************************************************************************/
 //	Check if the app has some templates
 	$templates = $app->get_templates($valueContenttype, $_POST['env']);
-	// print'<pre>';print_r($templates);print'</pre>';
+	#sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $templates);
 	if ($templates)
 	{
 	//	We need templates, not indexes
@@ -78,7 +78,8 @@
 			'value' => $valueTemplate,
 		);
 		$fieldTemplate = new fieldSelect($_POST['name'].'[template]', $fparams);
-	}	
+	}
+
 /********************************************************************************************/
 //	FROM APP.PARAM Champ paramètres des apps
 /********************************************************************************************/	

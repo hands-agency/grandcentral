@@ -78,7 +78,7 @@ section[data-template="/timeline/timeline"] ol>li>.padding>.title .author
 	font-family: "ProximaNova-Bold";
 }
 section[data-template="/timeline/timeline"] ol>li>.padding>.title .item
-{;
+{
 	text-transform:uppercase;
 	border-radius:2px;
 	font-size:12px;

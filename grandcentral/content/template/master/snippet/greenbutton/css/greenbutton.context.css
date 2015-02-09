@@ -4,7 +4,7 @@
 .adminContext[data-template="master/snippet/greenbutton/greenbutton.context"]
 {
 }
-.adminContext[data-template="master/snippet/greenbutton/greenbutton.context"] ul
+.greenbutton-choices
 {
 	border-radius:3px;
 	margin:auto auto 15px auto;
@@ -13,19 +13,19 @@
 	overflow:hidden;
 	position:relative;
 }
-.adminContext[data-template="master/snippet/greenbutton/greenbutton.context"] ul li
+.greenbutton-choices li
 {
 	margin:-10px 0 -10px 30px;
 }
-.adminContext[data-template="master/snippet/greenbutton/greenbutton.context"] ul li:nth-child(2)
+.greenbutton-choices li:nth-child(2)
 {
 	margin-top:0;
 }
-.adminContext[data-template="master/snippet/greenbutton/greenbutton.context"] ul li:last-child
+.greenbutton-choices li:last-child
 {
 	margin-bottom:0;
 }
-.adminContext[data-template="master/snippet/greenbutton/greenbutton.context"] ul li.title
+.greenbutton-choices li.title
 {
 	text-transform:uppercase;
 	text-align:center;
@@ -42,12 +42,12 @@
 	margin:0;
 	opacity:0.7;
 }
-.adminContext[data-template="master/snippet/greenbutton/greenbutton.context"] ul:hover li.title
+.greenbutton-choices:hover li.title
 {
 	background:#6cbf2d;
 	color:#fff;
 }
-.adminContext[data-template="master/snippet/greenbutton/greenbutton.context"] ul li.title span
+.greenbutton-choices li.title span
 {
 	position: absolute;
 	top: 50%;
@@ -56,18 +56,55 @@
 	-webkit-transform: translateX(-50%) translateY(-50%) rotate(-90deg);
 	transform:  translateX(-50%) translateY(-50%) rotate(-90deg);
 }
-.adminContext[data-template="master/snippet/greenbutton/greenbutton.context"] ul li a
+.greenbutton-choices li a
 {
 	padding:15px 20px;
 	display:block;
 }
-.adminContext[data-template="master/snippet/greenbutton/greenbutton.context"] ul li .title
+.greenbutton-choices li .title
 {
 	color:#666;
 	cursor:pointer;
 }
-.adminContext[data-template="master/snippet/greenbutton/greenbutton.context"] ul li a:hover
+.greenbutton-choices li:hover>a
 {
 	background:#6cbf2d;
 	color:#fff;
+}
+/* And... */
+.greenbutton-choices li .and
+{
+	position:absolute;
+	right:10px;
+	top:0;
+	display:none;
+}
+.greenbutton-choices li:hover .and
+{
+	display:block;
+}
+.greenbutton-choices li .and>a
+{
+	float:left;
+	padding:10px 5px;
+	opacity:0.6;
+	color:#fff;
+	cursor:pointer;
+}
+.greenbutton-choices li .and>a:hover
+{
+	opacity:1;
+}
+.greenbutton-choices li .and>a:before
+{
+	font-family:"feather";
+	font-size:20px;
+}
+.greenbutton-choices li .and .back:before
+{
+	content:'';
+}
+.greenbutton-choices li .and .reach:before
+{
+	content:'';
 }

@@ -35,7 +35,10 @@ class appReader extends _apps
 				define('reader', $this->param['item']);
 				define('item', $this->param['item']);
 				registry::set(registry::current_index, item, $item);
-				echo i($this->param['detail']);
+				$detail = i($this->param['detail']);
+			//	Force display on the reader section
+			//	$detail['zone'] = 
+				echo $detail;
 			}
 		//	404
 			else
@@ -52,7 +55,10 @@ class appReader extends _apps
 		else
 		{
 			define('reader', $this->param['item']);
-			echo i($this->param['list']);
+			$list = i($this->param['list']);
+		//	Force display on the reader section
+		//	$list['zone'] = $this['zone'];
+			echo $list;
 		}
 	}
 /**

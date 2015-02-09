@@ -50,7 +50,7 @@
 	$logs = i('page', array('key' => array('logout'), 'order()' => 'inherit(key)'), 'site');
 	
 //	List page
-	$listPage = i('page', 'list');
+	$listPage = i('page', 'list', 'admin');
 //	App pate
-	$appPage = i('page', 'app');
+	$appPage = i('page', 'app', 'admin');
 ?>

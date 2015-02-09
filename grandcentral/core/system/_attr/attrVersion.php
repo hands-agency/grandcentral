@@ -29,7 +29,7 @@ class attrVersion extends _attrs
  */
 	public function unfold()
 	{
-		$v = cc('version', $this->data);
+		$v = i('version', $this->data);
 		return $v;
 	}
 /**
@@ -55,7 +55,7 @@ class attrVersion extends _attrs
 	{
 		if (empty($this->data))
 		{
-			$this->data = cc($this->params['env'], current)['version']['id']->get();
+			$this->data = i($this->params['env'], current)['version']['id']->get();
 		}
 		return $this->data;
 	}

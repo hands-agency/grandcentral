@@ -11,6 +11,7 @@
  */
 class itemForm extends _items
 {
+	private $action;
 	
 /**
  * Vérifie si les champs du formulaire sont correctement remplis.
@@ -85,6 +86,18 @@ class itemForm extends _items
 		return $this;
 	}
 /**
+ * Change la page de post visée par le formulaire
+ * 
+ * @param	string	le nom de la page de post à éxécuter
+ * @access	public
+ */
+	public function set_action($action)
+	{
+		$action = (is_a($action, 'attrUrl') && !$action->is_empty()) ? $action->__tostring() : $action;
+		$this->action = $action;
+		return $this;
+	}
+/**
  * Retourne un objet de la classe form correspondant à l'itemForm
  * 
  * @return	form	un objet de la classe form
@@ -92,11 +105,14 @@ class itemForm extends _items
  */
 	public function prepare()
 	{
+	//	Default action
+		if (is_null($this->action)) i('page', $this['action']->get(), $this->get_env())['url'];
+
 	//	paramètres du formulaire HTML
 		$params = array(
 			'data-item' => 'form_'.$this['id'],
 			'data-key' => $this['key'],
-			'action' => i('page', $this['action']->get(), $this->get_env())['url'],
+			'action' => $this->action,
 			'method' => $this['method'],
 			'enctype' => $this['enctype'],
 			'target' => $this['target'],

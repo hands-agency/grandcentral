@@ -27,7 +27,7 @@
 /********************************************************************************************/
 //	Some vars
 /********************************************************************************************/
-	$page = cc('page', current);
+	$page = i('page', current, 'admin');
 	$sections = $page['section']->unfold();
 	$handled_item = (isset($_GET['item'])) ? $_GET['item'] : null;
 
@@ -39,22 +39,22 @@
 /********************************************************************************************/
 //	The title
 /********************************************************************************************/
-	switch (cc('page', current)['key'])
+	switch (i('page', current, 'admin')['key'])
 	{	
 	//	Edit
 		case 'edit':
-			$structure = cc('item', $_GET['item'], $_SESSION['pref']['handled_env']);
+			$structure = i('item', $_GET['item'], $_SESSION['pref']['handled_env']);
 		//	We have an item already
 			if (isset($_GET['id']))
 			{
-				$item = cc($_GET['item'], $_GET['id'], $_SESSION['pref']['handled_env']);
+				$item = i($_GET['item'], $_GET['id'], $_SESSION['pref']['handled_env']);
 				$link = $item->listing();
 				$current = $item['title'];
 			}
 		//	New item
 			else
 			{
-				$link = cc($_GET['item'], null, $_SESSION['pref']['handled_env'])->listing();
+				$link = i($_GET['item'], null, $_SESSION['pref']['handled_env'])->listing();
 				$current = new attrString('[So new i don\'t even have a title]');
 			}
 		//	Go
@@ -63,8 +63,8 @@
 			
 	//	List
 		case 'list':
-			$structure = cc('item', $_GET['item'], $_SESSION['pref']['handled_env']);
-			$item = cc('page', 'home');
+			$structure = i('item', $_GET['item'], $_SESSION['pref']['handled_env']);
+			$item = i('page', 'home', 'admin');
 			$link = $item['url'];
 			$back = $item['title'];
 			$current = $structure['title'];
@@ -74,7 +74,7 @@
 		case 'app':
 			$app = app($_GET['app']);
 			$ini = $app->get_ini();
-			$page = cc('page', 'app');
+			$page = i('page', 'app', 'admin');
 			$link = $page['url'];
 			$back = $page['title'];
 			$current = new attrString($ini['about']['title']);
@@ -82,17 +82,17 @@
 			
 	//	Home
 		case 'home':
-			$item = cc('page', 'home');
+			$item = i('page', 'home', 'admin');
 			$link = 'javascript:openSite();';
-			$back = cc('site', current)['title'];
-			$current = cc('page', current)['title'];
+			$back = i('site', current, 'admin')['title'];
+			$current = i('page', current, 'admin')['title'];
 			break;
 		
 		default:
-			$item = cc('page', 'home');
+			$item = i('page', 'home', 'admin');
 			$link = $item['url'];
 			$back = $item['title'];
-			$current = cc('page', current)['title'];
+			$current = i('page', current, 'admin')['title'];
 			break;
 	}
 	

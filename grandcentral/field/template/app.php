@@ -52,6 +52,9 @@
 	);
 	$field = new fieldSelect($_FIELD->get_name().'[app]', $p);
 	
+//	Give the configure button the template name
+	$cfgButtonLabel = (isset($value['template']) & !empty($value['template'])) ? $value['template'] : 'Configure';
+	
 /********************************************************************************************/
 //	Autoload values
 /********************************************************************************************/

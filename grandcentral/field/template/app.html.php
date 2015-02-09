@@ -7,7 +7,7 @@
 	<div class="field" data-name="<?= $_FIELD->get_name(); ?>" data-env="<?= $_SESSION['pref']['handled_env']; ?>">
 	
 		<?= $field; ?>
-		<button type="button">Configure ⇢</button>
+		<button type="button"><?=$cfgButtonLabel?></button>
 		
 		<span class="configure">
 			<span class="template">

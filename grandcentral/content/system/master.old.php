@@ -14,7 +14,6 @@ class master
 	protected static $content_type;
 //	Storing
 	protected static $zones;
-	protected static $zoning = false;
 	
 /**
  * Create only one instance of the master
@@ -24,14 +23,12 @@ class master
  */
 	public function __construct(itemPage $page)
 	{
-	//	zoning
-		self::$zoning = $page->get_zoning();
 	//	define the master content type
 		self::$content_type = (empty($page['type']['content_type'])) ? 'html' : $page['type']['content_type'];
 	//	instanciate the app master
 		$params['page'] = $page;
 		$tpl = (mb_strpos($page['type']['master']['template'], '/') === 0) ? $page['type']['master']['template'] : '/'.$page['type']['master']['template'];
-		$this->app = app($page['type']['master']['app'], $tpl, $params, $page->get_env());
+		$this->app = app($page['type']['master']['app'], $tpl, $params);
 	//	retrieve the template root
 		$root = $this->app->get_templateroot().$tpl.'.'.$page['type']['content_type'].'.php';
 	//	parse the template and parse zones
@@ -55,15 +52,28 @@ class master
 		{
 			foreach ($tmp as $zone)
 			{
-				$tmp = explode('|', $zone[1]);
-				if (!isset($tmp[1])) $tmp[1] = null;
-				$zones[$tmp[0]] = array(
-					'key' => $tmp[0],
-					'toreplace' => $zone[0],
-					'data' => array()
-				);
-				if (isset($tmp[1])) $zones[$tmp[0]]['float'] = $tmp[1];
-				if (isset($tmp[2])) $zones[$tmp[0]]['width'] = $tmp[2];
+			//	New zones are in Json
+			/*	$z = json_decode($zone[1]);
+ 				if (json_last_error() == JSON_ERROR_NONE)
+				{
+					sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $z);
+					exit;
+				}
+			//	Old zones are in GC format
+				else
+				{
+				*/
+					$tmp = explode('|', $zone[1]);
+					if (!isset($tmp[1])) $tmp[1] = null;
+					$zones[$tmp[0]] = array(
+						'key' => $tmp[0],
+						'toreplace' => $zone[0],
+						'data' => array()
+					);
+				//	Conditionals
+					if (isset($tmp[1])) $zones[$tmp[0]]['float'] = $tmp[1];
+					if (isset($tmp[2])) $zones[$tmp[0]]['width'] = $tmp[2];
+			//	}
 			}
 		}
 	//	retour
@@ -106,7 +116,7 @@ class master
 		if (is_file($file))
 		{
 			$param['zone'] = $zone;
-			$app = app('content', $key, $param, $params['page']->get_env());
+			$app = app('content', $key, $param);
 			$zone = $app->__tostring();
 		}
 	//	traitement générique d'une zone : concaténation des contenus
@@ -115,19 +125,19 @@ class master
 			$method = '_prepare_zone_'.$zone['key'];
 			if (method_exists($this, $method))
 			{
-				$html = $this->$method($zone);
+				$zone = $this->$method($zone);
 			}
 			else
 			{
 				$tmp = null;
 				foreach ($zone['data'] as $data)
 				{
-					$tmp .= self::$zoning && isset($data['id']) ? '<gc-section data-section="'.$data['id'].'">'.$data['data'].'</gc-section>' : $data['data'];
+					$tmp .= $data['data'];
 				}
-				$html = $tmp;
+				$zone = $tmp;
 			}
 		}
-		return self::$zoning ? '<gc-zone data-zone="'.$zone['key'].'">'.$html.'</gc-zone>' : $html;
+		return $zone;
 	}
 /**
  * 
@@ -237,7 +247,7 @@ class master
  * @return	string	la clé de l'app
  * @access	public
  */
-	public static function bind_code($zone, $code, $top = false, $id = null)
+	public static function bind_code($zone, $code, $top = false)
 	{
 		if (isset(self::$zones[$zone]))
 		{
@@ -245,7 +255,6 @@ class master
 				'type' => 'code',
 				'data' => $code
 			);
-			if (!is_null($id)) $tmp['id'] = $id;
 			if ($top === false)
 			{
 				self::$zones[$zone]['data'][] = $tmp;

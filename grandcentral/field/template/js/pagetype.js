@@ -20,7 +20,7 @@
 		type = $(this).val();
 		
 	//	Close contest
-		closeContext('/app.context');
+	//	closeContext('/app.context'); /* Buggy : it keeps triggering when page loads... */
 	//	Display options based on page type
 		switch(type)
 		{

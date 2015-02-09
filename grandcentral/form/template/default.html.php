@@ -1,4 +1,4 @@
-<form <?= $_FORM->get_attrs(); ?> class="left">
+<form <?= $_FORM->get_attrs(); ?>>
 	<?php foreach($_FORM->get_hiddens() as $hidden) : ?>
 		<?= $_FORM->get_field($hidden); ?>
 	<?php endforeach; ?>
@@ -20,7 +20,8 @@
 		</fieldset>
 	<?php endforeach; ?>
 </form>
-<form <?= $_FORM->get_attrs(); ?> class="right">
+<?php if (!empty($asides)): ?>
+<form <?= $_FORM->get_attrs(); ?>>
 	<fieldset>
 	<ol>
 	<?php foreach ($asides as $aside): ?>
@@ -29,3 +30,4 @@
 	</ol>
 	</fieldset>
 </form>
+<?php endif ?>

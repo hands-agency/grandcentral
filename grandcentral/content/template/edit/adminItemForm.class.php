@@ -15,6 +15,7 @@ class adminItemForm
 	private $table;
 	private $form;
 	private $item;
+	private $skip;
 /**
  * Class constructor
  *
@@ -23,7 +24,7 @@ class adminItemForm
  * @param	mixed	l'identifiant ou la clé de l'objet à éditer
  * @access	public
  */
-	public function __construct(_items $item)
+	public function __construct(_items $item, $skip = array())
 	{
 		$this->env = $item->get_env();
 		$this->table = $item->get_table();
@@ -38,6 +39,8 @@ class adminItemForm
 		$this->form['system'] = true;
 	//	recherche de l'item à injecter dans le form
 		$this->item = $item;
+	//	Attr à sauter
+		$this->skip = $skip;
 	}
 /**
  * Mettre en conformité le formulaire et la structure d'un item
@@ -73,7 +76,7 @@ class adminItemForm
 	//	mise en conformité des attributs
 		foreach ($attrs as $key => $attr)
 		{
-			if (isset($attr['key'])) $fields[$attr['key']] = $this->_attr_to_field($attr);
+			if (isset($attr['key']) && !in_array($attr['key'], $this->skip)) $fields[$attr['key']] = $this->_attr_to_field($attr);
 		}
 		$this->form['field'] = $fields;
 	//	sauvegarde du formulaire généré

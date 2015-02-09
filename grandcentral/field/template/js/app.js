@@ -3,6 +3,7 @@
 //	Some vars content-side
 	$li = $('[data-type="app"]');
 	$field = $li.find('.field');
+	$fieldCfgButton = $field.find('button');
 	$contentApp = $field.find('[name$="\[app\]"]');
 	$configureContainer = $field.find('.configure');
 	$contentTemplate = $configureContainer.find('.template');
@@ -25,6 +26,7 @@
 	$field.on('click', 'button', function()
 	{
 	//	Some vars
+		$field = $(this).parents('.field'); /* for some reason this is overridden...*/
 		valueApp = $contentApp.val();
 		if (valueApp == '') return false;
 		valueTemplate = $contentTemplate.find('[name$="\[template\]"]').val();
@@ -71,6 +73,8 @@
 		{
 			input = '<input type="hidden" name="'+$field.data('name')+'[template]" value="'+template+'" />';
 			$contentTemplate.append(input);
+		//	Change the button
+			$fieldCfgButton.html(template);
 		}
 		
 	//	Write params
