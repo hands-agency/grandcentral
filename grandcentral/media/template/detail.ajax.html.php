@@ -36,5 +36,4 @@
 			<td><?= $updated; ?></td>
 		</tr>
 	</table>
-	<button type="button" class="back">⇠ Back</button>
 </div>

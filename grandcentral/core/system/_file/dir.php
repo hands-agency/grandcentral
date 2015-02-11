@@ -82,6 +82,34 @@ class dir implements Iterator
 	}
 	
 /**
+ * Sort dir
+ *
+ * @access	public
+ */
+	public function sortbydate()
+	{
+		$t = array();
+	//	Get files timestamps
+		foreach ($this->data as $key => $file)
+		{
+			$t[$key] = filemtime($file->get_root());
+		}
+	//	Sort timestamps
+		natcasesort($t);
+		$keys = array_reverse(array_keys($t));
+
+	//	Reorder
+		$data = array();
+		foreach ($keys as $index)
+		{
+			$data[$index] = $this->data[$index];
+		}
+
+	//	Overwrite data
+		$this->data = $data;
+	}
+	
+/**
  * Copier un répertoire et son contenu
  *
  * @param	string	le chemin de destination

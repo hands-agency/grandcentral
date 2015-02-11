@@ -42,6 +42,7 @@
 //	Item list
 	$items = i('item', array('system' => false, 'hasurl' => true, 'order()' => 'title'), $_SESSION['pref']['handled_env']);
 	$items->get('item', array('system' => false, 'hasurl' => false, 'order()' => 'title'), $_SESSION['pref']['handled_env']);
+	$items->get('item', array('key' => array('section', 'const', 'site'), 'order()' => 'title'), $_SESSION['pref']['handled_env']);
 //	Social list
 	$socials = i('item', array('key' => array('human', 'machine', 'group'), 'order()' => 'inherit(key)'), 'site');
 //	Help list

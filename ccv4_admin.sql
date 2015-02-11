@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 28, 2014 at 11:36 AM
+-- Generation Time: Feb 11, 2015 at 11:05 PM
 -- Server version: 5.5.25
 -- PHP Version: 5.4.4
 
@@ -39,7 +39,7 @@ CREATE TABLE `const` (
   KEY `key` (`key`),
   KEY `status` (`status`),
   KEY `version` (`version`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=102 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=114 ;
 
 --
 -- Dumping data for table `const`
@@ -51,7 +51,7 @@ INSERT INTO `const` (`id`, `key`, `title`, `version`, `created`, `updated`, `sta
 (4, 'OPTION_FILTER_REFINE', '{"fr":"Rafiner","en":"Refine"}', 1, '2014-05-31 04:52:19', '2014-05-31 04:52:19', 'live', 2),
 (6, 'MULTIPLESELECT_AVAILABLE_LABEL', '{"fr":"Disponibles","en":"Available"}', 1, '2014-05-31 04:52:32', '2014-05-31 04:52:32', 'live', 2),
 (7, 'MULTIPLESELECT_SELECTED_LABEL', '{"fr":"Sélectionnés","en":"Selected"}', 1, '2014-05-31 04:52:48', '2014-05-31 04:52:48', 'live', 2),
-(8, 'MULTIPLESELECT_SELECTED_NODATA', '{"fr":"Essayez de glisser-déposer des items depuis la liste","en":"Why don''t you drag and drop items from the list?"}', 1, '2014-05-31 04:53:41', '2014-05-31 04:53:41', 'live', 2),
+(8, 'MULTIPLESELECT_SELECTED_NODATA', '{"en":"Why don''t you drag and drop items from the list →","fr":"Essayez de glisser-déposer des items depuis la liste →"}', 1, '2014-05-31 04:53:41', '2015-02-09 07:29:36', 'live', 2),
 (9, 'ADMIN_ZONING_ZONE_NODATA', 'Dammit, no zone. That''s impossimpible!', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live', 0),
 (10, 'ZONING_SELECTED_NODATA', 'This zone has no section', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'live', 0),
 (11, 'ZONING_SELECTED_BUBBLE', 'Mine! Mine!', 1, '0000-00-00 00:00:00', '2013-03-22 14:49:01', 'live', 0),
@@ -70,10 +70,10 @@ INSERT INTO `const` (`id`, `key`, `title`, `version`, `created`, `updated`, `sta
 (24, 'TIMELINE_EVENT_INSERT', '{"fr":"a ajouté","en":"created"}', 1, '2013-03-22 14:37:54', '2014-05-31 04:55:58', 'live', 2),
 (25, 'TIMELINE_PERIOD_NIGHT', '{"fr":"Pendant la nuit","en":"At night"}', 1, '2013-03-22 15:11:45', '2014-05-31 04:56:14', 'live', 2),
 (26, 'TIMELINE_PERIOD_DUSK', '{"fr":"Tôt le matin","en":"At dusk"}', 1, '2013-03-22 15:12:02', '2014-05-31 04:56:31', 'live', 2),
-(27, 'TIMELINE_PERIOD_EVENING', '{"fr":"Le soir","en":"In the evening"}', 1, '2013-03-22 15:12:36', '2014-05-31 04:59:03', 'live', 2),
+(27, 'TIMELINE_PERIOD_EVENING', '{"en":"This evening","fr":"Ce soir"}', 1, '2013-03-22 15:12:36', '2015-01-12 20:02:27', 'live', 2),
 (28, 'TIMELINE_PERIOD_AFTERNOON', '{"fr":"L''après-midi","en":"In the afternoon"}', 1, '2013-03-22 15:13:13', '2014-05-31 04:57:22', 'live', 2),
 (29, 'TIMELINE_PERIOD_NOON', '{"fr":"A midi","en":"At noon"}', 1, '2013-03-22 15:13:50', '2014-05-31 04:57:31', 'live', 2),
-(30, 'TIMELINE_PERIOD_MORNING', '{"fr":"Le matin","en":"In the morning"}', 1, '2013-03-22 15:14:25', '2014-05-31 04:57:43', 'live', 2),
+(30, 'TIMELINE_PERIOD_MORNING', '{"en":"This morning","fr":"Ce matin"}', 1, '2013-03-22 15:14:25', '2015-01-12 20:02:45', 'live', 2),
 (31, 'TIMELINE_PERIOD_DAWN', '{"fr":"Le soir","en":"At dawn"}', 1, '2013-03-22 15:14:48', '2014-05-31 04:58:11', 'live', 2),
 (32, 'DATE_NOW', '{"fr":"A l''instant","en":"Just now"}', 1, '2013-03-22 17:48:55', '2014-05-31 04:58:44', 'live', 2),
 (39, 'FIELD_VALIDATION_ERROR_REQUIRED', '{"fr":"Ce champ est obligatoire","en":"This field is compulsory"}', 1, '2013-03-22 17:48:55', '2014-05-31 04:58:32', 'live', 2),
@@ -106,7 +106,19 @@ INSERT INTO `const` (`id`, `key`, `title`, `version`, `created`, `updated`, `sta
 (98, 'NAV_SUB_H1_BYEBYE', '{"en":"Bye bye","fr":"Bye bye"}', 1, '2014-06-02 12:13:00', '2014-06-02 12:13:00', 'live', 2),
 (99, 'NODATA', '{"en":"Nope, sorry, nothing. Zero. Zilch.","fr":"Rien du tout du tout du tout."}', 1, '2014-06-02 14:17:57', '2014-06-03 10:12:28', 'live', 2),
 (100, 'STOPPER', '{"en":"That''s all, folks!","fr":"That''s all, folks!"}', 1, '2014-06-02 14:21:05', '2014-06-02 14:21:05', 'live', 2),
-(101, 'DATE_NOW', '{"en":"Just now","fr":"A l''instant"}', 1, '2014-06-03 10:41:16', '2014-06-03 10:42:05', 'trash', 2);
+(101, 'DATE_NOW', '{"en":"Just now","fr":"A l''instant"}', 1, '2014-06-03 10:41:16', '2014-06-03 10:42:05', 'trash', 2),
+(102, 'EVENTSTREAM_UPDATE', '{"en":"updated","fr":"a mis à jour"}', 1, '2014-12-28 19:26:56', '2014-12-28 19:39:39', 'live', 0),
+(103, 'EVENTSTREAM_INSERT', '{"en":"added","fr":"a ajouté"}', 1, '2014-12-28 19:27:19', '2014-12-28 19:33:56', 'live', 0),
+(104, 'ZONING_SELECTED_NODATA', '{"en":"No sections in this zone","fr":"Aucune section dans cette zone"}', 1, '2015-01-24 15:24:47', '2015-01-24 15:24:47', 'live', 0),
+(105, 'EVENTSTREAM_INSERT_LIVE', '{"en":"Published","fr":"a publié"}', 1, '2015-02-09 03:56:03', '2015-02-09 03:56:03', 'live', 0),
+(106, 'EVENTSTREAM_UPDATE_LIVE', '{"en":"Updated","fr":"a modifié"}', 1, '2015-02-09 03:56:33', '2015-02-09 03:56:33', 'live', 0),
+(107, 'EVENTSTREAM_INSERT_ASLEEP', '{"en":"put asleep","fr":""}', 1, '2015-02-09 03:57:16', '2015-02-09 03:57:16', 'live', 0),
+(108, 'EVENTSTREAM_INSERT_ASLEEP', '{"en":"put asleep","fr":""}', 1, '2015-02-09 03:57:20', '2015-02-09 03:57:20', 'live', 0),
+(109, 'EVENTSTREAM_UPDATE_ASLEEP', '{"en":"modified asleep","fr":"a modifié en sommeil"}', 1, '2015-02-09 03:57:34', '2015-02-09 04:00:00', 'live', 0),
+(110, 'EVENTSTREAM_INSERT_TRASH', '{"en":"Trashed","fr":"a jeté à la corbeille"}', 1, '2015-02-09 03:57:57', '2015-02-09 03:57:57', 'live', 0),
+(111, 'EVENTSTREAM_UPDATE_TRASH', '{"en":"trashed","fr":"a jeté à la corbeille"}', 1, '2015-02-09 03:58:16', '2015-02-09 03:58:16', 'live', 0),
+(112, 'EVENTSTREAM_INSERT_DRAFT', '{"en":"started working on","fr":"s''est mis à travaillé sur"}', 1, '2015-02-09 04:11:49', '2015-02-09 04:11:49', 'live', 0),
+(113, 'EVENTSTREAM_UPDATE_DRAFT', '{"en":"works on","fr":"travaille sur"}', 1, '2015-02-09 04:12:25', '2015-02-09 04:41:47', 'live', 0);
 
 -- --------------------------------------------------------
 
@@ -141,15 +153,14 @@ CREATE TABLE `form` (
 --
 
 INSERT INTO `form` (`id`, `key`, `title`, `descr`, `template`, `action`, `method`, `target`, `enctype`, `field`, `created`, `updated`, `system`, `status`, `owner`) VALUES
-(1, 'login', 'Login', '', 'login', 'login', 'post', '', '', '{"login":{"type":"text","key":"login","label":"So. My login is","placeholder":"my email address","required":true},"password":{"type":"password","key":"password","label":"and this is","placeholder":"my password","required":true},"save":{"type":"button","buttontype":"submit","key":"save","value":"Now let me in!"}}', '2013-09-14 12:53:52', '2013-09-14 12:53:52', 0, 'live', 2),
+(1, 'login', 'Login', '', 'login', 'post', 'post', '', '', '{"login":{"type":"text","key":"login","label":"So. My login is","placeholder":"my email address","required":true},"password":{"type":"password","key":"password","label":"and this is","placeholder":"my password","required":true},"save":{"type":"button","buttontype":"submit","key":"save","value":"Now let me in!"}}', '2013-09-14 12:53:52', '2013-09-14 12:53:52', 0, 'live', 2),
 (141, 'note', 'Notes', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"hidden","readonly":true},"item":{"key":"item","label":"Item","type":"hidden","min":"","max":"","placeholder":"Item"},"text":{"key":"text","label":"Text","type":"textarea","min":"","max":"","placeholder":"A short description"}}', '2013-09-14 12:53:52', '2013-09-14 12:53:52', 0, 'live', 2),
-(146, 'zoning', 'Zoning', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"hidden","readonly":true},"item":{"key":"item","label":"Item","type":"hidden","min":"","max":"","placeholder":"Item"},"section":{"key":"text","label":"Text","type":"zoning","min":"","max":""}}', '2013-09-14 12:53:52', '2013-09-14 12:53:52', 0, 'live', 2),
-(164, 'admin_section', 'admin_section', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"id","type":"number","readonly":true},"key":{"key":"key","label":"key","type":"text"},"title":{"key":"title","label":"title","type":"i18n","field":"fieldText"},"descr":{"key":"descr","label":"descr","type":"textarea","required":"0","min":"0","max":"500"},"zone":{"key":"zone","label":"zone","type":"text","required":"0","min":"0","max":"255"},"app":{"key":"app","label":"app","type":"app"},"created":{"key":"created","label":"created","type":"text"},"updated":{"key":"updated","label":"updated","type":"text"},"status":{"key":"status","label":"status","type":"text"},"greenbutton":{"key":"greenbutton","label":"greenbutton","valuestype":"bunch","values":[{"item":"greenbutton"}],"type":"multipleselect","required":"0","min":"","max":""},"owner":{"key":"owner","label":"owner","type":"text"}}', '2014-05-15 09:47:46', '2014-06-02 14:26:44', 1, 'live', 2),
+(164, 'admin_section', 'admin_section', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"id","type":"number","readonly":true},"key":{"key":"key","label":"key","type":"text"},"title":{"key":"title","label":"title","type":"i18n","field":"fieldText"},"zone":{"key":"zone","label":"zone","type":"text","required":"0","min":"0","max":"255"},"app":{"key":"app","label":"app","type":"app"},"created":{"key":"created","label":"created","type":"date"},"updated":{"key":"updated","label":"updated","type":"date"},"status":{"key":"status","label":"status","type":"text"},"greenbutton":{"key":"greenbutton","label":"greenbutton","valuestype":"bunch","values":[{"item":"greenbutton"}],"placeholder":"...","type":"multipleselect","required":"0","min":"","max":""},"owner":{"key":"owner","label":"owner","type":"text"},"nodata":{"key":"nodata","label":"nodata","type":"i18n","field":"fieldText"}}', '2014-05-15 09:47:46', '2015-02-08 23:49:03', 1, 'live', 2),
 (175, 'admin_page', 'admin_page', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"id","type":"number","readonly":true},"key":{"key":"key","label":"key","type":"text"},"title":{"key":"title","label":"title","type":"i18n","field":"fieldText"},"type":{"key":"type","label":"type","type":"pagetype"},"descr":{"key":"descr","label":"descr","type":"textarea","required":"0","min":"0","max":"500"},"text":{"key":"text","label":"text","type":"textarea","required":"0","min":"0","max":"65035"},"url":{"key":"url","label":"url","type":"text"},"system":{"key":"system","label":"system","type":"bool","required":"0"},"created":{"key":"created","label":"created","type":"text"},"updated":{"key":"updated","label":"updated","type":"text"},"status":{"key":"status","label":"status","type":"text"},"child":{"key":"child","label":"child","valuestype":"bunch","values":[{"item":"page"}],"type":"multipleselect","required":"0","min":"","max":""},"section":{"key":"section","label":"section","valuestype":"bunch","values":[{"item":"section"}],"type":"multipleselect","required":"0","min":"","max":""},"sectiondefault":{"key":"sectiondefault","label":"sectiondefault","valuestype":"bunch","values":[{"item":"section"}],"type":"multipleselect","required":"0","min":"","max":""},"owner":{"key":"owner","label":"owner","type":"text"}}', '2014-05-28 00:32:59', '2014-06-06 23:55:43', 1, 'live', 2),
 (177, 'admin_site', 'admin_site', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"number","readonly":true},"key":{"key":"key","label":"The key","type":"text"},"title":{"key":"title","label":"A short title","type":"text","required":"1","min":"0","max":"255"},"created":{"key":"created","label":"Created Datetime","type":"text"},"updated":{"key":"updated","label":"Updated Datetime","type":"text"},"status":{"key":"status","label":"Status","type":"text"},"defaultversion":{"key":"defaultversion","label":"Default Version","type":"number","required":"0","min":"","max":""},"owner":{"key":"owner","label":"Owner","type":"text"}}', '2014-05-29 07:02:14', '2014-05-29 07:02:14', 1, 'live', 2),
 (178, 'admin_const', 'admin_const', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"id","type":"number","readonly":true},"key":{"key":"key","label":"key","type":"text"},"title":{"key":"title","label":"title","type":"i18n","field":"fieldText"},"version":{"key":"version","label":"version","type":"text"},"created":{"key":"created","label":"created","type":"text"},"updated":{"key":"updated","label":"updated","type":"text"},"status":{"key":"status","label":"status","type":"text"},"owner":{"key":"owner","label":"owner","type":"text"}}', '2014-05-30 04:55:24', '2014-06-02 12:12:22', 1, 'live', 2),
 (179, 'admin_item', 'admin_item', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"id","type":"number","readonly":true},"key":{"key":"key","label":"key","type":"text","required":true},"title":{"key":"title","label":"title","type":"i18n","field":"fieldText"},"icon":{"key":"icon","label":"icon","type":"text","required":"0","min":"0","max":"100"},"attr":{"key":"attr","label":"attr","type":"attr"},"system":{"key":"system","label":"system","type":"bool","required":"0"},"created":{"key":"created","label":"created","type":"text"},"updated":{"key":"updated","label":"updated","type":"text"},"status":{"key":"status","label":"status","type":"text"},"hasurl":{"key":"hasurl","label":"hasurl","type":"bool","required":"0"},"owner":{"key":"owner","label":"owner","type":"text"}}', '2014-05-31 03:49:54', '2014-06-06 23:55:16', 1, 'live', 2),
-(184, 'admin_greenbutton', 'admin_greenbutton', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"id","type":"number","readonly":true},"key":{"key":"key","label":"key","type":"text"},"title":{"key":"title","label":"title","type":"i18n","field":"fieldText"},"created":{"key":"created","label":"created","type":"text"},"updated":{"key":"updated","label":"updated","type":"text"},"status":{"key":"status","label":"status","type":"text"},"icon":{"key":"icon","label":"icon","type":"textarea","required":"0","min":"0","max":"5000"},"owner":{"key":"owner","label":"owner","type":"text"}}', '2014-06-02 14:50:00', '2014-06-02 14:50:00', 1, 'live', 2),
+(184, 'admin_greenbutton', 'admin_greenbutton', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"id","type":"number","readonly":true},"key":{"key":"key","label":"key","type":"text"},"title":{"key":"title","label":"title","type":"i18n","field":"fieldText"},"created":{"key":"created","label":"created","type":"date"},"updated":{"key":"updated","label":"updated","type":"date"},"status":{"key":"status","label":"status","type":"text"},"icon":{"key":"icon","label":"icon","type":"textarea","required":"0","min":"0","max":"5000"},"owner":{"key":"owner","label":"owner","type":"text"},"cat":{"key":"cat","label":"cat","type":"text","required":"0","min":"0","max":"100"},"andback":{"key":"andback","label":"andback","type":"bool","required":"0"},"andreach":{"key":"andreach","label":"andreach","type":"bool","required":"0"}}', '2014-06-02 14:50:00', '2015-02-09 04:16:21', 1, 'live', 2),
 (185, 'admin_version', 'admin_version', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"id","type":"number","readonly":true},"key":{"key":"key","label":"key","type":"text"},"title":{"key":"title","label":"title","type":"text","required":"1","min":"0","max":"255"},"lang":{"key":"lang","label":"lang","type":"text","required":"1","min":"0","max":"32"},"created":{"key":"created","label":"created","type":"text"},"updated":{"key":"updated","label":"updated","type":"text"},"status":{"key":"status","label":"status","type":"text"},"owner":{"key":"owner","label":"owner","type":"text"}}', '2014-06-02 16:11:28', '2014-06-02 16:11:28', 1, 'live', 2);
 
 -- --------------------------------------------------------
@@ -166,31 +177,34 @@ CREATE TABLE `greenbutton` (
   `updated` datetime NOT NULL,
   `status` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `icon` varchar(5000) COLLATE utf8_unicode_ci NOT NULL,
-  `owner` mediumint(3) unsigned NOT NULL,
+  `owner` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `cat` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `andback` tinyint(1) NOT NULL,
+  `andreach` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `key` (`key`),
   KEY `status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `greenbutton`
 --
 
-INSERT INTO `greenbutton` (`id`, `key`, `title`, `created`, `updated`, `status`, `icon`, `owner`) VALUES
-(1, 'save', '{"en":"Just save","fr":"Sauvegarder"}', '2014-06-02 14:50:17', '2014-06-02 14:50:17', 'live', '', 2),
-(2, 'asleep', '{"en":"Put asleep","fr":"Mettre en sommeil"}', '2014-06-02 15:00:50', '2014-06-02 15:00:50', 'live', '', 2),
-(3, 'new', '{"en":"New","fr":"Ajouter"}', '2014-06-02 15:01:05', '2014-06-02 15:01:05', 'live', '', 2),
-(4, 'save_reach', '{"en":"Save & reach","fr":"Sauvegarder & atteindre"}', '2014-06-02 14:53:31', '2014-06-02 14:53:31', 'live', '', 2),
-(5, 'save_copy', '{"en":"Save as a copy","fr":"Sauvegarder comme copie"}', '2014-06-02 14:53:57', '2014-06-02 15:10:22', 'live', '', 2),
-(6, 'save_new', '{"en":"Save & start a new one","fr":"Sauvegarder & ouvrir un nouveau"}', '2014-06-02 15:02:35', '2014-06-02 15:02:35', 'live', '', 2),
-(7, 'trash', '{"en":"Move to trash","fr":"Jeter à la corbeille"}', '2014-06-02 14:59:21', '2014-06-02 14:59:21', 'live', '', 2),
-(8, 'live', '{"en":"Go live","fr":"Publier"}', '2014-06-02 15:00:35', '2014-06-02 15:00:35', 'live', '', 2),
-(9, 'workflow', '{"en":"Back to the workflow","fr":"Remettre dans le workflow"}', '2014-06-02 15:00:00', '2014-06-02 15:00:00', 'asleep', '', 2),
-(10, 'buildapp', '{"en":"Build an app!","fr":"Constuire une app!"}', '2013-03-22 08:57:22', '2014-06-02 15:01:21', 'live', '', 2),
-(11, 'newpage', '{"en":"Add a page to the tree","fr":"Ajouter une page à l''arborescence"}', '2013-10-23 02:14:09', '2014-06-02 15:02:02', 'live', '', 2),
-(12, 'preview', '{"en":"Preview","fr":"Previsualisation"}', '2013-10-28 10:39:50', '2014-06-02 15:02:14', 'live', '', 2),
-(13, 'save_list', '{"en":"Save & back to the list","fr":"Sauvegarder et revenir à la liste"}', '2014-06-02 15:00:19', '2014-06-02 15:00:19', 'live', '', 2),
-(14, 'newsystem', '{"en":"Add to the system","fr":"Ajouter au système"}', '2014-07-28 11:11:39', '2014-07-28 11:35:37', 'live', '', 2);
+INSERT INTO `greenbutton` (`id`, `key`, `title`, `created`, `updated`, `status`, `icon`, `owner`, `cat`, `andback`, `andreach`) VALUES
+(1, 'save', '{"en":"Save","fr":"Sauvegarder"}', '2014-06-02 14:50:17', '2015-02-09 04:18:28', 'live', '', '2', 'save', 1, 1),
+(2, 'asleep', '{"en":"Put asleep","fr":"Mettre en sommeil"}', '2014-06-02 15:00:50', '2015-02-09 04:18:09', 'live', '', '2', 'archive', 1, 0),
+(3, 'new', '{"en":"New","fr":"Ajouter"}', '2014-06-02 15:01:05', '2014-06-02 15:01:05', 'live', '', '2', '', 0, 0),
+(5, 'save_copy', '{"en":"Save as a copy","fr":"Sauvegarder comme copie"}', '2014-06-02 14:53:57', '2015-01-06 21:39:40', 'live', '', '2', 'save', 0, 0),
+(6, 'save_new', '{"en":"Save & start a new one","fr":"Sauvegarder & ouvrir un nouveau"}', '2014-06-02 15:02:35', '2015-01-06 22:34:41', 'live', '', '2', 'save', 0, 0),
+(7, 'trash', '{"en":"Move to trash","fr":"Jeter à la corbeille"}', '2014-06-02 14:59:21', '2015-02-09 04:18:02', 'live', '', '2', 'archive', 1, 0),
+(8, 'live', '{"en":"Go live","fr":"Publier"}', '2014-06-02 15:00:35', '2015-02-09 04:18:15', 'live', '', '2', 'live', 1, 1),
+(9, 'workflow', '{"en":"Back to the workflow","fr":"Remettre dans le workflow"}', '2014-06-02 15:00:00', '2014-06-02 15:00:00', 'asleep', '', '2', '', 0, 0),
+(10, 'buildapp', '{"en":"Build an app!","fr":"Constuire une app!"}', '2013-03-22 08:57:22', '2014-06-02 15:01:21', 'live', '', '2', '', 0, 0),
+(11, 'newpage', '{"en":"Add a page to the tree","fr":"Ajouter une page à l''arborescence"}', '2013-10-23 02:14:09', '2014-06-02 15:02:02', 'live', '', '2', '', 0, 0),
+(12, 'preview', '{"en":"Preview","fr":"Previsualisation"}', '2013-10-28 10:39:50', '2015-02-08 23:49:45', 'live', '', '2', 'check', 0, 0),
+(14, 'newsystem', '{"en":"Add to the system","fr":"Ajouter au système"}', '2014-07-28 11:11:39', '2014-07-28 11:35:37', 'live', '', '2', '', 0, 0),
+(15, 'newworkflow', '{"en":"New workflow","fr":"Nouveau workflow"}', '2014-08-11 21:19:29', '2014-08-11 21:19:29', 'live', '', '2', '', 0, 0),
+(16, 'googlepreview', '{"en":"See what Google sees","fr":"Voyez ce que Google vois"}', '2015-01-06 21:28:39', '2015-02-08 23:49:51', 'live', '', 'human_2', 'check', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -226,8 +240,8 @@ INSERT INTO `item` (`id`, `key`, `title`, `icon`, `attr`, `system`, `created`, `
 (4, 'version', '{"en":"Versions","fr":"Versions"}', '031', '{"id":{"key":"id","type":"id"},"key":{"key":"key","type":"key"},"title":{"key":"title","type":"string","required":"1","min":"0","max":"255"},"lang":{"key":"lang","type":"string","required":"1","min":"0","max":"32"},"created":{"key":"created","type":"created"},"updated":{"key":"updated","type":"updated"},"status":{"key":"status","type":"status"},"owner":{"key":"owner","type":"owner"}}', 1, '2013-11-17 14:17:07', '2014-06-02 11:41:57', 'live', 0, 2),
 (5, 'const', '{"en":"Labels","fr":"Intitulés"}', '028', '{"id":{"key":"id","type":"id"},"key":{"key":"key","type":"key"},"title":{"key":"title","type":"i18n","field":"fieldText"},"version":{"key":"version","type":"version"},"created":{"key":"created","type":"created"},"updated":{"key":"updated","type":"updated"},"status":{"key":"status","type":"status"},"owner":{"key":"owner","type":"owner"}}', 1, '2013-11-17 14:17:07', '2014-06-02 11:43:48', 'live', 0, 2),
 (6, 'form', '{"en":"Forms","fr":"Formulaires"}', '068', '{"id":{"key":"id","type":"id"},"key":{"key":"key","type":"key"},"title":{"key":"title","type":"string","required":"1","min":"0","max":"5000"},"descr":{"key":"descr","type":"string","required":"0","min":"0","max":"500"},"template":{"key":"template","type":"string","required":"1","min":"0","max":"5000"},"action":{"key":"action","type":"string","required":"1","min":"0","max":"5000"},"method":{"key":"method","type":"list","required":"1"},"target":{"key":"target","type":"string","required":"0","min":"0","max":"5000"},"enctype":{"key":"enctype","type":"list","required":"1"},"field":{"key":"field","type":"array"},"created":{"key":"created","type":"created"},"updated":{"key":"updated","type":"updated"},"system":{"key":"system","type":"bool","required":"0"},"status":{"key":"status","type":"status"},"owner":{"key":"owner","type":"owner"}}', 1, '2013-09-27 08:33:31', '2014-06-02 11:46:39', 'live', 0, 2),
-(7, 'section', '{"en":"Sections","fr":"Sections"}', '004', '{"id":{"key":"id","type":"id"},"key":{"key":"key","type":"key"},"title":{"key":"title","type":"i18n","field":"fieldText"},"descr":{"key":"descr","type":"string","required":"0","min":"0","max":"500"},"zone":{"key":"zone","type":"string","required":"0","min":"0","max":"255"},"app":{"key":"app","type":"array"},"created":{"key":"created","type":"created"},"updated":{"key":"updated","type":"updated"},"status":{"key":"status","type":"status"},"greenbutton":{"key":"greenbutton","type":"rel","required":"0","param":[{"item":"greenbutton"}],"min":"","max":""},"owner":{"key":"owner","type":"owner"}}', 1, '2013-09-25 08:33:09', '2014-06-02 11:43:31', 'live', 0, 2),
-(8, 'greenbutton', '{"en":"Green button actions","fr":"Actions du bouton vert"}', '044', '{"id":{"key":"id","type":"id"},"key":{"key":"key","type":"key"},"title":{"key":"title","type":"i18n","field":"fieldText"},"created":{"key":"created","type":"created"},"updated":{"key":"updated","type":"updated"},"status":{"key":"status","type":"status"},"icon":{"key":"icon","type":"string","required":"0","min":"0","max":"5000"},"owner":{"key":"owner","type":"owner"}}', 1, '2013-09-25 08:33:09', '2014-06-02 11:45:09', 'live', 0, 2),
+(7, 'section', '{"en":"Sections","fr":"Sections"}', '004', '{"id":{"key":"id","type":"id"},"key":{"key":"key","type":"key"},"title":{"key":"title","type":"i18n","field":"fieldText"},"zone":{"key":"zone","type":"string","required":"0","min":"0","max":"255"},"app":{"key":"app","type":"array"},"created":{"key":"created","type":"created"},"updated":{"key":"updated","type":"updated"},"status":{"key":"status","type":"status"},"greenbutton":{"key":"greenbutton","type":"rel","required":"0","param":[{"item":"greenbutton"}],"min":"","max":""},"owner":{"key":"owner","type":"owner"},"nodata":{"key":"nodata","type":"i18n","field":"fieldText"}}', 1, '2013-09-25 08:33:09', '2015-01-24 21:49:43', 'live', 0, 2),
+(8, 'greenbutton', '{"en":"Green button actions","fr":"Actions du bouton vert"}', '044', '{"id":{"key":"id","type":"id"},"key":{"key":"key","type":"key"},"title":{"key":"title","type":"i18n","field":"fieldText"},"created":{"key":"created","type":"created"},"updated":{"key":"updated","type":"updated"},"status":{"key":"status","type":"status"},"icon":{"key":"icon","type":"string","required":"0","min":"0","max":"5000"},"owner":{"key":"owner","type":"owner"},"cat":{"key":"cat","type":"string","required":"0","min":"0","max":"100"},"andback":{"key":"andback","type":"bool","required":"0"},"andreach":{"key":"andreach","type":"bool","required":"0"}}', 1, '2013-09-25 08:33:09', '2015-02-09 04:16:00', 'live', 0, 2),
 (9, 'logbook', '{"en":"Logs","fr":"Logs"}', '030', '{"id":{"key":"id","type":"id"},"key":{"key":"key","type":"key"},"subject":{"key":"subject","type":"string","required":"0","min":"0","max":"5000"},"subjectid":{"key":"subjectid","type":"int","required":"0","min":"","max":""},"item":{"key":"item","type":"string","required":"0","min":"0","max":"5000"},"itemid":{"key":"itemid","type":"int","required":"0","min":"","max":""},"created":{"key":"created","type":"created"},"updated":{"key":"updated","type":"updated"},"status":{"key":"status","type":"status"},"owner":{"key":"owner","type":"owner"}}', 1, '2013-11-17 14:17:07', '2014-06-02 11:42:02', 'live', 0, 2),
 (10, 'note', '{"en":"Notes","fr":"Notes"}', '076', '{"id":{"key":"id","type":"id"},"key":{"key":"key","type":"key"},"created":{"key":"created","type":"created"},"updated":{"key":"updated","type":"updated"},"status":{"key":"status","type":"status"},"item":{"key":"item","type":"string","required":"1","min":"0","max":"5000"},"itemid":{"key":"itemid","type":"int","required":"1","min":"","max":""},"content":{"key":"content","type":"string","required":"1","min":"0","max":"5000"},"owner":{"key":"owner","type":"owner"}}', 1, '2013-10-20 22:59:08', '2014-06-02 11:46:57', 'live', 0, 2);
 
@@ -251,7 +265,7 @@ CREATE TABLE `logbook` (
   PRIMARY KEY (`id`),
   KEY `status` (`status`),
   KEY `key` (`key`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=285 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=365 ;
 
 --
 -- Dumping data for table `logbook`
@@ -328,8 +342,6 @@ INSERT INTO `logbook` (`id`, `key`, `subject`, `subjectid`, `item`, `itemid`, `c
 (68, 'insert', 'human', 2, 'form', 38, '2013-10-20 22:53:20', '2013-10-20 22:53:20', 'live', 0),
 (69, 'update', 'human', 2, 'greenbutton', 10, '2013-10-20 22:53:27', '2013-10-20 22:53:27', 'live', 0),
 (70, 'insert', 'human', 2, 'version', 2, '2013-10-20 22:53:53', '2013-10-20 22:53:53', 'live', 0),
-(71, 'insert', 'human', 2, 'structure', 10, '2013-10-20 22:59:08', '2013-10-20 22:59:08', 'live', 0),
-(72, 'update', 'human', 2, 'structure', 10, '2013-10-20 23:01:39', '2013-10-20 23:01:39', 'live', 0),
 (73, 'insert', 'human', 2, 'form', 39, '2013-10-20 23:02:25', '2013-10-20 23:02:25', 'live', 0),
 (74, 'insert', 'human', 2, 'form', 64, '2013-10-23 02:13:41', '2013-10-23 02:13:41', 'live', 0),
 (75, 'insert', 'human', 2, 'greenbutton', 11, '2013-10-23 02:14:09', '2013-10-23 02:14:09', 'live', 0),
@@ -338,7 +350,6 @@ INSERT INTO `logbook` (`id`, `key`, `subject`, `subjectid`, `item`, `itemid`, `c
 (78, 'insert', 'human', 2, 'form', 74, '2013-10-25 12:58:52', '2013-10-25 12:58:52', 'live', 0),
 (79, 'insert', 'human', 2, 'const', 92, '2013-10-25 12:59:07', '2013-10-25 12:59:07', 'live', 0),
 (80, 'insert', 'human', 2, 'form', 76, '2013-10-28 10:39:22', '2013-10-28 10:39:22', 'live', 0),
-(81, 'update', 'human', 2, 'structure', 8, '2013-10-28 10:39:28', '2013-10-28 10:39:28', 'live', 0),
 (82, 'insert', 'human', 2, 'form', 77, '2013-10-28 10:39:38', '2013-10-28 10:39:38', 'live', 0),
 (83, 'insert', 'human', 2, 'greenbutton', 12, '2013-10-28 10:39:50', '2013-10-28 10:39:50', 'live', 0),
 (84, 'insert', 'human', 2, 'form', 78, '2013-10-28 10:40:03', '2013-10-28 10:40:03', 'live', 0),
@@ -541,7 +552,87 @@ INSERT INTO `logbook` (`id`, `key`, `subject`, `subjectid`, `item`, `itemid`, `c
 (281, 'update', 'human', 2, 'greenbutton', 14, '2014-07-28 11:26:39', '2014-07-28 11:26:39', 'live', 2),
 (282, 'update', 'human', 2, 'section', 7, '2014-07-28 11:27:28', '2014-07-28 11:27:28', 'live', 2),
 (283, 'update', 'human', 2, 'section', 8, '2014-07-28 11:27:35', '2014-07-28 11:27:35', 'live', 2),
-(284, 'update', 'human', 2, 'greenbutton', 14, '2014-07-28 11:35:37', '2014-07-28 11:35:37', 'live', 2);
+(284, 'update', 'human', 2, 'greenbutton', 14, '2014-07-28 11:35:37', '2014-07-28 11:35:37', 'live', 2),
+(285, 'insert', 'human', 2, 'site', 3, '2014-08-07 02:48:28', '2014-08-07 02:48:28', 'live', 2),
+(286, 'insert', 'human', 2, 'greenbutton', 15, '2014-08-11 21:19:29', '2014-08-11 21:19:29', 'live', 2),
+(287, 'update', 'human', 2, 'section', 30, '2014-08-11 21:20:38', '2014-08-11 21:20:38', 'live', 2),
+(288, 'update', 'human', 2, 'item', 7, '2014-12-20 14:56:38', '2014-12-20 14:56:38', 'live', 0),
+(289, 'update', 'human', 2, 'form', 164, '2014-12-20 14:58:16', '2014-12-20 14:58:16', 'live', 0),
+(290, 'update', 'human', 2, 'section', 31, '2014-12-20 14:59:42', '2014-12-20 14:59:42', 'live', 0),
+(291, 'update', 'human', 2, 'section', 9, '2014-12-20 15:00:30', '2014-12-20 15:00:30', 'live', 0),
+(292, 'update', 'human', 2, 'section', 27, '2014-12-20 15:01:12', '2014-12-20 15:01:12', 'live', 0),
+(293, 'update', 'human', 2, 'section', 1, '2014-12-20 15:01:58', '2014-12-20 15:01:58', 'live', 0),
+(294, 'update', 'human', 2, 'section', 6, '2014-12-20 15:18:07', '2014-12-20 15:18:07', 'live', 0),
+(295, 'update', 'human', 2, 'section', 7, '2014-12-20 15:18:21', '2014-12-20 15:18:21', 'live', 0),
+(296, 'update', 'human', 2, 'section', 8, '2014-12-20 15:18:35', '2014-12-20 15:18:35', 'live', 0),
+(297, 'update', 'human', 2, 'section', 30, '2014-12-20 15:18:56', '2014-12-20 15:18:56', 'live', 0),
+(298, 'update', 'human', 2, 'section', 25, '2014-12-20 15:19:16', '2014-12-20 15:19:16', 'live', 0),
+(299, 'insert', 'human', 2, 'const', 102, '2014-12-28 19:26:56', '2014-12-28 19:26:56', 'live', 0),
+(300, 'insert', 'human', 2, 'const', 103, '2014-12-28 19:27:19', '2014-12-28 19:27:19', 'live', 0),
+(301, 'update', 'human', 2, 'const', 103, '2014-12-28 19:28:25', '2014-12-28 19:28:25', 'live', 0),
+(302, 'update', 'human', 2, 'const', 102, '2014-12-28 19:28:40', '2014-12-28 19:28:40', 'live', 0),
+(303, 'update', 'human', 2, 'const', 103, '2014-12-28 19:33:56', '2014-12-28 19:33:56', 'live', 0),
+(304, 'update', 'human', 2, 'const', 102, '2014-12-28 19:39:39', '2014-12-28 19:39:39', 'live', 0),
+(305, 'update', 'human', 2, 'section', 10, '2014-12-29 14:01:36', '2014-12-29 14:01:36', 'live', 0),
+(306, 'insert', 'human', 2, 'greenbutton', 16, '2015-01-06 21:28:39', '2015-01-06 21:28:39', 'live', 0),
+(307, 'update', 'human', 2, 'section', 2, '2015-01-06 21:31:03', '2015-01-06 21:31:03', 'live', 0),
+(308, 'update', 'human', 2, 'greenbutton', 16, '2015-01-06 21:31:18', '2015-01-06 21:31:18', 'live', 0),
+(309, 'update', 'human', 2, 'item', 8, '2015-01-06 21:35:32', '2015-01-06 21:35:32', 'live', 0),
+(310, 'update', 'human', 2, 'form', 184, '2015-01-06 21:36:00', '2015-01-06 21:36:00', 'live', 0),
+(311, 'update', 'human', 2, 'greenbutton', 16, '2015-01-06 21:36:06', '2015-01-06 21:36:06', 'live', 0),
+(312, 'update', 'human', 2, 'greenbutton', 12, '2015-01-06 21:36:11', '2015-01-06 21:36:11', 'live', 0),
+(313, 'update', 'human', 2, 'greenbutton', 1, '2015-01-06 21:39:17', '2015-01-06 21:39:17', 'live', 0),
+(314, 'update', 'human', 2, 'greenbutton', 4, '2015-01-06 21:39:24', '2015-01-06 21:39:24', 'live', 0),
+(315, 'update', 'human', 2, 'greenbutton', 6, '2015-01-06 21:39:28', '2015-01-06 21:39:28', 'live', 0),
+(316, 'update', 'human', 2, 'greenbutton', 13, '2015-01-06 21:39:33', '2015-01-06 21:39:33', 'live', 0),
+(317, 'update', 'human', 2, 'greenbutton', 8, '2015-01-06 21:39:37', '2015-01-06 21:39:37', 'live', 0),
+(318, 'update', 'human', 2, 'greenbutton', 5, '2015-01-06 21:39:40', '2015-01-06 21:39:40', 'live', 0),
+(319, 'update', 'human', 2, 'section', 2, '2015-01-06 22:03:51', '2015-01-06 22:03:51', 'live', 0),
+(320, 'update', 'human', 2, 'section', 2, '2015-01-06 22:04:12', '2015-01-06 22:04:12', 'live', 0),
+(321, 'update', 'human', 2, 'section', 2, '2015-01-06 22:04:31', '2015-01-06 22:04:31', 'live', 0),
+(322, 'update', 'human', 2, 'greenbutton', 6, '2015-01-06 22:34:26', '2015-01-06 22:34:26', 'live', 0),
+(323, 'update', 'human', 2, 'greenbutton', 6, '2015-01-06 22:34:31', '2015-01-06 22:34:31', 'live', 0),
+(324, 'update', 'human', 2, 'greenbutton', 6, '2015-01-06 22:34:34', '2015-01-06 22:34:34', 'live', 0),
+(325, 'update', 'human', 2, 'greenbutton', 6, '2015-01-06 22:34:41', '2015-01-06 22:34:41', 'live', 0),
+(326, 'update', 'human', 2, 'greenbutton', 16, '2015-01-07 02:21:05', '2015-01-07 02:21:05', 'live', 0),
+(327, 'update', 'human', 4, 'const', 27, '2015-01-12 20:02:27', '2015-01-12 20:02:27', 'live', 0),
+(328, 'update', 'human', 4, 'const', 30, '2015-01-12 20:02:45', '2015-01-12 20:02:45', 'live', 0),
+(329, 'insert', 'human', 4, 'page', 38, '2015-01-19 19:02:07', '2015-01-19 19:02:07', 'live', 0),
+(330, 'update', 'human', 4, 'page', 38, '2015-01-19 19:05:48', '2015-01-19 19:05:48', 'live', 0),
+(331, 'update', 'human', 4, 'page', 38, '2015-01-19 19:08:56', '2015-01-19 19:08:56', 'live', 0),
+(332, 'update', 'human', 4, 'section', 17, '2015-01-24 13:38:24', '2015-01-24 13:38:24', 'live', 0),
+(333, 'insert', 'human', 4, 'const', 104, '2015-01-24 15:24:47', '2015-01-24 15:24:47', 'live', 0),
+(334, 'update', 'human', 4, 'item', 7, '2015-01-24 21:49:43', '2015-01-24 21:49:43', 'live', 0),
+(335, 'update', 'human', 4, 'greenbutton', 8, '2015-02-08 23:48:10', '2015-02-08 23:48:10', 'live', 0),
+(336, 'update', 'human', 4, 'form', 164, '2015-02-08 23:49:03', '2015-02-08 23:49:03', 'live', 0),
+(337, 'update', 'human', 4, 'section', 2, '2015-02-08 23:49:16', '2015-02-08 23:49:16', 'live', 0),
+(338, 'update', 'human', 4, 'greenbutton', 12, '2015-02-08 23:49:45', '2015-02-08 23:49:45', 'live', 0),
+(339, 'update', 'human', 4, 'greenbutton', 16, '2015-02-08 23:49:51', '2015-02-08 23:49:51', 'live', 0),
+(340, 'update', 'human', 4, 'greenbutton', 2, '2015-02-08 23:51:37', '2015-02-08 23:51:37', 'live', 0),
+(341, 'update', 'human', 4, 'greenbutton', 7, '2015-02-08 23:51:40', '2015-02-08 23:51:40', 'live', 0),
+(342, 'insert', 'human', 4, 'const', 105, '2015-02-09 03:56:03', '2015-02-09 03:56:03', 'live', 0),
+(343, 'insert', 'human', 4, 'const', 106, '2015-02-09 03:56:33', '2015-02-09 03:56:33', 'live', 0),
+(344, 'insert', 'human', 4, 'const', 107, '2015-02-09 03:57:16', '2015-02-09 03:57:16', 'live', 0),
+(345, 'insert', 'human', 4, 'const', 108, '2015-02-09 03:57:20', '2015-02-09 03:57:20', 'live', 0),
+(346, 'insert', 'human', 4, 'const', 109, '2015-02-09 03:57:34', '2015-02-09 03:57:34', 'live', 0),
+(347, 'insert', 'human', 4, 'const', 110, '2015-02-09 03:57:57', '2015-02-09 03:57:57', 'live', 0),
+(348, 'insert', 'human', 4, 'const', 111, '2015-02-09 03:58:16', '2015-02-09 03:58:16', 'live', 0),
+(349, 'update', 'human', 4, 'const', 109, '2015-02-09 03:59:43', '2015-02-09 03:59:43', 'live', 0),
+(350, 'update', 'human', 4, 'const', 109, '2015-02-09 04:00:00', '2015-02-09 04:00:00', 'live', 0),
+(351, 'insert', 'human', 4, 'const', 112, '2015-02-09 04:11:49', '2015-02-09 04:11:49', 'live', 0),
+(352, 'insert', 'human', 4, 'const', 113, '2015-02-09 04:12:25', '2015-02-09 04:12:25', 'live', 0),
+(353, 'update', 'human', 4, 'item', 8, '2015-02-09 04:16:00', '2015-02-09 04:16:00', 'live', 0),
+(354, 'update', 'human', 4, 'form', 184, '2015-02-09 04:16:21', '2015-02-09 04:16:21', 'live', 0),
+(355, 'update', 'human', 4, 'greenbutton', 13, '2015-02-09 04:16:29', '2015-02-09 04:16:29', 'live', 0),
+(356, 'update', 'human', 4, 'greenbutton', 4, '2015-02-09 04:16:33', '2015-02-09 04:16:33', 'live', 0),
+(357, 'update', 'human', 4, 'greenbutton', 4, '2015-02-09 04:16:50', '2015-02-09 04:16:50', 'live', 0),
+(358, 'update', 'human', 4, 'greenbutton', 7, '2015-02-09 04:18:02', '2015-02-09 04:18:02', 'live', 0),
+(359, 'update', 'human', 4, 'greenbutton', 2, '2015-02-09 04:18:09', '2015-02-09 04:18:09', 'live', 0),
+(360, 'update', 'human', 4, 'greenbutton', 8, '2015-02-09 04:18:15', '2015-02-09 04:18:15', 'live', 0),
+(361, 'update', 'human', 4, 'greenbutton', 1, '2015-02-09 04:18:28', '2015-02-09 04:18:28', 'live', 0),
+(362, 'update', 'human', 4, 'const', 113, '2015-02-09 04:41:47', '2015-02-09 04:41:47', 'live', 0),
+(363, 'update', 'human', 4, 'const', 8, '2015-02-09 07:28:56', '2015-02-09 07:28:56', 'live', 0),
+(364, 'update', 'human', 4, 'const', 8, '2015-02-09 07:29:36', '2015-02-09 07:29:36', 'live', 0);
 
 -- --------------------------------------------------------
 
@@ -586,7 +677,7 @@ CREATE TABLE `page` (
   PRIMARY KEY (`id`),
   KEY `key` (`key`),
   KEY `status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=42 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=39 ;
 
 --
 -- Dumping data for table `page`
@@ -610,8 +701,7 @@ INSERT INTO `page` (`id`, `key`, `title`, `type`, `descr`, `text`, `url`, `syste
 (35, 'ajax.html', '{"fr":"AJAX (html)","en":"AJAX (html)"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/ajax"}}', '', '', '/ajax.html', 1, '2013-03-06 03:21:46', '2014-05-31 05:10:12', 'live', 2),
 (36, 'ajax.json', '{"fr":"AJAX (json)","en":"AJAX (json)"}', '{"key":"content","http_status":"200 OK","content_type":"json","url":"","master":{"app":"content","template":"\\/master\\/ajax"}}', '', '', '/ajax.json', 1, '2013-03-06 03:21:46', '2014-05-31 05:09:52', 'live', 2),
 (37, 'lab', '{"fr":"Lab","en":"Lab"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', '', '', '/lab', 0, '2014-05-02 15:31:57', '2014-05-31 05:37:49', 'live', 2),
-(40, '4d5bc722afcfb81e7bcc0dfacc22e57c', '', '', '', '', '', 0, '2014-06-18 18:45:06', '2014-06-18 18:45:06', 'live', 2),
-(41, 'f96f790c93f571093678050140928950', '', '', '', '', '', 0, '2014-06-18 18:47:44', '2014-06-18 18:47:44', 'live', 2);
+(38, 'iframe', '{"en":"Iframes","fr":""}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/iframe"}}', 'Use me to send content to en empty master template. Nice for Iframes.', '', '/iframe', 1, '2015-01-19 19:02:07', '2015-01-19 19:08:56', 'live', 0);
 
 -- --------------------------------------------------------
 
@@ -623,13 +713,13 @@ CREATE TABLE `section` (
   `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `title` mediumtext COLLATE utf8_unicode_ci NOT NULL,
-  `descr` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `zone` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `app` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
   `status` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `owner` mediumint(3) unsigned NOT NULL,
+  `owner` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `nodata` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `key` (`key`),
   KEY `status` (`status`)
@@ -639,26 +729,26 @@ CREATE TABLE `section` (
 -- Dumping data for table `section`
 --
 
-INSERT INTO `section` (`id`, `key`, `title`, `descr`, `zone`, `app`, `created`, `updated`, `status`, `owner`) VALUES
-(1, 'live', '{"fr":"Publiés","en":"Live"}', '', 'content', '{"app":"content","template":"\\/list\\/list","param":{"status":"live","system":""}}', '2014-05-31 04:51:15', '2014-05-31 04:51:15', 'live', 2),
-(2, 'edit', '{"en":"Edit"}', '', 'content', '{"app":"content","template":"\\/edit\\/edit"}', '2013-10-16 14:52:08', '2014-06-01 07:45:06', 'live', 2),
-(3, 'php', '{"fr":"Apps","en":"Apps"}', '', 'content', '{"app":"content","template":"\\/doc\\/code"}', '2014-05-15 09:47:55', '2014-05-31 04:48:57', 'live', 2),
-(4, 'doc', '{"fr":"Doc","en":"Doc"}', '', 'content', '{"app":"content","template":"\\/doc\\/doc"}', '2013-10-20 22:52:03', '2014-05-31 04:49:55', 'live', 2),
-(5, 'splash', '{"fr":"Bienvenue","en":"Welcome"}', '', 'content', '{"app":"content","template":"\\/error\\/error"}', '2014-05-31 04:46:24', '2014-05-31 04:46:24', 'live', 2),
-(6, 'system', '{"en":"System","fr":"Système"}', '', 'content', '{"app":"content","template":"\\/list\\/list","param":{"system":"1"}}', '2013-02-24 06:33:01', '2014-07-28 11:16:15', 'live', 2),
-(7, 'asleep', '{"en":"Asleep","fr":"En sommeil"}', '', 'content', '{"app":"content","template":"\\/list\\/list","param":{"status":"asleep"}}', '2013-02-24 06:33:01', '2014-07-28 11:27:28', 'live', 2),
-(8, 'draft', '{"en":"Draft","fr":"Brouillon"}', '', 'content', '{"app":"content","template":"\\/list\\/list","param":{"status":"draft"}}', '2013-02-24 06:33:01', '2014-07-28 11:27:35', 'live', 2),
-(9, 'timeline', '{"fr":"En direct","en":"Timeline"}', '', 'content', '{"app":"content","template":"\\/timeline\\/timeline"}', '2014-05-31 04:46:50', '2014-05-31 04:46:50', 'live', 2),
-(10, 'tree', '{"fr":"Arborescence","en":"Site tree"}', '', 'content', '{"app":"content","template":"\\/tree\\/tree"}', '2013-10-23 02:14:52', '2014-05-31 04:49:29', 'live', 2),
-(17, 'zoning', '{"fr":"Zoning","en":"Zoning"}', '', 'content', '{"app":"content","template":"\\/zoning\\/zoning"}', '2014-05-31 04:47:01', '2014-05-31 04:47:01', 'live', 2),
-(19, 'appstore', '{"fr":"App store","en":"App store"}', '', 'content', '{"app":"content","template":"\\/appmanager\\/appmanager"}', '2014-05-31 04:50:45', '2014-05-31 04:50:45', 'live', 2),
-(20, 'appini', '{"fr":"A propos","en":"About"}', '', 'content', '{"app":"content","template":"\\/appini\\/appini"}', '2013-10-20 22:53:07', '2014-05-31 04:49:44', 'live', 2),
-(21, 'appconfig', '{"fr":"Configuration","en":"Configuration"}', '', 'content', '{"app":"content","template":"\\/appconfig\\/appconfig"}', '2014-05-31 04:47:28', '2014-05-31 04:47:28', 'live', 2),
-(25, 'carousel_test', 'Carousel de test', '', 'content', '{"app":"jquery_carousel","template":"\\/jquery_carousel","param":{"direction":"horizontal","autoSlideInterval":"3000","dispItems":"1","paginationPosition":"inside","nextBtn":"<span>next<\\/span>","prevBtn":"<span>previous<\\/span>","btnsPosition":"inside","nextBtnInsert":"appendTo","prevBtnInsert":"prependTo","delayAutoSlide":"0","effect":"slide","slideEasing":"swing","animSpeed":"normal"}}', '2013-02-08 10:22:45', '2013-02-08 10:22:45', 'live', 0),
-(27, 'notes', '{"fr":"Discussion","en":"Discussion"}', '', 'content', '{"app":"content","template":"\\/notes\\/notes"}', '2013-03-11 01:20:51', '2014-05-31 04:51:02', 'live', 2),
-(28, 'login', '{"fr":"Login","en":"Login"}', '', 'site', '{"app":"form","template":"\\/login","param":{"key":"login"}}', '2013-04-07 15:55:22', '2014-05-31 04:50:04', 'live', 2),
-(30, 'workflow', '{"fr":"Workflow","en":"Workflow"}', '', 'content', '{"app":"content","template":"\\/workflow\\/workflow"}', '2014-05-31 04:47:16', '2014-05-31 04:47:16', 'live', 2),
-(31, 'lab', '{"fr":"Lab","en":"Lab"}', '', 'content', '{"app":"lab","template":"\\/lab"}', '2013-10-16 14:52:08', '2014-05-31 04:49:05', 'live', 2);
+INSERT INTO `section` (`id`, `key`, `title`, `zone`, `app`, `created`, `updated`, `status`, `owner`, `nodata`) VALUES
+(1, 'live', '{"en":"Live","fr":"Publiés"}', 'content', '{"app":"content","template":"\\/list\\/list","param":{"status":"live","system":""}}', '2014-05-31 04:51:15', '2014-12-20 15:01:58', 'live', '2', '{"en":"Nothing live. Sorry, nothing. Zero. Zilch.","fr":"Rien du tout. Rien de rien de rien."}'),
+(2, 'edit', '{"en":"Edit","fr":""}', 'content', '{"app":"content","template":"\\/edit\\/edit"}', '2013-10-16 14:52:08', '2015-02-08 23:49:16', 'live', '2', '{"en":"","fr":""}'),
+(3, 'php', '{"fr":"Apps","en":"Apps"}', 'content', '{"app":"content","template":"\\/doc\\/code"}', '2014-05-15 09:47:55', '2014-05-31 04:48:57', 'live', '2', ''),
+(4, 'doc', '{"fr":"Doc","en":"Doc"}', 'content', '{"app":"content","template":"\\/doc\\/doc"}', '2013-10-20 22:52:03', '2014-05-31 04:49:55', 'live', '2', ''),
+(5, 'splash', '{"fr":"Bienvenue","en":"Welcome"}', 'content', '{"app":"content","template":"\\/error\\/error"}', '2014-05-31 04:46:24', '2014-05-31 04:46:24', 'live', '2', ''),
+(6, 'system', '{"en":"System","fr":"Système"}', 'content', '{"app":"content","template":"\\/list\\/list","param":{"system":"1"}}', '2013-02-24 06:33:01', '2014-12-20 15:18:07', 'live', '2', '{"en":"Nothing reserved by the system.","fr":"Rien que le système ne se garde pour lui."}'),
+(7, 'asleep', '{"en":"Asleep","fr":"En sommeil"}', 'content', '{"app":"content","template":"\\/list\\/list","param":{"status":"asleep"}}', '2013-02-24 06:33:01', '2014-12-20 15:18:21', 'live', '2', '{"en":"Nothing sleeping here.","fr":"Rien en sommeil ici."}'),
+(8, 'draft', '{"en":"Draft","fr":"Brouillon"}', 'content', '{"app":"content","template":"\\/list\\/list","param":{"status":"draft"}}', '2013-02-24 06:33:01', '2014-12-20 15:18:35', 'live', '2', '{"en":"No drafts.","fr":"Aucun brouillon."}'),
+(9, 'timeline', '{"en":"Timeline","fr":"En direct"}', 'content', '{"app":"content","template":"\\/timeline\\/timeline"}', '2014-05-31 04:46:50', '2014-12-20 15:00:30', 'live', '2', '{"en":"As soon as something happens, we''ll let you know right here.","fr":"Dès qu''il se passera quelque chose, nous vous en parlerons ici."}'),
+(10, 'tree', '{"en":"Site tree","fr":"Arborescence"}', 'content', '{"app":"content","template":"\\/tree\\/tree"}', '2013-10-23 02:14:52', '2014-12-29 14:01:36', 'live', '2', '{"en":"You should ask for help, there should be at least one page in your site tree.","fr":"Vous devriez demander de l''aide. Il devrait avoir au moins une page dans votre arbo."}'),
+(17, 'zoning', '{"en":"Zoning","fr":"Zoning"}', 'content', '{"app":"content","template":"\\/zoning\\/zoning"}', '2014-05-31 04:47:01', '2015-01-24 13:38:24', 'live', '2', '{"en":"","fr":""}'),
+(19, 'appstore', '{"fr":"App store","en":"App store"}', 'content', '{"app":"content","template":"\\/appmanager\\/appmanager"}', '2014-05-31 04:50:45', '2014-05-31 04:50:45', 'live', '2', ''),
+(20, 'appini', '{"fr":"A propos","en":"About"}', 'content', '{"app":"content","template":"\\/appini\\/appini"}', '2013-10-20 22:53:07', '2014-05-31 04:49:44', 'live', '2', ''),
+(21, 'appconfig', '{"fr":"Configuration","en":"Configuration"}', 'content', '{"app":"content","template":"\\/appconfig\\/appconfig"}', '2014-05-31 04:47:28', '2014-05-31 04:47:28', 'live', '2', ''),
+(25, 'carousel_test', '{"en":"","fr":""}', 'content', '{"app":"","template":"\\/jquery_carousel","param":{"direction":"horizontal","autoSlideInterval":"3000","dispItems":"1","paginationPosition":"inside","nextBtn":"<span>next<\\/span>","prevBtn":"<span>previous<\\/span>","btnsPosition":"inside","nextBtnInsert":"appendTo","prevBtnInsert":"prependTo","delayAutoSlide":"0","effect":"slide","slideEasing":"swing","animSpeed":"normal"}}', '2013-02-08 10:22:45', '2014-12-20 15:19:16', 'live', 'human_2', '{"en":"","fr":""}'),
+(27, 'notes', '{"en":"Conversation","fr":"Discussion"}', 'content', '{"app":"content","template":"\\/notes\\/notes"}', '2013-03-11 01:20:51', '2014-12-20 15:01:12', 'live', '2', '{"en":"This conversation is missing your voice.","fr":"Cette conversation n''est rien sans vous."}'),
+(28, 'login', '{"fr":"Login","en":"Login"}', 'site', '{"app":"form","template":"\\/login","param":{"key":"login"}}', '2013-04-07 15:55:22', '2014-05-31 04:50:04', 'live', '2', ''),
+(30, 'workflow', '{"en":"Workflow","fr":"Workflow"}', 'content', '{"app":"content","template":"\\/workflow\\/workflow"}', '2014-05-31 04:47:16', '2014-12-20 15:18:56', 'live', '2', '{"en":"No workflow.","fr":"Aucun flux de publication."}'),
+(31, 'lab', '{"en":"Lab","fr":"Lab"}', 'content', '{"app":"lab","template":"\\/lab"}', '2013-10-16 14:52:08', '2014-12-20 14:59:42', 'live', '2', '{"en":"There is nothing in your lab. You should experiment more!","fr":"Il n''y a rien au labo. Vous devriez tester des trucs!"}');
 
 -- --------------------------------------------------------
 
@@ -678,7 +768,7 @@ CREATE TABLE `site` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `key` (`key`),
   KEY `status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `site`
@@ -686,7 +776,8 @@ CREATE TABLE `site` (
 
 INSERT INTO `site` (`id`, `key`, `title`, `created`, `updated`, `status`, `defaultversion`, `owner`) VALUES
 (1, 'admin', 'Grand Central', '2013-05-21 14:52:00', '2013-05-21 14:52:00', 'live', 1, 2),
-(2, 'ad17c94303b0df2ada3243c46e943577', '', '2014-07-03 14:44:15', '2014-07-03 14:44:15', 'trash', 0, 2);
+(2, 'ad17c94303b0df2ada3243c46e943577', '', '2014-07-03 14:44:15', '2014-07-03 14:44:15', 'trash', 0, 2),
+(3, '79a337257a49d8f874e9822212d45f35', '', '2014-08-07 02:48:28', '2014-08-07 02:48:28', 'trash', 0, 2);
 
 -- --------------------------------------------------------
 
@@ -768,9 +859,7 @@ INSERT INTO `_rel` (`item`, `itemid`, `key`, `rel`, `relid`, `position`) VALUES
 ('page', 6, 'section', 'section', 30, 3),
 ('page', 6, 'section', 'section', 27, 4),
 ('page', 6, 'sectiondefault', 'section', 2, 0),
-('section', 10, 'greenbutton', 'greenbutton', 11, 0),
 ('section', 20, 'greenbutton', 'greenbutton', 10, 0),
-('section', 1, 'greenbutton', 'greenbutton', 3, 0),
 ('page', 30, 'section', 'section', 28, 0),
 ('page', 37, 'section', 'section', 31, 0),
 ('page', 7, 'section', 'section', 3, 0),
@@ -783,21 +872,35 @@ INSERT INTO `_rel` (`item`, `itemid`, `key`, `rel`, `relid`, `position`) VALUES
 ('page', 1, 'child', 'page', 10, 2),
 ('page', 1, 'child', 'page', 11, 3),
 ('page', 1, 'section', 'section', 9, 0),
-('section', 2, 'greenbutton', 'greenbutton', 13, 0),
-('section', 2, 'greenbutton', 'greenbutton', 8, 1),
-('section', 2, 'greenbutton', 'greenbutton', 1, 2),
-('section', 2, 'greenbutton', 'greenbutton', 2, 3),
-('section', 2, 'greenbutton', 'greenbutton', 4, 4),
-('section', 2, 'greenbutton', 'greenbutton', 5, 5),
-('section', 2, 'greenbutton', 'greenbutton', 12, 6),
-('section', 2, 'greenbutton', 'greenbutton', 6, 7),
-('section', 2, 'greenbutton', 'greenbutton', 9, 8),
-('section', 2, 'greenbutton', 'greenbutton', 7, 9),
 ('page', 40, 'child', 'page', 27, 0),
 ('page', 41, 'child', 'page', 29, 0),
+('section', 1, 'greenbutton', 'greenbutton', 3, 0),
 ('section', 6, 'greenbutton', 'greenbutton', 14, 0),
 ('section', 7, 'greenbutton', 'greenbutton', 3, 0),
-('section', 8, 'greenbutton', 'greenbutton', 3, 0);
+('section', 8, 'greenbutton', 'greenbutton', 3, 0),
+('section', 30, 'greenbutton', 'greenbutton', 15, 0),
+('section', 10, 'greenbutton', 'greenbutton', 11, 0),
+('section', 17, 'greenbutton', 'greenbutton', 13, 0),
+('section', 17, 'greenbutton', 'greenbutton', 8, 1),
+('section', 17, 'greenbutton', 'greenbutton', 1, 2),
+('section', 17, 'greenbutton', 'greenbutton', 4, 3),
+('section', 17, 'greenbutton', 'greenbutton', 5, 4),
+('section', 17, 'greenbutton', 'greenbutton', 6, 5),
+('section', 17, 'greenbutton', 'greenbutton', 12, 6),
+('section', 17, 'greenbutton', 'greenbutton', 2, 7),
+('section', 17, 'greenbutton', 'greenbutton', 9, 8),
+('section', 17, 'greenbutton', 'greenbutton', 7, 9),
+('section', 2, 'greenbutton', 'greenbutton', 8, 0),
+('section', 2, 'greenbutton', 'greenbutton', 13, 1),
+('section', 2, 'greenbutton', 'greenbutton', 1, 2),
+('section', 2, 'greenbutton', 'greenbutton', 4, 3),
+('section', 2, 'greenbutton', 'greenbutton', 5, 4),
+('section', 2, 'greenbutton', 'greenbutton', 6, 5),
+('section', 2, 'greenbutton', 'greenbutton', 12, 6),
+('section', 2, 'greenbutton', 'greenbutton', 16, 7),
+('section', 2, 'greenbutton', 'greenbutton', 2, 8),
+('section', 2, 'greenbutton', 'greenbutton', 9, 9),
+('section', 2, 'greenbutton', 'greenbutton', 7, 10);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

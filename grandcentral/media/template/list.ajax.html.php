@@ -1,14 +1,7 @@
-<div class="dirs">
-	<ul>
-		<?php if (isset($directories)): ?>
-		<?php foreach ($directories as $dir): ?>
-		<li><a href="#" class="dir"><?= $dir->get_key() ?></a></li>
-		<?php endforeach ?>
-		<?php endif ?>
-	</ul>
-</div>
-<div class="files <?php if (!isset($files)): ?>empty<?php endif ?>">
-	<ul>
+<div class="dir <?php if (!isset($files)): ?>empty<?php endif ?>">
+
+	<h2><span class="rule"><?=$here?></span></h2>
+	<ul class="files">
 		<li class="upload">
 			<div id="holder">
 				<p>Drag & drop files from your computer to upload (yes you can)</p>
@@ -32,47 +25,48 @@
 		<?php endforeach ?>
 		<?php endif;?>
 	</ul>
-</div>
-<h2><span class="rule">Folders</span></h2>
-<div class="folder">
-	<ul>
-		<li class="add" data-path="<?=$here?>">
-			<div class="title">
-				<form method="post" accept-charset="utf-8">
-					<input type="text" placeholder="Name this folder">
-				</form>
-			</div>
-			<div class="button">+</div>
-		</li>
-		<?php if (isset($directories)): ?>
-		<?php foreach ($directories as $dir): ?>
-		<?php
-			$reg = $dir->get_root().'/*.jpg';
-			$files = glob($reg);
-			usort($files, function($file_1, $file_2)
-			{
-			    $file_1 = filectime($file_1);
-			    $file_2 = filectime($file_2);
-			    if($file_1 == $file_2)
-			    {
-			        return 0;
-			    }
-			    return $file_1 < $file_2 ? 1 : -1;
-			});
-		?>
-		<li>
-			<div class="title"><?= $dir->get_key() ?></div>
-			<ul class="preview">
-				<?php for ($i=0; $i < $maxPreviews ; $i++) : ?>
-					<?php if (isset($files[$i])): ?>
-						<li style="background-image:url('<?= media($files[$i])->thumbnail(100, null)->get_url() ?>')"></li>
-					<?php endif ?>
-				<?php endfor; ?>
-			</ul>
-		</li>
-		<?php endforeach ?>
-		<?php endif ?>
-	</ul>
+	
+	<h2><span class="rule">Folders</span></h2>
+	<div class="folders">
+		<ul>
+			<li class="add" data-path="<?=$here?>">
+				<div class="title">
+					<form method="post" accept-charset="utf-8">
+						<input type="text" placeholder="Name this folder">
+					</form>
+				</div>
+				<div class="button">+</div>
+			</li>
+			<?php if (isset($directories)): ?>
+			<?php foreach ($directories as $dir): ?>
+			<?php
+				$reg = $dir->get_root().'/*.jpg';
+				$files = glob($reg);
+				usort($files, function($file_1, $file_2)
+				{
+				    $file_1 = filectime($file_1);
+				    $file_2 = filectime($file_2);
+				    if($file_1 == $file_2)
+				    {
+				        return 0;
+				    }
+				    return $file_1 < $file_2 ? 1 : -1;
+				});
+			?>
+			<li class="folder">
+				<div class="title"><?= $dir->get_key() ?></div>
+				<ul class="preview">
+					<?php for ($i=0; $i < $maxPreviews ; $i++) : ?>
+						<?php if (isset($files[$i])): ?>
+							<li style="background-image:url('<?= media($files[$i])->thumbnail(100, null)->get_url() ?>')"></li>
+						<?php endif ?>
+					<?php endfor; ?>
+				</ul>
+			</li>
+			<?php endforeach ?>
+			<?php endif ?>
+		</ul>
+	</div>
 </div>
 
 <script type="text/javascript" charset="utf-8">

@@ -17,13 +17,12 @@
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
 }
-#mediaLibraryNav li.dir
+#mediaLibraryNav li.back
 {
-	position:absolute;
-	left:0;
 	width:70px;
+	float:left;
 }
-#mediaLibraryNav li.dir button
+#mediaLibraryNav li.back button
 {
 	width:100%;
 	height:35px;
@@ -49,62 +48,6 @@
 {
 	text-align:center;
 	margin:200px 0;
-}
-
-/********************************************************************************************/
-/* Directories 
-/********************************************************************************************/
-#mediaLibrary .dirs
-{
-	display:none;
-	position:absolute;
-	width:200px;
-	left:7px;
-	top:45px;
-	background:#fff;
-	-moz-border-radius:2px;
-	-webkit-border-radius:2px;
-	border-radius:2px;
-	box-shadow: 0 1px 3px rgba(34,25,25,0.3);
-	-moz-box-shadow: 0 1px 2px rgba(34,25,25,0.3);
-	-webkit-box-shadow: 0 1px 3px rgba(34,25,25,0.3);
-	z-index:100;
-	padding:1px;
-}
-#mediaLibrary .dirs:before
-{
-	position:absolute;
-	top:-10px;
-	left:7px;
-	content:'';
-	border-style: solid;
-	border-width: 10 10px 10px 10px;
-	border-width: 0 10px 10px 10px;
-	border-color: transparent transparent #fff transparent;
-}
-#mediaLibrary .dirs button
-{
-	margin:0 0 10px 0;
-}
-#mediaLibrary .dirs button:hover
-{
-}
-#mediaLibrary .dirs ul
-{
-	font-size:10px;
-}
-#mediaLibrary .dirs li
-{
-}
-#mediaLibrary .dirs li:hover
-{
-	background:#eee;
-}
-#mediaLibrary .dirs li a
-{
-	color:#999;
-	display:block;
-	padding:7px 10px;
 }
 
 /********************************************************************************************/
@@ -226,7 +169,7 @@ li.ui-draggable-dragging *
 }
 
 /* Upload */
-#mediaLibrary .files li.upload #holder
+#mediaLibrary .dir .files li.upload #holder
 {
 	border:1px dashed #ccc;
 	color:#444;
@@ -237,19 +180,19 @@ li.ui-draggable-dragging *
 	font-family: 'ProximaNova-Thin';
 	text-align:center;
 }
-#mediaLibrary .files:not(.empty) li.upload #holder
+#mediaLibrary .dir:not(.empty) .files li.upload #holder
 {
 	display:table-cell;
 	width:120px;
 	vertical-align: middle;
 	font-size:12px;
 }
-#mediaLibrary .files.empty li.upload
+#mediaLibrary .dir.empty .files li.upload
 {
 	float:none;
 	width:100%;
 }
-#mediaLibrary .files.empty li.upload #holder
+#mediaLibrary .dir.empty .files li.upload #holder
 {
 	padding:100px 40px;
 	height:auto;
@@ -274,12 +217,12 @@ li.ui-draggable-dragging *
 }
 
 /* Folders */
-#mediaLibrary .folder
+#mediaLibrary .folders
 {
 	clear:both;
 	padding-top:10px;
 }
-#mediaLibrary .folder>ul>li
+#mediaLibrary .folders>ul>li
 {
 	margin:0 0 10px 0;
 	width:47%;
@@ -289,22 +232,22 @@ li.ui-draggable-dragging *
 	height:85px;
 	cursor:pointer;
 }
-#mediaLibrary .folder>ul>li:hover
+#mediaLibrary .folders>ul>li:hover
 {
 	border-color: #419BF9;
 	-webkit-box-shadow: 0 0 4px #419BF9;
 	box-shadow: 0 0 4px #419BF9;
 }
-#mediaLibrary .folder>ul>li:nth-child(odd)
+#mediaLibrary .folders>ul>li:nth-child(odd)
 {
 	float:left;
 }
-#mediaLibrary .folder>ul>li:nth-child(even)
+#mediaLibrary .folders>ul>li:nth-child(even)
 {
 	float:right;
 }
-#mediaLibrary .folder>ul>li .title,
-#mediaLibrary .folder>ul>li .title input
+#mediaLibrary .folders>ul>li .title,
+#mediaLibrary .folders>ul>li .title input
 {
 	text-align:center;
 	line-height:35px;
@@ -314,20 +257,20 @@ li.ui-draggable-dragging *
 	text-transform:uppercase;
 	background-color:#fff;
 }
-#mediaLibrary .folder>ul>li .title input
+#mediaLibrary .folders>ul>li .title input
 {
 	padding:0;
 	background:transparent;
 }
-#mediaLibrary .folder>ul>li .title a
+#mediaLibrary .folders>ul>li .title a
 {
 	color:#000;
 }
-#mediaLibrary .folder>ul>li .preview
+#mediaLibrary .folders>ul>li .preview
 {
 	overflow:hidden;
 }
-#mediaLibrary .folder>ul>li .preview li
+#mediaLibrary .folders>ul>li .preview li
 {
 	float:left;
 	-moz-box-sizing:border-box;
@@ -339,18 +282,18 @@ li.ui-draggable-dragging *
     background-size: cover;
 }
 /* Add */
-#mediaLibrary .folder .add .button
+#mediaLibrary .folders .add .button
 {
 	font-size:50px;
 	line-height:80px;
 	color:#ddd;
 	text-align:center;
 }
-#mediaLibrary .folder .add:hover .button
+#mediaLibrary .folders .add:hover .button
 {
 	color:#419BF9;
 }
-#mediaLibrary .folder .add .title
+#mediaLibrary .folders .add .title
 {
 	display:none;
 }

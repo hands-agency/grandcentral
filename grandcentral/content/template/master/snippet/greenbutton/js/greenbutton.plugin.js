@@ -247,12 +247,14 @@
 				}, function()
 				{	
 					$site = $('#siteContent');
-					//	Trigger when iframe is loaded
-					title = $site.contents().find('title').html();
-					descr = $site.contents().find('meta[name="description"]').attr('content');
-					$preview = $('.adminContext[data-template="master/snippet/googlepreview"] .true');
-					$preview.find('.title a').html(title);
-					$preview.find('.descr a').html(descr);
+					$site.load(function()
+					{
+						title = $site.contents().find('title').html();
+						descr = $site.contents().find('meta[name="description"]').attr('content');
+						$preview = $('.adminContext[data-template="master/snippet/googlepreview"] .true');
+						$preview.find('.title a').html(title);
+						$preview.find('.descr a').html(descr);
+					});
 				});
 			});
 		}

@@ -27,7 +27,7 @@
 //	Some vars
 /********************************************************************************************/
 	$maxPreviews = 3;
-	$here = ($_POST['root'] == '/' && isset($_SESSION['user']['pref']['media']['currentroot'])) ? $_SESSION['user']['pref']['media']['currentroot'] : $_POST['root'];
+	$here = $_POST['root'];
 
 /********************************************************************************************/
 //	Save pref
@@ -39,6 +39,8 @@
 /********************************************************************************************/
 	$gallery = new dir(SITE_ROOT.'/media'.$here);
 	$gallery->get();
+//	Order files by last uploaded
+	$gallery->sortbydate();
 	
 	foreach ((array) $gallery->data as $value)
 	{
