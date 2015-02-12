@@ -1,3 +1,61 @@
+/* None of the context should be selectionnable */
+/* Otherwise we'd loose the focus in contenteditable */
+.adminContext[data-template="/field/link"]
+{
+	-webkit-user-select: none;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+}
+
+/* The tabs */
+.adminContext[data-template="/field/link"] .tabs
+{
+	border-bottom:1px solid #ccc;
+	margin:0 0 15px 0;
+	text-align:center;
+}
+.adminContext[data-template="/field/link"] .tabs>li
+{
+	display:inline-block;
+	padding: 5px 15px;
+	margin:0 10px 0 0;
+	font-family:"ProximaNova-Bold";
+	position:relative;
+	bottom:-1px;
+	border:1px solid #ccc;
+	border-bottom:none;
+	font-size:10px;
+	opacity:0.7;
+	cursor:pointer;
+	text-transform:uppercase;
+}
+.adminContext[data-template="/field/link"] .tabs li.on
+{
+	opacity:1;
+	background:#eee;
+}
+.adminContext[data-template="/field/link"] .tabs li:hover
+{
+	opacity:0.9;
+	background:#eee;
+}
+
+/* The panels */
+.adminContext[data-template="/field/link"] .panels
+{
+}
+.adminContext[data-template="/field/link"] .panels>div
+{
+}
+.adminContext[data-template="/field/link"] .panels>div.off
+{
+	display:none;
+}
+.adminContext[data-template="/field/link"] .panels>div.on
+{
+
+}
+
 /* External links */
 .adminContext[data-template="/field/link"] .external iframe
 {
