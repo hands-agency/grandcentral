@@ -16,7 +16,7 @@
 	
 	<div class="off" data-panel="external">
 		<!-- Stored in an iframe to keep the focus on the highlighted link...-->
-		<iframe id="externalLink" src="<?=$iframeLink?>"></iframe>
+		<iframe src="<?=$iframeLink?>"></iframe>
 		<button class="done" data-feathericon="&#xe094">Add link</button>
 	</div>
 	

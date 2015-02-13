@@ -30,7 +30,7 @@
 	initInternal = function(panel)
 	{
 	//	Send Internal link
-		$(document).on('click', '.adminContext[data-template="/field/link"] .internal [data-item] button', function()
+		$(document).on('click', '.adminContext[data-template="/field/link"] [data-panel="internal"] [data-item] button', function()
 		{
 			link = $(this).parent().data('item');
 			document.execCommand('CreateLink', false, link);
@@ -38,7 +38,7 @@
 		});
 	
 	//	Refine item lists
-		$('.adminContext[data-template="/field/link"] .internal input[type="search"]').each(function()
+		$('.adminContext[data-template="/field/link"] [data-panel="internal"] input[type="search"]').each(function()
 		{
 		//	Some vars
 			$input = $(this);
@@ -62,10 +62,10 @@
 	{
 		
 	//	Send external link
-		$(document).on('click', '.adminContext[data-template="/field/link"] .external button.done', function()
+		$(document).on('click', '.adminContext[data-template="/field/link"] [data-panel="external"] button.done', function()
 		{
 		//	Get the value from the iframe
-			link = $('#externalLink').contents().find('input').val();
+			link = $(this).parent().find('iframe').contents().find('input').val();
 		
 		//	Good link
 			if(link && link.length > 0)
