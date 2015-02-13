@@ -254,7 +254,7 @@
 		);
 		
 	//	Recenter the panel after transition
-		$('#adminContent').bind('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function()
+		$('#adminContent').one('transitionend', function()
 		{
 			$('#tabs li a'+pseudo).parent().trigger('click');
 		});
@@ -269,7 +269,7 @@
 		$('.adminContext[data-template="'+template+'"]').remove();
 		
 	//	Recenter the panel after transition
-		$('#adminContent').bind('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function()
+		$('#adminContent').one('transitionend', function()
 		{
 			$('#tabs li a'+pseudo).parent().trigger('click');
 		});
