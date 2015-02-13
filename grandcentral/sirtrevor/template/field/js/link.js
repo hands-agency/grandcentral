@@ -96,14 +96,15 @@
 				$(document).on('click', '.adminContext[data-template="/field/link"] #mediaLibrary a.file', function()
 				{
 					url = $(this).parent().data('url');
-					console.log(url);
 				//	Send link
 					document.execCommand('CreateLink', false, url);
 					closeContext(template);
 				});
 			}
 		});
-		
 	}
+	
+//	Open one by default
+	$('.adminContext .tabs li[data-tab="internal"]').trigger('click');
 	
 })(jQuery); 
