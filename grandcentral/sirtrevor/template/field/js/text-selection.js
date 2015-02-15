@@ -25,7 +25,76 @@ function restoreSelection(range) {
     }
 }
 
-var selRange;
+// function getUnselectedText(containerEl) {
+//     var sel, range, tempRange, before = "", after = "";
+//     if (typeof window.getSelection != "undefined") {
+//         sel = window.getSelection();
+//         if (sel.rangeCount) {
+//             range = sel.getRangeAt(0);
+//         } else {
+//             range = document.createRange();
+//             range.collapse(true);
+//         }
+//         tempRange = document.createRange();
+//         tempRange.selectNodeContents(containerEl);
+//         tempRange.setEnd(range.startContainer, range.startOffset);
+//         before = tempRange.toString();
+// 
+//         tempRange.selectNodeContents(containerEl);
+//         tempRange.setStart(range.endContainer, range.endOffset);
+//         after = tempRange.toString();
+// 
+//         tempRange.detach();
+//     } else if ( (sel = document.selection) && sel.type != "Control") {
+//         range = sel.createRange();
+//         tempRange = document.body.createTextRange();
+//         tempRange.moveToElementText(containerEl);
+//         tempRange.setEndPoint("EndToStart", range);
+//         before = tempRange.text;
+// 
+//         tempRange.moveToElementText(containerEl);
+//         tempRange.setEndPoint("StartToEnd", range);
+//         after = tempRange.text;
+//     }
+//     return {
+//         before: before,
+//         after: after
+//     };
+// }
+
+var getSelectedNode = function() {
+    var node,selection;
+    if (window.getSelection) {
+      selection = getSelection();
+      node = selection.anchorNode;
+    }
+    if (!node && document.selection) {
+        selection = document.selection
+        var range = selection.getRangeAt ? selection.getRangeAt(0) : selection.createRange();
+        node = range.commonAncestorContainer ? range.commonAncestorContainer :
+               range.parentElement ? range.parentElement() : range.item(0);
+    }
+    if (node) {
+      return (node.nodeName == "#text" ? node.parentNode : node);
+    }
+};
+
+function getCurrentHref()
+{
+	var node = getSelectedNode();
+	var $node = $(node);
+	// console.log($node[0].tagName)
+	// console.log(sirtrevorSelRange)
+	
+	if ($node[0].tagName == 'A')
+	{
+		sirtrevorHref = $node.attr('href');
+		// console.log(sirtrevorHref)
+	};
+}
+
+var sirtrevorSelRange;
+var sirtrevorHref;
 
 // function insertTextAtCursor(text) {
 //     var sel, range, html;

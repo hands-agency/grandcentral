@@ -68,7 +68,8 @@ jQuery(document).ready(function()
 				template:'/field/link',
 			});
 			// save text currently selected
-			selRange = saveSelection();
+			sirtrevorSelRange = saveSelection();
+			sirtrevorHref = getCurrentHref();
 		},
 		
 		isActive: function()
