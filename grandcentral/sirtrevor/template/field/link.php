@@ -29,9 +29,21 @@
 /********************************************************************************************/
 //	Iframe Link (Worst.Method.Ever)
 	$iframeLink = '/grandcentral/sirtrevor/template/field/link.html';
+	
+	$defaultPanel = 'internal';
+	
+/********************************************************************************************/
+//	Get some work done
+/********************************************************************************************/
 //	Get the things you can link to
 	$items = i('item', array(
 		'hasurl' => true,
 	//	'order()' => 'title',
 	), 'site');
+	
+//	Save pref and open the last panel
+	$panel = (isset($_SESSION['user']['pref']['sirtrevor']['link'])) ? $_SESSION['user']['pref']['sirtrevor']['link'] : $defaultPanel;
+	$_APP->bind_code('script', '
+		$(\'.adminContext .tabs li[data-tab="'.$panel.'"]\').trigger(\'click\');
+	');
 ?>

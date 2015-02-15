@@ -4,7 +4,7 @@
 	template = '/field/link';
 	
 //	Tabs
-	$(document).on('mousedown', '.adminContext .tabs li', function()
+	$(document).on('click', '.adminContext .tabs li', function()
 	{
 	//	Some vars
 		$admincontext = $(this).parents('.adminContext');
