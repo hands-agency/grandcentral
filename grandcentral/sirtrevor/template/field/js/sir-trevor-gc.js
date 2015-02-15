@@ -67,6 +67,8 @@ jQuery(document).ready(function()
 				app:'sirtrevor',
 				template:'/field/link',
 			});
+			// save text currently selected
+			selRange = saveSelection();
 		},
 		
 		isActive: function()

@@ -36,7 +36,11 @@
 			document.execCommand('CreateLink', false, link);
 			closeContext(template);
 		});
-	
+		// restore selection when blur input
+		$('.adminContext').on('blur', 'input[type="search"]', function()
+		{
+			restoreSelection(selRange);
+		});
 	//	Refine item lists
 		$('.adminContext[data-template="/field/link"] [data-panel="internal"] input[type="search"]').each(function()
 		{
