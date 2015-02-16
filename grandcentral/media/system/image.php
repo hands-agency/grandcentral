@@ -127,7 +127,37 @@ class image extends media
 		}
 	}
     
-    public function square($width)
+    public function crop($width, $height)
+    {
+        $app = app('cache');
+        $root = $app->get_templateroot('site').'/media/square_w'.$width.'_h'.$height;
+        
+        $file = $root.'/'.$this->get_key();    
+        if (!is_dir($file))
+        {
+            $thumb = new image($file);
+        //    création du thumbnail
+            if (!$thumb->exists() || $thumb->get_created() < $this->get_created())
+            {
+                $this->copy($root);
+                $thumb = new image($root.'/'.$this->get_key());
+                
+                if($this->get_width()>$this->get_height())
+                    $thumb->resize(0,$height, true);
+                else
+                    $thumb->resize($width,0, true);
+                
+                
+                $thumb->_crop($width,$height,$width,$height);
+                $thumb->save(true);
+                
+            }
+        //    Return
+            return $thumb;
+        }
+    }
+
+	public function square($width)
     {
         $app = app('cache');
         $root = $app->get_templateroot('site').'/media/square_w'.$width;
@@ -148,7 +178,7 @@ class image extends media
                     $thumb->resize($width,0, true);
                 
                 
-                $thumb->crop($width,$width,$width,$width);
+                $thumb->_crop($width,$width,$width,$width);
                 $thumb->save(true);
                 
             }
@@ -157,7 +187,7 @@ class image extends media
         }
     }
 	
-    public function crop($src_w,$src_h,$dst_w,$dst_h,$src_x=false,$src_y=false)
+    private function _crop($src_w,$src_h,$dst_w,$dst_h,$src_x=false,$src_y=false)
     {
         
         $format = $this->get_width()/$this->get_height();
@@ -219,6 +249,8 @@ class image extends media
  */
 	public function resize($width, $height, $keep_proportions = true)
 	{
+		set_time_limit(10);
+		
 		if (!$this->exists() || (empty($width) && empty($height))) return $this;
 		$this->get();
 	    
