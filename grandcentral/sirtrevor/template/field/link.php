@@ -27,14 +27,34 @@
 /********************************************************************************************/
 //	Some vars
 /********************************************************************************************/
+	$defaultPanel = 'internal';
+	$currentLink = isset($_POST['link']) ? $_POST['link'] : null;
 //	Iframe Link (Worst.Method.Ever)
 	$iframeLink = '/grandcentral/sirtrevor/template/field/link.html';
-	
-	$defaultPanel = 'internal';
 	
 /********************************************************************************************/
 //	Get some work done
 /********************************************************************************************/
+//	Can we guess the current link type ?
+	if ($currentLink)
+	{
+		switch (true)
+		{
+		//	Internal link
+			case $currentLink{0} == '[' :
+				$currentLinkType = 'internal';
+				break;
+		//	Media
+			case strstr($currentLink, app('media')->get_templateurl('site')) :
+				$currentLinkType = 'media';
+				break;
+		//	External link
+			default:
+				$currentLinkType = 'external';
+				break;
+		}
+	}
+	
 //	Get the things you can link to
 	$items = i('item', array(
 		'hasurl' => true,
@@ -44,6 +64,6 @@
 //	Save pref and open the last panel
 	$panel = (isset($_SESSION['user']['pref']['sirtrevor']['link'])) ? $_SESSION['user']['pref']['sirtrevor']['link'] : $defaultPanel;
 	$_APP->bind_code('script', '
-		$(\'.adminContext .tabs li[data-tab="'.$panel.'"]\').trigger(\'click\');
+		$(\'.adminContext .tabs li[data-tab="'.$panel.'"]\').trigger(\'mousedown\');
 	');
 ?>

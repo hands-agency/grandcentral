@@ -1,3 +1,9 @@
+<?php if ($currentLink): ?>
+<div class="currentlink">
+	Current <?=$currentLinkType?> link : <?=$currentLink?>
+</div>
+<?php endif ?>
+
 <ul class="tabs">
 	<li data-tab="internal" class="off">Internal</li>
 	<li data-tab="external" class="off">External</li>

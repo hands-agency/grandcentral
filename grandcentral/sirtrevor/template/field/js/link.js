@@ -30,7 +30,7 @@
 	initInternal = function(panel)
 	{
 	//	Send Internal link
-		$(document).on('click', '.adminContext[data-template="/field/link"] [data-panel="internal"] [data-item] button', function()
+		$(document).on('mousedown', '.adminContext[data-template="/field/link"] [data-panel="internal"] [data-item] button', function()
 		{
 			link = $(this).parent().data('item');
 			document.execCommand('CreateLink', false, link);

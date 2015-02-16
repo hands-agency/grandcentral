@@ -61,15 +61,16 @@ jQuery(document).ready(function()
 		
 		onClick: function()
 		{
+		//	console.log(getCurrentHref());
 		//	Open context
 			openContext(
 			{
 				app:'sirtrevor',
 				template:'/field/link',
+				link:getCurrentHref(),
 			});
 			// save text currently selected
 			sirtrevorSelRange = saveSelection();
-			sirtrevorHref = getCurrentHref();
 		},
 		
 		isActive: function()

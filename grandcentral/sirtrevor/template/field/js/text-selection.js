@@ -83,14 +83,14 @@ function getCurrentHref()
 {
 	var node = getSelectedNode();
 	var $node = $(node);
-	// console.log($node[0].tagName)
-	// console.log(sirtrevorSelRange)
+	// console.log($node[0].tagName);
+	// console.log(sirtrevorSelRange);
 	
 	if ($node[0].tagName == 'A')
 	{
-		sirtrevorHref = $node.attr('href');
-		// console.log(sirtrevorHref)
+		return $node.attr('href');
 	};
+	return null;
 }
 
 var sirtrevorSelRange;
