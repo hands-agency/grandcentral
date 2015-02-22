@@ -165,9 +165,11 @@
 		{
 		//	Masonry					
 			var container = $element.find('.dir:not(.empty) .files');
-
+			
 			container.imagesLoaded(function()
 			{
+
+				if (container.data('masonry')) container.masonry('destroy');
 				container.masonry(
 				{
 					itemSelector : 'li',
@@ -177,7 +179,7 @@
 			});
 
 		//	Make li draggable
-			$element.find('.dir:not(.empty) ul li:not(.upload)').draggable(
+			$element.find('.dir:not(.empty) .files li:not(.upload)').draggable(
 			{
 				revert: true,
 				revertDuration: 100,

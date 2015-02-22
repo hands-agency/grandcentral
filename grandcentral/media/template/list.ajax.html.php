@@ -108,10 +108,10 @@ $(document).ready(function()
 	function appendFile(file)
 	{
 	//	Some vars
-		$container = $('#mediaLibrary .files ul');
-		$upload = $('#mediaLibrary .files ul li.upload');
+		$container = $('#mediaLibrary ul.files');
+		$upload = $('#mediaLibrary ul.files li.upload');
 		media = $('<li class="new" data-info="'+file.type+' • '+(file.size ? (file.size/1024|0)+' K' : '')+'"><a href="#"><span class="preview"></span><span class="title">' + file.name + '</span></a></li>');
-			
+	
 	//	Preview images
 		if (tests.filereader === true)
 		{
@@ -130,15 +130,9 @@ $(document).ready(function()
 				//	Add the image preview
 					media.find('.preview').html(image);
 				}
-				
-			//	Remasonry
-				if ($container.parents('.files').hasClass('empty'))
-				{
-				//	Say the media lib is not empty anymore
-					$container.parents('.files').removeClass('empty');
-					$('#mediaLibrary').data('mediaGallery').initList();
-				}
-				else $container.masonry( 'prepended', media );
+			//	Re init Gallery (drag & masonry)
+				$('#mediaLibrary').data('mediaGallery').initList();
+			
 			};
 			reader.readAsDataURL(file);
 		}
