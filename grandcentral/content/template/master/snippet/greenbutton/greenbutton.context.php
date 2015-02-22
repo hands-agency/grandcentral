@@ -13,7 +13,7 @@
  * @package		The package
  * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
  * @author		Sylvain Frigui <sf@cafecentral.fr>
- * @copyright	Copyright © 2004-2013, Café Central
+ * @copyright	Copyright © 2004-2013, Grand Central
  * @license		http://www.cafecentral.fr/fr/licences GNU Public License
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
@@ -26,7 +26,7 @@
 /********************************************************************************************/
 //	Some vars
 /********************************************************************************************/
-	$sectionid = (isset($_POST['sectionid'])) ? $_POST['sectionid'] : null;
+	$sectionkey = (isset($_POST['sectionkey'])) ? $_POST['sectionkey'] : null;
 	$item = (isset($_GET['item'])) ? $_GET['item'] : null;
 	$id = (isset($_GET['id'])) ? $_GET['id'] : null;
 	$handled_item = (isset($item) && isset($id)) ? i($item, $id, $_SESSION['pref']['handled_env']) : null;
@@ -35,7 +35,7 @@
 /********************************************************************************************/
 //	Fetch the actions
 /********************************************************************************************/
-	$actions = ($sectionid) ? i('section', $sectionid, 'admin')['greenbutton']->unfold() : null;
+	$actions = ($sectionkey) ? i('section', $sectionkey, 'admin')['greenbutton']->unfold() : null;
 	
 /********************************************************************************************/
 //	Some filters

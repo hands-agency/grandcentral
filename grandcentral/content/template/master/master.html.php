@@ -44,10 +44,35 @@
 					<?php foreach($sections as $section) : ?>
 					<?php $app = $section['app'] ?>
 					<?php $prefDisplay = isset($_SESSION['user']['pref'][$section['key']->get()]['display']) ? $_SESSION['user']['pref'][$section['key']]['display'] : 'inmasonry' ?>
-					<?php $greenbutton = ($section['greenbutton']->get()) ? htmlspecialchars(i($section['greenbutton']->get()[0], null, 'admin')->json(), ENT_QUOTES) : null ?>
+					<?php
+						$dataCallback = null;
+						$callback = null;
+
+					//	Take greenbutton from pref...
+						if (isset($_SESSION['user']['pref']['greenbutton'][$section['key']->get()]))
+						{
+							$pref = $_SESSION['user']['pref']['greenbutton'][$section['key']->get()];
+						//	Get a possible callback (like "back" or "reach")
+							if (strstr($pref, '_')) 
+								list($action, $callback) = explode('_', $pref);
+							else $action = $pref;
+						//	Get the main action
+							$greenbutton = i('greenbutton', $action, 'admin');
+						//	Add the callback
+							if ($callback) $dataCallback = 'data-callback="'.$callback.'"';
+						}
+					//	Or use the first one
+						else if ($section['greenbutton']->get())
+						{
+							$greenbutton = i($section['greenbutton']->get()[0], null, 'admin');
+						}
+						else $greenbutton = null;
+					//	Jsonize
+						if ($greenbutton) $greenbutton = htmlspecialchars($greenbutton->json(), ENT_QUOTES)
+					?>
 					<li style="width:<?=$sectionWidth?>">
 						<span class="lock" data-feathericon="&#xe007"></span>
-						<section id="section_<?= $section['key'] ?>" class="virgin" data-pref-display="<?=$prefDisplay?>" data-app="<?= $app['app'] ?>" data-template="<?= $app['template'] ?>" data-greenbutton='<?= $greenbutton ?>' data-nodata="<?=$section['nodata']?>"></section>
+						<section id="section_<?= $section['key'] ?>" class="virgin" data-key="<?= $section['key'] ?>" <?=$dataCallback?> data-pref-display="<?=$prefDisplay?>" data-app="<?= $app['app'] ?>" data-template="<?= $app['template'] ?>" data-greenbutton='<?= $greenbutton ?>' data-nodata="<?=$section['nodata']?>"></section>
 					</li>
 					<?php endforeach; ?>
 				</ul>

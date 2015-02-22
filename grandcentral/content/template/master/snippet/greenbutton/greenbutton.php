@@ -13,7 +13,7 @@
  * @package		The package
  * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
  * @author		Sylvain Frigui <sf@cafecentral.fr>
- * @copyright	Copyright © 2004-2013, Café Central
+ * @copyright	Copyright © 2004-2013, Grand Central
  * @license		http://www.cafecentral.fr/fr/licences GNU Public License
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
@@ -24,7 +24,12 @@
 	$_APP->bind_script('master/snippet/greenbutton/js/greenbutton.plugin.js');
 	$_APP->bind_script('master/snippet/greenbutton/js/greenbutton.js');
 	$_APP->bind_css('master/snippet/greenbutton/css/greenbutton.css');
-	
+
+/********************************************************************************************/
+//	Some vars
+/********************************************************************************************/
+
+
 /********************************************************************************************/
 //	Prepare the labels
 /********************************************************************************************/

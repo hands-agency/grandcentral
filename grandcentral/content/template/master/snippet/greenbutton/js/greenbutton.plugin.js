@@ -36,14 +36,25 @@
 			//	If you have choices
 				if (dflt)
 				{
+					$('#greenbutton').show();
+				//	Label and action
 					label = dflt['title'][$('html').attr('lang')];
+					action = dflt['key'];
+				//	Add possible callback
+					if ($('#section_'+section).data('callback'))
+					{
+						callback = $('#section_'+section).data('callback');
+						label = label+' + '+callback;
+						action = action+'_'+callback;
+					}
+				//	Go
 					$('#greenbutton-default')
 						.html(label)
-						.data('action', dflt['key']);
+						.data('action', action);
 				}
 			//	No choices
-			//	else $('#greenbutton').hide();
-				else console.log('No choices for green button, not good');
+				else $('#greenbutton').hide();
+			//	else console.log('No choices for green button, not good');
 			});
 
 		//	Trigger main action
@@ -57,13 +68,13 @@
 			{
 				$(this).toggleClass('on');
 			//	Fetch the right section
-				sectionid = $('#adminContent section.active').attr('id').replace('section_', '');
+				sectionkey = $('#adminContent section.active').data('key');
 			//	Open the context
 				openContext(
 				{
 					app:'content',
 					template:'master/snippet/greenbutton/greenbutton.context',
-					sectionid:sectionid,
+					sectionkey:sectionkey,
 				});
 			});
 
@@ -71,11 +82,25 @@
 			$(document).on('click', '#greenbutton-default, .greenbutton-choices a', function()
 			{
 				method = $(this).data('action');
+				
 			//	Create & execute the method
 				var fn = plugin[method];
 				fn();
+				
 			//	Save as the prefered method
-				console.log('save '+method+' as prefered method !');
+				sectionkey = $('#adminContent section.active').data('key');
+				pref = ['greenbutton', sectionkey, method];
+				$.api(
+				{
+					key:'save_pref',
+					mime:'json',
+					pref:pref
+				},{
+					done:function(msg)
+					{
+						console.log(msg);
+					}
+				});
 			});
 			
 		//	Prevent regular submit

@@ -1,6 +1,6 @@
 <?php
 /**
- * The generic item of Café Central
+ * The generic item of Grand Central
  *
  * @package  Core
  * @author   Sylvain Frigui <sf@cafecentral.fr>
@@ -92,11 +92,12 @@ class itemPage extends _items
 		//	si la page n'existe pas, on éclate l'url et on fait une recherche aproximative
 		if (!$this->exists())
 		{
-			$hash = mb_substr(URLR, 0, mb_strrpos(URLR, '/'));
+			$hash = mb_substr(URLR, 0, mb_strpos(URLR, '/', 1));
 			// chargement de la page de home
 			$this->get_by_url($hash);
 
-			if (!$this->exists() OR ($this->exists() && !$this->is_reader()))
+			if (!$this->exists())
+//			if (!$this->exists() OR ($this->exists() && !$this->is_reader()))
 			{
 				$this->get_by_url('/404');
 			}

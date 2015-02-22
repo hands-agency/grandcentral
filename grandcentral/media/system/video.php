@@ -1,6 +1,6 @@
 <?php
 /**
- * The group item of Café Central
+ * The group item of Grand Central
  * 
  * @package		Core
  * @author		Sylvain Frigui <sf@cafecentral.fr>

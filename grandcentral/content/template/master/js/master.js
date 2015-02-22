@@ -41,14 +41,14 @@
 				context:this,
 				data:plugin.settings,
 			})
-			.done(function(html)
+			.done(function(result)
 			{
 			//	Return HTML
-				if ($element.length) $element.html(html);
+				if ($element.length) $element.html(result);
 			//	Move <script> and <link> up to the header
 				$element.find('script, link').appendTo('head');
 			//	Execute callback (make sure the callback is a function)
-				if ((typeof(callbacks) != 'undefined') && (typeof(callbacks['done']) == "function")) callbacks['done'].call($element, html);	
+				if ((typeof(callbacks) != 'undefined') && (typeof(callbacks['done']) == "function")) callbacks['done'].call($element, result);	
 			})
 			.fail(function( jqXHR, textStatus )
 			{
@@ -77,13 +77,76 @@
 })(jQuery);
 
 /*********************************************************************************************
-/**	* Close all the shy elements when clicking outside
+/**	* Grand Central api call (everything goes in POST, but current GET is rerooted)
  	* @author	mvd@cafecentral.fr
 **#******************************************************************************************/
-	$(document).click(function(e)
+(function($)
+{	
+//	Here we go!
+	$.api = function(options, callbacks, element)
 	{
-		$('.shy').hide('fast');
-	});
+	//	Use "plugin" to reference the current instance of the object
+		var plugin = this;
+	//	this will hold the merged default, and user-provided options
+		plugin.settings = {}
+		var $element = $(element), // reference to the jQuery version of DOM element
+		element = element;	// reference to the actual DOM element
+		
+	//	Plugin's variables
+		var vars = {
+		}
+
+	//	The "constructor"
+		plugin.init = function()
+		{
+		//	the plugin's final properties are the merged default and user-provided options (if any)
+			plugin.settings = $.extend({}, vars, options);
+
+		//	Some vars
+			key = (typeof(plugin.settings.key) != 'undefined') ? plugin.settings.key : console.warn('You need an API key');
+			mime = (typeof(plugin.settings.mime) != 'undefined') ? plugin.settings.mime : 'json';
+			async = (typeof(plugin.settings.async) != 'undefined') ? plugin.settings.async : true;
+			url = ADMIN_URL+'/api.'+mime;
+			
+		//	Call
+			$.ajax(
+			{
+				type:'GET',
+				url:url,
+				async:async,
+				context:this,
+				data:plugin.settings,
+			})
+			.done(function(result)
+			{
+			//	Execute callback (make sure the callback is a function)
+				if ((typeof(callbacks) != 'undefined') && (typeof(callbacks['done']) == "function")) callbacks['done'].call($element, result);	
+			})
+			.fail(function( jqXHR, textStatus )
+			{
+			//	console.log( "Request failed: " + textStatus );
+				console.log( "Request failed: " + jqXHR.responseText );
+			});
+			
+		}
+
+	//	Fire up the plugin!
+		plugin.init();
+	}
+
+//	Add the plugin to the jQuery.fn object
+	$.fn.api = function(options, callbacks)
+	{
+		return this.each(function()
+		{
+		//	if (undefined == $(this).data('api'))
+		//	{
+				var plugin = new $.api(options, callbacks, this);
+				$(this).data('api', plugin);
+		//	}
+		});
+	}
+})(jQuery);
 
 /*********************************************************************************************
 /**	* Open notes from the action list

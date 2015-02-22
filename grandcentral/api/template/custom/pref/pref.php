@@ -11,30 +11,29 @@
  * </pre>
  * 
  * @package		The package
- * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
- * @author		Sylvain Frigui <sf@cafecentral.fr>
- * @copyright	Copyright © 2004-2013, Café Central
+ * @author		Michaël V. Dandrieux <mvd@eranos.fr>
+ * @copyright	Copyright ©2014 Eranos
  * @license		http://www.cafecentral.fr/fr/licences GNU Public License
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
  */
 /********************************************************************************************/
-//	DEBUG
-/********************************************************************************************/
-//	sentinel::debug('Debug ('.__FILE__.' line '.__LINE__.')', $_GET);
-	
-/********************************************************************************************/
-//	Headers
-/********************************************************************************************/
-	header('Cache-Control: no-cache'); // recommended to prevent caching of event data.
-
-/********************************************************************************************/
-//	This API has the right content-type. Now Lets find the content
-/********************************************************************************************/
 //	Some vars
-	$app = $_GET['app'];
-	$key = $_GET['template'];
+/********************************************************************************************/	
+//	Test the api key
+//	if (!$_GET['apikey']) trigger_error('You should have an apikey in your POST', E_USER_ERROR);
+//	if (i('machine', $_GET['apikey'])->exists() === false) trigger_error('Sorry, this apikey does not exist', E_USER_ERROR);
+//	api vars
+	if (isset($_GET['pref'])) $pref = $_GET['pref']; else trigger_error('You should have a pref in your POST', E_USER_ERROR);
 	
-//	Call the right app
-	echo app($app, $key);
+/********************************************************************************************/
+//	Save the pref
+/********************************************************************************************/
+	$value = array($pref[1] => $pref[2]);
+	$_SESSION['user']['pref'][$pref[0]] = $value;
+	
+/********************************************************************************************/
+//	Return
+/********************************************************************************************/
+	$return = 'success';
 ?>

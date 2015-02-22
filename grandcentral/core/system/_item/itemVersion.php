@@ -1,6 +1,6 @@
 <?php
 /**
- * The generic item of Café Central
+ * The generic item of Grand Central
  *
  * @package  Core
  * @author   Sylvain Frigui <sf@cafecentral.fr>
