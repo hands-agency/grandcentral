@@ -40,7 +40,7 @@ class adminItemForm
 	//	recherche de l'item à injecter dans le form
 		$this->item = $item;
 	//	Attr à sauter
-		$this->skip = $skip;
+		$this->skip = empty($skip) ? array() : $skip;
 	}
 /**
  * Mettre en conformité le formulaire et la structure d'un item
