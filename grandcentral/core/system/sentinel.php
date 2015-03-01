@@ -13,7 +13,7 @@
  * @package		The package
  * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
  * @author		Sylvain Frigui <sf@cafecentral.fr>
- * @copyright	Copyright © 2004-2013, Grand Central
+ * @copyright	Copyright © 2004-2013, Café Central
  * @license		http://www.cafecentral.fr/fr/licences GNU Public License
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
@@ -153,7 +153,18 @@ class sentinel
 		}
 	//	Write down the error
 		$error = null;
-		foreach($param as $key => $value) $error.= '<li><strong>'.$key.'</strong> : '.$value.'</li>';
+		
+		$contentType = class_exists('master', false) ? master::get_content_type() : null;
+		if ($contentType == 'html')
+		{
+			foreach($param as $key => $value) $error.= '<li><strong>'.$key.'</strong> : '.$value.'</li>';
+		}
+		else
+		{
+			unset($param['trace']);
+			foreach($param as $key => $value) $error.= $key." : ".$value."\n";
+		}
+		
 		
 	//	Throw error
 		sentinel::debug($type, $error, $type);
@@ -231,18 +242,18 @@ class sentinel
 	public static function debug($title, $descr, $flag = 'debug')
 	{
 	//	Display varies depending on content type
-	//	$contentType = master::get_content_type();
-		$contentType = 'html';
+		$contentType = class_exists('master', false) ? master::get_content_type() : null;
+		// $contentType = 'html';
 		
 		switch ($contentType)
 		{
 		//	Json
-			case 'json':
-				echo $flag.': '.$title.' ('.$descr.')';
-				break;
+			// case 'json':
+			// 	echo $flag.': '.$title.' ('.$descr.')';
+			// 	break;
 		
 		//	HTML & more
-			default:
+			case 'html':
 			//	A little bit of fancy styling
 				if (!self::$debugcss)
 				{
@@ -402,6 +413,11 @@ class sentinel
 					<div class="gc-sentinel-title">'.$title.'</div>
 					<div class="gc-sentinel-descr">'.print_r($descr, true).'</div>
 				</div>';
+				break;
+				
+			//	default
+			default:
+				echo $title." : ".$descr."\n";
 				break;
 		}
 		
