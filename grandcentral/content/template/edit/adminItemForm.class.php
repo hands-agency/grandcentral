@@ -184,6 +184,7 @@ class adminItemForm
 			case $attr['type'] == 'i18n':
 				$field['type'] = 'i18n';
 				$field['field'] = $attr['field'];
+				$field['attr'] = $attr['attr'];
 				break;
 		//	array
 			case $attr['type'] == 'array':

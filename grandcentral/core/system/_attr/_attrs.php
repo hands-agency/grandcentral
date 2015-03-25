@@ -195,6 +195,19 @@ abstract class _attrs
 			'label' => 'Required',
 			'labelbefore' => true
 		);
+		
+		$available = registry::get_class('field');
+		//	Get the properties for each attr
+		foreach ($available as $field) $fields[$field] = mb_substr(mb_strtolower($field), 5);
+		//	Somes specifics for this attr
+		$params['adminField'] = array(
+			'placeholder' => '...',
+			'name' => 'field',
+			'type' => 'select',
+			'label' => 'Default field',
+			'values' => $fields,
+			'valuestype' => 'array'
+		);
 	//	Return
 		return $params;
 	}
