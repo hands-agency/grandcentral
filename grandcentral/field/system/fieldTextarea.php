@@ -23,6 +23,22 @@ class fieldTextarea extends _fields
 		parent::__construct($name, $attrs);
 	}
 /**
+ * Affecte un maximum requis au champ
+ * 
+ * @param	string	le maximum
+ * @access	public
+ */
+	public function set_max($value)
+	{
+		if (ctype_digit((string)$value) && $value > 0)
+		{
+			$this->max = $value;
+			$this->attrs['maxlength'] = $value;
+		}
+		
+		return $this;
+	}
+/**
  * Affecte une valeur au champ
  * 
  * @param	mixed	la valeur

@@ -167,7 +167,7 @@ class sentinel
 		
 		
 	//	Throw error
-		sentinel::debug($type, $error, $type);
+		if (SITE_DEBUG === true) sentinel::debug($type, $error, $type);
 	//	...end perhaps kill the script
 		if ($die === true) die();
 	}

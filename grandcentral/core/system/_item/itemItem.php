@@ -82,7 +82,7 @@ class itemItem extends _items
 			$attrs['key']['key'] = 'key';
 			$attrs['key']['type'] = 'key';
 		}
-	//	add Title attribute
+		//	add Title attribute
 		// if (!isset($attrs['title']))
 		// {
 		// 	$attrs['title'] = array(
@@ -93,7 +93,7 @@ class itemItem extends _items
 		// 	);
 		// }
 	
-	//	add Url attribute
+		//	add Url attribute
 		if (!isset($attrs['url']) && $this['hasurl']->get() === true)
 		{
 			$attrs['url'] = array(
@@ -102,7 +102,7 @@ class itemItem extends _items
 				// 'title' => 'Url'
 			);
 		}
-	//	add Version attribute
+		//	add Version attribute
 /*		if (!isset($attrs['version']) && $this['hasversion']->get() === true)
 		{
 			$attrs['version'] = array(
@@ -112,7 +112,7 @@ class itemItem extends _items
 			);
 		}
 */
-	//	add Created attribute
+		//	add Created attribute
 		if (!isset($attrs['owner']))
 		{
 			$attrs['owner'] = array(
@@ -121,7 +121,7 @@ class itemItem extends _items
 				// 'title' => 'Owner'
 			);
 		}
-	//	add Created attribute
+		//	add Created attribute
 		if (!isset($attrs['created']))
 		{
 			$attrs['created'] = array(
@@ -130,7 +130,7 @@ class itemItem extends _items
 				// 'title' => 'Created Datetime'
 			);
 		}
-	//	add Updated attribute
+		//	add Updated attribute
 		if (!isset($attrs['updated']))
 		{
 			$attrs['updated'] = array(
@@ -139,8 +139,17 @@ class itemItem extends _items
 				// 'title' => 'Updated Datetime'
 			);
 		}
-	//	add Updated attribute
+		//	add Updated attribute
 		if (!isset($attrs['status']))
+		{
+			$attrs['status'] = array(
+				'key' => 'status',
+				'type' => 'status',
+				// 'title' => 'Status'
+			);
+		}
+		//	add Updated attribute
+		if (!isset($attrs['live']))
 		{
 			$attrs['status'] = array(
 				'key' => 'status',

@@ -18,7 +18,7 @@ class attrId extends attrInt
  */
 	public function set($data)
 	{
-		$this->data = null;
+		// $this->data = (int) $data;
 		return $this;
 	}
 	

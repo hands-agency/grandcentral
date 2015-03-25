@@ -21,9 +21,11 @@ class sitemaps
  */
 	public function __construct()
 	{
+		ini_set("memory_limit",'768M');
+		set_time_limit(600);
 	//	Find the root
 		$app = app('sitemaps');
-		$this->filepath = $app->get_templateroot();
+		$this->filepath = $app->get_templateroot('site');
 	}
 	
 /**
