@@ -104,6 +104,7 @@ class doc
 		$this->type = 'method';
 		$this->reflection = new ReflectionMethod($class, $method);
 		$this->data = $this->_parse($this->reflection);
+		$this->data['key'] = $this->reflection->class.'::'.$this->reflection->getName();
 	}
 	
 /**
@@ -132,7 +133,7 @@ class doc
 		
 		preg_match_all('#^\s*\*\/? ?(.*)#m', $comment, $lines);
 		
-		$data['key'] = $reflection->class.'::'.$reflection->getName();
+		$data['key'] = $reflection->getName();
 		$data['descr'] = null;
 		$data['file'] = $reflection->getFileName();
 		$data['line']['start'] = $reflection->getStartLine();
