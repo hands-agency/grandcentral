@@ -1,5 +1,6 @@
 .DS_Store
 inc.config.php
-grandcentral/cache/template/*
-www/*
-grandcentral/yoga*
+grandcentral/cache/template/
+grandcentral/yoga/
+grandcentral/miranda/
+www/
