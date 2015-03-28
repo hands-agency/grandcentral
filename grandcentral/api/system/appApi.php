@@ -22,18 +22,20 @@ class appApi extends _apps
 	//	Some vars
 		$page = i('page', current);
 		$url = ('home' == $page['key']->get()) ? URLR : mb_substr(URLR, mb_strlen($page['url']->get()));
-	
+	/*
 	//	The request method
 		$method = $_SERVER['REQUEST_METHOD'];
 	
 	//	By convention, the template is called item/item
 		$array = explode('/', $url);
+		
 		$template = $array[1].'/'.$array[1];
 		$item = $array[2];
 		$api = $array[3];
 		
 	//	Display the API
 		$this->bind_snippet('content', $template);
+	*/
 	}
 	
 /**
@@ -47,7 +49,7 @@ class appApi extends _apps
 	{
 	    $curl = curl_init();
 
-	    switch ($method)
+	    switch (strtoupper($method))
 	    {
 	        case "POST":
 	            curl_setopt($curl, CURLOPT_POST, 1);

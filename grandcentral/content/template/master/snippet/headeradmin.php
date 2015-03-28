@@ -45,67 +45,6 @@
 		$invite = '<div class="clapalong">Clap along if you feel like <span>adding</span> a <span>page</span> called <span>something new</span>.</div>';
 	}
 	else $invite = null;
-
-/********************************************************************************************/
-//	The title
-/********************************************************************************************/
-/*
-	switch (i('page', current)['key'])
-	{	
-	//	Edit
-		case 'edit':
-			$structure = i('item', $_GET['item'], $_SESSION['pref']['handled_env']);
-		//	We have an item already
-			if (isset($_GET['id']))
-			{
-				$item = i($_GET['item'], $_GET['id'], $_SESSION['pref']['handled_env']);
-				$link = $item->listing();
-				$current = (isset($item['title']) && !$item['title']->is_empty()) ? $item['title'] : $item['key'];
-			}
-		//	New item
-			else
-			{
-				$link = i($_GET['item'], null, $_SESSION['pref']['handled_env'])->listing();
-				$current = new attrString('[I\'m so fresh, i don\'t even have a title]');
-			}
-		//	Go
-			$back = $structure['title'];
-			break;
-			
-	//	List
-		case 'list':
-			$structure = i('item', $_GET['item'], $_SESSION['pref']['handled_env']);
-			$item = i('page', 'home');
-			$link = $item['url'];
-			$back = $item['title'];
-			$current = $structure['title'];
-			break;
-			
-	//	App
-		case 'app':
-			$app = app($_GET['app']);
-			$ini = $app->get_ini();
-			$page = i('page', 'app');
-			$link = $page['url'];
-			$back = $page['title'];
-			$current = new attrString($ini['about']['title']);
-			break;
-			
-	//	Home
-		case 'home':
-			$item = i('page', 'home');
-			$link = 'javascript:openSite();';
-			$back = i('site', current)['title'];
-			$current = i('page', current)['title'];
-			break;
-		
-		default:
-			$item = i('page', 'home');
-			$link = $item['url'];
-			$back = $item['title'];
-			$current = i('page', current)['title'];
-			break;
-	}
 	
 /********************************************************************************************/
 //	Remove sections on the fly

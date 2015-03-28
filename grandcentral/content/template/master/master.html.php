@@ -71,6 +71,7 @@
 						if ($greenbutton) $greenbutton = htmlspecialchars($greenbutton->json(), ENT_QUOTES)
 					?>
 					<li style="width:<?=$sectionWidth?>">
+						<a class="back" href="<?=$back?>" data-feathericon="&#xe094"></a>
 						<span class="lock" data-feathericon="&#xe007"></span>
 						<section id="section_<?= $section['key'] ?>" class="virgin" data-key="<?= $section['key'] ?>" <?=$dataCallback?> data-pref-display="<?=$prefDisplay?>" data-app="<?= $app['app'] ?>" data-template="<?= $app['template'] ?>" data-greenbutton='<?= $greenbutton ?>' data-nodata="<?=$section['nodata']?>"></section>
 					</li>

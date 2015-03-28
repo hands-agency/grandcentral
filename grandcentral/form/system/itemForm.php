@@ -106,8 +106,8 @@ class itemForm extends _items
 	public function prepare()
 	{
 	//	Default action
-		if (is_null($this->action)) i('page', $this['action']->get(), $this->get_env())['url'];
-
+		if (empty($this->action)) $this->action = i('page', $this['action']->get(), $this->get_env())['url'];
+		
 	//	paramètres du formulaire HTML
 		$params = array(
 			'data-item' => 'form_'.$this['id'],

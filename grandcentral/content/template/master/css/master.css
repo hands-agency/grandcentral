@@ -977,23 +977,37 @@ footer
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
 }
-#adminContent #sectiontray>li>.lock
+#adminContent #sectiontray>li>a,
+#adminContent #sectiontray>li>span
 {
 	position:absolute;
 	z-index:1;
-	top:0px;
-	right:20px;
-	opacity:0;
-	width:40px;
-	height:40px;
+	top:6px;
+	width:20px;
+	height:20px;
 	text-align:center;
-	line-height:40px;
+	line-height:20px;
 	-webkit-transition: all .15s ease-out; 
 	-moz-transition: all .15s ease-out; 
 	-o-transition: all .15s ease-out; 
 	transition: all .15s ease-out;
 	cursor:pointer;
 	color:#000;
+	border-radius:2px;
+}
+#adminContent #sectiontray>li>.back
+{
+	left:30px;
+}
+#adminContent #sectiontray>li>.back:hover
+{
+	background:#419BF9;
+	color:#fff;
+}
+#adminContent #sectiontray>li>.lock
+{
+	opacity:0;
+	right:30px;
 }
 #adminContent.unlocked #sectiontray>li>.lock
 {

@@ -62,7 +62,7 @@
 	//	Some consts
 		var ITEM = $('meta[property=\"gc:item\"]').attr('content');
 		var SITE_URL = '".SITE_URL."';
-		var SITE_KEY = '".SITE_KEY."';
+		var SITE_KEY = '".SITE_KEY."'; 
 		var ADMIN_URL = '".ADMIN_URL."';
 		var ENV = $('body').data('env');
 		var CURRENTEDITED_URL = '".$currentEditedItemUrl."';
@@ -127,6 +127,52 @@
 /********************************************************************************************/
 //	Trashbin
 	$_APP->bind_snippet('content', 'master/snippet/trashbin/trashbin');
+	
+//
+/********************************************************************************************/
+//	The title
+/********************************************************************************************/
+	switch (i('page', current)['key'])
+	{	
+	//	Edit
+		case 'edit':
+			$structure = i('item', $_GET['item'], $_SESSION['pref']['handled_env']);
+		//	We have an item already
+			if (isset($_GET['id']))
+			{
+				$item = i($_GET['item'], $_GET['id'], $_SESSION['pref']['handled_env']);
+				$back = $item->listing();
+			}
+		//	New item
+			else
+			{
+				$back = i($_GET['item'], null, $_SESSION['pref']['handled_env'])->listing();
+			}
+			break;
+			
+	//	List
+		case 'list':
+			$item = i('page', 'home');
+			$back = $item['url'];
+			break;
+			
+	//	App
+		case 'app':
+			$page = i('page', 'app');
+			$back = $page['url'];
+			break;
+			
+	//	Home
+		case 'home':
+			$item = i('page', 'home');
+			$back = 'javascript:openSite();';
+			break;
+		
+		default:
+			$item = i('page', 'home');
+			$back = $item['url'];
+			break;
+	}
 	
 /********************************************************************************************/
 //	Footer

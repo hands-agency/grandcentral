@@ -70,7 +70,8 @@
 		switch ($handled_item)
 		{
 			case 'page':
-				$skip = array('section', 'child');
+				//$skip = array('section', 'child');
+				$skip = null;
 				break;
 			default:
 				$skip = null;

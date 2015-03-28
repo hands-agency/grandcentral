@@ -51,7 +51,7 @@
 			break;
 
 	//	PATCH
-		case 'PATCH':
+		case 'PATCH	':
 			# code...
 			break;
 	
