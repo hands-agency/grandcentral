@@ -132,7 +132,7 @@ class doc
 		
 		preg_match_all('#^\s*\*\/? ?(.*)#m', $comment, $lines);
 		
-		$data['key'] = $reflection->getName();
+		$data['key'] = $reflection->class.'::'.$reflection->getName();
 		$data['descr'] = null;
 		$data['file'] = $reflection->getFileName();
 		$data['line']['start'] = $reflection->getStartLine();
