@@ -38,7 +38,6 @@
 			
 		}
 	}
-	
 	if (isset($valueParam))
 	{
 		foreach ($valueParam as $key => $param)

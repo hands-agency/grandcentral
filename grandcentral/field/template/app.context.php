@@ -76,6 +76,7 @@
 			'values' => $templates,
 			'valuestype' => 'array',
 			'value' => $valueTemplate,
+			'placeholder' => '...'
 		);
 		$fieldTemplate = new fieldSelect($_POST['name'].'[template]', $fparams);
 	}
@@ -137,7 +138,8 @@
 				$p = array(
 					'label' => $key,
 					'values' => $values,
-					'valuestype' => 'array'
+					'valuestype' => 'array',
+					'placeholder' => '...'
 				);
 				if (isset($matches[1])) $p['value'] = $matches[1];
 				$field = new fieldSelect($key, $p);
