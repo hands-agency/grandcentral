@@ -2,7 +2,7 @@ $(document).ready(function ()
 {
 /*********************************************************************************************
 /**	* Never send the form, even when it's sent
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
 	$(document).on('submit', '#adminContent section>form', function()
 	{
@@ -11,7 +11,7 @@ $(document).ready(function ()
 
 /*********************************************************************************************
 /**	* Controls
-* @author	mvd@cafecentral.fr
+* @author	@mvdandrieux
 **#******************************************************************************************/
 	controllingClass = 'controlling';
 		
@@ -53,7 +53,7 @@ $(document).ready(function ()
 
 /*********************************************************************************************
 /**	* Editable form while unlocked
-* @author	mvd@cafecentral.fr
+* @author	@mvdandrieux
 **#******************************************************************************************/
 	$(document).bind('unlock', function()
 	{
@@ -76,7 +76,7 @@ $(document).ready(function ()
 
 /*********************************************************************************************
 /**	* Non editable form while locked
-* @author	mvd@cafecentral.fr
+* @author	@mvdandrieux
 **#******************************************************************************************/
 	$(document).bind('lock', function()
 	{
@@ -109,7 +109,7 @@ $(document).ready(function ()
 	
 /*********************************************************************************************
 /**	* Form edit
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
 	$(document).on('click', 'form .editable [data-control]', function()
 	{
@@ -149,7 +149,7 @@ $(document).ready(function ()
 	
 /*********************************************************************************************
 /**	* Validate a field form
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
 	$(document).on('submit', '.editing form', function()
 	{
@@ -179,7 +179,7 @@ $(document).ready(function ()
 
 /*********************************************************************************************
 /**	* Handling H1 and title binding
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
 	$('section [name$="[title]"]').on('input', function()
 	{
@@ -193,13 +193,13 @@ $(document).ready(function ()
 	
 /*********************************************************************************************
 /**	* Focus On the first field of the freshly loaded section
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
 	// $('form input:first').focus();
 
 /*********************************************************************************************
 /**	* Fields help
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
 /*	$(document).on('click', '.locked section label', function()
 	{
@@ -208,7 +208,7 @@ $(document).ready(function ()
 
 /*********************************************************************************************
 /**	* Fields limit
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
 	$(document).on('input', 'form input', function()
 	{

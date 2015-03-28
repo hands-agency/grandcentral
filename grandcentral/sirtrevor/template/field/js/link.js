@@ -29,17 +29,21 @@
 //	Init internal linking
 	initInternal = function(panel)
 	{
-	//	Send Internal link
-		$(document).on('mousedown', '.adminContext[data-template="/field/link"] [data-panel="internal"] [data-item] button', function()
-		{
-			link = $(this).parent().data('item');
-			document.execCommand('CreateLink', false, link);
-			closeContext(template);
-		});
+		
 		// restore selection when blur input
 		$('.adminContext').on('blur', 'input[type="search"]', function()
 		{
 			restoreSelection(selRange);
+			// selRange = false;
+		});
+	//	Send Internal link
+		$(document).on('mousedown', '.adminContext[data-template="/field/link"] [data-panel="internal"] [data-item] button', function()
+		{
+			restoreSelection(selRange);
+			// selRange = false;
+			link = $(this).parent().data('item');
+			document.execCommand('CreateLink', false, link);
+			closeContext(template);
 		});
 	//	Refine item lists
 		$('.adminContext[data-template="/field/link"] [data-panel="internal"] input[type="search"]').each(function()

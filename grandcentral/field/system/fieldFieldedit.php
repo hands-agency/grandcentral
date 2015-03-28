@@ -5,7 +5,7 @@
  * Champ permettant de configurer un champ
  * 
  * @package		form
- * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
+ * @author		Michaël V. Dandrieux <@mvdandrieux>
  * @author		Sylvain Frigui <sf@cafecentral.fr>
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki

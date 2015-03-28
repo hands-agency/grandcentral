@@ -11,7 +11,7 @@
  * </pre>
  * 
  * @package        The package
- * @author        Michaël V. Dandrieux <mvd@cafecentral.fr>
+ * @author        Michaël V. Dandrieux <@mvdandrieux>
  * @author        Sylvain Frigui <sf@cafecentral.fr>
  * @copyright    Copyright © 2004-2012, Grand Central
  * @license        http://www.cafecentral.fr/fr/licences GNU Public License

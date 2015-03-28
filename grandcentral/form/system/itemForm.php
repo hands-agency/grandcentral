@@ -4,7 +4,7 @@
  * http://www.siteduzero.com/informatique/tutoriels/votre-site-php-presque-complet-architecture-mvc-et-bonnes-pratiques/gestion-des-formulaires-avec-la-classe-form
  * 
  * @package		form
- * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
+ * @author		Michaël V. Dandrieux <@mvdandrieux>
  * @author		Sylvain Frigui <sf@cafecentral.fr>
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki

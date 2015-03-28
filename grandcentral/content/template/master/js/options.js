@@ -1,6 +1,6 @@
 /*********************************************************************************************
 /**	* Lock plugin
-* 	* @author	mvd@cafecentral.fr
+* 	* @author	@mvdandrieux
 **#******************************************************************************************/
 jQuery(document).ready(function($)
 {
@@ -97,7 +97,7 @@ jQuery(document).ready(function($)
 
 /*********************************************************************************************
 /**	* FILTERS : filtering content of a section, ordering it.
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
 	$(document).on('click', '#filter', function()
 	{
@@ -134,7 +134,7 @@ jQuery(document).ready(function($)
 
 /*********************************************************************************************
 /**	* Filtering content of a section, ordering it.
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
 	$(document).on('click', 'header .drawer li li[data-value]', function()
 	{

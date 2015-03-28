@@ -15,7 +15,7 @@
 ?>	
 <li>
 	<?php
-	$authorIcon = (!$author['profilepic']->is_empty()) ? $author['profilepic']->unfold()[0]->get_url(true) : null;
+	$authorIcon = (isset($author['profilepic']) && !$author['profilepic']->is_empty()) ? $author['profilepic']->unfold()[0]->get_url(true) : null;
 	?>
 	<div class="icon"><a href="<?=$author->edit()?>" style="background-image:url(<?=$authorIcon?>);"></a></div>
 	

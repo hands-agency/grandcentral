@@ -1,6 +1,6 @@
 /*********************************************************************************************
 /**	* Highlighting checkbox and radio
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
 	$(document).on('click', 'section.page ol>li ul li', function()
 	{
@@ -11,7 +11,7 @@
 	
 /*********************************************************************************************
 /**	* Fields edit
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
 	// $('.unlocked section.page fieldset>ol>li:not(:has(.edit))').live('click', function()
 	// {

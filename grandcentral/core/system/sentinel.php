@@ -11,7 +11,7 @@
  * </pre>
  * 
  * @package		The package
- * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
+ * @author		Michaël V. Dandrieux <@mvdandrieux>
  * @author		Sylvain Frigui <sf@cafecentral.fr>
  * @copyright	Copyright © 2004-2013, Grand Central
  * @license		http://www.cafecentral.fr/fr/licences GNU Public License
@@ -35,7 +35,7 @@ class sentinel
  * Class constructor: catches PHP exceptions and errors
  *
  * @param	string  $sample the sample data
- * @author	mvd@cafecentral.fr
+ * @author	@mvdandrieux
  * @return	array	all of the exciting sample options
  * @access	public
  */
@@ -62,7 +62,7 @@ class sentinel
  * Create only one instance of the Sentinel
  *
  * @param	string  $sample the sample data
- * @author	mvd@cafecentral.fr
+ * @author	@mvdandrieux
  * @return	array	all of the exciting sample options
  * @access	public
  */
@@ -79,7 +79,7 @@ class sentinel
  * Log an error
  *
  * @param	string  $sample the sample data
- * @author	mvd@cafecentral.fr
+ * @author	@mvdandrieux
  * @return	array	all of the exciting sample options
  * @access	public
  */
@@ -165,7 +165,7 @@ class sentinel
  * Fetch and format PHP errors
  *
  * @param	string  $sample the sample data
- * @author	mvd@cafecentral.fr
+ * @author	@mvdandrieux
  * @return	array	all of the exciting sample options
  * @access	public
  */
@@ -184,7 +184,7 @@ class sentinel
  * Fetch and format PHP exceptions
  *
  * @param	string  $sample the sample data
- * @author	mvd@cafecentral.fr
+ * @author	@mvdandrieux
  * @return	array	all of the exciting sample options
  * @access	public
  */
@@ -201,7 +201,7 @@ class sentinel
  * Fetch and format PHP exceptions
  *
  * @param	string  $sample the sample data
- * @author	mvd@cafecentral.fr
+ * @author	@mvdandrieux
  * @return	array	all of the exciting sample options
  * @access	public
  */
@@ -224,7 +224,7 @@ class sentinel
  * Prints a Debug
  *
  * @param	string  $sample the sample data
- * @author	mvd@cafecentral.fr
+ * @author	@mvdandrieux
  * @return	array	all of the exciting sample options
  * @access	public
  */
@@ -411,7 +411,7 @@ class sentinel
  * Start a new stopwatch
  *
  * @param	string  $sample the sample data
- * @author	mvd@cafecentral.fr
+ * @author	@mvdandrieux
  * @return	array	all of the exciting sample options
  * @access	public
  */
@@ -428,7 +428,7 @@ class sentinel
  * Stop the last instance of a stopwatch
  *
  * @param	string  $sample the sample data
- * @author	mvd@cafecentral.fr
+ * @author	@mvdandrieux
  * @return	array	all of the exciting sample options
  * @access	public
  */
@@ -445,7 +445,7 @@ class sentinel
  * Get the memory usage of PHP (in Mo)
  *
  * @param	string  $sample the sample data
- * @author	mvd@cafecentral.fr
+ * @author	@mvdandrieux
  * @return	array	all of the exciting sample options
  * @access	public
  */

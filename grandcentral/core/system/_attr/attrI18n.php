@@ -115,7 +115,8 @@ class attrI18n extends attrArray
 	{
 		if (empty($this->params['env'])) $this->params['env'] = env;
 		//	HACK à refaire
-		switch (true) {
+		switch (true)
+		{
 			case $this->is_empty():
 			case empty($this->data[i($this->params['env'], current)['version']['lang']->get()]):
 				return '';
@@ -141,6 +142,7 @@ class attrI18n extends attrArray
  */
 	public static function get_properties()
 	{
+		// old
 		$available = registry::get_class('field');
 		//	Get the properties for each attr
 		foreach ($available as $field) $fields[$field] = mb_substr(mb_strtolower($field), 5);
@@ -148,10 +150,26 @@ class attrI18n extends attrArray
 		$params = parent::get_properties();
 		//	Somes specifics for this attr
 		$params['field'] = array(
+			'placeholder' => '...',
 			'name' => 'field',
 			'type' => 'select',
-			'label' => 'Type',
+			'label' => 'Type (deprecated)',
 			'values' => $fields,
+			'valuestype' => 'array'
+		);
+		// new
+		$available = registry::get_class('attr');
+		//	Get the properties for each attr
+		foreach ($available as $attr) $attrs[$attr] = mb_substr(mb_strtolower($attr), 4);
+		unset($attrs['attrI18n']);
+		//	Start with the default for all properties
+		// $params = parent::get_properties();
+		//	Somes specifics for this attr
+		$params['attr'] = array(
+			'name' => 'attr',
+			'type' => 'select',
+			'label' => 'Attr',
+			'values' => $attrs,
 			'valuestype' => 'array'
 		);
 		//	Return

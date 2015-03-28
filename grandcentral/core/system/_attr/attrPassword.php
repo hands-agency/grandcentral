@@ -33,7 +33,7 @@ class attrPassword extends _attrs
  */
 	public function get()
 	{
-		return null;
+		return '';
 	}	
 /**
  * Set password attribute

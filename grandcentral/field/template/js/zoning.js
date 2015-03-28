@@ -2,7 +2,7 @@ $(document).ready(function ()
 {
 /*********************************************************************************************
 /**	* Zoning is a variation on the multiple select plugin
-* 	* @author	mvd@cafecentral.fr
+* 	* @author	@mvdandrieux
 **#******************************************************************************************/
 	$('[data-type="zoning"]').multipleselect(
 	{		
@@ -32,7 +32,7 @@ $(document).ready(function ()
 
 /*********************************************************************************************
 /**	* Edit section
-* 	* @author	mvd@cafecentral.fr
+* 	* @author	@mvdandrieux
 **#******************************************************************************************/
 	$('[data-type="zoning"]').on('click', '.zone ol .title', function()
 	{
@@ -95,7 +95,7 @@ $(document).ready(function ()
 
 /*********************************************************************************************
 /**	* Resize ìframe content
-* 	* @author	mvd@cafecentral.fr
+* 	* @author	@mvdandrieux
 **#******************************************************************************************/
 	resizeIframe = function(iframe)
 	{

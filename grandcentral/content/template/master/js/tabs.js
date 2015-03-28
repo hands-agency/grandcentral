@@ -1,6 +1,6 @@
 /*********************************************************************************************
 /**	* Tabs : Open and close content via tabs
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
 $(document).ready(function ()
 {
@@ -66,7 +66,7 @@ $(document).ready(function ()
 
 /*********************************************************************************************
 /**	* Tabs : Open a section from the landing in the hash (or the first one)
-	* @author	mvd@cafecentral.fr
+	* @author	@mvdandrieux
 **#******************************************************************************************/
 //	By hash
 	if (window.location.hash) pseudo = '[href='+window.location.hash+']';
@@ -79,7 +79,7 @@ $(document).ready(function ()
 	
 /*********************************************************************************************
 /**	* On unlock
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
 	$(document).bind('unlock', function()
 	{
