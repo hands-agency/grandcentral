@@ -9,6 +9,7 @@
 class doc
 {
 	private $reflection;
+	private $type;
 	public $data;
 	
 /**
@@ -48,7 +49,16 @@ class doc
 		
 		$obj = new doc($expression);
 	}
-	
+/**
+ * Obtenir le genre de l'objet documenté
+ *
+ * @return	string	le genre
+ * @access	public
+ */
+	public function get_type()
+	{
+		return $this->type;
+	}
 /**
  * Préparer la documentation d'une classe
  *
@@ -57,7 +67,7 @@ class doc
  */
 	private function _prepare_class($class)
 	{
-		$this->template_key = 'class';
+		$this->type = 'class';
 		$this->reflection = new ReflectionClass($class);
 		$this->data = $this->_parse($this->reflection);
 		$methods = $this->reflection->getMethods();
@@ -91,7 +101,7 @@ class doc
  */
 	private function _prepare_method($class, $method)
 	{
-		$this->template_key = 'method';
+		$this->type = 'method';
 		$this->reflection = new ReflectionMethod($class, $method);
 		$this->data = $this->_parse($this->reflection);
 	}
@@ -104,7 +114,7 @@ class doc
  */
 	private function _prepare_function($function)
 	{
-		$this->template_key = 'function';
+		$this->type = 'function';
 		$this->reflection = new ReflectionFunction($function);
 		$this->data = $this->_parse($this->reflection);
 	}
