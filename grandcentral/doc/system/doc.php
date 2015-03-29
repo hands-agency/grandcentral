@@ -86,6 +86,7 @@ class doc
 		foreach ($methods as $key => $method)
 		{
 			$data = $this->_parse($method);
+			$data['key'] = $this->reflection->name.'::'.$data['key'];
 			$this->data['method'][] = $data;
 		}
 		// print '<pre>';print_r($this->data['method']);print'</pre>';
@@ -104,7 +105,6 @@ class doc
 		$this->type = 'method';
 		$this->reflection = new ReflectionMethod($class, $method);
 		$this->data = $this->_parse($this->reflection);
-		$this->data['key'] = $this->reflection->class.'::'.$this->reflection->getName();
 	}
 	
 /**

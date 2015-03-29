@@ -2,21 +2,36 @@
 /**
  * Handles bunches of items
  *
- * This class will let you search, order, save, delete bunches in the database
- * By stacking up get(), you'll be able to handle different types of items
- * at the same time, like pairs of socks, jumpers and t-shirts.
- *
- * Example:
+ * This class will let you search, order, save, delete bunches in the database. For instance all the socks at once:
  * <pre>
- * $param = array(
- * 	'key' => 'home%',
- * 	'type' => array('html', 'ajax'),
- * 	'section' => array(2, 4),
+ * $bunch = new bunch('socks', all);
+ * </pre>
+ * Bunches parameters let you refine your selection with various values:
+ * <pre>
+ * $p = array(
+ * 	'title' => 'best-offer%',
+ * 	'size' => array('XL', 'L'),
+ * 	'codes' => array(2, 4),
  * 	'tag' => 1,
- * 	'order()' => 'key DESC, type ASC',
- * 	'limit()' => 10 
+ * 	'order()' => 'color DESC, size ASC',
+ * 	'limit()' => 10,
+ *  'instock' => true,
  * );
- * $bunch = new bunch('page', $param, 'admin');
+ * $bunch = new bunch('socks', $p);
+ * </pre>
+ * By calling several times the get() method, you'll be able to handle different types of items at the same time, like pairs of blue socks and XL jumpers:
+ * <pre>
+ * $bunch = new bunch();
+ * $bunch-get('socks',
+ * 	 array(
+ *   'color' => 'blue',
+ *  )
+ * );
+ * $bunch-get('jumpers',
+ * 	array(
+ *   'size' => 'XL',
+ *  )
+ * );
  * </pre>
  *
  * @package  Core

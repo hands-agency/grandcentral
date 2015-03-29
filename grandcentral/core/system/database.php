@@ -64,11 +64,11 @@ class database
 	}
 
 /**
- * Obtenir une connexion à la base de données
- * 
- * ex : $db = database::connect('site');
+ * Obtenir une connexion à la base de données. ex:
+ * <pre>
+ * $db = database::connect('site');
  * $db->query('SELECT * FROM page');
- *
+ * </pre>
  * @param	string	"site" ou "admin". Par défaut, l'environnement en cours
  * @return	database	l'instance site ou admin de database
  * @access	public

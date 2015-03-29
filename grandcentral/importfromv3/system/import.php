@@ -7,7 +7,7 @@
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
  */
-class import
+class importfromv3
 {
 	protected $url;
 	public $equiv;
