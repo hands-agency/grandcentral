@@ -12,7 +12,17 @@ class fieldMedia extends _fields
 {
 	protected $datatype = array('array');
 	protected $mediatype;
-	
+
+/**
+ * Affecte les types de médias autorisés
+ * 
+ * @param	array	les tableau des types
+ * @access	public
+ */
+	public function is_valid()
+	{
+		return true;
+	}	
 /**
  * Affecte les types de médias autorisés
  * 
