@@ -11,9 +11,9 @@
  * </pre>
  * 
  * @package		The package
- * @author		Michaël V. Dandrieux <@mvdandrieux>
+ * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
  * @author		Sylvain Frigui <sf@cafecentral.fr>
- * @copyright	Copyright © 2004-2013, Grand Central
+ * @copyright	Copyright © 2004-2013, Café Central
  * @license		http://www.cafecentral.fr/fr/licences GNU Public License
  * @access		public
  * @link		http://www.cafecentral.fr/fr/wiki
@@ -35,7 +35,7 @@ class sentinel
  * Class constructor: catches PHP exceptions and errors
  *
  * @param	string  $sample the sample data
- * @author	@mvdandrieux
+ * @author	mvd@cafecentral.fr
  * @return	array	all of the exciting sample options
  * @access	public
  */
@@ -62,7 +62,7 @@ class sentinel
  * Create only one instance of the Sentinel
  *
  * @param	string  $sample the sample data
- * @author	@mvdandrieux
+ * @author	mvd@cafecentral.fr
  * @return	array	all of the exciting sample options
  * @access	public
  */
@@ -79,7 +79,7 @@ class sentinel
  * Log an error
  *
  * @param	string  $sample the sample data
- * @author	@mvdandrieux
+ * @author	mvd@cafecentral.fr
  * @return	array	all of the exciting sample options
  * @access	public
  */
@@ -134,6 +134,10 @@ class sentinel
 				$die = true;
 				break;
 		//	Autre
+			case 0:
+				
+				break;
+		//	Autre
 			default:
 				$type = 'unknown';
 				break;
@@ -156,7 +160,7 @@ class sentinel
 		foreach($param as $key => $value) $error.= '<li><strong>'.$key.'</strong> : '.$value.'</li>';
 		
 	//	Throw error
-		sentinel::debug($type, $error, $type);
+		if (SITE_DEBUG === true) sentinel::debug($type, $error, $type);
 	//	...end perhaps kill the script
 		if ($die === true) die();
 	}
@@ -165,7 +169,7 @@ class sentinel
  * Fetch and format PHP errors
  *
  * @param	string  $sample the sample data
- * @author	@mvdandrieux
+ * @author	mvd@cafecentral.fr
  * @return	array	all of the exciting sample options
  * @access	public
  */
@@ -184,7 +188,7 @@ class sentinel
  * Fetch and format PHP exceptions
  *
  * @param	string  $sample the sample data
- * @author	@mvdandrieux
+ * @author	mvd@cafecentral.fr
  * @return	array	all of the exciting sample options
  * @access	public
  */
@@ -201,7 +205,7 @@ class sentinel
  * Fetch and format PHP exceptions
  *
  * @param	string  $sample the sample data
- * @author	@mvdandrieux
+ * @author	mvd@cafecentral.fr
  * @return	array	all of the exciting sample options
  * @access	public
  */
@@ -224,12 +228,13 @@ class sentinel
  * Prints a Debug
  *
  * @param	string  $sample the sample data
- * @author	@mvdandrieux
+ * @author	mvd@cafecentral.fr
  * @return	array	all of the exciting sample options
  * @access	public
  */
 	public static function debug($title, $descr, $flag = 'debug')
 	{
+		
 	//	Display varies depending on content type
 	//	$contentType = master::get_content_type();
 		$contentType = 'html';
@@ -411,7 +416,7 @@ class sentinel
  * Start a new stopwatch
  *
  * @param	string  $sample the sample data
- * @author	@mvdandrieux
+ * @author	mvd@cafecentral.fr
  * @return	array	all of the exciting sample options
  * @access	public
  */
@@ -428,7 +433,7 @@ class sentinel
  * Stop the last instance of a stopwatch
  *
  * @param	string  $sample the sample data
- * @author	@mvdandrieux
+ * @author	mvd@cafecentral.fr
  * @return	array	all of the exciting sample options
  * @access	public
  */
@@ -445,7 +450,7 @@ class sentinel
  * Get the memory usage of PHP (in Mo)
  *
  * @param	string  $sample the sample data
- * @author	@mvdandrieux
+ * @author	mvd@cafecentral.fr
  * @return	array	all of the exciting sample options
  * @access	public
  */
