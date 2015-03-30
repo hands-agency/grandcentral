@@ -37,7 +37,7 @@
  */
 	function docMethodUrl($app, $class, $method)
 	{
-		return i('page', current)['url'].'/'.$app.'/'.$class.'::'.$method;
+		return i('page', current)['url'].'/'.$app.'/'.$method;
 	}
 
 /**
