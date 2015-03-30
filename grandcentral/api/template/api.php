@@ -9,12 +9,11 @@
  *    echo "I am an example.";
  * }
  * </pre>
- * 
- * @package		The package
+ *
  * @author		Michaël V. Dandrieux <mvd@eranos.fr>
  * @copyright	Copyright ©2014 Eranos
- * @license		http://www.cafecentral.fr/fr/licences GNU Public License
+ * @license		http://grandcentral.fr/license MIT License
  * @access		public
- * @link		http://www.cafecentral.fr/fr/wiki
+ * @link		http://grandcentral.fr
  */
 ?>

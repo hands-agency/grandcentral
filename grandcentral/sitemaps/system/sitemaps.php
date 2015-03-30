@@ -5,7 +5,7 @@
  * @package		Core
  * @author		Michaël V. Dandrieux <@mvdandrieux>
  * @access		public
- * @link		http://www.cafecentral.fr/fr/wiki
+ * @link		http://grandcentral.fr
  */
 class sitemaps
 {

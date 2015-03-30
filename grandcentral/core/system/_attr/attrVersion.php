@@ -5,7 +5,7 @@
  * @package 	Core
  * @author		Sylvain Frigui <sf@cafecentral.fr>
  * @access		public
- * @link		http://www.cafecentral.fr/fr/wiki
+ * @link		http://grandcentral.fr
  */
 class attrVersion extends _attrs
 {
