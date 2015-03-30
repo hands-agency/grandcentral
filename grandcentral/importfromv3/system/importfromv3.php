@@ -1,6 +1,6 @@
 <?php
 /**
- * The group item of Grand Central
+ * Import data from Café Central v3 into Grand Central v4
  * 
  * @package		Core
  * @author		Sylvain Frigui <sf@cafecentral.fr>

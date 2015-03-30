@@ -110,7 +110,8 @@ $(document).ready(function()
 	//	Some vars
 		$container = $('#mediaLibrary ul.files');
 		$upload = $('#mediaLibrary ul.files li.upload');
-		media = $('<li class="new" data-info="'+file.type+' • '+(file.size ? (file.size/1024|0)+' K' : '')+'"><a href="#"><span class="preview"></span><span class="title">' + file.name + '</span></a></li>');
+		console.log(file.type);
+		media = $('<li class="new" data-path="" data-url="" data-info="'+file.type+' • '+(file.size ? (file.size/1024|0)+' K' : '')+'" data-title=""><a class="file" href="#"><span class="preview"></span><span class="title">' + file.name + '</span></a></li>');
 	
 	//	Preview images
 		if (tests.filereader === true)

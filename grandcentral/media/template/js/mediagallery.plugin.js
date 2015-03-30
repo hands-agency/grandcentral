@@ -100,7 +100,7 @@
 						if (html != 'ko')
 						{
 							$input.val('');
-							el = $('<li style="display:none"><div class="title">'+html+'</div></li>');
+							el = $('<li class="folder" style="display:none"><div class="title">'+html+'</div></li>');
 							$folder.after(el);
 							el.show('fast');
 						}

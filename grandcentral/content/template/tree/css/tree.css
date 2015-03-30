@@ -405,7 +405,23 @@ section[data-template="/tree/tree"] li .page[data-type="link"] .url
 {
 	font-size:10px;
 	color:#333;
-	margin-top:10px;
+	display:block;
+	position:absolute;
+	top:80px;
+	left:65px;
+	text-align:left;
+    -webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	transform: rotate(90deg);
+    -webkit-transform-origin: 0 0;
+	-moz-transform-origin: 0 0;	
+	-ms-transform-origin: 0 0;
+	-o-transform-origin: 0 0;
+	transform-origin: 0 0;
+	text-transform:uppercase;
+	color:#3d84c6;
 }
 
 /********************************************************************************************/

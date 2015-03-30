@@ -1,23 +1,6 @@
 <?php
 /**
- * Handles bunches of items
- *
- * This class will let you search, order, save, delete bunches in the database
- * By stacking up get(), you'll be able to handle different types of items
- * at the same time, like pairs of socks, jumpers and t-shirts.
- *
- * Example:
- * <pre>
- * $param = array(
- * 	'key' => 'home%',
- * 	'type' => array('html', 'ajax'),
- * 	'section' => array(2, 4),
- * 	'tag' => 1,
- * 	'order()' => 'key DESC, type ASC',
- * 	'limit()' => 10 
- * );
- * $bunch = new bunch('page', $param, 'admin');
- * </pre>
+ * Fetching data with right handling
  *
  * @package  Core
  * @author   Sylvain Frigui <sf@cafecentral.fr>
