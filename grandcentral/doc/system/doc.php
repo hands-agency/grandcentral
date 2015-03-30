@@ -137,8 +137,8 @@ class doc
 		
 		$data['key'] = $reflection->getName();
 		$data['descr'] = null;
-		$data['app'] = null;
 		$data['file'] = $reflection->getFileName();
+		$data['app'] = $this->_get_app();
 		$data['line']['start'] = $reflection->getStartLine();
 		$data['line']['end'] = $reflection->getEndLine();
 		foreach ($lines[1] as $line)
@@ -203,6 +203,32 @@ class doc
 			}
 		}
 		return $data;
+	}
+
+/**
+ * obtenir l'app de la classe, la méthode ou la fonction appelé
+ *
+ * @return	string		la clef de l'app contenant le code documenté
+ * @access	private
+ */
+	private function _get_app()
+	{
+		if (isset($this->data['file']) && !empty($this->data['file']))
+		{
+			return mb_substr($this->data['file'], mb_strlen(ADMIN_ROOT) + 1, mb_strpos($this->data['file'], '/', mb_strlen(ADMIN_ROOT) + 1) - mb_strlen(ADMIN_ROOT) - 1);
+		}
+		return null;
+	}	
+	
+/**
+ * Obtenir la liste des fonctions déclarées par Grand Central
+ *
+ * @return	array		le tableau des fonctions
+ * @access	public
+ */
+	public function get_defined_functions()
+	{
+		return get_defined_functions()['user'];
 	}
 }
 ?>
