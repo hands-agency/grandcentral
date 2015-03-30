@@ -154,10 +154,10 @@ class bunch implements ArrayAccess, Iterator, Countable
 	}
 
 /**
- * Extraire le champ demandé de tous les éléments de la liste
+ * Extract all values of given attributes
  *
- * @param	string  l'index du champ à extraire
- * @return	array	le tableau des valeurs du champ demandé
+ * @param	string  name of the attr
+ * @return	array	all values of the attr
  * @access	public
  */
 	public function get_column($column, $assoc = true)
@@ -189,12 +189,15 @@ class bunch implements ArrayAccess, Iterator, Countable
 	}
 	
 /**
- * Retourne les noms courts des objets 
- *
- * Le nom cout d'un objet est composé de sa table et de son id
- * ex : page_1, app_3
- *
- * @return	array	le tableau des noms courts
+ * Get an array of nicknames of all the items in the bunch
+ * <pre>
+ * array(
+ * 	page_1,
+ * 	page_2,
+ * 	page_3
+ * );
+ * </pre>
+ * @return	array	list of nicknames
  * @access	public
  */
 	public function get_nickname()
@@ -208,7 +211,7 @@ class bunch implements ArrayAccess, Iterator, Countable
 	}
 	
 /**
- * Retourne les valeurs de l'attribut passé en paramètre
+ * Get all the given attributes
  *
  * @return	string	la clé de l'attribut
  * @access	public
@@ -224,7 +227,7 @@ class bunch implements ArrayAccess, Iterator, Countable
 	}
 	
 /**
- * Get data from database using parameters
+ * Search items with the given parameters
  * 
  * Example:
  * <pre>
@@ -239,8 +242,8 @@ class bunch implements ArrayAccess, Iterator, Countable
  * $bunch->get('page', $param);
  * </pre>
  *
- * @param	string  le type d'objet recherché
- * @param	array  	Le tableau de paramètres
+ * @param	string  item's name
+ * @param	array  	parameters
  * @access	public
  */
 	public function get($table, $params = null)
@@ -265,9 +268,18 @@ class bunch implements ArrayAccess, Iterator, Countable
 		return $this;
 	}
 /**
- * Search by nickname
+ * Search items by nickname
  *
- * @param	array	array of _items nicknames
+ * Example:
+ * <pre>
+ * $bunch->get(array(
+ * 	page_1, page_2, page_3
+ * ), array(
+ * 	'order()' => 'created desc'
+ * ));
+ * </pre>
+ * @param	array	array of nicknames
+ * @param	array	array of parameters
  * @access	public
  */
 	public function get_by_nickname($nicknames, $params = null)
@@ -311,7 +323,7 @@ class bunch implements ArrayAccess, Iterator, Countable
 /**
  * Refine a bunch by searching in its content
  *
- * @param	string	La chaîne à rechercher
+ * @param	string	the query string
  * @access	public
  */
 	public function refine($string)
@@ -402,7 +414,11 @@ class bunch implements ArrayAccess, Iterator, Countable
         return '['.implode(',',$return) .']';
     }
 
-//	Arrayaccess
+/**
+ * Arrayaccess
+ * http://php.net/manual/en/class.arrayaccess.php
+ *
+ */
 	public function offsetSet($offset, $value)
 	{
 		if (is_null($offset)) $this->data[] = $value;
@@ -420,7 +436,11 @@ class bunch implements ArrayAccess, Iterator, Countable
 	{
 		return isset($this->data[$offset]) ? $this->data[$offset] : null;
 	}
-//	Iterator
+/**
+ * Interface Iterator
+ * http://php.net/manual/en/class.iterator.php
+ *
+ */
 	function rewind()
 	{
 		reset($this->data);
@@ -440,7 +460,11 @@ class bunch implements ArrayAccess, Iterator, Countable
 	{
 	    return key($this->data) !== null;
 	}
-//	Countable
+/**
+ * Interface Countable
+ * http://php.net/manual/en/class.countable.php
+ *
+ */
 	public function count()
     {
 		$this->count = count($this->data);

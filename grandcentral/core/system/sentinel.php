@@ -1,14 +1,7 @@
 <?php
 /**
- * Description: This is the description of the document that we are .
- * You can add as many lines as you want.
- * Remember you're not coding for yourself. The world needs your doc.
- * Example usage:
- * <pre>
- * if (Example_Class::example()) {
- *    echo "I am an example.";
- * }
- * </pre>
+ * Error and exception handling.
+ * This class is a singleton.
  * 
  * @package		The package
  * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>

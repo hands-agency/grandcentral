@@ -14,7 +14,7 @@ class event
 	public static $events = array();
 	
 /**
- * Pré-charger la liste des évènements présents dans la bdd (TODO)
+ * Get all the events
  * 
  * @access	public
  */
@@ -39,10 +39,10 @@ class event
  * 	echo '<br />pourquoi pas '.$action.' '.$type;
  * }
  *
- * @param	mixed	l'objet cc ou le nom de l'objet sur lequel lier l'événement
- * @param	string	l'action qui déclenchera l'événement
- * @param	mixed	le nom de la fonction, de la méthode ou la fonction entière à exécuter lors du déclenchement de l'événement
- * @param	mixed	l'argument ou les arguments de la fonction qui sera exécutée
+ * @param	mixed	item object or item name
+ * @param	string	name of the action (save, delete...)
+ * @param	mixed	function name (string) or method name (array) to call when event is triggered
+ * @param	mixed	function arguments
  * @access	public
  */	
 	public static function bind($item, $action, $function, $args = null)
@@ -60,8 +60,8 @@ class event
 /**
  * Unbind an event
  *
- * @param	mixed	l'objet cc ou le nom de l'objet sur lequel délier l'événement
- * @param	string	l'action qui déclenchera l'événement
+ * @param	mixed	item object or item name
+ * @param	string	name of the action (save, delete...)
  * @access	public
  */	
 	public static function unbind($item, $action)
@@ -71,10 +71,10 @@ class event
 	}
 
 /**
- * Historique des événements
+ * Auto Log
  *
- * @param	mixed 	l'objet cc ou le nom de l'objet sur lequel déclencher l'événement
- * @param	string	l'action a exécuter
+ * @param	mixed 	item object or item name
+ * @param	string	name of the action (save, delete...)
  * @access	public
  */
 	private static function log($item, $action)
@@ -101,8 +101,8 @@ class event
 /**
  * Trigger an event
  *
- * @param	mixed	l'objet cc ou le nom de l'objet sur lequel déclencher l'événement
- * @param	string	l'action a exécuter
+ * @param	mixed	item object or item name
+ * @param	string	name of the action (save, delete...)
  * @access	public
  */	
 	public static function trigger($item, $action)
@@ -128,7 +128,7 @@ class event
 /**
  * Get the list of events bound to an item
  *
- * @param	mixed	l'objet cc ou le nom de l'objet
+ * @param	mixed	item object or item name
  * @access	public
  */
 	public static function get($item)

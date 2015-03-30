@@ -22,7 +22,7 @@
 class count
 {
 /**
- * Constructeur de classe désactivé, utilisez la méthode count::get
+ * Disabled constructor. Use count::get to instanciate
  * 
  * @access	private
  */
@@ -31,18 +31,18 @@ class count
  * Get count from database using parameters
  * 
  * Example:
- * $param = array(
+ * <pre>
+ * $bunch->get('page', array(
  * 	'key' => 'home%',
  * 	'type' => array('html', 'ajax'),
  * 	'section' => array(2, 4),
  * 	'tag' => 1,
  * 	'limit()' => 10 
  * );
- * $bunch->get('page', $param);
- *
- * @param	string  le type d'objet recherché
- * @param	array  	Le tableau de paramètres
- * @param	string 	L'environnement de la recherche, soit "admin" ou "site" (par défaut l'environnement en cours)
+ * </pre>
+ * @param	string  item's name
+ * @param	array  	the array of parameters
+ * @param	string 	environnement (default current)
  * @access	public
  * @static
  */

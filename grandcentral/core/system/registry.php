@@ -1,6 +1,14 @@
 <?php
 /**
  * The registry.
+ * A way to store global data. Lots of useful tool too.
+ * 
+ * <pre>
+ *	$apps = registry::get(registry::app_index);
+ *	$classes = registry::get(registry::class_index);
+ * 	$constants = registry::get_constants();
+ * </pre>
+ * 
  *
  * This class stores data in a global registry so they can be easily accessed through the current script.
  *
@@ -163,7 +171,7 @@ class registry
 		return ($type !== null && $tmp[strtoupper($type)]) ? $tmp[strtoupper($type)] : $tmp;
 	}
 /**
- * Chargement du site, du user, des versions et de la page courrants
+ * Load the current environnement
  *
  * @access	protected
  */
@@ -198,9 +206,9 @@ class registry
 		}
 	}
 /**
- * Obtenir les classes disponibles
+ * Get all the classes or filter it with a prefix
  *
- * @param	string	préfixe des classes recherchées
+ * @param	string	(optionnal) class prefix
  * @access	public
  */
 	public static function get_class($prefix = null)
