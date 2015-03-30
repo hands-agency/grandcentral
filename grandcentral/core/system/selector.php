@@ -9,7 +9,43 @@
  */
 
 /**
- * Main selector
+ * i() is our Universal Selector and the most useful function around. It lets you fetch, handle and display one or many items from your database:
+ * <pre>
+ * // Fetch all socks
+ * $socks = i('socks', all);
+ * </pre>
+ * You can fetch an item by id, key or nickname
+ * <pre>
+ * // Fetch a sock by id
+ * $socks = i('socks', 123);
+ * // Fetch a sock by key
+ * $socks = i('socks', 'polkadot');
+ * // Fetch a sock by nickname
+ * $socks = i('socks_123');
+ * </pre>
+ * The Universal Selector takes all the parameters of bunches:
+ * <pre>
+ * // Fetch a set of socks
+ * $socks = i('socks,
+ * 	'title' => 'best-offer%',
+ * 	'size' => array('XL', 'L'),
+ * 	'codes' => array(2, 4),
+ * 	'tag' => 1,
+ * 	'order()' => 'color DESC, size ASC',
+ * 	'limit()' => 10,
+ *  'instock' => true,
+ * );
+ * </pre>
+ * You can also fetch the current page:
+ * <pre>
+ * // Fetch the current page
+ * $page = i('page', current);
+ * </pre>
+ * Or the current item in the script if you have a reader:
+ * <pre>
+ * // Fetch the current read item
+ * $page = i(item, current);
+ * </pre>
  *
  * @param	string	table
  * @param	mixed	parameter or array of parameters
@@ -123,7 +159,11 @@
 		return itemConst::t($value);
 	}
 /**
- * Constant handling
+ * load() lets you simply load apps into the system:
+ * <pre>
+ * // Load jQuery, Sir Trevor and Masonry 
+ * load('jquery', 'sirtrevor', 'masonry');
+ * </pre>
  *
  * @param	string	app 1
  * @param	string	app 2...

@@ -50,4 +50,15 @@
 	{
 		return 'https://github.com/cafecentral/grandcentral/blob/master/grandcentral/core/system/'.$file;
 	}
+	
+/**
+ * Lorem
+ *
+ * @param	mixed	un objet php, le nom d'une classe, d'une fonction, d'une méthode
+ * @access	public
+ */
+	function docFunctionUrl($function)
+	{
+		return i('page', current)['url'].'/'.$function;
+	}
 ?>

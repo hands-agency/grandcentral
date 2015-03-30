@@ -9,7 +9,11 @@
  */
 
 /**
- * Media selector
+ * media() lets you simply handle media files
+ * <pre>
+ * // Load jQuery, Sir Trevor and Masonry 
+ * media('image/logo.png');
+ * </pre>
  *
  * @param	string	path to the file (root is the media directory)
  * @return	object	a media object
