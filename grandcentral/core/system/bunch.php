@@ -4,10 +4,12 @@
  *
  * This class will let you search, order, save, delete bunches in the database. For instance all the socks at once:
  * <pre>
+ * // Fetch all the socks
  * $bunch = new bunch('socks', all);
  * </pre>
  * Bunches parameters let you refine your selection with various values:
  * <pre>
+ * // Fetch a bunch of socks
  * $p = array(
  * 	'title' => 'best-offer%',
  * 	'size' => array('XL', 'L'),
@@ -21,6 +23,7 @@
  * </pre>
  * By calling several times the get() method, you'll be able to handle different types of items at the same time, like pairs of blue socks and XL jumpers:
  * <pre>
+ * // Fetch socks and jumpers in one bunch
  * $bunch = new bunch();
  * $bunch-get('socks',
  * 	 array(
@@ -67,7 +70,7 @@ class bunch implements ArrayAccess, Iterator, Countable
 	}
 
 /**
- * Returns the environnement of the bunch
+ * Returns the environment of the bunch
  *
  * @return	string	l'environnement actif : admin ou site
  * @access	public
@@ -78,7 +81,7 @@ class bunch implements ArrayAccess, Iterator, Countable
 	}
 
 /**
- * Order the bunch of items
+ * Order a bunch of items
  *
  * @param	string	l'index du tri
  * @param	bool	inverse l'ordre du tri (false par défaut)

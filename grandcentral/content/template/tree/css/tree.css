@@ -44,7 +44,7 @@ section[data-template="/tree/tree"] ol ol li .connector
 	width:19px;
 	top:0px;
 	left:50%;
-	margin-left:-10px;
+	margin-left:-9px;
 	font-size:9px;
 	color:#666;
 	z-index:2;
@@ -399,7 +399,8 @@ section[data-template="/tree/tree"] li .page[data-type="link"] .icon .face
 {
 	height:60px;
 	line-height:35px !important;
-/*	background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); */
+	border:1px solid rgba(0, 0, 0, .4);
+	background:transparent !important;
 }
 section[data-template="/tree/tree"] li .page[data-type="link"] .url
 {

@@ -26,15 +26,15 @@
  * The Universal Selector takes all the parameters of bunches:
  * <pre>
  * // Fetch a set of socks
- * $socks = i('socks,
+ * $socks = i('socks', array(
  * 	'title' => 'best-offer%',
  * 	'size' => array('XL', 'L'),
  * 	'codes' => array(2, 4),
  * 	'tag' => 1,
  * 	'order()' => 'color DESC, size ASC',
  * 	'limit()' => 10,
- *  'instock' => true,
- * );
+ * 	'instock' => true,
+ * ));
  * </pre>
  * You can also fetch the current page:
  * <pre>
