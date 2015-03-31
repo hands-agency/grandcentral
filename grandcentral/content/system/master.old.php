@@ -25,7 +25,7 @@ class master
 	{
 	//	define the master content type
 		self::$content_type = (empty($page['type']['content_type'])) ? 'html' : $page['type']['content_type'];
-	//	instanciate the app master
+	//	instantiate the app master
 		$params['page'] = $page;
 		$tpl = (mb_strpos($page['type']['master']['template'], '/') === 0) ? $page['type']['master']['template'] : '/'.$page['type']['master']['template'];
 		$this->app = app($page['type']['master']['app'], $tpl, $params);

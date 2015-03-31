@@ -2,10 +2,9 @@
 /**
  * The generic item of Grand Central
  *
- * @package  Core
- * @author   Sylvain Frigui <sf@cafecentral.fr>
- * @access   public
- * @see      http://www.cafecentral.fr/fr/wiki
+ * @author	Sylvain Frigui <sf@cafecentral.fr>
+ * @access	public
+ * @link		http://grandcentral.fr
  */
 class itemPage extends _items
 {

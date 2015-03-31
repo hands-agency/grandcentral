@@ -1,7 +1,7 @@
 <?php
 /**
  * Database ressources.
- * This class is a singleton. You need database::connect() to instanciate.
+ * This class is a singleton. You need database::connect() to instantiate.
  *
  * Example:
  * <pre>
@@ -10,10 +10,9 @@
  * $home = $db->query('SELECT * FROM page WHERE `key` = :key', $param);
  * </pre>
  *
- * @package  Core
- * @author   Sylvain Frigui <sf@cafecentral.fr>
- * @access   public
- * @see      http://www.cafecentral.fr/fr/wiki
+ * @author	Sylvain Frigui <sf@cafecentral.fr>
+ * @access	public
+ * @link		http://grandcentral.fr
  */
 class database
 {
@@ -29,7 +28,7 @@ class database
 	public $_spooler = array();
 
 /**
- * Instanciate PDO and open database connection. Can't be called.
+ * instantiate PDO and open database connection. Can't be called.
  *
  * @param	string  database type
  * @param	string  database host
@@ -63,7 +62,7 @@ class database
 	}
 
 /**
- * Instanciate a database
+ * instantiate a database
  * <pre>
  * $db = database::connect('site');
  * $db->query('SELECT * FROM page');
@@ -75,7 +74,7 @@ class database
  */
 	public static function connect($env = env)
 	{
-		self::$env = (in_array($env, array('site', 'admin'))) ? $env : trigger_error('Environnement should be <strong>admin</strong> or <strong>site</strong>.Not '.$env.'.', E_USER_ERROR);
+		self::$env = (in_array($env, array('site', 'admin'))) ? $env : trigger_error('Environment should be <strong>admin</strong> or <strong>site</strong>.Not '.$env.'.', E_USER_ERROR);
 	//	à la manière du singleton
 		if (empty(self::$instance[self::$env]))
 		{

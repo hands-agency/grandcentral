@@ -46,7 +46,7 @@
 /********************************************************************************************/
 	if (isset($tables))
 	{		
-	//	Instanciate a new search
+	//	instantiate a new search
 		$search = new searchFulltext('full');
 		
 	//	Custom rules

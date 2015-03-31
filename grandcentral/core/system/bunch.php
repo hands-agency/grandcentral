@@ -36,11 +36,10 @@
  *  )
  * );
  * </pre>
- *
- * @package  Core
- * @author   Sylvain Frigui <sf@cafecentral.fr>
- * @access   public
- * @see      http://www.cafecentral.fr/fr/wiki
+ *F
+ * @author	Sylvain Frigui <sf@cafecentral.fr>
+ * @access	public
+ * @link		http://grandcentral.fr
  */
 class bunch implements ArrayAccess, Iterator, Countable
 {	

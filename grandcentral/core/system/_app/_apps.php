@@ -244,21 +244,16 @@ abstract class _apps
 			}
 		}
 	}
-	
+
 /**
- * 
- *
- * @return	string	la clé de l'app
- * @access	public
- */
-	// public function bind_code($zone, $data)
-	// {
-	// 	master::bind($zone, $data);
-	// }
-/**
- * 
- *
- * @return	string	la clé de l'app
+ * Binds a snippet to a zone
+ * <pre>
+ * // Bind nav (master/snippet/nav.snippet.php) to the header zone
+ * $_APP->bind_snippet('header', 'master/snippet/nav');
+ * </pre>
+ * @param	string	The id of the zone defined in the view. ie
+ * @param	string	The path to the snippet. ie master/snippet/nav
+ * @param	bool	
  * @access	public
  */
 	public function bind_snippet($zone, $snippet_key, $top = false)
@@ -312,9 +307,13 @@ abstract class _apps
 		master::bind_file($zone, $app, $url);
 	}
 /**
- * 
- *
- * @return	string	la clé de l'app
+ * Binds a css to the css zone
+ * <pre>
+ * // Bind css master/css/master.css
+ * $_APP->bind_css('master/css/master.css');
+ * </pre>
+ * @param	string  The path to the css. ie master/css/master.css
+ * @param	bool	
  * @access	public
  */
 	public function bind_css($file, $system = false)
@@ -322,19 +321,29 @@ abstract class _apps
 		$this->bind_file('css', $file, $system);
 	}
 /**
- * 
- *
- * @return	string	la clé de l'app
+ * Binds a script to the script zone
+ * <pre>
+ * // Bind script master/script/master.js
+ * $_APP->bind_script('master/script/master.js');
+ * </pre>
+ * @param	string  The path to the script. ie master/script/master.js
+ * @param	bool	
  * @access	public
  */
 	public function bind_script($file, $system = false)
 	{
 		$this->bind_file('script', $file, $system);
 	}
+
 /**
- * 
- *
- * @return	string	la clé de l'app
+ * Binds a script to the script zone
+ * <pre>
+ * // Bind some jQuery code to the script zone
+ * $_APP->bind_code('script', '$("#main").hide();');
+ * </pre>
+ * @param	string  The zone
+ * @param	string  The code
+ * @param	bool	
  * @access	public
  */
 	public function bind_code($zone, $data, $top = false)

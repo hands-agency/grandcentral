@@ -3,8 +3,8 @@
  * La classe de documentation automatique
  *
  * @package  doc
- * @author   Sylvain Frigui <sf@cafecentral.fr>
- * @see      http://www.cafecentral.fr/fr/wiki
+ * @author	Sylvain Frigui <sf@cafecentral.fr>
+ * @link		http://grandcentral.fr
  */
 class doc
 {

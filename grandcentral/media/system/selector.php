@@ -2,10 +2,9 @@
 /**
  * Media Selector Library
  *
- * @package  Core
- * @author   Sylvain Frigui <sf@cafecentral.fr>
- * @access   public
- * @see      http://www.cafecentral.fr/fr/wiki
+ * @author	Sylvain Frigui <sf@cafecentral.fr>
+ * @access	public
+ * @link		http://grandcentral.fr
  */
 
 /**

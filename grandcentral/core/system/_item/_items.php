@@ -4,10 +4,9 @@
  *
  * a data = one line in the database
  * 
- * @package  Core
- * @author   Sylvain Frigui <sf@cafecentral.fr>
- * @access   public
- * @see      http://www.cafecentral.fr/fr/wiki
+ * @author	Sylvain Frigui <sf@cafecentral.fr>
+ * @access	public
+ * @link		http://grandcentral.fr
  */
 abstract class _items implements ArrayAccess, Iterator
 {
@@ -440,7 +439,7 @@ abstract class _items implements ArrayAccess, Iterator
  */
 	public function json($filter = null)
 	{
-	//	Only if item instanciated
+	//	Only if item instantiated
 		if ($this)
 		{
 		//	Return data in Json
