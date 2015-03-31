@@ -57,8 +57,8 @@
  * @param	mixed	un objet php, le nom d'une classe, d'une fonction, d'une méthode
  * @access	public
  */
-	function docFunctionUrl($function)
+	function docFunctionUrl($app, $function)
 	{
-		return i('page', current)['url'].'/'.$function;
+		return i('page', current)['url'].'/'.$app.'/'.$function;
 	}
 ?>
