@@ -141,6 +141,7 @@ class doc
 		$data['app'] = $this->_get_app();
 		$data['line']['start'] = $reflection->getStartLine();
 		$data['line']['end'] = $reflection->getEndLine();
+		
 		foreach ($lines[1] as $line)
 		{
 			$line = trim($line);
@@ -213,11 +214,11 @@ class doc
  */
 	private function _get_app()
 	{
-		if (isset($this->data['file']) && !empty($this->data['file']))
+		if (!isset($this->data['file']) && empty($this->data['file']))
 		{
-			return mb_substr($this->data['file'], mb_strlen(ADMIN_ROOT) + 1, mb_strpos($this->data['file'], '/', mb_strlen(ADMIN_ROOT) + 1) - mb_strlen(ADMIN_ROOT) - 1);
+			$this->data['file'] = $this->reflection->getFileName();
 		}
-		return null;
+		return mb_substr($this->data['file'], mb_strlen(ADMIN_ROOT) + 1, mb_strpos($this->data['file'], '/', mb_strlen(ADMIN_ROOT) + 1) - mb_strlen(ADMIN_ROOT) - 1);
 	}	
 	
 /**
