@@ -1,6 +1,6 @@
 <?php
 /**
- * Integer formated attributes handling class
+ * Boolean attributes handling class
  *
  * @package 	Core
  * @author		Sylvain Frigui <sf@cafecentral.fr>
@@ -10,10 +10,9 @@
 class attrBool extends _attrs
 {
 /**
- * Set attribute
+ * Set boolean attribute
  *
- * @param	string	la variable
- * @return	string	une string
+ * @param	mixed	attribute data (true or false)
  * @access	public
  */
 	public function set($data)
@@ -22,10 +21,9 @@ class attrBool extends _attrs
 		return $this;
 	}
 /**
- * xxxx
+ * Display the attribute data
  *
- * @param	string	la variable
- * @return	string	une string
+ * @return	string	"true" or "false" string
  * @access	public
  */
 	public function __toString()
@@ -33,9 +31,9 @@ class attrBool extends _attrs
 		return ($this->data === true) ? 'true' : 'false';
 	}
 /**
- * Definition mysql
+ * Get mysql attribute definition
  *
- * @return	string	la définition mysql
+ * @return	string	a mysql string
  * @access	public
  */
 	public function mysql_definition()
@@ -47,10 +45,9 @@ class attrBool extends _attrs
 	}
 	
 /**
- * Default field attributes for Bool	
+ * Default field attributes for all fields	
  *
- * @param	string	la variable
- * @return	string	une string
+ * @return	array	an array of attribute properties
  * @access	public
  */
 	public static function get_properties()

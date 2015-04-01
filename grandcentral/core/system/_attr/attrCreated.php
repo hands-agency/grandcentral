@@ -1,6 +1,6 @@
 <?php
 /**
- * Integer formated attributes handling class
+ * Creation Date attribute handling class
  *
  * @package 	Core
  * @author		Sylvain Frigui <sf@cafecentral.fr>
@@ -10,10 +10,9 @@
 class attrCreated extends attrDate
 {
 /**
- * Set array attribute
+ * Transforms the data into mysql date format and autofill with the current date if empty.
  *
- * @param	string	la variable
- * @return	string	une string
+ * @return	mixed	attribute data
  * @access	public
  */
 	public function database_get()
@@ -25,10 +24,9 @@ class attrCreated extends attrDate
 		return $this->get();
 	}
 /**
- * Default field attributes for created	
+ * Default field attributes for all fields	
  *
- * @param	string	la variable
- * @return	string	une string
+ * @return	array	an array of attribute properties
  * @access	public
  */
 	public static function get_properties()

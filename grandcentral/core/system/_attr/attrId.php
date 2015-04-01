@@ -1,6 +1,6 @@
 <?php
 /**
- * Integer formated attributes handling class
+ * Autoincremented Id attribute handling class
  *
  * @package 	Core
  * @author		Sylvain Frigui <sf@cafecentral.fr>

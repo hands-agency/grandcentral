@@ -1,6 +1,7 @@
 <?php
 /**
- * String formated attributes handling class
+ * Internationalization attribute handling class.
+ * Work as a container of all other attributes
  *
  * @package 	Core
  * @author		Sylvain Frigui <sf@cafecentral.fr>
@@ -11,10 +12,9 @@ class attrI18n extends attrArray
 {
 	protected $field;
 /**
- * xxxx
+ * Check if the attribute data is empty
  *
- * @param	string	la variable
- * @return	string	une string
+ * @return	bool	true if is empty, false otherwise
  * @access	public
  */
 	public function is_empty()
@@ -52,9 +52,9 @@ class attrI18n extends attrArray
 		return $string;
 	}
 /**
- * Get complete item url
+ * Attach _items data inside attribute
  *
- * @return	string	url
+ * @return	_items	item to attach to the attribute
  * @access	public
  */
 	public function attach(_items &$item)
@@ -65,9 +65,9 @@ class attrI18n extends attrArray
 		// $this->params['key'] = $item['key']->get();
 	}
 /**
- * Définir le type du champ à internationaliser
+ * (deprecated) Field to display inside i18n block
  * 
- * @return	string	le nom du champ
+ * @param	string	fields classname (ex: fieldText, fieldTextarea...)
  * @access	public
  */
 	public function set_field($field)
@@ -75,9 +75,9 @@ class attrI18n extends attrArray
 		$this->field = $field;
 	}
 /**
- * Obtenir le type du champ
+ * (deprecated) Field displayed inside i18n block
  * 
- * @return	string	le nom du champ
+ * @return	string	fields classname (ex: fieldText, fieldTextarea...)
  * @access	public
  */
 	public function get_field()
@@ -85,9 +85,9 @@ class attrI18n extends attrArray
 		return $this->field;
 	}
 /**
- * Définir le type du champ à internationaliser
+ * Define the attribute to internationalize
  * 
- * @return	string	le nom du champ
+ * @param	string	attribute classname (ex: attrString, attrSirtrevor)
  * @access	public
  */
 	public function set_attr($attr)
@@ -95,20 +95,19 @@ class attrI18n extends attrArray
 		$this->attr = $attr;
 	}
 /**
- * Définir le type du champ à internationaliser
+ * Get the attribute to internationalize
  * 
- * @return	string	le nom du champ
+ * @return	string	attribute classname (ex: attrString, attrSirtrevor)
  * @access	public
  */
-	public function get_attr($attr)
+	public function get_attr()
 	{
 		return $this->attr;
 	}
 /**
- * Afficher le contenu de l'attribut
+ * Display the internationalized attribute
  *
- * @param	string	la variable
- * @return	string	une string
+ * @return	string	attribute view
  * @access	public
  */
 	public function __tostring()
@@ -134,10 +133,9 @@ class attrI18n extends attrArray
 		}
 	}
 /**
- * Default field attributes for Decimal	
+ * Get the properties of an attributes
  *
- * @param	string	la variable
- * @return	string	une string
+ * @return	array	an array of attribute properties
  * @access	public
  */
 	public static function get_properties()
