@@ -5,7 +5,7 @@
  * http://stackoverflow.com/questions/11061355/security-threats-with-uploads
  * 
  * @package		file
- * @author		Sylvain Frigui <sf@cafecentral.fr>
+ * @author		Sylvain Frigui <sf@hands.agency>
  * @access		public
  * @link		http://grandcentral.fr
  */

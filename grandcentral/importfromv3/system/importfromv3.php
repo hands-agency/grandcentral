@@ -3,7 +3,7 @@
  * Import data from Café Central v3 into Grand Central v4
  * 
  * @package		Core
- * @author		Sylvain Frigui <sf@cafecentral.fr>
+ * @author		Sylvain Frigui <sf@hands.agency>
  * @access		public
  * @link		http://grandcentral.fr
  */

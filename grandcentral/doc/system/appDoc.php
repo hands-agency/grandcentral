@@ -3,7 +3,7 @@
  * AppDoc
  *
  * @package  Doc
- * @author	Sylvain Frigui <sf@cafecentral.fr>
+ * @author	Sylvain Frigui <sf@hands.agency>
  * @access	public
  * @link		http://grandcentral.fr
  */

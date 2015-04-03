@@ -11,7 +11,7 @@
  * </pre>
  *
  * @author		Michaël V. Dandrieux <@mvdandrieux>
- * @author		Sylvain Frigui <sf@cafecentral.fr>
+ * @author		Sylvain Frigui <sf@hands.agency>
  * @copyright	Copyright © 2004-2012, Grand Central
  * @license		http://grandcentral.fr/license MIT License
  * @access		public

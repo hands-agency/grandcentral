@@ -5,7 +5,7 @@
  * Create, delete and activate events on an item or a bunch of items
  * 
  * @package		Core
- * @author		Sylvain Frigui <sf@cafecentral.fr>
+ * @author		Sylvain Frigui <sf@hands.agency>
  * @access		public
  * @link		http://grandcentral.fr
  */

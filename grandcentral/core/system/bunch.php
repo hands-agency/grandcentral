@@ -37,9 +37,9 @@
  * );
  * </pre>
  *F
- * @author	Sylvain Frigui <sf@cafecentral.fr>
+ * @author	Sylvain Frigui <sf@hands.agency>
  * @access	public
- * @link		http://grandcentral.fr
+ * @link	http://grandcentral.fr
  */
 class bunch implements ArrayAccess, Iterator, Countable
 {	
@@ -52,9 +52,9 @@ class bunch implements ArrayAccess, Iterator, Countable
 /**
  * Instantiate a bunch of items
  *
- * @param	string  la table des objets pour la recherche
- * @param	array  	le tableau de paramètres de la recherche
- * @param	string  admin ou site
+ * @param	string  The key of the items we want to handle (ie: "page", "human", "version"...). Leave null for an empty bunch
+ * @param	array  	The list of filtering parameters
+ * @param	string  The environment we want to work on: "site" or "admin"
  * @access	public
  */
 	public function __construct($table = null, $params = null, $env = env)
@@ -69,9 +69,9 @@ class bunch implements ArrayAccess, Iterator, Countable
 	}
 
 /**
- * Returns the environment of the bunch
+ * Return the environment of a bunch
  *
- * @return	string	l'environnement actif : admin ou site
+ * @return	string	The environment of a bunch ("site" or "admin")
  * @access	public
  */
 	public function get_env()
@@ -82,8 +82,9 @@ class bunch implements ArrayAccess, Iterator, Countable
 /**
  * Order a bunch of items
  *
- * @param	string	l'index du tri
- * @param	bool	inverse l'ordre du tri (false par défaut)
+ * @param	string	The order key (ie "title", "id", "created")
+ * @param	bool	Reverse order ("false" by default)
+ * @return	string	The ordered bunch
  * @access	public
  */	
 	public function order($index, $reverse = false)

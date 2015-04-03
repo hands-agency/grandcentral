@@ -12,7 +12,7 @@
  * 
  * @package        Google API OAuth 2 Connection
  * @author        Virgil B.
- * @author        Sylvain Frigui <sf@cafecentral.fr>
+ * @author        Sylvain Frigui <sf@hands.agency>
  * @copyright    Copyright © 2004-2014, Grand Central
  * @license        http://www.cafecentral.fr/fr/licences GNU Public License
  * @access        public

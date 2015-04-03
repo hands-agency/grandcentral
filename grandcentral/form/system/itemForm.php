@@ -5,7 +5,7 @@
  * 
  * @package		form
  * @author		Michaël V. Dandrieux <@mvdandrieux>
- * @author		Sylvain Frigui <sf@cafecentral.fr>
+ * @author		Sylvain Frigui <sf@hands.agency>
  * @access		public
  * @link		http://grandcentral.fr
  */

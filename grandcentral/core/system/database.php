@@ -10,7 +10,7 @@
  * $home = $db->query('SELECT * FROM page WHERE `key` = :key', $param);
  * </pre>
  *
- * @author	Sylvain Frigui <sf@cafecentral.fr>
+ * @author	Sylvain Frigui <sf@hands.agency>
  * @access	public
  * @link		http://grandcentral.fr
  */
