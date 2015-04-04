@@ -11,21 +11,21 @@
  * i() is our Universal Selector and the most useful function around. It lets you fetch, handle and display one or many items from your database:
  * <pre>
  * // Fetch all socks
- * $socks = i('socks', all);
+ * $socks = i('sock', all);
  * </pre>
  * You can fetch an item by id, key or nickname
  * <pre>
  * // Fetch a sock by id
- * $socks = i('socks', 123);
+ * $socks = i('sock', 123);
  * // Fetch a sock by key
- * $socks = i('socks', 'polkadot');
+ * $socks = i('sock', 'polkadot');
  * // Fetch a sock by nickname
- * $socks = i('socks_123');
+ * $socks = i('sock_123');
  * </pre>
  * The Universal Selector takes all the parameters of bunches:
  * <pre>
  * // Fetch a set of socks
- * $socks = i('socks', array(
+ * $socks = i('sock', array(
  * 	'title' => 'best-offer%',
  * 	'size' => array('XL', 'L'),
  * 	'codes' => array(2, 4),

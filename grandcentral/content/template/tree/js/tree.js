@@ -665,11 +665,12 @@ $(function()
 		});
 	});
 	
-//	Edit when hover intent
-	$(document).on('click', 'ol.tree .icon .front', function()
+//	Edit on click
+	$(document).on('click', '.locked ol.tree .icon .front', function()
 	{
 		$(this).parent('.icon').addClass('flipped');
 	});
+//	Revert on hover intent out
 	$('ol.tree .icon').hoverIntent(
 	{
 		timeout: 500,
@@ -775,15 +776,21 @@ $(function()
 	//	Loop through the pages
 		pages.each(function(i)
 		{
-		//	Get the nickname and the children
-			item = $(this).data('item');
-			children = new Array();
-			$(this).find('>.node>ol>li[data-item]').each(function()
+		//	Kill the new pages that have not been created
+			if ($(this).find('.page').data('type') == 'new') $(this).remove();
+		//	Save the position of the other pages
+			else
 			{
-				children.push($(this).data('item'));
-			});
-		//	Store the data
-			tree[i] = {item:item, children:children}
+			//	Get the nickname and the children
+				item = $(this).data('item');
+				children = new Array();
+				$(this).find('>.node>ol>li[data-item]').each(function()
+				{
+					children.push($(this).data('item'));
+				});
+			//	Store the data
+				tree[i] = {item:item, children:children}
+			}
 		});
 	//	Send the new order to ajax
 		$.ajx(

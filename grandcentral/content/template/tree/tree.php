@@ -138,6 +138,18 @@
 				
 			//	Do you have zones ?
 				/* TODO */
+				
+			//	Depending on pages
+				switch ($page['key'])
+				{
+					case 'home':
+						$asleep = 'Maintenance';
+						break;
+					
+					default:
+						$asleep = 'Put asleep';
+						break;
+				}
 	
 			//	Depending on type
 				switch ($page['type']['key'])
@@ -174,7 +186,7 @@
 							<div class="action">
 								<a class="edit" data-feathericon="&#xe095" href="'.$page->edit().'">Edit</a>
 								<a class="preview" data-feathericon="&#xe000">Preview</a>
-								<a class="asleep" data-feathericon="&#xe061">Put asleep</a>
+								<a class="asleep" data-feathericon="&#xe061">'.$asleep.'</a>
 								<a class="live" data-feathericon="&#xe064">Go live</a>
 							</div>
 							<div class="preview"><iframe></iframe></div>

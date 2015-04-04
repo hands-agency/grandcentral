@@ -1,12 +1,12 @@
 /********************************************************************************************/
 /* Options
 /********************************************************************************************/
-#options
+header .options
 {
 	position:absolute;
 	padding-left:80px;
 }
-#options>li
+header .options>li
 {
 	background:#fff;
 	-moz-border-radius:2px;
@@ -36,12 +36,12 @@
 }
 
 /* Local search */
-#options #refine
+header .options #refine
 {
 	padding:0 0 0 7px;
 	display:none; /* Starts hidden, show if necessary */
 }
-#options #refine input
+header .options #refine input
 {
 	border:0;
 	font-size:12px;

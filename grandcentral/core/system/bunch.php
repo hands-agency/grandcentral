@@ -82,7 +82,7 @@ class bunch implements ArrayAccess, Iterator, Countable
 /**
  * Order a bunch of items
  *
- * @param	string	The order key (ie "title", "id", "created")
+ * @param	string	The order key (ie: "title", "id", "created")
  * @param	bool	Reverse order ("false" by default)
  * @return	string	The ordered bunch
  * @access	public
@@ -116,9 +116,10 @@ class bunch implements ArrayAccess, Iterator, Countable
 	}
 
 /**
- * Alter the index of the bunch
+ * Use the key of an attribute instead of a numeric index
  *
- * @param	string	le nouvel index désiré
+ * @param	string	The desired index (ie: "id", "key"...)
+ * @return	string	The indexed bunch
  * @access	public
  */
 	public function set_index($index = false)
@@ -143,9 +144,10 @@ class bunch implements ArrayAccess, Iterator, Countable
 	}
 
 /**
- * Restore the index of the bunch to previous
+ * Revert the bunch index to its previous key
  *
  * @access	public
+ * @return	string	The bunch indexed with its previous index key
  */
 	public function restore_index()
 	{
@@ -157,10 +159,10 @@ class bunch implements ArrayAccess, Iterator, Countable
 	}
 
 /**
- * Extract all values of given attributes
+ * Extract all values of a given attribute
  *
- * @param	string  name of the attr
- * @return	array	all values of the attr
+ * @param	string  The attribute (ie: "id", "title"...)
+ * @return	array	All values of the given attributes figuring in the bunch
  * @access	public
  */
 	public function get_column($column, $assoc = true)
@@ -193,14 +195,8 @@ class bunch implements ArrayAccess, Iterator, Countable
 	
 /**
  * Get an array of nicknames of all the items in the bunch
- * <pre>
- * array(
- * 	page_1,
- * 	page_2,
- * 	page_3
- * );
- * </pre>
- * @return	array	list of nicknames
+ *
+ * @return	array	The List of nicknames of the items in the bunch
  * @access	public
  */
 	public function get_nickname()
@@ -216,7 +212,7 @@ class bunch implements ArrayAccess, Iterator, Countable
 /**
  * Get all the given attributes
  *
- * @return	string	la clé de l'attribut
+ * @return	string	The key of the attribute
  * @access	public
  */
 	public function get_attr($key)
@@ -230,10 +226,10 @@ class bunch implements ArrayAccess, Iterator, Countable
 	}
 	
 /**
- * Search items with the given parameters
+ * Fetch additional items for a bunch
  * 
- * Example:
  * <pre>
+ * // A list of filtering parameters
  * $param = array(
  * 	'key' => 'home%',
  * 	'type' => array('html', 'ajax'),
@@ -242,6 +238,7 @@ class bunch implements ArrayAccess, Iterator, Countable
  * 	'order()' => 'key DESC, type ASC',
  * 	'limit()' => 10 
  * );
+ * // Fetch!
  * $bunch->get('page', $param);
  * </pre>
  *

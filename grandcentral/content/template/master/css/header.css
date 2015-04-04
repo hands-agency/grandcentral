@@ -30,6 +30,14 @@ header>div.site
 {
 	border-bottom:1px solid #555;
 }
+header .actionbutton
+{
+	float:right;
+}
+header .actionbutton button
+{
+	background-color:#6cbf2d !important;
+}
 
 /* Drawer */
 header .drawer

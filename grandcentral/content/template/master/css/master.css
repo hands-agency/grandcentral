@@ -999,7 +999,8 @@ footer
 {
 	left:30px;
 }
-#adminContent #sectiontray>li>.back:hover
+#adminContent #sectiontray>li>.back:hover,
+#adminContent.unlocked #sectiontray>li>span
 {
 	background:#419BF9;
 	color:#fff;
@@ -1031,7 +1032,8 @@ footer
 {
 	opacity:0.3;
 }
-#adminContent #sectiontray>li .lock:hover
+#adminContent #sectiontray>li .lock:hover,
+#adminContent.unlocked #sectiontray>li .lock
 {
 	opacity:1;
 }

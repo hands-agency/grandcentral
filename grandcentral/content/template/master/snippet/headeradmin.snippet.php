@@ -1,4 +1,4 @@
-<ul id="options">
+<ul class="options">
 	<li id="refine" class="off" data-feathericon="&#xe036"><input type="search" placeholder="Refine or ↵ search" /></li>
 	<li id="filter" class="off" data-feathericon="&#xe023"></li>
 </ul>
