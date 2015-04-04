@@ -3,12 +3,13 @@
  * La classe de documentation automatique
  *
  * @package  doc
- * @author   Sylvain Frigui <sf@cafecentral.fr>
- * @see      http://www.cafecentral.fr/fr/wiki
+ * @author	Sylvain Frigui <sf@hands.agency>
+ * @link		http://grandcentral.fr
  */
 class doc
 {
 	private $reflection;
+	private $type;
 	public $data;
 	
 /**
@@ -48,7 +49,16 @@ class doc
 		
 		$obj = new doc($expression);
 	}
-	
+/**
+ * Obtenir le genre de l'objet documenté
+ *
+ * @return	string	le genre
+ * @access	public
+ */
+	public function get_type()
+	{
+		return $this->type;
+	}
 /**
  * Préparer la documentation d'une classe
  *
@@ -57,7 +67,7 @@ class doc
  */
 	private function _prepare_class($class)
 	{
-		$this->template_key = 'class';
+		$this->type = 'class';
 		$this->reflection = new ReflectionClass($class);
 		$this->data = $this->_parse($this->reflection);
 		$methods = $this->reflection->getMethods();
@@ -76,6 +86,7 @@ class doc
 		foreach ($methods as $key => $method)
 		{
 			$data = $this->_parse($method);
+			$data['key'] = $this->reflection->name.'::'.$data['key'];
 			$this->data['method'][] = $data;
 		}
 		// print '<pre>';print_r($this->data['method']);print'</pre>';
@@ -91,9 +102,11 @@ class doc
  */
 	private function _prepare_method($class, $method)
 	{
-		$this->template_key = 'method';
+		$this->type = 'method';
 		$this->reflection = new ReflectionMethod($class, $method);
 		$this->data = $this->_parse($this->reflection);
+		$this->data['class'] = $this->reflection->class;
+		$this->data['key'] = $this->reflection->class.'::'.$this->data['key'];
 	}
 	
 /**
@@ -104,7 +117,7 @@ class doc
  */
 	private function _prepare_function($function)
 	{
-		$this->template_key = 'function';
+		$this->type = 'function';
 		$this->reflection = new ReflectionFunction($function);
 		$this->data = $this->_parse($this->reflection);
 	}
@@ -125,8 +138,10 @@ class doc
 		$data['key'] = $reflection->getName();
 		$data['descr'] = null;
 		$data['file'] = $reflection->getFileName();
+		$data['app'] = $this->_get_app();
 		$data['line']['start'] = $reflection->getStartLine();
 		$data['line']['end'] = $reflection->getEndLine();
+		
 		foreach ($lines[1] as $line)
 		{
 			$line = trim($line);
@@ -189,6 +204,32 @@ class doc
 			}
 		}
 		return $data;
+	}
+
+/**
+ * obtenir l'app de la classe, la méthode ou la fonction appelé
+ *
+ * @return	string		la clef de l'app contenant le code documenté
+ * @access	private
+ */
+	private function _get_app()
+	{
+		if (!isset($this->data['file']) && empty($this->data['file']))
+		{
+			$this->data['file'] = $this->reflection->getFileName();
+		}
+		return mb_substr($this->data['file'], mb_strlen(ADMIN_ROOT) + 1, mb_strpos($this->data['file'], '/', mb_strlen(ADMIN_ROOT) + 1) - mb_strlen(ADMIN_ROOT) - 1);
+	}	
+	
+/**
+ * Obtenir la liste des fonctions déclarées par Grand Central
+ *
+ * @return	array		le tableau des fonctions
+ * @access	public
+ */
+	public function get_defined_functions()
+	{
+		return get_defined_functions()['user'];
 	}
 }
 ?>

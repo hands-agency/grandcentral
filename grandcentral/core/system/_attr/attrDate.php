@@ -1,11 +1,11 @@
 <?php
 /**
- * Integer formated attributes handling class
+ * Date attribute handling class
  *
  * @package 	Core
- * @author		Sylvain Frigui <sf@cafecentral.fr>
+ * @author		Sylvain Frigui <sf@hands.agency>
  * @access		public
- * @link		http://www.cafecentral.fr/fr/wiki
+ * @link		http://grandcentral.fr
  */
 class attrDate extends _attrs
 {
@@ -14,10 +14,9 @@ class attrDate extends _attrs
 		'type' => 'datetime'
 	);
 /**
- * Set string attribute
+ * Set the data into the attribute.
  *
- * @param	string	la variable
- * @return	string	une string
+ * @param	mixed	attribute data
  * @access	public
  */
 	public function set($data)
@@ -26,10 +25,9 @@ class attrDate extends _attrs
 		return $this;
 	}
 /**
- * xxxx
+ * Check if the attribute data is empty
  *
- * @param	string	la variable
- * @return	string	une string
+ * @return	bool	true if is empty, false otherwise
  * @access	public
  */
 	public function is_empty()
@@ -37,10 +35,11 @@ class attrDate extends _attrs
 		return (empty($this->data) || $this->data == '0000-00-00 00:00:00') ? true : false;
 	}
 /**
- * xxxx
+ * Returns date formatted according to given format.
+ * Uses php [Datetime::format](http://php.net/manual/en/datetime.format.php) method.
  *
- * @param	string	la variable
- * @return	string	une string
+ * @param	string	Format accepted by [date()](http://php.net/manual/en/function.date.php)
+ * @return	string	Returns the formatted date string on success or FALSE on failure.
  * @access	public
  */
 	public function format($format)
@@ -49,7 +48,8 @@ class attrDate extends _attrs
 		return $date->format($format);
 	}
 /**
- * xxxx
+ * Alter the timestamp of a DateTime object by incrementing or decrementing in a format accepted by strtotime().
+ * Uses php [Datetime::modify](http://php.net/manual/en/datetime.modify.php) method
  *
  * @param	string	la variable
  * @return	string	une string
@@ -61,10 +61,9 @@ class attrDate extends _attrs
 		return $date->modify($modif);
 	}
 /**
- * Definition mysql
- * ex : `datetimeinsert` datetime NOT NULL
+ * Get mysql attribute definition
  *
- * @return	string	la définition mysql
+ * @return	string	a mysql string
  * @access	public
  */
 	public function mysql_definition()
@@ -76,13 +75,10 @@ class attrDate extends _attrs
 		return $definition;
 	}
 /**
- * Definition mysql
- * ex : `datetimeinsert` datetime NOT NULL
+ * Format the attribute date using the current date
  *
- * @param	array 	le tableau de paramètres
- * @return	string	la définition mysql
+ * @return	string	formatted date
  * @access	public
- * @static
  */
 	public function time_since()
 	{
@@ -120,10 +116,9 @@ class attrDate extends _attrs
 	}
 	
 /**
- * Default field attributes for Date	
+ * Get the properties of an attributes
  *
- * @param	string	la variable
- * @return	string	une string
+ * @return	array	an array of attribute properties
  * @access	public
  */
 	public static function get_properties()

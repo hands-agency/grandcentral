@@ -1,6 +1,6 @@
 /*********************************************************************************************
 /**	* Display the archives
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
 	$('section .flag.archive').on('click', function() {
 	//	CODE : The archive list
@@ -18,7 +18,7 @@
 
 /*********************************************************************************************
 /**	* Showing the discussion input on a wall
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
 	$('section .discuss').on('click', function() {
 	//	CODE : the new comment line

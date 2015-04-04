@@ -9,14 +9,13 @@
  *    echo "I am an example.";
  * }
  * </pre>
- * 
- * @package		The package
- * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
- * @author		Sylvain Frigui <sf@cafecentral.fr>
- * @copyright	Copyright © 2004-2013, Café Central
- * @license		http://www.cafecentral.fr/fr/licences GNU Public License
+ *
+ * @author		Michaël V. Dandrieux <@mvdandrieux>
+ * @author		Sylvain Frigui <sf@hands.agency>
+ * @copyright	Copyright © 2004-2015, Hands
+ * @license		http://grandcentral.fr/license MIT License
  * @access		public
- * @link		http://www.cafecentral.fr/fr/wiki
+ * @link		http://grandcentral.fr
  */
 /********************************************************************************************/
 //	Some binds scripts & css files
@@ -37,7 +36,7 @@
 /********************************************************************************************/
 	if (isset($_GET['item']))
 	{
-		$EventSource = i('page', 'api.eventstream')['url']->args(array
+		$EventSource = i('page', 'api.eventstream', 'admin')['url']->args(array
 		(
 			'app' => 'content',
 			'template' => 'master/eventstream',
@@ -69,12 +68,23 @@
 				//	Show eventstream
 					$('#eventstream').show();
 					
+				//	Link to the item
+					itemList = '".i("page", "list")["url"]."?item=';
+					
 				//	Link to the title
-					title = (data['url']) ? '<a href=\"'+data['url']+'\">'+data['title']+'</a>' : data['title'];
+					title = (data['url']) ? '<a href=\"'+data['url']+'\">'+data['title']+'</a>' : '<span>'+data['title']+'</span>';
 					
 				//	Add the new line
-					li = '<li data-item=\"'+item+'\" style=\"display:none;opacity:'+data['opacity']+'\"><a href=\"'+data['editauthor']+'\">'+data['author']+'</a> <span>'+data['event']+'</span> <span class=\"item\">'+data['item']+'</span> '+title+' <span>'+data['timeSince']+'</span> <a href=\"'+data['edit']+'\" class=\"edit\">Edit</a></li>';
-					$(li).prependTo(ul).show('fast').fadeTo(300000, 0.3, function() {\$(this).hide('fast', function(){\$(this).remove()})});
+					li = '<li data-item=\"'+item+'\" style=\"display:none;opacity:'+data['opacity']+'\"><a href=\"'+data['editauthor']+'\">'+data['author']+'</a> <span>'+data['event']+'</span> <a href=\"'+itemList+data['item']+'\" class=\"item\">'+data['item']+'</a> '+title+' <span>'+data['timeSince']+'</span> <a href=\"'+data['edit']+'\" class=\"edit\">Edit</a></li>';
+					$(li).prependTo(ul).show('fast', function()
+					{		
+					//	Resize the header after
+						height = $('header .admin').outerHeight();
+						$('#adminContent').css('padding-top', height+'px');
+					}).fadeTo(300000, 0.3, function()
+					{
+						\$(this).hide('fast', function(){\$(this).remove()});
+					});
 
 				//	No more than
 					max = ".$maxItems.";

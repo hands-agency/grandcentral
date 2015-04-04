@@ -5,9 +5,9 @@
  * Create dir, fill database and create inc.config.php
  * 
  * @package		Core
- * @author		Sylvain Frigui <sf@cafecentral.fr>
+ * @author		Sylvain Frigui <sf@hands.agency>
  * @access		public
- * @link		http://www.cafecentral.fr/fr/wiki
+ * @link		http://grandcentral.fr
  */
 class gcInstall
 {

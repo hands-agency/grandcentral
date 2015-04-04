@@ -1,4 +1,9 @@
 /********************************************************************************************/
+/* On page love
+/********************************************************************************************/
+
+
+/********************************************************************************************/
 /* Browser
 /********************************************************************************************/
 li[data-type="zoning"]
@@ -15,78 +20,142 @@ li[data-type="zoning"] .zoningavailable
 }
 li[data-type="zoning"] .zoningselected
 {
-	width:60%;
+	width:70%;
 }
 li[data-type="zoning"] .zoningavailable
 {
-	width:40%;
+	width:30%;
+}
+/* Kill the available when context is open */
+.contextOpened1 li[data-type="zoning"] .zoningselected,
+.contextOpened1 li[data-type="zoning"] .zoningselected
+{
+	width:100%;
+}
+.contextOpened1 li[data-type="zoning"] .zoningselected .zones,
+.contextOpened1 li[data-type="zoning"] .zoningselected .zones
+{
+	margin-right:70px;
+}
+.contextOpened1 li[data-type="zoning"] .zoningavailable,
+.contextOpened1 li[data-type="zoning"] .zoningavailable
+{
+	display:none;
+}
+
+/********************************************************************************************/
+/* Devices
+/********************************************************************************************/
+li[data-type="zoning"] .devices
+{
+	margin:0 auto 10px auto;
+	font-family:"ProximaNova-Regular";
+	text-align:center;
+	text-transform:uppercase;
+	font-size:10px;
+}
+li[data-type="zoning"] .devices li
+{
+	display:inline-block;
+	margin:0 10px;
+	color:#999;
 }
 
 /********************************************************************************************/
 /* Browser
 /********************************************************************************************/
-li[data-type="zoning"] .zones
+li[data-type="zoning"] .zoningselected .zones
 {
-	margin:0 60px 20px 100px;
+	margin:0 110px 20px 70px;
 	-moz-user-select:none;
 	-webkit-user-select:none;
-	position:relative;
-	background:#fff;
 	border-radius:5px;
-	/*
-	-webkit-perspective: 800;
-	perspective: 800;
-	-webkit-transform: rotate3d(0, 1, 1, 30deg);
-	transform: rotate3d(0, 1, 1, 30deg);
-	*/
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	border:1px solid #ccc;
+	background:#fff;
+	padding:15px 10px 10px 10px;
+	position:relative;
 }
+li[data-type="zoning"] .zoningselected .zones .browserbar
+{
+	background:#F2F2F2;
+	color:#ccc;
+	position:absolute;
+	width:100%;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	padding:0 10px;
+	height:40px;
+	top:0;
+	left:0;
+	line-height:40px;
+}
+li[data-type="zoning"] .zoningselected .zones .browserbar .buttons
+{
+	display:inline-block;
+	vertical-align:middle;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	margin-right:10px;
+}
+li[data-type="zoning"] .zoningselected .zones .browserbar .addressbar
+{
+	background:#fcfcfc;
+	line-height:25px;
+	display:inline-block;
+	vertical-align:middle;
+	padding:0 10px;
+	font-size:10px;
+	width:60%;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+li[data-type="zoning"] .zoningselected .zones iframe
+{
+	width:200%;
+	height:200%;
+	-moz-transform: scale(0.5);
+	-webkit-transform: scale(0.5);
+	transform: scale(0.5);
+	-webkit-transform-origin: 0 0;
+	-ms-transform-origin: 0 0;
+	transform-origin: 0 0;
+}
+
+
 li[data-type="zoning"] .zones.in
 {
+	padding-top:55px;
 }
+/*
 li[data-type="zoning"] .zones.out
 {
 	padding-top:15px;
 }
-li[data-type="zoning"] .zones.in:before,
-li[data-type="zoning"] .zones.in:after
+li[data-type="zoning"] .zones.in:before
 {
 	content:'';
 	color:#999;
-	background-color: #ccc;
+	background-color: #DFDFDF;
 	display: block;
-	position: relative;
-	border-bottom: 1px solid #eee;
+	position: absolute;
+	left:0;
+	border-bottom: 1px solid #D3D3D3;
 	width: 100%;
 	padding:0 10px;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
-}
-li[data-type="zoning"] .zones.in:before
-{
-	height: 30px;
-	margin-bottom:15px;
+	height: 50px;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
+	top:0;
 }
-li[data-type="zoning"] .zones.in:after
-{
-	height: 5px;
-	margin-top:15px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-/*
-li[data-type="zoning"] .zones.in:after
-{
-	content:'•••';
-	color:#F2F2F2;
-	position:absolute;
-	top:-1px;
-	left:10px;
-	font-size:26px;
-}
-*/
 
 /********************************************************************************************/
 /* Zones
@@ -95,7 +164,7 @@ li[data-type="zoning"] .zones .zone
 {
 	position:relative;
 	clear:both;
-	margin:0 0 15px 0;
+	margin:0 0 5px 0;
 }
 
 /* Zone title */
@@ -103,8 +172,7 @@ li[data-type="zoning"] .zones .zone>.title
 {
 	position:absolute;
 	left:-100px;
-	top:50%;
-	margin-top:	-10px;
+	top:10px;
 	height:20px;
 	line-height:20px;
 	padding:0 5px 0 0;
@@ -123,7 +191,7 @@ li[data-type="zoning"] .zones .zone>.title:after
 	right:-40px;
 	top:10px;
 	z-index:1;
-	border-bottom:1px solid #cccccc;
+	border-bottom:1px solid #ccc;
 	width:38px;
 	line-height:0.17px;
 	letter-spacing:-4px;
@@ -141,29 +209,19 @@ li[data-type="zoning"] .zones .zone.right>.title
 	text-align:left;
 	padding:0 0 0 10px;
 	border:none;
-	border-left:1px solid #cccccc;
 }
 li[data-type="zoning"] .zones .zone.right>.title:after
 {
 	left:-39px !important;
 }
 
-/* Tabs */
-li[data-type="zoning"] .tabs
-{
-	margin-bottom:10px;
-	display:none;
-}
-
 /* Champs */
-li[data-type="zoning"] .selected li,
-li[data-type="zoning"] .available li
+li[data-type="zoning"] .zones li,
+li[data-type="zoning"] .choices li
 {
-	border:1px solid #dedede;
+	border:1px solid #eee;
 	background:#fff;
-	padding:5px;
-	margin:1px 0;
-	min-height:17px;
+	margin:5px 0;
 	font-size:0.9em;
 	-moz-border-radius:2px;
 	-webkit-border-radius:2px;
@@ -171,43 +229,65 @@ li[data-type="zoning"] .available li
 	-moz-user-select:none;
 	-webkit-user-select:none;
 	position:relative;
+	overflow:hidden;
 }
-li[data-type="zoning"] .available li
+li[data-type="zoning"] .zones li:hover,
+li[data-type="zoning"] .choices li:hover
 {
-	cursor:move;
+	border-color: #419BF9;
+	-webkit-box-shadow: 0 0 4px #419BF9;
+	box-shadow: 0 0 4px #419BF9;
 }
-li[data-type="zoning"] .selected li:hover,
-li[data-type="zoning"] .available li:hover
+li[data-type="zoning"] .zones li.focus
 {
-	border-color: #3eb4d6;
-	-webkit-box-shadow: 0 0 4px #3eb4d6;
-	box-shadow: 0 0 4px #3eb4d6;
-}
-li[data-type="zoning"] .selected li .icon,
-li[data-type="zoning"] .available li .icon
-{
-	width:17px;
-	height:17px;
-	float:left;
-	margin:0 !important;
+	border-color: #ffc000;
+	-webkit-box-shadow: 0 0 4px #ffc000;
+	box-shadow: 0 0 4px #ffc000;
 }
 
-li[data-type="zoning"] li .title
+li[data-type="zoning"] .zones li .title,
+li[data-type="zoning"] .choices li .title
 {
-	margin:2px 0 0 23px;
-	font-family:"ProximaNova-Regular";
-}
-li[data-type="zoning"] li .title .flag
-{
-	background:#ccc;
-	border-radius:2px;
-	margin-right:5px;
-	padding:3px 5px;
-	color:#fff;
+	position:absolute;
+	top:50%;
+	width:100%;
+	text-align:center;
+	z-index:3;
+	font-family:"ProximaNova-Bold";
 	text-transform:uppercase;
-	font-size:9px;
-	position:relative;
-	top:-1px;
+	margin-top:-11px;
+}
+li[data-type="zoning"] .zones li.focus .title span
+{
+	background:#ffc000;
+}
+li[data-type="zoning"] .zones li .title>span,
+li[data-type="zoning"] .choices li .title>span
+{
+	background:rgba(0, 0, 0, 0.5);
+	color:#fff;	
+	border-radius:3px;
+	padding:0 10px;
+	line-height:24px;
+	height:22px;
+	display:inline-block;
+}
+li[data-type="zoning"] .zones li .preview
+{
+	min-height:40px;
+}
+li[data-type="zoning"] .zones li .preview iframe
+{
+	width:200%;
+	height:200%;
+	opacity:0.4;
+	-moz-transform: scale(0.5);
+	-webkit-transform: scale(0.5);
+	transform: scale(0.5);
+	-webkit-transform-origin: 0 0;
+	-ms-transform-origin: 0 0;
+	transform-origin: 0 0;
+	pointer-events:none;
 }
 li[data-type="zoning"] li .descr
 {
@@ -225,6 +305,11 @@ li[data-type="zoning"] li .delete
 	top:2px;
 	right:2px;
 }
+li[data-type="zoning"] li .handle,
+li[data-type="zoning"] li .delete
+{
+	display:none;
+}
 
 /********************************************************************************************/
 /* Selected sections */
@@ -235,33 +320,45 @@ li[data-type="zoning"] .selected.right
 {
 	clear:none !important;
 	width:50%;
+}
+li[data-type="zoning"] .selected.left
+{
 	float:left;
 }
-li[data-type="zoning"] .selected .left
+li[data-type="zoning"] .selected.right
 {
-}
-li[data-type="zoning"] .selected .right
-{
+	float:right;
 }
 
 /* Sections */
 li[data-type="zoning"] .selected ol
 {
-	padding:10px;
-	margin:0 15px !important;
-	background:#FEFEFE;
-	border:1px dashed #ddd;
+	padding:5px 10px;
+	margin:0 3px;
+	background:#F2F2F2;
 }
-li[data-type="zoning"] .selected ol li .delete
+li[data-type="zoning"] .selected li
 {
+	min-height:40px;
+}
+li[data-type="zoning"] .selected ol li:hover .handle,
+li[data-type="zoning"] .selected ol li:hover .delete
+{
+	display:block;
 }
 li[data-type="zoning"] .selected ol li .title
 {
 	cursor:pointer;
+	display:none;
+}
+li[data-type="zoning"] .selected ol li.focus .title,
+li[data-type="zoning"] .selected ol li:hover .title
+{
+	display:block;
 }
 li[data-type="zoning"] .selected ol li .title:hover
 {
-	color:#3eb4d6;
+	color:#419BF9;
 }
 li[data-type="zoning"] .selected ol li .config
 {
@@ -274,11 +371,12 @@ li[data-type="zoning"] .selected ol li .config
 /* Nodata */
 ol>li[data-type="zoning"] .selected ol
 {
-	min-height:31px; /* Optical alignment */
+
 }
-ol>li[data-type="zoning"] .selected ol:before:empty
+ol>li[data-type="zoning"] .selected ol:empty:before
 {
-	line-height:20px;
+	line-height:30px;
+	color:#999;
 }
 
 /********************************************************************************************/
@@ -313,18 +411,14 @@ li[data-type="zoning"] .available .refine input
 	padding:5px;
 }
 
-/* New */
-li[data-type="zoning"] .available button
-{
-}
-
 /* Available */
-li[data-type="zoning"] .available ul {
-	overflow:auto;
-	max-height:500px;	
-}
-li[data-type="zoning"] .available li .handle,
-li[data-type="zoning"] .available li .delete
+li[data-type="zoning"] .available ul
 {
-	display:none;
+	overflow:auto;
+	max-height:600px;	
+}
+li[data-type="zoning"] .available li
+{
+	height:40px;
+	cursor:move;
 }

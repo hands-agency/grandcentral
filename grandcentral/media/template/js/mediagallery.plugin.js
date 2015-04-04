@@ -1,6 +1,6 @@
 /*********************************************************************************************
 /**	* Form validation plugin
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
 (function($)
 {	
@@ -22,7 +22,6 @@
 			'path': '',						//	... or path to a file
 			'tpl_list': 'list.ajax',
 			'tpl_detail': 'detail.ajax',
-			'back': '⇠',
 			'selector' : false
 		}
 
@@ -50,8 +49,8 @@
 				plugin.loadList();
 			}
 			
-		//	Click on a folder
-			$element.on('click', '.folder>ul>li:not(.add)', function()
+		//	Go to a directory
+			$element.on('click', 'li.folder', function()
 			{
 				dir = $(this).find('.title').html();
 				if (plugin.settings.current != '')
@@ -64,14 +63,14 @@
 			});
 
 		//	Start adding folder
-			$element.on('click', '.folder>ul>li.add .button', function()
+			$element.on('click', '.folders .add .button', function()
 			{	
 			//	Show title, hide button
 				$(this).parent().find('.title').show('fast').find('input').focus();
 				$(this).hide('fast');
 				
 			});
-			$element.on('mouseleave', '.folder>ul>li.add', function()
+			$element.on('mouseleave', '.folders .add', function()
 			{	
 			//	Hide title, show button
 				$(this).find('.title').hide('fast');
@@ -79,7 +78,7 @@
 			});
 
 		//	Add on a folder
-			$element.on('submit', '.folder>ul>li.add form', function()
+			$element.on('submit', '.folders .add form', function()
 			{	
 			//	Some vars
 				$folders = $(this).closest('ul');
@@ -101,7 +100,7 @@
 						if (html != 'ko')
 						{
 							$input.val('');
-							el = $('<li style="display:none"><div class="title">'+html+'</div></li>');
+							el = $('<li class="folder" style="display:none"><div class="title">'+html+'</div></li>');
 							$folder.after(el);
 							el.show('fast');
 						}
@@ -125,30 +124,15 @@
 				return false;
 			});
 		
-		//	Close detail
-			$element.on('click', 'button.back', function()
-			{
-				plugin.settings.file = '';
-				// console.log('après' + plugin.settings.current)
-				plugin.loadList();
-				return false;
-			});
-		
 		//	Click on the back button
-			$element.on('click', 'a.back', function()
+			$('#mediaLibraryNav').on('click', '.back', function()
 			{
-				// console.log('avant' + plugin.settings.current)
-				pos = strrpos(plugin.settings.current, '/');
+			//	console.log('avant' + plugin.settings.current)
+				pos = plugin.strrpos(plugin.settings.current, '/');
 				plugin.settings.current = pos < 0 ? '' : plugin.settings.current.slice(0, pos);
 				// console.log('après' + plugin.settings.current)
 				plugin.loadList();
 				return false;
-			});
-		
-		//	Open/close dirs
-			$('#mediaLibraryNav').on('click', '.dir button', function()
-			{
-				$('.dirs').toggle('fast');
 			});
 		}
 		
@@ -158,24 +142,20 @@
 		//	Start loading
 			$element.html('');
 			$element.loading();
+
 		//	Load the library
 			$element.ajx(
 			{
 				app: 'media',
 				template: plugin.settings.tpl_list,
-				root: plugin.settings.root + '/' + plugin.settings.current
+				root: plugin.settings.current.substr(0, 1) != '/' ? '/' + plugin.settings.current : plugin.settings.current
 			},{
 				done:function(html)
 				{
-				//	ajout du bouton de retour
-					if (plugin.settings.current != '')
-					{
-						$element.find('.dirs ul').prepend('<li><a href="#" class="back">' + plugin.settings.back + '</a></li>')
-					}
 				//	Init
 					plugin.initList();
 				//	End loading
-					$element.loaded();
+				//	$element.loaded();
 				}
 			});
 		}
@@ -184,10 +164,12 @@
 		plugin.initList = function()
 		{
 		//	Masonry					
-			var container = $element.find('.files:not(.empty) ul');
-
+			var container = $element.find('.dir:not(.empty) .files');
+			
 			container.imagesLoaded(function()
 			{
+
+				if (container.data('masonry')) container.masonry('destroy');
 				container.masonry(
 				{
 					itemSelector : 'li',
@@ -197,7 +179,7 @@
 			});
 
 		//	Make li draggable
-			$element.find('.files:not(.empty) ul li:not(.upload)').draggable(
+			$element.find('.dir:not(.empty) .files li:not(.upload)').draggable(
 			{
 				revert: true,
 				revertDuration: 100,
@@ -222,11 +204,12 @@
 	//	Method
 		plugin.loadDetail = function()
 		{
+		 	plugin.settings.current += '/' + plugin.settings.file;
 			$element.find('.files').ajx(
 			{
 				app: 'media',
 				template: plugin.settings.tpl_detail,
-				root: plugin.settings.root + '/' + plugin.settings.current + '/' + plugin.settings.file
+				root: plugin.settings.root + '/' + plugin.settings.current
 			},{
 			//	Done !
 				done:function()

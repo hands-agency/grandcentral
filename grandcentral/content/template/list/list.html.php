@@ -1,7 +1,4 @@
-<? if ($count == 0) : ?>
-<div class="nodata"><?=cst('nodata')?></div>
-<? else : ?>
-<h1><?=$count?> <a href=""><?=$item['title']?></a></h1>
+<?php if ($count != 0) : ?>
 <div class="infiniteScrollContainer"></div>
 <div class="infiniteScrollWantsMore" data-feathericon="&#xe129"></div>
 <div class="infiniteScrollStopper"><?=cst('stopper')?></div>
@@ -52,4 +49,4 @@ $(document).ready(function()
 	});
 });
 </script>
-<? endif ?>
+<?php endif ?>

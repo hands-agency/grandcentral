@@ -1,22 +1,14 @@
 <?php
 /**
- * Description: This is the description of the document that we are .
- * You can add as many lines as you want.
- * Remember you're not coding for yourself. The world needs your doc.
- * Example usage:
- * <pre>
- * if (Example_Class::example()) {
- *    echo "I am an example.";
- * }
- * </pre>
- * 
- * @package		The package
+ * Error and exception handling.
+ * This class is a singleton.
+ *
  * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
- * @author		Sylvain Frigui <sf@cafecentral.fr>
- * @copyright	Copyright © 2004-2013, Café Central
- * @license		http://www.cafecentral.fr/fr/licences GNU Public License
+ * @author		Sylvain Frigui <sf@hands.agency>
+ * @copyright	Copyright © 2004-2015, Hands
+ * @license		http://grandcentral.fr/license MIT License
  * @access		public
- * @link		http://www.cafecentral.fr/fr/wiki
+ * @link		http://grandcentral.fr
  */
 class sentinel
 {
@@ -134,6 +126,10 @@ class sentinel
 				$die = true;
 				break;
 		//	Autre
+			case 0:
+				
+				break;
+		//	Autre
 			default:
 				$type = 'unknown';
 				break;
@@ -156,7 +152,7 @@ class sentinel
 		foreach($param as $key => $value) $error.= '<li><strong>'.$key.'</strong> : '.$value.'</li>';
 		
 	//	Throw error
-		sentinel::debug($type, $error, $type);
+		if (SITE_DEBUG === true) sentinel::debug($type, $error, $type);
 	//	...end perhaps kill the script
 		if ($die === true) die();
 	}
@@ -230,6 +226,7 @@ class sentinel
  */
 	public static function debug($title, $descr, $flag = 'debug')
 	{
+		
 	//	Display varies depending on content type
 	//	$contentType = master::get_content_type();
 		$contentType = 'html';

@@ -1,6 +1,6 @@
 /*********************************************************************************************
 /**	* Submit note form via the "Return" key
-* @author	mvd@cafecentral.fr
+* @author	@mvdandrieux
 **#******************************************************************************************/
 $(document).off('keypress', '.noteForm form textarea').on('keypress', '.noteForm form textarea', function(e)
 {	
@@ -54,7 +54,7 @@ $(document).off('keypress', '.noteForm form textarea').on('keypress', '.noteForm
 
 /*********************************************************************************************
 /**	* Delete notes
-* @author	mvd@cafecentral.fr
+* @author	@mvdandrieux
 **#******************************************************************************************/
 $(document).on('click', 'ul.notes .option button.delete', function()
 {
@@ -70,7 +70,7 @@ $(document).on('click', 'ul.notes .option button.delete', function()
 
 /*********************************************************************************************
 /**	* Mentions
-* @author	mvd@cafecentral.fr
+* @author	@mvdandrieux
 **#******************************************************************************************/
 /*
 $('section .noteForm form textarea').mentionsInput(

@@ -1,6 +1,6 @@
 /*********************************************************************************************
 /**	* Form validation plugin
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
 (function($)
 {	
@@ -36,14 +36,25 @@
 			//	If you have choices
 				if (dflt)
 				{
+					$('#greenbutton').show();
+				//	Label and action
 					label = dflt['title'][$('html').attr('lang')];
+					action = dflt['key'];
+				//	Add possible callback
+					if ($('#section_'+section).data('callback'))
+					{
+						callback = $('#section_'+section).data('callback');
+						label = label+' + '+callback;
+						action = action+'_'+callback;
+					}
+				//	Go
 					$('#greenbutton-default')
 						.html(label)
-						.data('action', dflt['key']);
+						.data('action', action);
 				}
 			//	No choices
-			//	else $('#greenbutton').hide();
-				else console.log('No choices for green button, not good');
+				else $('#greenbutton').hide();
+			//	else console.log('No choices for green button, not good');
 			});
 
 		//	Trigger main action
@@ -57,23 +68,39 @@
 			{
 				$(this).toggleClass('on');
 			//	Fetch the right section
-				sectionid = $('#adminContent section.active').attr('id').replace('section_', '');
+				sectionkey = $('#adminContent section.active').data('key');
 			//	Open the context
 				openContext(
 				{
 					app:'content',
 					template:'master/snippet/greenbutton/greenbutton.context',
-					sectionid:sectionid,
+					sectionkey:sectionkey,
 				});
 			});
 
 		//	A click a button triggers a method
-			$(document).on('click', '#greenbutton-default, #greenbutton-choices a', function()
+			$(document).on('click', '#greenbutton-default, .greenbutton-choices a', function()
 			{
 				method = $(this).data('action');
+				
 			//	Create & execute the method
 				var fn = plugin[method];
 				fn();
+				
+			//	Save as the prefered method
+				sectionkey = $('#adminContent section.active').data('key');
+				pref = ['greenbutton', sectionkey, method];
+				$.api(
+				{
+					key:'save_pref',
+					mime:'json',
+					pref:pref
+				},{
+					done:function(msg)
+					{
+						console.log(msg);
+					}
+				});
 			});
 			
 		//	Prevent regular submit
@@ -97,18 +124,30 @@
 			$('#adminContent section>form').submit();
 		//	Id & status
 			id = $('input[name="'+SITE_KEY+'_'+_GET['item']+'[id]"]');
-			oldStatus = $('input[name="'+SITE_KEY+'_'+_GET['item']+'[status]"]');
-			form = $('#adminContent section>form');
+			$oldStatus = $('input[name="'+SITE_KEY+'_'+_GET['item']+'[status]"]');
+			$form = $('#adminContent section>form');
 			
 		//	Change status ?
-			if (newStatus) oldStatus.val(newStatus);
+			if (newStatus) 
+			{
+				$oldStatus.val(newStatus);
+				status = newStatus;
+			}
+		//	Keep old status
+			else if ($oldStatus.val()) status = $oldStatus.val();
+		//	No status = draft
+			else
+			{
+				$oldStatus.val('draft');
+				status = 'draft';
+			}
 
 		//	Ajaxify forms
 			$.ajax(
 			{
-				url: form.attr('action'),
-				type: form.attr('method'),
-				data: form.serialize(),
+				url: $form.attr('action'),
+				type: $form.attr('method'),
+				data: $form.serialize(),
 				success: function(result)
 				{
 				//	DEBUG
@@ -119,14 +158,38 @@
 					//	Bring it to the form
 						id.val(result);
 						$('#greenbutton-default').removeClass('on');
-					//	Rewrite URL
-						url = '?item='+_GET['item']+'&id='+result;
-						if (window.location.hash) url += window.location.hash;
-						window.history.pushState('string', 'chose', url);
+					//	Rewrite URL if changed
+						if (!_GET['id'])
+						{
+							_GET['id'] = result;
+							url = '?item='+_GET['item']+'&id='+_GET['id'];
+							if (window.location.hash) url += window.location.hash;
+							window.history.pushState('string', 'chose', url);
+						}
 					//	Pop alert
-						popAlert('success', 'Yep. That\'s saved.', callback);
+						popAlert(status, status, callback);
 					};
 				},
+			});
+		}
+
+	//	Save and back
+		plugin.save_back = function()
+		{
+			plugin.save(null, function()
+			{
+			//	Go to the list page
+				document.location.href = ADMIN_URL+'/list?item='+_GET['item'];
+			});
+		}
+
+	//	Save and reach
+		plugin.save_reach = function()
+		{
+			plugin.save(null, function()
+			{
+			//	Reach
+				document.location.href = CURRENTEDITED_URL;
 			});
 		}
 
@@ -154,11 +217,71 @@
 			});
 		}
 
+	//	Go live and go back to the list
+		plugin.live_back = function()
+		{
+			plugin.live(function()
+			{
+			//	Go to the list page
+				document.location.href = ADMIN_URL+'/list?item='+_GET['item'];
+			});
+		}
+
+	//	Go live and reach
+		plugin.live_reach = function()
+		{
+			plugin.live(function()
+			{
+			//	Reach
+				document.location.href = CURRENTEDITED_URL;
+			});
+		}
+
 	//	Asleep
 		plugin.asleep = function()
 		{
 		//	Submit all forms	
 			plugin.save('asleep');
+		}
+
+	//	Asleep and go back to the list
+		plugin.asleep_back = function()
+		{
+			plugin.save('asleep', function()
+			{
+			//	Go to the list page
+				document.location.href = ADMIN_URL+'/list?item='+_GET['item'];
+			});
+		}
+
+	//	Googlepreview
+		plugin.googlepreview = function()
+		{
+		//	Save a draft
+			plugin.save('draft', function()
+			{
+			//	Open preview
+				openSite(CURRENTEDITED_URL);
+			//	Open the context
+				openContext(
+				{
+					app:'content',
+					template:'master/snippet/googlepreview',
+					item:'page',
+					id:1,
+				}, function()
+				{	
+					$site = $('#siteContent');
+					$site.load(function()
+					{
+						title = $site.contents().find('title').html();
+						descr = $site.contents().find('meta[name="description"]').attr('content');
+						$preview = $('.adminContext[data-template="master/snippet/googlepreview"] .true');
+						$preview.find('.title a').html(title);
+						$preview.find('.descr a').html(descr);
+					});
+				});
+			});
 		}
 
 	//	Save a copy
@@ -170,9 +293,9 @@
 		}
 
 	//	Save and go back to the list
-		plugin.save_list = function()
+		plugin.save_back = function()
 		{
-			plugin.save('live', function()
+			plugin.save(null, function()
 			{
 			//	Go to the list page
 				document.location.href = ADMIN_URL+'/list?item='+_GET['item'];
@@ -200,7 +323,7 @@
 		{
 			plugin.save('draft', function()
 			{
-				openSite();
+				openSite(CURRENTEDITED_URL);
 			});
 		}
 

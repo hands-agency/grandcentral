@@ -3,19 +3,35 @@
 /* A Form Section
 /////////////////////////////////////////////////////////////////////////////////////////////
 /********************************************************************************************/
-form.left
+section form
+{
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+/* One Form */
+section form:first-child:nth-last-child(1)
+{
+
+}
+/* Two Forms */
+section form:first-child:nth-last-child(2),
+section form:first-child:nth-last-child(2) ~ form
 {
 	float:left;
 	width:70%;
 }
-form.right
+section form:first-child:nth-last-child(2) form:nth-last-child(2),
+section form:first-child:nth-last-child(2) ~ form
 {
 	padding-left:30px;
 	float:left;
 	width:30%;
-	-moz-box-sizing:border-box;
-	-webkit-box-sizing:border-box;
-	box-sizing:border-box;
+}
+/* Hide the second form in contexts */
+.adminContext form:nth-last-child(2)
+{
+	display:none;
 }
 
 /* Fieldsets */
@@ -52,19 +68,18 @@ form>fieldset legend
 /* Lines */
 form>fieldset>ol>li[data-type]
 {
-	background:#fff;
 	-moz-border-radius:2px;
 	-webkit-border-radius:2px;
 	border-radius:2px;
 	position:relative;
 	margin:0 0 10px 0;
-	border:1px solid #eee;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
-	min-height:50px;
+	min-height:48px;
 	-webkit-transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	transition:         all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+	transition:         all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	background:rgba(255, 255, 255, 0.8);
 }
 
 /* Labels */
@@ -78,8 +93,9 @@ form>fieldset ol>li[data-type]>label
 	box-sizing:border-box;
 	text-align:right;
 	padding:15px 15px 0 15px;
-	font-family: "ProximaNova-Regular";
+	font-family: "ProximaNova-Thin";
 	vertical-align:top;
+	overflow:hidden; /* Hide overflowing labels */
 }
 
 /* Field */
@@ -93,6 +109,7 @@ form>fieldset ol>li[data-type] .wrapper
 	-moz-border-radius:2px;
 	-webkit-border-radius:2px;
 	border-radius:2px;
+	background:#fff;
 }
 form>fieldset ol>li[data-type] .wrapper .field
 {
@@ -111,7 +128,7 @@ form>fieldset ol>li[data-type] .wrapper .field
 }
 
 /* Descrease font size for all forms in the context bar */
-#adminContext form
+.adminContext form
 {
 	font-size:0.85em !important;
 }
@@ -219,7 +236,6 @@ section[data-template="/edit/edit"] fieldset ol>li.editing [data-control]:hover
 	-o-transform: scale(1.1);
 	transform: scale(1.1);
 	-ms-transform: scale(1.1);
-	filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=1.1, M12=-0, M21=0, M22=1.1);
 }
 section[data-template="/edit/edit"] fieldset ol>li.editing [data-control]:hover:after
 {
@@ -229,10 +245,10 @@ section[data-template="/edit/edit"] fieldset ol>li.editing [data-control]:hover:
 /* Control guiding you */
 section[data-template="/edit/edit"] fieldset ol>li.guiding [data-control]
 {
-	background:#ccc;
+	background:#419BF9;
 }
 section[data-template="/edit/edit"] fieldset ol>li.guiding [data-control]:after {
-	border-right-color:#ccc;
+	border-right-color:#419BF9;
 }
 
 /* Control field is OK */

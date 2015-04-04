@@ -9,14 +9,13 @@
  *    echo "I am an example.";
  * }
  * </pre>
- * 
- * @package		The package
- * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
- * @author		Sylvain Frigui <sf@cafecentral.fr>
- * @copyright	Copyright © 2004-2013, Café Central
- * @license		http://www.cafecentral.fr/fr/licences GNU Public License
+ *
+ * @author		Michaël V. Dandrieux <@mvdandrieux>
+ * @author		Sylvain Frigui <sf@hands.agency>
+ * @copyright	Copyright © 2004-2015, Hands
+ * @license		http://grandcentral.fr/license MIT License
  * @access		public
- * @link		http://www.cafecentral.fr/fr/wiki
+ * @link		http://grandcentral.fr
  */
 /********************************************************************************************/
 //	Some vars
@@ -25,7 +24,7 @@
 	$env = $_SESSION['pref']['handled_env'];
 //	The field name
 //	$name = $_POST['name'];
-	$name = $env.'_section';
+	$name = $env.'_page_zoning';
 //	Refine values?
 	$p['title'] = (isset($_POST['q'])) ? '%'.$_POST['q'].'%' : null;
 	$p['order()'] = 'title ASC';
@@ -34,7 +33,12 @@
 //	Get and process from ajax
 /********************************************************************************************/
 //	Get the available values
-	$available = i('section', $p, $env);
+	foreach (registry::get(registry::app_index) as $app)
+	{
+		$array = $app->get_ini()['about'];
+		$array['key'] = $app->get_key();
+		$apps[] = $array;
+	}
 //	Refine
 	if (isset($_POST['q']))
 	{

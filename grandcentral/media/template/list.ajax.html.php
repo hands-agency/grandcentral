@@ -1,14 +1,7 @@
-<div class="dirs">
-	<ul>
-		<? if (isset($directories)): ?>
-		<? foreach ($directories as $dir): ?>
-		<li><a href="#" class="dir"><?= $dir->get_key() ?></a></li>
-		<? endforeach ?>
-		<? endif ?>
-	</ul>
-</div>
-<div class="files <?if (!isset($files)): ?>empty<?php endif ?>">
-	<ul>
+<div class="dir <?php if (!isset($files)): ?>empty<?php endif ?>">
+
+	<h2><span class="rule"><?=$here?></span></h2>
+	<ul class="files">
 		<li class="upload">
 			<div id="holder">
 				<p>Drag & drop files from your computer to upload (yes you can)</p>
@@ -19,60 +12,61 @@
 			<p id="formdata">XHR2's FormData is not supported</p>
 			<p id="progress">XHR2's upload progress isn't supported</p>
 		</li>
-		<? if (isset($files)) : ?>
-		<? foreach ($files as $file): ?>
-		<li data-path="<?=$file->get_path()?>" data-info="<?= $file->get_extension() ?> • <?= $file->get_size() ?>" data-title="<?= $file->get_key() ?>">
+		<?php if (isset($files)) : ?>
+		<?php foreach ($files as $file): ?>
+		<li data-path="<?=$file->get_path()?>" data-url="<?=$file->get_url()?>" data-info="<?= $file->get_extension() ?> • <?= $file->get_size() ?>" data-title="<?= $file->get_key() ?>">
 			<a href="#" class="file">
-				<? if (is_a($file, 'image')): ?>
+				<?php if (is_a($file, 'image')): ?>
 					<span class="preview"><?= $file->thumbnail(120, null); ?></span>
-				<? endif ?>
+				<?php endif ?>
 				<span class="title"><?= $file->get_key() ?></span>
 			</a>
 		</li>
-		<? endforeach ?>
-		<? endif;?>
+		<?php endforeach ?>
+		<?php endif;?>
 	</ul>
-</div>
-<h2><span class="centered">Folders</span></h2>
-<div class="folder">
-	<ul>
-		<li class="add" data-path="<?=$here?>">
-			<div class="title">
-				<form method="post" accept-charset="utf-8">
-					<input type="text" placeholder="Name this folder">
-				</form>
-			</div>
-			<div class="button">+</div>
-		</li>
-		<? if (isset($directories)): ?>
-		<? foreach ($directories as $dir): ?>
-		<?
-			$reg = $dir->get_root().'/*.jpg';
-			$files = glob($reg);
-			usort($files, function($file_1, $file_2)
-			{
-			    $file_1 = filectime($file_1);
-			    $file_2 = filectime($file_2);
-			    if($file_1 == $file_2)
-			    {
-			        return 0;
-			    }
-			    return $file_1 < $file_2 ? 1 : -1;
-			});
-		?>
-		<li>
-			<div class="title"><?= $dir->get_key() ?></div>
-			<ul class="preview">
-				<?php for ($i=0; $i < $maxPreviews ; $i++) : ?>
-					<?php if (isset($files[$i])): ?>
-						<li style="background-image:url('<?= media($files[$i])->thumbnail(100, null)->get_url() ?>')"></li>
-					<?php endif ?>
-				<?php endfor; ?>
-			</ul>
-		</li>
-		<? endforeach ?>
-		<? endif ?>
-	</ul>
+	
+	<h2><span class="rule">Folders</span></h2>
+	<div class="folders">
+		<ul>
+			<li class="add" data-path="<?=$here?>">
+				<div class="title">
+					<form method="post" accept-charset="utf-8">
+						<input type="text" placeholder="Name this folder">
+					</form>
+				</div>
+				<div class="button">+</div>
+			</li>
+			<?php if (isset($directories)): ?>
+			<?php foreach ($directories as $dir): ?>
+			<?php
+				$reg = $dir->get_root().'/*.jpg';
+				$files = glob($reg);
+				usort($files, function($file_1, $file_2)
+				{
+				    $file_1 = filectime($file_1);
+				    $file_2 = filectime($file_2);
+				    if($file_1 == $file_2)
+				    {
+				        return 0;
+				    }
+				    return $file_1 < $file_2 ? 1 : -1;
+				});
+			?>
+			<li class="folder">
+				<div class="title"><?= $dir->get_key() ?></div>
+				<ul class="preview">
+					<?php for ($i=0; $i < $maxPreviews ; $i++) : ?>
+						<?php if (isset($files[$i])): ?>
+							<li style="background-image:url('<?= media($files[$i])->thumbnail(100, null)->get_url() ?>')"></li>
+						<?php endif ?>
+					<?php endfor; ?>
+				</ul>
+			</li>
+			<?php endforeach ?>
+			<?php endif ?>
+		</ul>
+	</div>
 </div>
 
 <script type="text/javascript" charset="utf-8">
@@ -114,10 +108,11 @@ $(document).ready(function()
 	function appendFile(file)
 	{
 	//	Some vars
-		$container = $('#mediaLibrary .files ul');
-		$upload = $('#mediaLibrary .files ul li.upload');
-		media = $('<li class="new" data-info="'+file.type+' • '+(file.size ? (file.size/1024|0)+' K' : '')+'"><a href="#"><span class="preview"></span><span class="title">' + file.name + '</span></a></li>');
-			
+		$container = $('#mediaLibrary ul.files');
+		$upload = $('#mediaLibrary ul.files li.upload');
+		console.log(file.type);
+		media = $('<li class="new" data-path="" data-url="" data-info="'+file.type+' • '+(file.size ? (file.size/1024|0)+' K' : '')+'" data-title=""><a class="file" href="#"><span class="preview"></span><span class="title">' + file.name + '</span></a></li>');
+	
 	//	Preview images
 		if (tests.filereader === true)
 		{
@@ -136,15 +131,9 @@ $(document).ready(function()
 				//	Add the image preview
 					media.find('.preview').html(image);
 				}
-				
-			//	Remasonry
-				if ($container.parents('.files').hasClass('empty'))
-				{
-				//	Say the media lib is not empty anymore
-					$container.parents('.files').removeClass('empty');
-					$('#mediaLibrary').data('mediaGallery').initList();
-				}
-				else $container.masonry( 'prepended', media );
+			//	Re init Gallery (drag & masonry)
+				$('#mediaLibrary').data('mediaGallery').initList();
+			
 			};
 			reader.readAsDataURL(file);
 		}

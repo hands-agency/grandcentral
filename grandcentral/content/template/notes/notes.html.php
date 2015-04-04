@@ -1,22 +1,22 @@
-<? if (!isset($notes)) : ?>
+<?php if (!isset($notes)) : ?>
 <div class="nodata">We're building here a place where you'll be able to chat. Come back when you're work is done.</div>
-<? elseif (!$notes->count()): ?>
+<?php elseif (!$notes->count()): ?>
 <div class="nodata">Something to say ?</div>
-<? endif ?>
-<? if (isset($notes)) : ?>
+<?php endif ?>
+<?php if (isset($notes)) : ?>
 <ul class="noteList">
-	<? if ($displayNotes == $notes->count): ?><li class="more"></li><? endif ?>
+	<?php if ($displayNotes == $notes->count): ?><li class="more"></li><?php endif ?>
 
-	<? foreach ($notes as $note): ?>
+	<?php foreach ($notes as $note): ?>
 
-	<?
+	<?php
 		if (isset($oldDate))
 		{
 			$currentDate = new dateTime($note['created']);
 			$interval = $oldDate->diff($currentDate);
 
 			if ($interval->format('%i') > $minuteDivider) {
-				echo '</ul><h2><span class="centered">'.$note['created']->time_since().'</span></h2><ul class="noteList">';
+				echo '</ul><h2><span class="rule">'.$note['created']->time_since().'</span></h2><ul class="noteList">';
 			}
 		}
 		$oldDate = new dateTime($note['created']);
@@ -31,15 +31,15 @@
 		<div class="text"><?= $note['text'] ?></div>
 	
 	</li>
-	<? endforeach ?>
+	<?php endforeach ?>
 </ul>
 <div class="noteForm">
 	<div class="icon"></div>
 	<?=$form?>
 </div>
-<? endif ?>
+<?php endif ?>
 
-<? if (isset($EventSource)) : ?>
+<?php if (isset($EventSource)) : ?>
 <script type="text/javascript" charset="utf-8">
 //	Start source
 	$.sse(
@@ -64,4 +64,4 @@
 		}
 	});
 </script>
-<? endif ?>
+<?php endif ?>

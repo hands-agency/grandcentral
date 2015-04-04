@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?= i('admin', current)['version']['key'] ?>">
+<html lang="<?= i('admin', current, 'admin')['version']['key'] ?>">
 <head>
 	<!-- ZONE:meta-->
 	<!-- ZONE:css -->
@@ -8,50 +8,79 @@
 	
 	<!-- ZONE:body -->
 		
-	<div id="main" class="navClosed contextClosed">
+	<div id="main" class="navClosed">
+			
+		<button id="openNav" data-feathericon="&#xe120"></button>
+		<button id="closeNav" data-feathericon="&#xe117"></button>
+		
+		<button id="switchEnv" data-feathericon="&#xe032"></button>
 	
 		<div id="alert">
-			<div class="icon" data-feathericon="&#xe064"></div>
+			<div class="icon"></div>
 			<div class="info">				
 				<div class="response"></div>
 				<div class="help">Tap to close</div>
 			</div>
 		</div>
 		
+		<div id="nav"></div>
+				
+		<header>
+			<div class="site"><!-- ZONE:headersite --></div>
+			<div class="admin"><!-- ZONE:headeradmin --></div>
+		</header>
+		
 		<div id="grandCentralSite">
-			<div class="overlay">
-				<h1><?=i('site', current)['title']?></h1>
-				<span data-feathericon="&#xe000"></span>
-			</div>
+			<iframe id="siteContent"></iframe>
 		</div>
 
 		<div id="grandCentralAdmin">
-			
-			<nav id="siteNav"><!-- ZONE:sitenav --></nav>
-			
-			<nav id="adminNav"><!-- ZONE:nav --></nav>
 
 			<div id="adminContent" class="locked">
-				<header><!-- ZONE:header --></header>
 				<!-- ZONE:content|left -->
+				<div id="currentList"></div>
+				<div id="currentItem"></div>
 				<ul id="sectiontray" style="width:<?=$sectionTrayWidth?>">
-					<? foreach($sections as $section) : ?>
-					<? $app = $section['app'] ?>
-					<? $prefDisplay = isset($_SESSION['user']['pref'][$section['key']->get()]['display']) ? $_SESSION['user']['pref'][$section['key']]['display'] : 'inmasonry' ?>
-					<? $greenbutton = ($section['greenbutton']->get()) ? htmlspecialchars(i($section['greenbutton']->get()[0])->json(), ENT_QUOTES) : null ?>
+					<?php foreach($sections as $section) : ?>
+					<?php $app = $section['app'] ?>
+					<?php $prefDisplay = isset($_SESSION['user']['pref'][$section['key']->get()]['display']) ? $_SESSION['user']['pref'][$section['key']]['display'] : 'inmasonry' ?>
+					<?php
+						$dataCallback = null;
+						$callback = null;
+
+					//	Take greenbutton from pref...
+						if (isset($_SESSION['user']['pref']['greenbutton'][$section['key']->get()]))
+						{
+							$pref = $_SESSION['user']['pref']['greenbutton'][$section['key']->get()];
+						//	Get a possible callback (like "back" or "reach")
+							if (strstr($pref, '_')) 
+								list($action, $callback) = explode('_', $pref);
+							else $action = $pref;
+						//	Get the main action
+							$greenbutton = i('greenbutton', $action, 'admin');
+						//	Add the callback
+							if ($callback) $dataCallback = 'data-callback="'.$callback.'"';
+						}
+					//	Or use the first one
+						else if ($section['greenbutton']->get())
+						{
+							$greenbutton = i($section['greenbutton']->get()[0], null, 'admin');
+						}
+						else $greenbutton = null;
+					//	Jsonize
+						if ($greenbutton) $greenbutton = htmlspecialchars($greenbutton->json(), ENT_QUOTES)
+					?>
 					<li style="width:<?=$sectionWidth?>">
+						<a class="back" href="<?=$back?>" data-feathericon="&#xe094"></a>
 						<span class="lock" data-feathericon="&#xe007"></span>
-						<section id="section_<?= $section['key'] ?>" class="virgin" data-pref-display="<?=$prefDisplay?>" data-app="<?= $app['app'] ?>" data-template="<?= $app['template'] ?>" data-greenbutton='<?= $greenbutton ?>' data-nodata="<?=cst('nodata')?>"></section>
+						<section id="section_<?= $section['key'] ?>" class="virgin" data-key="<?= $section['key'] ?>" <?=$dataCallback?> data-pref-display="<?=$prefDisplay?>" data-app="<?= $app['app'] ?>" data-template="<?= $app['template'] ?>" data-greenbutton='<?= $greenbutton ?>' data-nodata="<?=$section['nodata']?>"></section>
 					</li>
-					<? endforeach; ?>
+					<?php endforeach; ?>
 				</ul>
 				<footer><!-- ZONE:footer --></footer>
 			</div>
 			
-			<aside id="adminContext">
-				<button type="button" class="close"></button>
-				<div><!-- Welcome Ajax --></div>
-			</aside>
+			<!-- <aside> adminContext will be appended here -->
 						
 		</div>
 	</div>

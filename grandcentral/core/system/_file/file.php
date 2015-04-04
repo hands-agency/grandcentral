@@ -5,9 +5,9 @@
  * http://stackoverflow.com/questions/11061355/security-threats-with-uploads
  * 
  * @package		file
- * @author		Sylvain Frigui <sf@cafecentral.fr>
+ * @author		Sylvain Frigui <sf@hands.agency>
  * @access		public
- * @link		http://www.cafecentral.fr/fr/wiki
+ * @link		http://grandcentral.fr
  */
 class file
 {
@@ -47,7 +47,8 @@ class file
 		$this->key = mb_substr($this->root, mb_strrpos($this->root, '/') + 1);
 		$this->name = mb_substr($this->key, 0, mb_strrpos($this->key, '.'));
 		$this->dir = dirname($this->root);
-		$this->url = DOMAIN_URL.mb_substr($this->root, mb_strlen(DOCUMENT_ROOT));
+		// $this->url = DOMAIN_URL.mb_substr($this->root, mb_strlen(DOCUMENT_ROOT));
+		$this->url = DOMAIN_URL.mb_substr(str_replace(' ', '%20', $this->root), mb_strlen(DOCUMENT_ROOT));
 	}
 
 /**

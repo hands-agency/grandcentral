@@ -9,25 +9,27 @@
  *    echo "I am an example.";
  * }
  * </pre>
- * 
- * @package		The package
- * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
- * @author		Sylvain Frigui <sf@cafecentral.fr>
- * @copyright	Copyright © 2004-2013, Café Central
- * @license		http://www.cafecentral.fr/fr/licences GNU Public License
+ *
+ * @author		Michaël V. Dandrieux <@mvdandrieux>
+ * @author		Sylvain Frigui <sf@hands.agency>
+ * @copyright	Copyright © 2004-2015, Hands
+ * @license		http://grandcentral.fr/license MIT License
  * @access		public
- * @link		http://www.cafecentral.fr/fr/wiki
+ * @link		http://grandcentral.fr
  */
 /********************************************************************************************/
 //	Some vars
 /********************************************************************************************/
 	require 'adminItemForm.class.php';
-	
+
 //	Env
 	$handled_env = $_SESSION['pref']['handled_env'];
 //	Item
 	$handled_item = (isset($_GET['item'])) ? $_GET['item'] : null;
 	$handled_id = (isset($_GET['id'])) ? $_GET['id'] : null;
+//	Mode
+	$mode = (isset($_POST['mode'])) ? $_POST['mode'] : null;
+	
 //	Fetch item
 	$item = i($handled_item, null, $handled_env);
 	if ($handled_item && $handled_id)
@@ -50,7 +52,7 @@
 /********************************************************************************************/
 //	One exception for the workflow
 /********************************************************************************************/
-	if ($handled_item == 'workflow')
+	if ($handled_item == 'workflow' && $item->exists())
 	{
 	//	Create a new temporary item
 		$tmp = i($item['item']->get(), null, $handled_env);
@@ -59,21 +61,26 @@
 	}
 
 /********************************************************************************************/
-//	Build front
+//	Build form
 /********************************************************************************************/
 	if (!empty($handled_item))
 	{
-		$form = new adminItemForm($item);
+	//	Skip some attr
+		switch ($handled_item)
+		{
+			case 'page':
+				$skip = array('child');
+				// $skip = null;
+				break;
+			default:
+				$skip = array();
+				break;
+		}
+	//	Build
+		$form = new adminItemForm($item, $skip);
 	}
 	else
 	{
 		$form = null;
 	}
-
-//	title
-	$str = isset($item['title']) ? $item['title']->cut(45) : '';
-	$title = ($handled_id) ? '<a href="'.$item->listing().'">'.i('item', $item->get_table(), $handled_env)['title'].'</a> '.$str : 'New <a href="'.$item->listing().'">'.i('item', $item->get_table(), $handled_env)['title'].'</a>';
-	# fallback
-	if (!$title) $title = $handled_item.' #'.$handled_id;
-	
 ?>

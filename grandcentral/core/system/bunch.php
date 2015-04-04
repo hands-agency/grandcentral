@@ -2,27 +2,44 @@
 /**
  * Handles bunches of items
  *
- * This class will let you search, order, save, delete bunches in the database
- * By stacking up get(), you'll be able to handle different types of items
- * at the same time, like pairs of socks, jumpers and t-shirts.
- *
- * Example:
+ * This class will let you search, order, save, delete bunches in the database. For instance all the socks at once:
  * <pre>
- * $param = array(
- * 	'key' => 'home%',
- * 	'type' => array('html', 'ajax'),
- * 	'section' => array(2, 4),
- * 	'tag' => 1,
- * 	'order()' => 'key DESC, type ASC',
- * 	'limit()' => 10 
- * );
- * $bunch = new bunch('page', $param, 'admin');
+ * // Fetch all the socks
+ * $bunch = new bunch('socks', all);
  * </pre>
- *
- * @package  Core
- * @author   Sylvain Frigui <sf@cafecentral.fr>
- * @access   public
- * @see      http://www.cafecentral.fr/fr/wiki
+ * Bunches parameters let you refine your selection with various values:
+ * <pre>
+ * // Fetch a bunch of socks
+ * $p = array(
+ * 	'title' => 'best-offer%',
+ * 	'size' => array('XL', 'L'),
+ * 	'codes' => array(2, 4),
+ * 	'tag' => 1,
+ * 	'order()' => 'color DESC, size ASC',
+ * 	'limit()' => 10,
+ *  'instock' => true,
+ * );
+ * $bunch = new bunch('socks', $p);
+ * </pre>
+ * By calling several times the get() method, you'll be able to handle different types of items at the same time, like pairs of blue socks and XL jumpers:
+ * <pre>
+ * // Fetch socks and jumpers in one bunch
+ * $bunch = new bunch();
+ * $bunch-get('socks',
+ * 	 array(
+ *   'color' => 'blue',
+ *  )
+ * );
+ * $bunch-get('jumpers',
+ * 	array(
+ *   'size' => 'XL',
+ *  )
+ * );
+ * </pre>
+ *F
+ * @author	Sylvain Frigui <sf@hands.agency>
+ * @access	public
+ * @link	http://grandcentral.fr
  */
 class bunch implements ArrayAccess, Iterator, Countable
 {	
@@ -35,9 +52,9 @@ class bunch implements ArrayAccess, Iterator, Countable
 /**
  * Instantiate a bunch of items
  *
- * @param	string  la table des objets pour la recherche
- * @param	array  	le tableau de paramètres de la recherche
- * @param	string  admin ou site
+ * @param	string  The key of the items we want to handle (ie: "page", "human", "version"...). Leave null for an empty bunch
+ * @param	array  	The list of filtering parameters
+ * @param	string  The environment we want to work on: "site" or "admin"
  * @access	public
  */
 	public function __construct($table = null, $params = null, $env = env)
@@ -52,9 +69,9 @@ class bunch implements ArrayAccess, Iterator, Countable
 	}
 
 /**
- * Returns the environnement of the bunch
+ * Return the environment of a bunch
  *
- * @return	string	l'environnement actif : admin ou site
+ * @return	string	The environment of a bunch ("site" or "admin")
  * @access	public
  */
 	public function get_env()
@@ -63,10 +80,11 @@ class bunch implements ArrayAccess, Iterator, Countable
 	}
 
 /**
- * Order the bunch of items
+ * Order a bunch of items
  *
- * @param	string	l'index du tri
- * @param	bool	inverse l'ordre du tri (false par défaut)
+ * @param	string	The order key (ie: "title", "id", "created")
+ * @param	bool	Reverse order ("false" by default)
+ * @return	string	The ordered bunch
  * @access	public
  */	
 	public function order($index, $reverse = false)
@@ -98,9 +116,10 @@ class bunch implements ArrayAccess, Iterator, Countable
 	}
 
 /**
- * Alter the index of the bunch
+ * Use the key of an attribute instead of a numeric index
  *
- * @param	string	le nouvel index désiré
+ * @param	string	The desired index (ie: "id", "key"...)
+ * @return	string	The indexed bunch
  * @access	public
  */
 	public function set_index($index = false)
@@ -125,9 +144,10 @@ class bunch implements ArrayAccess, Iterator, Countable
 	}
 
 /**
- * Restore the index of the bunch to previous
+ * Revert the bunch index to its previous key
  *
  * @access	public
+ * @return	string	The bunch indexed with its previous index key
  */
 	public function restore_index()
 	{
@@ -139,10 +159,10 @@ class bunch implements ArrayAccess, Iterator, Countable
 	}
 
 /**
- * Extraire le champ demandé de tous les éléments de la liste
+ * Extract all values of a given attribute
  *
- * @param	string  l'index du champ à extraire
- * @return	array	le tableau des valeurs du champ demandé
+ * @param	string  The attribute (ie: "id", "title"...)
+ * @return	array	All values of the given attributes figuring in the bunch
  * @access	public
  */
 	public function get_column($column, $assoc = true)
@@ -174,12 +194,9 @@ class bunch implements ArrayAccess, Iterator, Countable
 	}
 	
 /**
- * Retourne les noms courts des objets 
+ * Get an array of nicknames of all the items in the bunch
  *
- * Le nom cout d'un objet est composé de sa table et de son id
- * ex : page_1, app_3
- *
- * @return	array	le tableau des noms courts
+ * @return	array	The List of nicknames of the items in the bunch
  * @access	public
  */
 	public function get_nickname()
@@ -193,9 +210,9 @@ class bunch implements ArrayAccess, Iterator, Countable
 	}
 	
 /**
- * Retourne les valeurs de l'attribut passé en paramètre
+ * Get all the given attributes
  *
- * @return	string	la clé de l'attribut
+ * @return	string	The key of the attribute
  * @access	public
  */
 	public function get_attr($key)
@@ -209,10 +226,10 @@ class bunch implements ArrayAccess, Iterator, Countable
 	}
 	
 /**
- * Get data from database using parameters
+ * Fetch additional items for a bunch
  * 
- * Example:
  * <pre>
+ * // A list of filtering parameters
  * $param = array(
  * 	'key' => 'home%',
  * 	'type' => array('html', 'ajax'),
@@ -221,11 +238,12 @@ class bunch implements ArrayAccess, Iterator, Countable
  * 	'order()' => 'key DESC, type ASC',
  * 	'limit()' => 10 
  * );
+ * // Fetch!
  * $bunch->get('page', $param);
  * </pre>
  *
- * @param	string  le type d'objet recherché
- * @param	array  	Le tableau de paramètres
+ * @param	string  item's name
+ * @param	array  	parameters
  * @access	public
  */
 	public function get($table, $params = null)
@@ -250,9 +268,18 @@ class bunch implements ArrayAccess, Iterator, Countable
 		return $this;
 	}
 /**
- * Search by nickname
+ * Search items by nickname
  *
- * @param	array	array of _items nicknames
+ * Example:
+ * <pre>
+ * $bunch->get(array(
+ * 	page_1, page_2, page_3
+ * ), array(
+ * 	'order()' => 'created desc'
+ * ));
+ * </pre>
+ * @param	array	array of nicknames
+ * @param	array	array of parameters
  * @access	public
  */
 	public function get_by_nickname($nicknames, $params = null)
@@ -296,7 +323,7 @@ class bunch implements ArrayAccess, Iterator, Countable
 /**
  * Refine a bunch by searching in its content
  *
- * @param	string	La chaîne à rechercher
+ * @param	string	the query string
  * @access	public
  */
 	public function refine($string)
@@ -387,7 +414,11 @@ class bunch implements ArrayAccess, Iterator, Countable
         return '['.implode(',',$return) .']';
     }
 
-//	Arrayaccess
+/**
+ * Arrayaccess
+ * http://php.net/manual/en/class.arrayaccess.php
+ *
+ */
 	public function offsetSet($offset, $value)
 	{
 		if (is_null($offset)) $this->data[] = $value;
@@ -405,7 +436,11 @@ class bunch implements ArrayAccess, Iterator, Countable
 	{
 		return isset($this->data[$offset]) ? $this->data[$offset] : null;
 	}
-//	Iterator
+/**
+ * Interface Iterator
+ * http://php.net/manual/en/class.iterator.php
+ *
+ */
 	function rewind()
 	{
 		reset($this->data);
@@ -425,7 +460,11 @@ class bunch implements ArrayAccess, Iterator, Countable
 	{
 	    return key($this->data) !== null;
 	}
-//	Countable
+/**
+ * Interface Countable
+ * http://php.net/manual/en/class.countable.php
+ *
+ */
 	public function count()
     {
 		$this->count = count($this->data);

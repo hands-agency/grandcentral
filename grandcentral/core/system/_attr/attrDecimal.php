@@ -1,11 +1,11 @@
 <?php
 /**
- * Integer formated attributes handling class
+ * Decimal formatted attribute handling class
  *
  * @package 	Core
- * @author		Sylvain Frigui <sf@cafecentral.fr>
+ * @author		Sylvain Frigui <sf@hands.agency>
  * @access		public
- * @link		http://www.cafecentral.fr/fr/wiki
+ * @link		http://grandcentral.fr
  */
 class attrDecimal extends _attrs
 {
@@ -14,10 +14,9 @@ class attrDecimal extends _attrs
 		'function' => 'round'
 	);
 /**
- * Set string attribute
+ * Set the data into attribute
  *
- * @param	string	la variable
- * @return	string	une string
+ * @param	string	numeric attribute data
  * @access	public
  */
 	public function set($data)
@@ -26,9 +25,9 @@ class attrDecimal extends _attrs
 		return $this;
 	}
 /**
- * Get string attribute
+ * Get the attribute data
  *
- * @return	string	une string
+ * @return	string	 attribute data value
  * @access	public
  */
 	public function get()
@@ -36,10 +35,9 @@ class attrDecimal extends _attrs
 		return $this->params['function']($this->data, $this->params['decimal']);
 	}
 /**
- * Definition mysql
- * ex : `salary` decimal(10,2) NOT NULL
+ * Get mysql attribute definition
  *
- * @return	string	la définition mysql
+ * @return	string	a mysql string
  * @access	public
  */
 	public function mysql_definition()
@@ -54,10 +52,9 @@ class attrDecimal extends _attrs
 	}
 	
 /**
- * Default field attributes for Decimal	
+ * Get the properties of an attributes
  *
- * @param	string	la variable
- * @return	string	une string
+ * @return	array	an array of attribute properties
  * @access	public
  */
 	public static function get_properties()

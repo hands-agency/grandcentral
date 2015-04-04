@@ -1,38 +1,22 @@
-<? foreach ($available as $li): ?>
-<li data-section="<?=$li['key']?>" data-app="<?=$li['app']['app']?>" data-template="<?=$li['app']['template']?>">
+<?php foreach ($apps as $app): ?>
+<?php
+/*
+//	App
+	$app = (isset($section['app']['app']) & !empty($section['app']['app'])) ? $section['app']['app'] : null;
+//	template
+	$template = (isset($section['app']['template']) & !empty($section['app']['template'])) ? $section['app']['template'] : null;
+//	param
+	$param = (isset($section['app']['param']) & !empty($section['app']['param'])) ? htmlspecialchars(json_encode($section['app']['param']), ENT_COMPAT, 'UTF-8') : null;
+	*/
+?>
+<li data-app="<?=$app['key']?>">
+	
 	<span class="handle" data-feathericon="&#xe026"></span>
 	<button class="delete" type="button"></button>
-	<div class="icon"></div>
-	<div class="title"><span class="flag"><?=$li['app']['app']?></span><?=$li['title']?></div>
-	<?if (isset($li['descr'])): ?><div class="descr"><?=$li['descr']?></div><? endif ?>
-	<input type="hidden" name="<?=$name?>[app]" value="<?=$li['id']?>" disabled="disabled" />
 	
-	<span class="configure">
-		<?
-		//	template
-			$template = (isset($li['app']['template']) & !empty($li['app']['template'])) ? $li['app']['template'] : null;
-		//	param
-			$param = (isset($li['app']['param']) & !empty($li['app']['param'])) ? htmlspecialchars(json_encode($li['app']['param']), ENT_COMPAT, 'UTF-8') : null;
-		?>
-		<span class="template">
-		<?php if ($template): ?>
-		<input type="hidden" name="<?= $name; ?>[template]" value="<?=$template?>" />
-		<?php endif ?>
-		</span>
-		<span class="param">
-		<?php if ($param): ?>
-		<?php foreach ($li['app']['param'] as $key => $value): ?>
-			<?php if (!is_array($value)): ?>
-			<textarea style="display:none" name="<?= $name; ?>[param][<?=$key?>]"><?=$value?></textarea>
-			<?php else: ?>
-			<?php foreach ($value as $k => $v): ?>
-			<textarea style="display:none" name="<?= $name; ?>[param][<?=$key?>][<?=$k?>]"><?=$v?></textarea>
-			<?php endforeach ?>
-			<?php endif ?>
-		<?php endforeach ?>
-		<?php endif ?>
-		</span>
-	</span>
+	<div class="title"><span><span class="flag"><?=$app['title']?></span></span></div>
+	
+	<div class="preview"><iframe src=""></iframe></div>
 
 </li>
-<? endforeach ?>
+<?php endforeach ?>

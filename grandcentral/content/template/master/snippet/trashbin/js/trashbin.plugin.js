@@ -1,6 +1,6 @@
 /*********************************************************************************************
 /**	* Trashbin plugin
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
 (function($)
 {	
@@ -97,7 +97,7 @@
 					//	Confirm trash
 						$element.effect('bounce', {distance:'30', times:'2'}, 250);
 					//	Callback
-						if ((typeof(callback) != 'undefined') && (typeof(callback) == "function")) callback.call(this, response);
+						if ((typeof(callback) != 'undefined') && (typeof(callback) == 'function')) callback.call(this, response);
 					}
 					else
 					{

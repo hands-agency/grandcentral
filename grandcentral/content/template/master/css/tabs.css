@@ -4,7 +4,7 @@
 #tabs
 {
 	display:inline-block;
-	margin-left:10px;
+	line-height:28px;
 }
 #tabs>li
 {
@@ -22,9 +22,9 @@
 	-o-transition: all 0.1s ease-out;
 	transition: all 0.1s ease-out;
 	display:block;
+	z-index:3;
 	position:relative;
-	z-index:1;
-	color:#000;
+	color:#fff;
 }
 #tabs>li a:before
 {
@@ -32,7 +32,7 @@
 	border-bottom:5px solid transparent;
 	width:100%;
 	position:absolute;
-	bottom:-25px;
+	bottom:-22px;
 	left:0;
 }
 #tabs>li>a>span
@@ -59,7 +59,7 @@
 }
 #tabs>li.on a:before
 {
-	border-color:#3eb4d6;
+	border-color:#fff;
 }
 #adminContent.unlocked #tabs>li.on a:before
 {
@@ -103,11 +103,11 @@
 	position:absolute;
 	pointer-events:none;
 	opacity:0;
-	z-index:3;
+	z-index:1;
 	-moz-border-radius:100px;
 	-webkit-border-radius:100px;
 	border-radius:100px;
-	background:rgba(255, 255, 255, 0.5);
+	background:rgba(255,255,255,0.15);
 	border:1px dashed #FE9400;
 	-webkit-transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	transition:         all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275); 
@@ -118,6 +118,17 @@
 	-moz-transform: scale(1.5);
 	-webkit-transform: scale(1.5);
 	transform: scale(1.5);
+}
+#tabs>li.ui-droppable-hover a .titre
+{
+	-moz-transform: scale(1.2);
+	-webkit-transform: scale(1.2);
+	transform: scale(1.2);
+	color:#FFF !important;
+}
+#tabs>li.ui-droppable-hover a:before
+{
+	display:none;
 }
 
 /* You can have some tabs on the right side as well */

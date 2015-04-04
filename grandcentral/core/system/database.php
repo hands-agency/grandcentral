@@ -1,8 +1,7 @@
 <?php
 /**
- * La classe de ressources de la base de données
- *
- * Créer une connexion à la bdd et exécuter des requêtes préparées
+ * Database ressources.
+ * This class is a singleton. You need database::connect() to instantiate.
  *
  * Example:
  * <pre>
@@ -11,10 +10,9 @@
  * $home = $db->query('SELECT * FROM page WHERE `key` = :key', $param);
  * </pre>
  *
- * @package  Core
- * @author   Sylvain Frigui <sf@cafecentral.fr>
- * @access   public
- * @see      http://www.cafecentral.fr/fr/wiki
+ * @author	Sylvain Frigui <sf@hands.agency>
+ * @access	public
+ * @link		http://grandcentral.fr
  */
 class database
 {
@@ -30,13 +28,13 @@ class database
 	public $_spooler = array();
 
 /**
- * Configure l'objet PDO et crée la connexion à la base de données
+ * instantiate PDO and open database connection. Can't be called.
  *
- * @param	string  le type de la bdd
- * @param	string  le host de la bdd
- * @param	string  le nom de la bdd
- * @param	string  le user de la bdd
- * @param	string  le password de la bdd
+ * @param	string  database type
+ * @param	string  database host
+ * @param	string  database name
+ * @param	string  database user
+ * @param	string  database password
  * @access	private
  */
 	private function __construct($db_type, $db_host, $db_name, $db_user, $db_password)
@@ -64,19 +62,19 @@ class database
 	}
 
 /**
- * Obtenir une connexion à la base de données
- * 
- * ex : $db = database::connect('site');
+ * instantiate a database
+ * <pre>
+ * $db = database::connect('site');
  * $db->query('SELECT * FROM page');
- *
- * @param	string	"site" ou "admin". Par défaut, l'environnement en cours
- * @return	database	l'instance site ou admin de database
+ * </pre>
+ * @param	string	environnement
+ * @return	object	database object
  * @access	public
  * @static
  */
 	public static function connect($env = env)
 	{
-		self::$env = (in_array($env, array('site', 'admin'))) ? $env : trigger_error('Environnement should be <strong>admin</strong> or <strong>site</strong>.Not '.$env.'.', E_USER_ERROR);
+		self::$env = (in_array($env, array('site', 'admin'))) ? $env : trigger_error('Environment should be <strong>admin</strong> or <strong>site</strong>.Not '.$env.'.', E_USER_ERROR);
 	//	à la manière du singleton
 		if (empty(self::$instance[self::$env]))
 		{
@@ -94,12 +92,12 @@ class database
 	}
 
 /**
- * Définir le Data Source Name pour la connexion à la base de données
+ * Get database data source name (DSN)
  *
- * @param	string	le type de la bdd
- * @param	string	le host de la bdd
- * @param	string	le nom de la bdd
- * @return	string	le dsn
+ * @param	string	database type
+ * @param	string	database host
+ * @param	string	database name
+ * @return	string	dsn formated string
  * @access	private
  */
 	private function _get_dsn($db_type, $db_host, $db_name)
@@ -120,11 +118,20 @@ class database
 		}		
 	}
 /**
- * Faire des requêtes sur la base de données en mode transactionnel
+ * Query the database
+ * To protect your code against SQL injection, you have to use prepared queries
+ * See the PHP documentation : http://php.net/manual/fr/pdo.prepare.php
  *
- * @param	string  la requête SQL à exécuter sur la base
- * @param	array 	le tableau de paramètres pour les requêtes préparées
- * @return	array	le résultat de la requête
+ * <pre>
+ * $db = database::connect('site');
+ * $db->query('SELECT * FROM page');
+ * $db->query('SELECT * FROM page WHERE `key` = :key', array(
+ * 	'key' => 'home'
+ * 	));
+ * </pre>
+ * @param	string  SQL query or prepared query
+ * @param	array 	array of parameters
+ * @return	array	array of results
  * @access	public
  */
 	public function query($query, $p = null)
@@ -201,10 +208,10 @@ class database
 	}
 	
 /**
- * Return la liste des tables de la bdd
+ * Get all the tables from the database
  *
- * @param	string	l'environnement désiré. "admin" ou "site"
- * @return	array	la liste des tables
+ * @param	string	environnement
+ * @return	array	an array of tables name
  * @access	public
  * @static
  */
@@ -227,8 +234,8 @@ class database
 /**
  * Return active bdd name
  *
- * @param	string	l'environnement désiré. "admin" ou "site"
- * @return	array	la liste des tables
+ * @param	string	environnement
+ * @return	string	active database's name
  * @access	public
  * @static
  */
@@ -241,11 +248,11 @@ class database
 /**
  * Query database for items data
  *
- * @param	string	l'environnement désiré. "admin" ou "site"
- * @param	string	la table
- * @param	array	les paramètres de recherche
- * @param	bool	active le select count
- * @return	array	les résultats
+ * @param	string	environnement
+ * @param	string	database table
+ * @param	array	query parameters
+ * @param	bool	active count mode
+ * @return	array	query results 
  * @access	public
  * @static
  */
@@ -454,13 +461,12 @@ class database
 	}
 	
 /**
- * Query database for items data
+ * Stack queries in a static pile before execution.
+ * With database::stack() you can execute multiple queries in a single transaction.
  *
- * @param	string	l'environnement désiré. "admin" ou "site"
- * @param	string	la table
- * @param	array	les paramètres de recherche
- * @param	bool	active le select count
- * @return	array	les résultats
+ * @param	string  SQL query or prepared query
+ * @param	array 	array of parameters
+ * @param	bool 	search for [lastid] in the query string and change it for the last inserted id
  * @access	public
  * @static
  */
@@ -478,13 +484,8 @@ class database
 	}
 	
 /**
- * Query database for items data
+ * Execute a pile of queries
  *
- * @param	string	l'environnement désiré. "admin" ou "site"
- * @param	string	la table
- * @param	array	les paramètres de recherche
- * @param	bool	active le select count
- * @return	array	les résultats
  * @access	public
  * @static
  */

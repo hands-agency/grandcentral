@@ -4,10 +4,9 @@
  *
  * a data = one line in the database
  * 
- * @package  Core
- * @author   Sylvain Frigui <sf@cafecentral.fr>
- * @access   public
- * @see      http://www.cafecentral.fr/fr/wiki
+ * @author	Sylvain Frigui <sf@hands.agency>
+ * @access	public
+ * @link		http://grandcentral.fr
  */
 abstract class _items implements ArrayAccess, Iterator
 {
@@ -263,12 +262,13 @@ abstract class _items implements ArrayAccess, Iterator
 					
 					break;
 				case is_a($attr, 'attrId'):
-					$id = $attr->get();
-					$mainData['id'] = $id;
+					
 					break;
 				case !is_a($attr, 'attrRel'):
-					$mainQuery[] = '`'.$attr->get_key().'`=:'.$attr->get_key();
-					$mainData[$attr->get_key()] = $attr->database_get();
+					// $mainQuery[] = '`'.$attr->get_key().'`=:'.$attr->get_key();
+					// $mainData[$attr->get_key()] = $attr->database_get();
+					$mainQuery[] = '`'.$attr->get_key().'`= ?';
+					$mainData[] = $attr->database_get();
 					break;
 				case is_a($attr, 'attrRel'):
 					$rels = $attr->get();
@@ -276,23 +276,34 @@ abstract class _items implements ArrayAccess, Iterator
 					$i = 0;
 					foreach ((array) $rels as $rel)
 					{
-						$relQuery[] = '(:'.$attr->get_key().'_item_'.$i.',:'.$attr->get_key().'_itemid_'.$i.',:'.$attr->get_key().'_key_'.$i.',:'.$attr->get_key().'_rel_'.$i.',:'.$attr->get_key().'_relid_'.$i.',:'.$attr->get_key().'_position_'.$i.')';
+						// $relQuery[] = '(:'.$attr->get_key().'_item_'.$i.',:'.$attr->get_key().'_itemid_'.$i.',:'.$attr->get_key().'_key_'.$i.',:'.$attr->get_key().'_rel_'.$i.',:'.$attr->get_key().'_relid_'.$i.',:'.$attr->get_key().'_position_'.$i.')';
+						$relQuery[] = '(?,?,?,?,?,?)';
 						
 						list($rel_table, $rel_id) = explode('_', $rel);
 						
-						$relData[':'.$attr->get_key().'_item_'.$i] 		= $this->get_table();
-						$relData[':'.$attr->get_key().'_itemid_'.$i] 	= $this['id']->get();
-						$relData[':'.$attr->get_key().'_key_'.$i] 		= $attr->get_key();
-						$relData[':'.$attr->get_key().'_rel_'.$i] 		= $rel_table;
-						$relData[':'.$attr->get_key().'_relid_'.$i] 	= $rel_id;
-						$relData[':'.$attr->get_key().'_position_'.$i] 	= $i;
+						// $relData[':'.$attr->get_key().'_item_'.$i] 		= $this->get_table();
+						// $relData[':'.$attr->get_key().'_itemid_'.$i] 	= $this['id']->get();
+						// $relData[':'.$attr->get_key().'_key_'.$i] 		= $attr->get_key();
+						// $relData[':'.$attr->get_key().'_rel_'.$i] 		= $rel_table;
+						// $relData[':'.$attr->get_key().'_relid_'.$i] 	= $rel_id;
+						// $relData[':'.$attr->get_key().'_position_'.$i] 	= $i;
+						
+						$relData[] = $this->get_table();
+						$relData[] = $this['id']->get();
+						$relData[] = $attr->get_key();
+						$relData[] = $rel_table;
+						$relData[] = $rel_id;
+						$relData[] = $i;
 						$i++;
 					}
 					break;
 			}
 		}
+		// patch colonne à tiret
+		$id = $this->data['id']->database_get();
+		$mainData[] = $id;
 	//	update table entry
-		$db->stack('UPDATE `'.$this->get_table().'` SET '.implode(',', $mainQuery).' WHERE `id`=:id', $mainData);
+		$db->stack('UPDATE `'.$this->get_table().'` SET '.implode(',', $mainQuery).' WHERE `id`=?', $mainData);
 	//	delete previous relations
 		$preparedData = array(
 			'id' => $id
@@ -326,24 +337,33 @@ abstract class _items implements ArrayAccess, Iterator
 					break;
 				case !is_a($attr, 'attrRel'):
 					$mainQueryCols[] = '`'.$attr->get_key().'`';
-					$mainQueryValues[] = ':'.$attr->get_key();
-					$mainData[$attr->get_key()] = $attr->database_get();
+					// $mainQueryValues[] = ':'.$attr->get_key();
+					// $mainData[$attr->get_key()] = $attr->database_get();
+					$mainQueryValues[] = '?';
+					$mainData[] = $attr->database_get();
 					break;
 				case is_a($attr, 'attrRel'):
 					$rels = $attr->get();
 					$i = 0;
 					foreach ((array) $rels as $rel)
 					{
-						$relQuery[] = '(:'.$attr->get_key().'_item_'.$i.',:'.$attr->get_key().'_itemid_'.$i.',:'.$attr->get_key().'_key_'.$i.',:'.$attr->get_key().'_rel_'.$i.',:'.$attr->get_key().'_relid_'.$i.',:'.$attr->get_key().'_position_'.$i.')';
+						// $relQuery[] = '(:'.$attr->get_key().'_item_'.$i.',:'.$attr->get_key().'_itemid_'.$i.',:'.$attr->get_key().'_key_'.$i.',:'.$attr->get_key().'_rel_'.$i.',:'.$attr->get_key().'_relid_'.$i.',:'.$attr->get_key().'_position_'.$i.')';
+						$relQuery[] = '(?,?,?,?,?,?)';
 						
 						list($rel_table, $rel_id) = explode('_', $rel);
 						
-						$relData[':'.$attr->get_key().'_item_'.$i] 		= $this->get_table();
-						$relData[':'.$attr->get_key().'_itemid_'.$i] 	= 'lastid';
-						$relData[':'.$attr->get_key().'_key_'.$i] 		= $attr->get_key();
-						$relData[':'.$attr->get_key().'_rel_'.$i] 		= $rel_table;
-						$relData[':'.$attr->get_key().'_relid_'.$i] 	= $rel_id;
-						$relData[':'.$attr->get_key().'_position_'.$i] 	= $i;
+						// $relData[':'.$attr->get_key().'_item_'.$i] 		= $this->get_table();
+						// $relData[':'.$attr->get_key().'_itemid_'.$i] 	= 'lastid';
+						// $relData[':'.$attr->get_key().'_key_'.$i] 		= $attr->get_key();
+						// $relData[':'.$attr->get_key().'_rel_'.$i] 		= $rel_table;
+						// $relData[':'.$attr->get_key().'_relid_'.$i] 	= $rel_id;
+						// $relData[':'.$attr->get_key().'_position_'.$i] 	= $i;
+						$relData[] = $this->get_table();
+						$relData[] = 'lastid';
+						$relData[] = $attr->get_key();
+						$relData[] = $rel_table;
+						$relData[] = $rel_id;
+						$relData[] = $i;
 						$i++;
 					}
 					break;
@@ -419,7 +439,7 @@ abstract class _items implements ArrayAccess, Iterator
  */
 	public function json($filter = null)
 	{
-	//	Only if item instanciated
+	//	Only if item instantiated
 		if ($this)
 		{
 		//	Return data in Json

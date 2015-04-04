@@ -1,11 +1,11 @@
 <?php
 /**
- * String formated attributes handling class
+ * Abstract class for handling attributes
  *
  * @package 	Core
- * @author		Sylvain Frigui <sf@cafecentral.fr>
+ * @author		Sylvain Frigui <sf@hands.agency>
  * @access		public
- * @link		http://www.cafecentral.fr/fr/wiki
+ * @link		http://grandcentral.fr
  */
 abstract class _attrs
 {
@@ -13,9 +13,10 @@ abstract class _attrs
 	protected $params;
 
 /**
- * Declare attribute
+ * Instanciates an new attribute.
  *
- * @return	string	une string
+ * @param	mixed	attribute data
+ * @param	array	attribute parameters
  * @access	public
  */
 	public function __construct($data = null, $params = null)
@@ -33,18 +34,16 @@ abstract class _attrs
 		}
 	}
 /**
- * Set array attribute
+ * Set the data into an attribute. Abstract method.
  *
- * @param	string	la variable
- * @return	string	une string
+ * @param	mixed	attribute data
  * @access	public
  */
 	abstract public function set($data);
 /**
- * Set array attribute
+ * Get the attribute data
  *
- * @param	string	la variable
- * @return	string	une string
+ * @return	mixed	 attribute data value
  * @access	public
  */
 	public function get()
@@ -52,10 +51,9 @@ abstract class _attrs
 		return $this->data;
 	}
 /**
- * Set array attribute
+ * Set the data and post-process it.
  *
- * @param	string	la variable
- * @return	string	une string
+ * @param	mixed	attribute data
  * @access	public
  */
 	public function database_set($data)
@@ -64,10 +62,9 @@ abstract class _attrs
 		return $this;
 	}
 /**
- * Set array attribute
+ * Get the raw data
  *
- * @param	string	la variable
- * @return	string	une string
+ * @return	mixed	attribute data
  * @access	public
  */
 	public function database_get()
@@ -75,10 +72,9 @@ abstract class _attrs
 		return (empty($this->data)) ? '' : $this->get();
 	}
 /**
- * xxxx
+ * Display the attribute
  *
- * @param	string	la variable
- * @return	string	une string
+ * @return	string	attribute view
  * @access	public
  */
 	public function __tostring()
@@ -86,43 +82,39 @@ abstract class _attrs
 		return (string) $this->get();
 	}
 /**
- * xxxx
+ * Set the attribute key
  *
- * @param	string	la variable
- * @return	string	une string
+ * @param	string	key value
  * @access	public
  */
 	public function set_key($value)
 	{
-		$this->params['key'] = $value;
+		$this->params['key'] = (string) $value;
 	}
 /**
- * xxxx
+ * Set the attribute title
  *
- * @param	string	la variable
- * @return	string	une string
+ * @param	string	title value
  * @access	public
  */
 	public function set_title($value)
 	{
-		$this->params['title'] = $value;
+		$this->params['title'] = (string) $value;
 	}
 /**
- * xxxx
+ * Set the attribute required parameter
  *
- * @param	string	la variable
- * @return	string	une string
+ * @param	bool	true or false
  * @access	public
  */
 	public function set_required($value)
 	{
-		$this->params['required'] = $value;
+		$this->params['required'] = (bool) $value;
 	}
 /**
- * xxxx
+ * Get the attribute name
  *
- * @param	string	la variable
- * @return	string	une string
+ * @return	string	attribute key
  * @access	public
  */
 	public function get_key()
@@ -130,10 +122,9 @@ abstract class _attrs
 		return $this->params['key'];
 	}
 /**
- * xxxx
+ * Check if the attribute data is empty
  *
- * @param	string	la variable
- * @return	string	une string
+ * @return	bool	true if is empty, false otherwise
  * @access	public
  */
 	public function is_empty()
@@ -141,16 +132,16 @@ abstract class _attrs
 		return (empty($this->data)) ? true : false;
 	}
 /**
- * get mysql definition
+ * Get mysql attribute definition
  *
- * @return	string	une string
+ * @return	string	a mysql string
  * @access	public
  */
 	abstract public function mysql_definition();
 /**
- * get mysql definition
+ * Get mysql index definition
  *
- * @return	string	une string
+ * @return	string	a mysql string
  * @access	public
  */
 	public function mysql_index_definition()
@@ -158,10 +149,9 @@ abstract class _attrs
 		return null;
 	}
 /**
- * Default field attributes for all fields	
+ * Get the properties of an attributes
  *
- * @param	string	la variable
- * @return	string	une string
+ * @return	array	an array of attribute properties
  * @access	public
  */
 	public static function get_properties()
@@ -194,6 +184,19 @@ abstract class _attrs
 			'type' => 'bool',
 			'label' => 'Required',
 			'labelbefore' => true
+		);
+		
+		$available = registry::get_class('field');
+		//	Get the properties for each attr
+		foreach ($available as $field) $fields[$field] = mb_substr(mb_strtolower($field), 5);
+		//	Somes specifics for this attr
+		$params['adminField'] = array(
+			'placeholder' => '...',
+			'name' => 'field',
+			'type' => 'select',
+			'label' => 'Default field',
+			'values' => $fields,
+			'valuestype' => 'array'
 		);
 	//	Return
 		return $params;

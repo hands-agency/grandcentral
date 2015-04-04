@@ -9,14 +9,13 @@
  *    echo "I am an example.";
  * }
  * </pre>
- * 
- * @package		The package
- * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
- * @author		Sylvain Frigui <sf@cafecentral.fr>
- * @copyright	Copyright © 2004-2013, Café Central
- * @license		http://www.cafecentral.fr/fr/licences GNU Public License
+ *
+ * @author		Michaël V. Dandrieux <@mvdandrieux>
+ * @author		Sylvain Frigui <sf@hands.agency>
+ * @copyright	Copyright © 2004-2015, Hands
+ * @license		http://grandcentral.fr/license MIT License
  * @access		public
- * @link		http://www.cafecentral.fr/fr/wiki
+ * @link		http://grandcentral.fr
  */
 /********************************************************************************************/
 //	Some tests
@@ -62,7 +61,7 @@
 	//	Some consts
 		var ITEM = $('meta[property=\"gc:item\"]').attr('content');
 		var SITE_URL = '".SITE_URL."';
-		var SITE_KEY = '".SITE_KEY."';
+		var SITE_KEY = '".SITE_KEY."'; 
 		var ADMIN_URL = '".ADMIN_URL."';
 		var ENV = $('body').data('env');
 		var CURRENTEDITED_URL = '".$currentEditedItemUrl."';
@@ -101,29 +100,78 @@
 /********************************************************************************************/
 //	Nav CC
 /********************************************************************************************/
-	$_APP->bind_snippet('sitenav', 'master/snippet/sitenav');
+//	$_APP->bind_snippet('sitenav', 'master/snippet/sitenav');
 	
 /********************************************************************************************/
 //	Nav CC
 /********************************************************************************************/
-	$_APP->bind_snippet('nav', 'master/snippet/nav');
+//	$_APP->bind_snippet('nav', 'master/snippet/nav');
 	
 /********************************************************************************************/
-//	Header
+//	Headers
 /********************************************************************************************/
+//Site
+	$_APP->bind_snippet('headersite', 'master/snippet/headersite');
+	
 //	Even stream
-	$_APP->bind_code('header', '<div id="eventstream"><ul class="mine"></ul><ul class="everybodyelses"></ul></div>');
-	$_APP->bind_snippet('header', 'master/snippet/eventstream');
+	$_APP->bind_code('headeradmin', '<div id="eventstream"><ul class="mine"></ul><ul class="everybodyelses"></ul></div>');
+	$_APP->bind_snippet('headeradmin', 'master/snippet/eventstream');
 //	Green button
-	$_APP->bind_snippet('header', 'master/snippet/greenbutton/greenbutton');
+	$_APP->bind_snippet('headeradmin', 'master/snippet/greenbutton/greenbutton');
 //	Header (here, i need the section var)
-	$_APP->bind_snippet('header', 'master/snippet/header');
+	$_APP->bind_snippet('headeradmin', 'master/snippet/headeradmin');
 
 /********************************************************************************************/
 //	Content
 /********************************************************************************************/
 //	Trashbin
 	$_APP->bind_snippet('content', 'master/snippet/trashbin/trashbin');
+	
+//
+/********************************************************************************************/
+//	The title
+/********************************************************************************************/
+	switch (i('page', current)['key'])
+	{	
+	//	Edit
+		case 'edit':
+			$structure = i('item', $_GET['item'], $_SESSION['pref']['handled_env']);
+		//	We have an item already
+			if (isset($_GET['id']))
+			{
+				$item = i($_GET['item'], $_GET['id'], $_SESSION['pref']['handled_env']);
+				$back = $item->listing();
+			}
+		//	New item
+			else
+			{
+				$back = i($_GET['item'], null, $_SESSION['pref']['handled_env'])->listing();
+			}
+			break;
+			
+	//	List
+		case 'list':
+			$item = i('page', 'home');
+			$back = $item['url'];
+			break;
+			
+	//	App
+		case 'app':
+			$page = i('page', 'app');
+			$back = $page['url'];
+			break;
+			
+	//	Home
+		case 'home':
+			$item = i('page', 'home');
+			$back = 'javascript:openSite();';
+			break;
+		
+		default:
+			$item = i('page', 'home');
+			$back = $item['url'];
+			break;
+	}
 	
 /********************************************************************************************/
 //	Footer

@@ -1,20 +1,20 @@
 <?php
 /**
- * String formated attributes handling class
+ * Array attribute handling class
  *
  * @package 	Core
- * @author		Sylvain Frigui <sf@cafecentral.fr>
+ * @author		Sylvain Frigui <sf@hands.agency>
  * @access		public
- * @link		http://www.cafecentral.fr/fr/wiki
+ * @link		http://grandcentral.fr
  */
 class attrArray extends _attrs implements ArrayAccess, Iterator
 {
 	protected $data = array();
 /**
- * Get array attribute
+ * Get the attribute data
  *
  * @param	string	la variable
- * @return	string	une string
+ * @return	array	data within the attribute
  * @access	public
  */
 	public function get()
@@ -24,8 +24,7 @@ class attrArray extends _attrs implements ArrayAccess, Iterator
 /**
  * Set array attribute
  *
- * @param	string	la variable
- * @return	string	une string
+ * @param	mixed	attribute data
  * @access	public
  */
 	public function set($data)
@@ -34,10 +33,9 @@ class attrArray extends _attrs implements ArrayAccess, Iterator
 		return $this;
 	}
 /**
- * Set array attribute
+ * Set array attribute for database
  *
- * @param	string	la variable
- * @return	string	une string
+ * @param	array	attribute data
  * @access	public
  */
 	public function database_set($data)
@@ -46,10 +44,9 @@ class attrArray extends _attrs implements ArrayAccess, Iterator
 		return $this;
 	}
 /**
- * Set array attribute
+ * Get array attribute for database
  *
- * @param	string	la variable
- * @return	string	une string
+ * @return	json	a json encoding of the data
  * @access	public
  */
 	public function database_get()
@@ -57,10 +54,9 @@ class attrArray extends _attrs implements ArrayAccess, Iterator
 		return (!empty($this->data)) ? json_encode($this->data, JSON_UNESCAPED_UNICODE) : '';
 	}
 /**
- * xxxx
+ * Display the attribute data inside pre tag.
  *
- * @param	string	la variable
- * @return	string	une string
+ * @return	string	the formated data
  * @access	public
  */
 	public function __toString()
@@ -68,13 +64,10 @@ class attrArray extends _attrs implements ArrayAccess, Iterator
 		return '<pre>'.print_r($this->data, true).'</pre>';
 	}
 /**
- * Definition mysql
- * ex : `param` mediumtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+ * Get mysql attribute definition
  *
- * @param	array 	le tableau de paramètres
- * @return	string	la définition mysql
+ * @return	string	a mysql string
  * @access	public
- * @static
  */
 	public function mysql_definition()
 	{
@@ -84,10 +77,9 @@ class attrArray extends _attrs implements ArrayAccess, Iterator
 		return $definition;
 	}
 /**
- * Count
+ * Count all elements in an array
  *
- * @param	string	la variable
- * @return	string	une string
+ * @return	int		the number of elements into the array
  * @access	public
  */
 	public function count()
@@ -95,11 +87,9 @@ class attrArray extends _attrs implements ArrayAccess, Iterator
 		return count($this->data);
 	}
 /**
- * ArrayAccess Interface methods
+ * Arrayaccess
+ * http://php.net/manual/en/class.arrayaccess.php
  *
- * @param	string	la variable
- * @return	string	une string
- * @access	public
  */
 	public function offsetSet($offset, $value)
 	{
@@ -118,7 +108,11 @@ class attrArray extends _attrs implements ArrayAccess, Iterator
 	{
 		return isset($this->data[$offset]) ? $this->data[$offset] : null;
 	}
-//	Iterator
+/**
+ * Interface Iterator
+ * http://php.net/manual/en/class.iterator.php
+ *
+ */
 	function rewind()
 	{
 		reset($this->data);

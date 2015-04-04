@@ -1,16 +1,37 @@
 <?php
 /**
- * The generic item of Café Central
+ * The generic item of Grand Central
  *
- * @package  Core
- * @author   Sylvain Frigui <sf@cafecentral.fr>
- * @access   public
- * @see      http://www.cafecentral.fr/fr/wiki
+ * @author	Sylvain Frigui <sf@hands.agency>
+ * @access	public
+ * @link		http://grandcentral.fr
  */
 class itemPage extends _items
 {
 	const child = 'child';
 	protected $child = false;
+	protected $zoning = false;
+/**
+ * Active ou désactive l'encapsulage des zones et des sections sur la page pour le mode d'édition
+ *
+ * @param	bool
+ * @access	public
+ */
+	public function set_zoning($bool = true)
+	{
+		$this->zoning = (bool) $bool;
+		return $this;
+	}
+/**
+ * Retourne la valeur de $this->zoning
+ *
+ * @return	bool
+ * @access	public
+ */
+	public function get_zoning()
+	{
+		return $this->zoning;
+	}
 /**
  * Tells whether a page is a reader of another item
  *
@@ -70,11 +91,12 @@ class itemPage extends _items
 		//	si la page n'existe pas, on éclate l'url et on fait une recherche aproximative
 		if (!$this->exists())
 		{
-			$hash = mb_substr(URLR, 0, mb_strrpos(URLR, '/'));
+			$hash = mb_substr(URLR, 0, mb_strpos(URLR, '/', 1));
 			// chargement de la page de home
 			$this->get_by_url($hash);
 
-			if (!$this->exists() OR ($this->exists() && !$this->is_reader()))
+			if (!$this->exists())
+//			if (!$this->exists() OR ($this->exists() && !$this->is_reader()))
 			{
 				$this->get_by_url('/404');
 			}
@@ -100,6 +122,7 @@ class itemPage extends _items
 		{
 		//	...hook'em up
 			$parent = $this['parent']->unfold();
+			if (is_a($parent, 'bunch')) $parent = $parent[0];
 			// sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $parent);
 			$parent['child']->add($this);
 			$parent->save();

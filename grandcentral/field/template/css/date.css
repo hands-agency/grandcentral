@@ -1,6 +1,6 @@
 [data-type="date"] input.date
 {
-	width:150px;
+	width:90px;
 }
 [data-type="date"] input.time
 {
@@ -19,13 +19,7 @@
 	background:#fff;
 	border:1px solid #ccc;
 	padding:10px;
-	/* Linin numerals for ProximaNova */
-	font-feature-settings: 'lnum';
-	-moz-font-feature-settings: 'lnum=1';
-	-ms-font-feature-settings: 'lnum';
-	-webkit-font-feature-settings: 'lnum';
-	-o-font-feature-settings: 'lnum';
-	font-family:'ProximaNova-Thin';
+	font-family:'ProximaNova-Regular';
 	text-align:center;
 	border-radius:2px;
 	display:none;
@@ -93,7 +87,7 @@
 }
 #ui-datepicker-div td.ui-datepicker-current-day
 {
-	background:#3eb4d6;
+	background:#419BF9;
 }
 #ui-datepicker-div td.ui-datepicker-current-day a
 {

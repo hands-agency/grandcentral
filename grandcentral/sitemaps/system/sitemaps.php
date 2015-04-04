@@ -3,9 +3,9 @@
  * The Sitemaps app
  * 
  * @package		Core
- * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
+ * @author		Michaël V. Dandrieux <@mvdandrieux>
  * @access		public
- * @link		http://www.cafecentral.fr/fr/wiki
+ * @link		http://grandcentral.fr
  */
 class sitemaps
 {
@@ -34,10 +34,11 @@ class sitemaps
  */
 	public function create()
 	{
-	//	Get the structures with url
+	//	Get the items with url
 		$items = i('item', array('hasurl' => true));
 		
 	//	Loop through structures with url
+		$url = '';
 		foreach ($items as $structure)
 		{
 		//	Get the items
@@ -61,7 +62,6 @@ class sitemaps
 			$items = i($structure['key']->get(), $p);
 			
 		//	Loop through items
-			$url = '';
 			foreach ($items as $item)
 			{
 				$url .= "<url>\n";

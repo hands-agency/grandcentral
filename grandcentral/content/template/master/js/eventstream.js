@@ -1,11 +1,11 @@
 /*********************************************************************************************
 /**	* Compare updates
-* @author	mvd@cafecentral.fr
+* @author	@mvdandrieux
 **#******************************************************************************************/
 	$(document).on('click', '#eventstream a.compare', function()
 	{
-		
-		$(this).popup({
+		$(this).popup(
+		{
 			app:'media',
 			template:'admin',
 			width:'300px',

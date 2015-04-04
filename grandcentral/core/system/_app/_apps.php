@@ -1,12 +1,12 @@
 <?php
 /**
- * App handling
+ * The abstract class for app handling.
  * 
  * @package		Core
- * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
- * @author		Sylvain Frigui <sf@cafecentral.fr>
+ * @author		Michaël V. Dandrieux <@mvdandrieux>
+ * @author		Sylvain Frigui <sf@hands.agency>
  * @access		public
- * @link		http://www.cafecentral.fr/fr/wiki
+ * @link		http://grandcentral.fr
  */
 abstract class _apps
 {
@@ -23,8 +23,9 @@ abstract class _apps
 /**
  * Class constructor (Don't forget it is an abstract class)
  *
- * @param	mixed  une id, une clé ou un tableau array('id' => 2)
- * @param	string  only site
+ * @param	string	the template key starting from the root af the app (ex: master/default)
+ * @param	array 	an array of parameters
+ * @param	string  environnement
  * @access	public
  */
 	public function __construct($template = 'default', $params = null, $env = env)
@@ -49,9 +50,9 @@ abstract class _apps
 		$this->set_param($params);
 	}
 /**
- * 
+ * Gets the app name
  *
- * @return	string	la clé de l'app
+ * @return	string	app key string
  * @access	public
  */
 	public function get_key()
@@ -59,9 +60,9 @@ abstract class _apps
 		return $this->key;
 	}
 /**
- * 
+ * Gets the app environnement
  *
- * @return	string	la clé de l'app
+ * @return	string	app environnement string (site or admin)
  * @access	public
  */
 	public function get_env()
@@ -69,9 +70,9 @@ abstract class _apps
 		return $this->env;
 	}
 /**
- * Gets the root of the app
+ * Gets the root of the app system directory
  *
- * @return	string	le chemin de l'app
+ * @return	string	root of system directory
  * @access	public
  */
 	public function get_systemroot()
@@ -79,9 +80,9 @@ abstract class _apps
 		return $this->system_root;
 	}
 /**
- * Gets the root of the app
+ * Gets the browsable url of the app system directory
  *
- * @return	string	le chemin de l'app
+ * @return	string	url of the app system directory
  * @access	public
  */
 	public function get_systemurl()
@@ -89,9 +90,10 @@ abstract class _apps
 		return $this->system_url;
 	}
 /**
- * Gets the root of the app
+ * Gets the root of the app template directory
  *
- * @return	string	le chemin de l'app
+ * @param	string	environnement
+ * @return	string	root of template directory
  * @access	public
  */
 	public function get_templateroot($env = null)
@@ -100,9 +102,10 @@ abstract class _apps
 		return $this->template_root[$env];
 	}
 /**
- * Gets the root of the app
+ * Gets the browsable url of the app template directory
  *
- * @return	string	le chemin de l'app
+ * @param	string	environnement
+ * @return	string	url of template directory
  * @access	public
  */
 	public function get_templateurl($env = null)
@@ -113,8 +116,8 @@ abstract class _apps
 /**
  * Get the .ini file of the app or a part of it
  *
- * @param	string  l'index d'une partie de la configuration (ex : $app->ini('about');)
- * @return	array	la configuration demandée
+ * @param	string  (optional) get a filtered ini (ex : $app->ini('about');)
+ * @return	array	config.ini data
  * @access	public
  */
 	public function get_ini($cat = null)
@@ -128,9 +131,8 @@ abstract class _apps
 		return (!is_null($cat) && isset($this->ini[$cat])) ? $this->ini[$cat] : $this->ini;
 	}
 /**
- * Get the .ini file of the app or a part of it
+ * Check for default parameters within the app, and fill $this->param
  *
- * @param	string  l'index d'une partie de la configuration (ex : $app->ini('about');)
  * @return	array	la configuration demandée
  * @access	public
  */
@@ -157,7 +159,12 @@ abstract class _apps
 			}
 		}
 	}
-	
+/**
+ * Add a array of parameters
+ *
+ * @param	array	an array of parameters
+ * @access	public
+ */
 	public function set_param($params)
 	{
 		foreach ((array) $params as $key => $param)
@@ -165,20 +172,30 @@ abstract class _apps
 			$this->param[$key] = $param;
 		}
 	}
-	
+/**
+ * Gets the app default parameters
+ *
+ * @param	array	an array of parameters
+ * @access	public
+ */
 	public function get_default_param()
 	{
 		return isset($this->ini['param']) ? $this->ini['param'] : array();
 	}
-	
+/**
+ * Set a template, a view for the app
+ *
+ * @param	string	root of the template (ex: master/content)
+ * @access	public
+ */
 	public function set_template($key)
 	{
 		$this->template = $key;
 	}
 /**
- * Afficher l'app
+ * Display the app and handle all dependencies
  *
- * @return	string	le code html
+ * @return	string	data to display
  * @access	public
  */
 	public function __tostring()
@@ -244,21 +261,17 @@ abstract class _apps
 			}
 		}
 	}
-	
+
 /**
- * 
+ * Bind a snippet within the view
  *
- * @return	string	la clé de l'app
- * @access	public
- */
-	// public function bind_code($zone, $data)
-	// {
-	// 	master::bind($zone, $data);
-	// }
-/**
- * 
+ * <pre>
+ * $_APP->bind_snippet('content', 'snippet/header')	
+ * </pre>
  *
- * @return	string	la clé de l'app
+ * @param	string	The zone name where you want to bind the snippet (ex: content)
+ * @param	string	The relative path to the snippet (ex: master/content)
+ * @param	bool	Bind the snippet on top of the pile
  * @access	public
  */
 	public function bind_snippet($zone, $snippet_key, $top = false)
@@ -282,9 +295,15 @@ abstract class _apps
 		$this->bind_code($zone, $content, $top);
 	}
 /**
- * 
+ * Bind a file within the view
  *
- * @return	string	la clé de l'app
+ * <pre>
+ * $_APP->bind_file('content', 'master/header');	
+ * </pre>
+ *
+ * @param	string	the zone name where you want to bind the snippet (ex: content)
+ * @param	string	root of the file
+ * @param	bool	if true, search for the file in admin directories
  * @access	public
  */
 	public function bind_file($zone, $file, $system = false)
@@ -312,9 +331,24 @@ abstract class _apps
 		master::bind_file($zone, $app, $url);
 	}
 /**
- * 
+<<<<<<< Updated upstream
+ * Binds a css to the css zone
+ * <pre>
+ * // Bind css master/css/master.css
+ * $_APP->bind_css('master/css/master.css');
+ * </pre>
+ * @param	string  The path to the css. ie master/css/master.css
+ * @param	bool	
+=======
+ * Bind a cascading stylesheet within the css zone
  *
- * @return	string	la clé de l'app
+ * <pre>
+ * $_APP->bind_css('master/css/style.css');	
+ * </pre>
+ *
+ * @param	string	root of the css file (ex: master/css/style.css)
+ * @param	bool	if true, search for the file in admin directories
+>>>>>>> Stashed changes
  * @access	public
  */
 	public function bind_css($file, $system = false)
@@ -322,19 +356,52 @@ abstract class _apps
 		$this->bind_file('css', $file, $system);
 	}
 /**
- * 
+<<<<<<< Updated upstream
+ * Binds a script to the script zone
+ * <pre>
+ * // Bind script master/script/master.js
+ * $_APP->bind_script('master/script/master.js');
+ * </pre>
+ * @param	string  The path to the script. ie master/script/master.js
+ * @param	bool	
+=======
+ * Bind a javscript file within the script zone
  *
- * @return	string	la clé de l'app
+ * <pre>
+ * $_APP->bind_script('master/js/jquery.js');	
+ * </pre>
+ *
+ * @param	string	root of the js file (ex: master/js/jquery.js)
+ * @param	bool	if true, search for the file in admin directories
+>>>>>>> Stashed changes
  * @access	public
  */
 	public function bind_script($file, $system = false)
 	{
 		$this->bind_file('script', $file, $system);
 	}
+
 /**
- * 
+<<<<<<< Updated upstream
+ * Binds a script to the script zone
+ * <pre>
+ * // Bind some jQuery code to the script zone
+ * $_APP->bind_code('script', '$("#main").hide();');
+ * </pre>
+ * @param	string  The zone
+ * @param	string  The code
+ * @param	bool	
+=======
+ * Bind some code within the given zone
  *
- * @return	string	la clé de l'app
+ * <pre>
+ * $_APP->bind_code('script', '<script type="text/javascript" charset="utf-8">alert('hello')</script>');	
+ * </pre>
+ *
+ * @param	string	the zone name where you want to bind the code (ex: content)
+ * @param	string	the string to bind
+ * @param	bool	bind the code on top of the pile
+>>>>>>> Stashed changes
  * @access	public
  */
 	public function bind_code($zone, $data, $top = false)
@@ -342,9 +409,9 @@ abstract class _apps
 		master::bind_code($zone, $data, $top);
 	}
 /**
- * 
+ * Gets the current app parameters
  *
- * @return	string	la clé de l'app
+ * @return	array 	an array of parameters
  * @access	public
  */
 	public function get_param()
@@ -352,11 +419,11 @@ abstract class _apps
 		return $this->param;
 	}
 /**
- * Obtenir la liste des templates de la vue
+ * Gets all the available templates within the app
  *
- * @param	string	le type de template (html, routine, json...)
- * @param	string	l'environnement, site ou admin
- * @return	array	le tableau des templates ou false
+ * @param	string	template type (html, xml, json...)
+ * @param	string	environnement
+ * @return	array	an array of template roots
  * @access	public
  */
 	public function get_templates($type = null, $env = null)
@@ -409,9 +476,8 @@ abstract class _apps
 	}
 	
 /**
- * Routine de préparation des apps
+ * Prepare app list and save it into the registry
  *
- * @param	mixed	la valeur à lire dans le registre. Vous pouvez mettre autant d'arguments que vous le souhaitez.
  * @access	protected
  */
 	public static function register()

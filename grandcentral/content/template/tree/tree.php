@@ -9,14 +9,13 @@
  *    echo "I am an example.";
  * }
  * </pre>
- * 
- * @package		The package
- * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
- * @author		Sylvain Frigui <sf@cafecentral.fr>
- * @copyright	Copyright © 2004-2013, Café Central
- * @license		http://www.cafecentral.fr/fr/licences GNU Public License
+ *
+ * @author		Michaël V. Dandrieux <@mvdandrieux>
+ * @author		Sylvain Frigui <sf@hands.agency>
+ * @copyright	Copyright © 2004-2015, Hands
+ * @license		http://grandcentral.fr/license MIT License
  * @access		public
- * @link		http://www.cafecentral.fr/fr/wiki
+ * @link		http://grandcentral.fr
  */
 /********************************************************************************************/
 //	Some binds
@@ -139,13 +138,25 @@
 				
 			//	Do you have zones ?
 				/* TODO */
+				
+			//	Depending on pages
+				switch ($page['key'])
+				{
+					case 'home':
+						$asleep = 'Maintenance';
+						break;
+					
+					default:
+						$asleep = 'Put asleep';
+						break;
+				}
 	
 			//	Depending on type
 				switch ($page['type']['key'])
 				{
 					case 'link':
-						// $parse = parse_url($page['type']['url']);
-						$type = '<a class="url" href="'.$page['type']['url'].'">'.$page['type']['url'].'</a>';
+						$parse = parse_url($page['type']['url']);
+						$type = '<a class="url" href="'.$page['type']['url'].'" title="'.$page['type']['url'].'">⇢&nbsp;'.$parse['host'].'</a>';
 						break;
 					
 					default:
@@ -175,7 +186,7 @@
 							<div class="action">
 								<a class="edit" data-feathericon="&#xe095" href="'.$page->edit().'">Edit</a>
 								<a class="preview" data-feathericon="&#xe000">Preview</a>
-								<a class="asleep" data-feathericon="&#xe061">Put asleep</a>
+								<a class="asleep" data-feathericon="&#xe061">'.$asleep.'</a>
 								<a class="live" data-feathericon="&#xe064">Go live</a>
 							</div>
 							<div class="preview"><iframe></iframe></div>

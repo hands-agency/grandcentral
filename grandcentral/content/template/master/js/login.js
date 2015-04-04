@@ -1,6 +1,6 @@
 /*********************************************************************************************
 /**	* Tabs : Open and close content via tabs
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
 $(document).ready(function ()
 {	
@@ -10,25 +10,34 @@ $(document).ready(function ()
 	//	Prevent POST
 		e.preventDefault();
 	//	Some vars
-		var form = $(this);
-		$.post(form.attr('action'), form.serialize(), function(response)
+		var $form = $(this);
+		var $profilePic = $('#profilepic');
+		
+		$.post($form.attr('action'), $form.serialize(), function(response)
 		{
 		//	DEBUG
 		//	console.log(response);
+		//	console.log(response.code);
+		//	console.log(response.data);
 			
 		//	What should i do know?
-			switch(response)
+			switch(response.code)
 			{
 			//	OK
 				case 'success':
+				//	Show your face
+					$profilePic.find('.back').attr('style', 'background-image:url('+response.data.profilepic+')');
+					$profilePic.addClass('flipped');
 				//	Go! go! go!
-					form.hide('fast');
-					window.location = document.URL;
+					setTimeout(function()
+					{
+						window.location = document.URL;	
+					}, 200)
 					break;
 			//	KO
 				case 'fail':
 				//	And shake your head to say No, No, No...
-					form.effect('shake', { times:3 }, 300);
+					$profilePic.effect('shake', { times:3 }, 300);
 					break;
 			}
 		});

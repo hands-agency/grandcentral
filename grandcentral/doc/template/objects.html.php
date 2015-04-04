@@ -1,3 +1,3 @@
-<? foreach($html as $item) : ?>
+<?php foreach($html as $item) : ?>
 
-<? endforeach ?>
+<?php endforeach ?>

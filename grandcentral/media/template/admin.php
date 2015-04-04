@@ -9,14 +9,13 @@
  *    echo "I am an example.";
  * }
  * </pre>
- * 
- * @package		The package
- * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
- * @author		Sylvain Frigui <sf@cafecentral.fr>
- * @copyright	Copyright © 2004-2013, Café Central
- * @license		http://www.cafecentral.fr/fr/licences GNU Public License
+ *
+ * @author		Michaël V. Dandrieux <@mvdandrieux>
+ * @author		Sylvain Frigui <sf@hands.agency>
+ * @copyright	Copyright © 2004-2015, Hands
+ * @license		http://grandcentral.fr/license MIT License
  * @access		public
- * @link		http://www.cafecentral.fr/fr/wiki
+ * @link		http://grandcentral.fr
  */
 /********************************************************************************************/
 //	Some binds
@@ -28,8 +27,9 @@
 //	Load Library
 /********************************************************************************************/
 	$param = array();
+	
 	if (isset($_POST['root'])) $param['root'] = $_POST['root'];
-	if (isset($_POST['current'])) $param['current'] = $_POST['current'];
+	if (isset($_SESSION['user']['pref']['media']['currentroot'])) $param['current'] = $_SESSION['user']['pref']['media']['currentroot'];
 	if (isset($_POST['file'])) $param['file'] = $_POST['file'];
 	if (isset($_POST['path'])) $param['path'] = $_POST['path'];
 	if (isset($_POST['onSelect'])) $param['onSelect'] = $_POST['onSelect'];

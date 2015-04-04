@@ -1,15 +1,16 @@
 (function($)
 {
 //	Some vars content-side
-	$li = $('[data-type="app"]');
-	$field = $li.find('.field');
-	$contentApp = $field.find('[name$="\[app\]"]');
-	$configureContainer = $field.find('.configure');
-	$contentTemplate = $configureContainer.find('.template');
-	$contentParam = $configureContainer.find('.param');
+	var $li = $('[data-type="app"]');
+	var $field = $li.find('.field');
+	var $fieldCfgButton = $field.find('button');
+	var $contentApp = $field.find('[name$="\[app\]"]');
+	var $configureContainer = $field.find('.configure');
+	var $contentTemplate = $configureContainer.find('.template');
+	var $contentParam = $configureContainer.find('.param');
 	
 //	Some vars context-side
-	contextDom = '#adminContext [data-template="/app.context"]';
+	var contextDom = '.adminContext[data-template="/app.context"]';
 	
 //	Open context when the app changes
 	$contentApp.change(function()
@@ -25,6 +26,7 @@
 	$field.on('click', 'button', function()
 	{
 	//	Some vars
+		var $field = $(this).parents('.field'); /* for some reason this is overridden...*/
 		valueApp = $contentApp.val();
 		if (valueApp == '') return false;
 		valueTemplate = $contentTemplate.find('[name$="\[template\]"]').val();
@@ -71,6 +73,8 @@
 		{
 			input = '<input type="hidden" name="'+$field.data('name')+'[template]" value="'+template+'" />';
 			$contentTemplate.append(input);
+		//	Change the button
+			$fieldCfgButton.html(template);
 		}
 		
 	//	Write params
@@ -80,6 +84,8 @@
 			for (var i=0; i < param.length; i++)
 			{
 				var name;
+				console.log($field)
+				console.log($field.data('name'))
 				//	field selectors
 				if (param[i]['name'].indexOf("[") != -1)
 				{
@@ -96,7 +102,7 @@
 			}
 		}
 	//	Close the context & validate field
-		closeContext();
+		closeContext('/app.context');
 		$('#section_edit form').data('validate').field($li);
 	});
 	

@@ -1,11 +1,11 @@
 /*********************************************************************************************
 /**	* Form validation plugin
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
 (function($)
 {	
 //	Here we go!
-	$.multipleselect = function(element, options)
+	$.multipleselect = function(element, options, callbacks)
 	{
 	//	Use "plugin" to reference the current instance of the object
 		var plugin = this;
@@ -62,7 +62,7 @@
 					li = $(this).data().sortable.currentItem;
 					// value = li.data('item').split('_')[1];
 					value = li.data('item');
-					count = $element.find('.selected input[value="'+value+'"]').length;
+					count = $(this).find('input[value="'+value+'"]').length;
 
 				//	Refuse if item already exists
 					if (count > 0)
@@ -81,6 +81,9 @@
 						input = '<input type="hidden" name="'+name+'[]" value="'+value+'" />';
 						li.append(input);
 						received = true;
+						
+					//	Execute callback (make sure the callback is a function)
+						if ((typeof(callbacks.receive) != 'undefined') && (typeof(callbacks.receive) == "function")) callbacks.receive.call(this, li);
 					}
 		    	}
 			});
@@ -158,13 +161,13 @@
 	}
 
 //	Add the plugin to the jQuery.fn object
-	$.fn.multipleselect = function(options)
+	$.fn.multipleselect = function(options, callbacks)
 	{
 		return this.each(function()
 		{
 			if (undefined == $(this).data('multipleselect'))
 			{
-				var plugin = new $.multipleselect(this, options);
+				var plugin = new $.multipleselect(this, options, callbacks);
 				$(this).data('multipleselect', plugin);
 			}
 		});

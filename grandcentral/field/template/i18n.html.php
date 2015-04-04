@@ -6,7 +6,7 @@
 <div class="wrapper">
 	<ul class="labels">
 		<?php foreach ($r['data'] as $lang): ?>
-		<?
+		<?php
 			$onOff = (!isset($onOff)) ? 'on' : 'off';
 		?>
 		<li class="<?=$onOff?>" data-lang="<?=$lang['lang']?>"><?=$lang['lang']?></li>
@@ -15,7 +15,7 @@
 	<span class="field">
 		<ul>
 			<?php foreach ($fields as $field): ?>
-			<?
+			<?php
 				$hide = (!isset($hide)) ? '' : 'style="display:none"';
 				$lang = $r['data'][$i]['lang'];
 				$i++;

@@ -9,14 +9,13 @@
  *    echo "I am an example.";
  * }
  * </pre>
- * 
- * @package		The package
- * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
- * @author		Sylvain Frigui <sf@cafecentral.fr>
- * @copyright	Copyright © 2004-2013, Café Central
- * @license		http://www.cafecentral.fr/fr/licences GNU Public License
+ *
+ * @author		Michaël V. Dandrieux <@mvdandrieux>
+ * @author		Sylvain Frigui <sf@hands.agency>
+ * @copyright	Copyright © 2004-2015, Hands
+ * @license		http://grandcentral.fr/license MIT License
  * @access		public
- * @link		http://www.cafecentral.fr/fr/wiki
+ * @link		http://grandcentral.fr
  */
 /********************************************************************************************/
 //	Get the logbook
@@ -58,7 +57,7 @@
 	foreach ($logbooks as $logbook)
 	{
 	//	Fetch item
-		$item = i((string)$logbook['item'], (string)$logbook['itemid'], $_SESSION['pref']['handled_env']);
+		$item = i((string)$logbook['item'].'_'.$logbook['itemid'], null, $_SESSION['pref']['handled_env']);
 		
 	//	Aging
 		$date = new DateTime($logbook['updated']);
@@ -67,11 +66,14 @@
 		if (isset($_GET['delay'])) $opacity = $opacity-(($interval->format('%i.%s'))/($_GET['delay']*2));
 		
 	//	Author
-		$author = i((string)$logbook['subject'], (string)$logbook['subjectid']);
+		$author = i((string)$logbook['subject'], (string)$logbook['subjectid'], 'site');
 		$author['title'] = (empty($author['title'])) ? $author->get_nickname() : $author['title'];
 		
+	//	Event
+		$event = cst('eventstream_'.$logbook['key'].'_'.$item['status']);
+		
 	//	Message
-		$msg = '{"id": "'.$logbook['id'].'", "event": "'.$logbook['key'].'", "opacity": "'.$opacity.'", "author": "'.$author['title'].'", "subject": "'.$logbook['subject'].'", "subjectid": "'.$logbook['subjectid'].'", "item": "'.$logbook['item'].'", "itemid": "'.$logbook['itemid'].'", "updated": "'.$logbook['updated'].'", "url": "'.$item['url'].'", "edit": "'.$item->edit().'", "editauthor": "'.$author->edit().'", "title": "'.$item['title']->cut(50).'", "timeSince": "'.$interval->format('%i').'mn ago"}';
+		$msg = '{"id": "'.$logbook['id'].'", "event": "'.$event.'", "opacity": "'.$opacity.'", "author": "'.$author['title'].'", "subject": "'.$logbook['subject'].'", "subjectid": "'.$logbook['subjectid'].'", "item": "'.$logbook['item'].'", "itemid": "'.$logbook['itemid'].'", "updated": "'.$logbook['updated'].'", "url": "'.$item['url'].'", "edit": "'.$item->edit().'", "editauthor": "'.$author->edit().'", "title": "'.$item['title']->cut(50).'", "timeSince": "'.$interval->format('%i').'mn ago"}';
 		
 	//	Send message
 		sendMsg($logbook['id'], $msg);

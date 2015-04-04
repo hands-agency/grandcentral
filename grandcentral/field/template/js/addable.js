@@ -1,6 +1,6 @@
 /*********************************************************************************************
 /**	* Form validation plugin
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
 (function($)
 {	
@@ -44,14 +44,12 @@
 				field = button.closest('li[data-type]');
 				wrapped = field.find('> .wrapper > .field');
 				data = wrapped.find('> .data');
-				nodata = wrapped.find('> .nodata');
 
 			//	Enable and fill up the container
 				template = wrapped.find('> .template .'+add).html();
 				$(template).appendTo(data).show('fast').find('*:disabled').not('.template *:disabled').prop('disabled', false);
 				
-			//	No data
-				if (data.children().length > 0) nodata.hide();
+			//	Focus?
 				
 			//	Callback
 				if (plugin.settings['onAdd']) plugin.settings['onAdd'](field);
@@ -70,15 +68,12 @@
 			//	Some vars
 				li = $(this).closest('li');
 				data = li.parent();
-				nodata = data.parent().find('.nodata');
 
 			//	Hide smoothly
 				li.hide('slide', { direction: 'up' }, 100, function()
 				{
 				//	Remove
 					$(this).remove();
-				//	No data
-					if (data.children().length == 0) nodata.show();
 				});	
 			});
 		}

@@ -1,6 +1,6 @@
 /*********************************************************************************************
 /**	* Tabs : Open and close content via tabs
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
 $(document).ready(function ()
 {
@@ -19,13 +19,13 @@ $(document).ready(function ()
 	//	Target section...
 		param = link.attr('data-param'); /* We want the string, not the object */
 		$panel = $('#section_'+section);
-		panelWidth = $panel.outerWidth()+40;
+		panelWidth = $panel.outerWidth()+60; /*2*30 padding*/
 		
 	//	Hide all panels
 		$('#adminContent section').removeClass('active');
 	//	Hide options
 	//	TODO refresh content instead of hide
-		$('#options_drop').hide('fast');
+	//	$('header .drawer').html('');
 		
 		
 	//	Open the right panel
@@ -48,7 +48,6 @@ $(document).ready(function ()
 					{
 					//	Say it's loaded
 						$panel.removeClass('loading');
-						$panel.loaded();
 					}
 				});
 		}
@@ -67,7 +66,7 @@ $(document).ready(function ()
 
 /*********************************************************************************************
 /**	* Tabs : Open a section from the landing in the hash (or the first one)
-	* @author	mvd@cafecentral.fr
+	* @author	@mvdandrieux
 **#******************************************************************************************/
 //	By hash
 	if (window.location.hash) pseudo = '[href='+window.location.hash+']';
@@ -79,42 +78,8 @@ $(document).ready(function ()
 	$(window).load( function(){$('#tabs li a'+pseudo).parent().trigger('click');} );
 	
 /*********************************************************************************************
-/**	* Sticky nav
-	* @author	mvd@cafecentral.fr
-**#******************************************************************************************/
-	var $main = $('#main');
-	var $admin = $('#grandCentralAdmin');
-  
-	var stickyNav = function()
-	{  
-		var scrollTop = $(document).scrollTop();
-		var stickyNavTop = $admin.offset().top;
-
-	//	parallax
-		$('#grandCentralSite iframe').css('top', scrollTop/2);
-		$('#grandCentralSite h1').css('top', 50+(((scrollTop/250)/2)*100)+'%');
-       
-		if (scrollTop > stickyNavTop)
-		{
-			if ($main.not('.sticky'))
-			{
-		    	$main.addClass('sticky');
-			}
-		}
-		else
-		{
-			$main.removeClass('sticky'); 
-		}  
-	}
-	
-	$(document).scroll(function()
-	{
-	    stickyNav();
-	});  
-	
-/*********************************************************************************************
 /**	* On unlock
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
 	$(document).bind('unlock', function()
 	{

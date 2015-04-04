@@ -141,7 +141,7 @@ CREATE TABLE `human` (
 
 INSERT INTO `human` (`id`, `key`, `title`, `firstname`, `lastname`, `descr`, `password`, `profilepic`, `pref`, `system`, `created`, `updated`, `owner`, `status`) VALUES
 (1, 'anonymous', 'Anonymous User', '', '', '', '', '', '', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 'live'),
-(2, 'sf@cafecentral.fr', 'Sylvain Frigui', 'Sylvain', 'Frigui', 'Café Central', '$2y$10$v0yR1h5dxHGVaCYI2.7c/eNXCALGJeOYtoBvGt5w5XV6CMFLYYbwi', '[{"url":"\\/image\\/divers\\/sf.png","title":""}]', '', 0, '2013-10-02 12:36:35', '2014-07-30 12:47:13', 23, 'live'),
+(2, 'sf@cafecentral.fr', 'Sylvain Frigui', 'Sylvain', 'Frigui', 'Grand Central', '$2y$10$v0yR1h5dxHGVaCYI2.7c/eNXCALGJeOYtoBvGt5w5XV6CMFLYYbwi', '[{"url":"\\/image\\/divers\\/sf.png","title":""}]', '', 0, '2013-10-02 12:36:35', '2014-07-30 12:47:13', 23, 'live'),
 (10, '14af88e367adfa9d5f0b3f4266ddff51', '', 'Geneviève', 'Frigui', '', '$2y$10$5WIg6NaYEN1n6Wff.21qWOn4eenG9UUJNLk4gu10.exj4eKlXBcAi', '[{"url":"\\/image\\/divers\\/bureauyoga.jpg","title":""}]', '', 0, '2014-07-30 12:46:20', '2014-07-30 12:46:20', 2, 'live');
 
 -- --------------------------------------------------------

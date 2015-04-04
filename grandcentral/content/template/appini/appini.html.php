@@ -1,7 +1,7 @@
 <h1><?=$ini['about']['title']?></h1>
-<? foreach ($ini as $h2 => $h3) : ?>
+<?php foreach ($ini as $h2 => $h3) : ?>
 
-	<?
+	<?php
 		$content = null;
 		foreach ($h3 as $h3 => $line)
 		{
@@ -26,9 +26,9 @@
 		}
 	?>
 	
-	<? if ($content): ?>
-		<h2><span class="centered"><?=cst('APPINI_H2_'.$h2, $h2)?></span></h2>
+	<?php if ($content): ?>
+		<h2><span class="rule"><?=cst('APPINI_H2_'.$h2, $h2)?></span></h2>
 		<?=$content?>
-	<? endif ?>
+	<?php endif ?>
 	
-<? endforeach ?>
+<?php endforeach ?>

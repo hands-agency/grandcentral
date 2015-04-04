@@ -1,11 +1,10 @@
 <?php
 /**
- * The generic item of Café Central
+ * The generic item of Grand Central
  *
- * @package  Core
- * @author   Sylvain Frigui <sf@cafecentral.fr>
- * @access   public
- * @see      http://www.cafecentral.fr/fr/wiki
+ * @author	Sylvain Frigui <sf@hands.agency>
+ * @access	public
+ * @link		http://grandcentral.fr
  */
 class itemSection extends _items
 {
@@ -17,8 +16,8 @@ class itemSection extends _items
  */
 	public function __tostring()
 	{
-		$app = app($this['app']['app'], $this['app']['template'], $this['app']['param']);
-		master::bind_code($this['zone']->get(), $app->__tostring());
+		$app = app($this['app']['app'], $this['app']['template'], $this['app']['param'], $this->get_env());
+		master::bind_code($this['zone']->get(), $app->__tostring(), false, $this->get_nickname());
 		return '';
 	}
 }

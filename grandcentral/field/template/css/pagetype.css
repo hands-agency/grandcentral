@@ -29,10 +29,10 @@
 	height:0;
 	border-top:15px solid transparent;
 	border-bottom:15px solid transparent;
-	border-left:15px solid #F2F2F2;
+	border-right:15px solid #fff;
 	top:50%;
 	margin-top:-15px;
-	right:-10px;
+	right:5px;
 }
 [data-type="pagetype"] .field .type [data-key="key"]
 {
@@ -42,6 +42,7 @@
 [data-type="pagetype"] .field .type [data-key="key"] .wrapper
 {
 	width:100%;
+	background:transparent;
 }
 [data-type="pagetype"] .field .type [data-key="key"]>label
 {
@@ -82,9 +83,9 @@
 }
 [data-type="pagetype"] .field .type [data-key="key"] ol li label:hover
 {
-	border-color: #3eb4d6;
-	-webkit-box-shadow: 0 0 4px #3eb4d6;
-	box-shadow: 0 0 4px #3eb4d6;
+	border-color: #419BF9;
+	-webkit-box-shadow: 0 0 4px #419BF9;
+	box-shadow: 0 0 4px #419BF9;
 	opacity:0.8;
 }
 [data-type="pagetype"] .field .type [data-key="key"] ol li label .title
@@ -114,9 +115,9 @@
 
 [data-type="pagetype"] .field .type [data-key="key"] ol li input:checked+label
 {
-	border-color: #3eb4d6;
-	-webkit-box-shadow: 0 0 4px #3eb4d6;
-	box-shadow: 0 0 4px #3eb4d6;
+	border-color: #419BF9;
+	-webkit-box-shadow: 0 0 4px #419BF9;
+	box-shadow: 0 0 4px #419BF9;
 	opacity:1;
 }
 [data-type="pagetype"] .field .type [data-key="key"] ol li input:checked+label:before

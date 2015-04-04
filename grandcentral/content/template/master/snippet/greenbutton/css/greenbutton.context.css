@@ -1,33 +1,110 @@
 /********************************************************************************************/
 /* Choices
 /********************************************************************************************/
-#adminContext [data-template="master/snippet/greenbutton/greenbutton.context"]
+.adminContext[data-template="master/snippet/greenbutton/greenbutton.context"]
 {
 }
-#adminContext [data-template="master/snippet/greenbutton/greenbutton.context"] ul li
+.greenbutton-choices
 {
-	text-align:center;
-	margin:30px 0;
-}
-#adminContext [data-template="master/snippet/greenbutton/greenbutton.context"] ul li .title
-{
-	color:#666;
-	margin:0 0 20px 0;
-	border:1px solid #ddd;
-	padding:10px 20px;
-	border-radius:2px;
-	text-transform:uppercase;
+	border-radius:3px;
+	margin:auto auto 15px auto;
+	background:#fff;
 	font-family:"ProximaNova-Regular";
-	/* Linin numerals for ProximaNova */
-	font-feature-settings: 'lnum';
-	-moz-font-feature-settings: 'lnum=1';
-	-ms-font-feature-settings: 'lnum';
-	-webkit-font-feature-settings: 'lnum';
-	-o-font-feature-settings: 'lnum';
-	cursor:pointer;
+	overflow:hidden;
+	position:relative;
 }
-#adminContext [data-template="master/snippet/greenbutton/greenbutton.context"] ul li a:hover
+.greenbutton-choices li
+{
+	margin:-10px 0 -10px 30px;
+}
+.greenbutton-choices li:nth-child(2)
+{
+	margin-top:0;
+}
+.greenbutton-choices li:last-child
+{
+	margin-bottom:0;
+}
+.greenbutton-choices li.title
+{
+	text-transform:uppercase;
+	text-align:center;
+	font-size:11px;
+	background:#fcfcfc;
+	letter-spacing:2px;
+	font-family:"ProximaNova-Bold";
+	color:#999;
+	position:absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width:30px;
+	margin:0;
+	opacity:0.7;
+}
+.greenbutton-choices:hover li.title
 {
 	background:#6cbf2d;
 	color:#fff;
+}
+.greenbutton-choices li.title span
+{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-moz-transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+	-webkit-transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+	transform:  translateX(-50%) translateY(-50%) rotate(-90deg);
+}
+.greenbutton-choices li a
+{
+	padding:15px 20px;
+	display:block;
+}
+.greenbutton-choices li .title
+{
+	color:#666;
+	cursor:pointer;
+}
+.greenbutton-choices li:hover>a
+{
+	background:#6cbf2d;
+	color:#fff;
+}
+/* And... */
+.greenbutton-choices li .and
+{
+	position:absolute;
+	right:10px;
+	top:0;
+	display:none;
+}
+.greenbutton-choices li:hover .and
+{
+	display:block;
+}
+.greenbutton-choices li .and>a
+{
+	float:left;
+	padding:10px 5px;
+	opacity:0.6;
+	color:#fff;
+	cursor:pointer;
+}
+.greenbutton-choices li .and>a:hover
+{
+	opacity:1;
+}
+.greenbutton-choices li .and>a:before
+{
+	font-family:"feather";
+	font-size:20px;
+}
+.greenbutton-choices li .and .back:before
+{
+	content:'';
+}
+.greenbutton-choices li .and .reach:before
+{
+	content:'';
 }

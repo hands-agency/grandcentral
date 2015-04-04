@@ -3,19 +3,21 @@
  * App handling
  * 
  * @package		Core
- * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
- * @author		Sylvain Frigui <sf@cafecentral.fr>
+ * @author		Michaël V. Dandrieux <@mvdandrieux>
+ * @author		Sylvain Frigui <sf@hands.agency>
  * @access		public
- * @link		http://www.cafecentral.fr/fr/wiki
+ * @link		http://grandcentral.fr
  */
 class app extends _apps
 {
 
 /**
- * Class constructor (Don't forget it is an abstract class)
+ * Creates an new instance of app class
  *
- * @param	mixed  une id, une clé ou un tableau array('id' => 2)
- * @param	string  only site
+ * @param	string  app name (ex: "content", "form")
+ * @param	string	the template key starting from the root af the app (ex: master/default)
+ * @param	array 	an array of parameters
+ * @param	string  environnement
  * @access	public
  */
 	public function __construct($key, $template = 'default', $params = null, $env = env)

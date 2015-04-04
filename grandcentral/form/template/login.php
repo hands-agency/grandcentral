@@ -9,24 +9,23 @@
  *    echo "I am an example.";
  * }
  * </pre>
- * 
- * @package		The package
- * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
- * @author		Sylvain Frigui <sf@cafecentral.fr>
- * @copyright	Copyright © 2004-2013, Café Central
- * @license		http://www.cafecentral.fr/fr/licences GNU Public License
+ *
+ * @author		Michaël V. Dandrieux <@mvdandrieux>
+ * @author		Sylvain Frigui <sf@hands.agency>
+ * @copyright	Copyright © 2004-2015, Hands
+ * @license		http://grandcentral.fr/license MIT License
  * @access		public
- * @link		http://www.cafecentral.fr/fr/wiki
+ * @link		http://grandcentral.fr
  */
 /********************************************************************************************/
 //	Some vars
 /********************************************************************************************/
 	$_FORM = $_PARAM['form'];
-	$profilepic = null;
+	$profilepic = 'http://i.telegraph.co.uk/multimedia/archive/02467/newyork2_2467494b.jpg';
 
 /********************************************************************************************/
-//	on change la routine du formulaire
+//	Send the login to the site login target
 /********************************************************************************************/
-	$routine = i('page', 'login.post', 'site');
-	$_FORM->set_action($routine['url']);
+	$target = i('page', 'login.post', 'site');
+	$_FORM->set_action($target['url']);
 ?> 

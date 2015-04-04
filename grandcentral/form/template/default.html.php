@@ -1,4 +1,4 @@
-<form <?= $_FORM->get_attrs(); ?> class="left">
+<form <?= $_FORM->get_attrs(); ?>>
 	<?php foreach($_FORM->get_hiddens() as $hidden) : ?>
 		<?= $_FORM->get_field($hidden); ?>
 	<?php endforeach; ?>
@@ -7,11 +7,11 @@
 		<?php if (isset($fieldset['title'])): ?><legend><?= $fieldset['title']; ?></legend><?php endif; ?>
 		<ol>
 		<?php foreach($fieldset['fields'] as $field) : ?>
-			<? $f = $_FORM->get_field($field); ?>
-			<? if ($f->get_key()) $key = 'data-key="'.$f->get_key().'"' ; else $key = '';?>
+			<?php $f = $_FORM->get_field($field); ?>
+			<?php if ($f->get_key()) $key = 'data-key="'.$f->get_key().'"' ; else $key = '';?>
 			
 			<?php if (in_array($f->get_key(), $asideFields)): ?>
-			<? $asides[] = '<li data-type="'.$f->get_type().'" '.$key.'>'.$f.'</li>'; ?>
+			<?php $asides[] = '<li data-type="'.$f->get_type().'" '.$key.'>'.$f.'</li>'; ?>
 			<?php else: ?>
 			<li data-type="<?= $f->get_type(); ?>" <?= $key ?>><?= $f; ?></li>
 			<?php endif ?>
@@ -20,7 +20,8 @@
 		</fieldset>
 	<?php endforeach; ?>
 </form>
-<form <?= $_FORM->get_attrs(); ?> class="right">
+<?php if (!empty($asides)): ?>
+<form <?= $_FORM->get_attrs(); ?>>
 	<fieldset>
 	<ol>
 	<?php foreach ($asides as $aside): ?>
@@ -29,3 +30,4 @@
 	</ol>
 	</fieldset>
 </form>
+<?php endif ?>

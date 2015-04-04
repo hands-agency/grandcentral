@@ -3,9 +3,9 @@
  * String formated attributes handling class
  *
  * @package 	Core
- * @author		Sylvain Frigui <sf@cafecentral.fr>
+ * @author		Sylvain Frigui <sf@hands.agency>
  * @access		public
- * @link		http://www.cafecentral.fr/fr/wiki
+ * @link		http://grandcentral.fr
  */
 class attrUrl extends _attrs
 {
@@ -181,7 +181,10 @@ class attrUrl extends _attrs
 		}
 		
 		$slug = new slug();
-		return '/'.$slug->makeSlugs($string);
+		$return = '/'.$slug->makeSlugs($string);
+		$return = str_replace('--', '-', $return);
+		
+		return $return;
 	}
 /**
  * Default field attributes for updated	

@@ -39,9 +39,9 @@ ol>li[data-type="multipleselect"] .field li:not(.nodata)
 }
 ol>li[data-type="multipleselect"] .field li:not(.nodata):hover
 {
-	border-color: #3eb4d6;
-	-webkit-box-shadow: 0 0 4px #3eb4d6;
-	box-shadow: 0 0 4px #3eb4d6;
+	border-color: #419BF9;
+	-webkit-box-shadow: 0 0 4px #419BF9;
+	box-shadow: 0 0 4px #419BF9;
 }
 
 /* Fields */
@@ -132,8 +132,9 @@ ol>li[data-type="multipleselect"] .refine input
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
 	margin:0 0 5px 0;
+	padding:7px 5px;
 	border:1px solid #ccc;
-	-moz-border-radius:5px;
-	-webkit-border-radius:5px;
-	border-radius:5px;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
 }

@@ -1,12 +1,21 @@
-#eventstream {
-	padding:0 0 15px 0;
+#eventstream
+{
 	display:none;
+}
+.siteOpened #eventstream
+{
+	display:none !important;
 }
 #eventstream ul
 {
 	list-style-type:disc;
-	color:rgba(62, 180, 214, 1);
-	padding:0 0 0 16px;
+	color:#419BF9;
+	padding:0 0 0 96px;
+	text-align:left;
+}
+#eventstream ul:not(:empty)
+{
+	margin-bottom:15px;
 }
 #eventstream ul li
 {
@@ -15,17 +24,22 @@
 	position:relative;
 /*	display:none;*/
 }
-#eventstream ul li a
-{
-	color:#666;
-}
+#eventstream ul li a,
 #eventstream ul li span
 {
-	color:#ccc;
+	color:#F2F2F2;
+	-webkit-transition: all .05s ease-out; 
+	-moz-transition: all .05s ease-out; 
+	-o-transition: all .05s ease-out; 
+	transition: all .05s ease-out;
 }
-#eventstream ul li span.item
+#eventstream ul li a:hover
 {
-	border:1px solid #ccc;
+	color:#419BF9;
+}
+#eventstream ul li .item
+{
+	border:1px solid rgba(255, 255, 255, 0.1);
 	text-transform:uppercase;
 	border-radius:2px;
 	font-size:10px;
@@ -37,19 +51,20 @@
 }
 #eventstream ul li:hover a
 {
-	display:inline !important;
+	opacity:1 !important;
 }
 #eventstream ul li:not(:first-child):before
 {
 	content:'';
 	width:1px;
 	position:absolute;
-	border-left:2px solid rgba(62, 180, 214, 0.5);
+	border-left:2px solid #419BF9;
 	height:7px;
 	bottom:10px;
 	left:-13px;
+	opacity:0.5;
 }
-#eventstream ul.everybodyelse li:first-child:before
+#eventstream ul.everybodyelses li:first-child:before
 {
 	content:'';
 	width:10px;
@@ -60,9 +75,16 @@
 	left:-17px;
 }
 #eventstream ul li a.undo,
-#eventstream ul li a.compare
+#eventstream ul li a.compare,
+#eventstream ul li a.edit
 {
-	display:none;
+	opacity:0;
+	background:#419BF9;
+	text-transform:uppercase;
+	border-radius:2px;
+	font-size:10px;
+	padding:2px 3px;
+	color:#FFF;
 }
 #eventstream ul li a.undo:before,
 #eventstream ul li a.compare:before

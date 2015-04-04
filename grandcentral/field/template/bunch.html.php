@@ -3,17 +3,16 @@
 	<span class="help"></span>
 </label>
 <div class="wrapper">
-	<? if ($_FIELD->get_descr() != null) : ?><div class="help"><?= $_FIELD->get_descr(); ?></div><? endif ?>
+	<?php if ($_FIELD->get_descr() != null) : ?><div class="help"><?= $_FIELD->get_descr(); ?></div><?php endif ?>
 	<div class="field">
 		
-		<div class="nodata" <?= $hideNodata ?>>Add a bunch of items to choose from.</div>
-		<ol class="data"><?= $data; ?></ol>
+		<ol class="data" data-nodata="Add a bunch of items to choose from."><?= $data; ?></ol>
 		<ul class="add"><?= $addbuttons; ?></ul>
 
 		<pre class="template">
-			<? foreach ($template as $key => $html): ?>
+			<?php foreach ($template as $key => $html): ?>
 			<div class="<?=$key?>"><?=$html?></div>
-			<? endforeach ?>
+			<?php endforeach ?>
 		</pre>
 		
 	</div>

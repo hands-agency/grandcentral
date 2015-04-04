@@ -2,14 +2,17 @@
 /**
  * Media Selector Library
  *
- * @package  Core
- * @author   Sylvain Frigui <sf@cafecentral.fr>
- * @access   public
- * @see      http://www.cafecentral.fr/fr/wiki
+ * @author	Sylvain Frigui <sf@hands.agency>
+ * @access	public
+ * @link		http://grandcentral.fr
  */
 
 /**
- * Media selector
+ * media() lets you simply handle media files
+ * <pre>
+ * // Load jQuery, Sir Trevor and Masonry 
+ * media('image/logo.png');
+ * </pre>
  *
  * @param	string	path to the file (root is the media directory)
  * @return	object	a media object

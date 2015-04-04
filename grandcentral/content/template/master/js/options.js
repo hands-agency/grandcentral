@@ -1,6 +1,6 @@
 /*********************************************************************************************
 /**	* Lock plugin
-* 	* @author	mvd@cafecentral.fr
+* 	* @author	@mvdandrieux
 **#******************************************************************************************/
 jQuery(document).ready(function($)
 {
@@ -22,7 +22,7 @@ jQuery(document).ready(function($)
 		plugin.init = function()
 		{
 		//	Some vars
-			$drop = $('#options_drop');
+			$drop = $('header .drawer');
 
 		//	Toggle lock and unlock
 			$element.on('click', function()
@@ -34,7 +34,7 @@ jQuery(document).ready(function($)
 		
 	//	Lock the page to prevent further editing
 		plugin.lock = function()
-		{
+		{	
 		//	IOI unlocked
 			if ($('#adminContent').hasClass('unlocked'))
 			{
@@ -52,7 +52,7 @@ jQuery(document).ready(function($)
 		{
 		//	IOI is locked
 			if ($('#adminContent').hasClass('locked'))
-			{				
+			{
 			//	Load the options drop
 				$drop.ajx(
 				{
@@ -93,39 +93,50 @@ jQuery(document).ready(function($)
 
 //	Go	
 	$('.lock').lock();
-});	
+});
 
 /*********************************************************************************************
 /**	* FILTERS : filtering content of a section, ordering it.
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
 	$(document).on('click', '#filter', function()
 	{
 	//	Some vars
 		$button = $(this);
-		$drop = $('#options_drop');
+		$drawer = $('header .admin .drawer');
 		
-	//	Load the options drop
-		$drop.ajx(
+		if ($drawer.hasClass('closed'))
 		{
-			app:'content',
-			template:'/master/snippet/options.filters',
-			sectiontype:$('#adminContent section.active').data('template'),
-		},{
-			done:function()
+		//	Open Drawer
+			$drawer.toggleClass('closed opened');
+		//	Load the options drop
+			$drawer.ajx(
 			{
-			//	Toggle option drop and button
-				$drop.toggle('fast');
-				$button.toggleClass('on off');
-			}
-		});
+				app:'content',
+				template:'/master/snippet/options.filters',
+				sectiontype:$('#adminContent section.active').data('template'),
+			},{
+				done:function()
+				{
+				//	Toggle option drop and button
+					$button.toggleClass('on off');
+				//	Resize the header after
+					$drawer.bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function()
+					{
+						height = $('header .admin').outerHeight();
+						$('#adminContent').css('padding-top', height+'px');
+					});
+				}
+			});
+		}
+		else $drawer.toggleClass('opened closed');
 	});
 
 /*********************************************************************************************
 /**	* Filtering content of a section, ordering it.
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
-	$(document).on('click', '#options_drop li li[data-value]', function()
+	$(document).on('click', 'header .drawer li li[data-value]', function()
 	{
 	//	Some vars
 		$panel = $('#adminContent section.active');

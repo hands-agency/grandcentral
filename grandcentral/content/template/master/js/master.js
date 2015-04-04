@@ -1,6 +1,6 @@
 /*********************************************************************************************
 /**	* Grand Central ajax call (everything goes in POST, but current GET is rerooted)
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
 (function($)
 {	
@@ -29,8 +29,8 @@
 			async = (typeof(plugin.settings.async) != 'undefined') ? plugin.settings.async : true;
 			url = ADMIN_URL+'/ajax.'+mime;
 			
-		//	Reroute the _GET (currently declared in the master)
-			plugin.settings['_GET'] = _GET;
+		//	Reroute the _GET otherwise overriden (currently declared in the master)
+			if (typeof(plugin.settings['_GET']) == 'undefined') plugin.settings['_GET'] = _GET;
 
 		//	Call
 			$.ajax(
@@ -41,12 +41,14 @@
 				context:this,
 				data:plugin.settings,
 			})
-			.done(function(html)
+			.done(function(result)
 			{
 			//	Return HTML
-				if ($element.length) $element.html(html);
+				if ($element.length) $element.html(result);
+			//	Move <script> and <link> up to the header
+				$element.find('script, link').appendTo('head');
 			//	Execute callback (make sure the callback is a function)
-				if ((typeof(callbacks) != 'undefined') && (typeof(callbacks['done']) == "function")) callbacks['done'].call($element, html);	
+				if ((typeof(callbacks) != 'undefined') && (typeof(callbacks['done']) == "function")) callbacks['done'].call($element, result);	
 			})
 			.fail(function( jqXHR, textStatus )
 			{
@@ -75,18 +77,80 @@
 })(jQuery);
 
 /*********************************************************************************************
-/**	* Close all the shy elements when clicking outside
- 	* @author	mvd@cafecentral.fr
+/**	* Grand Central api call (everything goes in POST, but current GET is rerooted)
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
-	$(document).click(function(e)
+(function($)
+{	
+//	Here we go!
+	$.api = function(options, callbacks, element)
 	{
-		$('.shy').hide('fast');
-	});
-	
+	//	Use "plugin" to reference the current instance of the object
+		var plugin = this;
+	//	this will hold the merged default, and user-provided options
+		plugin.settings = {}
+		var $element = $(element), // reference to the jQuery version of DOM element
+		element = element;	// reference to the actual DOM element
+		
+	//	Plugin's variables
+		var vars = {
+		}
+
+	//	The "constructor"
+		plugin.init = function()
+		{
+		//	the plugin's final properties are the merged default and user-provided options (if any)
+			plugin.settings = $.extend({}, vars, options);
+
+		//	Some vars
+			key = (typeof(plugin.settings.key) != 'undefined') ? plugin.settings.key : console.warn('You need an API key');
+			mime = (typeof(plugin.settings.mime) != 'undefined') ? plugin.settings.mime : 'json';
+			async = (typeof(plugin.settings.async) != 'undefined') ? plugin.settings.async : true;
+			url = ADMIN_URL+'/api.'+mime;
+			
+		//	Call
+			$.ajax(
+			{
+				type:'GET',
+				url:url,
+				async:async,
+				context:this,
+				data:plugin.settings,
+			})
+			.done(function(result)
+			{
+			//	Execute callback (make sure the callback is a function)
+				if ((typeof(callbacks) != 'undefined') && (typeof(callbacks['done']) == "function")) callbacks['done'].call($element, result);	
+			})
+			.fail(function( jqXHR, textStatus )
+			{
+			//	console.log( "Request failed: " + textStatus );
+				console.log( "Request failed: " + jqXHR.responseText );
+			});
+			
+		}
+
+	//	Fire up the plugin!
+		plugin.init();
+	}
+
+//	Add the plugin to the jQuery.fn object
+	$.fn.api = function(options, callbacks)
+	{
+		return this.each(function()
+		{
+		//	if (undefined == $(this).data('api'))
+		//	{
+				var plugin = new $.api(options, callbacks, this);
+				$(this).data('api', plugin);
+		//	}
+		});
+	}
+})(jQuery);
 
 /*********************************************************************************************
 /**	* Open notes from the action list
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
 	$(document).on('click', 'ul.action a.notes', function(event)
 	{
@@ -125,26 +189,23 @@
 	
 /*********************************************************************************************
 /**	* Open / close lanes
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
-	$('#grandCentralAdmin>#adminContent>button.close').on('click', function()
+	$('#grandCentralAdmin').on('click', '.adminContext>button.close', function()
 	{
-		closeAdmin();
+		template = $(this).parent('.adminContext').data('template');
+		closeContext(template);
 	});
-	$('#grandCentralAdmin>#adminContext>button.close').on('click', function()
+	$('#switchEnv').on('click', function()
 	{
-		closeContext();
-	});
-	$('#grandCentralSite>.overlay').on('click', function()
-	{
-		openSite();
+		openSite(CURRENTEDITED_URL);
 	});
 	
 	
 	
 /*********************************************************************************************
 /**	* All links
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
 	$(document).on('click', '[data-item-link]', function()
 	{
@@ -159,8 +220,9 @@
 	
 /*********************************************************************************************
 /**	* Load the site
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
+/*
 	(function($)
 	{
 		document.onreadystatechange = function()
@@ -177,102 +239,103 @@
 			}
 		}
 	})( jQuery );
-	
+
+
 /*********************************************************************************************
-/**	* Create a loading
- 	* @author	mvd@cafecentral.fr
+/**	* Confort loading
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
-	(function($)
+(function($)
+{	
+	//	Here we go!
+	$.loading = function(callback, element)
 	{
-		var animate;
+	//	Use "plugin" to reference the current instance of the object
+		var plugin = this;
+	//	this will hold the merged default, and user-provided options
+		plugin.settings = {}
+		var $element = $(element), // reference to the jQuery version of DOM element
+		element = element;	// reference to the actual DOM element
 		
-		$.fn.loading = function()
-		{
-		//	HTML
-			$loading = $('<div class="loading" style="display:none"><progress value="00" max="100"></progress></div>').appendTo($(this)).slideDown('fast');
-
-		//	Some vars
-			var progressbar = $loading.find('progress'),
-			max = progressbar.attr('max'),  
-			time = (1000/max)*2,      
-			value = progressbar.val();
-
-			var loading = function()
-			{
-				value += 1;  
-				addValue = progressbar.val(value);  
-				if (value == max) {  
-					clearInterval(animate);                  
-				}  
-			};  
-			var animate = setInterval(function()
-			{
-				loading();  
-			}, time);
-		};
+		spinner = '<div	class="loadingbox"><svg class="spinner" width="50px" height="50px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="1" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div>';
+		$element.html('').append(spinner);
 		
-		$.fn.loaded = function()
+	//	Execute callback (make sure the callback is a function)
+		if ((typeof(callback) != 'undefined') && (typeof(callback) == 'function')) callback.call($element);
+	}
+
+//	Add the plugin to the jQuery.fn object
+	$.fn.loading = function(callback)
+	{
+		return this.each(function()
 		{
-		//	Get the element with only the loading class
-			$loading = $(this).find('>[class="loading"]');
-		//	$loading.find('progress').val(100);
-			$loading.hide('fast', function(){$(this).remove()});
-		};
-	})( jQuery );
+		//	if (undefined == $(this).data('loading'))
+		//	{
+				var plugin = new $.loading(callback, this);
+				$(this).data('loading', plugin);
+		//	}
+		});
+	}
+})( jQuery );
 	
 /*********************************************************************************************
 /**	* Opening and closing Lanes
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
-//	Nav
-	openNav = function()
-	{
-		$('#main').removeClass('navClosed').addClass('navOpened');
-	}
-	closeNav = function()
-	{
-		$('#main').removeClass('navOpened').addClass('navClosed');
-	}
-
-//	Admin
-	openAdmin = function()
-	{
-		$('#main').removeClass('adminClosed').addClass('adminOpened');
-	}
-	closeAdmin = function()
-	{
-		$('#main').removeClass('adminOpened').addClass('adminClosed');
-	}
-
 //	Context
 	openContext = function(param, callback)
 	{
-		$('#main').removeClass('contextClosed').addClass('contextOpened');
-		$('#adminContext>div').attr('data-template', param.template).ajx(
+	//	Some vars
+		maxContext = 2;
+		
+	//	If context already exists, refresh it
+		if ($('.adminContext[data-template="'+param.template+'"]').length > 0)
+		{
+			context = $('.adminContext[data-template="'+param.template+'"]');
+		}
+	//	Other wise, append a new Context area
+		else
+		{
+			adminContext = '<aside class="adminContext"><button type="button" class="close"></button><div><!-- Welcome Ajax --></div></aside>';
+			context = $(adminContext).appendTo('#grandCentralAdmin');
+		}
+		
+	//	Resize Content & Context
+		countContext = $('#grandCentralAdmin').find('.adminContext').length;
+		$('#main').addClass('contextOpened'+countContext);
+	
+	//	Load
+		$(context).attr('data-template', param.template).find('> div').ajx(
 			param,
 			{
 				done:function()
 				{					
 				//	Callback
-					if ((typeof(callback) != 'undefined') && (typeof(callback) == "function")) callback.call(this);
+					if ((typeof(callback) != 'undefined') && (typeof(callback) == 'function')) callback.call(this);
 				}
 			}
 		);
-		/* TODO Hacky way to recenter the panel */
-		setTimeout(function()
+		
+	//	Recenter the panel after transition
+		$('#adminContent').one('transitionend', function()
 		{
 			$('#tabs li a'+pseudo).parent().trigger('click');
-		}, 300);
+		});
 	}
-	closeContext = function()
+	closeContext = function(template)
 	{
-		$('#main').removeClass('contextOpened').addClass('contextClosed');
-		$('#adminContext>div').attr('data-template', '').html('');
-		/* TODO Hacky way to recenter the panel */
-		setTimeout(function()
+	//	Resize
+		countContext = $('#grandCentralAdmin').find('.adminContext').length;
+		$('#main').removeClass('contextOpened'+countContext);
+		
+	//	Kill
+		$('.adminContext[data-template="'+template+'"]').remove();
+		
+	//	Recenter the panel after transition
+		$('#adminContent').one('transitionend', function()
 		{
 			$('#tabs li a'+pseudo).parent().trigger('click');
-		}, 300);
+		});
 	}
 	
 //	Site
@@ -286,37 +349,47 @@
 		$edit = $siteNav.find('.edit');
 		$admin = $siteNav.find('.admin');
 		
-	//	Open at the right page
-		$('#main').addClass('siteOpened');
-		if (url) $iframe.attr('src', url);
-		
-	//	sitetree
-		$sitetree.on('click', function()
+		if ($('#main').hasClass('siteOpened') === false)
 		{
-		//	Go to edit page
-			document.location.href = ADMIN_URL+'/list?item=page';
-		});
+		//	Open at the right page
+			$('#main').addClass('siteOpened');
+			if (url && $iframe.is(':empty')) $iframe.attr('src', url);
 		
-	//	Edit
-		$edit.on('click', function()
-		{			
-			nickname = $iframe.contents().find('meta[property="gc:item"]').attr('content');
-			item = nickname.split('_')[0];
-			id = nickname.split('_')[1];
-		//	Go to edit page
-			document.location.href = ADMIN_URL+'/edit?item='+item+'&id='+id;
-		});
+			$('#grandCentralSite').height($(window).height());
 		
-	//	Back to admin
-		$admin.on('click', function()
+		//	sitetree
+			$sitetree.on('click', function()
+			{
+			//	Go to edit page
+				document.location.href = ADMIN_URL+'/list?item=page';
+			});
+		
+		//	Edit
+			$edit.on('click', function()
+			{			
+				nickname = $iframe.contents().find('meta[property="gc:item"]').attr('content');
+				item = nickname.split('_')[0];
+				id = nickname.split('_')[1];
+			//	Go to edit page
+				document.location.href = ADMIN_URL+'/edit?item='+item+'&id='+id;
+			});
+		
+		//	Back to admin
+			$admin.on('click', function()
+			{
+				$('html, body').animate({
+	       			 scrollTop: 150
+				    }, 300);
+			});
+		
+		//	Update edit button
+		//	window.history.pushState('string', 'chose', '/');
+		}
+		else
 		{
-			$('html, body').animate({
-       			 scrollTop: 150
-			    }, 300);
-		});
-		
-	//	Update edit button
-	//	window.history.pushState('string', 'chose', '/');
+			$('#main').removeClass('siteOpened');
+			$('#grandCentralSite').height('0');
+		}
 	}
 	
 //	Alert
@@ -326,8 +399,10 @@
 		{
 			$(this).removeClass('poppedAlert').dequeue();
 		//	Callback
-			if ((typeof(callback) != 'undefined') && (typeof(callback) == "function")) callback.call(this);
+			if ((typeof(callback) != 'undefined') && (typeof(callback) == 'function')) callback.call(this);
 		});
+	//	Give type and label
+	console.log(type);
 		$('#alert').attr('class', type);
 		$('#alert .response').html(label);
 	}
@@ -337,7 +412,39 @@
 	});
 
 /*********************************************************************************************
+/**	* Nav
+ 	* @author	@mvdandrieux
+**#******************************************************************************************/
+	$(document).on('click', '#openNav', function()
+	{
+	//	Some vars
+		$nav = $('#nav');
+		$('#main').addClass('poppedNav');
+		
+	//	Load nav just once
+		if ($nav.is(':empty'))
+		{
+			$nav.loading();
+			$nav.ajx(
+			{
+				app:'content',
+				template:'/master/nav',
+			//	sectiontype:$('#adminContent section.active').data('template'),
+			},{
+				done:function()
+				{
+				}
+			});
+		}
+		
+	});
+	$(document).on('click', '#closeNav', function()
+	{
+		$('#main').removeClass('poppedNav');
+	});
+
+/*********************************************************************************************
 /**	* Make the bubbles with the .warn class jump
- 	* @author	mvd@cafecentral.fr
+ 	* @author	@mvdandrieux
 **#******************************************************************************************/
 /*	$('.cc-bubble .remindme').effect('bounce', {distance:'10', times:'2'}, 250); */

@@ -9,9 +9,9 @@
  * </pre>
  * 
  * @package		file
- * @author		Sylvain Frigui <sf@cafecentral.fr>
+ * @author		Sylvain Frigui <sf@hands.agency>
  * @access		public
- * @link		http://www.cafecentral.fr/fr/wiki
+ * @link		http://grandcentral.fr
  */
 class dir implements Iterator
 {
@@ -79,6 +79,34 @@ class dir implements Iterator
 	public function save()
 	{
 		if (!$this->exists($this->root)) mkdir($this->root, 0775, true);
+	}
+	
+/**
+ * Sort dir
+ *
+ * @access	public
+ */
+	public function sortbydate()
+	{
+		$t = array();
+	//	Get files timestamps
+		foreach ($this->data as $key => $file)
+		{
+			$t[$key] = filemtime($file->get_root());
+		}
+	//	Sort timestamps
+		natcasesort($t);
+		$keys = array_reverse(array_keys($t));
+
+	//	Reorder
+		$data = array();
+		foreach ($keys as $index)
+		{
+			$data[$index] = $this->data[$index];
+		}
+
+	//	Overwrite data
+		$this->data = $data;
 	}
 	
 /**

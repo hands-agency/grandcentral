@@ -9,14 +9,13 @@
  *    echo "I am an example.";
  * }
  * </pre>
- * 
- * @package		The package
- * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
- * @author		Sylvain Frigui <sf@cafecentral.fr>
- * @copyright	Copyright © 2004-2013, Café Central
- * @license		http://www.cafecentral.fr/fr/licences GNU Public License
+ *
+ * @author		Michaël V. Dandrieux <@mvdandrieux>
+ * @author		Sylvain Frigui <sf@hands.agency>
+ * @copyright	Copyright © 2004-2015, Hands
+ * @license		http://grandcentral.fr/license MIT License
  * @access		public
- * @link		http://www.cafecentral.fr/fr/wiki
+ * @link		http://grandcentral.fr
  */
 /********************************************************************************************/
 //	Some vars
@@ -65,7 +64,7 @@
 /********************************************************************************************/
 //	Check if the app has some templates
 	$templates = $app->get_templates($valueContenttype, $_POST['env']);
-	// print'<pre>';print_r($templates);print'</pre>';
+	#sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $templates);
 	if ($templates)
 	{
 	//	We need templates, not indexes
@@ -76,9 +75,11 @@
 			'values' => $templates,
 			'valuestype' => 'array',
 			'value' => $valueTemplate,
+			'placeholder' => '...'
 		);
 		$fieldTemplate = new fieldSelect($_POST['name'].'[template]', $fparams);
-	}	
+	}
+
 /********************************************************************************************/
 //	FROM APP.PARAM Champ paramètres des apps
 /********************************************************************************************/	
@@ -136,7 +137,8 @@
 				$p = array(
 					'label' => $key,
 					'values' => $values,
-					'valuestype' => 'array'
+					'valuestype' => 'array',
+					'placeholder' => '...'
 				);
 				if (isset($matches[1])) $p['value'] = $matches[1];
 				$field = new fieldSelect($key, $p);

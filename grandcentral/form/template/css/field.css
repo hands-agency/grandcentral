@@ -55,12 +55,6 @@ textarea
 	color:#666666;
 	font-size:1em;
 	line-height:1.4em;
-	/* Linin numerals for ProximaNova */
-	font-feature-settings: 'lnum';
-	-moz-font-feature-settings: 'lnum=1';
-	-ms-font-feature-settings: 'lnum';
-	-webkit-font-feature-settings: 'lnum';
-	-o-font-feature-settings: 'lnum';
 }
 select
 {
@@ -97,7 +91,11 @@ ol>li[data-type="select"] .select2-container
 /********************************************************************************************/
 ol>li[data-type="bool"] .wrapper
 {
-	padding-top:6px;
+}
+ol>li[data-type="bool"] .wrapper .field
+{
+	min-height:25px;
+	padding-top:15px !important;
 }
 
 /********************************************************************************************/
@@ -167,6 +165,18 @@ ol>li[data-type="radio"] li.on .descr,
 ol>li[data-type="checkbox"] li.on .descr
 {
 	display:block;
+}
+
+/********************************************************************************************/
+/* Some extra style for specific fields
+/********************************************************************************************/
+ol>li[data-key="title"] label
+{
+	padding-top:27px !important;
+}
+ol>li[data-key="title"] input
+{
+	font-size:30px !important;
 }
 
 /********************************************************************************************/

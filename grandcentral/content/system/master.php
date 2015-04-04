@@ -3,10 +3,10 @@
  * The master class
  * 
  * @package		Core
- * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
- * @author		Sylvain Frigui <sf@cafecentral.fr>
+ * @author		Michaël V. Dandrieux <@mvdandrieux>
+ * @author		Sylvain Frigui <sf@hands.agency>
  * @access		public
- * @link		http://www.cafecentral.fr/fr/wiki
+ * @link		http://grandcentral.fr
  */
 class master
 {
@@ -14,6 +14,7 @@ class master
 	protected static $content_type;
 //	Storing
 	protected static $zones;
+	protected static $zoning = false;
 	
 /**
  * Create only one instance of the master
@@ -23,12 +24,14 @@ class master
  */
 	public function __construct(itemPage $page)
 	{
+	//	zoning
+		self::$zoning = $page->get_zoning();
 	//	define the master content type
 		self::$content_type = (empty($page['type']['content_type'])) ? 'html' : $page['type']['content_type'];
-	//	instanciate the app master
+	//	instantiate the app master
 		$params['page'] = $page;
 		$tpl = (mb_strpos($page['type']['master']['template'], '/') === 0) ? $page['type']['master']['template'] : '/'.$page['type']['master']['template'];
-		$this->app = app($page['type']['master']['app'], $tpl, $params);
+		$this->app = app($page['type']['master']['app'], $tpl, $params, $page->get_env());
 	//	retrieve the template root
 		$root = $this->app->get_templateroot().$tpl.'.'.$page['type']['content_type'].'.php';
 	//	parse the template and parse zones
@@ -56,10 +59,11 @@ class master
 				if (!isset($tmp[1])) $tmp[1] = null;
 				$zones[$tmp[0]] = array(
 					'key' => $tmp[0],
-					'float' => $tmp[1],
 					'toreplace' => $zone[0],
 					'data' => array()
 				);
+				if (isset($tmp[1])) $zones[$tmp[0]]['float'] = $tmp[1];
+				if (isset($tmp[2])) $zones[$tmp[0]]['width'] = $tmp[2];
 			}
 		}
 	//	retour
@@ -102,7 +106,7 @@ class master
 		if (is_file($file))
 		{
 			$param['zone'] = $zone;
-			$app = app('content', $key, $param);
+			$app = app('content', $key, $param, $params['page']->get_env());
 			$zone = $app->__tostring();
 		}
 	//	traitement générique d'une zone : concaténation des contenus
@@ -111,19 +115,19 @@ class master
 			$method = '_prepare_zone_'.$zone['key'];
 			if (method_exists($this, $method))
 			{
-				$zone = $this->$method($zone);
+				$html = $this->$method($zone);
 			}
 			else
 			{
 				$tmp = null;
 				foreach ($zone['data'] as $data)
 				{
-					$tmp .= $data['data'];
+					$tmp .= self::$zoning && isset($data['id']) ? '<gc-section data-section="'.$data['id'].'">'.$data['data'].'</gc-section>' : $data['data'];
 				}
-				$zone = $tmp;
+				$html = $tmp;
 			}
 		}
-		return $zone;
+		return self::$zoning ? '<gc-zone data-zone="'.$zone['key'].'">'.$html.'</gc-zone>' : $html;
 	}
 /**
  * 
@@ -233,7 +237,7 @@ class master
  * @return	string	la clé de l'app
  * @access	public
  */
-	public static function bind_code($zone, $code, $top = false)
+	public static function bind_code($zone, $code, $top = false, $id = null)
 	{
 		if (isset(self::$zones[$zone]))
 		{
@@ -241,6 +245,7 @@ class master
 				'type' => 'code',
 				'data' => $code
 			);
+			if (!is_null($id)) $tmp['id'] = $id;
 			if ($top === false)
 			{
 				self::$zones[$zone]['data'][] = $tmp;

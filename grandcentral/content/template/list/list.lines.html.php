@@ -1,15 +1,15 @@
-<? foreach($bunch as $item) : ?>
-<?
+<?php foreach($bunch as $item) : ?>
+<?php
 //	format Current Separator
 	$currentSeparator = formatSeparator($item[$order]);
 //	Change separators
-	if (!isset($lastSeparator)) echo '<h2><span class="centered">'.$currentSeparator.'</span></h2><ol>';
-	else if ($lastSeparator != $currentSeparator) echo '</ol><h2><span class="centered">'.$currentSeparator.'</span></h2><ol>';
+	if (!isset($lastSeparator)) echo '<h2><span class="rule">'.$currentSeparator.'</span></h2><ol>';
+	else if ($lastSeparator != $currentSeparator) echo '</ol><h2><span class="rule">'.$currentSeparator.'</span></h2><ol>';
 //	Save & format last Separator	
 	$lastSeparator = formatSeparator($item[$order]);
 ?>	
 <li data-item="<?=$item->get_nickname()?>">
-	<?
+	<?php
 		if ($iconField)
 		{
 			$images = $item[$iconField]->unfold();
@@ -22,7 +22,7 @@
 	
 	<div class="title"><a href="<?=$item->edit()?>"><?= (isset($item['title']) && !$item['title']->is_empty()) ? $item['title'] : $item->get_table().'#'.$item['id'] ?></a></div>
 	
-	<? /* if (isset($item['descr'])): ?><div class="descr"><?=$item['descr']->cut(200)?></div><? endif */ ?>
+	<?php /* if (isset($item['descr'])): ?><div class="descr"><?=$item['descr']->cut(200)?></div><?php endif */ ?>
 	
 	<ul class="action">
 		<li><a href="" class="notes">Discussion</a></li>
@@ -31,4 +31,4 @@
 	
 	<div class="notes"></div>
 </li>
-<? endforeach ?>
+<?php endforeach ?>
