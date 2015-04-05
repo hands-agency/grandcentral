@@ -11,6 +11,7 @@ class sitemaps
 {
 	private $data;
 	private $filepath;
+	private $appendedUrl;
 	private $filename = '/sitemap.xml.php';
 
 /**
@@ -27,10 +28,29 @@ class sitemaps
 	}
 	
 /**
+ * Append an array of URLs to the sitemap
+ *
+ * @param	array  only site
+ * @access	public
+ */
+	public function append_url($urls)
+	{
+		$this->appendedUrl = new bunch();
+		foreach ($urls as $url)
+		{
+			$i = new item('page');
+			$i['url'] = str_replace('http://grandcentral.fr', '', $url['url']);
+			$i['updated'] = $url['updated'];
+			$this->appendedUrl[] = $i;
+		}
+		$this->appendedUrl->count = count($this->appendedUrl);
+	}
+	
+/**
  * Create the sitemap
  *
- * @param	string  only site
  * @access	public
+ * @return	string	The XML sitemap
  */
 	public function create()
 	{
@@ -61,6 +81,16 @@ class sitemaps
 			}
 			$items = i($structure['key']->get(), $p);
 			
+		//	Append or prepend urls
+			if (!empty($this->appendedUrl))
+			{
+				foreach ($this->appendedUrl as $i)
+				{
+					$items[] = $i;
+				}
+			}
+			$items->count = count($items);
+			
 		//	Loop through items
 			foreach ($items as $item)
 			{
@@ -74,7 +104,6 @@ class sitemaps
 		}
 		
 	//	Encapsulate
-
 		$this->data .= "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n";
 		$this->data .= $url;
 		$this->data .= "</urlset>";
@@ -102,6 +131,9 @@ class sitemaps
 				break;
 			case 'daily':
 				$save = ($today->format('Y-m-d') == $lastupdate) ? false : true;
+				break;
+			case 'never':
+				$save = false;
 				break;
 		}
 		

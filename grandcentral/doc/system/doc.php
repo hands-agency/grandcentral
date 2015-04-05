@@ -185,7 +185,11 @@ class doc
 						elseif ($default === true) $default = 'true';
 						elseif ($default === null) $default = 'null';
 						if(empty($default)) $name .= '""';
-						else $name .= $default;
+						else if (is_string($default)) $name .= $default;
+						else if (is_array($default))
+						{
+							foreach ($default as $value) $name .= $value;
+						}
 					}
 					$name .= ']';
 				}

@@ -15,7 +15,7 @@
  */
 	function docAppUrl($app)
 	{
-		return i('page', current)['url'].'/'.$app;
+		return 'http://grandcentral.fr/doc/'.$app;
 	}
 	
 /**
@@ -26,7 +26,7 @@
  */
 	function docClassUrl($app, $class)
 	{
-		return i('page', current)['url'].'/'.$app.'/'.$class;
+		return 'http://grandcentral.fr/doc/'.$app.'/'.$class;
 	}
 	
 /**
@@ -37,7 +37,7 @@
  */
 	function docMethodUrl($app, $class, $method)
 	{
-		return i('page', current)['url'].'/'.$app.'/'.$method;
+		return 'http://grandcentral.fr/doc/'.$app.'/'.$method;
 	}
 
 /**
@@ -59,6 +59,6 @@
  */
 	function docFunctionUrl($app, $function)
 	{
-		return i('page', current)['url'].'/'.$app.'/'.$function;
+		return 'http://grandcentral.fr/doc/'.$app.'/'.$function;
 	}
 ?>
