@@ -75,7 +75,7 @@ class event
  *
  * @param	mixed 	item object or item name
  * @param	string	name of the action (save, delete...)
- * @access	public
+ * @access	private
  */
 	private static function log($item, $action)
 	{

@@ -46,7 +46,7 @@ class dir implements Iterator
  * Obtenir tout le contenu du répertoire
  *
  * @param	bool	true : charger tout les niveaux d'arborescence. false : charger le premier niveau d'arborescence. False par défaut.
- * @return	array	Le tableau associatif de l'arbo du répertoire
+ * @return	array	The directory listing
  * @access	public
  */
 	public function get($recursive = false)
@@ -72,17 +72,34 @@ class dir implements Iterator
 	}
 	
 /**
- * Enregistrer tous les changements
+ * Save all changes
  *
  * @access	private
  */
-	public function save()
+	private function save()
 	{
 		if (!$this->exists($this->root)) mkdir($this->root, 0775, true);
 	}
 	
 /**
- * Sort dir
+ * Filter the listing of a directory using keywords
+ *
+ * @param	string	The filter
+ * @return	array	The directory listing
+ * @access	public
+ */
+	public function filter($filter)
+	{
+		$filteredData = array();
+		foreach ($this->data as $key => $value)
+		{
+			if (strstr($key, $filter)) $filteredData[$key] = $value;
+		}
+		$this->data = $filteredData;
+	}
+	
+/**
+ * Sort a directory listing by date
  *
  * @access	public
  */

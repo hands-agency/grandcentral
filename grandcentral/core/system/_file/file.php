@@ -127,7 +127,7 @@ class file
  * Vérifier l'existence du fichier
  *
  * @return	bool	true ou false
- * @access	private
+ * @access	public
  */
 	public function exists()
 	{
@@ -161,7 +161,7 @@ class file
  * Obtenir le chemin du répertoire du fichier
  *
  * @return	string	le chmin du répertoire root du fichier
- * @access	private
+ * @access	public
  */
 	public function get_dir()
 	{
@@ -172,7 +172,7 @@ class file
  * Obtenir le chemin du répertoire du fichier
  *
  * @return	string	le chmin du répertoire root du fichier
- * @access	private
+ * @access	public
  */
 	public function get_root()
 	{
@@ -184,7 +184,7 @@ class file
  *
  * @param	bool	absolute link (default false)
  * @return	string	l'url du fichier
- * @access	private
+ * @access	public
  */
 	public function get_url()
 	{
@@ -196,7 +196,7 @@ class file
  * Obtenir le nom du fichier
  *
  * @return	string	le nom du fichier
- * @access	private
+ * @access	public
  */
 	public function get_key()
 	{
@@ -207,7 +207,7 @@ class file
  * Obtenir le nom du fichier
  *
  * @return	string	le nom du fichier
- * @access	private
+ * @access	public
  */
 	public function get_name()
 	{
@@ -218,7 +218,7 @@ class file
  * Get the file size
  *
  * @return	string	le nom du fichier
- * @access	private
+ * @access	public
  */
 	public function get_size($format = true)
 	{
@@ -241,7 +241,7 @@ class file
  * Get the file extension
  *
  * @return	string	le nom du fichier
- * @access	private
+ * @access	public
  */
 	public function get_extension()
 	{
@@ -256,7 +256,7 @@ class file
  * Get the file MIME data
  *
  * @return	string	le nom du fichier
- * @access	private
+ * @access	public
  */
 	public function get_mime()
 	{
@@ -272,7 +272,7 @@ class file
  * Get the file MIME type
  *
  * @return	string	le nom du fichier
- * @access	private
+ * @access	public
  */
 	public function get_mimeType()
 	{
@@ -287,7 +287,7 @@ class file
  * Get the file MIME subtype
  *
  * @return	string	le nom du fichier
- * @access	private
+ * @access	public
  */
 	public function get_mimeSubtype()
 	{
@@ -302,7 +302,7 @@ class file
  * Obtenir le nom du fichier
  *
  * @return	string	le nom du fichier
- * @access	private
+ * @access	public
  */
 	public function get_created()
 	{
@@ -317,7 +317,7 @@ class file
  * Obtenir le nom du fichier
  *
  * @return	string	le nom du fichier
- * @access	private
+ * @access	public
  */
 	public function get_updated()
 	{
@@ -332,7 +332,7 @@ class file
  * Display a file
  *
  * @return	string	le nom du fichier
- * @access	private
+ * @access	public
  */
 	public function __tostring()
 	{

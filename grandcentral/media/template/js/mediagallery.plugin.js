@@ -158,6 +158,8 @@
 				//	$element.loaded();
 				}
 			});
+		//	Clear refine
+			plugin.clearRefine();
 		}
 		
 	//	Method
@@ -199,6 +201,31 @@
 					$('#trashbin').data('trashbin').toggle();
 				}
 			});
+			
+		//	Refine the content of a directory
+			$search = $('#mediaLibraryNav').find('input[type="search"]');
+			if (undefined == $search.data('searchasyoutype'))
+			{
+				$search.searchasyoutype(
+				{
+					app: 'media',
+					template: plugin.settings.tpl_list,
+					param:{root: plugin.settings.current.substr(0, 1) != '/' ? '/' + plugin.settings.current : plugin.settings.current},
+					target:'#mediaLibrary',
+				},
+				{
+				//	Callback
+					done:function()
+					{
+					//	Init
+						plugin.initList();
+					}
+				});
+			}
+			else {
+			//	Update current root
+				$search.data('searchasyoutype').settings.param.root = plugin.settings.current.substr(0, 1) != '/' ? '/' + plugin.settings.current : plugin.settings.current;
+			}
 		}
 		
 	//	Method
@@ -254,6 +281,8 @@
 						})
 					}
 					*/
+				//	Clear refine
+					plugin.clearRefine();
 				}
 			});
 		}
@@ -264,6 +293,12 @@
 			pos = (haystack + '').lastIndexOf(needle);
 			// console.log(pos);
 			return pos >= 0 ? pos : false;
+		}
+		
+	//	Clear refine field
+		plugin.clearRefine = function()
+		{
+			$('#mediaLibraryNav').find('input[type="search"]').val('');
 		}
 
 	//	Fire up the plugin!

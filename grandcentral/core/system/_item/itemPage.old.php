@@ -187,7 +187,7 @@ class itemPage extends _items
 /**
  * Prepare display of a content page
  *
- * @access	public
+ * @access	private
  */
 	private function _prepare_content()
 	{
@@ -200,7 +200,7 @@ class itemPage extends _items
 /**
  * Prepare display of a header page
  *
- * @access	public
+ * @access	private
  */
 	private function _prepare_header()
 	{
@@ -218,7 +218,7 @@ class itemPage extends _items
 /**
  * Prepare display of a link page
  *
- * @access	public
+ * @access	private
  */
 	private function _prepare_link()
 	{

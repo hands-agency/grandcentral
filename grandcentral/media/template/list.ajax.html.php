@@ -70,148 +70,125 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-$(document).ready(function()
-{
-	/* D&D UPLOAD TEMP*/
-	var holder = document.getElementById('holder'),
-	    tests = {
-	      filereader: typeof FileReader != 'undefined',
-	      dnd: 'draggable' in document.createElement('span'),
-	      formdata: !!window.FormData,
-	      progress: "upload" in new XMLHttpRequest
-	    }, 
-	    support = {
-	      filereader: document.getElementById('filereader'),
-	      formdata: document.getElementById('formdata'),
-	      progress: document.getElementById('progress')
-	    },
-	    acceptedTypes = {
-	      'image/png': true,
-	      'image/jpeg': true,
-	      'image/gif': true
-	    },
-	    progress = document.getElementById('uploadprogress'),
-	    fileupload = document.getElementById('upload');
-
-	"filereader formdata progress".split(' ').forEach(function (api) {
-	  if (tests[api] === false) {
-	    support[api].className = 'fail';
-	  } else {
-	    // FFS. I could have done el.hidden = true, but IE doesn't support
-	    // hidden, so I tried to create a polyfill that would extend the
-	    // Element.prototype, but then IE10 doesn't even give me access
-	    // to the Element object. Brilliant.
-	    support[api].className = 'hidden';
-	  }
-	});
-
-	function appendFile(file)
+	$(document).ready(function()
 	{
-	//	Some vars
-		$container = $('#mediaLibrary ul.files');
-		$upload = $('#mediaLibrary ul.files li.upload');
-		console.log(file.type);
-		media = $('<li class="new" data-path="" data-url="" data-info="'+file.type+' • '+(file.size ? (file.size/1024|0)+' K' : '')+'" data-title=""><a class="file" href="#"><span class="preview"></span><span class="title">' + file.name + '</span></a></li>');
-	
-	//	Preview images
-		if (tests.filereader === true)
+		/* D&D UPLOAD TEMP*/
+		var holder = document.getElementById('holder'),
+		    tests = {
+		      filereader: typeof FileReader != 'undefined',
+		      dnd: 'draggable' in document.createElement('span'),
+		      formdata: !!window.FormData,
+		      progress: "upload" in new XMLHttpRequest
+		    }, 
+		    support = {
+		      filereader: document.getElementById('filereader'),
+		      formdata: document.getElementById('formdata'),
+		      progress: document.getElementById('progress')
+		    },
+		    acceptedTypes = {
+		      'image/png': true,
+		      'image/jpeg': true,
+		      'image/gif': true
+		    },
+		    progress = document.getElementById('uploadprogress'),
+		    fileupload = document.getElementById('upload');
+
+		"filereader formdata progress".split(' ').forEach(function (api) {
+		  if (tests[api] === false) {
+		    support[api].className = 'fail';
+		  } else {
+		    // FFS. I could have done el.hidden = true, but IE doesn't support
+		    // hidden, so I tried to create a polyfill that would extend the
+		    // Element.prototype, but then IE10 doesn't even give me access
+		    // to the Element object. Brilliant.
+		    support[api].className = 'hidden';
+		  }
+		});
+
+		function appendFile(file)
 		{
-			var reader = new FileReader();
-			reader.onload = function (event)
+		//	Some vars
+			$container = $('#mediaLibrary ul.files');
+			$upload = $('#mediaLibrary ul.files li.upload');
+			console.log(file.type);
+			media = $('<li class="new" data-path="" data-url="" data-info="'+file.type+' • '+(file.size ? (file.size/1024|0)+' K' : '')+'" data-title=""><a class="file" href="#"><span class="preview"></span><span class="title">' + file.name + '</span></a></li>');
+	
+		//	Preview images
+			if (tests.filereader === true)
 			{
-			//	Add				
-				$upload.after(media);
-				
-			//	If it's an image
-				if (acceptedTypes[file.type] === true)
+				var reader = new FileReader();
+				reader.onload = function (event)
 				{
-					var image = new Image();
-					image.src = event.target.result;
-					image.width = 173; // a fake resize
-				//	Add the image preview
-					media.find('.preview').html(image);
-				}
-			//	Re init Gallery (drag & masonry)
-				$('#mediaLibrary').data('mediaGallery').initList();
+				//	Add				
+					$upload.after(media);
+				
+				//	If it's an image
+					if (acceptedTypes[file.type] === true)
+					{
+						var image = new Image();
+						image.src = event.target.result;
+						image.width = 173; // a fake resize
+					//	Add the image preview
+						media.find('.preview').html(image);
+					}
+				//	Re init Gallery (drag & masonry)
+					$('#mediaLibrary').data('mediaGallery').initList();
 			
-			};
-			reader.readAsDataURL(file);
+				};
+				reader.readAsDataURL(file);
+			}
 		}
-	}
 
-	function readfiles(files)
-	{
-	//	Create a form data object
-		var formData = tests.formdata ? new FormData() : null;
-	
-	//	Add the ajx params
-		formData.append('app', 'media');
-		formData.append('template', 'upload');
-		formData.append('folder', '<?= $_POST['root'] ?>');
-	
-	//	Append the files
-	    for (var i = 0; i < files.length; i++)
+		function readfiles(files)
 		{
-			if (tests.formdata) formData.append('file-'+[i], files[i]);
-			appendFile(files[i]);
-		}
-
-	//	Now post a new XHR request
-	    if (tests.formdata)
-		{	
-	 		var xhr = new XMLHttpRequest();
-			xhr.open('POST', ADMIN_URL+'/ajax.html');
-		
-		//	Done !
-			xhr.onload = function()
+		//	Create a form data object
+			var formData = tests.formdata ? new FormData() : null;
+	
+		//	Add the ajx params
+			formData.append('app', 'media');
+			formData.append('template', 'upload');
+			formData.append('folder', '<?= $here ?>');
+	
+		//	Append the files
+		    for (var i = 0; i < files.length; i++)
 			{
-			//	Fill up the progress bar
-				progress.value = progress.innerHTML = 100;
-			//	Hide progressbar
-				$('#mediaLibrary #holder progress').hide(0, function(){$('#holder p').show()});
-			
-			//	Debug
-				console.log(xhr.response);
+				if (tests.formdata) formData.append('file-'+[i], files[i]);
+				appendFile(files[i]);
 			}
 
-			if (tests.progress)
-			{
-				xhr.upload.onprogress = function (event)
+		//	Now post a new XHR request
+		    if (tests.formdata)
+			{	
+		 		var xhr = new XMLHttpRequest();
+				xhr.open('POST', ADMIN_URL+'/ajax.html');
+		
+			//	Done !
+				xhr.onload = function()
 				{
-					if (event.lengthComputable)
+				//	Fill up the progress bar
+					progress.value = progress.innerHTML = 100;
+				//	Hide progressbar
+					$('#mediaLibrary #holder progress').hide(0, function(){$('#holder p').show()});
+			
+				//	Debug
+					console.log(xhr.response);
+				}
+
+				if (tests.progress)
+				{
+					xhr.upload.onprogress = function (event)
 					{
-						var complete = (event.loaded / event.total * 100 | 0);
-						progress.value = progress.innerHTML = complete;
+						if (event.lengthComputable)
+						{
+							var complete = (event.loaded / event.total * 100 | 0);
+							progress.value = progress.innerHTML = complete;
+						}
 					}
 				}
-			}
 		
-		//	Send !
-			xhr.send(formData);
-	    }
-	}
-
-	if (tests.dnd)
-	{ 
-		holder.ondragover = function () { this.className = 'hover'; return false; };
-		holder.ondragend = function () { this.className = ''; return false; };
-		holder.ondragleave = function () { this.className = ''; return false; };
-		holder.ondrop = function (e)
-		{
-			this.className = '';
-			e.preventDefault();
-			readfiles(e.dataTransfer.files);
-		//	Show progressbar	
-			$('#holder p').hide(0, function(){$('#holder progress').show()});
+			//	Send !
+				xhr.send(formData);
+		    }
 		}
-	}
-	else
-	{
-		fileupload.className = 'hidden';
-		fileupload.querySelector('input').onchange = function ()
-		{
-			readfiles(this.files);
-		};
-	}
-});
+	});
 </script>

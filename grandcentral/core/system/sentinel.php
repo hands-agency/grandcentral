@@ -29,7 +29,7 @@ class sentinel
  * @param	string  $sample the sample data
  * @author	mvd@cafecentral.fr
  * @return	array	all of the exciting sample options
- * @access	public
+ * @access	private
  */
 	private function __construct()
 	{
