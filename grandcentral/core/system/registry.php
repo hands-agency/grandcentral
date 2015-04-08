@@ -195,7 +195,7 @@ class registry
 			$site['version'] = $v['site'];
 			$datas['site'] = $site;
 			//	version
-			$datas['version'] = $datas[env];
+			$datas['version'] = $datas[env]['version'];
 			// registre
 			self::set(self::current_index, $datas);
 			//	page
