@@ -16,7 +16,7 @@
 		
 	//	Plugin's variables
 		var vars = {
-			timing:500,
+			timing:700,
 			timeout:null,
 		}
 
@@ -40,7 +40,7 @@
 					q = $search.val();
 				//	Target can be a jQuery object or a selector
 					$target = (plugin.settings.target instanceof jQuery) ? plugin.settings.target : $(plugin.settings.target);
-					
+					console.log('send');
 				//	Refresh the target
 				  	$target.ajx(
 					{
