@@ -147,15 +147,15 @@ class itemItem extends _items
 				// 'title' => 'Status'
 			);
 		}
-		//	add Updated attribute
-		if (!isset($attrs['live']))
-		{
-			$attrs['status'] = array(
-				'key' => 'status',
-				'type' => 'status',
-				// 'title' => 'Status'
-			);
-		}
+		//	add Live attribute
+		// if (!isset($attrs['live']))
+		// {
+		// 	$attrs['live'] = array(
+		// 		'key' => 'live',
+		// 		'type' => 'live',
+		// 		// 'title' => 'Status'
+		// 	);
+		// }
 		// print'<pre>';print_r($attrs);print'</pre>';
 		$this->data['attr']->set($attrs);
 	}
