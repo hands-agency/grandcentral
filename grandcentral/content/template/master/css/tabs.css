@@ -6,6 +6,20 @@
 	display:inline-block;
 	line-height:28px;
 }
+@media (min-width:480px) {
+    #tabs {
+		padding-top:50px;
+    }
+}
+@media (min-width:768px) {
+    #tabs {
+    }
+}
+@media (min-width:992px) {
+    #tabs {
+		padding-top:0;
+    }
+}
 #tabs>li
 {
 	position:relative;

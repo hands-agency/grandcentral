@@ -331,15 +331,6 @@ abstract class _apps
 		master::bind_file($zone, $app, $url);
 	}
 /**
-<<<<<<< Updated upstream
- * Binds a css to the css zone
- * <pre>
- * // Bind css master/css/master.css
- * $_APP->bind_css('master/css/master.css');
- * </pre>
- * @param	string  The path to the css. ie master/css/master.css
- * @param	bool	
-=======
  * Bind a cascading stylesheet within the css zone
  *
  * <pre>
@@ -348,7 +339,6 @@ abstract class _apps
  *
  * @param	string	root of the css file (ex: master/css/style.css)
  * @param	bool	if true, search for the file in admin directories
->>>>>>> Stashed changes
  * @access	public
  */
 	public function bind_css($file, $system = false)
@@ -356,15 +346,6 @@ abstract class _apps
 		$this->bind_file('css', $file, $system);
 	}
 /**
-<<<<<<< Updated upstream
- * Binds a script to the script zone
- * <pre>
- * // Bind script master/script/master.js
- * $_APP->bind_script('master/script/master.js');
- * </pre>
- * @param	string  The path to the script. ie master/script/master.js
- * @param	bool	
-=======
  * Bind a javscript file within the script zone
  *
  * <pre>
@@ -373,7 +354,6 @@ abstract class _apps
  *
  * @param	string	root of the js file (ex: master/js/jquery.js)
  * @param	bool	if true, search for the file in admin directories
->>>>>>> Stashed changes
  * @access	public
  */
 	public function bind_script($file, $system = false)
@@ -382,26 +362,16 @@ abstract class _apps
 	}
 
 /**
-<<<<<<< Updated upstream
- * Binds a script to the script zone
- * <pre>
- * // Bind some jQuery code to the script zone
- * $_APP->bind_code('script', '$("#main").hide();');
- * </pre>
- * @param	string  The zone
- * @param	string  The code
- * @param	bool	
-=======
  * Bind some code within the given zone
  *
  * <pre>
+ * // Bind some jQuery code to the script zone
  * $_APP->bind_code('script', '<script type="text/javascript" charset="utf-8">alert('hello')</script>');	
  * </pre>
  *
  * @param	string	the zone name where you want to bind the code (ex: content)
  * @param	string	the string to bind
  * @param	bool	bind the code on top of the pile
->>>>>>> Stashed changes
  * @access	public
  */
 	public function bind_code($zone, $data, $top = false)

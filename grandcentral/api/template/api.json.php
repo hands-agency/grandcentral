@@ -1,1 +1,1 @@
-<!-- ZONE:content -->
+<?=$result->json()?>

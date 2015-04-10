@@ -103,19 +103,18 @@
 			plugin.settings = $.extend({}, vars, options);
 
 		//	Some vars
-			key = (typeof(plugin.settings.key) != 'undefined') ? plugin.settings.key : console.warn('You need an API key');
-			mime = (typeof(plugin.settings.mime) != 'undefined') ? plugin.settings.mime : 'json';
+			method = (typeof(plugin.settings.method) != 'undefined') ? plugin.settings.method : console.warn('You need a Request Method like "get" or "post"');
+			url = (typeof(plugin.settings.url) != 'undefined') ? ADMIN_URL+'/'+plugin.settings.url : console.warn('You need an url like "api.json/item/page"');
 			async = (typeof(plugin.settings.async) != 'undefined') ? plugin.settings.async : true;
-			url = ADMIN_URL+'/api.'+mime;
-			
+
 		//	Call
 			$.ajax(
 			{
-				type:'GET',
+				type:method,
 				url:url,
 				async:async,
 				context:this,
-				data:plugin.settings,
+				data:plugin.settings.data,
 			})
 			.done(function(result)
 			{
@@ -126,8 +125,7 @@
 			{
 			//	console.log( "Request failed: " + textStatus );
 				console.log( "Request failed: " + jqXHR.responseText );
-			});
-			
+			});	
 		}
 
 	//	Fire up the plugin!
@@ -402,7 +400,7 @@
 			if ((typeof(callback) != 'undefined') && (typeof(callback) == 'function')) callback.call(this);
 		});
 	//	Give type and label
-	console.log(type);
+		console.log(type);
 		$('#alert').attr('class', type);
 		$('#alert .response').html(label);
 	}

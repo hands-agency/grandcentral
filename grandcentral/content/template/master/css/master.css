@@ -845,7 +845,20 @@ ol .placeholder
 #adminContent
 {
 	overflow:hidden; /* Prevent Horizontal scrolling */
-	padding-top:70px;
+}
+@media (min-width:480px) {
+    #adminContent {
+		padding-top:120px;
+    }
+}
+@media (min-width:768px) {
+    #adminContent {
+    }
+}
+@media (min-width:992px) {
+    #adminContent {
+		padding-top:70px;
+   	}
 }
 #adminContent>button.close
 {

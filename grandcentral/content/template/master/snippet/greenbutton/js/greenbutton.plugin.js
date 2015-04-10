@@ -89,12 +89,11 @@
 				
 			//	Save as the prefered method
 				sectionkey = $('#adminContent section.active').data('key');
-				pref = ['greenbutton', sectionkey, method];
 				$.api(
 				{
-					key:'save_pref',
-					mime:'json',
-					pref:pref
+					method:'post',
+					url:'api.json/pref',
+					data:{'pref':['greenbutton', sectionkey, method]}
 				},{
 					done:function(msg)
 					{
