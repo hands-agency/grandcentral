@@ -92,7 +92,7 @@
 				$.api(
 				{
 					method:'post',
-					url:'api.json/pref',
+					url:'api.json/v1/pref',
 					data:{'pref':['greenbutton', sectionkey, method]}
 				},{
 					done:function(msg)

@@ -1,1 +1,1 @@
-<?=$result->json()?>
+<?=$_PARAM['api']['result']?>

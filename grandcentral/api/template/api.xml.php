@@ -1,1 +1,1 @@
-<?=$result->xml()?>
+<?=$_PARAM['api']['result']?>

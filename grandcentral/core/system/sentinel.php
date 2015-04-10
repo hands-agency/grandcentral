@@ -234,7 +234,7 @@ class sentinel
 		{
 			//	Json
 			case 'json':
-				echo $flag.': '.$title.' ('.$descr.')';
+				echo $flag.": ".$title."\n(".print_r($descr, true).")";
 				break;
 		
 			//	HTML & more
