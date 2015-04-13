@@ -63,24 +63,10 @@ class itemPage extends _items
 	public function get_by_url($url = null)
 	{
 		if (empty($url)) $url = '/';
-		
-		$cache = app('cache');
-		$fileCache = $cache->get_templateroot().'/page/'.md5($this['url'].$url);
-		
-		// dans le cache
-		//if (is_file($fileCache))
-		//{
-		//	$this->data = unserialize(file_get_contents($fileCache));
-		//}
-		// création du cache
-		//else
-		//{
-			$this->get(array('url' => $url));
-		//	file_put_contents($fileCache, serialize($this->data));
-		//}
+		$this->get(array('url' => $url, 'limit()' => 1));
 	}
 /**
- * Devine la page à afficher
+ * Guess the page to display
  *
  * @access	public
  */
@@ -94,9 +80,9 @@ class itemPage extends _items
 			$hash = mb_substr(URLR, 0, mb_strpos(URLR, '/', 1));
 			// chargement de la page de home
 			$this->get_by_url($hash);
-
-			if (!$this->exists())
-//			if (!$this->exists() OR ($this->exists() && !$this->is_reader()))
+			// 404
+			if (!$this->is_reader())
+			//if (!$this->exists())
 			{
 				$this->get_by_url('/404');
 			}
