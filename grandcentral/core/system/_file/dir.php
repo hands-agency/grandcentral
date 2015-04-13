@@ -51,8 +51,8 @@ class dir implements Iterator
  */
 	public function get($recursive = false)
 	{
-		$dir = dir($this->root);
-		if (!empty($dir))
+		if (is_dir($this->root)) $dir = dir($this->root);
+		if (isset($dir) && !empty($dir))
 		{
 			while($entry = $dir->read())
 			{
