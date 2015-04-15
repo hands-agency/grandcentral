@@ -190,5 +190,27 @@
 				xhr.send(formData);
 		    }
 		}
+		if (tests.dnd)
+		{ 
+			holder.ondragover = function () { this.className = 'hover'; return false; };
+			holder.ondragend = function () { this.className = ''; return false; };
+			holder.ondragleave = function () { this.className = ''; return false; };
+			holder.ondrop = function (e)
+			{
+				this.className = '';
+				e.preventDefault();
+				readfiles(e.dataTransfer.files);
+			//	Show progressbar	
+				$('#holder p').hide(0, function(){$('#holder progress').show()});
+			}
+		}
+		else
+		{
+			fileupload.className = 'hidden';
+			fileupload.querySelector('input').onchange = function ()
+			{
+				readfiles(this.files);
+			};
+		}
 	});
 </script>
