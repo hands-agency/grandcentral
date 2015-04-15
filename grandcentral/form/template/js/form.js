@@ -195,7 +195,7 @@ $(document).ready(function ()
 /**	* Focus On the first field of the freshly loaded section
  	* @author	@mvdandrieux
 **#******************************************************************************************/
-	$('form input:first').focus();
+//	$('form input:first').focus(); /* it fucks up with the display... */
 
 /*********************************************************************************************
 /**	* Fields help

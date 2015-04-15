@@ -52,14 +52,13 @@
 			$path = mb_substr($media->get_root(), mb_strpos($media->get_root(), '/media/') + 7); /* TODO Make a method out of this*/
 			$title = (isset($value['title'])) ? $value['title'] : null;
 			$data .= '
-			<li title="'.strtoupper($media->get_extension()).' • '.$media->get_size().'">
+			<li title="'.$media->get_key().' • '.strtoupper($media->get_extension()).' • '.$media->get_size().'">
 				<button class="delete"></button>
 				<a>
 					<span class="preview">'.$media->thumbnail(120, null).'</span>
-					<span class="title">'.$media->get_key().'</span>
+					<span class="title"><input type="text" name="'.$_FIELD->get_name().'['.$count.'][title]" value="'.$title.'" placeholder="Add a legend" /></span>
 				</a>
 				<input type="hidden" name="'.$_FIELD->get_name().'['.$count.'][url]" value="'.$path.'" />
-				<input type="hidden" name="'.$_FIELD->get_name().'['.$count.'][title]" value="'.$title.'" />
 			</li>';
 			$count++;
 		}
@@ -73,7 +72,7 @@
 		<button class="delete"></button>
 		<a>
 			<span class="preview"><img src="" /></span>
-			<span class="title"></span>
+			<span class="title"><input type="text" name="'.$_FIELD->get_name().'[][title]" placeholder="Add a legend" disabled="disabled" /></span>
 		</a>
 		<input type="hidden" name="'.$_FIELD->get_name().'[][url]" value="" disabled="disabled" />
 	</li>';
