@@ -81,7 +81,7 @@ class itemPage extends _items
 			// chargement de la page de home
 			$this->get_by_url($hash);
 			// 404
-			if (!$this->is_reader())
+			if ($this->get_env() == 'site' && !$this->is_reader())
 			//if (!$this->exists())
 			{
 				$this->get_by_url('/404');
@@ -424,7 +424,7 @@ class itemPage extends _items
 				$urls['page_'.$page['id']] = $page['url'];
 			}
 			// on recherche les readers dans le table section
-			$q = 'SELECT `id`, `app` FROM `section` WHERE `app` LIKE "%\"app\":\"reader\"%"';
+			$q = 'SELECT `id`, `app` FROM `section` WHERE `app` LIKE "%\"app\":\"reader\"%" OR  `app` LIKE "%\"app\":\"api\"%" OR  `app` LIKE "%\"app\":\"doc\"%"';
 			$r = $db->query($q);
 			// traitement de la requête pour stockage
 			$hash = null;
@@ -450,7 +450,7 @@ class itemPage extends _items
 				}
 				else
 				{
-					$readers[$rel['item'].'_'.$rel['itemid']][] = $readersTable[$rel['relid']]['param']['item'];
+					$readers[$rel['item'].'_'.$rel['itemid']][] = $readersTable[$rel['relid']];
 				}
 			}
 			// mise en registre
