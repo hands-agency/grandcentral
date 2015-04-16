@@ -131,6 +131,8 @@
 					//	Add the image preview
 						media.find('.preview').html(image);
 					}
+				//	This directory is no longer empty
+					$('#mediaLibrary .dir').removeClass('empty');
 				//	Re init Gallery (drag & masonry)
 					$('#mediaLibrary').data('mediaGallery').initList();
 			
