@@ -51,7 +51,7 @@ class itemPage extends _items
 		if ($this->is_reader())
 		{
 			$readItem = registry::get(registry::reader_index, $this->get_nickname());
-			return $readItem[0];
+			return $readItem[0]['param']['item'];
 		}
 		else return false;
 	}
