@@ -22,7 +22,13 @@
 				<textarea style="display:none" name="<?= $_FIELD->get_name(); ?>[param][<?=$key?>]"><?=$value?></textarea>
 				<?php else: ?>
 				<?php foreach ($value as $k => $v): ?>
-				<textarea style="display:none" name="<?= $_FIELD->get_name(); ?>[param][<?=$key?>][<?=$k?>]"><?=$v?></textarea>
+					<?php if (!is_array($v)): ?>
+					<textarea style="display:none" name="<?= $_FIELD->get_name(); ?>[param][<?=$key?>][<?=$k?>]"><?=$v?></textarea>
+					<?php else: ?>
+					<?php foreach ($v as $kk => $vv): ?>
+					<textarea style="display:none" name="<?= $_FIELD->get_name(); ?>[param][<?=$key?>][<?=$k?>][<?=$kk?>]"><?=$vv?></textarea>
+					<?php endforeach ?>
+					<?php endif ?>
 				<?php endforeach ?>
 				<?php endif ?>
 			<?php endforeach ?>
