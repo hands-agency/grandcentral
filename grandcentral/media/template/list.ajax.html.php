@@ -15,10 +15,11 @@
 		<?php if (isset($files)) : ?>
 		<?php foreach ($files as $file): ?>
 		<li data-path="<?=$file->get_path()?>" data-url="<?=$file->get_url()?>" data-info="<?= $file->get_extension() ?> • <?= $file->get_size() ?>" data-title="<?= $file->get_key() ?>">
-			<a href="#" class="file">
-				<?php if (is_a($file, 'image')): ?>
-					<span class="preview"><?= $file->thumbnail(120, null); ?></span>
-				<?php endif ?>
+			<a href="#" class="file <?=$file->get_mimeType()?>">
+				<?php
+					$preview = (is_a($file, 'image')) ? $file->thumbnail(120, null) : null;
+				?>
+				<span class="preview"><?=$preview ?></span>
 				<span class="title"><?= $file->get_key() ?></span>
 			</a>
 		</li>
