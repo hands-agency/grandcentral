@@ -84,11 +84,15 @@
 			for (var i=0; i < param.length; i++)
 			{
 				var name;
-			//	field selectors
+
 				if (param[i]['name'].indexOf("[") != -1)
 				{
-					var d = param[i]['name'].match(/([a-zA-Z_0-9\-]*)\[([a-zA-Z_0-9\-]*)\]/);
+					var d = param[i]['name'].match(/([a-zA-Z_0-9\-]*)\[([a-zA-Z_0-9\-]*)\](\[([a-zA-Z_0-9\-]*)\])?/);
 					name = $field.data('name')+'[param]['+ d[1] +']['+ d[2] +']';
+					if (typeof d[4] != 'undefined')
+					{
+						name += '['+ d[4] +']';
+					};
 				}
 			//	others
 				else
