@@ -84,15 +84,13 @@
 			for (var i=0; i < param.length; i++)
 			{
 				var name;
-				console.log($field)
-				console.log($field.data('name'))
-				//	field selectors
+			//	field selectors
 				if (param[i]['name'].indexOf("[") != -1)
 				{
 					var d = param[i]['name'].match(/([a-zA-Z_0-9\-]*)\[([a-zA-Z_0-9\-]*)\]/);
 					name = $field.data('name')+'[param]['+ d[1] +']['+ d[2] +']';
 				}
-				// others
+			//	others
 				else
 				{
 					name = $field.data('name')+'[param]['+ param[i]['name'] +']';

@@ -1,10 +1,10 @@
 <?php
 /**
- * Classe de manipulation des répertoires
+ * Directory handling class
  * 
- * Pour créer, manipuler, déplacer, supprimer les répertoires
  * <pre>
- * $dir = new dir(directory);
+ * // Get the content of a directory
+ * $dir = new dir('/path/to/dir');
  * $dir->get();
  * </pre>
  * 
@@ -21,9 +21,9 @@ class dir implements Iterator
 	public $data = array();
 
 /**
- * Crée un objet "répertoire" défini par son chemin
+ * Instantiate a directory defined by its root
  *
- * @param	string	le chemin du répertoire
+ * @param	string	The path to the directory
  * @access	public
  */	
 	public function __construct($root)
@@ -33,7 +33,7 @@ class dir implements Iterator
 	}
 	
 /**
- * Charger la clé (nom) du répertoire
+ * Change the key (the name) of the directory
  *
  * @access	private
  */	
@@ -43,9 +43,16 @@ class dir implements Iterator
 	}
 
 /**
- * Obtenir tout le contenu du répertoire
- *
- * @param	bool	true : charger tout les niveaux d'arborescence. false : charger le premier niveau d'arborescence. False par défaut.
+ * Get the content of a directory	
+ * <pre>
+ * // Get the content of a directory
+ * $dir = new dir('/path/to/dir');
+ * $dir->get();
+ * // Get the content of a directory and its subdirectories
+ * $dir = new dir('/path/to/dir');
+ * $dir->get(true);
+ * </pre>
+ * @param	bool	Retrieve sub directories to. Default: false
  * @return	array	The directory listing
  * @access	public
  */
@@ -84,6 +91,11 @@ class dir implements Iterator
 /**
  * Filter the listing of a directory using keywords
  *
+ * <pre>
+ * // Get the files in this directory having "blue" in their name
+ * $dir = new dir('/path/to/dir');
+ * $dir->get()->filter('blue');
+ * </pre>
  * @param	string	The filter
  * @return	array	The directory listing
  * @access	public
@@ -100,7 +112,11 @@ class dir implements Iterator
 	
 /**
  * Sort a directory listing by date
- *
+ * <pre>
+ * // Sort a directory listing by date
+ * $dir = new dir('/path/to/dir');
+ * $dir->get()->sortbydate();
+ * </pre>
  * @access	public
  */
 	public function sortbydate()
@@ -127,9 +143,13 @@ class dir implements Iterator
 	}
 	
 /**
- * Copier un répertoire et son contenu
- *
- * @param	string	le chemin de destination
+ * Copy a directory and its content
+ * <pre>
+ * // Copy a directory and its content
+ * $dir = new dir('/path/to/dir');
+ * $dir->get()->copy('/new/path/of/dir);
+ * </pre>
+ * @param	string	The destination path
  * @access	public
  */
 	public function copy($path)
@@ -147,8 +167,12 @@ class dir implements Iterator
 	}
 
 /**
- * Effacer un répertoire et son contenu
- *
+ * Permanently delete a directory and its content
+ * <pre>
+ * // Permanently delete a directory and its content
+ * $dir = new dir('/path/to/dir');
+ * $dir->get()->delete();
+ * </pre>
  * @access	public
  */
 	public function delete()
@@ -160,10 +184,15 @@ class dir implements Iterator
 		}
 		rmdir($this->root);
 	}
+	
 /**
- * Déplacer un répertoire et son contenu
- *
- * @param	string	le chemin de destination
+ * Move a directory and its content
+ * <pre>
+ * // Move a directory and its content
+ * $dir = new dir('/path/to/dir');
+ * $dir->get()->move('/path/of/dir/copy');
+ * </pre>
+ * @param	string	The destination path
  * @access	public
  */
 	public function move($path)
@@ -176,8 +205,12 @@ class dir implements Iterator
 	}
 
 /**
- * Vérifier l'existence d'un répertoire
- *
+ * Checks if directory exists
+ * <pre>
+ * // Check if directory exists
+ * $dir = new dir('/path/to/dir');
+ * if ($dir->exists()) echo 'I exist!';
+ * </pre>
  * @access	public
  */
 	public function exists()
@@ -186,9 +219,13 @@ class dir implements Iterator
 	}
 	
 /**
- * Obtenir le chemin d'un répertoire
- *
- * @return	string	le chemin du répertoire
+ * Get the root of a directory
+ * <pre>
+ * // Get the root of a directory
+ * $dir = new dir('/path/to/dir');
+ * echo $dir->get_root();
+ * </pre>
+ * @return	string	The root of a directory
  * @access	public
  */
 	public function get_root()
@@ -197,15 +234,20 @@ class dir implements Iterator
 	}
 
 /**
- * Obtenir le nom du répertoire
- *
- * @return	string	le nom du répertoire
+ * Get the name of the directory
+ * <pre>
+ * // Get the name of the directory
+ * $dir = new dir('/path/to/dir');
+ * echo $dir->get_key();
+ * </pre>
+ * @return	string	The name of the directory
  * @access	public
  */
 	public function get_key()
 	{
 		return $this->key;
 	}
+
 //	Iterator
 	function rewind()
 	{

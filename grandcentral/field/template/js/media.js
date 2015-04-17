@@ -36,7 +36,7 @@
 			var i = 0;
 			$(this).closest('.data').find('li').each(function()
 			{
-				console.log($(this).html().replace(/\[\]/g, '['+i+']'));
+			//	console.log($(this).html().replace(/\[\]/g, '['+i+']'));
 				$(this).html($(this).html().replace(/\[\]/g, '['+i+']'));
 				i++;
 			});
