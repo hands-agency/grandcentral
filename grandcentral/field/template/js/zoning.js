@@ -7,28 +7,58 @@ $(document).ready(function ()
 	$('[data-type="zoning"]').multipleselect(
 	{		
 		app:"field",
-		template:"/zoning.available"
+		template:"/zoning.available.section"
 	}, {
 	//	On Receive
 		receive:function(item)
 		{
+		/* Only for new sections
 		//	Some vars
-			app = item.data('app');
+			nickname = item.data('item').split('_');
+			id = nickname[1];
 			zone = item.closest('[data-zone]').data('zone');
 			
 		//	Make it visible
 			item.addClass('focus');
 			
-		//	Create a new section
+		//	Configure the section
 			openContext(
 			{
 				app: 'content',
 				template: '/edit/edit',
-				mode: 'context',
-				_GET:{item:'section',fill:{app:{app:app},zone:zone}}
+				greenbutton:['savecontext_zoning'],
+			//	_GET:{item:'section',fill:{app:{app:app},zone:zone}}
+				_GET:{item:'section',id:id}
 			});
+		*/
 		}
 	});
+
+/*********************************************************************************************
+/**	* Add a method to the greenbutton plugin
+* 	* @author	@mvdandrieux
+**#******************************************************************************************/
+	$('#greenbutton').data('greenbutton').savecontext_zoning = function()
+	{
+	//	Save context and call back
+		$('#greenbutton').data('greenbutton').savecontext(null, function()
+		{
+		//	Refresh the section
+			$section = $('[data-type="zoning"] .focus');
+			$section.removeClass('focus');
+			id = $('.adminContext [data-key="id"] input').val();
+			title = $('.adminContext [data-key="title"] input').val();
+			app = $('.adminContext [data-key="app"] select').val();
+			url = ADMIN_URL+'/iframe?section=section_'+id+'&page=page_'+_GET['id'];
+			
+			$section.find('iframe').attr('src', url);
+			$section.find('.title span').html('<span class="app">'+app+'</span>'+title);
+			$section.find('input[type="hidden"]').val('section_'+id);
+			
+		//	Close context
+			closeContext('/edit/edit');
+		});
+	}
 
 /*********************************************************************************************
 /**	* Edit section
@@ -40,13 +70,16 @@ $(document).ready(function ()
 		section = $(this).parent().find('input[type="hidden"]').val();
 		item = section.split('_')[0];
 		id = section.split('_')[1];
+		
+	//	Make it visible
+		$(this).parents('li').addClass('focus');
 	
 	//	Open context
 		openContext(
 		{
 			app: 'content',
 			template: '/edit/edit',
-			mode: 'context',
+			greenbutton:['savecontext_zoning'],
 			_GET:{item:item,id:id}
 		});
 		return false;

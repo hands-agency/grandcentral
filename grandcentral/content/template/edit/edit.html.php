@@ -1,9 +1,12 @@
 <?= $form; ?>
-<?php if ($mode == 'context'): ?>
+
+<?php if (isset($_POST['greenbutton'])): ?>
 <ul class="greenbutton-choices">
-	<li class="title"><span>save</span></li>
+	<li class="title"><span>Done</span></li>
+	<?php foreach ($greenbuttons as $greenbutton): ?>	
 	<li>
-		<a data-action="save_list" class="title">Done</a>
+		<a data-action="<?=$greenbutton['key']?>" class="title"><?=$greenbutton['title']?></a>
 	</li>
+	<?php endforeach ?>
 </ul>
 <?php endif ?>

@@ -57,54 +57,71 @@ header .options #refine input
 {
 /*	display:none; */
 }
-.optionsList ul
+.optionsList>li
 {
-	float:left;
-	min-width:150px;
-	margin-right:20px;
+	display:inline-block;
+	min-width:175px;
+	padding:0 10px;
+	vertical-align:top;
+}
+.optionsList li ul
+{
 	max-height:250px;
 	overflow:auto;
 }
-.optionsList ul li
+.optionsList li ul li
 {
 	padding:5px 10px;
 	border-bottom:1px solid #666;
+	border-radius:2px;
 }
-.optionsList ul li[data-value]
+.optionsList li ul li[data-value]
 {
 	cursor:pointer;
 }
-.optionsList ul li.legend
+.optionsList li ul li.legend
 {
 	font-family:'ProximaNova-Bold';
 	font-size:13px;
+	border:none;
+	padding-bottom:20px;
 	text-transform:uppercase;
-	border-bottom:1px solid #ccc;
 	color:#F2F2F2;
+	position:relative;
 }
-.optionsList ul li .title
+.optionsList li ul li.legend:after
+{
+	content:"⇣";
+	position:absolute;
+	bottom:0px;
+	left:50%;
+	margin-left:-10px;
+	width:20px;
+	color:#999;
+}
+.optionsList li ul li .title
 {
 	font-family:'ProximaNova-Regular';
-	font-size:11px;
+	font-size:12px;
 	color:#ccc;
 }
-.optionsList ul li:hover .title
+.optionsList li ul li:hover .title
 {
 	color:#419BF9;
 }
-.optionsList ul li.on
+.optionsList li ul li.on
 {
 	background:#419BF9;
 }
-.optionsList ul li.on .title
+.optionsList li ul li.on .title
 {
 	color:#fff;
 }
-.optionsList ul li .descr
+.optionsList li ul li .descr
 {
 	display:none;
 }
-.optionsList ul:first-child
+.optionsList li ul:first-child
 {
 }
 

@@ -114,6 +114,8 @@ class appApi extends _apps
 		curl_setopt($curl, CURLOPT_URL, $url);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($curl, CURLOPT_COOKIE, $strCookie);
+		/* Force pass user-agent: http://stackoverflow.com/questions/8194795/the-curl-user-agent */
+		curl_setopt($curl, CURLOPT_USERAGENT,$_SERVER['HTTP_USER_AGENT']);
 
 	    $result = curl_exec($curl);
 

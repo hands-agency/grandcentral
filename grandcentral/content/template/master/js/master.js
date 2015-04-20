@@ -400,7 +400,6 @@
 			if ((typeof(callback) != 'undefined') && (typeof(callback) == 'function')) callback.call(this);
 		});
 	//	Give type and label
-		console.log(type);
 		$('#alert').attr('class', type);
 		$('#alert .response').html(label);
 	}

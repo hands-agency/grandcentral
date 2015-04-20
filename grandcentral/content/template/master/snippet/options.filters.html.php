@@ -30,5 +30,4 @@
 		</ul>
 	</li>
 	<?php endforeach; ?>
-	<li class="clear"><!-- Clearing floats --></li>
 </ul>

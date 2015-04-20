@@ -366,7 +366,7 @@ abstract class _apps
  *
  * <pre>
  * // Bind some jQuery code to the script zone
- * $_APP->bind_code('script', '<script type="text/javascript" charset="utf-8">alert('hello')</script>');	
+ * $_APP->bind_code('script', 'console.log("Hi there");');	
  * </pre>
  *
  * @param	string	the zone name where you want to bind the code (ex: content)

@@ -4,7 +4,7 @@
 </label>
 <div class="wrapper">
 	<div class="field">
-		<input  type="hidden" name="<?= $_FIELD->get_name(); ?>" <?php if ($_FIELD->is_disabled()): ?>disabled="disabled"<?php endif ?>value="">
+		<input  type="hidden" name="<?= $_FIELD->get_name(); ?>" <?php if ($_FIELD->is_disabled()): ?>disabled="disabled" <?php endif ?>value="">
 		<div class="selected">
 			<ol data-nodata="<?= cst('MULTIPLESELECT_SELECTED_NODATA');?>"><?php foreach ($selected as $li): ?>
 				<li>
