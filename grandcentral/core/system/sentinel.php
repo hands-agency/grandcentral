@@ -29,7 +29,7 @@ class sentinel
  * @param	string  $sample the sample data
  * @author	mvd@cafecentral.fr
  * @return	array	all of the exciting sample options
- * @access	public
+ * @access	private
  */
 	private function __construct()
 	{
@@ -228,18 +228,17 @@ class sentinel
 	{
 		
 	//	Display varies depending on content type
-	//	$contentType = master::get_content_type();
-		$contentType = 'html';
+		$contentType = class_exists('master', false) ? master::get_content_type() : '';
 		
 		switch ($contentType)
 		{
-		//	Json
+			//	Json
 			case 'json':
-				echo $flag.': '.$title.' ('.$descr.')';
+				echo $flag.": ".$title."\n(".print_r($descr, true).")";
 				break;
 		
-		//	HTML & more
-			default:
+			//	HTML & more
+			case 'html':
 			//	A little bit of fancy styling
 				if (!self::$debugcss)
 				{
@@ -399,6 +398,10 @@ class sentinel
 					<div class="gc-sentinel-title">'.$title.'</div>
 					<div class="gc-sentinel-descr">'.print_r($descr, true).'</div>
 				</div>';
+				break;
+			//	Default
+			default:
+				echo $flag.': '.$title.' ('.$descr.')';
 				break;
 		}
 		

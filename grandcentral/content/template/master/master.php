@@ -41,9 +41,6 @@
 	$sections = $_PAGE['section']->unfold();
 	$sectionTrayWidth = ($sections->count * 100).'%';
 	$sectionWidth = (100 / $sections->count).'%';
-	
-//	Update all structures
-//	foreach (i('item', all, 'site') as $s) $s->save();
 
 /********************************************************************************************/
 //	General binding of scripts & css files

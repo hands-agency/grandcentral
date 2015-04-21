@@ -27,9 +27,21 @@
 //	Item
 	$handled_item = (isset($_GET['item'])) ? $_GET['item'] : null;
 	$handled_id = (isset($_GET['id'])) ? $_GET['id'] : null;
-//	Mode
-	$mode = (isset($_POST['mode'])) ? $_POST['mode'] : null;
 	
+/********************************************************************************************/
+//	Some greenbuttons?
+/********************************************************************************************/
+	if (isset($_POST['greenbutton']))
+	{
+	//	Bind the style sheet
+		$_APP->bind_css('master/snippet/greenbutton/css/greenbutton.context.css');
+	//	Get the greenbuttons
+		$greenbuttons = i('greenbutton', array('key' => $_POST['greenbutton']), 'admin');
+	}
+	
+/********************************************************************************************/
+//	Let's get to work
+/********************************************************************************************/
 //	Fetch item
 	$item = i($handled_item, null, $handled_env);
 	if ($handled_item && $handled_id)
@@ -69,7 +81,7 @@
 		switch ($handled_item)
 		{
 			case 'page':
-				$skip = array('child');
+				$skip = array('child', 'section');
 				// $skip = null;
 				break;
 			default:

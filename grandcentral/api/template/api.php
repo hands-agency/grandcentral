@@ -11,9 +11,16 @@
  * </pre>
  *
  * @author		Michaël V. Dandrieux <mvd@eranos.fr>
- * @copyright	Copyright ©2014 Eranos
+ * @copyright	Copyright ©2015 Hands
  * @license		http://grandcentral.fr/license MIT License
  * @access		public
  * @link		http://grandcentral.fr
  */
+/********************************************************************************************/
+//	Some security
+/********************************************************************************************/
+	if (!$_SESSION['user']->is_admin()) trigger_error('Sorry, admin only', E_USER_ERROR);
+
+//	Debug
+//	sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $_PARAM['api']);
 ?>

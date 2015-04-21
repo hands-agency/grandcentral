@@ -87,17 +87,9 @@
 					}
 		    	}
 			});
-						
+			
 		//	Load the available choices
-			$element.find('.available ul.choices').ajx(options,
-			{
-			//	Callback
-				done:function()
-				{
-					field = $(this).closest('li[data-type]');
-					plugin.resort(field);
-				},
-			});
+			plugin.loadChoices();
 
 		//	Delete a selected
 			$element.on('click', '.selected li .delete', function()
@@ -122,16 +114,67 @@
 				done:function()
 				{
 					field = $(this).closest('li[data-type]');
-					plugin.resort(field)
+					plugin.resort(field);
+				},
+			});
+
+		//	Add an item on the fly
+			$element.on('click', '.available li.add', function()
+			{
+			//	Some vars
+				$available = $(this).closest('.available');
+				data = $available.data('values');
+			
+			//	Make it visible
+				$available.addClass('focus');
+			
+			//	Configure the item
+				openContext(
+				{
+					app: 'content',
+					template: '/edit/edit',
+					greenbutton:['savecontext_multipleselect'],
+					_GET:data[0]
+				});
+			});
+			
+		//	Add a method to the greenbutton plugin
+			$('#greenbutton').data('greenbutton').savecontext_multipleselect = function()
+			{
+			//	Save context and call back
+				$('#greenbutton').data('greenbutton').savecontext(null, function()
+				{
+				//	Refresh the multiple select
+					$multipleselect = $('[data-type="multipleselect"] .focus');
+					$multipleselect.removeClass('focus');
+				
+				//	Refresh field
+					plugin.loadChoices();
+			
+				//	Close context
+					closeContext('/edit/edit');
+				});
+			}
+		}
+		
+	//	Load the available choices
+		plugin.loadChoices = function()
+		{			
+			$element.find('.available ul.choices').ajx(options,
+			{
+			//	Callback
+				done:function()
+				{
+					field = $(this).closest('li[data-type]');
+					plugin.resort(field);
 				},
 			});
 		}
-
 	
 	//	Make the available choices draggable and connected to the sortable
 		plugin.resort = function(field)
 		{
-			field.find('.available ul li').draggable(
+			field.find('.available ul li:not(.add)').draggable(
 			{
 				connectToSortable:field.find('.selected ol'),
 				helper:'clone',
@@ -145,8 +188,8 @@
 						height:$(this).height(),
 						width:$(this).width()
 					});
-				//	Hide available
-					$(this).hide();
+				//	Hide dragged available
+					$(this).hide('fast');
 				},
 				stop:function(event, ui)
 				{

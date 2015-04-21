@@ -45,7 +45,7 @@ class adminItemForm
 /**
  * Mettre en conformité le formulaire et la structure d'un item
  *
- * @access	public
+ * @access	private
  */
 	private function _conform_to_structure()
 	{
@@ -67,7 +67,7 @@ class adminItemForm
 /**
  * Mettre à jour le formulaire à partir des éléments de la structure
  *
- * @access	public
+ * @access	private
  */
 	private function _create_form()
 	{
@@ -85,7 +85,7 @@ class adminItemForm
 /**
  * Mettre à jour le formulaire à partir des éléments de la structure
  *
- * @access	public
+ * @access	private
  */
 	private function _update_form()
 	{
@@ -96,7 +96,7 @@ class adminItemForm
  * Déduire le type de champ à afficher en fonction d'un attribut de structure
  *
  * @param	array 	un attribut de structure
- * @access	public
+ * @access	private
  */
 	private function _attr_to_field($attr)
 	{
@@ -244,7 +244,7 @@ class adminItemForm
 /**
  * Peuplez les champs du formulaires avec les données de l'item
  *
- * @access	public
+ * @access	private
  */
 	private function _populate_with_item()
 	{

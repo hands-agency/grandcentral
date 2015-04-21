@@ -10,54 +10,33 @@
  * }
  * </pre>
  *
- * @author		Michaël V. Dandrieux <mvd@eranos.fr>
- * @copyright	Copyright ©2014 Eranos
+ * @author		Michaël V. Dandrieux <@mvdandrieux>
+ * @author		Sylvain Frigui <sf@hands.agency>
+ * @copyright	Copyright © 2004-2015, Hands
  * @license		http://grandcentral.fr/license MIT License
  * @access		public
  * @link		http://grandcentral.fr
  */
 /********************************************************************************************/
-//	TEMP
+//	Some vars
 /********************************************************************************************/
-	$method = $_SERVER['REQUEST_METHOD'];
-	$item = 'human';
-	$id = 1;
-	$attr = 'pref';
-	
+//	Handled env
+	$env = $_SESSION['pref']['handled_env'];
+//	The field name
+//	$name = $_POST['name'];
+	$name = $env.'_page';
+//	Refine values?
+	$p['title'] = (isset($_POST['q'])) ? '%'.$_POST['q'].'%' : null;
+	$p['order()'] = 'title ASC';
+
 /********************************************************************************************/
-//	Get to work
+//	Get and process from ajax
 /********************************************************************************************/
-	switch ($method)
+//	Get the available values
+	$sections = i('section', all);
+//	Refine
+	if (isset($_POST['q']))
 	{
-	//	GET
-		case 'GET':
-			$i = i($item, $id);
-			break;
-			
-	//	POST
-		case 'POST':
-			$i = i($item);
-			foreach ($attrs as $key => $value)
-			{
-				$i[$key] = $value;
-			}
-			$i->save();
-			break;
-
-	//	PUT
-		case 'PUT':
-			# code...
-			break;
-
-	//	PATCH
-		case 'PATCH	':
-			# code...
-			break;
-	
-	//	DELETE
-		case 'DELETE':
-			# code...
-			break;
+		echo 'TODO refined with '.$_POST['q'];
 	}
-	echo $i->json();
 ?>

@@ -121,6 +121,23 @@ li.ui-draggable-dragging *
 {
 	border-bottom:1px solid #ddd;
 	display:block;
+	text-align:center;
+	line-height:60px;
+	font-size:32px;
+	color:#ccc;
+}
+
+#mediaLibrary .files li a:not(.image) .preview
+{
+	height:60px;
+	background:#F2F2F2;
+}
+#mediaLibrary .files li a .preview:before
+{
+	font-family: "feather";
+}
+#mediaLibrary .files li a.image .preview
+{
 	background: 
 		linear-gradient(115deg, transparent 75%, rgba(255,255,255,.8) 75%) 0 0,
 		linear-gradient(245deg, transparent 75%, rgba(255,255,255,.8) 75%) 0 0,
@@ -128,6 +145,18 @@ li.ui-draggable-dragging *
 		linear-gradient(245deg, transparent 75%, rgba(255,255,255,.8) 75%) 7px -15px,
 		#F2F2F2;
 	background-size: 15px 30px
+}
+#mediaLibrary .files li a.video .preview:before
+{
+	content:'';
+}
+#mediaLibrary .files li a.application .preview:before
+{
+	content:'';
+}
+#mediaLibrary .files li a.text .preview:before
+{
+	content:'';
 }
 #mediaLibrary .files li .preview img
 {

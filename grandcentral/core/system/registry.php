@@ -1,11 +1,14 @@
 <?php
 /**
  * The registry.
- * A way to store global data. Lots of useful tool too.
+ * A way to store global data. Lots of useful tools too.
  * 
  * <pre>
+ * // Get the loaded apps
  *	$apps = registry::get(registry::app_index);
+ * // Get the loaded classes
  *	$classes = registry::get(registry::class_index);
+ * // Get the loaded constants
  * 	$constants = registry::get_constants();
  * </pre>
  * 
@@ -195,7 +198,7 @@ class registry
 			$site['version'] = $v['site'];
 			$datas['site'] = $site;
 			//	version
-			$datas['version'] = $datas[env];
+			$datas['version'] = $datas[env]['version'];
 			// registre
 			self::set(self::current_index, $datas);
 			//	page

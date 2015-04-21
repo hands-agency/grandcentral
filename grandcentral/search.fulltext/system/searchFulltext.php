@@ -1,6 +1,6 @@
 <?php
 /**
- * String formated attributes handling class
+ * Search through the full text of a database
  *
  * @package 	Core
  * @author		Sylvain Frigui <sf@hands.agency>

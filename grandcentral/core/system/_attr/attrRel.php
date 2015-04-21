@@ -170,7 +170,7 @@ class attrRel extends _attrs implements ArrayAccess, Iterator
  */
 	public function unfold($params = null)
 	{
-		$bunch = new bunch(null, null, $this->params['env']);
+		$bunch = new bunch(null, null, isset($this->params['env']) ? $this->params['env'] : env);
 		
 		$bunch->get_by_nickname($this->data, $params);
 		

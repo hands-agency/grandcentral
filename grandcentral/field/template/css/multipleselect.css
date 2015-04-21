@@ -21,7 +21,7 @@ ol>li[data-type="multipleselect"] .field .available
 /********************************************************************************************/
 /* Available & selected
 /********************************************************************************************/
-ol>li[data-type="multipleselect"] .field li:not(.nodata)
+ol>li[data-type="multipleselect"] .field li:not(.add)
 {
 	border:1px solid #dedede;
 	background:#fff;
@@ -37,7 +37,7 @@ ol>li[data-type="multipleselect"] .field li:not(.nodata)
 	-webkit-user-select:none;
 	position:relative;
 }
-ol>li[data-type="multipleselect"] .field li:not(.nodata):hover
+ol>li[data-type="multipleselect"] .field li:not(.add):hover
 {
 	border-color: #419BF9;
 	-webkit-box-shadow: 0 0 4px #419BF9;
@@ -67,6 +67,23 @@ ol>li[data-type="multipleselect"] .field li .delete
 {
 	top:1px;
 	right:0px;
+}
+
+/* Add */
+ol>li[data-type="multipleselect"] .field li.add
+{
+	text-align:center;
+	cursor:pointer;
+}
+ol>li[data-type="multipleselect"] .field li.add:after
+{
+	content:"+";
+	font-size:30px;
+	color:#666;
+}
+ol>li[data-type="multipleselect"] .field li:hover.add:after
+{
+	color:#419BF9;
 }
 
 /********************************************************************************************/
@@ -109,12 +126,18 @@ ol>li[data-type="multipleselect"] .field .available
 	float:right;
 	background:#F3F3F3;
 }
+ol>li[data-type="multipleselect"] .field .available.focus
+{
+	border-color: #ffc000;
+	-webkit-box-shadow: 0 0 4px #ffc000;
+	box-shadow: 0 0 4px #ffc000;
+}
 ol>li[data-type="multipleselect"] .field .available ul
 {
 	overflow:auto;
 	max-height:250px;
 }
-ol>li[data-type="multipleselect"] .field .available ul li
+ol>li[data-type="multipleselect"] .field .available ul li:not(.add)
 {
 	cursor:move;
 }

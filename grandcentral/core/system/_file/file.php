@@ -1,10 +1,9 @@
 <?php
 /**
- * Classe de manipulation des images
+ * File handling class
  * 
- * http://stackoverflow.com/questions/11061355/security-threats-with-uploads
- * 
- * @package		file
+ * Check http://stackoverflow.com/questions/11061355/security-threats-with-uploads
+ *
  * @author		Sylvain Frigui <sf@hands.agency>
  * @access		public
  * @link		http://grandcentral.fr
@@ -64,9 +63,9 @@ class file
 	}
 
 /**
- * Remplacer l'intégralité du contenu d'un fichier
+ * Replace the content of a file with data
  *
- * @param	string	le contenu à ajouter
+ * @param	string	The data to use
  * @access	public
  */
 	public function set($data)
@@ -77,7 +76,7 @@ class file
 /**
  * Sauvegarder un fichier
  *
- * @param	bool	créer le répertoire du fichier si celui-ci n'existe pas. "false" par défaut.
+ * @param	bool	Create the directory if it doesn't exist. Default: "false".
  * @access	public
  */
 	public function save($mkdir = false)
@@ -87,9 +86,9 @@ class file
 	}
 	
 /**
- * Copier un fichier
+ * Copy a file
  *
- * @param	string	le chemin de destination
+ * @param	string	The destination path
  * @access	public
  */
 	public function copy($dir, $key = null)
@@ -101,9 +100,9 @@ class file
 	}
 
 /**
- * Déplacer un fichier
+ * Move the file
  *
- * @param	string	le chemin de destination
+ * @param	string	The destination path
  * @access	public
  */
 	public function move($path)
@@ -114,7 +113,7 @@ class file
 	}
 
 /**
- * Supprimer un fichier
+ * Delete the file
  *
  * @access	public
  */
@@ -124,10 +123,10 @@ class file
 	}
 
 /**
- * Vérifier l'existence du fichier
+ * Check if a file exists
  *
  * @return	bool	true ou false
- * @access	private
+ * @access	public
  */
 	public function exists()
 	{
@@ -135,9 +134,9 @@ class file
 	}
 	
 /**
- * Ajouter du contenu au fichier
+ * Append content to the file
  *
- * @param	string	le contenu à ajouter
+ * @param	string	The content to append
  * @access	public
  */
 	public function combine_string($data)
@@ -146,9 +145,9 @@ class file
 	}
 	
 /**
- * Ajouter le contenu d'un autre fichier au fichier
+ * Append content of another file to the file
  *
- * @param	string	le chemin vers le fichier
+ * @param	string	The path to the other file
  * @access	public
  */
 	public function combine_file($path)
@@ -158,10 +157,10 @@ class file
 	}
 	
 /**
- * Obtenir le chemin du répertoire du fichier
+ * Get the file directory
  *
- * @return	string	le chmin du répertoire root du fichier
- * @access	private
+ * @access	public
+ * @return	string	The file directory
  */
 	public function get_dir()
 	{
@@ -169,10 +168,10 @@ class file
 	}
 	
 /**
- * Obtenir le chemin du répertoire du fichier
+ * Get the file root
  *
- * @return	string	le chmin du répertoire root du fichier
- * @access	private
+ * @access	public
+ * @return	string	The file root
  */
 	public function get_root()
 	{
@@ -180,11 +179,10 @@ class file
 	}
 	
 /**
- * Obtenir l'url web du fichier
+ * Get the file URL
  *
- * @param	bool	absolute link (default false)
- * @return	string	l'url du fichier
- * @access	private
+ * @access	public
+ * @return	string	The file URL
  */
 	public function get_url()
 	{
@@ -193,10 +191,10 @@ class file
 	}
 	
 /**
- * Obtenir le nom du fichier
+ * Get the file key
  *
- * @return	string	le nom du fichier
- * @access	private
+ * @access	public
+ * @return	string	The file key
  */
 	public function get_key()
 	{
@@ -204,10 +202,10 @@ class file
 	}
 	
 /**
- * Obtenir le nom du fichier
+ * Get the file name
  *
- * @return	string	le nom du fichier
- * @access	private
+ * @access	public
+ * @return	string	The file name
  */
 	public function get_name()
 	{
@@ -217,8 +215,8 @@ class file
 /**
  * Get the file size
  *
- * @return	string	le nom du fichier
- * @access	private
+ * @access	public
+ * @return	string	The file size
  */
 	public function get_size($format = true)
 	{
@@ -240,8 +238,8 @@ class file
 /**
  * Get the file extension
  *
- * @return	string	le nom du fichier
- * @access	private
+ * @access	public
+ * @return	string	The file extension
  */
 	public function get_extension()
 	{
@@ -255,8 +253,8 @@ class file
 /**
  * Get the file MIME data
  *
- * @return	string	le nom du fichier
- * @access	private
+ * @access	public
+ * @return	string	The file MIME data
  */
 	public function get_mime()
 	{
@@ -271,8 +269,8 @@ class file
 /**
  * Get the file MIME type
  *
- * @return	string	le nom du fichier
- * @access	private
+ * @access	public
+ * @return	string	The file MIME type
  */
 	public function get_mimeType()
 	{
@@ -286,8 +284,8 @@ class file
 /**
  * Get the file MIME subtype
  *
- * @return	string	le nom du fichier
- * @access	private
+ * @access	public
+ * @return	string	The file MIME subtype
  */
 	public function get_mimeSubtype()
 	{
@@ -299,10 +297,10 @@ class file
 	}
 	
 /**
- * Obtenir le nom du fichier
+ * Get the file creation date
  *
- * @return	string	le nom du fichier
- * @access	private
+ * @access	public
+ * @return	string	The file creation date
  */
 	public function get_created()
 	{
@@ -314,10 +312,10 @@ class file
 	}
 	
 /**
- * Obtenir le nom du fichier
+ * Get the file last update
  *
- * @return	string	le nom du fichier
- * @access	private
+ * @access	public
+ * @return	string	The file last update
  */
 	public function get_updated()
 	{
@@ -329,10 +327,9 @@ class file
 	}
 	
 /**
- * Display a file
+ * Print a file
  *
- * @return	string	le nom du fichier
- * @access	private
+ * @access	public
  */
 	public function __tostring()
 	{

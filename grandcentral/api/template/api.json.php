@@ -1,1 +1,1 @@
-<!-- ZONE:content -->
+<?=$_PARAM['api']['result']?>

@@ -20,6 +20,11 @@
 /********************************************************************************************/
 //	Some binds
 /********************************************************************************************/
+	$_APP->bind_script('field/lib/js/underscore.js');
+	$_APP->bind_script('field/lib/js/eventable.js');
+	$_APP->bind_script('field/lib/js/sir-trevor.min.js');
+	$_APP->bind_css('field/lib/css/sir-trevor.css');
+	$_APP->bind_css('field/lib/css/sir-trevor-icons.css');
 //	CSS & Scripts
 	$_APP->bind_script('field/custom-blocks/break.js');
 	$_APP->bind_script('field/custom-blocks/video.js');

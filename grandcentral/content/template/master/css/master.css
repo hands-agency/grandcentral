@@ -141,6 +141,17 @@ a:visited
 .warning:before 	{border-top-color:#ffc000 !important;}
 .alert				{background-color:#FF0000 !important;}
 .alert:before 		{border-top-color:#FF0000 !important;}
+.ui-draggable-dragging
+{
+	border-color: #419BF9;
+	-webkit-box-shadow: 0 0 4px #419BF9;
+	box-shadow: 0 0 4px #419BF9;
+    -webkit-transform: rotate(-2deg);
+	-moz-transform: rotate(-2deg);
+	-ms-transform: rotate(-2deg);
+	-o-transform: rotate(-2deg);
+	transform: rotate(-2deg);
+}
 
 /********************************************************************************************/
 /*////////////////////////////////////////////////////////////////////////////////////////////
@@ -845,7 +856,20 @@ ol .placeholder
 #adminContent
 {
 	overflow:hidden; /* Prevent Horizontal scrolling */
-	padding-top:70px;
+}
+@media (min-width:480px) {
+    #adminContent {
+		padding-top:120px;
+    }
+}
+@media (min-width:768px) {
+    #adminContent {
+    }
+}
+@media (min-width:992px) {
+    #adminContent {
+		padding-top:70px;
+   	}
 }
 #adminContent>button.close
 {

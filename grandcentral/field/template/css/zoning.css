@@ -75,7 +75,7 @@ li[data-type="zoning"] .zoningselected .zones
 	box-sizing:border-box;
 	border:1px solid #ccc;
 	background:#fff;
-	padding:15px 10px 10px 10px;
+	padding:15px 10px 3px 10px;
 	position:relative;
 }
 li[data-type="zoning"] .zoningselected .zones .browserbar
@@ -164,7 +164,7 @@ li[data-type="zoning"] .zones .zone
 {
 	position:relative;
 	clear:both;
-	margin:0 0 5px 0;
+	margin:0 0 10px 0;
 }
 
 /* Zone title */
@@ -272,6 +272,12 @@ li[data-type="zoning"] .choices li .title>span
 	height:22px;
 	display:inline-block;
 }
+li[data-type="zoning"] .zones li .title span.app,
+li[data-type="zoning"] .choices li .title span.app
+{
+	margin:0 5px 0 0;
+	font-family:"ProximaNova-Thin";
+}
 li[data-type="zoning"] .zones li .preview
 {
 	min-height:40px;
@@ -335,7 +341,7 @@ li[data-type="zoning"] .selected ol
 {
 	padding:5px 10px;
 	margin:0 3px;
-	background:#F2F2F2;
+	border:1px dashed #ddd;
 }
 li[data-type="zoning"] .selected li
 {
@@ -349,7 +355,6 @@ li[data-type="zoning"] .selected ol li:hover .delete
 li[data-type="zoning"] .selected ol li .title
 {
 	cursor:pointer;
-	display:none;
 }
 li[data-type="zoning"] .selected ol li.focus .title,
 li[data-type="zoning"] .selected ol li:hover .title
@@ -369,13 +374,13 @@ li[data-type="zoning"] .selected ol li .config
 }
 
 /* Nodata */
-ol>li[data-type="zoning"] .selected ol
+ol>li[data-type="zoning"] .selected ol:empty
 {
 
 }
 ol>li[data-type="zoning"] .selected ol:empty:before
 {
-	line-height:30px;
+	line-height:50px;
 	color:#999;
 }
 
@@ -419,6 +424,10 @@ li[data-type="zoning"] .available ul
 }
 li[data-type="zoning"] .available li
 {
-	height:40px;
+	height:50px;
+}
+li[data-type="zoning"] .available li .title
+{
+	height:100%;
 	cursor:move;
 }

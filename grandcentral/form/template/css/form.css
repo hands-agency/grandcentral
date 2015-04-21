@@ -164,7 +164,7 @@ section[data-template="/edit/edit"] fieldset ol>li.controlling
 }
 	
 /* All controls */
-section[data-template="/edit/edit"] fieldset ol>li [data-control]
+form fieldset ol>li [data-control]
 {
 	position:absolute;
 	right:100px;
@@ -187,7 +187,7 @@ section[data-template="/edit/edit"] fieldset ol>li.controlling [data-control]
 	opacity:1;
 	right:-50px;
 }
-section[data-template="/edit/edit"] fieldset ol>li [data-control]:after
+form fieldset ol>li [data-control]:after
 {
 	content:'';
 	width:0;
@@ -310,7 +310,7 @@ form>fieldset .editWrapper>ol>li
 	display:none;
 }
 
-
+/*
 form>fieldset .editable label,
 form>fieldset .editing label
 {
@@ -321,6 +321,11 @@ form>fieldset .editing label
 	border:none !important;
 	margin:0 !important;
 	padding:15px 0 0 0 !important;
+}*/
+
+form>fieldset .editable .wrapper
+{
+	opacity:0.1;
 }
 
 /********************************************************************************************/
@@ -329,9 +334,7 @@ form>fieldset .editing label
 .unlocked form>fieldset>ol>li
 {
 	background:rgba(255, 255, 255, 0.2) !important;
-	border:1px solid #fff !important;
-	margin-left:50px;
-	margin-right:50px;
+	border-color:1px solid #fff !important;
 }
 .unlocked form>fieldset ol>li>label
 {

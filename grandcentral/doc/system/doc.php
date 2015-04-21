@@ -155,7 +155,7 @@ class doc
 			}
 			else
 			{
-				$data['descr'] .= $line.PHP_EOL;
+				$data['descr'] .= str_replace(array('&lt;pre&gt;', '&lt;/pre&gt;'), array('<pre>', '</pre>'), htmlspecialchars($line)).PHP_EOL;
 				// $data['descr'] .= $line;
 			}
 		}

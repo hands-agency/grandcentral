@@ -149,6 +149,14 @@ abstract class _attrs
 		return null;
 	}
 /**
+ * Return the attr data json
+ * @access	public
+ */
+	public function json()
+	{
+		return json_encode($this->data);
+	}
+/**
  * Get the properties of an attributes
  *
  * @return	array	an array of attribute properties
