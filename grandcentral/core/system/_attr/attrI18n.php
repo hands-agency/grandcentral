@@ -19,7 +19,7 @@ class attrI18n extends attrArray
  */
 	public function is_empty()
 	{
-		return empty($this->data[i($this->params['env'], current)['version']['lang']->get()]);
+		return empty($this->data[i('version', current)['lang']->get()]);
 	}
 /**
  * xxxx
