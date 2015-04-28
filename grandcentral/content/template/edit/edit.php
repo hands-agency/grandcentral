@@ -42,6 +42,13 @@
 /********************************************************************************************/
 //	Let's get to work
 /********************************************************************************************/
+//	Some override
+	if (isset($_PARAM['item']) && isset($_PARAM['id']))
+	{
+		$handled_item = $_PARAM['item'];
+		$handled_id = $_PARAM['id'];
+	}
+	
 //	Fetch item
 	$item = i($handled_item, null, $handled_env);
 	if ($handled_item && $handled_id)

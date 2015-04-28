@@ -39,12 +39,6 @@
 	$back = null;
 	$link = null;
 	
-	if (i('page', current)['key'] == 'home')
-	{
-		$invite = '<div class="clapalong">Clap along if you feel like <span>adding</span> a <span>page</span> called <span>something new</span>.</div>';
-	}
-	else $invite = null;
-	
 /********************************************************************************************/
 //	Remove sections on the fly
 /********************************************************************************************/

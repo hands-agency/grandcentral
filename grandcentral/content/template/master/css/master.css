@@ -819,12 +819,12 @@ ol .placeholder
 	height:100%;
 	top:0;
 	left:0;
-	background: -moz-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.85) 100%); /* FF3.6+ */
+	background: -moz-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.95) 100%); /* FF3.6+ */
 	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(0,0,0,0.2)), color-stop(100%,rgba(0,0,0,0.85))); /* Chrome,Safari4+ */
-	background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.85) 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.85) 100%); /* Opera 12+ */
-	background: -ms-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.85) 100%); /* IE10+ */
-	background: radial-gradient(ellipse at center,  rgba(0,0,0,0.4) 0%,rgba(0,0,0,9) 100%); /* W3C */
+	background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.95) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.95) 100%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.95) 100%); /* IE10+ */
+	background: radial-gradient(ellipse at center,  rgba(0,0,0,0.6) 0%,rgba(0,0,0,95) 100%); /* W3C */
 	-webkit-transition: all .15s ease-out; 
 	-moz-transition: all .15s ease-out; 
 	-o-transition: all .15s ease-out; 
@@ -1351,7 +1351,7 @@ body[data-env="admin"]:before
 	top:0;
 	width:100%;
 	z-index:10;
-	background-color:rgba(0, 0, 0, .2);
+	background-color:transparent;
 	-webkit-background-size: 40px 40px;
 	-moz-background-size: 40px 40px;
 	background-size: 40px 40px; /* Controls the size of the stripes */

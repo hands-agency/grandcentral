@@ -83,7 +83,7 @@
 						received = true;
 						
 					//	Execute callback (make sure the callback is a function)
-						if ((typeof(callbacks.receive) != 'undefined') && (typeof(callbacks.receive) == "function")) callbacks.receive.call(this, li);
+					//	if ((typeof(callbacks.receive) != 'undefined') && (typeof(callbacks.receive) == "function")) callbacks.receive.call(this, li);
 					}
 		    	}
 			});
