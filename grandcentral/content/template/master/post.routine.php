@@ -18,12 +18,25 @@
  * @link		http://grandcentral.fr
  */
 /********************************************************************************************/
-//	DEBUG
+//	Some debug
 /********************************************************************************************/
 //	sentinel::debug('Our post', $_POST);
+	
+/********************************************************************************************/
+//	Some functions
+/********************************************************************************************/
+//	function hack pour supprimer les quotes lorsque magic_quote_gpc est actif sur la machine
+	function stripslashes_deep($value)
+	{
+	    $value = is_array($value) ?
+                    array_map('stripslashes_deep', $value) :
+                    stripslashes($value);
+
+	    return $value;
+	}
 
 /********************************************************************************************/
-//	Go
+//	Let's get to work
 /********************************************************************************************/
 	if (!empty($_POST))
 	{
@@ -39,6 +52,8 @@
 		
 		if ($form->exists())
 		{
+		//	Are we going to the workflow ?
+			if (isset($_POST['workflow'])) $param['workflow'] = $_POST['workflow'];
 		//	altération du POST
 			$_POST = $_POST[$key[0]];
 		//	appel de la routine
@@ -50,15 +65,5 @@
 			trigger_error('Give me a form. Form "'.$key[0].'" does not exists', E_USER_ERROR);
 		}
 	
-	}
-	
-//	function hack pour supprimer les quotes lorsque magic_quote_gpc est actif sur la machine
-	function stripslashes_deep($value)
-	{
-	    $value = is_array($value) ?
-                    array_map('stripslashes_deep', $value) :
-                    stripslashes($value);
-
-	    return $value;
 	}
 ?>

@@ -105,7 +105,7 @@
 		}
 	//	Close the context & validate field
 		closeContext('/app.context');
-		$('#section_edit form').data('validate').field($li);
+		// $('#section_edit form').data('validate').field($li);
 	});
 	
 //	Open context when the app changes

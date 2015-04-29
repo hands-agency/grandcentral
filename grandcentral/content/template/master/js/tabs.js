@@ -81,7 +81,7 @@ $(document).ready(function ()
 /**	* On unlock
  	* @author	@mvdandrieux
 **#******************************************************************************************/
-	$(document).bind('unlock', function()
+/*	$(document).bind('unlock', function()
 	{
 		$('#tabs li:not(.on)').each(function()
 		{
@@ -97,19 +97,19 @@ $(document).ready(function ()
 					tab = $(this);
 				//	Our item's nickname
 					item = $(ui.draggable).data('item');
-				//	Change status
+				//	Change live status
 					$.ajx(
 					{
 						app: 'content',
-						template: '/master/status',
+						template: '/master/live',
 						mime:'json',
 						item:item,
-						status:tab.data('status'),
+						live:tab.data('live'),
 					}, {
 					//	Done
 						done:function()
 						{	
-						//	Confirm status change
+						//	Confirm live status change
 						//	tab.effect('bounce', {distance:'30', times:'2'}, 250);
 						//	Get rid of the item
 							$(ui.draggable).hide('drop', {direction:'down'}, function(){$(this).remove();});
@@ -123,4 +123,5 @@ $(document).ready(function ()
 			});
 		});
 	});
+	*/
 });

@@ -239,7 +239,7 @@ section[data-template="/tree/tree"] ol li .page .icon .title a
 }
 
 /* By status */
-section[data-template="/tree/tree"] ol li .page[data-status="asleep"] .icon
+section[data-template="/tree/tree"] ol li .page[data-live="false"] .icon
 {
 	transform:scale(0.8);
 	-moz-transform:scale(0.8);
@@ -287,8 +287,8 @@ section[data-template="/tree/tree"] ol li .page .icon .action a:hover
 {
 	color:#419BF9;
 }
-section[data-template="/tree/tree"] ol li .page[data-status="live"] .icon .action .live,
-section[data-template="/tree/tree"] ol li .page[data-status="asleep"] .icon .action .asleep
+section[data-template="/tree/tree"] ol li .page[data-live="true"] .icon .action .live,
+section[data-template="/tree/tree"] ol li .page[data-live="false"] .icon .action .asleep
 {
 	display:none;
 }

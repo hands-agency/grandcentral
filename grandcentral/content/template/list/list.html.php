@@ -18,7 +18,7 @@ $(document).ready(function()
 		{
 			app:'content',
 			template:'/list/list',
-			param:'<?=addslashes(json_encode($_PARAM))?>',
+			param:'<?=addslashes(json_encode($_PARAM["param"]))?>',
 			target:'#adminContent section.active',
 		});
 	}
@@ -29,7 +29,7 @@ $(document).ready(function()
 	{
 		app:'content',
 		template:'/list/list.lines',
-		param:'<?=addslashes(json_encode($_PARAM))?>',
+		param:'<?=addslashes(json_encode($_PARAM["param"]))?>',
 		limit:<?=$limit?>,
 		autoscroll:true
 	},

@@ -10,9 +10,14 @@
 		$const = strtoupper('TABS_'.$handled_item.'_'.$section['key']);
 		$title = (defined($const.'_TITLE')) ? constant($const.'_TITLE') : $section['title'];
 		$descr = (defined($const.'_DESCR')) ? constant($const.'_DESCR') : $section['descr'];
+		
+	//	Status?
+		if ($section['key']->get() == 'live')  $live = '1';
+		else if ($section['key']->get() == 'asleep') $live = '0';
+		else $live = null;
 	?>
-		<li title="<?=$section['descr']?>" data-status="<?=$section['key']?>">
-			<a href="<?='#'.$section['key']?>" data-section="<?=$section['key']?>" data-app="<?=$app['app']?>" data-template="<?=$app['template']?>" data-param='<?=json_encode($app['param'])?>'>
+		<li title="<?=$section['descr']?>" data-live="<?=$live?>">
+			<a href="<?='#'.$section['key']?>" data-section="<?=$section['key']?>" data-app="<?=$app['app']?>" data-template="<?=$app['template']?>" data-param='<?=json_encode($app['param']['param'])?>'>
 				<span class="title"><?=$title?></span>
 				<span class="descr"><?=$descr?></span>
 			</a>

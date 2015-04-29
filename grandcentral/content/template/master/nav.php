@@ -48,7 +48,7 @@
 //	Help list
 	$helps = i('page', array('key' => array('doc', 'lab'), 'order()' => 'inherit(key)'), 'admin');
 //	Logs list
-	$logs = i('page', array('key' => array('logout'), 'order()' => 'inherit(key)'), 'site');
+	$logs = i('page', array('key' => array('logout')), 'site');
 	
 //	List page
 	$listPage = i('page', 'list', 'admin');

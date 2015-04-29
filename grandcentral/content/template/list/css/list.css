@@ -17,8 +17,21 @@ section[data-template="/list/list"]>div>ol
 }
 section[data-template="/list/list"]>div>ol>li
 {
+	
 }
 
+/* Live ? */
+section[data-template="/list/list"]>div>ol>li[data-live="false"]
+{
+	transform:scale(0.8);
+	-moz-transform:scale(0.8);
+	-ms-transform:scale(0.8);
+	-webkit-transform:scale(0.8);
+	-o-transform:scale(0.8);
+	opacity:0.6;
+}
+
+/* Fields */
 section[data-template="/list/list"]>div>ol>li>.title
 {
 	font-family:"ProximaNova-Regular";

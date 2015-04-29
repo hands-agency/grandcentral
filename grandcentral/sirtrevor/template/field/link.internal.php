@@ -34,7 +34,7 @@
 	else
 	{
 		$p['limit()'] = 15;
-		$p['status'] = 'live';
+		$p['live'] = true;
 		$p['system'] = false;
 	}
 

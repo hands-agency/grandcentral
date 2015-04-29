@@ -50,7 +50,7 @@
 	<ul class="small">
 	<?php foreach ($logs as $log): ?>
 		<li>
-		<a href="<?=$listPage['url']->args(array('item' => $log['key']->get()))?>">
+		<a href="<?=$log['url']?>">
 			<span class="title"><?=$log['title']?></span>
 		</a>
 		</li>
@@ -73,7 +73,7 @@
 		</li>
 	<?php endforeach ?>
 		<li class="add">
-			<a href="<?=$editPage['url']->args(array('item' => $item['key']->get()))?>">
+			<a href="<?=$editPage['url']->args(array('item' => 'item'))?>">
 				<span class="icon"></span>
 				<span class="title">+</span>
 			</a>

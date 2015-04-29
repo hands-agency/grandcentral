@@ -8,7 +8,7 @@
 //	Save & format last Separator	
 	$lastSeparator = formatSeparator($item[$order]);
 ?>	
-<li data-item="<?=$item->get_nickname()?>">
+<li data-item="<?=$item->get_nickname()?>" data-live="<?=$item['live']?>">
 	<?php
 		if ($iconField)
 		{

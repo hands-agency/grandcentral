@@ -47,7 +47,7 @@
 		'tree' => array('page'),
 	);
 	$stripfrom['list'] = array(
-		'live' => array('page'),
+		'list' => array('page'),
 	);
 	
 //	Edit

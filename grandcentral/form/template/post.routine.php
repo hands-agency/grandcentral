@@ -21,6 +21,7 @@
 //	Some vars
 /********************************************************************************************/
 	$_FORM = $_PARAM['form'];
+	$_WORKFLOW = (isset($_PARAM['workflow'])) ? $_PARAM['workflow'] : null;
 
 /********************************************************************************************/
 //	Debug
@@ -56,7 +57,13 @@
 		}
 	}
 	// print'<pre>';print_r($i);print'</pre>';
-	$i->save();
+	
+//	Put the item in the workflow
+	$workflow = i('workflow', null, $env);
+	$workflow->grab($i, $_WORKFLOW);
+//	We save the item in the workflow, not the orginial item
+	$workflow->save();
+	
 //	Send back the id as a confirmation
 	echo $i['id'];
 ?>

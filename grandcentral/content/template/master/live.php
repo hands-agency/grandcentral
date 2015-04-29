@@ -18,14 +18,14 @@
  * @link		http://grandcentral.fr
  */
 /********************************************************************************************/
-//	Change the status of an item
+//	Change the live status of an item
 /********************************************************************************************/
 	if (isset($_POST['item']))
 	{
 	//	Some vars
 		$item = i($_POST['item'], null, $_SESSION['pref']['handled_env']);
-	//	Change status
-		$item['status'] = $_POST['status'];
+	//	Change live status
+		$item['live'] = $_POST['live'];
 		$item->save();
 		$return = 'ok';
 	}

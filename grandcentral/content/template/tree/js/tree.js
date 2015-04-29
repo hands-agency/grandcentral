@@ -700,25 +700,25 @@ $(function()
 		$item = $(this).closest('[data-item]');
 		item = $item.data('item');
 		$page = $item.find('.page');
-		status = $(this).attr('class');
+		live = $page.data('live');
 		
-	//	Change status
+	//	Change live status
 		$.ajx(
 		{
 			app: 'content',
-			template: '/master/status',
+			template: '/master/live',
 			mime:'json',
 			item:item,
-			status:status,
+			live:live,
 		}, {
 		//	Done
 			done:function()
 			{
-			//	Change the display status
-				$page.attr('data-status', status).data('status', status);
+			//	Change the display
+				$page.attr('data-live', live).data('live', live);
 
 			//	Asleep? Put all kids asleep as well
-				if (status == 'asleep')
+				if (live == 'false')
 				{
 				//	$item.find('[data-item]').each(function()
 				//	{

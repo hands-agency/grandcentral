@@ -126,19 +126,28 @@
 			$oldStatus = $('input[name="'+SITE_KEY+'_'+_GET['item']+'[status]"]');
 			$form = $('#adminContent section>form');
 			
+		//	Form data
+			data = $form.serialize();
+			
 		//	Change status ?
-			if (newStatus) 
+			if (newStatus == 'live' || newStatus == 'asleep') 
 			{
 				$oldStatus.val(newStatus);
 				status = newStatus;
 			}
-		//	Keep old status
-			else if ($oldStatus.val()) status = $oldStatus.val();
-		//	No status = draft
+		//	Keep status or go in the workflow
 			else
 			{
-				$oldStatus.val('draft');
-				status = 'draft';
+			//	Go to the workflow !
+				if (newStatus) data += '&workflow='+newStatus;
+			//	Keep old status if no change or asleep
+				if ($oldStatus.val()) status = $oldStatus.val();				
+			//	No status = asleep
+				else
+				{
+					$oldStatus.val('asleep');
+					status = 'asleep';
+				}
 			}
 
 		//	Ajaxify forms
@@ -146,7 +155,7 @@
 			{
 				url: $form.attr('action'),
 				type: $form.attr('method'),
-				data: $form.serialize(),
+				data: data,
 				success: function(result)
 				{
 				//	DEBUG

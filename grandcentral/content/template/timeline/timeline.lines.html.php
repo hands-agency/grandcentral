@@ -55,11 +55,14 @@
 				if (!$item[$field]->is_empty())
 				{
 					$image = $item[$field]->unfold()[0];
-					$imageUrl = $image->thumbnail(500,500)->get_url(true);
-				//	$imageUrl = $image->get_url(true);
-					$li .= '<li><a href="'.$item->edit().'" style="background-image:url('.$imageUrl.');"></a></li>';
-				//	Ok, we have one
-					$iThumbnail ++;
+					if ($image->exists())
+					{
+						$imageUrl = $image->thumbnail(500,500)->get_url(true);
+					//	$imageUrl = $image->get_url(true);
+						$li .= '<li><a href="'.$item->edit().'" style="background-image:url('.$imageUrl.');"></a></li>';
+					//	Ok, we have one
+						$iThumbnail ++;
+					}
 				}
 				else $imageUrl = null;
 
