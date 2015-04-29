@@ -3,7 +3,7 @@
 /********************************************************************************************/
 #nav
 {
-	padding:100px 175px !important;
+	padding:100px 150px !important;
 	height:100%;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
@@ -24,17 +24,37 @@
 	z-index:10;
 }
 
+/* Items */
+#nav .item
+{
+	float:right;
+	max-width:50%;
+}
+
 /* General */
 #nav .general
 {
-	float:left;
+	float:right;
+	width:50%;
 }
 #nav .general h1
 {
 	font-family:'ProximaNova-Bold';
 	font-size:60px;
 	text-transform:uppercase;
-	margin:0 10px 20px 10px;
+	margin:0 0px 15px 0px;
+	line-height:60px;
+}
+#nav .general h1 a
+{
+	padding:10px 10px 5px 10px;
+	border-radius:2px;
+	display:inline-block;
+	border:1px solid transparent;
+}
+#nav .general h1 a:hover
+{
+	border-color:rgba(65,155,249, 0.4);
 }
 
 /********************************************************************************************/
@@ -106,11 +126,8 @@
 /* In hives */
 #nav ul.inhive
 {
-	float:left;
 	font-size:0;
-	text-align:right;
-	width:50%;
-	padding:50px 100px 0 0;
+	padding:50px 50px 0 100px;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
@@ -234,8 +251,8 @@
 
 #nav ul.inhive li.add .title
 {
-	font-size:50px;
-	line-height:50px;
+	font-size:40px;
+	line-height:40px;
 	border:none !important;
 }
 #nav ul.inhive li:not(:hover).add

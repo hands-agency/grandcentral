@@ -4,29 +4,6 @@
 		<span class="title">Profile</span>
 	</a-->
 
-<div class="item">
-	<ul class="inhive">
-	<?php foreach ($items as $item): ?>
-		<?php
-			$class = ($item['hasurl']->get() === true) ? null : 'class="minor"';
-		?>
-		<li <?=$class?>>
-			<a href="<?=$listPage['url']->args(array('item' => $item['key']->get()))?>">
-				<span class="icon"></span>
-				<span class="title"><?=$item['title']?></span>
-			</a>
-		</li>
-	<?php endforeach ?>
-		<li class="add">
-			<a href="<?=$editPage['url']->args(array('item' => $item['key']->get()))?>">
-				<span class="icon"></span>
-				<span class="title">+</span>
-			</a>
-		</li>
-	</ul>
-	
-</div>
-
 <div class="general">
 	<h1>
 		<a href="<?=ADMIN_URL?>" class="site"><?=$siteTitle?></a>
@@ -80,4 +57,26 @@
 	<?php endforeach ?>
 	</ul>
 
+</div>
+
+<div class="item">
+	<ul class="inhive">
+	<?php foreach ($items as $item): ?>
+		<?php
+			$class = ($item['hasurl']->get() === true) ? null : 'class="minor"';
+		?>
+		<li <?=$class?>>
+			<a href="<?=$listPage['url']->args(array('item' => $item['key']->get()))?>">
+				<span class="icon"></span>
+				<span class="title"><?=$item['title']?></span>
+			</a>
+		</li>
+	<?php endforeach ?>
+		<li class="add">
+			<a href="<?=$editPage['url']->args(array('item' => $item['key']->get()))?>">
+				<span class="icon"></span>
+				<span class="title">+</span>
+			</a>
+		</li>
+	</ul>
 </div>
