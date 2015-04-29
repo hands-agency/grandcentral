@@ -52,7 +52,7 @@
 			$tmp[$table][] = $index;
 		}
 	//	Go fetch the bunch
-		foreach ($tmp as $item => $ids) $selected->get($item, array('id' => $ids, 'order()' => 'inherit(id)', 'status' => null));
+		foreach ($tmp as $item => $ids) $selected->get($item, array('id' => $ids, 'order()' => 'inherit(id)', 'live' => array(true, false)));
 	}
 
 //	Show/hide Noda

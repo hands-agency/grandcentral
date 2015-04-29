@@ -80,7 +80,7 @@ class attrUrl extends _attrs
 		$this->params['table'] = $item->get_table();
 		$this->params['env'] = $item->get_env();
 		$this->params['version'] = (isset($item['version']) && !$item['version']->is_empty()) ? $item['version'] : null;
-		$this->params['status'] = $item['status'];
+		$this->params['live'] = $item['live'];
 		$this->params['nickname'] = $item->get_nickname();
 		$this->params['id'] = $item['id']->get();
 		// hack i18n pour les champs titre

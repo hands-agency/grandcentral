@@ -260,7 +260,7 @@ class database
 	public static function query_item($env, $table, $params = null, $counter = false)
 	{
 	//	paramètres par défaut
-		if (is_null($params) || (is_array($params) && !array_key_exists('status', $params))) $params['status'] = 'live';
+		if (is_null($params) || (is_array($params) && !array_key_exists('live', $params))) $params['live'] = true;
 	//	préparation des variables
 		$i = 0;
 		$cWhere = null;

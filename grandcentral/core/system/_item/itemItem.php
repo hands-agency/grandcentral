@@ -138,22 +138,21 @@ class itemItem extends _items
 				// 'title' => 'Updated Datetime'
 			);
 		}
-		//	add Updated attribute
-		if (!isset($attrs['status']))
-		{
-			$attrs['status'] = array(
-				'key' => 'status',
-				'type' => 'status',
-				// 'title' => 'Status'
-			);
-		}
-		//	add Updated attribute
+		//	add status attribute
+		// if (!isset($attrs['status']))
+		// {
+		// 	$attrs['status'] = array(
+		// 		'key' => 'status',
+		// 		'type' => 'status',
+		// 		// 'title' => 'Status'
+		// 	);
+		// }
+		//	add live attribute
 		if (!isset($attrs['live']))
 		{
-			$attrs['status'] = array(
-				'key' => 'status',
-				'type' => 'status',
-				// 'title' => 'Status'
+			$attrs['live'] = array(
+				'key' => 'live',
+				'type' => 'live'
 			);
 		}
 		// print'<pre>';print_r($attrs);print'</pre>';

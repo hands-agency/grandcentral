@@ -56,7 +56,8 @@
 		$item->get(array
 		(
 			'id' => $handled_id,
-			'status' => null,
+			//'status' => null,
+			'live' => array(true, false)
 		));
 	}
 //	You can prefill the form through _GET (&fill[title]=something&fill[system]=0...)

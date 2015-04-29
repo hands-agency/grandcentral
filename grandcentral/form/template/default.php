@@ -22,7 +22,7 @@
 /********************************************************************************************/
 	$_FORM = $_APP->param['form'];
 	$asides = array();
-	$asideFields = array('id', 'key',  'url', 'owner', 'created', 'updated', 'status', 'system', 'version');
+	$asideFields = array('id', 'key',  'url', 'owner', 'created', 'updated', 'live', 'system', 'version');
 
 /********************************************************************************************/
 //	Some binds

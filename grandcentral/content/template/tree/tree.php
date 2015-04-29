@@ -60,7 +60,7 @@
 			$this->pages = i('page', array
 			(
 				'id' => $ids,
-				'status' => array('live', 'asleep')
+				'live' => array(true, false)
 			), $_SESSION['pref']['handled_env']);
 		//	DEBUG: our pages
 		//	sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $this->pages);

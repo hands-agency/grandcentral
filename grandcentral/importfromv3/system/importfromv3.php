@@ -57,8 +57,8 @@ class importfromv3
 			else $item = i($this->item);
 			
 		//	Todo
-			if ((string) $data->etat == 'active') $item['status'] = 'live';
-			else $item['status'] = 'asleep';
+			if ((string) $data->etat == 'active') $item['live'] = true;
+			else $item['live'] = false;
 			
 		//	Loop through the attributes to be imported
 			foreach ($this->equiv as $newField => $oldField)

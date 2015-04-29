@@ -66,7 +66,7 @@ class sitemaps
 			{
 				case 'page':
 					$p = array(
-						'status' => 'live',
+						'live' => true,
 						'system' => false,
 						'type' => '%"content_type":"html"%',
 					);
@@ -74,7 +74,7 @@ class sitemaps
 				
 				default:
 					$p = array(
-						'status' => 'live',
+						'live' => true,
 						'system' => false,
 					);
 					break;
