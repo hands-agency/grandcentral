@@ -53,7 +53,10 @@
 	{
 		foreach ($valueParam as $key => $param)
 		{
-			$fields[$key]->set_value($param);
+			if (isset($fields[$key]))
+			{
+				$fields[$key]->set_value($param);
+			}
 		}
 	}
 ?>
