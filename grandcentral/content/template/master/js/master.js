@@ -333,7 +333,8 @@
 	//	Recenter the panel after transition
 		$('#adminContent').one('transitionend', function()
 		{
-			$('#tabs li a'+pseudo).parent().trigger('click');
+			sectionkey = $('#adminContent section.active').data('key');
+			$('#tabs li a[data-section="'+sectionkey+'"]').parent().trigger('click');
 		});
 	}
 	

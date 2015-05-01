@@ -17,7 +17,7 @@
 		else $live = null;
 	?>
 		<li title="<?=$section['descr']?>" data-live="<?=$live?>">
-			<a href="<?='#'.$section['key']?>" data-section="<?=$section['key']?>" data-app="<?=$app['app']?>" data-template="<?=$app['template']?>" data-param='<?=json_encode($app['param']['param'])?>'>
+			<a href="<?='#'.$section['key']?>" data-section="<?=$section['key']?>" data-app="<?=$app['app']?>" data-template="<?=$app['template']?>" data-param='<?=json_encode($app['param'])?>'>
 				<span class="title"><?=$title?></span>
 				<span class="descr"><?=$descr?></span>
 			</a>
