@@ -36,7 +36,7 @@
  *  )
  * );
  * </pre>
- *F
+ *
  * @author	Sylvain Frigui <sf@hands.agency>
  * @access	public
  * @link	http://grandcentral.fr

@@ -23,15 +23,23 @@
 		{
 	 		template = $(this).closest('.field').find('.template');
 			code = $(template.html());
+			
 		//	Append and enable
 			$(this).before(code);
 			$(code).show('fast').find('*:disabled').prop('disabled', false);
 		//	Add data
 			media = ui.helper;
+			$(code).attr('title', media.data('title')+' • '+media.data('info'));
 			$(code).find('.preview img').attr('src', media.find('.preview img').attr('src'));
-			$(code).find('input').val(media.data('path'));
-			$(code).find('.title').html(media.data('title'));
-			$(code).find('.info').html(media.data('info'));
+			$(code).find('input[name$="[url]"]').val(media.data('path'));
+		//	Reorder array
+			var i = 0;
+			$(this).closest('.data').find('li').each(function()
+			{
+			//	console.log($(this).html().replace(/\[\]/g, '['+i+']'));
+				$(this).html($(this).html().replace(/\[\]/g, '['+i+']'));
+				i++;
+			});
 		//	Sortable
 			$data.sortable();
 		}

@@ -3,9 +3,10 @@
  * Database ressources.
  * This class is a singleton. You need database::connect() to instantiate.
  *
- * Example:
  * <pre>
+ * // Connect to site database
  * $db = database::connect('site');
+ * // Get the page with key = "home"
  * $param = array('key' => 'home');
  * $home = $db->query('SELECT * FROM page WHERE `key` = :key', $param);
  * </pre>

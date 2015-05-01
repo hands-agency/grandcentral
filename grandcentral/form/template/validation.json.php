@@ -29,14 +29,22 @@
 	$field = $form['field'][$_POST['field']];
 //	création du champ de test
 	if (isset($_POST['value'])) $field['value'] = $_POST['value'];
-	$class = 'field'.ucfirst($field['type']);
-	$field = new $class($field['key'], $field);
+	
+	if (!empty($field['type']))
+	{
+		$class = 'field'.ucfirst($field['type']);
+		$field = new $class($field['key'], $field);
 
 /********************************************************************************************/
 //	And now we validate
 /********************************************************************************************/
-	if ($field->is_valid()) $return = true;
-	else $return = $field->get_error();
+		if ($field->is_valid()) $return = true;
+		else $return = $field->get_error();
+	}
+	else
+	{
+		$return = '';
+	}
 //	Send back data in json
 	// $return = array('required' => array('descr' => 'form : '.$class.' / field : '.$_POST['field'].' / value : '.$_POST['value'].''));
 //	$return = 'true';

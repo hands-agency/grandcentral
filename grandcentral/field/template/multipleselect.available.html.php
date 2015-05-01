@@ -8,3 +8,4 @@
 </li>
 <?php endforeach ?>
 <?php endif ?>
+<li class="add"></li>

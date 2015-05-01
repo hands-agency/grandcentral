@@ -11,6 +11,7 @@ class video extends media
 {
 	protected $width;
 	protected $height;
+	protected $attr;
 
 	/**
 	 * Prints the image in a <img tag>
@@ -19,11 +20,19 @@ class video extends media
 	 */
 		public function __tostring()
 		{
+		//	Set tag attr
+			$a = '';
+			foreach ($this->attr as $attr => $value)
+			{
+				$a .= ' '.$attr;
+				if ($value != null) $a .= '="'.$value.'"';
+			}
+		//	Return
 			return '
-			<video controls>
+			<video'.$a.'>
 				<source src="'.$this->get_url(true).'" type="video/mp4">
 				<source src="'.$this->get_url(true).'" type="video/ogg">
-				Your browser does not support the video tag.
+				Your browser does not support the html5 video tag.
 			</video>';
 		}
 	
@@ -35,6 +44,16 @@ class video extends media
 	public function thumbnail($width, $height, $quality = 75)
 	{
 		return null;
+	}
+	
+/**
+ * Set video attributes
+ *
+ * @access	public
+ */
+	public function set_attr($p)
+	{
+		foreach ($p as $attr => $value) $this->attr[$attr] = $value;
 	}
 }
 ?>

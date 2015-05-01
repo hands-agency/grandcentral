@@ -51,7 +51,7 @@ class itemPage extends _items
 		if ($this->is_reader())
 		{
 			$readItem = registry::get(registry::reader_index, $this->get_nickname());
-			return $readItem[0];
+			return $readItem[0]['param']['item'];
 		}
 		else return false;
 	}
@@ -63,24 +63,10 @@ class itemPage extends _items
 	public function get_by_url($url = null)
 	{
 		if (empty($url)) $url = '/';
-		
-		$cache = app('cache');
-		$fileCache = $cache->get_templateroot().'/page/'.md5($this['url'].$url);
-		
-		// dans le cache
-		//if (is_file($fileCache))
-		//{
-		//	$this->data = unserialize(file_get_contents($fileCache));
-		//}
-		// création du cache
-		//else
-		//{
-			$this->get(array('url' => $url));
-		//	file_put_contents($fileCache, serialize($this->data));
-		//}
+		$this->get(array('url' => $url, 'limit()' => 1));
 	}
 /**
- * Devine la page à afficher
+ * Guess the page to display
  *
  * @access	public
  */
@@ -94,9 +80,9 @@ class itemPage extends _items
 			$hash = mb_substr(URLR, 0, mb_strpos(URLR, '/', 1));
 			// chargement de la page de home
 			$this->get_by_url($hash);
-
-			if (!$this->exists())
-//			if (!$this->exists() OR ($this->exists() && !$this->is_reader()))
+			// 404
+			if ($this->get_env() == 'site' && !$this->is_reader())
+			//if (!$this->exists())
 			{
 				$this->get_by_url('/404');
 			}
@@ -210,7 +196,7 @@ class itemPage extends _items
 /**
  * Prepare display of a content page
  *
- * @access	public
+ * @access	private
  */
 	private function _prepare_content()
 	{
@@ -223,7 +209,7 @@ class itemPage extends _items
 /**
  * Prepare display of a header page
  *
- * @access	public
+ * @access	private
  */
 	private function _prepare_header()
 	{
@@ -241,7 +227,7 @@ class itemPage extends _items
 /**
  * Prepare display of a link page
  *
- * @access	public
+ * @access	private
  */
 	private function _prepare_link()
 	{
@@ -438,7 +424,7 @@ class itemPage extends _items
 				$urls['page_'.$page['id']] = $page['url'];
 			}
 			// on recherche les readers dans le table section
-			$q = 'SELECT `id`, `app` FROM `section` WHERE `app` LIKE "%\"app\":\"reader\"%"';
+			$q = 'SELECT `id`, `app` FROM `section` WHERE `app` LIKE "%\"app\":\"reader\"%" OR  `app` LIKE "%\"app\":\"api\"%" OR  `app` LIKE "%\"app\":\"doc\"%"';
 			$r = $db->query($q);
 			// traitement de la requête pour stockage
 			$hash = null;
@@ -464,7 +450,7 @@ class itemPage extends _items
 				}
 				else
 				{
-					$readers[$rel['item'].'_'.$rel['itemid']][] = $readersTable[$rel['relid']]['param']['item'];
+					$readers[$rel['item'].'_'.$rel['itemid']][] = $readersTable[$rel['relid']];
 				}
 			}
 			// mise en registre

@@ -13,13 +13,24 @@
 	// $valueParam = array();
 	if (isset($_POST['valueParam']))
 	{
-		$pattern = '/'.str_replace(array('[',']'), array('\[','\]'),$_POST['name']).'\[param\](\[([a-zA-Z0-9_\-]*)\])(\[([a-zA-Z0-9_\-]*)\])?$/';
+		$pattern = '/'.str_replace(array('[',']'), array('\[','\]'),$_POST['name']).'\[param\](\[([a-zA-Z0-9_\-]*)\])(\[([a-zA-Z0-9_\-]*)\])?(\[([a-zA-Z0-9_\-]*)\])?$/';
 		foreach ($_POST['valueParam'] as $param)
 		{
 			
 			preg_match($pattern, $param['name'], $matches);
-			// print'<pre>';print_r($matches);print'</pre>';
-			if (isset($matches[4]))
+			if (isset($matches[6]))
+			{
+				// print'<pre>';print_r($matches[4]);print'</pre>';
+				if (empty($matches[6]))
+				{
+					$valueParam[$matches[2]][$matches[4]][] = $param['value'];
+				}
+				else
+				{
+					$valueParam[$matches[2]][$matches[4]][$matches[6]] = $param['value'];
+				}
+			}
+			elseif (isset($matches[4]))
 			{
 				// print'<pre>';print_r($matches[4]);print'</pre>';
 				if (empty($matches[4]))
@@ -42,7 +53,10 @@
 	{
 		foreach ($valueParam as $key => $param)
 		{
-			$fields[$key]->set_value($param);
+			if (isset($fields[$key]))
+			{
+				$fields[$key]->set_value($param);
+			}
 		}
 	}
 ?>

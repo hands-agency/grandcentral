@@ -89,12 +89,11 @@
 				
 			//	Save as the prefered method
 				sectionkey = $('#adminContent section.active').data('key');
-				pref = ['greenbutton', sectionkey, method];
 				$.api(
 				{
-					key:'save_pref',
-					mime:'json',
-					pref:pref
+					method:'post',
+					url:'api.json/v1/pref',
+					data:{'pref':['greenbutton', sectionkey, method]}
 				},{
 					done:function(msg)
 					{
@@ -104,7 +103,7 @@
 			});
 			
 		//	Prevent regular submit
-			$('#adminContent>section').on('submit', 'form', function()
+			$(document).on('submit', '.adminContext form, #adminContent>section form', function()
 			{
 				return false;
 			});
@@ -196,8 +195,8 @@
 	//	Go live
 		plugin.live = function(callback)
 		{
-		//	Validate before go live
-			$('#section_edit form').data('validate').now(
+		//	Validate forms before go live
+			$('section>form').data('validate').now(
 			{
 				success:function(html)
 				{
@@ -352,6 +351,53 @@
 		{
 		//	Go to the form page
 			document.location.href = ADMIN_URL+'/edit?item='+_GET['item']+'&fill[system]=1';
+		}
+		
+	//	Save the form in the context panel
+		plugin.savecontext = function(newStatus, callback)
+		{
+		//	Trigger regular submit for eventual plugin callbacks (like Sir Trevor)
+			$('.adminContext form').submit();
+		//	Id & status
+			id = $('input[name="'+SITE_KEY+'_'+_GET['item']+'[id]"]');
+			$oldStatus = $('input[name="'+SITE_KEY+'_'+_GET['item']+'[status]"]');
+			$form = $('.adminContext form');
+
+		//	Change status ?
+			if (newStatus) 
+			{
+				$oldStatus.val(newStatus);
+				status = newStatus;
+			}
+		//	Keep old status
+			else if ($oldStatus.val()) status = $oldStatus.val();
+		//	No status = live
+			else
+			{
+				$oldStatus.val('live');
+				status = 'live';
+			}
+
+		//	Ajaxify forms
+			$.ajax(
+			{
+				url: $form.attr('action'),
+				type: $form.attr('method'),
+				data: $form.serialize(),
+				success: function(result)
+				{
+				//	DEBUG
+					console.log(result);
+				//	Ajax sends back the id
+					if ($.isNumeric(result))
+					{
+					//	Bring it to the form
+						id.val(result);
+					};
+				//	Callback
+					if ((typeof(callback) != 'undefined') && (typeof(callback) == 'function')) callback.call(this);
+				},
+			});
 		}
 
 	//	Fire up the plugin!

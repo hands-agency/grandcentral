@@ -137,10 +137,9 @@ class attrUrl extends _attrs
 		// reader
 		if ($this->params['table'] != 'page')
 		{
-			// print'<pre>';print_r(registry::get(registry::reader_index));print'</pre>';
 			foreach (registry::get(registry::reader_index) as $page => $table)
 			{
-				if ($this->params['table'] == $table[0])
+				if (isset($table[0]['param']) && $this->params['table'] == $table[0]['param']['item'])
 				{
 					$tmp = registry::get(registry::url_index, $page);
 					if ($tmp != '/') $url .= $tmp;

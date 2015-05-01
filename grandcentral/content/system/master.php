@@ -143,13 +143,16 @@ class master
 		//	pour les fichiers css
 			if ($css['type'] == 'file')
 			{
-				$file = new file($css['url']);
-				$data = $file->get();
-			//	remplacement des urls
-				// $tmp = preg_replace('/url\([\'"]?([^\'"]*)[\'"]?\)/', 'url('.$css['app'].'$1)', $data);
-				// $file->set()
-			//	url
-				$url = (SITE_DEBUG === true) ? $file->get_url(true).'?'.time() : $file->get_url(true);
+				if (filter_var($css['url'], FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED))
+				{
+					$url = $css['url'];
+				}
+				else
+				{
+					$file = new file($css['url']);
+				//	url
+					$url = (SITE_DEBUG === true) ? $file->get_url(true).'?'.time() : $file->get_url(true);
+				}
 			//	stylesheet
 				$return .= '<link rel="stylesheet" href="'.$url.'"  media="all" type="text/css" charset="utf-8">';
 			}
@@ -217,13 +220,13 @@ class master
 					break;
 				}
 			}
-			
 		//	affectation
 			$tmp = array(
 				'type' => 'file',
 				'url' => $file,
 				'app' => $app
 			);
+			
 			if ($valid) self::$zones[$zone]['data'][] = $tmp;
 		}
 		else
