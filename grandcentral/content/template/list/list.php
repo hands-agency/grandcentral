@@ -39,17 +39,16 @@
 	$item = i('item', $handled_item, $handled_env);
 
 //	Reuse sent params
-	if (isset($_POST['param'])) $_PARAM['param'] = $_POST['param'];
-	else $_PARAM['param'] = array();
-
+	if (isset($_POST['param'])) $_PARAM = $_POST['param'];
+	else $_PARAM = array();
 //	Refine
-	if (isset($_POST['q'])) $_PARAM['param']['title'] = '%'.$_POST['q'].'%';
+	if (isset($_POST['q'])) $_PARAM['title'] = '%'.$_POST['q'].'%';
 	
 //	Amount of items to be displayed at one time
 	$limit = 50;
-	
+
 //	Count
-	$count = count::get($handled_item, $_PARAM['param'], $handled_env);
+	$count = count::get($handled_item, $_PARAM, $handled_env);
 
 //	Pref
 	$pref_filter = isset($_POST['filter']) ? $_POST['filter'] : null;

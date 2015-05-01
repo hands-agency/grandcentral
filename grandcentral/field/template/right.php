@@ -46,7 +46,7 @@
 		array(
 			'key' => 'manager',
 			'title' => 'Managers',
-			'descr' => 'They can access to Grand Central and edit part of the content',
+			'descr' => 'They can access Grand Central and edit part of the content',
 		),
 		array(
 			'key' => 'admin',

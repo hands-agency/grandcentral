@@ -45,6 +45,7 @@
 //	List
 	$onlyfor['list'] = array(
 		'tree' => array('page'),
+		'siteconfig' => array('page'),
 	);
 	$stripfrom['list'] = array(
 		'list' => array('page'),
@@ -58,7 +59,7 @@
 		'appini' => array('app'),
 	);
 	
-//	Add and remove sections
+//	Add and remove sections (PIG STUFF)
 	foreach ($sections as $section)
 	{
 		if (
@@ -67,11 +68,12 @@
 		//	Some sections must be striped from some pages
 			(isset($stripfrom[$page['key']->get()][$section['key']->get()]) && in_array($handled_item, $stripfrom[$page['key']->get()][$section['key']->get()]))
 		) {
-		//	Delete relation
-			$i = array_search($section->get_nickname(), $page['section']->get());
-			unset($sections[$i]);
+		//	Nothing
 		}
+	//	Keep relation
+		else $p[] = $section;
 	}
+	$sections = $p;
 
 /********************************************************************************************/
 //	Fetch the altered sections

@@ -31,14 +31,13 @@
 /********************************************************************************************/
 //	Do the workflow thinggie
 /********************************************************************************************/
-//	Edit our original
+//	Edit our original item
 	$original['title'] = 'New '.$item;
 	$original['parent'] = $parent;
 
-//	Create a new workflow
+//	Create a new workflow item
 	$draft->grab($original, $status);
-
-//	$workflow->unleash();
+	$draft->enroll();
 
 /********************************************************************************************/
 //	Return

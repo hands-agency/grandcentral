@@ -31,7 +31,8 @@
 			<?php $iTitle = 0; ?>
 			<?php foreach ($bunch as $item): ?>
 			<?php
-				echo '<a href="'.$item->edit().'">'.$item['title']->cut(50).'</a>,';
+				$title = ($item['title']) ? $item['title']->cut(50) : $item->get_table().' #'.$item['id'];
+				echo '<a href="'.$item->edit().'">'.$title.'</a>,';
 			//	Ok, we have one
 				$iTitle ++;
 			//	Stop here

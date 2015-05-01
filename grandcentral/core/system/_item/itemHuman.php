@@ -60,11 +60,13 @@ class itemHuman extends _items
  */
 	public function is_admin()
 	{
+	//	Verify just once
 		if ($this->_admin === -1)
 		{
 			foreach ($this['group']->unfold() as $group)
 			{
-				if ($group['admin']->get() === true)
+			//	#deprecated $group['admin']->get() = old style admins / $group['right']['level'] = new style admin
+				if ($group['admin']->get() === true OR $group['right']['level'] == 'admin')
 				{
 					$this->_admin = true;
 					return true;
