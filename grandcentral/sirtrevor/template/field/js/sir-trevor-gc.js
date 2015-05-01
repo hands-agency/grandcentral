@@ -70,7 +70,7 @@ jQuery(document).ready(function()
 				link:getCurrentHref(),
 			});
 			// save text currently selected
-			sirtrevorSelRange = saveSelection();
+			selRange = saveSelection();
 		},
 		
 		isActive: function()
