@@ -3,7 +3,7 @@ $block = $_PARAM['block']['data'];
 
 if($block['source'] == 'youtube'):
 ?>
-	<p><iframe src="//www.youtube-nocookie.com/embed/<?php echo $block['remote_id']; ?>" width="100%" height="480" frameborder="0" allowfullscreen=""></iframe></p>
+	<p><iframe src="https://www.youtube.com/embed/<?php echo $block['remote_id']; ?>" frameborder="0" allowfullscreen></iframe></p>
 <?php
 elseif($block['source'] == 'vimeo'):
 ?>
