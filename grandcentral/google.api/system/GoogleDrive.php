@@ -108,5 +108,36 @@ class GoogleDrive {
             
         return $this->listFiles($params);
     }
+
+	function uploadFile($filePath, $mimeType, $driveFolderId, $title, $descr)
+	{
+		$service = $this->service;
+		$parentId = 'test';
+		
+	//	Insert a file
+		$file = new Google_Service_Drive_DriveFile();
+		$file->setTitle($title);
+		$file->setDescription($descr);
+		$file->setMimeType($mimeType);
+		
+	//	Folder
+		if ($driveFolderId)
+		{
+			$parent = new Google_Service_Drive_ParentReference();
+			$parent->setId($driveFolderId);
+			$file->setParents(array($parent));
+		}
+
+		$data = file_get_contents($filePath);
+
+		$createdFile = $service->files->insert(
+			$file, array(
+				'data' => $data,
+         		'mimeType'   => $mimeType,
+         		'convert' => true,
+         		'uploadType' => 'media',
+			)
+		);
+	}
     
 }
