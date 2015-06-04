@@ -22,7 +22,7 @@ class video extends media
 		{
 		//	Set tag attr
 			$a = '';
-			foreach ($this->attr as $attr => $value)
+			foreach ((array)$this->attr as $attr => $value)
 			{
 				$a .= ' '.$attr;
 				if ($value != null) $a .= '="'.$value.'"';
