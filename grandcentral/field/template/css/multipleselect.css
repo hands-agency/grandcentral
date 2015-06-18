@@ -21,13 +21,13 @@ ol>li[data-type="multipleselect"] .field .available
 /********************************************************************************************/
 /* Available & selected
 /********************************************************************************************/
-ol>li[data-type="multipleselect"] .field li:not(.add)
+ol>li[data-type="multipleselect"] .field li
 {
 	border:1px solid #dedede;
 	background:#fff;
-	padding:5px;
 	margin:1px 0;
-	min-height:17px;
+	height:34px;
+	line-height:34px;
 	font-size:0.9em;
 	-moz-border-radius:2px;
 	-webkit-border-radius:2px;
@@ -37,7 +37,7 @@ ol>li[data-type="multipleselect"] .field li:not(.add)
 	-webkit-user-select:none;
 	position:relative;
 }
-ol>li[data-type="multipleselect"] .field li:not(.add):hover
+ol>li[data-type="multipleselect"] .field li:hover
 {
 	border-color: #419BF9;
 	-webkit-box-shadow: 0 0 4px #419BF9;
@@ -55,33 +55,50 @@ ol>li[data-type="multipleselect"] .field li .icon
 
 ol>li[data-type="multipleselect"] .field li .title
 {
-	margin:2px 0 0 23px;
+	margin:0 23px 0 0;
 }
-ol>li[data-type="multipleselect"] .field li .handle
+ol>li[data-type="multipleselect"] .field li .title a
 {
-	top:5px;
-	left:7px;
-	position:absolute;
+	cursor:pointer;
+}
+ol>li[data-type="multipleselect"] .field li .title a:not(:hover)
+{
+	color:#333;
 }
 ol>li[data-type="multipleselect"] .field li .delete
 {
 	top:1px;
 	right:0px;
+	display:none;
+}
+ol>li[data-type="multipleselect"] .field li:hover .delete
+{
+	display:block;
 }
 
 /* Add */
-ol>li[data-type="multipleselect"] .field li.add
+ol>li[data-type="multipleselect"] .field .add
 {
 	text-align:center;
-	cursor:pointer;
+	margin-top:5px;
 }
-ol>li[data-type="multipleselect"] .field li.add:after
+ol>li[data-type="multipleselect"] .field .add button
+{
+	cursor:pointer;
+	background:transparent !important;
+	height:30px;
+	display:block;
+	line-height:30px;
+	width:100%;
+	padding:0 !important;
+}
+ol>li[data-type="multipleselect"] .field .add button:after
 {
 	content:"+";
-	font-size:30px;
+	font-size:28px;
 	color:#666;
 }
-ol>li[data-type="multipleselect"] .field li:hover.add:after
+ol>li[data-type="multipleselect"] .field .add:hover button:after
 {
 	color:#419BF9;
 }
@@ -98,12 +115,15 @@ ol>li[data-type="multipleselect"] .field .selected
 	-o-transition: all .15s ease-out; 
 	transition: all .15s ease-out;
 }
-ol>li[data-type="multipleselect"] .field .selected li .handle,
+ol>li[data-type="multipleselect"] .field .selected li
+{
+	width:auto !important;
+	cursor:ns-resize;
+}
 ol>li[data-type="multipleselect"] .field .selected li .delete
 {
 	opacity:0.2;
 }
-ol>li[data-type="multipleselect"] .field .selected li:hover .handle,
 ol>li[data-type="multipleselect"] .field .selected li:hover .delete
 {
 	opacity:1;
@@ -137,11 +157,10 @@ ol>li[data-type="multipleselect"] .field .available ul
 	overflow:auto;
 	max-height:250px;
 }
-ol>li[data-type="multipleselect"] .field .available ul li:not(.add)
+ol>li[data-type="multipleselect"] .field .available ul li
 {
 	cursor:move;
 }
-ol>li[data-type="multipleselect"] .field .available ul li .handle,
 ol>li[data-type="multipleselect"] .field .available ul li .delete
 {
 	display:none;

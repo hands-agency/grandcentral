@@ -11,7 +11,6 @@
 ?>
 <li data-app="<?=$app['key']?>">
 	
-	<span class="handle" data-feathericon="&#xe026"></span>
 	<button class="delete" type="button"></button>
 	
 	<div class="title"><span><span class="flag"><?=$app['title']?></span></span></div>

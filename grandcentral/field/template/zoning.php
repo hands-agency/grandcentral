@@ -35,8 +35,9 @@
 	$handled_item = $_GET['item'];
 	$handled_id = $_GET['id'];
 	
-//	Name of the field
-	$fieldName = constant(mb_strtoupper($handled_env).'_KEY').'_'.$handled_item.'_zoning[section]';
+//	Name of the section field we are replacing
+	$formName = constant(mb_strtoupper($handled_env).'_KEY').'_'.$handled_item;
+	$fieldName = $formName.'[section]';
 	
 //	Iframe Link
 	$iframe = i('page', 'iframe', 'admin');
@@ -77,6 +78,7 @@
 /********************************************************************************************/
 //	Sort of a repository of data for Ajax
 /********************************************************************************************/
+/*
 //	Name
 	$param = array(
 		'value' => 'zoning',
@@ -98,4 +100,11 @@
 		'cssclass' => 'valuestype',
 	);
 	$valuestype = new fieldHidden(null, $param);
+	
+/********************************************************************************************/
+//	Sort of a repository of data for Ajax
+/********************************************************************************************/
+	$name = $fieldName;
+	$values = '[{"item":"section"}]';
+	$valuestype = 'bunch';
 ?>

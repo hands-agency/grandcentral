@@ -51,8 +51,8 @@ $(document).ready(function ()
 			app = $('.adminContext [data-key="app"] select').val();
 			url = ADMIN_URL+'/iframe?section=section_'+id+'&page=page_'+_GET['id'];
 			
-			$section.find('iframe').attr('src', url);
-			$section.find('.title span').html('<span class="app">'+app+'</span>'+title);
+		//	$section.find('iframe').attr('src', url);
+			$section.find('.title a').html('<span>'+title+'</span><span class="app">'+app+'</span>');
 			$section.find('input[type="hidden"]').val('section_'+id);
 			
 		//	Close context
@@ -64,7 +64,7 @@ $(document).ready(function ()
 /**	* Edit section
 * 	* @author	@mvdandrieux
 **#******************************************************************************************/
-	$('[data-type="zoning"]').on('click', '.zone ol .title', function()
+	$('[data-type="zoning"]').on('click', '.zone ol .title a', function()
 	{
 	//	Some vars
 		section = $(this).parent().find('input[type="hidden"]').val();
@@ -138,5 +138,25 @@ $(document).ready(function ()
 			iframe.parent('.preview').height(height);
 		});
 	}
+//	Resize all iframes
 	$('iframe').each(function(){resizeIframe($(this))});
+
+/*********************************************************************************************
+/**	* Emulate responsive
+* 	* @author	@mvdandrieux
+**#******************************************************************************************/
+	$('li[data-type="zoning"] .devices li').on('click', function()
+	{
+	//	Somevars
+		$browser = $(this).closest('li[data-type="zoning"]').find('.zones');
+		device = $(this).data('device');
+		
+	//	Change
+		$(this).siblings().removeClass('on', '');
+		$(this).addClass('on');
+		$browser.attr('data-device', device);
+	//	resizeIframe();
+	});
+//	Default
+	$('li[data-type="zoning"] .devices li.default').trigger('click');
 });

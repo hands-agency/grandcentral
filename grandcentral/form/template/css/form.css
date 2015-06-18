@@ -5,31 +5,17 @@
 /********************************************************************************************/
 section form
 {
-	-moz-box-sizing:border-box;
-	-webkit-box-sizing:border-box;
-	box-sizing:border-box;
-}
-/* One Form */
-section form:first-child:nth-last-child(1)
-{
-
-}
-/* Two Forms */
-section form:first-child:nth-last-child(2),
-section form:first-child:nth-last-child(2) ~ form
-{
-	float:left;
-	width:70%;
-}
-section form:first-child:nth-last-child(2) form:nth-last-child(2),
-section form:first-child:nth-last-child(2) ~ form
-{
-	padding-left:30px;
-	float:left;
-	width:30%;
+	
 }
 /* Hide the second form in contexts */
-.adminContext form:nth-last-child(2)
+.adminContext form:first-child
+{
+	width:100% !important;
+	padding:0 !important;
+	margin:0 0 15px 0 !important;
+	float:none;
+}
+.adminContext form:nth-child(2)
 {
 	display:none;
 }

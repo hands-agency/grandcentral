@@ -45,8 +45,7 @@
 			/*	containment: 'parent', */
 				revert: 100,
 				placeholder:'placeholder',
-				tolerance:'pointer',
-				handle: '> .handle',
+			//	tolerance:'pointer',
 				over:function(event, ui)
 				{
 					received = false;
@@ -59,7 +58,7 @@
 				receive:function(event, ui)
 				{
 				//	Test if not present
-					li = $(this).data().sortable.currentItem;
+					li = $(this).data()['ui-sortable']['currentItem'];
 					// value = li.data('item').split('_')[1];
 					value = li.data('item');
 					count = $(this).find('input[value="'+value+'"]').length;
@@ -68,7 +67,7 @@
 					if (count > 0)
 					{
 					//	Hacky way to destroy the new forbidden element
-						$(this).data().sortable.currentItem.remove();
+						$(this).data()['ui-sortable']['currentItem'].remove();
 					//	And shake your head to say No, No, No...
 						$(this).parent().effect('shake', {times:2}, 300);
 					}
@@ -117,9 +116,32 @@
 					plugin.resort(field);
 				},
 			});
+			
+		//	Edit an item on the fly
+			$element.on('click', '.selected li a, .available li a', function()
+			{
+			//	Some vars
+				$li = $(this).closest('li');
+				nickname = $li.data('item');
+				item = nickname.split('_')[0];
+				id = nickname.split('_')[1];
+		
+			//	Make it visible
+				$li.addClass('focus');
+	
+			//	Open context
+				openContext(
+				{
+					app: 'content',
+					template: '/edit/edit',
+					greenbutton:['savecontext_zoning'],
+					_GET:{item:item,id:id}
+				});
+				return false;
+			});
 
 		//	Add an item on the fly
-			$element.on('click', '.available li.add', function()
+			$element.on('click', '.available .add button', function()
 			{
 			//	Some vars
 				$available = $(this).closest('.available');
@@ -174,19 +196,19 @@
 	//	Make the available choices draggable and connected to the sortable
 		plugin.resort = function(field)
 		{
-			field.find('.available ul li:not(.add)').draggable(
+			field.find('.available ul li').draggable(
 			{
 				connectToSortable:field.find('.selected ol'),
 				helper:'clone',
 				revert: 'invalid',
+				cursorAt: { left: 50 },
 				revertDuration: 100,
 				start:function(event, ui)
 				{
 				//	Make the helper look like the source
 					ui.helper.css(
 					{
-						height:$(this).height(),
-						width:$(this).width()
+						height:$(this).outerHeight()
 					});
 				//	Hide dragged available
 					$(this).hide('fast');

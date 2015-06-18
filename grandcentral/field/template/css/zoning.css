@@ -1,6 +1,25 @@
 /********************************************************************************************/
 /* On page love
 /********************************************************************************************/
+li[data-type="zoning"] h1
+{
+	text-align:center;
+	font-size:30px;
+	margin:0 0 20px 0;
+	color:#fff;
+}
+li[data-type="zoning"] h1 .site
+{
+	font-family:"ProximaNova-Thin";
+}
+li[data-type="zoning"] h1 .divider
+{
+	opacity:0.2;
+}
+li[data-type="zoning"] h1 .page
+{
+	font-family:"ProximaNova-Regular";
+}
 
 
 /********************************************************************************************/
@@ -20,13 +39,14 @@ li[data-type="zoning"] .zoningavailable
 }
 li[data-type="zoning"] .zoningselected
 {
-	width:70%;
+	width:80%;
 }
 li[data-type="zoning"] .zoningavailable
 {
-	width:30%;
+	width:20%;
 }
-/* Kill the available when context is open */
+
+/* Kill the available list when context is open */
 .contextOpened1 li[data-type="zoning"] .zoningselected,
 .contextOpened1 li[data-type="zoning"] .zoningselected
 {
@@ -35,7 +55,6 @@ li[data-type="zoning"] .zoningavailable
 .contextOpened1 li[data-type="zoning"] .zoningselected .zones,
 .contextOpened1 li[data-type="zoning"] .zoningselected .zones
 {
-	margin-right:70px;
 }
 .contextOpened1 li[data-type="zoning"] .zoningavailable,
 .contextOpened1 li[data-type="zoning"] .zoningavailable
@@ -48,25 +67,62 @@ li[data-type="zoning"] .zoningavailable
 /********************************************************************************************/
 li[data-type="zoning"] .devices
 {
-	margin:0 auto 10px auto;
-	font-family:"ProximaNova-Regular";
+	margin:0 auto 30px auto;
 	text-align:center;
-	text-transform:uppercase;
 	font-size:10px;
 }
 li[data-type="zoning"] .devices li
 {
 	display:inline-block;
 	margin:0 10px;
-	color:#999;
+	color:#fff;
+	opacity:0.3;
+	cursor:pointer;
+}
+li[data-type="zoning"] .devices li:hover
+{
+	opacity:0.7;
+}
+li[data-type="zoning"] .devices li.on
+{
+	opacity:1;
+}
+li[data-type="zoning"] .devices li .title
+{
+	font-family:"ProximaNova-Bold";
+	letter-spacing:0.5px;
+	text-transform:uppercase;
+}
+li[data-type="zoning"] .devices li .size
+{
+	font-family:Georgia;
+	font-style:italic;
+}
+
+/* Browser sizes (screen/2) */
+li[data-type="zoning"] .zoningselected .zones[data-device="phone"]
+{
+	width:240px; /* 480 */
+}
+li[data-type="zoning"] .zoningselected .zones[data-device="tablet"]
+{
+	width:374px; /* 768 */
+}
+li[data-type="zoning"] .zoningselected .zones[data-device="laptop"]
+{
+	width:496px; /* 992 */
+}
+li[data-type="zoning"] .zoningselected .zones[data-device="desktop"]
+{
+	width:700px; /* 1200 */
 }
 
 /********************************************************************************************/
-/* Browser
+/* Zones
 /********************************************************************************************/
 li[data-type="zoning"] .zoningselected .zones
 {
-	margin:0 110px 20px 70px;
+	margin:0 auto 20px auto;
 	-moz-user-select:none;
 	-webkit-user-select:none;
 	border-radius:5px;
@@ -75,12 +131,24 @@ li[data-type="zoning"] .zoningselected .zones
 	box-sizing:border-box;
 	border:1px solid #ccc;
 	background:#fff;
-	padding:15px 10px 3px 10px;
 	position:relative;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
 }
+li[data-type="zoning"] .zones.in
+{
+	padding-top:40px;
+	-webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+	-moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+}
+
+/* Mock up browser bar */
 li[data-type="zoning"] .zoningselected .zones .browserbar
 {
-	background:#F2F2F2;
+	background:#DFDFDF;
 	color:#ccc;
 	position:absolute;
 	width:100%;
@@ -102,59 +170,53 @@ li[data-type="zoning"] .zoningselected .zones .browserbar .buttons
 	box-sizing:border-box;
 	margin-right:10px;
 }
+li[data-type="zoning"] .zoningselected .zones[data-device="phone"] .browserbar .buttons,
+li[data-type="zoning"] .zoningselected .zones[data-device="tablet"] .browserbar .buttons
+{
+	display:none;
+}
+li[data-type="zoning"] .zoningselected .zones .browserbar .buttons :nth-child(1)
+{
+	color:#6cbf2d;
+}
+li[data-type="zoning"] .zoningselected .zones .browserbar .buttons :nth-child(2)
+{
+	color:#ffc000;
+}
+li[data-type="zoning"] .zoningselected .zones .browserbar .buttons :nth-child(3)
+{
+	color:#FF0000;
+}
 li[data-type="zoning"] .zoningselected .zones .browserbar .addressbar
 {
-	background:#fcfcfc;
+	background:#fff;
 	line-height:25px;
 	display:inline-block;
 	vertical-align:middle;
 	padding:0 10px;
 	font-size:10px;
-	width:60%;
+	width:70%;
+	border-radius:2px;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
 }
-li[data-type="zoning"] .zoningselected .zones iframe
+li[data-type="zoning"] .zoningselected .zones[data-device="phone"] .browserbar,
+li[data-type="zoning"] .zoningselected .zones[data-device="tablet"] .browserbar
 {
-	width:200%;
-	height:200%;
-	-moz-transform: scale(0.5);
-	-webkit-transform: scale(0.5);
-	transform: scale(0.5);
-	-webkit-transform-origin: 0 0;
-	-ms-transform-origin: 0 0;
-	transform-origin: 0 0;
+	text-align:center;
 }
 
-
-li[data-type="zoning"] .zones.in
+/* Mock up Floating line */
+li[data-type="zoning"] .zoningselected .zones .floatingline
 {
-	padding-top:55px;
-}
-/*
-li[data-type="zoning"] .zones.out
-{
-	padding-top:15px;
-}
-li[data-type="zoning"] .zones.in:before
-{
-	content:'';
-	color:#999;
-	background-color: #DFDFDF;
-	display: block;
-	position: absolute;
-	left:0;
-	border-bottom: 1px solid #D3D3D3;
-	width: 100%;
-	padding:0 10px;
-	-moz-box-sizing:border-box;
-	-webkit-box-sizing:border-box;
-	box-sizing:border-box;
-	height: 50px;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	top:0;
+	position:absolute;
+	top:400px;
+	width:140%;
+	border-bottom:1px dashed #000;
+	z-index:100;
+	left:-20%;
+	display:none;
 }
 
 /********************************************************************************************/
@@ -164,39 +226,51 @@ li[data-type="zoning"] .zones .zone
 {
 	position:relative;
 	clear:both;
-	margin:0 0 10px 0;
+	background:#F2F2F2;
+}
+li[data-type="zoning"] .zones .zone:not(:last-child)
+{
+	border-bottom:1px solid #F2F2F2;
 }
 
 /* Zone title */
 li[data-type="zoning"] .zones .zone>.title
 {
 	position:absolute;
-	left:-100px;
-	top:10px;
-	height:20px;
-	line-height:20px;
-	padding:0 5px 0 0;
-	width:75px;
-	color:#666666;
+	left:-120px;
+	top:0;
+	width:100px;
+	color:#fff;
 	font-size:10px;
 	font-family:"ProximaNova-Regular";
 	letter-spacing:0.5px;
 	text-transform:uppercase;
+	height:100%;
+	border-right:1px solid transparent;
+	opacity:0.5;
 	text-align:right;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
 }
-li[data-type="zoning"] .zones .zone>.title:after
+
+li[data-type="zoning"] .zones .zone:hover>.title
 {
-	content:"●";
+	border-color:#fff;
+	opacity:1;
+	left:-110px;
+}
+
+li[data-type="zoning"] .zones .zone>.title span
+{
 	position:absolute;
-	right:-40px;
-	top:10px;
-	z-index:1;
-	border-bottom:1px solid #ccc;
-	width:38px;
-	line-height:0.17px;
-	letter-spacing:-4px;
-	font-size:10px;
-	color:#666666;
+	right:10px;
+	top:50%;
+	height:20px;
+	line-height:20px;
+	margin:-10px 0 0 0;
+	
 }
 .unlocked li[data-type="zoning"] .zones .zone>.title
 {
@@ -215,13 +289,14 @@ li[data-type="zoning"] .zones .zone.right>.title:after
 	left:-39px !important;
 }
 
-/* Champs */
+/********************************************************************************************/
+/* Sections
+/********************************************************************************************/
 li[data-type="zoning"] .zones li,
 li[data-type="zoning"] .choices li
 {
-	border:1px solid #eee;
-	background:#fff;
-	margin:5px 0;
+	background:#F2F2F2;
+	margin:0 0 1px 0;
 	font-size:0.9em;
 	-moz-border-radius:2px;
 	-webkit-border-radius:2px;
@@ -229,7 +304,6 @@ li[data-type="zoning"] .choices li
 	-moz-user-select:none;
 	-webkit-user-select:none;
 	position:relative;
-	overflow:hidden;
 }
 li[data-type="zoning"] .zones li:hover,
 li[data-type="zoning"] .choices li:hover
@@ -237,6 +311,7 @@ li[data-type="zoning"] .choices li:hover
 	border-color: #419BF9;
 	-webkit-box-shadow: 0 0 4px #419BF9;
 	box-shadow: 0 0 4px #419BF9;
+	z-index:3;
 }
 li[data-type="zoning"] .zones li.focus
 {
@@ -245,38 +320,84 @@ li[data-type="zoning"] .zones li.focus
 	box-shadow: 0 0 4px #ffc000;
 }
 
-li[data-type="zoning"] .zones li .title,
-li[data-type="zoning"] .choices li .title
+li[data-type="zoning"] .zones li .title
 {
 	position:absolute;
-	top:50%;
-	width:100%;
-	text-align:center;
-	z-index:3;
+	right:-185px;
+	top:0px;
+	width:150px;
+	color:#fff;
+	font-size:10px;
 	font-family:"ProximaNova-Bold";
+	letter-spacing:0.5px;
 	text-transform:uppercase;
-	margin-top:-11px;
 }
-li[data-type="zoning"] .zones li.focus .title span
+li[data-type="zoning"] .zones li .title:before
 {
-	background:#ffc000;
+	content:"●";
+	position:absolute;
+	left:-104px;
+	top:21px;
+	z-index:1;
+	width:100px;
+	font-size:8px;
+	color:#000;
+	opacity:0.5;
 }
-li[data-type="zoning"] .zones li .title>span,
-li[data-type="zoning"] .choices li .title>span
+li[data-type="zoning"] .zones li .title:after
 {
-	background:rgba(0, 0, 0, 0.5);
-	color:#fff;	
-	border-radius:3px;
-	padding:0 10px;
-	line-height:24px;
-	height:22px;
-	display:inline-block;
+	content:"";
+	position:absolute;
+	left:-105px;
+	top:25px;
+	z-index:1;
+	border-bottom:1px solid #000;
+	width:100px;
+	opacity:0.5;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
 }
-li[data-type="zoning"] .zones li .title span.app,
-li[data-type="zoning"] .choices li .title span.app
+li[data-type="zoning"] .zones li:hover .title:after
 {
-	margin:0 5px 0 0;
+	width:90px !important;
+}
+li[data-type="zoning"] .zones li:hover .title:before,
+li[data-type="zoning"] .zones li:hover .title:after
+{
+	opacity:1;
+}
+li[data-type="zoning"] .zones li .title>a
+{
+	display:block;
+	position:relative;
+	left:0px;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
+	color:#fff;
+	padding:10px;
+	border-radius:2px;
+}
+li[data-type="zoning"] .zones li .title>a:hover
+{
+	background:rgba(255, 255, 255, 0.15);
+}
+li[data-type="zoning"] .zones li:hover .title>a
+{
+	left:-10px;
+}
+li[data-type="zoning"] .zones li .title a span
+{
+	display:block;
+}
+li[data-type="zoning"] .zones li .title a span.app,
+li[data-type="zoning"] .choices li .title a span.app
+{
 	font-family:"ProximaNova-Thin";
+	text-transform:none;
 }
 li[data-type="zoning"] .zones li .preview
 {
@@ -295,26 +416,37 @@ li[data-type="zoning"] .zones li .preview iframe
 	transform-origin: 0 0;
 	pointer-events:none;
 }
+
+/* Iframes */
+li[data-type="zoning"] .zoningselected .zones iframe
+{
+	width:200%;
+	height:200%;
+	-moz-transform: scale(0.5);
+	-webkit-transform: scale(0.5);
+	transform: scale(0.5);
+	-webkit-transform-origin: 0 0;
+	-ms-transform-origin: 0 0;
+	transform-origin: 0 0;
+}
 li[data-type="zoning"] li .descr
 {
 	color:#ccc;
 	margin-left:23px;
-}
-li[data-type="zoning"] li .handle
-{
-	position:absolute;
-	top:5px;
-	left:5px;
 }
 li[data-type="zoning"] li .delete
 {
 	top:2px;
 	right:2px;
 }
-li[data-type="zoning"] li .handle,
 li[data-type="zoning"] li .delete
 {
 	display:none;
+	height:25px;
+	width:25px;
+	text-align:center;
+	line-height:25px;
+	background:rgba(255, 255, 255, 0.8);
 }
 
 /********************************************************************************************/
@@ -339,15 +471,15 @@ li[data-type="zoning"] .selected.right
 /* Sections */
 li[data-type="zoning"] .selected ol
 {
-	padding:5px 10px;
-	margin:0 3px;
-	border:1px dashed #ddd;
+	background:#fff;
 }
 li[data-type="zoning"] .selected li
 {
-	min-height:40px;
+	min-height:80px;
+	border:1px solid transparent;
+	width:auto !important;
+	cursor:ns-resize;
 }
-li[data-type="zoning"] .selected ol li:hover .handle,
 li[data-type="zoning"] .selected ol li:hover .delete
 {
 	display:block;
@@ -355,6 +487,10 @@ li[data-type="zoning"] .selected ol li:hover .delete
 li[data-type="zoning"] .selected ol li .title
 {
 	cursor:pointer;
+}
+li[data-type="zoning"] .selected li.ui-draggable-dragging .title
+{
+	display:none;
 }
 li[data-type="zoning"] .selected ol li.focus .title,
 li[data-type="zoning"] .selected ol li:hover .title
@@ -374,11 +510,11 @@ li[data-type="zoning"] .selected ol li .config
 }
 
 /* Nodata */
-ol>li[data-type="zoning"] .selected ol:empty
+li[data-type="zoning"] .selected ol:empty
 {
 
 }
-ol>li[data-type="zoning"] .selected ol:empty:before
+li[data-type="zoning"] .selected ol:empty:before
 {
 	line-height:50px;
 	color:#999;
@@ -389,11 +525,6 @@ ol>li[data-type="zoning"] .selected ol:empty:before
 /********************************************************************************************/
 li[data-type="zoning"] .available
 {
-	background:#F5F5F5;
-	padding:10px;
-	-moz-border-radius:2px;
-	-webkit-border-radius:2px;
-	border-radius:2px;
 }
 li[data-type="zoning"] .available p
 {
@@ -424,10 +555,43 @@ li[data-type="zoning"] .available ul
 }
 li[data-type="zoning"] .available li
 {
-	height:50px;
+	padding:10px;
+	cursor:move;
 }
 li[data-type="zoning"] .available li .title
 {
-	height:100%;
-	cursor:move;
+	color:#000;
+	text-align:center;
+}
+li[data-type="zoning"] .available li .preview
+{
+	display:none;
+}
+
+/* Add */
+li[data-type="zoning"] .available .add
+{
+	text-align:center;
+	margin-top:5px;
+	display:none;
+}
+li[data-type="zoning"] .available .add button
+{
+	cursor:pointer;
+	background:transparent !important;
+	height:30px;
+	display:block;
+	line-height:30px;
+	width:100%;
+	padding:0 !important;
+}
+li[data-type="zoning"] .available .add button:after
+{
+	content:"+";
+	font-size:28px;
+	color:#666;
+}
+li[data-type="zoning"] .available .add:hover button:after
+{
+	color:#419BF9;
 }

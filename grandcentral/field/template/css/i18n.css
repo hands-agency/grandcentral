@@ -21,7 +21,7 @@ ol>li[data-type="i18n"] .labels li
 	border:1px solid #eee;
 	border-bottom:none;
 	font-size:10px;
-	opacity:0.7;
+	opacity:0.6;
 	cursor:pointer;
 	text-transform:uppercase;
 }
@@ -40,7 +40,7 @@ ol>li[data-type="i18n"] .field li
 }
 ol>li[data-type="i18n"] .field label
 {
-
+	display:none;
 }
 ol>li[data-type="i18n"] .field .wrapper
 {
