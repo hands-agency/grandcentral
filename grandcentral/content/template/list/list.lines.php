@@ -78,14 +78,14 @@
 //	Some prepross
 /********************************************************************************************/
 //	Find the first media attr
-	$iconField = null;
+	$coverField = null;
 	if ($bunch->count > 0)
 	{
 		foreach($bunch[0] as $attr)
 		{
 			if(is_a($attr, 'attrMedia'))
 			{
-				$iconField = $attr->get_key();
+				$coverField = $attr->get_key();
 				break;
 			}
 		}

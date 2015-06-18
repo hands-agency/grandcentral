@@ -8,27 +8,40 @@
 //	Save & format last Separator	
 	$lastSeparator = formatSeparator($item[$order]);
 ?>	
-<li data-item="<?=$item->get_nickname()?>" data-live="<?=$item['live']?>">
-	<?php
-		if ($iconField)
-		{
-			$images = $item[$iconField]->unfold();
-			$thumbnail = (!$item[$iconField]->is_empty() && $images[0]->exists()) ? $images[0]->thumbnail(200, null) : null;
-		}
-		else $thumbnail = null;
-		$empty = (!isset($thumbnail)) ? 'empty' : null;
-	?>
-	<div class="icon <?=$empty?>"><a href="<?=$item->edit()?>"><?=$thumbnail?></a></div>
+<li class="col-xs-12 col-sm-4 col-md-3 col-lg-2" data-item="<?=$item->get_nickname()?>" data-url="<?=$item['url']?>" data-live="<?=$item['live']?>">
+	<div class="card">
+
+		<div class="face front">
+			<?php
+				if ($coverField)
+				{
+					$images = $item[$coverField]->unfold();
+					$thumbnail = (!$item[$coverField]->is_empty() && $images[0]->exists()) ? $images[0]->thumbnail(300, null)->get_url() : null;
+				}
+				else $thumbnail = null;
+				$empty = (!isset($thumbnail)) ? 'empty' : null;
+			?>
+			<a href="<?=$item->edit()?>">
+				<span class="cover <?=$empty?>" style="background-image:url('<?=$thumbnail?>')"></span>
+				<span class="title"><?= (isset($item['title']) && !$item['title']->is_empty()) ? $item['title']->cut(85) : $item->get_table().'#'.$item['id'] ?></span>
+			</a>
+			<div class="option" data-feathericon=""></div>
+	   	</div>
+
+	    <div class="face back">
+			<img src="<?=$thumbnail?>" />
+			<div class="action">
+				<a class="edit" data-feathericon="&#xe095" href="<?=$item->edit()?>">Edit</a>
+				<?php if (isset($item['url'])): ?><a class="preview" data-feathericon="&#xe000">Preview</a><?php endif ?>
+				<a class="asleep" data-feathericon="&#xe061">Asleep</a>
+				<a class="live" data-feathericon="&#xe064">Go live</a>
+				<a class="alter" data-feathericon="&#xe064">Alter <?=$item->get_table()?></a>
+			</div>
+			<div class="preview"><iframe></iframe></div>
+	    </div>
 	
-	<div class="title"><a href="<?=$item->edit()?>"><?= (isset($item['title']) && !$item['title']->is_empty()) ? $item['title'] : $item->get_table().'#'.$item['id'] ?></a></div>
-	
-	<?php /* if (isset($item['descr'])): ?><div class="descr"><?=$item['descr']->cut(200)?></div><?php endif */ ?>
-	
-	<ul class="action">
-		<li><a href="" class="notes">Discussion</a></li>
-		<li class="icon-time"><?=$item['created']->time_since() ?></li>
-	</ul>
-	
-	<div class="notes"></div>
+		<div class="notes"></div>
+			
+	</div>
 </li>
 <?php endforeach ?>

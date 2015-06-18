@@ -35,16 +35,39 @@ $(document).ready(function()
 	},
 	function()
 	{
-		var $container = $('section[data-template="/list/list"][data-pref-display="inmasonry"]>.infiniteScrollContainer>ol');
-	//	initialize Masonry after all images have loaded  
+	/*
+	//	card
+		var $container = $('section[data-template="/list/list"][data-pref-display="incard"]>.infiniteScrollContainer>ol');
+	//	initialize card after all images have loaded  
 		$container.imagesLoaded( function()
 		{
-			$container.masonry(
+			$container.card(
 			{
 				itemSelector: 'li[data-item]',
-				gutter: 15,
+				gutter: 0,
 				isAnimated: true
 			});
+		});
+	*/
+	//	Back flip
+		$('.card').hoverIntent(
+		{
+			timeout: 500,
+			over: function() {},
+			out: function()
+			{
+				$(this).removeClass('flipped preview');
+			}
+		});
+	//	
+		$.adaptiveBackground.run(
+		{
+			selector: '.card .back img',
+			normalizeTextColor:   false,
+			lumaClasses:  {
+			    light:      "ab-light",
+			    dark:       "ab-dark"
+			  }
 		});
 	});
 });
