@@ -43,7 +43,7 @@
 				<ul id="sectiontray" style="width:<?=$sectionTrayWidth?>">
 					<?php foreach($sections as $section) : ?>
 					<?php $app = $section['app'] ?>
-					<?php $prefDisplay = isset($_SESSION['user']['pref'][$section['key']->get()]['display']) ? $_SESSION['user']['pref'][$section['key']]['display'] : 'inmasonry' ?>
+					<?php $prefDisplay = isset($_SESSION['user']['pref'][$section['key']->get()]['display']) ? $_SESSION['user']['pref'][$section['key']]['display'] : 'incard' ?>
 					<?php
 						$dataCallback = null;
 						$callback = null;

@@ -3,11 +3,6 @@
 /* From Boiler plate (you would be a fool to alter that)
 /////////////////////////////////////////////////////////////////////////////////////////////
 /********************************************************************************************/
-header, section, footer, aside, nav, article, figure
-{
-  display: block;
-}
-
 html, body, div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
@@ -35,12 +30,6 @@ fieldset
 	margin:0;
 	padding:0;
 	border:0;
-}
-
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section
-{
-  display: block;
 }
 
 table
@@ -88,10 +77,12 @@ body
 a
 {
 	color:#419BF9;
-	text-decoration:none;
+	text-decoration:none !important;
 }
 a:hover
-{}
+{
+	color:#419BF9;
+}
 a:active
 {
 	position:relative;
@@ -1066,7 +1057,7 @@ footer
 {
 	border-radius:2px;
 	background:#eee;
-	padding:30px;
+	padding:30px 15px;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
@@ -1144,30 +1135,39 @@ footer
 #adminContent section>div>h2
 {
 	margin:0 0 20px 0;
-	border-bottom:1px solid #ddd;
-	padding:0 0 5px 0;
-	text-align:center;
 	text-transform:uppercase;
+	color:#aaa;
+	text-align:center;
 }
-#adminContent section h2>.rule
+#adminContent section>h2 span,
+#adminContent section>div>h2 span
 {
-	background:#eee;
-	padding:0 10px;
+	margin:0 0 20px 0;
+	text-transform:uppercase;
 	color:#aaa;
 	position:relative;
-	bottom:-13px;
-	display:inline;
-	font-size:12px;
 }
-#adminContent.unlocked section>h2,
-#adminContent.unlocked section>div>h2
+#adminContent section>h2 span:after,
+#adminContent section>h2 span:before,
+#adminContent section>div>h2 span:after,
+#adminContent section>div>h2 span:before
 {
-	border-bottom-color:1px solid #fff;
-	color:#fff;
+	content:'';
+	border-bottom:1px solid #ddd;
+	position:absolute;
+	top:7px;
+	width:80%;
 }
-#adminContent.unlocked section h2>.centered
+#adminContent section>h2 span:after,
+#adminContent section>div>h2 span:after
 {
-	background:#007EE5;
+	left:-90%;
+}
+
+#adminContent section>h2 span:before,
+#adminContent section>div>h2 span:before
+{
+	right:-90%;
 }
 
 /* #adminContent section h3 */
@@ -1337,6 +1337,59 @@ footer
 #grandCentralAdmin button.delete:hover
 {
 	opacity:1;
+}
+
+/********************************************************************************************/
+/* Flipping cards
+/********************************************************************************************/
+.card {
+    -webkit-perspective: 600px;
+    -moz-perspective: 600px;
+}
+.card .face
+{
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+    -moz-transform-style: preserve-3d;
+    -moz-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+}
+.card .face>*
+{
+	vertical-align:middle;
+	display:inline-block;
+	line-height:normal; /* on rétablit le line-height */
+}
+.card .face.front
+{
+    z-index: 9;
+	width:100%;
+    -webkit-transform: rotateX(0deg) rotateY(0deg);
+    -moz-transform: rotateX(0deg) rotateY(0deg);
+	background:#fff;
+}
+.card.flipped .face.front {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+}
+.card .face.back {
+    z-index: 8;
+    -webkit-transform: rotateY(-180deg);
+    -moz-transform: rotateY(-180deg);
+	background-color:#666;
+	height:100%;
+}
+.card.flipped .face.back {
+    z-index: 10;
+    -webkit-transform: rotateX(0deg) rotateY(0deg);
+    -moz-transform: rotateX(0deg) rotateY(0deg);
 }
 
 /********************************************************************************************/

@@ -41,16 +41,26 @@
 	$sections = $_PAGE['section']->unfold();
 	$sectionTrayWidth = ($sections->count * 100).'%';
 	$sectionWidth = (100 / $sections->count).'%';
+	
+/********************************************************************************************/
+//	Load the apps!
+/********************************************************************************************/
+	load(
+		'jquery',
+		'jquery.ui',
+		'bootstrap',
+		'searchasyoutype',
+	//	'jquery.masonry',
+		'jquery.imagesloaded',
+		'jquery.hoverintent',
+		'jquery.sse',
+	//	'jquery.pace',
+		'featherfont'
+	);
 
 /********************************************************************************************/
 //	General binding of scripts & css files
 /********************************************************************************************/
-//	jQuery
-//	$_APP->bind_script('https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js');
-//	$_APP->bind_script('https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js');
-	$_APP->bind_script('master/js/jquery-1.10.2.min.js');
-	$_APP->bind_script('master/js/jquery-ui-1.9.1.custom.min.js');
-
 //	Reroot get in ajax
 	$_APP->bind_code("script", "
 	//	Some vars
@@ -63,10 +73,17 @@
 		var ENV = $('body').data('env');
 		var CURRENTEDITED_URL = '".$currentEditedItemUrl."';
 	//	Prevent pace on PushState
-		window.paceOptions = {
+	/*	window.paceOptions = {
 			restartOnPushState: false
 		};
+		$(document).ajaxStart(function() { Pace.restart(); });
+	*/
 	");
+
+//	Script
+	$_APP->bind_script('master/js/master.js');
+//	css
+	$_APP->bind_css('master/css/master.css');
 	
 /********************************************************************************************/
 //	First day at work ?
@@ -74,40 +91,16 @@
 /*
 	$p = array('subject' => 'human', 'subjectid' => $_SESSION['user']['id']->get());
 	if (count::get('logbook', $p, 'site') == 0) $_APP->bind_code("script", '$(document).ready(function () {openContext({app:"content",template:"master/welcome"})});');
-	
-/********************************************************************************************/
-//	Local binding scripts & css files
-/********************************************************************************************/
-//	Script
-	$_APP->bind_script('master/js/master.js');
-//	css
-	$_APP->bind_css('master/css/master.css');
 
-/********************************************************************************************/
-//	Apps
-/********************************************************************************************/
-	load('searchasyoutype', 'jquery.masonry', 'jquery.imagesloaded', 'jquery.hoverintent', 'jquery.sse', 'jquery.pace', 'featherfont');
-	$_APP->bind_code("script", "$(document).ajaxStart(function() { Pace.restart(); });");
-	
 /********************************************************************************************/
 //	Meta
 /********************************************************************************************/
 	$_APP->bind_snippet('meta', 'master/snippet/meta');
 	
 /********************************************************************************************/
-//	Nav CC
-/********************************************************************************************/
-//	$_APP->bind_snippet('sitenav', 'master/snippet/sitenav');
-	
-/********************************************************************************************/
-//	Nav CC
-/********************************************************************************************/
-//	$_APP->bind_snippet('nav', 'master/snippet/nav');
-	
-/********************************************************************************************/
 //	Headers
 /********************************************************************************************/
-//Site
+//	Site
 	$_APP->bind_snippet('headersite', 'master/snippet/headersite');
 	
 //	Even stream
@@ -123,8 +116,7 @@
 /********************************************************************************************/
 //	Trashbin
 	$_APP->bind_snippet('content', 'master/snippet/trashbin/trashbin');
-	
-//
+
 /********************************************************************************************/
 //	The title
 /********************************************************************************************/

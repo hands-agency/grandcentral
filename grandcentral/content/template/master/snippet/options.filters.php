@@ -43,7 +43,7 @@
 		//	Display
 			$filter['display'] = array(
 				'type' => 'exclusive',
-				'data' => array('instack', 'inmasonry'),
+				'data' => array('instack', 'incard'),
 			);
 		//	Order
 			$filter['order'] = array(
