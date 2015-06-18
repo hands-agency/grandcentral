@@ -342,11 +342,13 @@ section[data-template="/list/list"][data-pref-display="incard"]>div>ol>li .card 
 	top:-1px;
 	color:#fff;
 }
-section[data-template="/list/list"][data-pref-display="incard"]>div>ol>li .card .back.ab-light .action a
+section[data-template="/list/list"][data-pref-display="incard"]>div>ol>li .card .back.ab-light .action a,
+section[data-template="/list/list"][data-pref-display="incard"]>div>ol>li .card .back.ab-light .action a:before
 {
 	color:#000;
 }
-section[data-template="/list/list"][data-pref-display="incard"]>div>ol>li .card .back.ab-dark .action a
+section[data-template="/list/list"][data-pref-display="incard"]>div>ol>li .card .back.ab-dark .action a,
+section[data-template="/list/list"][data-pref-display="incard"]>div>ol>li .card .back.ab-dark .action a:before
 {
 	color:#fff;
 }

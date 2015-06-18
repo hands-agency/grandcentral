@@ -32,9 +32,10 @@ $(document).bind('unlock', function()
 	$(document).on('click', '.action .preview', function()
 	{
 	//	Some vars
-		$card = $(this).closest('.card');
+		$item = $(this).closest('li');
+		$card = $item.find('.card');
 		$back = $card.find('.back');
-		url = $card.data('url');
+		url = $item.data('url');
 		
 		$card.addClass('preview');
 		$back.find('.preview iframe').attr('src', url);

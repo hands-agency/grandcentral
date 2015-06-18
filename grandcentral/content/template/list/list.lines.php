@@ -73,6 +73,8 @@
 
 //	Fetch the bunch
 	$bunch = i($handled_item, $param, $handled_env);
+//	Fetch the structure
+	$item = i('item', $handled_item, $handled_env);
 	
 /********************************************************************************************/
 //	Some prepross
