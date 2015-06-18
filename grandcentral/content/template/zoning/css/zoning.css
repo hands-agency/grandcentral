@@ -1,4 +1,12 @@
 section[data-template="/zoning/zoning"]
 {
+	background: rgb(255,157,100) !important; /* Old browsers */
+	background: -moz-radial-gradient(center, ellipse cover,  rgba(255,157,100,1) 0%, rgba(242,129,69,1) 100%) !important; /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,157,100,1)), color-stop(100%,rgba(242,129,69,1))) !important; /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,157,100,1) 0%,rgba(242,129,69,1) 100%) !important; /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover,  rgba(255,157,100,1) 0%,rgba(242,129,69,1) 100%) !important; /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover,  rgba(255,157,100,1) 0%,rgba(242,129,69,1) 100%) !important; /* IE10+ */
+	background: radial-gradient(ellipse at center,  rgba(255,157,100,1) 0%,rgba(242,129,69,1) 100%) !important; /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff9d64', endColorstr='#f28145',GradientType=1 ) !important; /* IE6-9 fallback on horizontal gradient */
 
 }

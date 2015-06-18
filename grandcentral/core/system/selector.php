@@ -161,7 +161,7 @@
  * load() lets you simply load apps into the system:
  * <pre>
  * // Load jQuery, Sir Trevor and Masonry 
- * load('jquery', 'sirtrevor', 'masonry');
+ * load('jquery', 'sirtrevor', 'jquery.masonry');
  * </pre>
  *
  * @param	string	app 1
