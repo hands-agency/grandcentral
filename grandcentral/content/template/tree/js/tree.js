@@ -657,21 +657,16 @@ $(function()
 				template.find('.cc-badge').remove();
 				template.find('.action a.edit').attr('href', 'edit?item=workflow&id='+id);
 				template.find('ol').html('');
-				template.find('.icon').addClass('flipped');
+				template.find('.card').addClass('flipped');
 				template.find('.add').remove('');
 			//	Make some babies!
 				$(template).appendTo($childrenContainer).show('fast');
 			}
 		});
 	});
-	
-//	Edit on click
-	$(document).on('click', '.locked ol.tree .icon .front', function()
-	{
-		$(this).parent('.icon').addClass('flipped');
-	});
+		
 //	Revert on hover intent out
-	$('ol.tree .icon').hoverIntent(
+	$('.card').hoverIntent(
 	{
 		timeout: 500,
 		over: function() {},
@@ -685,11 +680,11 @@ $(function()
 	$('ol.tree .action').on('click', '.preview', function()
 	{
 		$page = $(this).closest('.page');
-		$icon = $page.find('.icon');
-		$back = $icon.find('.back');
+		$card = $page.find('.card');
+		$back = $card.find('.back');
 		url = $page.data('url');
 		
-		$icon.addClass('preview');
+		$card.addClass('preview');
 		$back.find('.preview iframe').attr('src', url);
 	});
 	
@@ -746,7 +741,7 @@ $(function()
 	//	Make sortable	
 		$('ol.tree').nestedSortable(
 		{
-			handle: '.icon',
+			handle: '.card',
 			items: '> li li[data-item]',
             toleranceElement: '> .node',
 			protectRoot:true,

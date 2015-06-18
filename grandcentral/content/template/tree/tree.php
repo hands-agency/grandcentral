@@ -177,10 +177,13 @@
 					<div class="connector"></div>
 					'.$badge.'
 				
-					<div class="icon" id="'.$page->get_nickname().'">
+					<div class="card" id="'.$page->get_nickname().'">
 					
 						<div class="face front">
-				            <div class="title">'.$page['title'].'</div>
+				            <div class="title">
+								<a href="'.$page->edit().'">'.$page['title'].'</a>
+							</div>
+				            <div class="option" data-feathericon=""></div>
 				    	</div>
 					    <div class="face back">
 							<div class="action">

@@ -7,9 +7,10 @@ section[data-template="/tree/tree"]
 }
 section[data-template="/tree/tree"] ol.tree
 {
-	cursor:grab;
+/*	cursor:grab;
 	cursor: -webkit-grab;
 	cursor: -moz-grab;
+*/
 	padding-top:70px !important;
 }
 section[data-template="/tree/tree"] ol.tree.grabbing
@@ -151,7 +152,7 @@ section[data-template="/tree/tree"] ol li .page:hover
 }
 
 /* The icon */
-section[data-template="/tree/tree"] ol li .page .icon
+section[data-template="/tree/tree"] ol li .page .card
 {
 	width:100px;
 	height:120px;
@@ -167,20 +168,21 @@ section[data-template="/tree/tree"] ol li .page .icon
 	-moz-transition: all .1s ease-out; 
 	-o-transition: all .1s ease-out; 
 	transition: all .1s ease-out;
+	box-shadow:0 1px 1px 0 rgba(0, 0, 0, 0.1);	
 }
 
 /* Preview */
-section[data-template="/tree/tree"] ol li .page .icon.preview
+section[data-template="/tree/tree"] ol li .page .card.preview
 {
 	width:200px;
 	height:240px;
 	overflow:hidden;
 }
-section[data-template="/tree/tree"] ol li .page .icon.preview .face
+section[data-template="/tree/tree"] ol li .page .card.preview .face
 {
 	padding:10px 1px 1px 1px;
 }
-section[data-template="/tree/tree"] ol li .page .icon.preview:before
+section[data-template="/tree/tree"] ol li .page .card.preview:before
 {
 	content:'•••';
 	position:absolute;
@@ -189,7 +191,7 @@ section[data-template="/tree/tree"] ol li .page .icon.preview:before
 	color:#fff;
 	z-index:12;
 }
-section[data-template="/tree/tree"] ol li .page .icon iframe
+section[data-template="/tree/tree"] ol li .page .card iframe
 {
 	width:1024px;
 	height:1184px;
@@ -205,11 +207,11 @@ section[data-template="/tree/tree"] ol li .page .icon iframe
 	position:relative;
 	background:#fff;
 }
-section[data-template="/tree/tree"] ol li .page .icon.preview iframe
+section[data-template="/tree/tree"] ol li .page .card.preview iframe
 {
 	display:block;
 }
-section[data-template="/tree/tree"] ol li .page .icon.preview .action
+section[data-template="/tree/tree"] ol li .page .card.preview .action
 {
 	display:none;
 }
@@ -222,7 +224,7 @@ section[data-template="/tree/tree"] ol li .page .cc-badge
 }
 
 /* The title */
-section[data-template="/tree/tree"] ol li .page .icon .title
+section[data-template="/tree/tree"] ol li .page .card .title
 {
 	padding:5px 0;
 	font-size:11px;
@@ -233,13 +235,40 @@ section[data-template="/tree/tree"] ol li .page .icon .title
 	display:inline-block;
 	line-height:normal; /* on rétablit le line-height */
 }
-section[data-template="/tree/tree"] ol li .page .icon .title a
+section[data-template="/tree/tree"] ol li .page .card .title a
 {
-	color:#333;
+	color:#000;
+}
+section[data-template="/tree/tree"] ol li .page .card .title a:hover
+{
+	color:#419BF9;
+}
+/* Flip + option */
+section[data-template="/tree/tree"] ol li .page .card .option
+{
+	position:absolute;
+	bottom:15px;
+	left:0;
+	width:100%;
+	opacity:0;
+	color:#ccc;
+	cursor:pointer;
+	-webkit-transition: all .1s ease-out; 
+	-moz-transition: all .1s ease-out; 
+	-o-transition: all .1s ease-out; 
+	transition: all .1s ease-out;
+}
+section[data-template="/tree/tree"] ol li .page .card .option:hover
+{
+	color:#419BF9;
+}
+section[data-template="/tree/tree"] ol li .page .card:hover .option
+{
+	opacity:1;
 }
 
 /* By status */
-section[data-template="/tree/tree"] ol li .page[data-live="false"] .icon
+section[data-template="/tree/tree"] ol li .page[data-live="false"] .card
 {
 	transform:scale(0.8);
 	-moz-transform:scale(0.8);
@@ -259,10 +288,10 @@ section[data-template="/tree/tree"]>ol>li>.node>.page
 /********************************************************************************************/
 /* Action */
 /********************************************************************************************/
-section[data-template="/tree/tree"] ol li .page .icon .action
+section[data-template="/tree/tree"] ol li .page .card .action
 {
 }
-section[data-template="/tree/tree"] ol li .page .icon .action a
+section[data-template="/tree/tree"] ol li .page .card .action a
 {
 	color:#fff;
 	padding:2px;
@@ -275,20 +304,21 @@ section[data-template="/tree/tree"] ol li .page .icon .action a
 	text-align:left;
 	display:block;
 }
-section[data-template="/tree/tree"] ol li .page .icon .action a
+section[data-template="/tree/tree"] ol li .page .card .action a
 {
+	opacity:0.6;
 }
-section[data-template="/tree/tree"] ol li .page .icon .action a:before
+section[data-template="/tree/tree"] ol li .page .card .action a:before
 {
 	margin:0 3px 0 0;
 	top:-1px;
 }
-section[data-template="/tree/tree"] ol li .page .icon .action a:hover
+section[data-template="/tree/tree"] ol li .page .card .action a:hover
 {
-	color:#419BF9;
+	opacity:1;
 }
-section[data-template="/tree/tree"] ol li .page[data-live="true"] .icon .action .live,
-section[data-template="/tree/tree"] ol li .page[data-live="false"] .icon .action .asleep
+section[data-template="/tree/tree"] ol li .page[data-live="true"] .card .action .live,
+section[data-template="/tree/tree"] ol li .page[data-live="false"] .card .action .asleep
 {
 	display:none;
 }
@@ -297,7 +327,7 @@ section[data-template="/tree/tree"] ol li .page[data-live="false"] .icon .action
 /* Sortable
 /********************************************************************************************/
 /* Draggable */
-.unlocked section[data-template="/tree/tree"] ol li .icon
+.unlocked section[data-template="/tree/tree"] ol li .card
 {
 /*	cursor:move; */
 }
@@ -327,7 +357,7 @@ section[data-template="/tree/tree"] li.ui-sortable-helper ol
 {
 	display:none;
 }
-section[data-template="/tree/tree"] ol li.ui-sortable-helper .page .icon
+section[data-template="/tree/tree"] ol li.ui-sortable-helper .page .card
 {
 	box-shadow: 3px 3px 1px 0 rgba(0, 0, 0, .1) !important;
 }
@@ -335,7 +365,7 @@ section[data-template="/tree/tree"] ol li.ui-sortable-helper .page .icon
 /********************************************************************************************/
 /* New
 /********************************************************************************************/
-section[data-template="/tree/tree"] li .page[data-type="new"] .icon .face
+section[data-template="/tree/tree"] li .page[data-type="new"] .card .face
 {
 	border-style:dotted !important;
 	background:transparent !important;
@@ -344,7 +374,7 @@ section[data-template="/tree/tree"] li .page[data-type="new"] .icon .face
 /********************************************************************************************/
 /* Content
 /********************************************************************************************/
-section[data-template="/tree/tree"] li .page[data-type="content"] .icon
+section[data-template="/tree/tree"] li .page[data-type="content"] .card
 {
 
 }
@@ -352,7 +382,7 @@ section[data-template="/tree/tree"] li .page[data-type="content"] .icon
 /********************************************************************************************/
 /* Feed
 /********************************************************************************************/
-section[data-template="/tree/tree"] li .page[data-type="feed"] .icon
+section[data-template="/tree/tree"] li .page[data-type="feed"] .card
 {
 
 }
@@ -364,12 +394,12 @@ section[data-template="/tree/tree"] li .page[data-type="header"] .connector
 {
 	display:none;
 }
-section[data-template="/tree/tree"] li .page[data-type="header"] .icon .face
+section[data-template="/tree/tree"] li .page[data-type="header"] .card .face
 {
 	border:1px solid rgba(0, 0, 0, .4);
 	background:transparent !important;
 }
-section[data-template="/tree/tree"] li .page[data-type="header"] .icon .face:before
+section[data-template="/tree/tree"] li .page[data-type="header"] .card .face:before
 {
 	content:'';
 	border-left:1px solid rgba(0, 0, 0, .4);
@@ -378,24 +408,24 @@ section[data-template="/tree/tree"] li .page[data-type="header"] .icon .face:bef
 	position:absolute;
 	top:0;
 }
-.unlocked section[data-template="/tree/tree"] li .page[data-type="header"] .icon .face:before
+.unlocked section[data-template="/tree/tree"] li .page[data-type="header"] .card .face:before
 {
 	border-color:rgba(255, 255, 255, .4);
 }
-section[data-template="/tree/tree"] li .page[data-type="header"] .icon .face .title
+section[data-template="/tree/tree"] li .page[data-type="header"] .card .face .title
 {
 	z-index:5;
 	background:#eee !important;
 	position:relative;
 }
-section[data-template="/tree/tree"] li .page[data-type="header"] .icon .face .action a
+section[data-template="/tree/tree"] li .page[data-type="header"] .card .face .action a
 {
 	z-index:5;
 	position:relative;
 	color:#000;
 	background:#eee;
 }
-.unlocked section[data-template="/tree/tree"] li .page[data-type="header"] .icon .face .title
+.unlocked section[data-template="/tree/tree"] li .page[data-type="header"] .card .face .title
 {
 	background:#007EE5 !important;
 }
@@ -403,7 +433,7 @@ section[data-template="/tree/tree"] li .page[data-type="header"] .icon .face .ac
 /********************************************************************************************/
 /* Links
 /********************************************************************************************/
-section[data-template="/tree/tree"] li .page[data-type="link"] .icon .face
+section[data-template="/tree/tree"] li .page[data-type="link"] .card .face
 {
 	height:70px;
 	line-height:55px !important;
@@ -455,30 +485,30 @@ section[data-template="/tree/tree"] li .page[data-type="link"] .url
 }
 
 /* Face */
-.locked section[data-template="/tree/tree"] ol li .page .icon:hover .face
+.locked section[data-template="/tree/tree"] ol li .page .card:hover .face
 {
 	border-color: #419BF9;
 	-webkit-box-shadow: 0 0 4px #419BF9;
 	box-shadow: 0 0 4px #419BF9;
 }
-.unlocked section[data-template="/tree/tree"] ol li .page .icon .face
+.unlocked section[data-template="/tree/tree"] ol li .page .card .face
 {
 	background:rgba(255, 255, 255, .1);
 	border:1px solid #fff;
 }
 
 /* The title */
-.unlocked section[data-template="/tree/tree"] ol li .page .icon .title
+.unlocked section[data-template="/tree/tree"] ol li .page .card .title
 {
 	color:#fff;
 }
 
 /* add */
-.locked section[data-template="/tree/tree"] ol li .page .icon .add
+.locked section[data-template="/tree/tree"] ol li .page .card .add
 {
 	display:none;
 }
-.unlocked section[data-template="/tree/tree"] ol li .page .icon .add
+.unlocked section[data-template="/tree/tree"] ol li .page .card .add
 {
 	background:#007EE5;
 	width:30px;
@@ -505,7 +535,7 @@ section[data-template="/tree/tree"] li .page[data-type="link"] .url
 	transition: all .1s ease-out;
 	cursor:pointer;
 }
-.unlocked section[data-template="/tree/tree"] ol li:hover>.node>.page>.icon>.add
+.unlocked section[data-template="/tree/tree"] ol li:hover>.node>.page>.card>.add
 {
 	opacity:1;
 	transform:scale(0.7);
@@ -514,7 +544,7 @@ section[data-template="/tree/tree"] li .page[data-type="link"] .url
 	-webkit-transform:scale(0.7);
 	-o-transform:scale(0.7);
 }
-.unlocked section[data-template="/tree/tree"] ol li .page .icon .add:hover 
+.unlocked section[data-template="/tree/tree"] ol li .page .card .add:hover 
 {
 	opacity:1;
 	transform:scale(1);
@@ -525,71 +555,24 @@ section[data-template="/tree/tree"] li .page[data-type="link"] .url
 }
 
 /********************************************************************************************/
-/* Flipped
+/* Flipping cards
 /********************************************************************************************/
-.icon {
-    -webkit-perspective: 600px;
-    -moz-perspective: 600px;
-}
-.icon .face
+.tree .card .face
 {
+	line-height:110px;
     position: absolute;
     top: 0;
 	left:0;
 	width:100%;
     height: inherit;
-    -o-transition: all .3s ease-in-out;
-    -ms-transition: all .3s ease-in-out;
-    -moz-transition: all .3s ease-in-out;
-    -webkit-transition: all .3s ease-in-out;
-    transition: all .3s ease-in-out;
-	padding:7px;
-	line-height:100px;
-	-moz-box-sizing:border-box;
-	-webkit-box-sizing:border-box;
-	box-sizing:border-box;
 	-moz-border-radius: 2px;
 	border-radius:2px;
-    -moz-transform-style: preserve-3d;
-    -moz-backface-visibility: hidden;
-    -webkit-transform-style: preserve-3d;
-    -webkit-backface-visibility: hidden;
-	border:1px solid transparent;
+	padding:7px;
 }
-.icon .face>*
+.locked .tree .card .face.front
 {
-	vertical-align:middle;
-	display:inline-block;
-	line-height:normal; /* on rétablit le line-height */
 }
-.icon .face.front
-{
-    z-index: 9;
-	width:100%;
-    -webkit-transform: rotateX(0deg) rotateY(0deg);
-    -moz-transform: rotateX(0deg) rotateY(0deg);
-	background:#fff;
-}
-.locked .icon .face.front
-{
-	cursor:pointer;
-}
-.unlocked .icon .face.front
+.unlocked .tree .card .face.front
 {
 	cursor:move;
-}
-.icon.flipped .face.front {
-    -webkit-transform: rotateY(180deg);
-    -moz-transform: rotateY(180deg);
-}
-.icon .face.back {
-    z-index: 8;
-    -webkit-transform: rotateY(-180deg);
-    -moz-transform: rotateY(-180deg);
-	background-color:#666;
-}
-.icon.flipped .face.back {
-    z-index: 10;
-    -webkit-transform: rotateX(0deg) rotateY(0deg);
-    -moz-transform: rotateX(0deg) rotateY(0deg);
 }
