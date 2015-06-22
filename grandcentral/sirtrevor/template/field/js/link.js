@@ -1,16 +1,16 @@
 (function($)
 {
 //	Some vars
-	template = '/field/link';
+	var template = '/field/link';
 	
 //	Tabs
 	$(document).on('click', '.adminContext .tabs li', function()
 	{
 	//	Some vars
-		$admincontext = $(this).parents('.adminContext');
-		$tabs = $admincontext.find('.tabs');
-		$panels = $admincontext.find('.panels');
-		currentTab = $(this).data('tab');
+		var $admincontext = $(this).parents('.adminContext');
+		var $tabs = $admincontext.find('.tabs');
+		var $panels = $admincontext.find('.panels');
+		var currentTab = $(this).data('tab');
 		
 	//	Close all tabs & panels
 		$tabs.find('>li').attr('class', 'off');
@@ -22,7 +22,7 @@
 		$panel.attr('class', 'on');
 		
 	//	Init the panel (cameltoe function initCurrenttab)
-		function_name = 'init'+currentTab.charAt(0).toUpperCase() + currentTab.slice(1);
+		var function_name = 'init'+currentTab.charAt(0).toUpperCase() + currentTab.slice(1);
 		window[function_name]($panel);	
 	});
 	
@@ -37,21 +37,25 @@
 			// selRange = false;
 		});
 	//	Send Internal link
-		$(document).on('mousedown', '.adminContext[data-template="/field/link"] [data-panel="internal"] [data-item] button', function()
+		$(document).on('click', '.adminContext[data-template="/field/link"] [data-panel="internal"] [data-item] button', function(e)
 		{
-			restoreSelection(selRange);
-			// selRange = false;
-			link = $(this).parent().data('item');
-			document.execCommand('CreateLink', false, link);
-			closeContext(template);
+			if (selRange !== null)
+			{
+				restoreSelection(selRange);
+				var link = $(this).parent().data('item');
+				// console.log(link)
+				document.execCommand('CreateLink', false, link);
+				closeContext(template);
+				selRange = null;
+			};
 		});
 	//	Refine item lists
 		$('.adminContext[data-template="/field/link"] [data-panel="internal"] input[type="search"]').each(function()
 		{
 		//	Some vars
-			$input = $(this);
-			item = $input.data('item');
-			$target = $(this).next('ul');
+			var $input = $(this);
+			var item = $input.data('item');
+			var $target = $(this).next('ul');
 		//	Search as you type
 			$input.searchasyoutype(
 			{
@@ -73,12 +77,12 @@
 		$(document).on('click', '.adminContext[data-template="/field/link"] [data-panel="external"] button.done', function()
 		{
 		//	Get the value from the iframe
-			link = $(this).parent().find('iframe').contents().find('input').val();
+			var link = $(this).parent().find('iframe').contents().find('input').val();
 		
 		//	Good link
 			if(link && link.length > 0)
 			{
-				link_regex = /(ftp|http|https):\/\/./;
+				var link_regex = /(ftp|http|https):\/\/./;
 				if (!link_regex.test(link)) link = "http://" + link;
 				document.execCommand('CreateLink', false, link);
 				closeContext(template);

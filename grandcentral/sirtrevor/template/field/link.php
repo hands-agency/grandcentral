@@ -62,7 +62,7 @@
 	
 //	Save pref and open the last panel
 	$panel = (isset($_SESSION['user']['pref']['sirtrevor']['link'])) ? $_SESSION['user']['pref']['sirtrevor']['link'] : $defaultPanel;
-	$_APP->bind_code('script', '
-		$(\'.adminContext .tabs li[data-tab="'.$panel.'"]\').trigger(\'mousedown\');
-	');
+	// $_APP->bind_code('script', '
+	// 	$(\'.adminContext .tabs li[data-tab="'.$panel.'"]\').trigger(\'mousedown\');
+	// ');
 ?>
