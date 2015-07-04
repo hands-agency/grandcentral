@@ -53,10 +53,6 @@
 			$element.on('click', 'li.folder', function()
 			{
 				dir = $(this).find('.title').html();
-				if (plugin.settings.current != '')
-				{
-					plugin.settings.current = plugin.settings.current + '/';
-				}
 				plugin.settings.current = plugin.settings.current + dir;
 				plugin.loadList();
 				return false;
@@ -107,7 +103,7 @@
 						else
 						{
 							$folder.effect('shake', { times:3 }, 300);
-							console.log(html);
+							// console.log(html);
 						}
 					}
 				});
@@ -142,13 +138,13 @@
 		//	Start loading
 			$element.html('');
 			$element.loading();
-
+			//console.log(plugin.settings.current)
 		//	Load the library
 			$element.ajx(
 			{
 				app: 'media',
 				template: plugin.settings.tpl_list,
-				root: plugin.settings.current.substr(0, 1) != '/' ? '/' + plugin.settings.current : plugin.settings.current
+				root: plugin.settings.current
 			},{
 				done:function(html)
 				{
@@ -210,7 +206,7 @@
 				{
 					app: 'media',
 					template: plugin.settings.tpl_list,
-					param:{root: plugin.settings.current.substr(0, 1) != '/' ? '/' + plugin.settings.current : plugin.settings.current},
+					param:{root: plugin.settings.current},
 					target:'#mediaLibrary',
 				},
 				{
@@ -231,12 +227,12 @@
 	//	Method
 		plugin.loadDetail = function()
 		{
-		 	plugin.settings.current += '/' + plugin.settings.file;
+		 	plugin.settings.current += plugin.settings.file;
 			$element.find('.files').ajx(
 			{
 				app: 'media',
 				template: plugin.settings.tpl_detail,
-				root: plugin.settings.root + '/' + plugin.settings.current
+				root: plugin.settings.root + plugin.settings.current
 			},{
 			//	Done !
 				done:function()
