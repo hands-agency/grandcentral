@@ -48,6 +48,20 @@ class attrDate extends _attrs
 		return $date->format($format);
 	}
 /**
+ * Returns date difference
+ * Uses php [Datetime::diff](http://php.net/manual/en/datetime.diff.php) method.
+ *
+ * @param	string	Format accepted by [date()](http://php.net/manual/en/function.date.php)
+ * @return	string	Returns the date difference
+ * @access	public
+ */
+	public function diff($from)
+	{
+		$date = new DateTime($this->data);
+		$from = new DateTime($from);
+		return $date->diff($from);
+	}
+/**
  * Alter the timestamp of a DateTime object by incrementing or decrementing in a format accepted by strtotime().
  * Uses php [Datetime::modify](http://php.net/manual/en/datetime.modify.php) method
  *
