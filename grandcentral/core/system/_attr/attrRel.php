@@ -162,10 +162,15 @@ class attrRel extends _attrs implements ArrayAccess, Iterator
 		return '<pre>'.print_r($this->data, true).'</pre>';
 	}
 /**
- * xxxx
+ * Get a bunvh of items matchnig the current relation.
+ * You can filter the results with an array of parameters
+ * // Fetch a bunch of socks
+ * $p = array(
+ * 	'limit()' => 10
+ * );
  *
- * @param	string	la variable
- * @return	string	une string
+ * @param	array	array of parameters
+ * @return	object	a bunch object
  * @access	public
  */
 	public function unfold($params = null)

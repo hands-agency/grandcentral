@@ -11,6 +11,8 @@
 	</div>
 	
 	<div class="preview"><iframe></iframe></div>
+	
+	<input type="hidden" name="<?=$name?>[]" value="<?=$app['key']?>" disabled="disabled" />
 
 </li>
 <?php endforeach ?>

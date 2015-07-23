@@ -49,19 +49,18 @@
 				over:function(event, ui)
 				{
 					received = false;
-					$(this).addClass('ui-sortable-hover');
+				//	$(this).addClass('ui-sortable-hover');
 				},
 				out:function(event, ui)
 				{
-					$(this).removeClass('ui-sortable-hover');
+				//	$(this).removeClass('ui-sortable-hover');
 				},
 				receive:function(event, ui)
 				{
 				//	Test if not present
-					li = $(this).data()['ui-sortable']['currentItem'];
-					// value = li.data('item').split('_')[1];
+					li = $(this).data().sortable.currentItem;
 					value = li.data('item');
-					count = $(this).find('input[value="'+value+'"]').length;
+					count = $(this).find('input:not(:disabled)[value="'+value+'"]').length;
 
 				//	Refuse if item already exists
 					if (count > 0)
@@ -74,11 +73,9 @@
 				//	Accept otherwise
 					else
 					{
-					//	Find the name
-						name = $(this).closest('[data-type]').find('.available').data('name');
-					//	Add the hidden input which contains the value
-						input = '<input type="hidden" name="'+name+'[]" value="'+value+'" />';
-						li.append(input);
+					//	Enable the input
+						$input = $(this).data().sortable.currentItem.find('input');
+						$input.prop('disabled', false);
 						received = true;
 						
 					//	Execute callback (make sure the callback is a function)
@@ -216,7 +213,7 @@
 				stop:function(event, ui)
 				{
 				//	Show the available back
-					$(this).show('fast');
+					$(this).show();
 				},
 			});
 		}
