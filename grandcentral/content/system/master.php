@@ -71,6 +71,18 @@ class master
 	}
 	
 /**
+ * Get content of a specific zone
+ *
+ * @param	string	zone key
+ * @access	public
+ */
+	public static function get_zone_data($key)
+	{
+	//	retour
+		return self::$zones[$key];
+	}
+	
+/**
  * Display the master
  *
  * @return	string	la clé de l'app
