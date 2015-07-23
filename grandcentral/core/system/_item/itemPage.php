@@ -81,11 +81,11 @@ class itemPage extends _items
 			// chargement de la page de home
 			$this->get_by_url($hash);
 			// 404
-			if ($this->get_env() == 'site' && !$this->is_reader())
+		//	if ($this->get_env() == 'site' && !$this->is_reader())
 			//if (!$this->exists())
-			{
-				$this->get_by_url('/404');
-			}
+		//	{
+		//		$this->get_by_url('/404');
+		//	}
 		}
 		// si on ne trouve rien, on renvoi une erreur
 		if (!$this->exists())
