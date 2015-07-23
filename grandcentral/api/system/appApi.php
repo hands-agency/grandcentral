@@ -20,48 +20,50 @@ class appApi extends _apps
 {
 	public $param;
 /**
- * Class constructor (Don't forget it is an abstract class)
+ * key constructor (Don't forget it is an abstract key)
  *
  * @access	public
  */
 	public function prepare()
 	{
 	//	Chop down the URL
-		$url = mb_substr(URL, mb_strlen(ADMIN_URL)+1);
+		$url = mb_substr(URLR, 1);
 		$method = strtolower($_SERVER['REQUEST_METHOD']);
 		
 	//	Explode parameters
 		$array = explode('/', $url);
 
-	//	Api (ie: api.json)
-		if (isset($array[0])) $this->param['api']['key'] = $array[0];
+	//	Mime (ie: api.json)
+		if (isset($array[0])) $this->param['api']['mime'] = $array[0];
 	//	Version (ie: v1)
 		if (isset($array[1])) $this->param['api']['v'] = $array[1];
-	//	Class (ie: pref)
-		if (isset($array[2])) $this->param['api']['class'] = $array[2];
-	//	Item (ie: page)
-		if (isset($array[3])) $this->param['api']['item'] = $array[3];
-	//	ItemId (ie: 123)
-		if (isset($array[4])) $this->param['api']['itemid'] = $array[4];
-	//	Attr (ie: child)
-		if (isset($array[5])) $this->param['api']['attr'] = $array[5];
-	//	Attr Id(ie: 456)
-		if (isset($array[6])) $this->param['api']['attrid'] = $array[6];
+	//	API (ie: pref)
+		if (isset($array[2])) $this->param['api']['key'] = $array[2];
+		
+	//	Hash (add the rest of the hash)
+		if (isset($array[3]))
+		{
+			$this->param['api']['hash'] = array();
+			for ($i=3; $i < count($array); $i++)
+			{
+				$this->param['api']['hash'][] = $array[$i];
+			}
+		}
 	
 	//	Param (ie array('save' => true))
-		if (isset($_GET) && !empty($_GET)) $this->param['api']['param'] = $_GET;
+		if (isset($_GET) && !empty($_GET)) $this->param['api']['get'] = $_GET;
 	//	Data
-		if (isset($_POST) && !empty($_POST)) $this->param['api']['data'] = $_POST;
+		if (isset($_POST) && !empty($_POST)) $this->param['api']['post'] = $_POST;
 
-	//	Require the api class
-		$class = $this->param['api']['class'].'/api'.ucfirst($this->param['api']['class']).'.php';
-		$pathToClass = $this->get_templateroot(env).'/'.$this->param['api']['v'].'/'.$class;
-		if (is_file($pathToClass))
+	//	Require the api key
+		$key = $this->param['api']['key'].'/api'.ucfirst($this->param['api']['key']).'.php';
+		$pathTokey = $this->get_templateroot(env).'/'.$this->param['api']['v'].'/'.$key;
+		if (is_file($pathTokey))
 		{
-			require($pathToClass);
+			require($pathTokey);
 	
 		//	Instantiate the api
-			$api = 'api'.ucfirst($this->param['api']['class']);
+			$api = 'api'.ucfirst($this->param['api']['key']);
 			$o = new $api($this->param['api']);
 			$o->$method();
 			
@@ -69,7 +71,7 @@ class appApi extends _apps
 			if (method_exists($api, $method)) $this->param['api']['result'] = $o->{master::get_content_type()}();
 			else trigger_error('Sorry, no such method as as "'.$api.'::'.$method.'"', E_USER_ERROR);
 		}
-		else trigger_error('Sorry, no such API class as "'.$class.'".', E_USER_ERROR);
+		else trigger_error('Sorry, no such API key as "'.$key.'".', E_USER_ERROR);
 	}
 	
 /**
