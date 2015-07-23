@@ -17,6 +17,8 @@
 	<div class="title"><span><span class="flag"><?=$app['title']?></span></span></div>
 	
 	<div class="preview"><iframe src=""></iframe></div>
+	
+	<input type="hidden" name="<?=$name?>[]" value="<?=$app['key']?>" disabled="disabled" />
 
 </li>
 <?php endforeach ?>

@@ -5,6 +5,7 @@
 	<button class="delete" type="button"></button>
 	<div class="icon"></div>
 	<div class="title"><?=$li['title']?></div>
+	<input type="hidden" name="<?=$name?>[]" value="<?=$li['id']?>" disabled="disabled" />
 </li>
 <?php endforeach ?>
 <?php endif ?>

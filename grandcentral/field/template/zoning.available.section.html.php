@@ -7,6 +7,8 @@
 	<div class="title"><span><span class="app"><?=$section['app']['app']?></span><?=$section['title']?></span></div>
 	
 	<div class="preview"><iframe></iframe></div>
+	
+	<input type="hidden" name="<?=$name?>[]" value="<?=$app['key']?>" disabled="disabled" />
 
 </li>
 <?php endforeach ?>
