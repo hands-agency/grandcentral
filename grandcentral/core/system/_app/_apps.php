@@ -271,15 +271,17 @@ abstract class _apps
  *
  * @param	string	The zone name where you want to bind the snippet (ex: content)
  * @param	string	The relative path to the snippet (ex: master/content)
+ * @param	string	Variables you want to use in the snippet
  * @param	bool	Bind the snippet on top of the pile
  * @access	public
  */
-	public function bind_snippet($zone, $snippet_key, $top = false)
+	public function bind_snippet($zone, $snippet_key, $params = null, $top = false)
 	{
 	//	Failsafe first slash
 		$snippet_key = (mb_strpos($snippet_key, '/') === 0) ? $snippet_key : '/'.$snippet_key;
 		
 		$_APP = $this;
+		$_PARAM = $params;
 		// print'<pre>';print_r($data);print'</pre>';
 		$routine = $this->get_templateroot().'/'.$snippet_key.'.php';
 		$template = $this->get_templateroot().'/'.$snippet_key.'.snippet.php';

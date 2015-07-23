@@ -34,7 +34,7 @@
 		<ul class="inlist">
 		<?php foreach ($logs as $log): ?>
 			<li>
-			<a href="<?=$listPage['url']->args(array('item' => $log['key']->get()))?>">
+			<a href="<?=$log['url']?>">
 				<span class="icon"></span>
 				<span class="title"><?=$log['title']?></span>
 			</a>

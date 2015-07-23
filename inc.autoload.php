@@ -126,6 +126,8 @@ class boot
 				{
 					$param['url'] = $url;
 					$this->site = $param;
+					//	version
+					$this->site['version'] = ($version !== 0) ? $version : null;
 					break 2;
 				}
 			}
@@ -140,8 +142,6 @@ class boot
 				}
 			}
 		}
-	//	version
-		$this->site['version'] = ($version !== 0) ? $version : null;
 		
 		$this->admin = $admin;
 		$this->admin['root'] = $this->root.'/'.self::admin_dir;

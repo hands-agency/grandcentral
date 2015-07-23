@@ -78,7 +78,7 @@ class attrString extends _attrs
  */
 	public function __tostring()
 	{
-		return htmlspecialchars($this->get());
+		return htmlspecialchars($this->get(), ENT_QUOTES | ENT_HTML5, 'UTF-8', false);
 	}
 /**
  * Definition mysql

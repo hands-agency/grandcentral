@@ -21,7 +21,7 @@ class itemVersion extends _items
 	//	$_SESSION['user']['pref'] = $pref;
 
 	//	si on a une version qui nous a été donnée par la classe boot
-		if ($this->get_env() == 'site' && SITE_VERSION != null)
+		if ($this->get_env() == 'site' && defined('SITE_VERSION') && SITE_VERSION != null)
 		{
 			$param = SITE_VERSION;
 		}
