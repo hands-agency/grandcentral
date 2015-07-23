@@ -194,7 +194,7 @@
 				stop:function(event, ui)
 				{
 				//	Show the available back
-					$(this).show('fast');
+					$(this).show();
 				},
 			});
 		}
