@@ -37,23 +37,15 @@
 			{
 				plugin.settings.file = plugin.settings.path.substr(strrpos(plugin.settings.path, '/') + 1);
 				plugin.settings.current = plugin.settings.path.substr(0, strrpos(plugin.settings.path, '/') + 1);
-			//	console.log(plugin.settings)
 			}
-			if (plugin.settings.file)
-			{
-			//	à corriger
-				plugin.loadList();
-			}
-			else
-			{
-				plugin.loadList();
-			}
+			// load list of medias
+			plugin.loadList();
 			
 		//	Go to a directory
 			$element.on('click', 'li.folder', function()
 			{
 				dir = $(this).find('.title').html();
-				plugin.settings.current = plugin.settings.current + dir;
+				plugin.settings.current = plugin.settings.current + '/' + dir;
 				plugin.loadList();
 				return false;
 			});
@@ -227,7 +219,7 @@
 	//	Method
 		plugin.loadDetail = function()
 		{
-		 	plugin.settings.current += plugin.settings.file;
+		 	plugin.settings.current += '/' + plugin.settings.file;
 			$element.find('.files').ajx(
 			{
 				app: 'media',
