@@ -58,6 +58,8 @@
 //	Send template and params to content
 	$(document).on('click', contextDom+' button.done', function()
 	{
+		// submit form (sirtrevor hack) : TODO delete in 4.2
+		$('.adminContext form').submit();
 	//	Some vars
 		$context = $(contextDom);
 		$contextTemplate = $context.find('.template select');
