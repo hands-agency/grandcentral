@@ -261,12 +261,11 @@ abstract class _apps
 			}
 		}
 	}
-
 /**
- * Bind a snippet within the view
+ * Get content of a snippet
  *
  * <pre>
- * $_APP->bind_snippet('content', 'snippet/header')	
+ * $_APP->get_snippet('snippet/header', $params)	
  * </pre>
  *
  * @param	string	The zone name where you want to bind the snippet (ex: content)
@@ -275,7 +274,7 @@ abstract class _apps
  * @param	bool	Bind the snippet on top of the pile
  * @access	public
  */
-	public function bind_snippet($zone, $snippet_key, $params = null, $top = false)
+	public function get_snippet($snippet_key, $params = null)
 	{
 	//	Failsafe first slash
 		$snippet_key = (mb_strpos($snippet_key, '/') === 0) ? $snippet_key : '/'.$snippet_key;
@@ -293,6 +292,25 @@ abstract class _apps
 	//	on ferme le tampon
 		$content = ob_get_contents();
 		ob_end_clean();
+		// print'<pre>';print_r(self::$zones);print'</pre>';
+		return $content;
+	}
+/**
+ * Bind a snippet within the view
+ *
+ * <pre>
+ * $_APP->bind_snippet('content', 'snippet/header')	
+ * </pre>
+ *
+ * @param	string	The zone name where you want to bind the snippet (ex: content)
+ * @param	string	The relative path to the snippet (ex: master/content)
+ * @param	string	Variables you want to use in the snippet
+ * @param	bool	Bind the snippet on top of the pile
+ * @access	public
+ */
+	public function bind_snippet($zone, $snippet_key, $params = null, $top = false)
+	{
+		$content = $this->get_snippet($snippet_key, $params);
 		// print'<pre>';print_r(self::$zones);print'</pre>';
 		$this->bind_code($zone, $content, $top);
 	}
