@@ -208,7 +208,7 @@
 						height:$(this).outerHeight(),
 					});
 				//	Hide dragged available
-					$(this).hide('fast');
+					$(this).hide();
 				},
 				stop:function(event, ui)
 				{

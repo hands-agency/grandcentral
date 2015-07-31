@@ -75,6 +75,20 @@ class attrDate extends _attrs
 		return $date->modify($modif);
 	}
 /**
+ * Calcule la différence entre deux dates en secondes
+ *
+ * @param	string	la date à comparer
+ * @return	string	la différence entre deux dates en secondes
+ * @access	public
+ */
+	public function diff($date)
+	{
+		$date1 = strtotime($this->data);
+		$date2 = strtotime($date);
+		$diff = $date1 - $date2;
+		return $diff;
+	}
+/**
  * Get mysql attribute definition
  *
  * @return	string	a mysql string
