@@ -59,8 +59,7 @@
 				receive:function(event, ui)
 				{
 				//	Test if not present
-					li = $(this).data().sortable.currentItem;
-					// value = li.data('item').split('_')[1];
+					li = ui.item;
 					value = li.data('item');
 					count = $(this).find('input[value="'+value+'"]').length;
 
@@ -83,7 +82,7 @@
 						received = true;
 						
 					//	Execute callback (make sure the callback is a function)
-						if ((typeof(callbacks.receive) != 'undefined') && (typeof(callbacks.receive) == "function")) callbacks.receive.call(this, li);
+					//	if ((typeof(callbacks.receive) != 'undefined') && (typeof(callbacks.receive) == "function")) callbacks.receive.call(this, li);
 					}
 		    	}
 			});
@@ -189,7 +188,7 @@
 						width:$(this).width()
 					});
 				//	Hide dragged available
-					$(this).hide('fast');
+					$(this).hide();
 				},
 				stop:function(event, ui)
 				{
