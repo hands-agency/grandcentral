@@ -49,23 +49,18 @@ class appApi extends _apps
 				$this->param['api']['hash'][] = $array[$i];
 			}
 		}
-	
-	//	Param (ie array('save' => true))
-		if (isset($_GET) && !empty($_GET)) $this->param['api']['get'] = $_GET;
-	//	Data
-		if (isset($_POST) && !empty($_POST)) $this->param['api']['post'] = $_POST;
 
 	//	Require the api key
 		$key = $this->param['api']['key'].'/api'.ucfirst($this->param['api']['key']).'.php';
 		$pathTokey = $this->get_templateroot(env).'/'.$this->param['api']['v'].'/'.$key;
 		if (is_file($pathTokey))
 		{
-			require($pathTokey);
-	
+		//	require($pathTokey);
+		
 		//	Instantiate the api
 			$api = 'api'.ucfirst($this->param['api']['key']);
 			$o = new $api($this->param['api']);
-			$o->$method();
+			$o->request($method);
 			
 		//	Fetch & print the results
 			if (method_exists($api, $method)) $this->param['api']['result'] = $o->{master::get_content_type()}();
@@ -73,7 +68,57 @@ class appApi extends _apps
 		}
 		else trigger_error('Sorry, no such API key as "'.$key.'".', E_USER_ERROR);
 	}
+/**
+ * Loads app files and dependencies
+ *
+ * @access	public
+ */
+	public function load()
+	{
+		parent::load();
+		
+		$dir = new dir($this->get_templateroot('site'));
+		$files = $this->_explore_dir($dir);
+		foreach ($files as $file)
+		{
+			require_once $file->get_root();
+		}
+	}
 	
+	private function _explore_dir($dir)
+	{
+		$keys = array();
+		$elements = $dir->get();
+		foreach ($elements as $e)
+		{
+			if (is_a($e, 'dir'))
+			{
+				$keys = array_merge($keys, $this->_explore_dir($e));
+			}
+			else
+			{
+				$key = $e->get_key();
+				if (fnmatch('api[a-zA-Z]*.php', $key))
+				{
+					$keys[] = $e;
+				}
+				
+			}
+		}
+		return $keys;
+	}
+/**
+ * Get api list
+ *
+ * @access	public
+ */
+	public function get_list()
+	{
+		$dir = new dir($this->get_templateroot('site'));
+		$files = $this->_explore_dir($dir);
+		return $files;
+	}
+
 /**
  * Call an API
  *
@@ -90,7 +135,7 @@ class appApi extends _apps
 		
 	//	Init Curl
 	    $curl = curl_init();
-
+	
 	    switch (strtoupper($method))
 	    {
 	        case 'POST':
