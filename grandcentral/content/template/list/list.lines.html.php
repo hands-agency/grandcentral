@@ -21,8 +21,8 @@
 				else $thumbnail = null;
 				$empty = (!isset($thumbnail)) ? 'empty' : null;
 			?>
-			<a href="<?=$i->edit()?>">
-				<span class="cover <?=$empty?>" style="background-image:url('<?=$thumbnail?>')"></span>
+			<a href="<?=$i->edit()?>" class="<?=$empty?>">
+				<span class="cover" style="background-image:url('<?=$thumbnail?>')"></span>
 				<span class="title"><?= (isset($i['title']) && !$i['title']->is_empty()) ? $i['title']->cut(85) : $i->get_table().'#'.$i['id'] ?></span>
 			</a>
 			<div class="option" data-feathericon=""></div>

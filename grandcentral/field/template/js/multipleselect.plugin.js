@@ -58,7 +58,7 @@
 				receive:function(event, ui)
 				{
 				//	Test if not present
-					li = $(this).data().sortable.currentItem;
+					li = ui.item;
 					value = li.data('item');
 					count = $(this).find('input:not(:disabled)[value="'+value+'"]').length;
 
@@ -74,7 +74,7 @@
 					else
 					{
 					//	Enable the input
-						$input = $(this).data().sortable.currentItem.find('input');
+						$input = ui.item.find('input');
 						$input.prop('disabled', false);
 						received = true;
 						
@@ -205,7 +205,7 @@
 				//	Make the helper look like the source
 					ui.helper.css(
 					{
-						height:$(this).outerHeight()
+						height:$(this).outerHeight(),
 					});
 				//	Hide dragged available
 					$(this).hide('fast');

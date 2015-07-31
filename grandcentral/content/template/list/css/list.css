@@ -224,6 +224,7 @@ section[data-template="/list/list"][data-pref-display="incard"]>div>ol>li .card 
 	box-shadow:0 1px 1px 0 rgba(0, 0, 0, 0.1);
 	height:100%;
 	border-radius:2px;
+	overflow:hidden;
 }
 section[data-template="/list/list"][data-pref-display="incard"]>div>ol>li .card>.front:hover
 {
@@ -232,6 +233,10 @@ section[data-template="/list/list"][data-pref-display="incard"]>div>ol>li .card>
 	box-shadow: 0 0 4px #419BF9;
 }
 section[data-template="/list/list"][data-pref-display="incard"]>div>ol>li .card .front>a
+{
+	background-color:#F2F2F2;
+}
+section[data-template="/list/list"][data-pref-display="incard"]>div>ol>li .card .front>a:not(.empty)
 {
 	background: 
 		linear-gradient(115deg, transparent 75%, rgba(255,255,255,.8) 75%) 0 0,
