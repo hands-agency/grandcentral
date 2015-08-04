@@ -9,6 +9,24 @@
 class apiItem extends _apis
 {
 /**
+ * Request
+ * @param string The method
+ * @access	public
+ */
+	public function request($request)
+	{
+	//	Execute method depending of request
+		switch ($request)
+		{
+			case 'get':
+			//	Map the hash
+			//	$this->map_hash(array('map', 'limit'));
+			//	Call
+			//	$this->$request($this->param['map'], $this->param['limit']);
+				break;
+		}
+	}
+/**
  * Get
  * @access	public
  */
@@ -37,6 +55,7 @@ class apiItem extends _apis
 			// else $this->result = $this->result[$this->param['attr']];
 		}
 	}
+
 /**
  * Post
  * @access	public
@@ -48,14 +67,6 @@ class apiItem extends _apis
 	//	Loop through data
 		foreach ($this->data as $key => $value) $this->result[$key] = $value;
 		$this->result->save();
-	}
-/**
- * Return the api data in json
- * @access	public
- */
-	public function json()
-	{
-		return $this->result->json();
 	}
 }
 ?>

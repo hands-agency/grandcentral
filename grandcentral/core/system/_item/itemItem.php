@@ -139,14 +139,14 @@ class itemItem extends _items
 			);
 		}
 		//	add status attribute
-		// if (!isset($attrs['status']))
-		// {
-		// 	$attrs['status'] = array(
-		// 		'key' => 'status',
-		// 		'type' => 'status',
-		// 		// 'title' => 'Status'
-		// 	);
-		// }
+		if (!isset($attrs['status']))
+		{
+			$attrs['status'] = array(
+				'key' => 'status',
+				'type' => 'status',
+				// 'title' => 'Status'
+			);
+		}
 		//	add live attribute
 		if (!isset($attrs['live']))
 		{

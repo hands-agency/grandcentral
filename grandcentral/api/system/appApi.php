@@ -77,14 +77,18 @@ class appApi extends _apps
 	{
 		parent::load();
 		
-		$dir = new dir($this->get_templateroot('site'));
+		$dir = new dir($this->get_templateroot());
 		$files = $this->_explore_dir($dir);
 		foreach ($files as $file)
 		{
 			require_once $file->get_root();
 		}
 	}
-	
+/**
+ * explore_dir
+ *
+ * @private	public
+ */
 	private function _explore_dir($dir)
 	{
 		$keys = array();

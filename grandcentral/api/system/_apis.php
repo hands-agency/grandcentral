@@ -16,6 +16,8 @@ abstract class _apis
 	public function __construct($p)
 	{
 		$this->param = $p;
+	//	Start the clock
+		sentinel::startwatch();
 	}
 	
 /**
@@ -40,5 +42,18 @@ abstract class _apis
  * @access	public
  */
 	abstract public function request($request);
+
+/**
+ * Returns the api data in json
+ * @access	public
+ */
+	public function json()
+	{
+	//	Add Some Return Meta
+		$this->result['meta']['self'] = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+		$this->result['meta']['executiontime'] = sentinel::stopwatch();
+	//	Return
+		return json_encode($this->result);
+	}
 }
 ?>

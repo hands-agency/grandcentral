@@ -92,8 +92,7 @@
 				$.api(
 				{
 					method:'post',
-					url:'api.json/v1/pref',
-					data:{'pref':['greenbutton', sectionkey, method]}
+					url:'api.json/v1/pref/greenbutton/'+sectionkey+'/'+method,
 				},{
 					done:function(msg)
 					{
@@ -126,11 +125,9 @@
 			$oldStatus = $('input[name="'+SITE_KEY+'_'+_GET['item']+'[status]"]');
 			$form = $('#adminContent section>form');
 			
-		//	Form data
-			data = $form.serialize();
 			
 		//	Change status ?
-			if (newStatus == 'live' || newStatus == 'asleep') 
+			if (newStatus == 'live' || newStatus == 'asleep' || newStatus == 'trash') 
 			{
 				$oldStatus.val(newStatus);
 				status = newStatus;
@@ -139,7 +136,7 @@
 			else
 			{
 			//	Go to the workflow !
-				if (newStatus) data += '&workflow='+newStatus;
+			//	if (newStatus) data += '&workflow='+newStatus;
 			//	Keep old status if no change or asleep
 				if ($oldStatus.val()) status = $oldStatus.val();				
 			//	No status = asleep
@@ -149,6 +146,9 @@
 					status = 'asleep';
 				}
 			}
+			
+		//	Form data
+			data = $form.serialize();
 
 		//	Ajaxify forms
 			$.ajax(
