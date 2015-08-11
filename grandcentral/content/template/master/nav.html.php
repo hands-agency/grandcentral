@@ -40,7 +40,7 @@
 	<ul class="medium">
 		<li>
 			<?php foreach ($helps as $help): ?>
-		<a href="<?=$listPage['url']->args(array('item' => $help['key']->get()))?>">
+		<a href="<?=$help['url']?>">
 			<span class="title"><?=$help['title']?></span>
 		</a>
 		<?php endforeach ?>

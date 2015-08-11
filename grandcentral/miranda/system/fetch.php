@@ -45,6 +45,9 @@ class fetch
 	//	Author
 		$author = ($table == 'cast') ? 'author' : 'owner';
 		
+	//	Filter some params
+		$param['status'] = 'live';
+		
 	//	Open a bunch
 		$items = new bunch();
 		

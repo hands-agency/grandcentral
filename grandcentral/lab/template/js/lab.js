@@ -2,7 +2,7 @@
 /**	* Load labs
 * @author	@mvdandrieux
 **#******************************************************************************************/
-	$('section[data-template="/lab"]').on('click', 'ul li a', function()
+	$('section[data-template="/lab"]').on('click', 'ul#labToc li a', function()
 	{
 		$lab = $(this);
 		$panel = $('section.active');

@@ -88,12 +88,14 @@
 				{
 				//	DEBUG (what validation.routine sends back)
 				//	console.log(msg);
+					meta = msg.meta;
+					data = msg.data;
 				
 				//	Some vars
 					$li = field;
 				
 				//	Field is OK
-					if (msg === true)
+					if (meta.status === 'success')
 					{
 						css = 'ok';
 						icon = 	'';
@@ -108,9 +110,16 @@
 					{
 						css = 'ko';
 						icon = '';
+						
 					//	Append (maybe) and fill the todo list
-						if ($li.find('.todo').length == 0) $li.find('.wrapper').append(todoCode);
-						$li.find('.todo').html('<li>'+msg.required['descr']+'</li>').show('fast');
+						if (data.error)
+						{
+							if ($li.find('.todo').length == 0) $li.find('.wrapper').first().append(todoCode);
+							$.each(data.error, function( index, error )
+							{
+	 							$li.find('.todo').html('<li>'+error.descr+'</li>').show('fast');
+							});
+						}
 						valid = false;
 					//	The whole form is not valid
 						vars['formIsValid'] = false;

@@ -68,9 +68,8 @@ abstract class _fields
 		}
 	}
 /**
- * Vérifie la validité de la valeur du champ
+ * Check if a field is correctly filled
  * 
- * @param	mixed	la valeur du champ
  * @return	bool	true ou false
  * @access	public
  */

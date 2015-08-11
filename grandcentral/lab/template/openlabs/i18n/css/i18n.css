@@ -1,0 +1,58 @@
+ul#toc
+{
+	font-size:16px;
+	background:rgba(255,255,255,0.5);
+	padding:10px 20px;
+}
+ul#toc li
+{
+	padding:5px 0;
+}
+ul#toc li a
+{
+	cursor:pointer;
+}
+ul#toc li a:not(:hover)
+{
+	cursor:pointer;
+	color:#000;
+}
+ul#toc li.on a
+{
+	color:#419BF9;
+}
+
+h1
+{
+	font-size:34px;
+	text-align:center;
+}
+h2
+{
+	font-size:24px;
+	padding:20px;
+	text-align:right;
+}
+h3
+{
+	padding:20px 0;
+	font-size:14px;
+}
+h3 span
+{
+	border:1px solid #ccc;
+	border-radius:2px;
+	padding:4px 10px;
+	margin-right:10px;
+	color:#999;
+	text-transform:uppercase;
+}
+
+/* Control asking you to translate */
+form fieldset ol li.translate [data-control]
+{
+	background:#419BF9;
+}
+form fieldset ol li.translate [data-control]:after {
+	border-right-color:#419BF9;
+}
