@@ -32,13 +32,6 @@
 	$siteTitle = i('site', current)['title'];
 	$sitePic = i('site', current)['favicon'];
 	
-//	App list
-	foreach (registry::get(registry::app_index) as $app)
-	{
-		$array = $app->get_ini()['about'];
-		$array['key'] = $app->get_key();
-		$apps[] = $array;
-	}
 //	Item list
 	$items = i('item', array('system' => false, 'hasurl' => true, 'order()' => 'title'), $_SESSION['pref']['handled_env']);
 	$items->get('item', array('system' => false, 'hasurl' => false, 'order()' => 'title'), $_SESSION['pref']['handled_env']);
@@ -54,6 +47,6 @@
 	$listPage = i('page', 'list', 'admin');
 //	Edit page
 	$editPage = i('page', 'edit', 'admin');
-//	App pate
-	$appPage = i('page', 'app', 'admin');
+//	Apps page
+	$appsPage = i('page', 'apps', 'admin');
 ?>

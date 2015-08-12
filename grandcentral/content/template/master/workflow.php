@@ -36,8 +36,8 @@
 	$original['parent'] = $parent;
 
 //	Create a new workflow item
-	$draft->grab($original, $status);
-	$draft->enroll();
+	$draft->enroll($original, $status);
+	$draft->save();
 
 /********************************************************************************************/
 //	Return

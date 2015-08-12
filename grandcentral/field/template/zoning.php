@@ -47,8 +47,10 @@
 	$master = $page['type']['master'];
 	$app = $master['app'];
 	$template = $master['template'];
-	$root = SITE_ROOT.'/'.$app.$template.'.html.php';
+	if ($handled_env == 'admin') $template = '/template'.$template;
+	$root = constant(strtoupper($handled_env.'_root')).'/'.$app.$template.'.html.php';
 	$z = master::get_zones($root);
+
 //	Separate in-zones and out-zones
 	$outZones = array('meta', 'css', 'script');
 	$zones = array('in' => array(), 'out' => array());

@@ -18,8 +18,8 @@
  * @link		http://grandcentral.fr
  */
 /********************************************************************************************/
-//	Get the admin view of an app
+//	Some binds
 /********************************************************************************************/
-	$app = i('app', $_GET['id']);
-	$view = new html($app, 'admin', 'admin');
+	$_APP->bind_css('appbuilder/css/appbuilder.css');
+	$_APP->bind_script('appbuilder/js/appbuilder.js');
 ?>

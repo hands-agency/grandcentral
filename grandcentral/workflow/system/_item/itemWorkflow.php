@@ -11,12 +11,12 @@ class itemWorkflow extends _items
 	private $item;
 	
 /**
- * Grab an item and put it in the workflow
+ * Enroll an item in the workflow
  *
  * @param	array 	attributes array
  * @access  public
  */
-	public function grab($item, $status = null)
+	public function enroll($item, $status = null)
 	{
 	//	The status
 		$this['status'] = $status;

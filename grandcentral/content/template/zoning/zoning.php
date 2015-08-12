@@ -37,7 +37,7 @@
 /********************************************************************************************/	
 //	Create the new form if not already existing
 /********************************************************************************************/
-	$form = i('form', $formKey);
+	$form = i('form', $formKey, $handled_env);
 	if (!$form->exists())
 	{
 		$form['key'] = $form['title'] = $formKey;

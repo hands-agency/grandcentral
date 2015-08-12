@@ -95,7 +95,7 @@
 					$li = field;
 				
 				//	Field is OK
-					if (meta.status === 'success')
+					if (meta.status == 'success')
 					{
 						css = 'ok';
 						icon = 	'';
@@ -112,7 +112,7 @@
 						icon = '';
 						
 					//	Append (maybe) and fill the todo list
-						if (data.error)
+						if (typeof data.error != 'undefined')
 						{
 							if ($li.find('.todo').length == 0) $li.find('.wrapper').first().append(todoCode);
 							$.each(data.error, function( index, error )
@@ -123,6 +123,7 @@
 						valid = false;
 					//	The whole form is not valid
 						vars['formIsValid'] = false;
+						console.log('var');
 					}
 					
 				//	Control!

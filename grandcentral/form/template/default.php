@@ -23,7 +23,7 @@
 	$_FORM = $_APP->param['form'];
 	$asides = array();
 	$asideFields = array('id', 'key',  'url', 'owner', 'created', 'updated', 'live', 'system', 'version', 'status');
-	$mainFields = '';
+	$mainFieldsets = '';
 
 /********************************************************************************************/
 //	Some binds

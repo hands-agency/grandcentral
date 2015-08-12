@@ -67,7 +67,7 @@ $(document).ready(function ()
 	$('[data-type="zoning"]').on('click', '.zone ol .title a', function()
 	{
 	//	Some vars
-		section = $(this).parent().find('input[type="hidden"]').val();
+		section = $(this).closest('[data-item]').find('input[type="hidden"]').val();
 		item = section.split('_')[0];
 		id = section.split('_')[1];
 		

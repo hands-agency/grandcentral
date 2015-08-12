@@ -615,8 +615,7 @@
 * 	* @author	@mvdandrieux
 **#******************************************************************************************/
 $(function()
-{
-	
+{	
 //	Expand
 	$('ol.tree').on('click', '.expand', function()
 	{
@@ -626,6 +625,7 @@ $(function()
 		
 		$children.toggle('fast');
 	});
+	
 	
 //	Add new page
 	$('ol.tree').on('click', '.add', function()

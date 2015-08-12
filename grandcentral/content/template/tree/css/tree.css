@@ -433,6 +433,10 @@ section[data-template="/tree/tree"] li .page[data-type="header"] .card .face .ac
 /********************************************************************************************/
 /* Links
 /********************************************************************************************/
+section[data-template="/tree/tree"] li .page[data-type="link"] .card
+{
+	box-shadow:none;
+}
 section[data-template="/tree/tree"] li .page[data-type="link"] .card .face
 {
 	height:70px;

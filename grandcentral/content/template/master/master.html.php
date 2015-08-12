@@ -37,7 +37,7 @@
 		<div id="grandCentralAdmin">
 
 			<div id="adminContent" class="locked">
-				<!-- ZONE:content|left -->
+				<!-- ZONE:content -->
 				<div id="currentList"></div>
 				<div id="currentItem"></div>
 				<ul id="sectiontray" style="width:<?=$sectionTrayWidth?>">

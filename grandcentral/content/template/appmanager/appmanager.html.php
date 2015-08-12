@@ -1,27 +1,14 @@
-<ul id="appmanager" data-install="install" data-remove="remove">
-<?php foreach ($apps as $app) : ?>
-	<li data-item="app_123">
-		
-		<div class="icon"></div>
-		
-		<?php if ($app['installed'] === true) : ?>
-		<div class="title"><a href="<?= $app['edit']; ?>"><?= $app['title']; ?></a></div>
-		<div class="descr"><?= $app['descr']; ?></div>
-		<ul class="action">
-			<li><a href="">Comment</a></li>
-			<li><a href="#" class="remove" data-key="<?= $app['key']; ?>">Desactivate</a></li>
-			<?php if (isset($app['url'])): ?><li><a href="<?= $app['url']; ?>" class="url">Visit website</a></li><?php endif ?>
-		</ul>
-		<?php else : ?>
-		<div class="title"><?= $app['title']; ?></div>
-		<ul class="action">
-			<li><a href="" class="comment">Comment</a></li>
-			<li><a href="#" class="install" data-key="<?= $app['key']; ?>">Activate</a></li>
-		</ul>
-		<?php endif; ?>
-		
-		<ul class="comment"></ul>
-	</li>
-<?php endforeach; ?>
-</ul>
-<div id="debugmanager"></div>
+<div class="apps">
+	<ul>
+		<?php foreach ($apps as $app): ?>
+			<li class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
+				<a href="<?=$appEdit['url'].'?app='.$app['key']?>">
+					<span class="cover" <?php if (isset($app['about']['cover'])): ?>style="background-image:url('<?=$app['about']['cover']?>')"<?php endif ?>>
+						<span class="title"><?=$app['about']['title']?></span>
+					</span>
+					<?php if (isset($app['about']['descr'])): ?><span class="descr"><?=$app['about']['descr']?></span><?php endif ?>
+				</a>
+			</li>
+		<?php endforeach ?>
+	</ul>
+</div>

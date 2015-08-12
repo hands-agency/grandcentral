@@ -58,14 +58,12 @@
 	}
 	// print'<pre>';print_r($i);print'</pre>';
 	
-//	We enroll the item in the workflow, which will chose how to save it
-	if ($env == 'site')
-	{
-		$workflow = i('workflow', null, $env);
-		$workflow->grab($i, $_WORKFLOW);
-		$workflow->save();
-	}
-	else $i->save();
+//	We enroll the item in the workflow, which will chose how to save it	
+	$workflow = i('workflow', null, $env);
+	$workflow->enroll($i, $_WORKFLOW);
+	$workflow->save();
+	
+	// $i->save();
 	
 //	Send back the id as a confirmation
 	echo $i['id'];

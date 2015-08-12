@@ -598,15 +598,15 @@ ol .placeholder
 /* Open Context Rules */
 .contextOpened1 #adminContent,
 .contextOpened1 #siteContent,
-.contextOpened1 header
+.contextOpened1>header
 {
-	width:65%;
+	width:65% !important;
 }
 .contextOpened2 #adminContent,
 .contextOpened2 #siteContent,
-.contextOpened2 header
+.contextOpened2>header
 {
-	width:50%;
+	width:50% !important;
 }
 .contextOpened1 .adminContext
 {
@@ -859,6 +859,13 @@ ol .placeholder
     #adminContent {
 		padding-top:70px;
    	}
+}
+#adminContent h1
+{
+	font-family:'ProximaNova-Thin';
+	font-size:54px;
+	margin:30px 0 40px 0;
+	text-align:center;
 }
 #adminContent>button.close
 {

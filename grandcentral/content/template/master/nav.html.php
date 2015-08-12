@@ -25,6 +25,11 @@
 				<span class="title">Deploy Versions</span>
 			</a>
 		</li>
+		<li>
+			<a href="<?=$appsPage['url']?>">
+				<span class="title">Browse your Apps</span>
+			</a>
+		</li>
 	</ul>
 	
 	<ul class="medium">

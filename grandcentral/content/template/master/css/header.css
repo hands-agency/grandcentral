@@ -1,7 +1,7 @@
 /********************************************************************************************/
-/* Header
+/* #main>header
 /********************************************************************************************/
-header
+#main>header
 {
 	background:rgba(0, 0, 0, 0.7);
 	width:100%;
@@ -11,12 +11,12 @@ header
     z-index: 5;
 	text-align:center;
 }
-.siteOpened header
+.siteOpened #main>header
 {
 	top:auto;
     bottom:-72px;
 }
-header>div
+#main>header>div
 {
 	min-height:72px;
 	height:100%;
@@ -26,21 +26,21 @@ header>div
 	box-sizing:border-box;
 	position:relative;
 }
-header>div.site
+#main>header>div.site
 {
 	border-bottom:1px solid #555;
 }
-header .actionbutton
+#main>header .actionbutton
 {
 	float:right;
 }
-header .actionbutton button
+#main>header .actionbutton button
 {
 	background-color:#6cbf2d !important;
 }
 
 /* Drawer */
-header .drawer
+#main>header .drawer
 {
 	-webkit-transition: all .15s ease-out; 
 	-moz-transition: all .15s ease-out; 
@@ -50,12 +50,12 @@ header .drawer
 	overflow:auto;
 	*/
 }
-header .drawer.closed
+#main>header .drawer.closed
 {
 	height:0 !important;
 	overflow:hidden;
 }
-header .drawer.opened
+#main>header .drawer.opened
 {
 	height:auto;
 	color:#fff;

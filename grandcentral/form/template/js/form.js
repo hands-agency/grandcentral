@@ -4,7 +4,7 @@ $(document).ready(function ()
 /**	* Never send the form, even when it's sent
  	* @author	@mvdandrieux
 **#******************************************************************************************/
-	$(document).on('submit', '#adminContent section>form', function()
+	$(document).on('submit', '#adminContent section form', function()
 	{
 		return false;
 	});

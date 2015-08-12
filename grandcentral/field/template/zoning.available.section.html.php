@@ -12,7 +12,7 @@
 	
 	<div class="preview"><iframe></iframe></div>
 	
-	<input type="hidden" name="<?=$name?>[]" value="<?=$app['key']?>" disabled="disabled" />
+	<input type="hidden" name="<?=$name?>[]" value="<?=$section['key']?>" disabled="disabled" />
 
 </li>
 <?php endforeach ?>

@@ -2,9 +2,8 @@
 //	Main form
 	foreach($_FORM->get_fieldsets() as $fieldset)
 	{
-		$mainFields .= '<fieldset>';
-		if (isset($fieldset['title'])) $mainFields .= '<legend>'.$fieldset['title'].'</legend>';
-		$mainFields .= '<ol>';
+	//	Loop fields
+		$mainFields = '';
 		foreach($fieldset['fields'] as $field)
 		{
 			$f = $_FORM->get_field($field);
@@ -16,24 +15,29 @@
 		//	...or stays in the main form
 			else $mainFields .= '<li data-type="'.$f->get_type().'" '.$key.'>'.$f.'</li>';
 		}
-		$mainFields .= '</ol>';
-		$mainFields .= '</fieldset>';
+	//	Encapsulate in fieldset
+		$col = (empty($asides)) ? null : 'col-xs-12 col-sm-8 col-md-9 col-lg-9';
+		$mainFieldsets .= '<fieldset class="'.$col.'">';
+		if (isset($fieldset['title'])) $mainFieldsets .= '<legend>'.$fieldset['title'].'</legend>';
+		$mainFieldsets .= '<ol>'.$mainFields.'</ol>';
+		$mainFieldsets .= '</fieldset>';
 	}
 ?>
-<form <?= $_FORM->get_attrs(); ?> <?php if (!empty($asides)): ?>class="col-xs-12 col-sm-8 col-md-9 col-lg-9"<?php endif ?>>
+<form <?= $_FORM->get_attrs(); ?>>
+	
 	<?php foreach($_FORM->get_hiddens() as $hidden) : ?>
 		<?= $_FORM->get_field($hidden); ?>
 	<?php endforeach; ?>
-	<?=$mainFields?>
+	<?=$mainFieldsets?>
+	
+	<?php if (!empty($asides)): ?>
+		<fieldset class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+		<ol>
+		<?php foreach ($asides as $aside): ?>
+			<?=$aside?>
+		<?php endforeach ?>
+		</ol>
+		</fieldset>
+	<?php endif ?>
+	
 </form>
-<?php if (!empty($asides)): ?>
-<form <?= $_FORM->get_attrs(); ?> class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
-	<fieldset>
-	<ol>
-	<?php foreach ($asides as $aside): ?>
-		<?=$aside?>
-	<?php endforeach ?>
-	</ol>
-	</fieldset>
-</form>
-<?php endif ?>

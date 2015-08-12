@@ -20,46 +20,21 @@
 /********************************************************************************************/
 //	Some binds
 /********************************************************************************************/
-	$_APP->bind_css('css/appmanager.css');
-	$_APP->bind_script('js/appmanager.js');
+	$_APP->bind_css('appmanager/css/appmanager.css');
+	$_APP->bind_script('appmanager/js/appmanager.js');
+	
+/********************************************************************************************/
+//	Some vars
+/********************************************************************************************/
+	$apps = array();
+	$appEdit = i('page', 'app', env);
 
 /********************************************************************************************/
-//	Recherche apps
+//	Let's get to work
 /********************************************************************************************/
-//	dans le répertoire app
-	$dir = new dir(ADMIN_APP_ROOT);
-	$dir->get();
-	// print '<pre>';print_r($dir);print'</pre>';
-//	dans le registre
-	$installed_apps = registry::get('admin', registry::app_index);
-	#print '<pre>';print_r($installed_apps);print'</pre>';
-	
-	foreach ($dir->data as $value)
+//	App list
+	foreach (registry::get(registry::app_index) as $app)
 	{
-		$app['key'] = $value->get_key();
-	//	app installée
-		if (isset($installed_apps['app_'.$app['key']]))
-		{
-			$tmp = $installed_apps['app_'.$app['key']]->ini('about');
-			$app['title'] = $tmp['title'];
-			$app['descr'] = $tmp['descr'];
-			$app['installed'] = true;
-			$app['edit'] = $installed_apps['app_'.$app['key']]->edit();
-		}
-	//	non installée
-		else
-		{
-			$tmp = app();
-			$tmp['key'] = $app['key'];
-			$tmp = $tmp->ini('about');
-			$app['title'] = $tmp['title'];
-			$app['descr'] = $tmp['descr'];
-			$app['url'] = $tmp['url'];
-			$app['installed'] = false;
-		}
-		
-		$apps[] = $app;
+		$apps[] = array('key' => $app->get_key(), 'about' => $app->get_ini()['about']);
 	}
-	
-	//print '<pre>';print_r($apps);print'</pre>';
 ?>

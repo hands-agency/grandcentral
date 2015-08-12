@@ -22,10 +22,10 @@ ul#toc li.on a
 	color:#419BF9;
 }
 
-h1
+form
 {
-	font-size:34px;
-	text-align:center;
+	overflow:auto;
+	margin-bottom:45px;
 }
 h2
 {
@@ -35,7 +35,7 @@ h2
 }
 h3
 {
-	padding:20px 0;
+	padding:0 15px 15px 15px;
 	font-size:14px;
 }
 h3 span

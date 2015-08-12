@@ -13,5 +13,17 @@
 class fieldZoning extends _fieldsSelector
 {
 	protected $datatype = array('rel');
+/**
+ * Check if a field is correctly filled
+ * 
+ * @return	bool	true ou false
+ * @access	public
+ */
+	public function is_valid()
+	{
+		$valid = parent::is_valid();
+		
+		return true;
+	}
 }
 ?>

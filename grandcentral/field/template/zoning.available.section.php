@@ -33,7 +33,7 @@
 //	Get and process from ajax
 /********************************************************************************************/
 //	Get the available values
-	$sections = i('section', all);
+	$sections = i('section', all, $env);
 //	Refine
 	if (isset($_POST['q']))
 	{

@@ -8,14 +8,14 @@ section form
 	
 }
 /* Hide the second form in contexts */
-.adminContext form:first-child
+.adminContext form fieldset:first-child
 {
 	width:100% !important;
 	padding:0 !important;
 	margin:0 0 15px 0 !important;
 	float:none;
 }
-.adminContext form:nth-child(2)
+.adminContext form fieldset:nth-child(2)
 {
 	display:none;
 }

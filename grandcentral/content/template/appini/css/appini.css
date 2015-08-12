@@ -1,27 +1,138 @@
-section[data-template="/appini/appini"] table
+section[data-template="/appini/appini"] header
 {
+	height:30vh;
+	width:100%;
+	background:#333;
+	text-align:center;
+	position:absolute;
+	top:0;
+	left:0;
+}
+section[data-template="/appini/appini"] header .cover
+{
+	height:100%;
+	width:100%;
+	position:absolute;
+	top:0;
+	left:0;
+	opacity:0.5;
+	background-position: center center;
+	background-repeat: no-repeat;
+	-webkit-background-size: cover; /* pour Chrome et Safari */
+	-moz-background-size: cover; /* pour Firefox */
+	-o-background-size: cover; /* pour Opera */
+	background-size: cover; /* version standardisée */
+	z-index:1;
+}
+section[data-template="/appini/appini"] header h1
+{
+	color:#fff;
+	z-index:2;
+	position:relative;
+	margin:10vh 0 0 0 !important;
+}
+section[data-template="/appini/appini"] header .descr
+{
+	color:#fff;
+}
 
-	margin-bottom:10px;
-}
-section[data-template="/appini/appini"] table td,
-section[data-template="/appini/appini"] table th
+section[data-template="/appini/appini"] article
 {
-	padding:5px 10px;
+	margin-top:30vh;
 }
-section[data-template="/appini/appini"] table th
+section[data-template="/appini/appini"] article h1
 {
-	width:140px;
-	text-align:right;
+	font-family: "ProximaNova-Thin";
+	text-align:center;
+	margin:30px;
+	font-size:34px;
+}
+section[data-template="/appini/appini"] article .intro
+{
+	font-size:20px;
+	line-height:1.4em;
 	font-family: "ProximaNova-Thin";
 }
-section[data-template="/appini/appini"] table td
+section[data-template="/appini/appini"] article table
 {
-	background:#fff;
-	font-family: "ProximaNova-Regular";
-	line-height:1.6em;
+	border:1px solid #ddd;
+	margin:0 0 30px 0;
+	width:100%;
 }
-section[data-template="/appini/appini"] table ul li
+section[data-template="/appini/appini"] article table td,
+section[data-template="/appini/appini"] article table th
+{
+	padding:20px;
+}
+section[data-template="/appini/appini"] article table th
+{
+	text-align:right;
+	width:25%;
+	font-family: "ProximaNova-Thin";
+	background:rgba(255,255,255,0.4);
+}
+section[data-template="/appini/appini"] article table td
+{
+	font-family: "ProximaNova-Regular";
+	border-bottom:1px solid #ddd;
+}
+section[data-template="/appini/appini"] article table ul li
 {
 	list-style-type:square;
 	margin:0 0 0 15px;
+}
+
+section[data-template="/appini/appini"] article .templates
+{
+	overflow:auto;
+}
+section[data-template="/appini/appini"] article .templates li a
+{
+	display:block;
+	border-radius:2px;
+	background:#fff;
+	box-shadow:0 1px 1px 0 rgba(0, 0, 0, 0.1);
+	height:300px;
+	margin:0 0 30px 0;
+	cursor:pointer;
+	overflow:hidden;
+	font-family: "ProximaNova-Regular";
+}
+section[data-template="/appini/appini"] article .templates li a:hover
+{
+	border-color: #419BF9;
+	-webkit-box-shadow: 0 0 4px #419BF9;
+	box-shadow: 0 0 4px #419BF9;
+}
+section[data-template="/appini/appini"] article .templates li a span
+{
+	display:block;
+}
+section[data-template="/appini/appini"] article .templates li a span.cover
+{
+	height:180px;
+	background-color:#999;
+	background-position: center center;
+	background-repeat: no-repeat;
+	-webkit-background-size: cover; /* pour Chrome et Safari */
+	-moz-background-size: cover; /* pour Firefox */
+	-o-background-size: cover; /* pour Opera */
+	background-size: cover; /* version standardisée */
+	position:relative;
+}
+section[data-template="/appini/appini"] article .templates li a span.title
+{
+	font-size:25px;
+	bottom:0;
+	left:0;
+	width:100%;
+	padding:20px;
+	position:absolute;
+	color:#fff;
+	font-family: "ProximaNova-Regular";
+}
+section[data-template="/appini/appini"] article .templates li a span.descr
+{
+	color:#999;
+	padding:20px;
 }

@@ -4,6 +4,21 @@
 **#******************************************************************************************/
 $(document).ready(function()
 {
+			
+/*********************************************************************************************
+/**	* Add a new action to the greenbutton
+* @author	@mvdandrieux
+**#******************************************************************************************/
+	$('#greenbutton').data('greenbutton').add(
+	{
+		title:
+		{
+			en:'Save changes',
+			fr:'Sauvegarder'
+		},
+		key:'save',
+	});
+
 /*********************************************************************************************
 /**	* Toc
 * @author	@mvdandrieux
@@ -18,8 +33,8 @@ $(document).ready(function()
 			.addClass('loading')
 			.ajx(
 			{
-				app:'lab',
-				template:'openlabs/i18n/i18n',
+				app:'i18n',
+				template:'translate/translate',
 				item:$translate.data('item'),
 			}, {
 			//	Done
@@ -66,7 +81,7 @@ $(document).ready(function()
 * @author	@mvdandrieux
 **#******************************************************************************************/
 //	Some vars
-	$form = $('#section_lab form');
+	$form = $('#translate form');
 	
 	$form.on('blur', 'input, textarea', function()
 	{

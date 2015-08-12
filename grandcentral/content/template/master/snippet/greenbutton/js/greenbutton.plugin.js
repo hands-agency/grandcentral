@@ -108,6 +108,16 @@
 			});
 		}
 		
+	//	Add a choice to the greenbutton
+		plugin.add = function(action)
+		{
+		//	Go to the form page
+			$('section.active').data('greenbutton', action).attr('data-greenbutton', action);
+			
+		//	Reinit Greenbutton
+			$('#tabs li.on').trigger('click');
+		}
+		
 	//	New
 		plugin.new = function()
 		{
@@ -118,67 +128,77 @@
 	//	Save
 		plugin.save = function(newStatus, callback)
 		{
-		//	Trigger regular submit for eventual plugin callbacks (like Sir Trevor)
-			$('#adminContent section>form').submit();
-		//	Id & status
-			id = $('input[name="'+SITE_KEY+'_'+_GET['item']+'[id]"]');
-			$oldStatus = $('input[name="'+SITE_KEY+'_'+_GET['item']+'[status]"]');
-			$form = $('#adminContent section>form');
+		//	Some vars
+			$forms = $('#adminContent section form');
 			
-			
-		//	Change status ?
-			if (newStatus == 'live' || newStatus == 'asleep' || newStatus == 'trash') 
+		//	Save all forms in a section
+			$forms.each(function()
 			{
-				$oldStatus.val(newStatus);
-				status = newStatus;
-			}
-		//	Keep status or go in the workflow
-			else
-			{
-			//	Go to the workflow !
-			//	if (newStatus) data += '&workflow='+newStatus;
-			//	Keep old status if no change or asleep
-				if ($oldStatus.val()) status = $oldStatus.val();				
-			//	No status = asleep
+				$form = $(this);
+				
+			//	Trigger regular submit for eventual plugin callbacks (like Sir Trevor)
+				$form.submit();
+				
+			//	Id & status
+				id = $form.find('input[name$="[id]"]');
+				$oldStatus = $form.find('input[name$="[status]"]');
+				
+			//	Change status ?
+				if (newStatus == 'live' || newStatus == 'asleep' || newStatus == 'trash') 
+				{
+					$oldStatus.val(newStatus);
+					status = newStatus;
+				}
+			//	Keep status or go in the workflow
 				else
 				{
-					$oldStatus.val('asleep');
-					status = 'asleep';
-				}
-			}
-			
-		//	Form data
-			data = $form.serialize();
-
-		//	Ajaxify forms
-			$.ajax(
-			{
-				url: $form.attr('action'),
-				type: $form.attr('method'),
-				data: data,
-				success: function(result)
-				{
-				//	DEBUG
-					console.log(result);
-				//	Ajax sends back the id
-					if ($.isNumeric(result))
+				//	Go to the workflow !
+				//	if (newStatus) data += '&workflow='+newStatus;
+				//	Keep old status if no change or asleep
+					if ($oldStatus.val()) status = $oldStatus.val();
+				//	No status = asleep
+					else
 					{
-					//	Bring it to the form
-						id.val(result);
-						$('#greenbutton-default').removeClass('on');
-					//	Rewrite URL if changed
-						if (!_GET['id'])
+						$oldStatus.val('asleep');
+						status = 'asleep';
+					}
+				}
+			
+			//	Form data
+				data = $form.serialize();
+				
+			//	Ajaxify forms
+				$.ajax(
+				{
+					url: $form.attr('action'),
+					type: $form.attr('method'),
+					data: data,
+					success: function(result)
+					{
+					//	DEBUG
+						console.log(result);
+					//	Ajax sends back the id
+						if ($.isNumeric(result))
 						{
-							_GET['id'] = result;
-							url = '?item='+_GET['item']+'&id='+_GET['id'];
-							if (window.location.hash) url += window.location.hash;
-							window.history.pushState('string', 'chose', url);
-						}
-					//	Pop alert
-						popAlert(status, status, callback);
-					};
-				},
+						//	Bring it to the form
+							id.val(result);
+							$('#greenbutton-default').removeClass('on');
+						//	Rewrite URL if changed
+							if (!_GET['id'] && _GET['item'])
+							{
+								_GET['id'] = result;
+								url = '?item='+_GET['item']+'&id='+_GET['id'];
+								if (window.location.hash) url += window.location.hash;
+								window.history.pushState('string', 'chose', url);
+							}
+						//	Pop alert
+							popAlert(status, status, callback);
+						};
+					},
+				});
 			});
+			
+			
 		}
 
 	//	Save and back
@@ -205,7 +225,7 @@
 		plugin.live = function(callback)
 		{
 		//	Validate forms before go live
-			$('section>form').data('validate').now(
+			$('section form').data('validate').now(
 			{
 				success:function(html)
 				{

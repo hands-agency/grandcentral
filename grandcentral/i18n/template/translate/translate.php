@@ -27,6 +27,7 @@
 /********************************************************************************************/
 	$forms = array();
 	if (!isset($_POST['item'])) $_POST['item'] = 'page';
+	$handled_env = $_SESSION['pref']['handled_env'];
 	
 /********************************************************************************************/
 //	Some data
@@ -58,19 +59,32 @@
 			$is = i($item['key']->get(), all);
 			foreach ($is as $i)
 			{
-				$key = 'lab_i18n_'.$item['key'];
+				$key = $handled_env.'_'.$item['key'].'_i18n';
 				
 			//	Create a form for this item
 				$form = i('form', $key);
+				$form->set_action(i('page', 'post', 'admin')['url']);
 
 			//	Update general form data
 				$form['key'] = $key;
 				$form['template'] = 'default';
-				$form['action'] = 'api.json';
 				$form['method'] = 'post';
+				$form['action'] = 'post';
 				$form['field'] = array();
 				
-			//	Update the fields
+			//	System fields
+				$form['field']['id'] = array(
+					'key' => 'id',
+					'type' => 'text',
+					'label' => 'id',
+				);
+				$form['field']['status'] = array(
+					'key' => 'status',
+					'type' => 'text',
+					'label' => 'status',
+				);
+				
+			//	Update the fields with i18n
 				foreach ($i18ns as $i18n)
 				{
 					$form['field'][$i18n['key']] = array(
@@ -94,4 +108,5 @@
 			
 		}
 	}
+	
 ?>
