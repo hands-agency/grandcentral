@@ -77,4 +77,4 @@ $(document).bind('unlock', function()
 /**	* Focus on search engine
  	* @author	@mvdandrieux
 **#******************************************************************************************/
-$('#refine input').focus();
+	$('#refine input').focus();

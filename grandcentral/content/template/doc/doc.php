@@ -51,6 +51,7 @@
 		{
 		//	Apps
 			case 'app':
+			
 				$app = registry::get(registry::app_index, $name);
 				$ini = $app->get_ini();
 				$classes = (isset($ini['system']['class'])) ? $ini['system']['class'] : array();
@@ -64,6 +65,7 @@
 					$params['doc'] = new doc($name);
 					$html = app('doc', 'class', $params);
 				}
+				
 				break;
 		//	Classes & functions
 			case 'class':

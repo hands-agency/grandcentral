@@ -32,6 +32,7 @@
 //	Get the app list
 /********************************************************************************************/
 	$apps = (isset($_PARAM['app'])) ? array(app($_PARAM['app'])) : registry::get(registry::app_index);
+	$docPage = i('page', 'doc', 'admin');
 	
 /********************************************************************************************/
 //	Loop throught the apps and build the doc

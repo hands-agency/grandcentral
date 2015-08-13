@@ -62,12 +62,14 @@ $(document).ready(function()
 	//	
 		$.adaptiveBackground.run(
 		{
-			selector: '.card .back img',
-			normalizeTextColor:   false,
-			lumaClasses:  {
-			    light:      "ab-light",
-			    dark:       "ab-dark"
-			  }
+			selector: '.card .front img',
+		//	parent:'.card',
+			normalizeTextColor:false,
+			lumaClasses:
+			{
+			    light: "ab-light",
+			    dark: "ab-dark"
+			}
 		});
 	});
 });

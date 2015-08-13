@@ -17,35 +17,38 @@ class appDoc extends _apps
  */
 	public function prepare()
 	{
-	//	Some vars
-		$page = i('page', current);
-		$url = ('home' == $page['key']->get()) ? URLR : mb_substr(URLR, mb_strlen($page['url']->get()) + 1);
+		if (env == 'site')
+		{
+		//	Some vars
+			$page = i('page', current);
+			$url = ('home' == $page['key']->get()) ? URLR : mb_substr(URLR, mb_strlen($page['url']->get()) + 1);
 		
-	//	Detail of an element of the doc
-		if (!empty($url))
-		{
-			$chunks = explode('/', $url);
-			$count = count($chunks);
-			
-			switch ($count)
+		//	Detail of an element of the doc
+			if (!empty($url))
 			{
-				case 1:
-					$this->param['app'] = new app($chunks[0]);
-					$this->template = '/app/detail';
-					break;
-				case 2:
-					$this->param['app'] = new app($chunks[0]);
-					$this->param['doc'] = new doc($chunks[1]);
-					$this->template = '/'.$this->param['doc']->get_type().'/detail';
-					break;
+				$chunks = explode('/', $url);
+				$count = count($chunks);
+			
+				switch ($count)
+				{
+					case 1:
+						$this->param['app'] = new app($chunks[0]);
+						$this->template = '/app/detail';
+						break;
+					case 2:
+						$this->param['app'] = new app($chunks[0]);
+						$this->param['doc'] = new doc($chunks[1]);
+						$this->template = '/'.$this->param['doc']->get_type().'/detail';
+						break;
 				
+				}
 			}
-		}
-	//	List of apps
-		else
-		{
-			$this->param['app'] = registry::get(registry::app_index);
-			$this->template = '/app/list';
+		//	List of apps
+			else
+			{
+				$this->param['app'] = registry::get(registry::app_index);
+				$this->template = '/app/list';
+			}
 		}
 	}
 }

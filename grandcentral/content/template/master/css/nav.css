@@ -3,7 +3,7 @@
 /********************************************************************************************/
 #nav
 {
-	padding:100px 150px !important;
+	padding:100px 0 !important;
 	height:100%;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
@@ -27,15 +27,11 @@
 /* Items */
 #nav .item
 {
-	float:right;
-	max-width:50%;
 }
 
 /* General */
 #nav .general
 {
-	float:right;
-	width:50%;
 }
 #nav .general h1
 {
@@ -94,27 +90,52 @@
 /* Big */
 #nav ul.big
 {
+	border-bottom:1px solid rgba(255,255,255,0.2);
+}
+#nav ul.big li
+{
 	font-size:40px;
 	text-transform:uppercase;
-	border-bottom:1px solid rgba(255,255,255,0.2);
+	position:relative;
+}
+#nav ul.big li:before
+{
+	position:absolute;
+	content:'›';
+	left:-40px;
+	top:0px;
+	opacity:0;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
+}
+#nav ul.big li:hover:before
+{
+	left:-20px;
+	opacity:1;
 }
 
 /* Medium */
 #nav ul.medium
 {
+	border-bottom:1px solid rgba(255,255,255,0.2);
+}
+#nav ul.medium li
+{
 	font-size:30px;
 	text-transform:uppercase;
-	border-bottom:1px solid rgba(255,255,255,0.2);
 }
 #nav ul.medium li a
 {
 	position:relative;
+	margin:0 5px;
 }
 #nav ul.medium li a:not(:first-child):before
 {
 	content:'•';
 	position:absolute;
-	left:-10px;
+	left:-15px;
 }
 
 /* small */
@@ -131,6 +152,7 @@
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
+	float:right;
 }
 #nav ul.inhive li
 {
@@ -236,7 +258,8 @@
 }
 #nav ul.inhive li:hover .title
 {
-	border-color:#111;
+	border-color:#fff;
+	color:#fff;
 }
 #nav ul.inhive li.minor:hover .title
 {

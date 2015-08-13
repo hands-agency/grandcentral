@@ -1,4 +1,6 @@
-<h1>Documentation</h1>
+<header>
+	<h1>Documentation</h1>
+</header>
 <div id="doc">
 	
 	<?php if (count($apps) > 1): ?>
@@ -26,7 +28,7 @@
 					<div class="descr"><?=$class['descr']?></div>
 					<?php if (!empty($class['method'])): ?>
 					<ul class="in2col">
-					<?php foreach($class['method'] as $method) : ?><li><a href="?method=<?=$key?>::<?=$key?>#doc"><?=$method['key']?></a></li><?php endforeach ?>
+					<?php foreach($class['method'] as $method) : ?><li><a href="<?=$docPage['url']?>?method=<?=$key?>::<?=$key?>#doc"><?=$method['key']?></a></li><?php endforeach ?>
 					</ul>
 					<?php endif ?>
 				<?php endforeach ?>
@@ -39,7 +41,7 @@
 					<?php foreach($app['lib'] as $lib => $functions) : ?>
 						<h4><a href="?lib=<?=$lib?>#doc"><?=$lib?></a></h4>
 						<ul class="in2col">
-						<?php foreach($functions as $function) : ?><li><a href="?function=<?=$function?>#doc"><?=$function?></a></li><?php endforeach ?>
+						<?php foreach($functions as $function) : ?><li><a href="<?=$docPage['url']?>?function=<?=$function?>#doc"><?=$function?></a></li><?php endforeach ?>
 						</ul>
 					<?php endforeach ?>
 				</div>

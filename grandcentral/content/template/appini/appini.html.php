@@ -3,6 +3,7 @@
 	<h1><?=$ini['about']['title']?></h1>
 	<?php if (isset($ini['about']['descr'])): ?><div class="descr"><?=$ini['about']['descr']?></div><?php endif ?>
 </header>
+
 <article>
 	
 	<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">

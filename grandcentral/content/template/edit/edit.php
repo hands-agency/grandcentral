@@ -68,6 +68,15 @@
 			if (isset($item[$key])) $item[$key] = $value;
 		}
 	}
+//	Find the first media field
+	foreach($item as $attr)
+	{
+		if(is_a($attr, 'attrMedia'))
+		{
+			$coverField = $attr->get_key();
+			break;
+		}
+	}
 	
 /********************************************************************************************/
 //	One exception for the workflow

@@ -1,44 +1,5 @@
-section[data-template="/appini/appini"] header
-{
-	height:30vh;
-	width:100%;
-	background:#333;
-	text-align:center;
-	position:absolute;
-	top:0;
-	left:0;
-}
-section[data-template="/appini/appini"] header .cover
-{
-	height:100%;
-	width:100%;
-	position:absolute;
-	top:0;
-	left:0;
-	opacity:0.5;
-	background-position: center center;
-	background-repeat: no-repeat;
-	-webkit-background-size: cover; /* pour Chrome et Safari */
-	-moz-background-size: cover; /* pour Firefox */
-	-o-background-size: cover; /* pour Opera */
-	background-size: cover; /* version standardisée */
-	z-index:1;
-}
-section[data-template="/appini/appini"] header h1
-{
-	color:#fff;
-	z-index:2;
-	position:relative;
-	margin:10vh 0 0 0 !important;
-}
-section[data-template="/appini/appini"] header .descr
-{
-	color:#fff;
-}
-
 section[data-template="/appini/appini"] article
 {
-	margin-top:30vh;
 }
 section[data-template="/appini/appini"] article h1
 {

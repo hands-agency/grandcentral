@@ -221,7 +221,7 @@ abstract class _apps
 		ob_start();
 	//	on charge les données à afficher
 		if (is_file($_ROUTINE)) include($_ROUTINE);
-		(is_file($_TEMPLATE)) ? require($_TEMPLATE) : trigger_error('template <strong>'.$this->template.'.'.$content_type.'.php'.'</strong> in <strong>'.$this->get_templateroot().'</strong> does not exists.', E_USER_WARNING);
+		(is_file($_TEMPLATE)) ? require($_TEMPLATE) : trigger_error('Sorry. The template <strong>'.$this->template.'.'.$content_type.'.php'.'</strong> in <strong>'.$this->get_templateroot().'</strong> does not exists.', E_USER_WARNING);
 	//	on ferme le tampon
 		$content = ob_get_contents();
 		ob_end_clean();

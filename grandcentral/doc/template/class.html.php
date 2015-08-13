@@ -4,9 +4,13 @@
 //	Parent ?
 	$parent = (isset($class['parent'])) ? '(parent of '.$class['parent'].')' : '';
 ?>
-<h2><?=$class['access'][0]?> class <?=$class['key']?> <?=$parent?></h2>
-<p><?=$class['descr']?></p>
-<?php if (isset($class['link'])) : ?><p>More info: <a href="<?=$class['link'][0]?>"><?=$class['link'][0]?></a></p><?php endif; ?>
+<header>
+	<h1><?=$class['access'][0]?> class <?=$class['key']?> <?=$parent?></h1>
+	<div class="descr">
+		<?=$class['descr']?>
+		<?php if (isset($class['link'])) : ?><p>More info: <a href="<?=$class['link'][0]?>"><?=$class['link'][0]?></a></p><?php endif; ?>
+	</div>
+</header>
 
 <h3>Methods</h3>
 <ul class="toc">

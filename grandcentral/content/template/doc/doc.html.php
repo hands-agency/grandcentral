@@ -1,1 +1,1 @@
-<?=$html?>
+<div id="doc"><?=$html?></div>

@@ -600,27 +600,28 @@ ol .placeholder
 .contextOpened1 #siteContent,
 .contextOpened1>header
 {
-	width:65% !important;
+	width:60% !important;
 }
+.contextOpened1 .adminContext
+{
+	width:40%;
+	padding:75px 45px 45px 45px;
+}
+
 .contextOpened2 #adminContent,
 .contextOpened2 #siteContent,
 .contextOpened2>header
 {
-	width:50% !important;
-}
-.contextOpened1 .adminContext
-{
-	width:35%;
-	padding:75px 45px 45px 45px;
+	width:40% !important;
 }
 .contextOpened2 .adminContext
 {
-	width:25%;
+	width:30%;
 	padding:75px 45px 45px 45px;
 }
 .contextOpened2 .adminContext:nth-last-child(2)
 {
-	right:25%;
+	right:30%;
 }
 
 /********************************************************************************************/
@@ -1115,6 +1116,54 @@ footer
 }
 #adminContent section .toc li
 {
+}
+
+/* Section header */
+#adminContent section>header
+{
+	height:30vh;
+	width:100%;
+	background:#999;
+	text-align:center;
+	position:absolute;
+	top:0;
+	left:0;
+}
+#adminContent section>header:not([background-image])
+{
+	background-color:#000;
+}
+#adminContent section>header+*
+{
+	padding-top:30vh;
+}
+#adminContent section>header .cover
+{
+	height:100%;
+	width:100%;
+	position:absolute;
+	top:0;
+	left:0;
+	opacity:0.5;
+	background-position: center center;
+	background-repeat: no-repeat;
+	-webkit-background-size: cover; /* pour Chrome et Safari */
+	-moz-background-size: cover; /* pour Firefox */
+	-o-background-size: cover; /* pour Opera */
+	background-size: cover; /* version standardisée */
+	z-index:1;
+}
+#adminContent section>header h1
+{
+	color:#fff;
+	z-index:2;
+	position:relative;
+	margin:10vh 0 0 0 !important;
+	padding:0 50px;
+}
+#adminContent section>header .descr
+{
+	color:#fff;
 }
 
 /* Section titles */

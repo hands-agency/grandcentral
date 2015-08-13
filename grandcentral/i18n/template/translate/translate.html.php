@@ -10,7 +10,10 @@
 			<?php endforeach ?>
 		</ul>
 	</div>
-
+	
+	<?php if (empty($forms)): ?>
+	<div data-nodata="Nothing to translate here" class="col-xs-12 col-sm-8 col-md-9 col-lg-10"></div>
+	<?php else: ?>
 	<?php foreach ($forms as $key => $items): ?>
 	<div class="col-xs-12 col-sm-8 col-md-9 col-lg-10">
 		<?php foreach ($items as $item): ?>
@@ -19,6 +22,7 @@
 		<?php endforeach ?>
 	</div>
 	<?php endforeach ?>	
+	<?php endif ?>
 </div>
 
 <?php

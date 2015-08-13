@@ -8,7 +8,7 @@
 //	Save & format last Separator	
 	$lastSeparator = formatSeparator($i[$order]);
 ?>	
-<li class="col-xs-12 col-sm-4 col-md-3 col-lg-2" data-item="<?=$i->get_nickname()?>" data-url="<?=$i['url']?>" data-live="<?=$i['live']?>">
+<li class="col-xs-12 col-sm-4 col-md-3 col-lg-2" data-item="<?=$i->get_nickname()?>" data-url="<?=$i['url']?>" data-status="<?=$i['status']?>">
 	<div class="card">
 
 		<div class="face front">
@@ -22,14 +22,15 @@
 				$empty = (!isset($thumbnail)) ? 'empty' : null;
 			?>
 			<a href="<?=$i->edit()?>" class="<?=$empty?>">
+				<img src="<?=$thumbnail?>" />
 				<span class="cover" style="background-image:url('<?=$thumbnail?>')"></span>
-				<span class="title"><?= (isset($i['title']) && !$i['title']->is_empty()) ? $i['title']->cut(85) : $i->get_table().'#'.$i['id'] ?></span>
+				<span class="title"><?= (isset($i['title']) && !$i['title']->is_empty()) ? $i['title']->cut(50) : $i->get_table().'#'.$i['id'] ?></span>
 			</a>
 			<div class="option" data-feathericon=""></div>
 	   	</div>
 
 	    <div class="face back">
-			<img src="<?=$thumbnail?>" />
+			
 			<div class="action">
 				<a class="edit" data-feathericon="&#xe095" href="<?=$i->edit()?>">Edit</a>
 				<?php if (isset($i['url'])): ?><a class="preview" data-feathericon="&#xe000">Preview</a><?php endif ?>
