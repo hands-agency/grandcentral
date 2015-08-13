@@ -36,11 +36,6 @@
 		$currentEditedItem = i($_GET['item'], $_GET['id'], $_SESSION['pref']['handled_env']);
 		if (isset($currentEditedItem['url']) && $currentEditedItem['type']['content_type'] == 'html') $currentEditedItemUrl = $currentEditedItem['url'];
 	}
-
-//	The sections
-	$sections = $_PAGE['section']->unfold();
-	$sectionTrayWidth = ($sections->count * 100).'%';
-	$sectionWidth = (100 / $sections->count).'%';
 	
 /********************************************************************************************/
 //	Load the apps!
@@ -54,6 +49,7 @@
 		'jquery.imagesloaded',
 		'jquery.hoverintent',
 		'jquery.sse',
+		'slick',
 	//	'jquery.pace',
 		'featherfont'
 	);
@@ -110,6 +106,9 @@
 	$_APP->bind_snippet('headeradmin', 'master/snippet/greenbutton/greenbutton');
 //	Header (here, i need the section var)
 	$_APP->bind_snippet('headeradmin', 'master/snippet/headeradmin');
+	
+//	Get the sections now (the headeradmin section mingled with them...)
+	$sections = $GLOBALS['sections'];
 
 /********************************************************************************************/
 //	Content

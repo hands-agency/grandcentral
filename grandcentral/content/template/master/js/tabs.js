@@ -6,6 +6,10 @@ $(document).ready(function ()
 {
 	$(document).on('click', '#tabs > li', function()
 	{
+	//	Goto
+		index = $(this).data('index');
+		$('#sectiontray').slick('slickGoTo', index);
+		
 	//	Set to off all the tabs, and set to on just "the one"
 		$(this).siblings('.on').removeClass('on');
 		$(this).addClass('on');
@@ -19,14 +23,6 @@ $(document).ready(function ()
 	//	Target section...
 		param = link.attr('data-param'); /* We want the string, not the object */
 		$panel = $('#section_'+section);
-		panelWidth = $panel.outerWidth()+60; /*2*30 padding*/
-		
-	//	Hide all panels
-		$('#adminContent section').removeClass('active');
-	//	Hide options
-	//	TODO refresh content instead of hide
-	//	$('header .drawer').html('');
-		
 		
 	//	Open the right panel
 		if (!$panel.html() || $(this).hasClass('updateMe'))
@@ -51,17 +47,12 @@ $(document).ready(function ()
 					}
 				});
 		}
-		
-	//	Show
-		index = $panel.parent().index();
-		left = (panelWidth) * (index);
-		$('#sectiontray').css('left', '-'+left+'px');		
+			
 	//	Say it's updated
 		$panel.removeClass('virgin updateMe').addClass('active');
 						
 	//	Change the main display
 		$('#main').attr('class', $panel.data('display'));
-
 	});
 
 /*********************************************************************************************

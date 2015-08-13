@@ -40,6 +40,8 @@
 				//	Label and action
 					label = dflt['title'][$('html').attr('lang')];
 					action = dflt['key'];
+					icon = dflt['icon'];
+					color = dflt['color'];
 				//	Add possible callback
 					if ($('#section_'+section).data('callback'))
 					{
@@ -50,7 +52,9 @@
 				//	Go
 					$('#greenbutton-default')
 						.html(label)
-						.data('action', action);
+						.data('action', action)
+						.attr('data-feathericon', icon);
+					$('#greenbutton').css('background-color', '#'+color);
 				}
 			//	No choices
 				else $('#greenbutton').hide();
@@ -380,6 +384,13 @@
 		{
 		//	Go to the form page
 			document.location.href = ADMIN_URL+'/edit?item='+_GET['item']+'&fill[system]=1';
+		}
+
+	//	Edit item
+		plugin.edititem = function()
+		{
+		//	Go to the form page
+			document.location.href = ADMIN_URL+'/list?item='+_GET['item'];
 		}
 		
 	//	Save the form in the context panel

@@ -43,11 +43,15 @@
 #tabs>li a:before
 {
 	content:'';
-	border-bottom:5px solid transparent;
-	width:100%;
+	border-bottom:5px solid #fff;
+	width:0%;
 	position:absolute;
 	bottom:-22px;
 	left:0;
+	-webkit-transition: all 0.5s ease-out;
+	-moz-transition: all 0.5s ease-out;
+	-o-transition: all 0.5s ease-out;
+	transition: all 0.5s ease-out;
 }
 #tabs>li>a>span
 {
@@ -73,7 +77,7 @@
 }
 #tabs>li.on a:before
 {
-	border-color:#fff;
+	width:100%;
 }
 #adminContent.unlocked #tabs>li.on a:before
 {

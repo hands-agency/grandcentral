@@ -14,7 +14,8 @@
 	-moz-user-select:none;
 	-webkit-user-select:none;
 	cursor:pointer;
-	background:#6cbf2d;
+	background:#666;
+	/*background:#6cbf2d;*/
 }
 #greenbutton>a
 {
@@ -25,6 +26,12 @@
 	-moz-transition: all .1s ease-out; 
 	-o-transition: all .1s ease-out; 
 	transition: all .1s ease-out;
+}
+#greenbutton>a:before
+{
+	margin:0 10px 0 0;
+	font-size:18px;
+	top:-1px;
 }
 
 /********************************************************************************************/

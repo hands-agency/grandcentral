@@ -615,7 +615,14 @@
 * 	* @author	@mvdandrieux
 **#******************************************************************************************/
 $(function()
-{	
+{
+//	Zoom
+	$('#section_tree').on('change', 'input[type="range"]', function()
+	{
+		console.log($(this).val());
+		$('ol.tree').css('transform', 'scale('+$(this).val()+')');
+	});
+	
 //	Expand
 	$('ol.tree').on('click', '.expand', function()
 	{

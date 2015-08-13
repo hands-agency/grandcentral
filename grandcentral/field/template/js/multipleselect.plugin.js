@@ -189,6 +189,7 @@
 				},
 			});
 		}
+		
 	
 	//	Make the available choices draggable and connected to the sortable
 		plugin.resort = function(field)
@@ -216,7 +217,14 @@
 					$(this).show();
 				},
 			});
+			
+		//	Allow drag on slick slides
+			$('*[draggable!=true]','.slick-track').unbind('dragstart');
+			$('.ui-draggable').on("draggable mouseenter mousedown",function(event){
+			    event.stopPropagation();
+			});
 		}
+		
 
 	//	Fire up the plugin!
 		plugin.init();

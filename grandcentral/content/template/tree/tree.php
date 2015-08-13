@@ -184,7 +184,7 @@
 				            <div class="title">
 								<a href="'.$page->edit().'">'.$page['title'].'</a>
 							</div>
-				            <div class="option" data-feathericon=""></div>
+				            <div class="option" data-feathericon="&#xe129"></div>
 				    	</div>
 					    <div class="face back">
 							<div class="action">

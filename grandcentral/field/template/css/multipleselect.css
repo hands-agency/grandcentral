@@ -98,7 +98,7 @@ ol>li[data-type="multipleselect"] .field .add button:after
 	font-size:28px;
 	color:#666;
 }
-ol>li[data-type="multipleselect"] .field .add:hover button:after
+ol>li[data-type="multipleselect"] .field .add:hover button:
 {
 	color:#419BF9;
 }
@@ -148,9 +148,9 @@ ol>li[data-type="multipleselect"] .field .available
 }
 ol>li[data-type="multipleselect"] .field .available.focus
 {
-	border-color: #ffc000;
-	-webkit-box-shadow: 0 0 4px #ffc000;
-	box-shadow: 0 0 4px #ffc000;
+	border-color: #FF0000;
+	-webkit-box-shadow: 0 0 4px #FF0000;
+	box-shadow: 0 0 4px #FF0000;
 }
 ol>li[data-type="multipleselect"] .field .available ul
 {

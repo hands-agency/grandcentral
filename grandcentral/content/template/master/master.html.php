@@ -40,7 +40,8 @@
 				<!-- ZONE:content -->
 				<div id="currentList"></div>
 				<div id="currentItem"></div>
-				<ul id="sectiontray" style="width:<?=$sectionTrayWidth?>">
+				
+				<div id="sectiontray">
 					<?php foreach($sections as $section) : ?>
 					<?php $app = $section['app'] ?>
 					<?php $prefDisplay = isset($_SESSION['user']['pref'][$section['key']->get()]['display']) ? $_SESSION['user']['pref'][$section['key']]['display'] : 'incard' ?>
@@ -70,13 +71,14 @@
 					//	Jsonize
 						if ($greenbutton) $greenbutton = htmlspecialchars($greenbutton->json(), ENT_QUOTES)
 					?>
-					<li style="width:<?=$sectionWidth?>">
+					<div>
 						<a class="back" href="<?=$back?>" data-feathericon="&#xe094"></a>
 						<span class="lock" data-feathericon="&#xe007"></span>
 						<section id="section_<?= $section['key'] ?>" class="virgin" data-key="<?= $section['key'] ?>" <?=$dataCallback?> data-pref-display="<?=$prefDisplay?>" data-app="<?= $app['app'] ?>" data-template="<?= $app['template'] ?>" data-greenbutton='<?= $greenbutton ?>' data-nodata="<?=$section['nodata']?>"></section>
-					</li>
+					</div>
 					<?php endforeach; ?>
-				</ul>
+				</div>
+				
 				<footer><!-- ZONE:footer --></footer>
 			</div>
 			

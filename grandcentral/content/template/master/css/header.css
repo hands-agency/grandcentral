@@ -11,7 +11,7 @@
     z-index: 5;
 	text-align:center;
 }
-.siteOpened #main>header
+#main.siteOpened>header
 {
 	top:auto;
     bottom:-72px;

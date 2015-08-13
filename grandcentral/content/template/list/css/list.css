@@ -89,37 +89,6 @@ section[data-template="/list/list"]>div>ol>li .card>.front .action li a:not(:hov
 {
 	color:#bbb;
 }
-/* Infinite scroll more */
-section[data-template="/list/list"]>.infiniteScrollWantsMore
-{
-	clear:left;
-	cursor:pointer;
-	text-align:center;
-	font-family:'ProximaNova-Regular';
-	text-transform:uppercase;
-	margin:100px auto;
-	opacity:0.3;
-	border-radius:50%;
-	font-size:20px;
-	line-height:45px;
-	background:#999;
-	color:#fff;
-	width:40px;
-	height:40px;
-}
-section[data-template="/list/list"]>.infiniteScrollWantsMore:hover
-{
-	opacity:1;
-}
-/* Infinite scroll stopper */
-section[data-template="/list/list"]>.infiniteScrollStopper
-{
-	clear:left;
-	text-align:center;
-	font-family:'ProximaNova-Regular';
-	text-transform:uppercase;
-	color:#ddd;
-}
 
 /********************************************************************************************/
 /* Stacks
@@ -233,6 +202,7 @@ section[data-template="/list/list"][data-pref-display="incard"]>div>ol>li .card>
 }
 section[data-template="/list/list"][data-pref-display="incard"]>div>ol>li .card .front>a
 {
+	background-color:#777;
 	height:220px;
 	position:relative;
 	-webkit-transition: all .1s ease-out; 
@@ -243,6 +213,10 @@ section[data-template="/list/list"][data-pref-display="incard"]>div>ol>li .card 
 section[data-template="/list/list"][data-pref-display="incard"]>div>ol>li .card:not(:hover) .front>a
 {
 	background-color:#000 !important;
+}
+section[data-template="/list/list"][data-pref-display="incard"]>div>ol>li .card:not(:hover) .front>a.empty
+{
+	background-color:#999 !important;
 }
 /*
 section[data-template="/list/list"][data-pref-display="incard"]>div>ol>li .card .front>a:not(.empty)
@@ -289,32 +263,11 @@ section[data-template="/list/list"][data-pref-display="incard"]>div>ol>li .card:
 	color:#333;
 }
 
-section[data-template="/list/list"][data-pref-display="incard"]>div>ol>li .card .option
+.card .option
 {
 	position:absolute;
 	top:10px;
 	right:10px;
-	opacity:0;
-	color:#fff;
-	width:30px;
-	height:30px;
-	line-height:30px;
-	font-size:20px;
-	cursor:pointer;
-	border-radius:50px;
-	-webkit-transition: all .1s ease-out; 
-	-moz-transition: all .1s ease-out; 
-	-o-transition: all .1s ease-out; 
-	transition: all .1s ease-out;
-}
-section[data-template="/list/list"][data-pref-display="incard"]>div>ol>li .card .option:hover
-{
-	color:#fff;
-	background:#419BF9;
-}
-section[data-template="/list/list"][data-pref-display="incard"]>div>ol>li .card:hover .option
-{
-	opacity:1;
 }
 
 /* Back */

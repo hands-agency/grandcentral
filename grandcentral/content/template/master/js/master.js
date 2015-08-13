@@ -145,6 +145,34 @@
 		});
 	}
 })(jQuery);
+		
+/*********************************************************************************************
+/**	* Slick the tray
+ 	* @author	@mvdandrieux
+**#******************************************************************************************/
+	$('#sectiontray').slick(
+	{
+		dots: false,
+		infinite: false,
+		speed: 300,
+		slidesToShow: 1,
+		adaptiveHeight: false,
+	});
+
+/*********************************************************************************************
+/**	* Ge the tabs to follow the slick slides
+ 	* @author	@mvdandrieux
+**#******************************************************************************************/
+	$('#sectiontray').on('afterChange', function(slick, currentSlide)
+	{
+	//	Some vars
+		$tabs = $(tabs);
+		
+	//	Set to off all the tabs, and set to on just "the one"
+		$tabs.find('li').removeClass('on');
+		index = currentSlide.currentSlide;
+		$tabs.find('[data-index='+currentSlide.currentSlide+']').addClass('on');
+	});
 
 /*********************************************************************************************
 /**	* Open notes from the action list
@@ -198,8 +226,6 @@
 	{
 		openSite(CURRENTEDITED_URL);
 	});
-	
-	
 	
 /*********************************************************************************************
 /**	* All links
@@ -452,9 +478,3 @@
 	{
 		$('#main').removeClass('poppedNav');
 	});
-
-/*********************************************************************************************
-/**	* Make the bubbles with the .warn class jump
- 	* @author	@mvdandrieux
-**#******************************************************************************************/
-/*	$('.cc-bubble .remindme').effect('bounce', {distance:'10', times:'2'}, 250); */

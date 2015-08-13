@@ -33,6 +33,7 @@
 	$page = i('page', current, 'admin');
 	$sections = $page['section']->unfold();
 	$handled_item = (isset($_GET['item'])) ? $_GET['item'] : null;
+	$i = 0;
 
 //	For the title
 	$current = null;
@@ -74,6 +75,7 @@
 		else $p[] = $section;
 	}
 	$sections = $p;
+	$GLOBALS['sections'] = $sections;
 
 /********************************************************************************************/
 //	Fetch the altered sections

@@ -181,7 +181,7 @@ li[data-type="zoning"] .zoningselected .zones .browserbar .buttons :nth-child(1)
 }
 li[data-type="zoning"] .zoningselected .zones .browserbar .buttons :nth-child(2)
 {
-	color:#ffc000;
+	color:#FF0000;
 }
 li[data-type="zoning"] .zoningselected .zones .browserbar .buttons :nth-child(3)
 {
@@ -315,9 +315,9 @@ li[data-type="zoning"] .choices li:hover
 }
 li[data-type="zoning"] .zones li.focus
 {
-	border-color: #ffc000;
-	-webkit-box-shadow: 0 0 4px #ffc000;
-	box-shadow: 0 0 4px #ffc000;
+	border-color: #FF0000;
+	-webkit-box-shadow: 0 0 4px #FF0000;
+	box-shadow: 0 0 4px #FF0000;
 }
 
 li[data-type="zoning"] .zones li .title
