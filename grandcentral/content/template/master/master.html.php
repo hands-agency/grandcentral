@@ -13,7 +13,7 @@
 		<button id="openNav" data-feathericon="&#xe120"></button>
 		<button id="closeNav" data-feathericon="&#xe117"></button>
 		
-		<button id="switchEnv" data-feathericon="&#xe032"></button>
+		<button id="switchEnv" data-feathericon="&#xe000"></button>
 	
 		<div id="alert">
 			<div class="icon"></div>

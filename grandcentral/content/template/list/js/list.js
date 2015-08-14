@@ -51,7 +51,8 @@ $(document).bind('unlock', function()
 	//	Some vars
 		$item = $(this).closest('li');
 		item = $item.data('item');
-		live = $item.data('live');
+		status = $(this).attr('class');
+	//	live = $item.data('live'); /* #4.3 */
 		$card = $item.find('.card');
 		$back = $card.find('.back');
 
@@ -62,13 +63,16 @@ $(document).bind('unlock', function()
 			template: '/master/live',
 			mime:'json',
 			item:item,
-			live:live,
+		//	live:live, /* #4.3 */
+			status:status,
 		}, {
 		//	Done
 			done:function()
 			{
+				console.log(status);
 			//	Change the display
-				$item.attr('data-live', live).data('live', live);
+			//	$item.attr('data-live', live).data('live', live);/* #4.3 */
+				$item.attr('data-status', status).data('status', status);
 			}
 		});
 	});

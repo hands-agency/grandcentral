@@ -62,13 +62,24 @@ $(document).ready(function()
 	//	
 		$.adaptiveBackground.run(
 		{
-			selector: '.card .front img',
 		//	parent:'.card',
-			normalizeTextColor:false,
 			lumaClasses:
 			{
 			    light: "ab-light",
 			    dark: "ab-dark"
+			},
+			success: function($img, data)
+			{
+			//	Some vars
+				$card = $img.closest('[data-item]').find('.card');
+				$back = $card.find('.back');
+				$front = $card.find('.front');
+			//	Have the front and back follow the card color
+				$back.css('background-color', data.color);
+				$front.css('background-color', data.color);
+			//	Correct text density
+				lumaClass = $img.attr('class').replace('cover ', '');
+				$card.addClass(lumaClass);
 			}
 		});
 	});

@@ -30,7 +30,8 @@
 	//	Some vars
 		$item = i($_POST['item'], null, $_SESSION['pref']['handled_env']);
 	//	Change live status
-		$item['live'] = $_POST['live'];
+		//$item['live'] = $_POST['live']; /* #4.3 */
+		$item['status'] = $_POST['status'];
 		$item->save();
 		$return = 'ok';
 	}
