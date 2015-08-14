@@ -147,29 +147,35 @@
 				id = $form.find('input[name$="[id]"]');
 				$oldStatus = $form.find('input[name$="[status]"]');
 				
-			//	Change status ?
+			//	Change status to an original status ?
 				if (newStatus == 'live' || newStatus == 'asleep' || newStatus == 'trash') 
 				{
 					$oldStatus.val(newStatus);
 					status = newStatus;
+					inFlow = false;
 				}
 			//	Keep status or go in the workflow
 				else
 				{
 				//	Go to the workflow !
-				//	if (newStatus) data += '&workflow='+newStatus;
+					if (newStatus)
+					{
+						status = newStatus;
+						inFlow = "&workflow=" + encodeURIComponent(newStatus);
+					}
 				//	Keep old status if no change or asleep
 					if ($oldStatus.val()) status = $oldStatus.val();
-				//	No status = asleep
+				//	No status at all draft in the workflow
 					else
 					{
-						$oldStatus.val('asleep');
-						status = 'asleep';
+					//	status = 'draft';
+					//	inFlow = "&workflow=" + encodeURIComponent(status);
 					}
 				}
 			
 			//	Form data
 				data = $form.serialize();
+				if (inFlow != false) data += inFlow;
 				
 			//	Ajaxify forms
 				$.ajax(
@@ -184,14 +190,16 @@
 					//	Ajax sends back the id
 						if ($.isNumeric(result))
 						{
-						//	Bring it to the form
-							id.val(result);
 							$('#greenbutton-default').removeClass('on');
+						//	Bring it to the form
+							if (!_GET['id']) id.val(result);
 						//	Rewrite URL if changed
-							if (!_GET['id'] && _GET['item'])
+							if (_GET['item'])
 							{
 								_GET['id'] = result;
-								url = '?item='+_GET['item']+'&id='+_GET['id'];
+								item = (inFlow != false) ? 'workflow' : _GET['item'];
+							//	BAM
+								url = '?item='+item+'&id='+_GET['id'];
 								if (window.location.hash) url += window.location.hash;
 								window.history.pushState('string', 'chose', url);
 							}

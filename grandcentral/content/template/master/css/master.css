@@ -798,6 +798,11 @@ ol .placeholder
 	z-index:100000;
 	font-size:16px !important;
 }
+.siteOpened #switchEnv
+{
+	background-color:#419BF9;
+	color:#fff;
+}
 
 /* Layer */
 #nav

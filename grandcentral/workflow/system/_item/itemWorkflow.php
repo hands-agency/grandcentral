@@ -9,6 +9,7 @@
 class itemWorkflow extends _items
 {
 	private $item;
+	private $originalStatus = array('live', 'asleep');
 	
 /**
  * Enroll an item in the workflow
@@ -32,6 +33,17 @@ class itemWorkflow extends _items
 	}
 	
 /**
+ * Tells you if this guy goes to the workflow or no
+ *
+ * @access  public
+ */
+	public function is_inflow()
+	{
+	//	Goes to the workflow...
+		return (in_array($this['status']->get(), $this->originalStatus)) ? false : true;
+	}
+	
+/**
  * Save an item in the workflow
  *
  * @access  public
@@ -39,7 +51,7 @@ class itemWorkflow extends _items
 	public function save()
 	{
 	//	Goes to the workflow...
-		if (!$this['status']->is_empty()) parent::save();
+		if ($this->is_inflow() === true) parent::save();
 	//	...or just save the item
 		else $this->item->save();
 	}

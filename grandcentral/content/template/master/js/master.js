@@ -303,7 +303,7 @@
 })( jQuery );
 	
 /*********************************************************************************************
-/**	* Opening and closing Lanes
+/**	* Opening and closing context Lanes
  	* @author	@mvdandrieux
 **#******************************************************************************************/
 //	Context
@@ -343,8 +343,8 @@
 	//	Recenter the panel after transition
 		$('#adminContent').one('transitionend', function()
 		{
-			sectionkey = $('#adminContent section.active').data('key');
-			$('#tabs li a[data-section="'+sectionkey+'"]').parent().trigger('click');
+			current = $('#sectiontray').slick('slickCurrentSlide');
+			$('#sectiontray').slick('slickGoTo', current);
 		});
 	}
 	closeContext = function(template)
@@ -359,8 +359,8 @@
 	//	Recenter the panel after transition
 		$('#adminContent').one('transitionend', function()
 		{
-			sectionkey = $('#adminContent section.active').data('key');
-			$('#tabs li a[data-section="'+sectionkey+'"]').parent().trigger('click');
+			current = $('#sectiontray').slick('slickCurrentSlide');
+			$('#sectiontray').slick('slickGoTo', current);
 		});
 	}
 	

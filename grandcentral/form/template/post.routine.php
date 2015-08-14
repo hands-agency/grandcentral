@@ -63,8 +63,7 @@
 	$workflow->enroll($i, $_WORKFLOW);
 	$workflow->save();
 	
-	// $i->save();
-	
-//	Send back the id as a confirmation
-	echo $i['id'];
+//	Send back the original id or the workflow id
+	$id = ($workflow->is_inflow() === true) ? $workflow['id'] : $i['id'];
+	echo $id;
 ?>
