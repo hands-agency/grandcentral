@@ -40,7 +40,7 @@ class itemWorkflow extends _items
 	public function is_inflow()
 	{
 	//	Goes to the workflow...
-		return (in_array($this['status']->get(), $this->originalStatus)) ? false : true;
+		return (!$this['status']->get() OR in_array($this['status']->get(), $this->originalStatus)) ? false : true;
 	}
 	
 /**
@@ -53,7 +53,7 @@ class itemWorkflow extends _items
 	//	Goes to the workflow...
 		if ($this->is_inflow() === true) parent::save();
 	//	...or just save the item
-		else $this->item->save();
+		else {$this->item->save();}
 	}
 	
 /**

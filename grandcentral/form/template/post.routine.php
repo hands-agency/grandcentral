@@ -51,10 +51,7 @@
 	foreach ($_POST as $key => $value)
 	{
 		$i[$key] = $value;
-		if ('id' == $key)
-		{
-			$i[$key]->database_set($value);
-		}
+		if ('id' == $key) $i[$key]->database_set($value);
 	}
 	// print'<pre>';print_r($i);print'</pre>';
 	
@@ -64,6 +61,17 @@
 	$workflow->save();
 	
 //	Send back the original id or the workflow id
-	$id = ($workflow->is_inflow() === true) ? $workflow['id'] : $i['id'];
-	echo $id;
+	$returnItem = ($workflow->is_inflow() === true) ? $workflow : $i;
+	
+//	Get the item in a array for return
+	$daraArray = array();
+	foreach ($returnItem as $key => $value) $daraArray[$key] = $value->get();
+
+//	Build return array for json
+	$return['meta'] = array(
+		'is_inflow' => $workflow->is_inflow(),
+	);
+	$return['data'] = $daraArray;
+	
+	echo json_encode($return);
 ?>

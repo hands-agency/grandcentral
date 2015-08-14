@@ -17,6 +17,15 @@ class appReader extends _apps
  */
 	public function prepare()
 	{
+	//	Test if we already have a declared item
+		if (defined('item') && registry::get(registry::current_index, item))
+		{
+			//registry::get(registry::reader_index)
+			//echo registry::get(registry::current_index, item);
+			echo i($this->param['detail']);
+			return;
+		}
+			
 	//	Some vars
 		$page = i('page', current);
 		$url = ('home' == $page['key']->get()) ? URLR : mb_substr(URLR, mb_strlen($page['url']->get()));

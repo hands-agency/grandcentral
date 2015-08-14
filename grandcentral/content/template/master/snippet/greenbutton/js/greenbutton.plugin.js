@@ -100,7 +100,7 @@
 				},{
 					done:function(msg)
 					{
-						console.log(msg);
+					//	console.log(msg);
 					}
 				});
 			});
@@ -138,7 +138,9 @@
 		//	Save all forms in a section
 			$forms.each(function()
 			{
+			//	Some vars
 				$form = $(this);
+				inFlow = false;
 				
 			//	Trigger regular submit for eventual plugin callbacks (like Sir Trevor)
 				$form.submit();
@@ -152,7 +154,6 @@
 				{
 					$oldStatus.val(newStatus);
 					status = newStatus;
-					inFlow = false;
 				}
 			//	Keep status or go in the workflow
 				else
@@ -183,20 +184,24 @@
 					url: $form.attr('action'),
 					type: $form.attr('method'),
 					data: data,
-					success: function(result)
-					{
-					//	DEBUG
-						console.log(result);
+					success: function(r)
+					{	
+						r = JSON.parse(r); /* You should attack a json API instead of this loosy routine ! */
+						console.log(r);
+					//	Some vars
+						meta = r.meta;
+						data = r.data;
+						
 					//	Ajax sends back the id
-						if ($.isNumeric(result))
+						if ($.isNumeric(data.id))
 						{
 							$('#greenbutton-default').removeClass('on');
 						//	Bring it to the form
-							if (!_GET['id']) id.val(result);
+							if (!_GET['id']) id.val(data.id);
 						//	Rewrite URL if changed
 							if (_GET['item'])
 							{
-								_GET['id'] = result;
+								_GET['id'] = data.id;
 								item = (inFlow != false) ? 'workflow' : _GET['item'];
 							//	BAM
 								url = '?item='+item+'&id='+_GET['id'];
@@ -204,7 +209,9 @@
 								window.history.pushState('string', 'chose', url);
 							}
 						//	Pop alert
-							popAlert(status, status, callback);
+							
+							if ((typeof(callback) != 'undefined') && (typeof(callback) == 'function')) popAlert(status, status, callback(r));
+							else popAlert(status, status);
 						};
 					},
 				});
@@ -361,9 +368,11 @@
 	//	Preview
 		plugin.preview = function()
 		{
-			plugin.save('draft', function()
+			plugin.save('draft', function(r)
 			{
-				openSite(CURRENTEDITED_URL);
+				key = r.data.key;
+				url = SITE_URL+'/workflow?key='+key;
+				openSite(url);
 			});
 		}
 
