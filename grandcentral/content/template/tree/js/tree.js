@@ -702,7 +702,8 @@ $(function()
 		$item = $(this).closest('[data-item]');
 		item = $item.data('item');
 		$page = $item.find('.page');
-		live = $page.data('live');
+	//	live = $page.data('live');/* #4.3 */
+		status = $(this).attr('class');
 		
 	//	Change live status
 		$.ajx(
@@ -711,16 +712,18 @@ $(function()
 			template: '/master/live',
 			mime:'json',
 			item:item,
-			live:live,
+		//	live:live, /* #4.3 */
+			status:status,
 		}, {
 		//	Done
-			done:function()
+			done:function(rep)
 			{
 			//	Change the display
-				$page.attr('data-live', live).data('live', live);
+			//	$page.attr('data-live', live).data('live', live); /* #4.3 */
+				$page.attr('data-status', status).data('status', status);
 
 			//	Asleep? Put all kids asleep as well
-				if (live == 'false')
+				if (status == 'false')
 				{
 				//	$item.find('[data-item]').each(function()
 				//	{

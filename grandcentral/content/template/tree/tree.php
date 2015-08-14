@@ -174,7 +174,7 @@
 				
 			//	Content
 				$content = '
-				<div class="page" data-live="'.$page['live'].'" data-type="'.$page['type']['key'].'" data-url="'.$page['url'].'">
+				<div class="page" data-status="'.$page['status'].'" data-type="'.$page['type']['key'].'" data-url="'.$page['url'].'">
 					<div class="connector"></div>
 					'.$badge.'
 				

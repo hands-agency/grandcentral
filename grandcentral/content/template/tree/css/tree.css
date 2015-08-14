@@ -263,7 +263,7 @@ section[data-template="/tree/tree"] ol li .page .card .option:not(:hover)
 }
 
 /* By status */
-section[data-template="/tree/tree"] ol li .page[data-live="false"] .card
+section[data-template="/tree/tree"] ol li .page[data-status="asleep"] .card
 {
 	transform:scale(0.8);
 	-moz-transform:scale(0.8);
@@ -312,8 +312,8 @@ section[data-template="/tree/tree"] ol li .page .card .action a:hover
 {
 	opacity:1;
 }
-section[data-template="/tree/tree"] ol li .page[data-live="true"] .card .action .live,
-section[data-template="/tree/tree"] ol li .page[data-live="false"] .card .action .asleep
+section[data-template="/tree/tree"] ol li .page[data-status="live"] .card .action .live,
+section[data-template="/tree/tree"] ol li .page[data-status="asleep"] .card .action .asleep
 {
 	display:none;
 }
