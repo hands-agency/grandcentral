@@ -86,7 +86,7 @@
 			$(document).on('click', '#greenbutton-default, .greenbutton-choices a', function()
 			{
 				method = $(this).data('action');
-				
+
 			//	Create & execute the method
 				var fn = plugin[method];
 				fn();
@@ -209,7 +209,6 @@
 								window.history.pushState('string', 'chose', url);
 							}
 						//	Pop alert
-							
 							if ((typeof(callback) != 'undefined') && (typeof(callback) == 'function')) popAlert(status, status, callback(r));
 							else popAlert(status, status);
 						};
@@ -407,7 +406,7 @@
 		plugin.edititem = function()
 		{
 		//	Go to the form page
-			document.location.href = ADMIN_URL+'/list?item='+_GET['item'];
+			document.location.href = ADMIN_URL+'/edit?item='+_GET['item'];
 		}
 		
 	//	Save the form in the context panel

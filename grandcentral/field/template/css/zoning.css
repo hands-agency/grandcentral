@@ -313,7 +313,7 @@ li[data-type="zoning"] .choices li:hover
 	box-shadow: 0 0 4px #419BF9;
 	z-index:3;
 }
-li[data-type="zoning"] .zones li.focus
+li[data-type="zoning"] .zones li.focusedByContext
 {
 	border-color: #FF0000;
 	-webkit-box-shadow: 0 0 4px #FF0000;
@@ -492,7 +492,7 @@ li[data-type="zoning"] .selected li.ui-draggable-dragging .title
 {
 	display:none;
 }
-li[data-type="zoning"] .selected ol li.focus .title,
+li[data-type="zoning"] .selected ol li.focusedByContext .title,
 li[data-type="zoning"] .selected ol li:hover .title
 {
 	display:block;

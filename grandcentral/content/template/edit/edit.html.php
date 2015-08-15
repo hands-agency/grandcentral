@@ -8,10 +8,15 @@
 
 <?php if (isset($_POST['greenbutton'])): ?>
 <ul class="greenbutton-choices">
-	<li class="title"><span>Done</span></li>
+	<li class="title"><span>︿</span></li>
 	<?php foreach ($greenbuttons as $greenbutton): ?>	
 	<li>
-		<a data-action="<?=$greenbutton['key']?>" class="title"><?=$greenbutton['title']?></a>
+		<div class="wrapper" <?php if (isset($greenbutton['color'])): ?>style="background-color:#<?=$greenbutton['color']?>"<?php endif ?>>
+			<a data-action="<?=$greenbutton['key']?>">
+				<i data-feathericon="<?=$greenbutton['icon']->get()?>"></i>
+				<span class="title"><?=$greenbutton['title']?></span>
+			</a>
+		</div>
 	</li>
 	<?php endforeach ?>
 </ul>

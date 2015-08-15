@@ -12,7 +12,7 @@
 }
 [data-type="pagetype"] .field>div>ol>li
 {
-	overflow:auto;
+	overflow:hidden;
 }
 
 /* Type */

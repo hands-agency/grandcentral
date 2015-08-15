@@ -19,7 +19,7 @@ $(document).ready(function ()
 			zone = item.closest('[data-zone]').data('zone');
 			
 		//	Make it visible
-			item.addClass('focus');
+			item.addClass('focusByContext');
 			
 		//	Configure the section
 			openContext(
@@ -44,8 +44,6 @@ $(document).ready(function ()
 		$('#greenbutton').data('greenbutton').savecontext(null, function()
 		{
 		//	Refresh the section
-			$section = $('[data-type="zoning"] .focus');
-			$section.removeClass('focus');
 			id = $('.adminContext [data-key="id"] input').val();
 			title = $('.adminContext [data-key="title"] input').val();
 			app = $('.adminContext [data-key="app"] select').val();
@@ -72,7 +70,7 @@ $(document).ready(function ()
 		id = section.split('_')[1];
 		
 	//	Make it visible
-		$(this).parents('li').addClass('focus');
+		$(this).parents('li').addClass('focusByContext');
 	
 	//	Open context
 		openContext(

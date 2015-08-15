@@ -85,7 +85,7 @@
 			});
 			
 		//	Load the available choices
-			plugin.loadChoices();
+			plugin.loadChoices($element);
 
 		//	Delete a selected
 			$element.on('click', '.selected li .delete', function()
@@ -119,19 +119,20 @@
 			{
 			//	Some vars
 				$li = $(this).closest('li');
+				$field = $li.closest('[data-type="multipleselect"]');
 				nickname = $li.data('item');
 				item = nickname.split('_')[0];
 				id = nickname.split('_')[1];
 		
 			//	Make it visible
-				$li.addClass('focus');
+				$li.addClass('focusByContext');
 	
 			//	Open context
 				openContext(
 				{
 					app: 'content',
 					template: '/edit/edit',
-					greenbutton:['savecontext_zoning'],
+					greenbutton:['savecontext_multipleselect'],
 					_GET:{item:item,id:id}
 				});
 				return false;
@@ -145,7 +146,7 @@
 				data = $available.data('values');
 			
 			//	Make it visible
-				$available.addClass('focus');
+				$available.addClass('focusByContext');
 			
 			//	Configure the item
 				openContext(
@@ -163,13 +164,9 @@
 			//	Save context and call back
 				$('#greenbutton').data('greenbutton').savecontext(null, function()
 				{
-				//	Refresh the multiple select
-					$multipleselect = $('[data-type="multipleselect"] .focus');
-					$multipleselect.removeClass('focus');
-				
 				//	Refresh field
-					plugin.loadChoices();
-			
+					plugin.loadChoices($element);
+
 				//	Close context
 					closeContext('/edit/edit');
 				});
@@ -177,9 +174,9 @@
 		}
 		
 	//	Load the available choices
-		plugin.loadChoices = function()
+		plugin.loadChoices = function(field)
 		{			
-			$element.find('.available ul.choices').ajx(options,
+			field.find('.available ul.choices').ajx(options,
 			{
 			//	Callback
 				done:function()

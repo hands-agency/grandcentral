@@ -329,7 +329,9 @@
 		$('#main').addClass('contextOpened'+countContext);
 	
 	//	Load
-		$(context).attr('data-template', param.template).find('> div').ajx(
+		$(context)
+			.attr('data-template', param.template)
+			.find('> div').ajx(
 			param,
 			{
 				done:function()
@@ -355,6 +357,9 @@
 		
 	//	Kill
 		$('.adminContext[data-template="'+template+'"]').remove();
+		
+	//	Kill all focuses
+		$('.focusedByContext').removeClass('focusedByContext');
 		
 	//	Recenter the panel after transition
 		$('#adminContent').one('transitionend', function()

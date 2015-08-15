@@ -19,15 +19,17 @@
 	float:left;
 	width:33.333%;
 	margin:7px 0;
-	opacity:0.7;
+}
+.greenbutton-choices li .wrapper
+{
 	-webkit-transition: all .05s ease-out; 
 	-moz-transition: all .05s ease-out; 
 	-o-transition: all .05s ease-out; 
 	transition: all .05s ease-out;
 }
-.greenbutton-choices li:hover
+.greenbutton-choices li:hover .wrapper
 {
-	opacity:1;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
 .greenbutton-choices li .wrapper
 {
