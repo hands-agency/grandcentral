@@ -748,6 +748,9 @@ $(function()
 //	Start nested sortable
 	$(document).bind('unlock', function()
 	{
+	//	Kill draggable slick
+		$('#sectiontray').slick("slickSetOption", "draggable", false, false);
+
 	//	Make sortable	
 		$('ol.tree').nestedSortable(
 		{
@@ -781,6 +784,9 @@ $(function()
 //	Save the current sitetree
 	$(document).bind('lock', function()
 	{
+	//	Back to draggable
+		$('#sectiontray').slick("slickSetOption", "draggable", true, true);
+		
 	//	Get the order
 		pages = $('#section_tree ol.tree').find('li[data-item]');
 		tree = new Object();
