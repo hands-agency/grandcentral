@@ -22,10 +22,41 @@ class itemSprint extends _items
 		);
 		
 	//	Merge with user params
-		if (!empty($p)) $p = array_merge($default, $p);
+		$p = (!empty($p)) ? array_merge($default, $p) : $default;
 	//	Fetch the jobs
 		$jobs = i('job', $p);
 		return $jobs;
+	}
+/**
+ * Get the starting date of a sprint
+ *
+ * @access	public
+ */
+	public function get_start()
+	{
+		return $this['start'];
+	}
+/**
+ * Get the finishing date of a sprint
+ *
+ * @access	public
+ */
+	public function get_end()
+	{
+		return $this['end'];
+	}
+	
+/**
+ * Get the length of a sprint
+ *
+ * @access	public
+ */
+	public function get_length()
+	{
+	//	Get the start 
+		$start = $this->get_start();
+		$length = $start->diff($this->get_end());
+		return $length;
 	}
 }
 ?>
