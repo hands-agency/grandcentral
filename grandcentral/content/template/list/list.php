@@ -31,7 +31,7 @@
 		'jquery.viewport',
 	//	'jquery.adaptive-backgrounds',
 		'color-thief',
-		'jquery.imagesLoaded'
+		'jquery.imagesloaded'
 	);
 
 /********************************************************************************************/
