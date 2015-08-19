@@ -35,20 +35,21 @@ $(document).ready(function()
 	},
 	function()
 	{
-	/*
+	
 	//	card
 		var $container = $('section[data-template="/list/list"][data-pref-display="incard"]>.infiniteScrollContainer>ol');
 	//	initialize card after all images have loaded  
 		$container.imagesLoaded( function()
 		{
-			$container.card(
+			$('ol li .front img').each(function()
 			{
-				itemSelector: 'li[data-item]',
-				gutter: 0,
-				isAnimated: true
+				var colorThief = new ColorThief();
+			//	Only if it has an image
+				color = colorThief.getColor($(this)[0]);
+				$(this).closest('.front').attr('style', 'background-color:rgb('+color+');');
 			});
 		});
-	*/
+	
 	//	Back flip
 		$('.card').hoverIntent(
 		{
@@ -60,6 +61,7 @@ $(document).ready(function()
 			}
 		});
 	//	
+	/*
 		$.adaptiveBackground.run(
 		{
 		//	parent:'.card',
@@ -82,6 +84,7 @@ $(document).ready(function()
 				$card.addClass(lumaClass);
 			}
 		});
+		*/
 	});
 });
 </script>

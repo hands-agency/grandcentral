@@ -26,7 +26,13 @@
 /********************************************************************************************/
 //	Some apps
 /********************************************************************************************/
-	load('jquery.infinitescroll', 'jquery.viewport', 'jquery.adaptive-backgrounds');
+	load(
+		'jquery.infinitescroll',
+		'jquery.viewport',
+	//	'jquery.adaptive-backgrounds',
+		'color-thief',
+		'jquery.imagesLoaded'
+	);
 
 /********************************************************************************************/
 //	Some vars

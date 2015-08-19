@@ -20,9 +20,14 @@
 				}
 				else $thumbnail = null;
 				$empty = (!isset($thumbnail)) ? 'empty' : null;
+				
+			//	back up adaptative bg
+				/* <span class="cover" data-adaptive-background data-ab-css-background style="background-image:url('<?=$thumbnail?>')"></span>*/
 			?>
 			<a href="<?=$i->edit()?>" class="<?=$empty?>">
-				<span class="cover" data-adaptive-background data-ab-css-background style="background-image:url('<?=$thumbnail?>')"></span>
+
+				
+				<span class="cover" style="background-image:url('<?=$thumbnail?>')"><?php if ($thumbnail): ?><img style="display:none" src="<?=$thumbnail?>" /><?php endif ?></span>
 				<span class="title"><?= (isset($i['title']) && !$i['title']->is_empty()) ? $i['title']->cut(50) : $i->get_table().'#'.$i['id'] ?></span>
 			</a>
 			<div class="option" data-feathericon="&#xe129"></div>
