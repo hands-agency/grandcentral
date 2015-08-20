@@ -18,8 +18,15 @@
  * @link		http://grandcentral.fr
  */
 /********************************************************************************************/
+//	Some vars
+/********************************************************************************************/
+	$return = array();
+	$returnImg = array();
+
+/********************************************************************************************/
 //	Upload files
 /********************************************************************************************/
+//	Only admins ca post
 	if ($_SESSION['user']->is_admin())
 	{
 	//	Build path
@@ -28,19 +35,44 @@
 		if (isset($_POST['folder'])) $path = str_replace('//', '/', $path.$_POST['folder'].'/');
 	
 	//	Loop through received files
-		$return = 'ok';
 		foreach($_FILES as $id => $file)
 		{
 		//	Complete path
 			$filePath = $path.$file['name'];
 		//	Move file
-			if (!move_uploaded_file($file['tmp_name'], $filePath)) $return = 'ko';
+			if (move_uploaded_file($file['tmp_name'], $filePath))
+			{	
+				$return['meta'] = array(
+					'msg' => 'All good',
+				);
+				$returnImg[] = array(
+					'path' => $_POST['folder'].'/'.$file['name'],
+					'url' => media($filePath)->get_url(),
+				);
+			}
+		//	Works not
+			else
+			{
+				$return['meta'] = array('msg' => 'Sorry, can\'t upload '.$file['tmp_name'].' into '.$filePath);		
+			}
+		}
+	
+	//	Return
+		if (!empty($returnImg))
+		{
+			$return['data'] = array(
+				'file' => $returnImg
+			);
 		}
 	}
+//	Not an admin?
 	else
 	{
-		$return = 'ko';
+		$return['meta'] = array(
+			'msg' => 'Sorry, only admins can post here',
+		);
 	}
+
 //	Return code
-	echo $return;
+	echo json_encode($return);
 ?>

@@ -106,13 +106,11 @@
 		  }
 		});
 
-		function appendFile(file)
+		function appendFile(file, filedata)
 		{
 		//	Some vars
 			$container = $('#mediaLibrary ul.files');
 			$upload = $('#mediaLibrary ul.files li.upload');
-			console.log(file.type);
-			media = $('<li class="new" data-path="" data-url="" data-info="'+file.type+' • '+(file.size ? (file.size/1024|0)+' K' : '')+'" data-title=""><a class="file" href="#"><span class="preview"></span><span class="title">' + file.name + '</span></a></li>');
 	
 		//	Preview images
 			if (tests.filereader === true)
@@ -120,17 +118,15 @@
 				var reader = new FileReader();
 				reader.onload = function (event)
 				{
-				//	Add				
-					$upload.after(media);
 				
 				//	If it's an image
 					if (acceptedTypes[file.type] === true)
 					{
-						var image = new Image();
-						image.src = event.target.result;
-						image.width = 173; // a fake resize
-					//	Add the image preview
-						media.find('.preview').html(image);
+						imageBase64 = event.target.result;
+					//	Add the image preview, path & url
+						media = '<li class="new" data-path="'+filedata.path+'" data-url="'+filedata.url+'" data-info="'+file.type+' • '+(file.size ? (file.size/1024|0)+' K' : '')+'" data-title=""><a class="file" href="#"><span class="preview"><img src="'+imageBase64+'" /></span><span class="title">' + file.name + '</span></a></li>';
+					//	Add
+						$upload.after(media);
 					}
 				//	This directory is no longer empty
 					$('#mediaLibrary .dir').removeClass('empty');
@@ -152,11 +148,10 @@
 			formData.append('template', 'upload');
 			formData.append('folder', '<?= $here ?>');
 	
-		//	Append the files
+		//	Append the files to the form
 		    for (var i = 0; i < files.length; i++)
 			{
 				if (tests.formdata) formData.append('file-'+[i], files[i]);
-				appendFile(files[i]);
 			}
 
 		//	Now post a new XHR request
@@ -174,7 +169,14 @@
 					$('#mediaLibrary #holder progress').hide(0, function(){$('#holder p').show()});
 			
 				//	Debug
-					console.log(xhr.response);
+				//	console.log(xhr.response);
+					response = JSON.parse(xhr.response);
+					
+				//	Add the files to the page
+		    		for (var i = 0; i < files.length; i++)
+					{
+						appendFile(files[i], response.data.file[i]);
+					}
 				}
 
 				if (tests.progress)

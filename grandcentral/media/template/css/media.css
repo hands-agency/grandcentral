@@ -125,6 +125,7 @@ li.ui-draggable-dragging *
 	line-height:60px;
 	font-size:32px;
 	color:#ccc;
+	overflow:hidden; /* to play nice with new images*/
 }
 
 #mediaLibrary .files li a:not(.image) .preview
