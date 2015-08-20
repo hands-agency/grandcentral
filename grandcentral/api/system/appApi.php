@@ -118,7 +118,7 @@ class appApi extends _apps
  */
 	public function get_list()
 	{
-		$dir = new dir($this->get_templateroot('site'));
+		$dir = new dir($this->get_templateroot());
 		$files = $this->_explore_dir($dir);
 		return $files;
 	}

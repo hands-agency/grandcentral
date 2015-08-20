@@ -1,0 +1,310 @@
+/********************************************************************************************/
+/*////////////////////////////////////////////////////////////////////////////////////////////
+/* HTML 5 (waiting for the real deal)
+/////////////////////////////////////////////////////////////////////////////////////////////
+/********************************************************************************************/
+header, section, footer, aside, nav, article, figure
+{
+  display: block;
+}
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video
+{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font:inherit;
+  vertical-align: baseline;
+}
+
+ul, ol
+{
+	list-style-type:none;
+}
+
+fieldset
+{
+	margin:0;
+	padding:0;
+	border:0;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section
+{
+  display: block;
+}
+
+table
+{ border-collapse: collapse; border-spacing: 0; }
+code, kbd, samp
+{ font-family: 'monaco', monospace, sans-serif; }
+
+button
+{  width: auto; overflow: visible; }
+.ie7 img
+{ -ms-interpolation-mode: bicubic; }
+
+/* Clearing float use : <div class="clear"><!-- Clearing floats --></div> */
+.clear
+{
+	clear:both;
+	float:none !important;
+	height:0;
+	line-height:0;
+}
+
+/********************************************************************************************/
+/* Body
+/********************************************************************************************/
+body
+{
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+	font-weight: 300;
+	font-size:1em;
+	color:#555;
+	background:#F2F2F2;
+}
+
+/********************************************************************************************/
+/* Hyperlinking
+/********************************************************************************************/
+a
+{
+	color:#419BF9;
+	text-decoration:none;
+}
+a:hover
+{
+	color:#df3528;
+}
+a:active
+{
+	position:relative;
+    top:1px;
+}
+a:visited
+{}
+
+/* Kill Browser tweaks */
+*:focus
+{outline: none;}
+*::selection
+{
+	background:#df3528;
+	color:#fff;
+}
+*::-moz-selection
+{
+	background:#df3528;
+	color:#fff;
+}
+*::-webkit-selection
+{
+	background:#df3528;
+	color:#fff;
+}
+
+/********************************************************************************************/
+/*////////////////////////////////////////////////////////////////////////////////////////////
+/* General stuff
+/////////////////////////////////////////////////////////////////////////////////////////////
+/********************************************************************************************/
+header
+{
+	padding:100px 100px;
+	background:#333;
+	margin:0 0 40px 0;
+}
+h1
+{
+	font-size:60px;
+	color:#fff;
+	text-align:center;
+}
+body>div,
+body>ul
+{
+	margin:60px auto;
+}
+
+/********************************************************************************************/
+/* TOC
+/********************************************************************************************/
+ul#toc
+{
+	font-size:16px;
+	margin:0 0 40px 0;
+}
+ul#toc li
+{
+	padding:20px;
+	background:rgba(255,255,255,0.5);
+}
+ul#toc div
+{
+}
+ul#toc .key
+{
+	margin:0 0 10px 0;
+	font-size:10px;
+	vertical-align:top;
+	letter-spacing:1px;
+}
+ul#toc .api
+{
+	display:inline-block;
+}
+ul#toc .key span
+{
+	text-transform:uppercase;
+	border:1px solid #ccc;
+	border-radius:3px;
+	padding:3px 5px;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
+}
+ul#toc .api .title
+{
+	font-weight:bold;
+	margin:0 0 5px 0;
+}
+ul#toc .api .methods a
+{
+	color:#666;
+	display:block;
+}
+
+/* OK, KO */
+ul#toc .ok .key span,
+ul#list li.ok>h2 span,
+ul#list div.ok h3 span
+{
+	background-color:#8DC63F;
+	color:#fff;
+}
+ul#toc .ko .key span,
+ul#list li.ko>h2 span,
+ul#list div.ko h3 span
+{
+	background-color:#cc0000;
+	color:#fff;
+}
+
+/********************************************************************************************/
+/* List
+/********************************************************************************************/
+ul#list li
+{
+	margin:0 0 50px 0;
+	padding:0 0 30px 0;
+}
+ul#list h2
+{
+	font-size:24px;
+	margin:0 0 20px 0;
+	padding:0 0 10px 0;
+	font-weight:bold;
+	position:relative;
+}
+ul#list>li>h2 span
+{
+	border-radius:3px;
+	border:1px solid #ccc;
+	font-size:24px;
+	padding:5px 15px;
+	display:inline-block;
+	text-transform:uppercase;
+	margin:0 5px 0 0;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
+	font-weight:normal;
+}
+ul#list>li>div
+{
+	background:#FFF;
+	padding:20px;
+	border-radius:3px;
+	margin:0 0 20px 0;
+}
+ul#list h3
+{
+	margin:0 0 20px 0;
+	font-size:20px;
+}
+ul#list h3 span
+{
+	border-radius:3px;
+	border:1px solid #ccc;
+	padding:5px 15px;
+	display:inline-block;
+	margin:0 5px 0 0;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
+}
+ul#list h4
+{
+	margin:0 0 10px 0;
+	font-size:14px;
+	font-weight:bold;
+}
+ul#list p
+{
+	margin:0 0 20px 0;
+}
+ul#list table
+{
+	width:auto;
+	margin:0 0 20px 0;
+	font-size:0.8em;
+}
+ul#list table tr>*
+{
+	padding:10px;
+	border-bottom:1px solid #fff;
+	border-right:1px solid #fff;
+}
+ul#list table th
+{
+	background:#eee;
+}
+ul#list table td
+{
+	background:#F9F9F9;
+}
+ul#list li pre
+{
+	width:100%;
+	display:block;
+	font-family: Consolas, 'Liberation Mono', Courier, monospace;
+	border:1px solid #cacaca;
+	border-radius:3px;
+	padding:20px;
+	margin:0 0 20px 0;
+	font-size:0.8em;
+	max-height:500px;
+	overflow:auto;
+	white-space: -moz-pre-wrap;
+	white-space: -o-pre-wrap;
+	word-wrap: break-word;
+	background:#fafafb;
+}
+ul#list li pre em
+{
+	text-transform:uppercase;
+}
