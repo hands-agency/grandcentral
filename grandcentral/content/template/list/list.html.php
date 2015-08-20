@@ -46,7 +46,7 @@ $(document).ready(function()
 				var colorThief = new ColorThief();
 			//	Only if it has an image
 				color = colorThief.getColor($(this)[0]);
-				$(this).closest('.front').attr('style', 'background-color:rgb('+color+');');
+				$(this).closest('.card').find('.front, .back').attr('style', 'background-color:rgb('+color+');');
 			});
 		});
 	
