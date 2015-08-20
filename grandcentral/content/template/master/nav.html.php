@@ -51,19 +51,22 @@
 	<ul class="medium">
 		<li>
 		<?php foreach ($socials as $social): ?>
-		<a href="<?=$listPage['url']->args(array('item' => $social['key']->get()))?>">
-			<span class="title"><?=$social['title']?></span>
-		</a>
+			<a href="<?=$listPage['url']->args(array('item' => $social['key']->get()))?>">
+				<span class="title"><?=$social['title']?></span>
+			</a>
 		<?php endforeach ?>
 		</li>
 	</ul>
 	
 	<ul class="medium">
 		<li>
-			<?php foreach ($helps as $help): ?>
-		<a href="<?=$help['url']?>">
-			<span class="title"><?=$help['title']?></span>
-		</a>
+			<a class="media" href="javascript://">
+				<span class="title">Medias</span>
+			</a>
+		<?php foreach ($helps as $help): ?>
+			<a href="<?=$help['url']?>">
+				<span class="title"><?=$help['title']?></span>
+			</a>
 		<?php endforeach ?>
 		</li>
 	</ul>
@@ -71,9 +74,9 @@
 	<ul class="small">
 	<?php foreach ($logs as $log): ?>
 		<li>
-		<a href="<?=$log['url']?>">
-			<span class="title"><?=$log['title']?></span>
-		</a>
+			<a href="<?=$log['url']?>">
+				<span class="title"><?=$log['title']?></span>
+			</a>
 		</li>
 	<?php endforeach ?>
 	</ul>
