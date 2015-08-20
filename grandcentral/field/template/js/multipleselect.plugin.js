@@ -74,7 +74,7 @@
 					else
 					{
 					//	Enable the input
-						$input = ui.item.find('input');
+						$input = $(this).data()['ui-sortable']['currentItem'].find('input');
 						$input.prop('disabled', false);
 						received = true;
 						
