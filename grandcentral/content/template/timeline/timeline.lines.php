@@ -66,6 +66,11 @@
 	$period[] = array('key' => 'yesterday_dawn', 'date' => $yesterday->format('Y-m-d 06:00:00'));
 	
 /********************************************************************************************/
+//	Some data
+/********************************************************************************************/
+	$items = i('item', all)->set_index('key');
+	
+/********************************************************************************************/
 //	Some functions
 /********************************************************************************************/
 	function formatSeparator($date, $period)
@@ -117,26 +122,31 @@
 		if (!isset($clusters[$hash]['id']) OR !in_array($log['itemid'], $clusters[$hash]['id'])) $clusters[$hash]['id'][] = $log['itemid'];
 	}
 	
+	
 //	Add Bunched to the Clusters
 	foreach ($clusters as $hash => $cluster)
 	{
-	//	Add the bunch
-		$clusters[$hash]['bunch'] = i($cluster['item'], array('id' => $cluster['id']), $handled_env);
-		
-	//	Store the author
-		$nickname = $cluster['subject'].'_'.$cluster['subjectid'];
-		if (!isset($authors[$nickname])) $authors[$nickname] = i($nickname, null, 'site');
-		
-	//	Find the first media attr
-		if ($clusters[$hash]['bunch']->count > 0)
+	//	If this item still exists
+		if (isset($items['item_'.$cluster['item']])) 
 		{
-			$item = $clusters[$hash]['bunch'][0];
-			foreach ($item as $attr)
+		//	Add the bunch
+			$clusters[$hash]['bunch'] = i($cluster['item'], array('id' => $cluster['id']), $handled_env);
+		
+		//	Store the author
+			$nickname = $cluster['subject'].'_'.$cluster['subjectid'];
+			if (!isset($authors[$nickname])) $authors[$nickname] = i($nickname, null, 'site');
+		
+		//	Find the first media attr
+			if ($clusters[$hash]['bunch']->count > 0)
 			{
-				if(is_a($attr, 'attrMedia'))
+				$item = $clusters[$hash]['bunch'][0];
+				foreach ($item as $attr)
 				{
-					$iconField[$item->get_table()] = $attr->get_key();
-					break;
+					if(is_a($attr, 'attrMedia'))
+					{
+						$iconField[$item->get_table()] = $attr->get_key();
+						break;
+					}
 				}
 			}
 		}
