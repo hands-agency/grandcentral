@@ -153,10 +153,12 @@
 	$('#sectiontray').slick(
 	{
 		dots: false,
+		arrows:false,
 		infinite: false,
 		speed: 300,
 		slidesToShow: 1,
 		adaptiveHeight: false,
+		accessibility:false
 	});
 
 /*********************************************************************************************
