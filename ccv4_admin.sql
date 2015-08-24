@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 13, 2015 at 10:30 PM
+-- Generation Time: Aug 24, 2015 at 02:15 PM
 -- Server version: 5.5.25
 -- PHP Version: 5.4.4
 
@@ -224,22 +224,22 @@ CREATE TABLE `greenbutton` (
 --
 
 INSERT INTO `greenbutton` (`id`, `key`, `title`, `created`, `updated`, `status`, `icon`, `owner`, `cat`, `andback`, `andreach`, `live`, `color`) VALUES
-(1, 'save', '{"en":"Save","fr":"Sauvegarder"}', '2014-06-02 14:50:17', '2015-08-13 22:10:24', 'live', '', '2', 'save', 1, 1, 0, '388E3C'),
-(2, 'asleep', '{"en":"Put asleep","fr":"Mettre en sommeil"}', '2014-06-02 15:00:50', '2015-08-13 22:12:07', 'live', '', '2', 'status', 1, 0, 0, '01579B'),
+(1, 'save', '{"en":"Save","fr":"Sauvegarder"}', '2014-06-02 14:50:17', '2015-08-13 22:32:46', 'live', '', '2', 'save', 1, 1, 0, '388E3C'),
+(2, 'asleep', '{"en":"Put asleep","fr":"Mettre en sommeil"}', '2014-06-02 15:00:50', '2015-08-13 22:32:48', 'live', '', '2', 'status', 1, 0, 0, '01579B'),
 (3, 'new', '{"en":"New","fr":"Ajouter"}', '2014-06-02 15:01:05', '2015-08-13 22:25:42', 'live', '', '2', '', 0, 0, 0, '6cbf2d'),
-(5, 'save_copy', '{"en":"Save as a copy","fr":"Sauvegarder comme copie"}', '2014-06-02 14:53:57', '2015-08-13 22:08:39', 'live', '', '2', 'save', 0, 0, 0, '66BB6A'),
-(6, 'save_new', '{"en":"Save & start a new one","fr":"Sauvegarder & ouvrir un nouveau"}', '2014-06-02 15:02:35', '2015-08-13 22:08:21', 'live', '', '2', 'save', 0, 0, 0, '81C784'),
-(7, 'trash', '{"en":"Move to trash","fr":"Jeter à la corbeille"}', '2014-06-02 14:59:21', '2015-08-13 22:08:59', 'live', '', '2', 'archive', 1, 0, 0, '666666'),
-(8, 'live', '{"en":"Go live","fr":"Publier"}', '2014-06-02 15:00:35', '2015-08-13 22:12:32', 'live', '', '2', 'status', 1, 1, 0, '6cbf2d'),
-(9, 'workflow', '{"en":"Back to the workflow","fr":"Remettre dans le workflow"}', '2014-06-02 15:00:00', '2015-08-13 22:06:27', 'live', '', '2', '', 0, 0, 0, '9C27B0'),
-(10, 'buildapp', '{"en":"Build an app!","fr":"Constuire une app!"}', '2013-03-22 08:57:22', '2015-08-13 21:00:42', 'live', '&#xe083', '2', '', 0, 0, 0, ''),
-(11, 'newpage', '{"en":"Add a page to the tree","fr":"Ajouter une page à l''arborescence"}', '2013-10-23 02:14:09', '2015-08-13 20:59:41', 'live', '&#xe114', '2', '', 0, 0, 0, ''),
+(5, 'save_copy', '{"en":"Save as a copy","fr":"Sauvegarder comme copie"}', '2014-06-02 14:53:57', '2015-08-13 22:32:31', 'live', '', '2', 'save', 0, 0, 0, '66BB6A'),
+(6, 'save_new', '{"en":"Save & start a new one","fr":"Sauvegarder & ouvrir un nouveau"}', '2014-06-02 15:02:35', '2015-08-13 22:32:33', 'live', '', '2', 'save', 0, 0, 0, '81C784'),
+(7, 'trash', '{"en":"Move to trash","fr":"Jeter à la corbeille"}', '2014-06-02 14:59:21', '2015-08-13 22:32:43', 'live', '', '2', 'archive', 1, 0, 0, '666666'),
+(8, 'live', '{"en":"Go live","fr":"Publier"}', '2014-06-02 15:00:35', '2015-08-13 22:32:51', 'live', '', '2', 'status', 1, 1, 0, '6cbf2d'),
+(9, 'workflow', '{"en":"Back to the workflow","fr":"Remettre dans le workflow"}', '2014-06-02 15:00:00', '2015-08-13 22:32:39', 'live', '', '2', '', 0, 0, 0, '9C27B0'),
+(10, 'buildapp', '{"en":"Build an app!","fr":"Constuire une app!"}', '2013-03-22 08:57:22', '2015-08-13 22:32:29', 'live', '', '2', '', 0, 0, 0, ''),
+(11, 'newpage', '{"en":"Add a page to the tree","fr":"Ajouter une page à l''arborescence"}', '2013-10-23 02:14:09', '2015-08-13 22:33:37', 'live', '', '2', '', 0, 0, 0, ''),
 (12, 'preview', '{"en":"Preview","fr":"Previsualisation"}', '2013-10-28 10:39:50', '2015-08-13 22:16:48', 'live', '', '2', 'check', 0, 0, 0, '607D8B'),
-(14, 'newsystem', '{"en":"Add to the system","fr":"Ajouter au système"}', '2014-07-28 11:11:39', '2015-08-13 22:06:30', 'live', '', '2', '', 0, 0, 0, '4A148C'),
-(15, 'newworkflow', '{"en":"New workflow","fr":"Nouveau workflow"}', '2014-08-11 21:19:29', '2015-08-13 20:56:51', 'live', '&#xe057', '2', '', 0, 0, 0, ''),
+(14, 'newsystem', '{"en":"Add to the system","fr":"Ajouter au système"}', '2014-07-28 11:11:39', '2015-08-13 22:32:37', 'live', '', '2', '', 0, 0, 0, '4A148C'),
+(15, 'newworkflow', '{"en":"New workflow","fr":"Nouveau workflow"}', '2014-08-11 21:19:29', '2015-08-13 22:32:15', 'live', '', '2', '', 0, 0, 0, ''),
 (16, 'googlepreview', '{"en":"See what Google sees","fr":"Voyez ce que Google vois"}', '2015-01-06 21:28:39', '2015-08-13 22:16:57', 'live', '', 'human_2', 'check', 0, 0, 0, '546E7A'),
-(17, 'savecontext_zoning', '{"en":"Save section","fr":"Sauvegarder cette section"}', '2015-04-20 14:44:19', '2015-08-13 22:08:46', 'live', '', 'human_2', '', 0, 0, 0, '4CAF50'),
-(18, 'savecontext_multipleselect', '{"en":"Sauvegarder et poursuivre","fr":"Save and back to work"}', '2015-04-20 18:33:12', '2015-08-13 22:08:13', 'live', '', 'human_2', '', 0, 0, 0, '4CAF50'),
+(17, 'savecontext_zoning', '{"en":"Save section","fr":"Sauvegarder cette section"}', '2015-04-20 14:44:19', '2015-08-13 22:32:42', 'live', '', 'human_2', '', 0, 0, 0, '4CAF50'),
+(18, 'savecontext_multipleselect', '{"en":"Sauvegarder les modifications","fr":"Save changes"}', '2015-04-20 18:33:12', '2015-08-15 14:58:04', 'live', '', 'human_2', '', 0, 0, 0, '4CAF50'),
 (19, 'edititem', '{"en":"Edit Item","fr":"Modifier l''item"}', '2015-08-13 22:27:48', '2015-08-13 22:27:48', 'live', '&#xe079', 'human_2', '', 0, 0, 0, '7E57C2');
 
 -- --------------------------------------------------------
@@ -303,7 +303,7 @@ CREATE TABLE `logbook` (
   PRIMARY KEY (`id`),
   KEY `status` (`status`),
   KEY `key` (`key`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=476 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=497 ;
 
 --
 -- Dumping data for table `logbook`
@@ -781,7 +781,28 @@ INSERT INTO `logbook` (`id`, `key`, `subject`, `subjectid`, `item`, `itemid`, `c
 (472, 'update', 'human', 2, 'greenbutton', 16, '2015-08-13 22:16:57', '2015-08-13 22:16:57', 'live', 0),
 (473, 'update', 'human', 2, 'greenbutton', 3, '2015-08-13 22:25:42', '2015-08-13 22:25:42', 'live', 0),
 (474, 'insert', 'human', 2, 'greenbutton', 19, '2015-08-13 22:27:48', '2015-08-13 22:27:48', 'live', 0),
-(475, 'update', 'human', 2, 'section', 1, '2015-08-13 22:28:52', '2015-08-13 22:28:52', 'live', 0);
+(475, 'update', 'human', 2, 'section', 1, '2015-08-13 22:28:52', '2015-08-13 22:28:52', 'live', 0),
+(476, 'update', 'human', 2, 'greenbutton', 15, '2015-08-13 22:32:15', '2015-08-13 22:32:15', 'live', 0),
+(477, 'update', 'human', 2, 'greenbutton', 10, '2015-08-13 22:32:29', '2015-08-13 22:32:29', 'live', 0),
+(478, 'update', 'human', 2, 'greenbutton', 5, '2015-08-13 22:32:31', '2015-08-13 22:32:31', 'live', 0),
+(479, 'update', 'human', 2, 'greenbutton', 6, '2015-08-13 22:32:33', '2015-08-13 22:32:33', 'live', 0),
+(480, 'update', 'human', 2, 'greenbutton', 18, '2015-08-13 22:32:35', '2015-08-13 22:32:35', 'live', 0),
+(481, 'update', 'human', 2, 'greenbutton', 14, '2015-08-13 22:32:37', '2015-08-13 22:32:37', 'live', 0),
+(482, 'update', 'human', 2, 'greenbutton', 9, '2015-08-13 22:32:39', '2015-08-13 22:32:39', 'live', 0),
+(483, 'update', 'human', 2, 'greenbutton', 17, '2015-08-13 22:32:42', '2015-08-13 22:32:42', 'live', 0),
+(484, 'update', 'human', 2, 'greenbutton', 7, '2015-08-13 22:32:43', '2015-08-13 22:32:43', 'live', 0),
+(485, 'update', 'human', 2, 'greenbutton', 1, '2015-08-13 22:32:46', '2015-08-13 22:32:46', 'live', 0),
+(486, 'update', 'human', 2, 'greenbutton', 2, '2015-08-13 22:32:48', '2015-08-13 22:32:48', 'live', 0),
+(487, 'update', 'human', 2, 'greenbutton', 8, '2015-08-13 22:32:51', '2015-08-13 22:32:51', 'live', 0),
+(488, 'update', 'human', 2, 'greenbutton', 11, '2015-08-13 22:33:37', '2015-08-13 22:33:37', 'live', 0),
+(489, 'update', 'human', 2, 'greenbutton', 18, '2015-08-15 14:58:04', '2015-08-15 14:58:04', 'live', 0),
+(490, 'update', 'human', 2, 'section', 2, '2015-08-15 16:28:29', '2015-08-15 16:28:29', 'live', 0),
+(491, 'update', 'human', 2, 'page', 1, '2015-08-15 16:30:36', '2015-08-15 16:30:36', 'live', 0),
+(492, 'update', 'human', 2, 'page', 1, '2015-08-15 16:30:39', '2015-08-15 16:30:39', 'live', 0),
+(493, 'update', 'human', 2, 'page', 43, '2015-08-21 15:13:11', '2015-08-21 15:13:11', 'live', 0),
+(494, 'update', 'human', 2, 'section', 32, '2015-08-21 15:15:44', '2015-08-21 15:15:44', 'live', 0),
+(495, 'update', 'human', 2, 'page', 43, '2015-08-21 15:15:46', '2015-08-21 15:15:46', 'live', 0),
+(496, 'update', 'human', 2, 'section', 32, '2015-08-21 15:16:12', '2015-08-21 15:16:12', 'live', 0);
 
 -- --------------------------------------------------------
 
@@ -833,7 +854,7 @@ CREATE TABLE `page` (
 --
 
 INSERT INTO `page` (`id`, `key`, `title`, `type`, `descr`, `text`, `url`, `system`, `created`, `updated`, `status`, `owner`) VALUES
-(1, 'home', '{"fr":"Digest","en":"Digest"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', 'Welcome home', '', '/', 0, '2013-10-03 08:28:48', '2014-05-31 05:38:45', 'live', 2),
+(1, 'home', '{"en":"Digest","fr":"Digest"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', 'Welcome home', '', '/', 0, '2013-10-03 08:28:48', '2015-08-15 16:30:39', 'live', 2),
 (2, 'error_404', '{"fr":"404","en":"404"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', '', '', '/404', 1, '2014-05-31 05:10:38', '2014-05-31 05:10:38', 'live', 2),
 (3, 'post', '{"fr":"POST routine","en":"POST routine"}', '{"key":"content","http_status":"200 OK","content_type":"routine","url":"","master":{"app":"content","template":"\\/master\\/post"}}', 'Receives all the posts from the forms.', '', '/routine', 1, '2014-05-31 05:10:27', '2014-05-31 05:10:27', 'live', 2),
 (5, 'list', '{"en":"List","fr":"Liste"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', '', '', '/list', 0, '2013-10-13 01:05:53', '2015-04-28 11:18:03', 'live', 2),
@@ -852,7 +873,7 @@ INSERT INTO `page` (`id`, `key`, `title`, `type`, `descr`, `text`, `url`, `syste
 (37, 'lab', '{"fr":"Lab","en":"Lab"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', '', '', '/lab', 0, '2014-05-02 15:31:57', '2014-05-31 05:37:49', 'live', 2),
 (38, 'iframe', '{"en":"Iframes","fr":""}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/iframe"}}', 'Use me to send content to en empty master template. Nice for Iframes.', '', '/iframe', 1, '2015-01-19 19:02:07', '2015-01-19 19:08:56', 'live', 2),
 (39, 'app', '{"en":"App","fr":"App"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', '', '', '/app', 0, '2015-08-12 12:12:36', '2015-08-12 12:12:36', 'live', 2),
-(43, '4eca7f680019838d1c021cd9c63217e3', '{"en":"Build an App","fr":"Faire une app"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', '', '', '/build-an-app', 0, '2015-08-12 14:47:26', '2015-08-12 15:00:34', 'live', 0);
+(43, '4eca7f680019838d1c021cd9c63217e3', '{"en":"Build an App","fr":"Faire une app"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', '', '', '/build-an-app', 0, '2015-08-12 14:47:26', '2015-08-21 15:15:46', 'live', 0);
 
 -- --------------------------------------------------------
 
@@ -881,8 +902,8 @@ CREATE TABLE `section` (
 --
 
 INSERT INTO `section` (`id`, `key`, `title`, `zone`, `app`, `created`, `updated`, `status`, `owner`, `nodata`) VALUES
-(1, 'list', '{"en":"List","fr":"Publiés"}', 'content', '{"app":"content","template":"\\/list\\/list","param":{"status":"live","system":""}}', '2014-05-31 04:51:15', '2015-08-13 22:28:52', 'live', '2', '{"en":"Nothing live. Sorry, nothing. Zero. Zilch.","fr":"Rien du tout. Rien de rien de rien."}'),
-(2, 'edit', '{"en":"Edit","fr":"Modifier"}', 'content', '{"app":"content","template":"\\/edit\\/edit"}', '2013-10-16 14:52:08', '2015-08-13 22:13:38', 'live', '2', '{"en":"","fr":""}'),
+(1, 'list', '{"en":"List","fr":"Publiés"}', 'content', '{"app":"content","template":"\\/list\\/list","param":{"system":""}}', '2014-05-31 04:51:15', '2015-08-13 22:28:52', 'live', '2', '{"en":"Nothing live. Sorry, nothing. Zero. Zilch.","fr":"Rien du tout. Rien de rien de rien."}'),
+(2, 'edit', '{"en":"Edit","fr":"Modifier"}', 'content', '{"app":"content","template":"\\/edit\\/edit"}', '2013-10-16 14:52:08', '2015-08-15 16:28:29', 'live', '2', '{"en":"","fr":""}'),
 (3, 'php', '{"fr":"Apps","en":"Apps"}', 'content', '{"app":"content","template":"\\/doc\\/code"}', '2014-05-15 09:47:55', '2014-05-31 04:48:57', 'live', '2', ''),
 (4, 'doc', '{"fr":"Doc","en":"Doc"}', 'content', '{"app":"content","template":"\\/doc\\/doc"}', '2013-10-20 22:52:03', '2014-05-31 04:49:55', 'live', '2', ''),
 (5, 'splash', '{"fr":"Bienvenue","en":"Welcome"}', 'content', '{"app":"content","template":"\\/error\\/error"}', '2014-05-31 04:46:24', '2014-05-31 04:46:24', 'live', '2', ''),
@@ -899,7 +920,7 @@ INSERT INTO `section` (`id`, `key`, `title`, `zone`, `app`, `created`, `updated`
 (28, 'login', '{"fr":"Login","en":"Login"}', 'site', '{"app":"form","template":"\\/login","param":{"key":"login"}}', '2013-04-07 15:55:22', '2014-05-31 04:50:04', 'live', '2', ''),
 (30, 'workflow', '{"en":"Workflow","fr":"Workflow"}', 'content', '{"app":"content","template":"\\/workflow\\/workflow"}', '2014-05-31 04:47:16', '2014-12-20 15:18:56', 'live', '2', '{"en":"No workflow.","fr":"Aucun flux de publication."}'),
 (31, 'lab', '{"en":"Lab","fr":"Lab"}', 'content', '{"app":"lab","template":"\\/lab"}', '2013-10-16 14:52:08', '2014-12-20 14:59:42', 'live', '2', '{"en":"There is nothing in your lab. You should experiment more!","fr":"Il n''y a rien au labo. Vous devriez tester des trucs!"}'),
-(32, 'buildapp', '{"en":"Step by step","fr":"Pas à pas"}', 'content', '{"app":"content","template":"\\/appbuilder\\/appbuilder"}', '2015-04-28 11:12:02', '2015-08-12 15:02:00', 'live', 'human_2', '{"en":"We''re working hard on this feature. Stay tuned!","fr":"Nous travaillons dur sur cette section. Revenez vite !"}');
+(32, 'buildapp', '{"en":"Step by step","fr":"Pas à pas"}', 'content', '{"app":"appbuilder","template":"\\/appbuilder\\/appbuilder"}', '2015-04-28 11:12:02', '2015-08-21 15:16:12', 'live', 'human_2', '{"en":"We''re working hard on this feature. Stay tuned!","fr":"Nous travaillons dur sur cette section. Revenez vite !"}');
 
 -- --------------------------------------------------------
 
@@ -1033,11 +1054,6 @@ INSERT INTO `_rel` (`item`, `itemid`, `key`, `rel`, `relid`, `position`) VALUES
 ('page', 9, 'child', 'page', 37, 0),
 ('page', 9, 'child', 'page', 29, 1),
 ('page', 9, 'child', 'page', 7, 2),
-('page', 1, 'child', 'page', 32, 0),
-('page', 1, 'child', 'page', 9, 1),
-('page', 1, 'child', 'page', 10, 2),
-('page', 1, 'child', 'page', 11, 3),
-('page', 1, 'section', 'section', 9, 0),
 ('page', 40, 'child', 'page', 27, 0),
 ('page', 41, 'child', 'page', 29, 0),
 ('section', 30, 'greenbutton', 'greenbutton', 15, 0),
@@ -1072,7 +1088,8 @@ INSERT INTO `_rel` (`item`, `itemid`, `key`, `rel`, `relid`, `position`) VALUES
 ('page', 11, 'child', 'page', 43, 1),
 ('page', 11, 'section', 'section', 19, 0),
 ('section', 19, 'greenbutton', 'greenbutton', 10, 0),
-('page', 43, 'section', 'section', 32, 0),
+('section', 1, 'greenbutton', 'greenbutton', 3, 0),
+('section', 1, 'greenbutton', 'greenbutton', 19, 1),
 ('section', 2, 'greenbutton', 'greenbutton', 8, 0),
 ('section', 2, 'greenbutton', 'greenbutton', 2, 1),
 ('section', 2, 'greenbutton', 'greenbutton', 1, 2),
@@ -1080,10 +1097,13 @@ INSERT INTO `_rel` (`item`, `itemid`, `key`, `rel`, `relid`, `position`) VALUES
 ('section', 2, 'greenbutton', 'greenbutton', 6, 4),
 ('section', 2, 'greenbutton', 'greenbutton', 12, 5),
 ('section', 2, 'greenbutton', 'greenbutton', 16, 6),
-('section', 2, 'greenbutton', 'greenbutton', 9, 7),
-('section', 2, 'greenbutton', 'greenbutton', 7, 8),
-('section', 1, 'greenbutton', 'greenbutton', 3, 0),
-('section', 1, 'greenbutton', 'greenbutton', 19, 1);
+('section', 2, 'greenbutton', 'greenbutton', 7, 7),
+('page', 1, 'child', 'page', 32, 0),
+('page', 1, 'child', 'page', 9, 1),
+('page', 1, 'child', 'page', 10, 2),
+('page', 1, 'child', 'page', 11, 3),
+('page', 1, 'section', 'section', 9, 0),
+('page', 43, 'section', 'section', 32, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
