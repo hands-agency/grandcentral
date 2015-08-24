@@ -333,8 +333,9 @@
 	//	Save a copy
 		plugin.save_copy = function()
 		{
-		//	Get rid of id and save
+			_GET['id'] = '';
 			$('input[name="'+SITE_KEY+'_'+_GET['item']+'[id]"]').val('');
+		//	Get rid of id and save
 			plugin.save();
 		}
 
