@@ -103,6 +103,7 @@
 		'html' => 'HTML',
 		'xml' => 'XML',
 		'json' => 'JSON',
+		'csv' => 'CSV',
 		'eventstream' => 'Event Stream',
 		'jpg' => 'Jpeg image',
 		'routine' => 'Routine',

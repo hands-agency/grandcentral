@@ -144,6 +144,7 @@ class itemPage extends _items
 			'xml' => 'application/xml',
 			'json' => 'application/json',
 			// 'json' => 'text/html',
+			'csv' => 'text/csv',
 			'html' => 'text/html',
 			'routine' => 'text/x-php',
 			'eventstream' => 'text/event-stream',
