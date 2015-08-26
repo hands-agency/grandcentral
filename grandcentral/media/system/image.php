@@ -11,6 +11,7 @@ class image extends media
 {
 	protected $width;
 	protected $height;
+	protected $alt;
 
 /**
  * Obtenir, s'il existe, le contenu du fichier
@@ -100,7 +101,69 @@ class image extends media
 		}
 		return $this->width;
 	}
-	
+/**
+ * Fill alt attribute of <img>
+ *
+ * @access	public
+ */
+	public function set_alt($text)
+	{
+		$this->alt = trim((string) $text);
+		return $this;
+	}
+/**
+ * Get iptc meta data for jpeg image
+ * For more information : http://www.exiv2.org/iptc.html
+ *
+ * @access	public
+ */
+	public function get_iptc()
+	{
+		$iptc = false;
+		
+		if ($this->get_mime() == 'image/jpeg')
+		{
+			$iptcHeaders = array
+			(
+				'2#000'=>'RecordVersion',
+				'2#005'=>'ObjectName',
+				'2#010'=>'Urgency',
+				'2#015'=>'Category',
+				'2#020'=>'SuppCategory',
+				'2#025'=>'Keywords',
+				'2#040'=>'SpecialInstructions',
+				'2#055'=>'CreationDate',
+				'2#060'=>'EnvelopePriority',
+				'2#062'=>'DigitizationDate',
+				'2#063'=>'DigitizationTime',
+				'2#080'=>'AuthorByline',
+				'2#085'=>'AuthorTitle',
+				'2#090'=>'City',
+				'2#095'=>'ProvinceState',
+				'2#100'=>'CountryCode',
+				'2#101'=>'CountryName',
+				'2#103'=>'TransmissionReference',
+				'2#105'=>'Headline',
+				'2#110'=>'Credit',
+				'2#115'=>'Source',
+				'2#116'=>'Copyright',
+				'2#120'=>'Caption',
+				'2#122'=>'CaptionWriter'
+			);
+			
+			$size = getimagesize($this->get_root(), $info);
+			if (isset($info['APP13']))
+			{
+				$data = iptcparse($info['APP13']);
+				foreach ($data as $key => $value)
+				{
+					if (isset($iptcHeaders[$key])) $key = $iptcHeaders[$key];
+					$iptc[$key] = count($value) > 1 ? $value : $value[0];
+				}
+				return $iptc;
+			}
+      	}
+	}
 /**
  * Retourne le chemin vers le thumbnail
  *
@@ -114,6 +177,7 @@ class image extends media
 		if (!is_dir($file))
 		{
 			$thumb = new image($file);
+			$thumb->set_alt($this->alt);
 		//	création du thumbnail
 			if (!$thumb->exists() || $thumb->get_created() < $this->get_created())
 			{
@@ -136,6 +200,7 @@ class image extends media
         if (!is_dir($file))
         {
             $thumb = new image($file);
+			$thumb->set_alt($this->alt);
         //    création du thumbnail
             if (!$thumb->exists() || $thumb->get_created() < $this->get_created())
             {
@@ -166,6 +231,7 @@ class image extends media
         if (!is_dir($file))
         {
             $thumb = new image($file);
+			$thumb->set_alt($this->alt);
         //    création du thumbnail
             if (!$thumb->exists() || $thumb->get_created() < $this->get_created())
             {
@@ -294,6 +360,18 @@ class image extends media
         
         return $new_image; 
     }
+
+    public function set_alt_from_iptc($field = 'ObjectName')
+    {
+    	$iptc = $this->get_iptc();
+    	if( (isset($iptc[$field])) && (!empty($iptc[$field])) )
+    	{
+    		$this->set_alt($iptc[$field]);
+    	}
+
+    	return $this;
+    }
+
 	/**
 	 * Prints the image in a <img tag>
 	 *
@@ -301,7 +379,8 @@ class image extends media
 	 */
 		public function __tostring()
 		{
-			return '<img src="'.$this->get_url().'" />';
+			$alt = !empty($this->alt) ? ' alt="'.htmlentities($this->alt).'"' : '';
+			return '<img src="'.$this->get_url().'"'.$alt.' />';
 		}
 }
 ?>
