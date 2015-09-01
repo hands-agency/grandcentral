@@ -29,6 +29,29 @@ class itemProject extends _items
 		return $sprints;
 	}
 /**
+ * Get the jobs of a projects orderer by starting date
+ *
+ * @access	public
+ */
+	public function get_jobs($p = array())
+	{
+	//	The sprints
+		$sprints = $this->get_sprints()->get_column('id');
+		
+	//	Some vars
+		$default = array(
+			'project' => $sprints,
+			'order()' => 'start ASC',
+			'status' => 'live',
+		);
+		
+	//	Merge with user params
+		$p = (!empty($p)) ? array_merge($default, $p) : $default;
+	//	Fetch the sprints
+		$jobs = i('job', $p);
+		return $jobs;
+	}
+/**
  * Get the starting date of a project
  *
  * @access	public
@@ -50,7 +73,7 @@ class itemProject extends _items
 	public function get_end()
 	{
 		$lastSprint = $this->get_sprints(array(
-			'order()' => 'end ASC',
+			'order()' => 'end DESC',
 			'limit()' => 1,
 		));
 		$end = $lastSprint[0]['end'];
@@ -63,6 +86,7 @@ class itemProject extends _items
  */
 	public function get_pulsedata($scale = 1)
 	{
+		
 	//	When does this project starts
 		$start = $this->get_start();
 		
@@ -70,34 +94,43 @@ class itemProject extends _items
 		$days = ceil($this->get_length()->days);
 		
 	//	Fill the weeks with intensity
-	//	$data = "['week', 'intensity'],";
 		$data = '';
-		for ($i=1; $i <= ceil($days); $i++)
+		for ($i=0; $i < ceil($days); $i++)
 		{
 		//	Intensity
-			$intensity = rand(0, 100);
-
-		//	First and last point
-			if ($i == 1 OR $i == $days)
-			{
-				$pointSize = 5;
-				$pointColor = null;
-			}
+			$intensity = rand(20, 80);
+			
 		//	Today
-			else if ($start->modify('+'.$i.' days')->format('Y-m-d') == date('Y-m-d'))
+			$today = $start->modify('+'.$i.' days');
+
+		//	Today
+			if ($today->format('Y-m-d') == date('Y-m-d'))
 			{
 				$pointSize = 5;
 				$pointColor = 'fill-color:#FFC000';
+				$add = true;
+			}
+		//	First and last point
+			else if ($i == 0 OR $i == $days-1)
+			{
+				$pointSize = 5;
+				$pointColor = null;
+				$add = true;
 			}
 		//	Default
 			else
 			{
 				$pointSize = 0;
 				$pointColor = null;
+				$add = null;
 			}
-		
-		//	Add to data
-			$data .= "[".$i.", ".$intensity.", 'point { size: ".$pointSize.";".$pointColor."', '".$start->modify('+'.$i.' days')->format("W")."'],";
+			
+		//	Add the point only if is a multiple of granularity
+			if ($add == true OR $i % $scale == 0)
+			{
+			//	Add to data
+				$data .= "[".$i.", ".$intensity.", 'point { size: ".$pointSize.";".$pointColor."', '".$today->format("Y-m-d D")." (W".$today->format("W").")'],";
+			}
 		}
 		$data = "[".$data."]";
 		
