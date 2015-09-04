@@ -97,7 +97,7 @@ class itemProject extends _items
 		$data = '';
 		for ($i=0; $i < ceil($days); $i++)
 		{
-		//	Intensity
+		//	TODO Intensity
 			$intensity = rand(20, 80);
 			
 		//	Today
