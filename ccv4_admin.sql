@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 24, 2015 at 02:15 PM
+-- Generation Time: Sep 11, 2015 at 10:53 AM
 -- Server version: 5.5.25
 -- PHP Version: 5.4.4
 
@@ -303,7 +303,7 @@ CREATE TABLE `logbook` (
   PRIMARY KEY (`id`),
   KEY `status` (`status`),
   KEY `key` (`key`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=497 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=499 ;
 
 --
 -- Dumping data for table `logbook`
@@ -802,7 +802,9 @@ INSERT INTO `logbook` (`id`, `key`, `subject`, `subjectid`, `item`, `itemid`, `c
 (493, 'update', 'human', 2, 'page', 43, '2015-08-21 15:13:11', '2015-08-21 15:13:11', 'live', 0),
 (494, 'update', 'human', 2, 'section', 32, '2015-08-21 15:15:44', '2015-08-21 15:15:44', 'live', 0),
 (495, 'update', 'human', 2, 'page', 43, '2015-08-21 15:15:46', '2015-08-21 15:15:46', 'live', 0),
-(496, 'update', 'human', 2, 'section', 32, '2015-08-21 15:16:12', '2015-08-21 15:16:12', 'live', 0);
+(496, 'update', 'human', 2, 'section', 32, '2015-08-21 15:16:12', '2015-08-21 15:16:12', 'live', 0),
+(497, 'update', 'human', 2, 'page', 31, '2015-08-25 17:14:33', '2015-08-25 17:14:33', 'live', 0),
+(498, 'update', 'human', 2, 'page', 31, '2015-08-25 17:14:51', '2015-08-25 17:14:51', 'live', 0);
 
 -- --------------------------------------------------------
 
@@ -865,7 +867,7 @@ INSERT INTO `page` (`id`, `key`, `title`, `type`, `descr`, `text`, `url`, `syste
 (11, 'apps', '{"en":"Apps","fr":"Apps"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', 'Tweak', '', '/apps', 0, '2013-10-18 18:40:46', '2015-08-12 14:51:13', 'live', 2),
 (29, 'logbook', '{"fr":"Livre des logs","en":"Log book"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', '', '', '/logbook', 0, '2014-05-31 05:38:10', '2014-05-31 05:38:10', 'live', 2),
 (30, 'login', '{"fr":"Login","en":"Login"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/login"}}', '', '', '/login', 1, '2013-10-03 04:16:31', '2014-05-31 05:10:46', 'live', 2),
-(31, 'api.json', '{"en":"API (json)","fr":"API (json)"}', '{"key":"content","http_status":"200 OK","content_type":"json","url":"","master":{"app":"api","template":"\\/api"}}', '', '', '/api.json', 1, '2013-03-06 03:21:46', '2015-02-20 17:23:09', 'live', 2),
+(31, 'csv', '{"en":"API (csv)","fr":"API (json)"}', '{"key":"content","http_status":"200 OK","content_type":"csv","url":"","master":{"app":"api","template":"\\/api"}}', '', '', '/csv', 1, '2013-03-06 03:21:46', '2015-08-25 17:14:51', 'live', 2),
 (32, 'me', '{"fr":"Moi","en":"Me"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', 'dfsdf', '', '/me', 0, '2014-05-31 05:37:42', '2014-05-31 05:37:42', 'live', 2),
 (33, 'api.eventstream', '{"fr":"API (eventstream)","en":"API (eventstream)"}', '{"key":"content","http_status":"200 OK","content_type":"eventstream","url":"","master":{"app":"content","template":"\\/master\\/api"}}', '', '', '/api.eventstream', 1, '2013-03-06 03:21:46', '2014-05-31 05:10:03', 'live', 2),
 (35, 'ajax.html', '{"fr":"AJAX (html)","en":"AJAX (html)"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/ajax"}}', '', '', '/ajax.html', 1, '2013-03-06 03:21:46', '2014-05-31 05:10:12', 'live', 2),
