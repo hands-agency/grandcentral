@@ -112,9 +112,10 @@
 						icon = '';
 						
 					//	Append (maybe) and fill the todo list
-						if (typeof data.error != 'undefined')
+						if (data && typeof data.error != 'undefined')
 						{
 							if ($li.find('.todo').length == 0) $li.find('.wrapper').first().append(todoCode);
+
 							$.each(data.error, function( index, error )
 							{
 	 							$li.find('.todo').html('<li>'+error.descr+'</li>').show('fast');

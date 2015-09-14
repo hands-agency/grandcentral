@@ -22,7 +22,7 @@
 /********************************************************************************************/
 //	Display entry ticket (minimum usage, right after booting)
 	#echo '<div style="font-family:arial;padding:30px 10px;background:#FE6022;color:#fff;font-size:20px;text-align:center"><strong style="color:#FE6022;background:#fff;padding:10px;margin-right:10px">Entry ticket</strong> '.sentinel::stopwatch().'s ● '.database::query_count().' queries ● using '.sentinel::memoryusage().'</div>';exit;
-	
+
 /********************************************************************************************/
 //	Some vars
 /********************************************************************************************/
@@ -36,7 +36,7 @@
 		$currentEditedItem = i($_GET['item'], $_GET['id'], $_SESSION['pref']['handled_env']);
 		if (isset($currentEditedItem['url']) && $currentEditedItem['type']['content_type'] == 'html') $currentEditedItemUrl = $currentEditedItem['url'];
 	}
-	
+
 /********************************************************************************************/
 //	Load the apps!
 /********************************************************************************************/
@@ -64,7 +64,7 @@
 	//	Some consts
 		var ITEM = $('meta[property=\"gc:item\"]').attr('content');
 		var SITE_URL = '".SITE_URL."';
-		var SITE_KEY = '".SITE_KEY."'; 
+		var SITE_KEY = '".SITE_KEY."';
 		var ADMIN_URL = '".ADMIN_URL."';
 		var ENV = $('body').data('env');
 		var CURRENTEDITED_URL = '".$currentEditedItemUrl."';
@@ -80,7 +80,7 @@
 	$_APP->bind_script('master/js/master.js');
 //	css
 	$_APP->bind_css('master/css/master.css');
-	
+
 /********************************************************************************************/
 //	First day at work ?
 /********************************************************************************************/
@@ -92,13 +92,13 @@
 //	Meta
 /********************************************************************************************/
 	$_APP->bind_snippet('meta', 'master/snippet/meta');
-	
+
 /********************************************************************************************/
 //	Headers
 /********************************************************************************************/
 //	Site
 	$_APP->bind_snippet('headersite', 'master/snippet/headersite');
-	
+
 //	Even stream
 	$_APP->bind_code('headeradmin', '<div id="eventstream"><ul class="mine"></ul><ul class="everybodyelses"></ul></div>');
 	$_APP->bind_snippet('headeradmin', 'master/snippet/eventstream');
@@ -106,7 +106,7 @@
 	$_APP->bind_snippet('headeradmin', 'master/snippet/greenbutton/greenbutton');
 //	Header (here, i need the section var)
 	$_APP->bind_snippet('headeradmin', 'master/snippet/headeradmin');
-	
+
 //	Get the sections now (the headeradmin section mingled with them...)
 	$sections = $GLOBALS['sections'];
 
@@ -120,7 +120,7 @@
 //	The title
 /********************************************************************************************/
 	switch (i('page', current)['key'])
-	{	
+	{
 	//	Edit
 		case 'edit':
 			$structure = i('item', $_GET['item'], $_SESSION['pref']['handled_env']);
@@ -136,33 +136,33 @@
 				$back = i($_GET['item'], null, $_SESSION['pref']['handled_env'])->listing();
 			}
 			break;
-			
+
 	//	List
 		case 'list':
 			$item = i('page', 'home');
 			$back = $item['url'];
 			break;
-			
+
 	//	App
 		case 'app':
 			$page = i('page', 'app');
 			$back = $page['url'];
 			break;
-			
+
 	//	Home
 		case 'home':
 			$item = i('page', 'home');
 			$back = 'javascript:openSite();';
 			break;
-		
+
 		default:
 			$item = i('page', 'home');
 			$back = $item['url'];
 			break;
 	}
-	
+
 /********************************************************************************************/
 //	Footer
 /********************************************************************************************/
-	$_APP->bind_snippet('footer', 'master/snippet/footer');	
+	$_APP->bind_snippet('footer', 'master/snippet/footer');
 ?>

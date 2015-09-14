@@ -1,0 +1,60 @@
+.material-continuity-layer
+{
+	position:fixed;
+	top:0;
+	left:0;
+	height:100vh;
+	width:100vw;
+	z-index:1000000;
+	display:none;
+}
+.material-continuity-ripple
+{
+	-webkit-transition: all .3s ease-out; 
+	-moz-transition: all .3s ease-out; 
+	-o-transition: all .3s ease-out; 
+	transition: all .3s ease-out;
+	border-radius:50%;
+	pointer-events:none;
+	position:absolute;
+	-moz-transform:scale(0);
+	-ms-transform:scale(0);
+	-webkit-transform:scale(0);
+	-o-transform:scale(0);
+	top:50%;
+	left:50%;
+	height:30px;
+	width:30px;
+}
+.material-continuity-transitionned
+{
+	border-radius:0;
+	z-index:100000;
+	-moz-transform:scale(70);
+	-ms-transform:scale(70);
+	-webkit-transform:scale(70);
+	-o-transform:scale(70);
+}
+.material-continuity-content
+{
+	position:fixed;
+	top:5%;
+	left:5%;
+	height:90vh;
+	width:90vw;
+	z-index:1000000;
+	color:#FFF;
+	font-size:100px;
+	padding:100px;
+	overflow:hidden;
+}
+.material-continuity-close
+{
+	position:absolute;
+	top:50px;
+	right:50px;
+}
+.material-continuity-close:after
+{
+	content:"✕";
+}

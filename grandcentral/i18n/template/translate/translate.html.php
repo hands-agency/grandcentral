@@ -3,7 +3,7 @@
 	<div class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
 		<ul id="toc">
 			<?php foreach ($tocItems as $item): ?>
-			<?
+			<?php
 				$class = ($item['key'] == $_POST['item']) ? 'on' : null;
 			?>
 			<li class="<?=$class?>"><a data-item="<?=$item['key']?>"><?=$item['title']?></a></li>

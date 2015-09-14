@@ -1,4 +1,4 @@
-<?
+<?php
 //	Main form
 	foreach($_FORM->get_fieldsets() as $fieldset)
 	{

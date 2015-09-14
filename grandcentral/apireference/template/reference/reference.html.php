@@ -17,7 +17,7 @@
 			
 			<ul id="toc" class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
 				<?php foreach ($apis as $api): ?>
-				<?
+				<?php
 					$class =  $api->get_name();
 					$doc = new doc(new $class(array()));
 					$data = $doc->data;
@@ -34,7 +34,7 @@
 						</div>
 						<div class="methods">
 							<?php foreach ($methods as $method): ?>
-							<?
+							<?php
 								$m = str_replace($class.'::', '', $method['key']);
 								$exampleUrl = $apiPage['url'].'/v2/'.$apiKey;
 							?>
@@ -50,7 +50,7 @@
 	
 			<ul id="list" class="col-xs-12 col-sm-12 col-md-8 col-lg-9">
 				<?php foreach ($apis as $api): ?>
-				<?
+				<?php
 					$class =  $api->get_name();
 					$doc = new doc(new $class(array()));
 					$data = $doc->data;
@@ -61,7 +61,7 @@
 					<h2><span><?=$apiKey?></span> <?=$data['descr']?></h2>
 			
 					<?php foreach ($methods as $method): ?>
-					<?
+					<?php
 						$m = str_replace($class.'::', '', $method['key']);
 						$exampleUrl = $apiPage['url'].'/v2/'.$apiKey;
 						$exampleData = '';
@@ -84,7 +84,7 @@
 								<th>Example</th>
 							</tr>
 							<?php foreach ($method['param'] as $param): ?>
-							<?
+							<?php
 							//	Try to extract an example
 								$ex = extract_example($param['descr']);
 								if ($ex !== false)
@@ -114,12 +114,12 @@
 								<th>Description</th>
 								<th>Example</th>
 							</tr>
-							<?
+							<?php
 							//	? insteads of & for the first args
 								$doneWithArgs = false;
 							?>
 							<?php foreach ($method['arg'] as $a): ?>
-							<?
+							<?php
 							//	Arguments are not pre-parsed
 								$a = explode("\t", $a);
 							
@@ -136,9 +136,9 @@
 								else $ex = null;
 								?>
 							<tr>
-								<td><? if (isset($a[0])) echo $a[0]?></td>
-								<td><? if (isset($a[1])) echo $a[1]?></td>
-								<td><? if (isset($a[2])) echo $a[2]?></td>
+								<td><?php if (isset($a[0])) echo $a[0]?></td>
+								<td><?php if (isset($a[1])) echo $a[1]?></td>
+								<td><?php if (isset($a[2])) echo $a[2]?></td>
 								<td><?=$ex?></td>
 							</tr>
 							<?php endforeach ?>
@@ -155,7 +155,7 @@
 								<th>Example</th>
 							</tr>
 							<?php foreach ($method['data'] as $d): ?>
-							<?
+							<?php
 							//	Arguments are not pre-parsed
 								$d = explode("\t", $d);
 
@@ -170,16 +170,16 @@
 								else $ex = null;
 							?>
 							<tr>
-								<td><? if (isset($d[0])) echo $d[0]?></td>
-								<td><? if (isset($d[1])) echo $d[1]?></td>
-								<td><? if (isset($d[2])) echo $d[2]?></td>
+								<td><?php if (isset($d[0])) echo $d[0]?></td>
+								<td><?php if (isset($d[1])) echo $d[1]?></td>
+								<td><?php if (isset($d[2])) echo $d[2]?></td>
 								<td><?=$ex?></td>
 							</tr>
 							<?php endforeach ?>
 						</table>	
 						<?php endif ?>
 					
-						<?
+						<?php
 						//	Some vars for response & example
 							$headerId = 'header'.$class.$m;
 							$responseId = 'response'.$class.$m;
@@ -241,7 +241,7 @@
 							});
 						</script>
 					</div>
-					<? endif; ?>
+					<?php endif; ?>
 					<?php endforeach ?>
 				</li>
 				<?php endforeach ?>

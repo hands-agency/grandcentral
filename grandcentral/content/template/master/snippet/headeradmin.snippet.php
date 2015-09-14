@@ -19,7 +19,7 @@
 			<?php if (isset($section['count'])) : ?><span class="cc-bubble"><?=$section['count']?></span><?php endif; ?>
 			<div class="droppable"></div>
 		</li>
-	<? $i++ ?>
+	<?php $i++ ?>
 	<?php endforeach; ?>
 </ul>
 <div class="drawer closed"><!-- Welcome Ajax --></div>

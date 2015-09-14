@@ -5,7 +5,7 @@
 	<!-- ZONE:css -->
 </head>
 <body>
-	<?
+	<?php
 		
 //	For readers, also create the zones for the list & detail sections
 	if ($section['app']['app'] == 'reader')
