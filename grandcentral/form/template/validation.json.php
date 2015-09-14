@@ -62,11 +62,12 @@
 			);
 		}
 	}
+//	No file type, validated but suspicious
 	else
 	{
 		$return['meta'] = array(
-			'status' => false,
-			'msg' => 'Sorry, i can\'t find a type for your field',
+			'status' => 'success',
+			'msg' => 'I\'m letting this go, as i can\'t find a type for your field',
 		);
 	}
 	
