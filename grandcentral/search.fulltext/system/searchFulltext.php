@@ -54,7 +54,7 @@ class searchFulltext
  * Search the index and get some items
  *
  * @param	string	la recherche
- * @param	array	les items à rechercher
+ * @param	array	les liste d'items à rechercher
  * @param	array	limiter la recherche
  * @return	array	les résultats de la recherche
  * @access	public
@@ -73,6 +73,28 @@ class searchFulltext
 		return $results->get_by_nickname($nicknames);
 	}
 /**
+ * Search into the index filtered by items
+ *
+ * @param	string	la recherche
+ * @param	array	les items à rechercher
+ * @param	array	limiter la recherche
+ * @return	array	les résultats de la recherche
+ * @access	public
+ */
+	public function search_by_nickname($search, $alloweditems = array(), $limit = null)
+	{
+		$results = new bunch(null, null, 'site');
+		$nicknames = array();
+		$r = $this->query($search, null, $limit, $alloweditems);
+		
+		foreach ($r['data'] as $result)
+		{
+			$nicknames[] = $result['nickname'];
+		}
+		
+		return $results->get_by_nickname($nicknames);
+	}
+/**
  * Query the index
  *
  * @param	string	la recherche
@@ -81,9 +103,10 @@ class searchFulltext
  * @return	array	les résultats de la recherche
  * @access	public
  */
-	public function query($search, $alloweditems = array(), $limit = null)
+	public function query($search, $alloweditems = array(), $limit = null, $allowednicknames = array())
 	{
-		$where = empty($alloweditems) ? null : 'AND item IN ("'.implode('","', $alloweditems).'")';
+		$where = empty($alloweditems) ? '' : 'AND `item` IN ("'.implode('","', $alloweditems).'")';
+		$where .= empty($allowednicknames) ? '' : 'AND `nickname` IN ("'.implode('","', $allowednicknames).'")';
 		$limit = is_null($limit) ? null : 'LIMIT '.$limit;
 		
 		$search = $this->sanitize($search);
