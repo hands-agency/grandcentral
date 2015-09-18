@@ -185,14 +185,13 @@
 					type: $form.attr('method'),
 					data: data,
 					success: function(r)
-					{	
-						r = JSON.parse(r); /* You should attack a json API instead of this loosy routine ! */
+					{
 						console.log(r);
 					//	Some vars
 						meta = r.meta;
 						data = r.data;
 						
-					//	Ajax sends back the id
+					//	Ajax sends back the item
 						if ($.isNumeric(data.id))
 						{
 							$('#greenbutton-default').removeClass('on');
@@ -452,7 +451,7 @@
 						id.val(result);
 					};
 				//	Callback
-					if ((typeof(callback) != 'undefined') && (typeof(callback) == 'function')) callback.call(this);
+					if ((typeof(callback) != 'undefined') && (typeof(callback) == 'function')) callback.call(this, result);
 				},
 			});
 		}

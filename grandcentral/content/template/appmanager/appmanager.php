@@ -28,6 +28,7 @@
 /********************************************************************************************/
 	$apps = array();
 	$appEdit = i('page', 'app', env);
+	$q = (isset($_POST['q'])) ? $_POST['q'] : null;
 
 /********************************************************************************************/
 //	Let's get to work
@@ -35,6 +36,10 @@
 //	App list
 	foreach (registry::get(registry::app_index) as $app)
 	{
-		$apps[] = array('key' => $app->get_key(), 'about' => $app->get_ini()['about']);
+	//	Filter using serachasyoutype
+		if (!$q OR strstr($app->get_key(), $q))
+		{
+			$apps[] = array('key' => $app->get_key(), 'about' => $app->get_ini()['about']);
+		}
 	}
 ?>

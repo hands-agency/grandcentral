@@ -6,14 +6,20 @@
 		$mainFields = '';
 		foreach($fieldset['fields'] as $field)
 		{
+		//	Our field
 			$f = $_FORM->get_field($field);
-			if ($f->get_key()) $key = 'data-key="'.$f->get_key().'"';
-			else $key = '';
 			
-		//	This field goes into the aside form...
-			if (in_array($f->get_key(), $asideFields)) $asides[] = '<li data-type="'.$f->get_type().'" '.$key.'>'.$f.'</li>';
-		//	...or stays in the main form
-			else $mainFields .= '<li data-type="'.$f->get_type().'" '.$key.'>'.$f.'</li>';
+		//	Filter with searchasyoutype
+			if (!$q OR strstr($f->get_key(), $q))
+			{
+				if ($f->get_key()) $key = 'data-key="'.$f->get_key().'"';
+				else $key = '';
+			
+			//	This field goes into the aside form...
+				if (in_array($f->get_key(), $asideFields)) $asides[] = '<li data-type="'.$f->get_type().'" '.$key.'>'.$f.'</li>';
+			//	...or stays in the main form
+				else $mainFields .= '<li data-type="'.$f->get_type().'" '.$key.'>'.$f.'</li>';
+			}
 		}
 	//	Encapsulate in fieldset
 		$col = (empty($asides)) ? null : 'col-xs-12 col-sm-8 col-md-9 col-lg-9';

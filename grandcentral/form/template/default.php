@@ -24,6 +24,7 @@
 	$asides = array();
 	$asideFields = array('id', 'key',  'url', 'owner', 'created', 'updated', 'live', 'system', 'version', 'status');
 	$mainFieldsets = '';
+	$q = (isset($_POST['q'])) ? $_POST['q'] : null;
 
 /********************************************************************************************/
 //	Some binds
