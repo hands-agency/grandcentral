@@ -233,3 +233,15 @@ $(document).ready(function ()
 		};
 	});
 });
+
+
+/*********************************************************************************************
+/**	* Focus on search engine
+ 	* @author	@mvdandrieux
+**#******************************************************************************************/
+	$('#refine input').searchasyoutype(
+	{
+		app:'content',
+		template:'/edit/edit',
+		target:'#adminContent section.active',
+	});

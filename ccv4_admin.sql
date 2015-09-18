@@ -1,20 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 4.4.10
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Sep 11, 2015 at 10:53 AM
--- Server version: 5.5.25
--- PHP Version: 5.4.4
+-- Host: localhost:3306
+-- Generation Time: Sep 18, 2015 at 05:31 PM
+-- Server version: 5.5.42
+-- PHP Version: 5.6.10
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `ccv4_admin`
@@ -27,19 +27,15 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `api` (
-  `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `id` mediumint(3) unsigned NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `method` varchar(4) COLLATE utf8_unicode_ci NOT NULL,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `owner` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
-  `status` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `key` (`key`),
-  KEY `owner` (`owner`),
-  KEY `status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+  `status` varchar(32) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `api`
@@ -55,19 +51,15 @@ INSERT INTO `api` (`id`, `title`, `method`, `key`, `owner`, `created`, `updated`
 --
 
 CREATE TABLE `const` (
-  `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `id` mediumint(3) unsigned NOT NULL,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `title` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `version` mediumint(3) unsigned NOT NULL,
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
   `status` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `owner` mediumint(3) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `key` (`key`),
-  KEY `status` (`status`),
-  KEY `version` (`version`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=114 ;
+  `owner` mediumint(3) unsigned NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `const`
@@ -155,7 +147,7 @@ INSERT INTO `const` (`id`, `key`, `title`, `version`, `created`, `updated`, `sta
 --
 
 CREATE TABLE `form` (
-  `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `id` mediumint(3) unsigned NOT NULL,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `title` varchar(5000) COLLATE utf8_unicode_ci NOT NULL,
   `descr` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
@@ -169,12 +161,8 @@ CREATE TABLE `form` (
   `updated` datetime NOT NULL,
   `system` tinyint(1) NOT NULL,
   `status` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `owner` mediumint(3) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `key` (`key`),
-  KEY `status` (`status`),
-  KEY `system` (`system`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=191 ;
+  `owner` mediumint(3) unsigned NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=191 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `form`
@@ -201,7 +189,7 @@ INSERT INTO `form` (`id`, `key`, `title`, `descr`, `template`, `action`, `method
 --
 
 CREATE TABLE `greenbutton` (
-  `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `id` mediumint(3) unsigned NOT NULL,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `title` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime NOT NULL,
@@ -213,11 +201,8 @@ CREATE TABLE `greenbutton` (
   `andback` tinyint(1) NOT NULL,
   `andreach` tinyint(1) NOT NULL,
   `live` tinyint(1) NOT NULL,
-  `color` varchar(8) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `key` (`key`),
-  KEY `status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=20 ;
+  `color` varchar(8) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `greenbutton`
@@ -249,7 +234,7 @@ INSERT INTO `greenbutton` (`id`, `key`, `title`, `created`, `updated`, `status`,
 --
 
 CREATE TABLE `item` (
-  `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `id` mediumint(3) unsigned NOT NULL,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `title` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `icon` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -259,11 +244,8 @@ CREATE TABLE `item` (
   `updated` datetime NOT NULL,
   `status` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `hasurl` tinyint(1) NOT NULL,
-  `owner` mediumint(3) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `key` (`key`),
-  KEY `status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
+  `owner` mediumint(3) unsigned NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `item`
@@ -290,7 +272,7 @@ INSERT INTO `item` (`id`, `key`, `title`, `icon`, `attr`, `system`, `created`, `
 --
 
 CREATE TABLE `logbook` (
-  `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `id` mediumint(3) unsigned NOT NULL,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `subject` varchar(5000) COLLATE utf8_unicode_ci NOT NULL,
   `subjectid` mediumint(3) unsigned NOT NULL,
@@ -299,11 +281,8 @@ CREATE TABLE `logbook` (
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
   `status` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `owner` mediumint(3) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `status` (`status`),
-  KEY `key` (`key`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=499 ;
+  `owner` mediumint(3) unsigned NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=503 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `logbook`
@@ -804,7 +783,11 @@ INSERT INTO `logbook` (`id`, `key`, `subject`, `subjectid`, `item`, `itemid`, `c
 (495, 'update', 'human', 2, 'page', 43, '2015-08-21 15:15:46', '2015-08-21 15:15:46', 'live', 0),
 (496, 'update', 'human', 2, 'section', 32, '2015-08-21 15:16:12', '2015-08-21 15:16:12', 'live', 0),
 (497, 'update', 'human', 2, 'page', 31, '2015-08-25 17:14:33', '2015-08-25 17:14:33', 'live', 0),
-(498, 'update', 'human', 2, 'page', 31, '2015-08-25 17:14:51', '2015-08-25 17:14:51', 'live', 0);
+(498, 'update', 'human', 2, 'page', 31, '2015-08-25 17:14:51', '2015-08-25 17:14:51', 'live', 0),
+(499, 'insert', 'human', 2, 'page', 44, '2015-09-14 15:20:18', '2015-09-14 15:20:18', 'live', 0),
+(500, 'update', 'human', 2, 'page', 44, '2015-09-14 15:23:19', '2015-09-14 15:23:19', 'live', 0),
+(501, 'update', 'human', 2, 'page', 44, '2015-09-14 15:25:08', '2015-09-14 15:25:08', 'live', 0),
+(502, 'update', 'human', 2, 'page', 3, '2015-09-18 14:58:52', '2015-09-18 14:58:52', 'live', 0);
 
 -- --------------------------------------------------------
 
@@ -813,7 +796,7 @@ INSERT INTO `logbook` (`id`, `key`, `subject`, `subjectid`, `item`, `itemid`, `c
 --
 
 CREATE TABLE `note` (
-  `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `id` mediumint(3) unsigned NOT NULL,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
@@ -821,11 +804,8 @@ CREATE TABLE `note` (
   `item` varchar(5000) COLLATE utf8_unicode_ci NOT NULL,
   `itemid` mediumint(3) unsigned NOT NULL,
   `content` varchar(5000) COLLATE utf8_unicode_ci NOT NULL,
-  `owner` mediumint(3) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `key` (`key`),
-  KEY `status` (`status`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+  `owner` mediumint(3) unsigned NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -834,7 +814,7 @@ CREATE TABLE `note` (
 --
 
 CREATE TABLE `page` (
-  `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `id` mediumint(3) unsigned NOT NULL,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `title` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `type` mediumtext COLLATE utf8_unicode_ci NOT NULL,
@@ -845,11 +825,8 @@ CREATE TABLE `page` (
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
   `status` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `owner` mediumint(3) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `key` (`key`),
-  KEY `status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=44 ;
+  `owner` mediumint(3) unsigned NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `page`
@@ -858,7 +835,7 @@ CREATE TABLE `page` (
 INSERT INTO `page` (`id`, `key`, `title`, `type`, `descr`, `text`, `url`, `system`, `created`, `updated`, `status`, `owner`) VALUES
 (1, 'home', '{"en":"Digest","fr":"Digest"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', 'Welcome home', '', '/', 0, '2013-10-03 08:28:48', '2015-08-15 16:30:39', 'live', 2),
 (2, 'error_404', '{"fr":"404","en":"404"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', '', '', '/404', 1, '2014-05-31 05:10:38', '2014-05-31 05:10:38', 'live', 2),
-(3, 'post', '{"fr":"POST routine","en":"POST routine"}', '{"key":"content","http_status":"200 OK","content_type":"routine","url":"","master":{"app":"content","template":"\\/master\\/post"}}', 'Receives all the posts from the forms.', '', '/routine', 1, '2014-05-31 05:10:27', '2014-05-31 05:10:27', 'live', 2),
+(3, 'post', '{"en":"POST routine","fr":"POST routine"}', '{"key":"content","http_status":"200 OK","content_type":"json","url":"","master":{"app":"content","template":"\\/master\\/post"}}', 'Receives all the posts from the forms.', '', '/routine', 1, '2014-05-31 05:10:27', '2015-09-18 14:58:52', 'live', 2),
 (5, 'list', '{"en":"List","fr":"Liste"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', '', '', '/list', 0, '2013-10-13 01:05:53', '2015-04-28 11:18:03', 'live', 2),
 (6, 'edit', '{"en":"Edit","fr":"Edition"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', '', '', '/edit', 0, '2013-10-12 22:01:52', '2015-06-18 16:02:27', 'live', 2),
 (7, 'doc', '{"fr":"Doc","en":"Doc"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', 'About classes, methods and functions available to you, kind developer.', '', '/doc', 0, '2013-10-14 13:11:22', '2014-05-31 05:38:16', 'live', 2),
@@ -875,7 +852,8 @@ INSERT INTO `page` (`id`, `key`, `title`, `type`, `descr`, `text`, `url`, `syste
 (37, 'lab', '{"fr":"Lab","en":"Lab"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', '', '', '/lab', 0, '2014-05-02 15:31:57', '2014-05-31 05:37:49', 'live', 2),
 (38, 'iframe', '{"en":"Iframes","fr":""}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/iframe"}}', 'Use me to send content to en empty master template. Nice for Iframes.', '', '/iframe', 1, '2015-01-19 19:02:07', '2015-01-19 19:08:56', 'live', 2),
 (39, 'app', '{"en":"App","fr":"App"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', '', '', '/app', 0, '2015-08-12 12:12:36', '2015-08-12 12:12:36', 'live', 2),
-(43, '4eca7f680019838d1c021cd9c63217e3', '{"en":"Build an App","fr":"Faire une app"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', '', '', '/build-an-app', 0, '2015-08-12 14:47:26', '2015-08-21 15:15:46', 'live', 0);
+(43, '4eca7f680019838d1c021cd9c63217e3', '{"en":"Build an App","fr":"Faire une app"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', '', '', '/build-an-app', 0, '2015-08-12 14:47:26', '2015-08-21 15:15:46', 'live', 0),
+(44, 'appbuilder.json', '{"en":"App builder Post","fr":""}', '{"key":"content","http_status":"200 OK","content_type":"json","url":"","master":{"app":"appbuilder","template":"\\/appbuilder\\/build"}}', '', '', '/appbuilder.json', 1, '2015-09-14 15:20:18', '2015-09-14 15:25:08', 'live', 0);
 
 -- --------------------------------------------------------
 
@@ -884,7 +862,7 @@ INSERT INTO `page` (`id`, `key`, `title`, `type`, `descr`, `text`, `url`, `syste
 --
 
 CREATE TABLE `section` (
-  `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `id` mediumint(3) unsigned NOT NULL,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `title` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `zone` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -893,11 +871,8 @@ CREATE TABLE `section` (
   `updated` datetime NOT NULL,
   `status` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `owner` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `nodata` mediumtext COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `key` (`key`),
-  KEY `status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=33 ;
+  `nodata` mediumtext COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `section`
@@ -931,18 +906,15 @@ INSERT INTO `section` (`id`, `key`, `title`, `zone`, `app`, `created`, `updated`
 --
 
 CREATE TABLE `site` (
-  `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `id` mediumint(3) unsigned NOT NULL,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
   `status` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `defaultversion` mediumint(3) unsigned NOT NULL,
-  `owner` mediumint(3) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `key` (`key`),
-  KEY `status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+  `owner` mediumint(3) unsigned NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `site`
@@ -960,18 +932,15 @@ INSERT INTO `site` (`id`, `key`, `title`, `created`, `updated`, `status`, `defau
 --
 
 CREATE TABLE `version` (
-  `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `id` mediumint(3) unsigned NOT NULL,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `lang` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
   `status` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `owner` mediumint(3) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `key` (`key`),
-  KEY `status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+  `owner` mediumint(3) unsigned NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `version`
@@ -988,7 +957,7 @@ INSERT INTO `version` (`id`, `key`, `title`, `lang`, `created`, `updated`, `stat
 --
 
 CREATE TABLE `workflow` (
-  `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `id` mediumint(3) unsigned NOT NULL,
   `key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `item` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `original` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -996,13 +965,8 @@ CREATE TABLE `workflow` (
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
   `status` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `data` mediumtext COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `original` (`original`),
-  KEY `key` (`key`),
-  KEY `owner` (`owner`),
-  KEY `status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+  `data` mediumtext COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `workflow`
@@ -1025,12 +989,7 @@ CREATE TABLE `_rel` (
   `key` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `rel` varchar(32) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'undefined',
   `relid` int(10) unsigned NOT NULL,
-  `position` int(4) unsigned NOT NULL DEFAULT '0',
-  KEY `position` (`position`),
-  KEY `object` (`item`),
-  KEY `rel` (`rel`),
-  KEY `relid` (`relid`),
-  KEY `objectid` (`itemid`)
+  `position` int(4) unsigned NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Relations of page';
 
 --
@@ -1107,6 +1066,185 @@ INSERT INTO `_rel` (`item`, `itemid`, `key`, `rel`, `relid`, `position`) VALUES
 ('page', 1, 'section', 'section', 9, 0),
 ('page', 43, 'section', 'section', 32, 0);
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `api`
+--
+ALTER TABLE `api`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `key` (`key`),
+  ADD KEY `owner` (`owner`),
+  ADD KEY `status` (`status`);
+
+--
+-- Indexes for table `const`
+--
+ALTER TABLE `const`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `key` (`key`),
+  ADD KEY `status` (`status`),
+  ADD KEY `version` (`version`);
+
+--
+-- Indexes for table `form`
+--
+ALTER TABLE `form`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `key` (`key`),
+  ADD KEY `status` (`status`),
+  ADD KEY `system` (`system`);
+
+--
+-- Indexes for table `greenbutton`
+--
+ALTER TABLE `greenbutton`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `key` (`key`),
+  ADD KEY `status` (`status`);
+
+--
+-- Indexes for table `item`
+--
+ALTER TABLE `item`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `key` (`key`),
+  ADD KEY `status` (`status`);
+
+--
+-- Indexes for table `logbook`
+--
+ALTER TABLE `logbook`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `status` (`status`),
+  ADD KEY `key` (`key`);
+
+--
+-- Indexes for table `note`
+--
+ALTER TABLE `note`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `key` (`key`),
+  ADD KEY `status` (`status`);
+
+--
+-- Indexes for table `page`
+--
+ALTER TABLE `page`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `key` (`key`),
+  ADD KEY `status` (`status`);
+
+--
+-- Indexes for table `section`
+--
+ALTER TABLE `section`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `key` (`key`),
+  ADD KEY `status` (`status`);
+
+--
+-- Indexes for table `site`
+--
+ALTER TABLE `site`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `key` (`key`),
+  ADD KEY `status` (`status`);
+
+--
+-- Indexes for table `version`
+--
+ALTER TABLE `version`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `key` (`key`),
+  ADD KEY `status` (`status`);
+
+--
+-- Indexes for table `workflow`
+--
+ALTER TABLE `workflow`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `original` (`original`),
+  ADD KEY `key` (`key`),
+  ADD KEY `owner` (`owner`),
+  ADD KEY `status` (`status`);
+
+--
+-- Indexes for table `_rel`
+--
+ALTER TABLE `_rel`
+  ADD KEY `position` (`position`),
+  ADD KEY `object` (`item`),
+  ADD KEY `rel` (`rel`),
+  ADD KEY `relid` (`relid`),
+  ADD KEY `objectid` (`itemid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `api`
+--
+ALTER TABLE `api`
+  MODIFY `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `const`
+--
+ALTER TABLE `const`
+  MODIFY `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=114;
+--
+-- AUTO_INCREMENT for table `form`
+--
+ALTER TABLE `form`
+  MODIFY `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=191;
+--
+-- AUTO_INCREMENT for table `greenbutton`
+--
+ALTER TABLE `greenbutton`
+  MODIFY `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+--
+-- AUTO_INCREMENT for table `item`
+--
+ALTER TABLE `item`
+  MODIFY `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `logbook`
+--
+ALTER TABLE `logbook`
+  MODIFY `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=503;
+--
+-- AUTO_INCREMENT for table `note`
+--
+ALTER TABLE `note`
+  MODIFY `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `page`
+--
+ALTER TABLE `page`
+  MODIFY `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=45;
+--
+-- AUTO_INCREMENT for table `section`
+--
+ALTER TABLE `section`
+  MODIFY `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
+--
+-- AUTO_INCREMENT for table `site`
+--
+ALTER TABLE `site`
+  MODIFY `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `version`
+--
+ALTER TABLE `version`
+  MODIFY `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `workflow`
+--
+ALTER TABLE `workflow`
+  MODIFY `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

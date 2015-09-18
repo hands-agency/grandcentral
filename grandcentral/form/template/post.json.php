@@ -69,9 +69,13 @@
 
 //	Build return array for json
 	$return['meta'] = array(
+		'item' => $returnItem->get_nickname(),
 		'is_inflow' => $workflow->is_inflow(),
 	);
 	$return['data'] = $daraArray;
 	
+/********************************************************************************************/
+//	Return json
+/********************************************************************************************/
 	echo json_encode($return);
 ?>
