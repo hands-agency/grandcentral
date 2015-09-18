@@ -165,7 +165,7 @@
 				$('#greenbutton').data('greenbutton').savecontext(null, function(item)
 				{
 				//	Refresh titles
-					$('[data-type="multipleselect"] [data-item="'+item.meta.item+'"] .title').html(item.data.title).effect( "highlight", {color:"#669966"}, 3000 );
+					$('[data-type="multipleselect"] [data-item="'+item.meta.item+'"] .title').html(item.data.title).parent().effect('highlight', {color:'#FFC000'}, 1000);
 
 				//	Close context
 					closeContext('/edit/edit');

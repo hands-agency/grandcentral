@@ -54,7 +54,7 @@ $(document).ready(function ()
 			url = ADMIN_URL+'/iframe?section=section_'+id+'&page=page_'+_GET['id'];
 			
 		//	$('[data-type="zoning"] [data-item="'+meta.item+'"]').find('iframe').attr('src', url);
-			$('[data-type="zoning"] [data-item="'+meta.item+'"] .title').html('<span>'+title+'</span><span class="app">'+app+'</span>');
+			$('[data-type="zoning"] [data-item="'+meta.item+'"] .title').html('<span>'+title+'</span><span class="app">'+app+'</span>').parent().effect('highlight', {color:'#FFC000'}, 1000);
 		//	$('[data-type="zoning"] [data-item="'+meta.item+'"]').find('input[type="hidden"]').val('section_'+id);
 			
 		//	Close context
