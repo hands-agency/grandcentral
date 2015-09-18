@@ -10,7 +10,7 @@
 				<li data-item="<?=$li->get_nickname()?>">
 					<button class="delete" type="button"></button>
 					<div class="icon"></div>
-					<div class="title"><a><?=$li['title']?></a></div>
+					<a class="title"><?=$li['title']?></a>
 					<input type="hidden" name="<?=$_FIELD->get_name()?>[]" value="<?=$li->get_nickname()?>" />
 				</li>
 				<?php endforeach ?></ol>

@@ -162,10 +162,10 @@
 			$('#greenbutton').data('greenbutton').savecontext_multipleselect = function()
 			{
 			//	Save context and call back
-				$('#greenbutton').data('greenbutton').savecontext(null, function()
+				$('#greenbutton').data('greenbutton').savecontext(null, function(item)
 				{
-				//	Refresh field
-					plugin.loadChoices($element);
+				//	Refresh titles
+					$('[data-type="multipleselect"] [data-item="'+item.meta.item+'"] .title').html(item.data.title).effect( "highlight", {color:"#669966"}, 3000 );
 
 				//	Close context
 					closeContext('/edit/edit');
@@ -175,7 +175,7 @@
 		
 	//	Load the available choices
 		plugin.loadChoices = function(field)
-		{			
+		{
 			field.find('.available ul.choices').ajx(options,
 			{
 			//	Callback

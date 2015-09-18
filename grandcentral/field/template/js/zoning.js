@@ -41,17 +41,21 @@ $(document).ready(function ()
 	$('#greenbutton').data('greenbutton').savecontext_zoning = function()
 	{
 	//	Save context and call back
-		$('#greenbutton').data('greenbutton').savecontext(null, function()
+		$('#greenbutton').data('greenbutton').savecontext(null, function(response)
 		{
+		//	Some vars
+			meta = response.meta;
+			data = response.data;
+
 		//	Refresh the section
-			id = $('.adminContext [data-key="id"] input').val();
-			title = $('.adminContext [data-key="title"] input').val();
-			app = $('.adminContext [data-key="app"] select').val();
+			id = data.id;
+			title = data.title;
+			app = data.app.app;
 			url = ADMIN_URL+'/iframe?section=section_'+id+'&page=page_'+_GET['id'];
 			
-		//	$section.find('iframe').attr('src', url);
-			$section.find('.title a').html('<span>'+title+'</span><span class="app">'+app+'</span>');
-			$section.find('input[type="hidden"]').val('section_'+id);
+		//	$('[data-type="zoning"] [data-item="'+meta.item+'"]').find('iframe').attr('src', url);
+			$('[data-type="zoning"] [data-item="'+meta.item+'"] .title').html('<span>'+title+'</span><span class="app">'+app+'</span>');
+		//	$('[data-type="zoning"] [data-item="'+meta.item+'"]').find('input[type="hidden"]').val('section_'+id);
 			
 		//	Close context
 			closeContext('/edit/edit');
@@ -62,7 +66,7 @@ $(document).ready(function ()
 /**	* Edit section
 * 	* @author	@mvdandrieux
 **#******************************************************************************************/
-	$('[data-type="zoning"]').on('click', '.zone ol .title a', function()
+	$('[data-type="zoning"]').on('click', '.zone ol .title', function()
 	{
 	//	Some vars
 		section = $(this).closest('[data-item]').find('input[type="hidden"]').val();

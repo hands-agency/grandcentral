@@ -4,7 +4,7 @@
 	<button class="delete" type="button"></button>
 	<div class="icon"></div>
 
-	<div class="title"><a><?=$li['title']?></a></div>
+	<a class="title"><?=$li['title']?></a>
 
 	<input type="hidden" name="<?=$name?>[]" value="<?=$li['id']?>" disabled="disabled" />
 

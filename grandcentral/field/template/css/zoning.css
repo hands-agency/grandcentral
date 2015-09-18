@@ -6,7 +6,6 @@ li[data-type="zoning"] h1
 	text-align:center;
 	font-size:30px;
 	margin:0 0 20px 0;
-	color:#fff;
 }
 li[data-type="zoning"] h1 .site
 {
@@ -75,7 +74,6 @@ li[data-type="zoning"] .devices li
 {
 	display:inline-block;
 	margin:0 10px;
-	color:#fff;
 	opacity:0.3;
 	cursor:pointer;
 }
@@ -177,15 +175,15 @@ li[data-type="zoning"] .zoningselected .zones[data-device="tablet"] .browserbar 
 }
 li[data-type="zoning"] .zoningselected .zones .browserbar .buttons :nth-child(1)
 {
-	color:#6cbf2d;
+	color:#FC635E;
 }
 li[data-type="zoning"] .zoningselected .zones .browserbar .buttons :nth-child(2)
 {
-	color:#FF0000;
+	color:#FDBE41;
 }
 li[data-type="zoning"] .zoningselected .zones .browserbar .buttons :nth-child(3)
 {
-	color:#FF0000;
+	color:#35CB4B;
 }
 li[data-type="zoning"] .zoningselected .zones .browserbar .addressbar
 {
@@ -240,7 +238,6 @@ li[data-type="zoning"] .zones .zone>.title
 	left:-120px;
 	top:0;
 	width:100px;
-	color:#fff;
 	font-size:10px;
 	font-family:"ProximaNova-Regular";
 	letter-spacing:0.5px;
@@ -257,7 +254,7 @@ li[data-type="zoning"] .zones .zone>.title
 
 li[data-type="zoning"] .zones .zone:hover>.title
 {
-	border-color:#fff;
+	border-color:#FFC000;
 	opacity:1;
 	left:-110px;
 }
@@ -326,17 +323,23 @@ li[data-type="zoning"] .zones li .title
 	right:-185px;
 	top:0px;
 	width:150px;
-	color:#fff;
 	font-size:10px;
 	font-family:"ProximaNova-Bold";
 	letter-spacing:0.5px;
 	text-transform:uppercase;
+	display:block;
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
+	padding:10px;
+	border-radius:2px;
 }
 li[data-type="zoning"] .zones li .title:before
 {
 	content:"●";
 	position:absolute;
-	left:-104px;
+	left:-108px;
 	top:21px;
 	z-index:1;
 	width:100px;
@@ -368,33 +371,20 @@ li[data-type="zoning"] .zones li:hover .title:after
 {
 	opacity:1;
 }
-li[data-type="zoning"] .zones li .title>a
+li[data-type="zoning"] .zones li .title:hover
 {
-	display:block;
-	position:relative;
-	left:0px;
-	-webkit-transition: all .15s ease-out; 
-	-moz-transition: all .15s ease-out; 
-	-o-transition: all .15s ease-out; 
-	transition: all .15s ease-out;
-	color:#fff;
-	padding:10px;
-	border-radius:2px;
+	background:rgba(255, 255, 255, 0.9);
 }
-li[data-type="zoning"] .zones li .title>a:hover
+li[data-type="zoning"] .zones li:hover .title
 {
-	background:rgba(255, 255, 255, 0.15);
+	right:-175px;
 }
-li[data-type="zoning"] .zones li:hover .title>a
-{
-	left:-10px;
-}
-li[data-type="zoning"] .zones li .title a span
+li[data-type="zoning"] .zones li .title span
 {
 	display:block;
 }
-li[data-type="zoning"] .zones li .title a span.app,
-li[data-type="zoning"] .choices li .title a span.app
+li[data-type="zoning"] .zones li .title span.app,
+li[data-type="zoning"] .choices li .title span.app
 {
 	font-family:"ProximaNova-Thin";
 	text-transform:none;

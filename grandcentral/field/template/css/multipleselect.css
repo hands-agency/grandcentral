@@ -56,12 +56,9 @@ ol>li[data-type="multipleselect"] .field li .icon
 ol>li[data-type="multipleselect"] .field li .title
 {
 	margin:0 23px 0 0;
-}
-ol>li[data-type="multipleselect"] .field li .title a
-{
 	cursor:pointer;
 }
-ol>li[data-type="multipleselect"] .field li .title a:not(:hover)
+ol>li[data-type="multipleselect"] .field li .title:not(:hover)
 {
 	color:#333;
 }
