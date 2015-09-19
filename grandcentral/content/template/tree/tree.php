@@ -157,7 +157,8 @@
 				{
 					case 'link':
 						$parse = parse_url($page['type']['url']);
-						$type = '<a class="url" href="'.$page['type']['url'].'" title="'.$page['type']['url'].'">⇢&nbsp;'.$parse['host'].'</a>';
+						$host = !empty($parse['host']) ? $parse['host'] : '';
+						$type = '<a class="url" href="'.$page['type']['url'].'" title="'.$page['type']['url'].'">⇢&nbsp;'.$host.'</a>';
 						break;
 					
 					default:

@@ -246,6 +246,13 @@ class master
 			trigger_error('Zone <strong>'.$zone.'</strong> does not exists in the master. Try another one.', E_USER_WARNING);
 		}
 	}
+
+	public static function vide_bind($zone)
+	{
+		self::$zones[$zone]['data'] = array();
+	}
+
+	
 /**
  * 
  *

@@ -25,6 +25,8 @@
 //	$_APP->bind_script('https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js');
 	$_APP->bind_script('master/js/jquery-1.10.2.min.js');
 	$_APP->bind_script('master/js/jquery-ui-1.9.1.custom.min.js');
+
+	// load('slick');
 	
 //	Constants
 	$_APP->bind_code('script', "
@@ -37,7 +39,7 @@
 //	Local binding scripts & css files
 /********************************************************************************************/
 //	Script
-	$_APP->bind_script('master/js/master.js');
+	// $_APP->bind_script('master/js/master.js');
 
 /********************************************************************************************/
 //	Local binding scripts & css files
