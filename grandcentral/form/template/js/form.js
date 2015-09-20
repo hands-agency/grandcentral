@@ -178,7 +178,7 @@ $(document).ready(function ()
 	});
 
 /*********************************************************************************************
-/**	* Handling H1 and title binding
+/**	* H1 and title binding
  	* @author	@mvdandrieux
 **#******************************************************************************************/
 	$('section [name$="[title]"]').on('input', function()

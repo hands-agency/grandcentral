@@ -1,0 +1,8 @@
+#alert.built .icon
+{
+	background:#6cbf2d;
+}
+#alert.built .icon:before
+{
+	content:'';
+}

@@ -36,94 +36,105 @@
 	);
 	*/
 	
-	$f['mumbo'] = array(
-		'type' => 'fieldset',
-		'title' => 'Some mumbo jumbo',
-	);
 	$f['key'] = array(
 		'key' => 'key',
 		'label' => 'Key',
 		'type' => 'text',
 		'placeholder' => 'A very short unique key',
+		'required' => true,
+		'max' => 32,
 	);
+	
+/*	$f['mumbo'] = array(
+		'type' => 'fieldset',
+		'title' => 'Some mumbo jumbo',
+	);
+*/
 	$f['title'] = array(
-		'key' => 'title',
+		'key' => '[about][title]',
 		'label' => 'App title',
 		'type' => 'text',
 		'placeholder' => 'Give your app a catchy name',
+		'required' => true,
+		'max' => 140,
 	);
 	$f['descr'] = array(
-		'key' => 'descr',
+		'key' => '[about][descr]',
 		'label' => 'Description',
 		'type' => 'text',
 		'placeholder' => 'A one phrase description that defines your app',
 	);
 	$f['cover'] = array(
-		'key' => 'cover',
+		'key' => '[about][cover]',
 		'label' => 'Cover',
 		'type' => 'text', /* Cannot instantiate abstract class fieldUrl ??? */
 		'placeholder' => 'The url of a cover image',
 	);
 	$f['intro'] = array(
-		'key' => 'intro',
+		'key' => '[about][intro]',
 		'label' => 'Introduction',
 		'type' => 'textarea',
 		'placeholder' => 'A longer text about your app',
 	);
 	
-	$f['credits'] = array(
+/*	$f['credits'] = array(
 		'type' => 'fieldset',
 		'title' => 'Some credits',
 	);
+*/
 	$f['url'] = array(
-		'key' => 'url',
+		'key' => '[about][url]',
 		'label' => 'URL',
 		'type' => 'array',
 		'placeholder' => 'Send back to a url',
 	);
 	$f['v'] = array(
-		'key' => 'v',
+		'key' => '[about][v]',
 		'label' => 'Version',
 		'type' => 'text',
 		'placeholder' => 'Version',
+		'value' => '1.0.0',
 	);
 	$f['license'] = array(
-		'key' => 'license',
+		'key' => '[about][license]',
 		'label' => 'License',
 		'type' => 'text',
 		'placeholder' => 'License',
 	);
 	$f['author'] = array(
-		'key' => 'author',
+		'key' => '[about][author]',
 		'label' => 'Author(s)',
 		'type' => 'array',
 		'placeholder' => 'Author',
+		'value' => array('0' => $_SESSION['user']['title']),
 	);
 	
-	$f['dependencies'] = array(
+/*	$f['dependencies'] = array(
 		'type' => 'fieldset',
-		'title' => 'Dependencies',
+		'title' => 'Requirements & Dependencies',
 	);
+*/
 	$f['gc'] = array(
-		'key' => 'gc',
+		'key' => '[requirements][gc]',
 		'label' => 'Grand Central',
 		'type' => 'text',
 		'placeholder' => 'Grand Central version',
 	);
 	$f['php'] = array(
-		'key' => 'php',
+		'key' => '[requirements][php]',
 		'label' => 'PHP',
 		'type' => 'text',
 		'placeholder' => 'PHP version',
+		'value' => str_replace('_', '.', $_SERVER['PHP_VER']),
 	);
 	$f['mysql'] = array(
-		'key' => 'mysql',
+		'key' => '[requirements][mysql]',
 		'label' => 'MySQL',
 		'type' => 'text',
 		'placeholder' => 'MySQL version',
 	);
 	$f['app'] = array(
-		'key' => 'app',
+		'key' => '[dependencies][app]',
 		'label' => 'Apps',
 		'type' => 'array',
 		'placeholder' => 'Apps',
@@ -136,4 +147,5 @@
 	$form['template'] = 'default';
 	$formAction = i('page', 'appbuilder.json', 'admin')['url'];
 	$form->set_action($formAction);
+	
 ?>

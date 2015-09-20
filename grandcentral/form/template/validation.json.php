@@ -62,13 +62,34 @@
 			);
 		}
 	}
-//	No file type, validated but suspicious
+//	No file type...
 	else
 	{
-		$return['meta'] = array(
-			'status' => 'success',
-			'msg' => 'I\'m letting this go, as i can\'t find a type for your field',
-		);
+	//	Try the required attr of the field
+		if (isset($_POST['required']))
+		{
+			if ($field['value'])
+			{
+				$return['meta'] = array(
+					'status' => 'success',
+				);
+			}
+			else
+			{	
+				$return['meta'] = array(
+					'status' => 'fail',
+					'msg' => 'Field is required',
+				);
+			}
+		}
+	//	Nothing? Validated but suspicious
+		else
+		{
+			$return['meta'] = array(
+				'status' => 'success',
+				'msg' => 'I\'m letting this go, as i can\'t find a type for your field',
+			);
+		}
 	}
 	
 //	Send back data in json

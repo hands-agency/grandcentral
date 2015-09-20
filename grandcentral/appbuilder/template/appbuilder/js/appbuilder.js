@@ -32,20 +32,61 @@ $(document).ready(function()
 	//	Some vars
 		$form = $('#adminContent section form');
 	
-	//	Ajaxify forms
-		$.ajax(
+	//	Validate forms before building
+		$('section form').data('validate').now(
 		{
-			url: $form.attr('action'),
-			type: $form.attr('method'),
-			data: $form.serialize(),
-			success: function(result)
+			success:function(html)
 			{
-			//	DEBUG
-				console.log(result);
-		
-			//	Callback
-				if ((typeof(callback) != 'undefined') && (typeof(callback) == 'function')) callback.call(this);
+			//	Ajaxify forms
+				$.ajax(
+				{
+					url: $form.attr('action'),
+					type: $form.attr('method'),
+					data: $form.serialize(),
+				})
+				.done(function(result)
+				{
+				//	DEBUG
+					console.log(result);
+	
+				//	Some vars
+					meta = result.meta;
+					data = result.data;
+
+				//	Alert
+					popAlert(meta.status, meta.status, function()
+					{
+					//	Go to the list page
+						document.location.href = ADMIN_URL+'/app?app='+data.key;
+					});
+				})
+				.fail(function( jqXHR, textStatus )
+				{
+				//	console.log( "Request failed: " + textStatus );
+					console.log( "Request failed: " + jqXHR.responseText );
+				});
+			},
+			error:function()
+			{			
+			//	Pop alert
+				popAlert('error', 'Couple of things missing.');
+			//	console.log('error');
+			},
+			complete:function()
+			{
+			//	console.log('complete');
 			},
 		});
 	}
+
+/*********************************************************************************************
+/**	* Handling key and title binding
+ 	* @author	@mvdandrieux
+**#******************************************************************************************/
+	$('section [name$="[title]"]').on('input', function()
+	{
+		key = $(this).val().replace(' ', '').toLowerCase();
+		change = $('section [name$="[key]"]');
+		change.val(key);
+	});
 });

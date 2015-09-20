@@ -77,9 +77,12 @@
 			var controlCode = '<div data-control=""></div>';
 			var todoCode = '<ul class="todo"></ul>';
 			var callback = callback;
+			input = field.find('[name^="' + vars['key'] + '"]');
+			
 			vars['ajaxParam']['field'] = field.data('key');
-			vars['ajaxParam']['value'] = field.find('[name^="' + vars['key'] + '"]').val();
-
+			vars['ajaxParam']['value'] = input.val();
+			vars['ajaxParam']['required'] = input.attr('required');
+			
 		//	Try to validate
 			$.ajx(vars['ajaxParam'],
 			{
@@ -124,7 +127,6 @@
 						valid = false;
 					//	The whole form is not valid
 						vars['formIsValid'] = false;
-						console.log('var');
 					}
 					
 				//	Control!
