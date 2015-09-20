@@ -147,5 +147,30 @@ class fetch
 		return $this->get('public', $param);
 	}
 
+/**
+ * Get the list of accessible humans
+ *
+ * @param	string  la table des objets pour la recherche
+ * @param	array  	le tableau de paramètres de la recherche
+ * @param	string  admin ou site
+ * @access	public
+ */
+	public function get_humans($param = array())
+	{
+	//	Some vars
+		$humans = new bunch();
+	
+	//	Fetch companies
+		$companies = i('company', $param);
+	
+	//	Fetch authors
+		foreach ($companies as $company)
+		{
+			$humans->get('human', array(
+				'company' => $company['id']->get(),
+			));
+		}
+		return $humans;
+	}
 }
 ?>
