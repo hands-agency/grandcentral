@@ -184,6 +184,15 @@ class itemHuman extends _items
 		$_SESSION['user'] = $this;
 	}
 /**
+ * Returns whether a user is logged in
+ *
+ * @access	public
+ */
+	public function is_logged()
+	{
+		return (isset($_SESSION['user']['id'])) ? true : false;
+	}
+/**
  * Logs the user in the session
  *
  * @access	public
