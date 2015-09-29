@@ -145,6 +145,15 @@ class form
 		return $this;
 	}
 /**
+ * Get the action of a form
+ * 
+ * @access	public
+ */
+	public function get_action()
+	{
+		return $this->attrs['action'];
+	}
+/**
  * Change une valeur de data
  * 
  * @param	string	le suffixe de l'attribut data-suffix
