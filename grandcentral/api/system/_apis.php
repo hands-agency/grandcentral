@@ -61,13 +61,18 @@ abstract class _apis
  */
 	public function csv()
 	{
-	//	The headers (TODO doesnt go here !)
-		header('Content-Type: application/csv');
-    	header('Content-Disposition: attachment; filename="test.csv";');
-
 	//	Some vars
 		$header = array();
 		$data = array();
+		
+	//	Build filename
+		$filename = $this->result['meta']['item'];
+		if (isset($this->param['itemid'])) $filename .= '_'.$this->result['data'][0]['id'];
+		$filename .= '.csv';
+		
+	//	The headers (TODO doesnt go here !)
+		header('Content-Type: application/csv');
+    	header('Content-Disposition: attachment; filename="'.$filename.'";');
 
 	//	Loop through data
 		foreach ($this->result['data'] as $item)
@@ -78,7 +83,7 @@ abstract class _apis
 			//	Save the headers on the first loop
 				if (!isset($doneHeader)) $header[] = $key;
 			//	The attr goes in the cell
-				if (is_string($value)) $tmp[] = $value;
+				if (is_string($value) OR is_int($value)) $tmp[] = $value;
 				else if (is_array($value)) $tmp[] = json_encode($value);
 			}
 			$data[] = $tmp;

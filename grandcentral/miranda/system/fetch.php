@@ -42,6 +42,9 @@ class fetch
  */
 	public function get($table, $param = array())
 	{
+	//	Some vars
+		$public = array('const');
+		
 	//	Author
 		$author = ($table == 'cast') ? 'author' : 'owner';
 		
@@ -54,6 +57,11 @@ class fetch
 	//	Fetch items depending on group
 		switch (true)
 		{
+		//	Some data is public
+			case in_array($table, $public):
+				$items->get($table, $param);
+				break;
+				
 		//	Sociologists and admin see everything
 			case $this->user->is_a('sociologist'):
 			case $this->user->is_a('admin'):
