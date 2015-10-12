@@ -2,7 +2,7 @@
 /**
  * The registry.
  * A way to store global data. Lots of useful tools too.
- * 
+ *
  * <pre>
  * // Get the loaded apps
  *	$apps = registry::get(registry::app_index);
@@ -11,7 +11,7 @@
  * // Get the loaded constants
  * 	$constants = registry::get_constants();
  * </pre>
- * 
+ *
  *
  * This class stores data in a global registry so they can be easily accessed through the current script.
  *
@@ -71,17 +71,17 @@ class registry
 		$human->guess();
 		// prepare version
 		itemVersion::register();
-		// itemPage::register();
+		// prepare pages
 		itemPage::register();
 		// prepare environment
 		$this->_prepare_current();
 		//	constants
 		i('const', all, env);
-		
+
 		if (!SITE_DEBUG)
 		{
 			$cache = app('cache');
-			$url = $cache->get_templateroot().'/registry/'.md5(URL);
+			$url = $cache->get_templateroot().'/registry/'.md5(URL.i('version', current)['key']);
 			$file = new file($url);
 			$file->set(serialize(self::$data));
 			$file->save(true);
@@ -103,7 +103,7 @@ class registry
 	}
 /**
  * Set something in the registry
- * 
+ *
  * $types = array('type1', 'type2', 'type3');
  * registry::set('admin', 'type', $types);
  *
@@ -116,20 +116,20 @@ class registry
 		$value = end($path_el);
 		array_pop($path_el);
 		$count = count($path_el);
-        
+
         $arr_ref =& self::$data;
-        
+
         for($i = 0; $i < $count; $i++)
         {
             $arr_ref =& $arr_ref[$path_el[$i]];
         }
-        
+
         $arr_ref = $value;
 	}
 
 /**
  * Get something from the registry
- * 
+ *
  * registry::get('admin', 'type');
  *
  * @param	mixed	la valeur à lire dans le registre. Vous pouvez mettre autant d'arguments que vous le souhaitez.
@@ -216,7 +216,7 @@ class registry
 	public static function get_class($prefix = null)
 	{
 		$classes = array_keys(self::get(self::class_index));
-		
+
 		if (!is_null($prefix))
 		{
 			$tmp = array();
@@ -229,7 +229,7 @@ class registry
 			}
 			$classes = $tmp;
 		}
-		
+
 		return $classes;
 	}
 }

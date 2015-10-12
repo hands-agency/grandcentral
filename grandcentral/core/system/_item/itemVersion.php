@@ -19,7 +19,6 @@ class itemVersion extends _items
 	//	$pref = $_SESSION['user']['pref'];
 	//	$pref['admin']['version'] = '1';
 	//	$_SESSION['user']['pref'] = $pref;
-
 	//	si on a une version qui nous a été donnée par la classe boot
 		if ($this->get_env() == 'site' && defined('SITE_VERSION') && SITE_VERSION != null)
 		{
@@ -28,42 +27,41 @@ class itemVersion extends _items
 	//	Otherwise, detect browser language
 		elseif (isset($_SERVER['HTTP_ACCEPT_LANGUAGE']))
 		{
-			$lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+			$lang = mb_substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 			$param['lang'] = $lang;
 		}
-		
+
 		if (isset($param) && !empty($param))
 		{
 			$this->get($param);
 		}
-		
+
 	//	Nothing? Just get the first version.
 		if (!$this->exists())
 		{
-			$this->get(
-				array(
-					'order()' => 'id',
-					'limit()' => 1,
-				)
-			);
+			$this->get(VERSION_DEFAULT);
 		}
 		return $this;
 	}
-	
+
 	public function get_url()
 	{
 		$url = (defined('VERSION_'.mb_strtoupper($this['key']))) ? constant('VERSION_'.mb_strtoupper($this['key'])) : SITE_URL;
 		return ('site' == $this->get_env()) ? $url : ADMIN_URL;
 	}
-	
+
 	public static function register()
 	{
 		require(DOCUMENT_ROOT.'/'.boot::ini_file);
-		
+
 		foreach ($site as $site)
 		{
 			foreach ((array) $site['url'] as $key => $url)
 			{
+				if (!defined('VERSION_DEFAULT'))
+				{
+					define('VERSION_DEFAULT', $key);
+				}
 				if ($site['key'] == SITE_KEY && !empty($key))
 				{
 					$version = 'VERSION_';
