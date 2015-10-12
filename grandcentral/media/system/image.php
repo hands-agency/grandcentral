@@ -50,7 +50,7 @@ class image extends media
  * @param	bool	créer le répertoire du fichier si celui-ci n'existe pas. "false" par défaut.
  * @access	public
  */
-	public function save($mkdir = false, $chmod = 0755, $quality = 100)
+	public function save($mkdir = false, $chmod = 0755, $quality = 75)
 	{
 		if (!is_dir($this->dir) && $mkdir === true) mkdir($this->dir, $chmod, true);
 
