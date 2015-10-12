@@ -80,6 +80,32 @@ class bunch implements ArrayAccess, Iterator, Countable
 	}
 
 /**
+ * Deduplicate a bunch
+ *
+ * @return	string	The deduplicated bunch
+ * @access	public
+ */	
+	public function deduplicate()
+	{
+	//	Some vars
+		$i = 0;
+		$tmp = array();
+		$done = array();
+		
+	//	Lets' get to work
+		while ($i < $this->count)
+		{
+			if (!in_array($this->data[$i]->get_nickname(), $done))
+			{
+				$tmp[] = $this->data[$i];
+				$done[] = $this->data[$i]->get_nickname();
+			}
+			$i++;
+		}
+		$this->data = $tmp;
+		$this->count();
+	}
+/**
  * Order a bunch of items
  *
  * @param	string	The order key (ie: "title", "id", "created")
