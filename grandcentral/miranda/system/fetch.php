@@ -156,6 +156,33 @@ class fetch
 	}
 
 /**
+ * Get the list of accessible maps
+ *
+ * @access	public
+ */
+	public function get_maps()
+	{	
+	//	Gather the maps of all my companies
+		$companies = $this->user['company']->unfold();
+		$i = array();
+		foreach ($companies as $company)
+		{
+			foreach ($company['map']->get() as $id) $i[] = str_replace('map_', '', $id);
+		}
+
+	//	Fetch the maps
+		if (!empty($i))
+		{
+			return i('map', array(
+				'id' => $i,
+				'order()' => 'inherit(id)',
+				'status' => 'live',
+			));
+		}
+		else return new bunch();
+	}
+
+/**
  * Get the list of accessible humans
  *
  * @param	string  la table des objets pour la recherche
