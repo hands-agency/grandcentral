@@ -195,8 +195,16 @@
 						if ($.isNumeric(data.id))
 						{
 							$('#greenbutton-default').removeClass('on');
-						//	Bring it to the form
-							if (!_GET['id']) id.val(data.id);
+						//	Updat the form with new data
+							if (!_GET['id'])
+							{
+								$.each(data, function(key, value)
+								{
+									$field = $form.find('[name$="'+_GET['item']+'['+key+']"]');
+								//	Update if empty
+									if ($field.length && $field.val().length == 0) $field.val(value);
+								});
+							}
 						//	Rewrite URL if changed
 							if (_GET['item'])
 							{

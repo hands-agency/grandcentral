@@ -163,20 +163,21 @@ class fetch
  * @param	string  admin ou site
  * @access	public
  */
-	public function get_humans($param = array())
+	public function get_humans($paramHuman = array(), $paramCompany = array())
 	{
 	//	Some vars
 		$humans = new bunch();
 	
 	//	Fetch companies
-		$companies = i('company', $param);
+		$companies = i('company', $paramCompany);
 	
 	//	Fetch authors
 		foreach ($companies as $company)
 		{
-			$humans->get('human', array(
-				'company' => $company['id']->get(),
-			));
+		//	Merge param for humans
+			$paramHuman['company'] = $company['id']->get();
+		//	Fetch humans
+			$humans->get('human', $paramHuman);
 		}
 		return $humans;
 	}
