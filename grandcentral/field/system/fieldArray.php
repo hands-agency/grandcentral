@@ -22,5 +22,15 @@ class fieldArray extends _fields
 		if (!empty($text)) $this->attrs['placeholder'] = $text;
 		return $this;
 	}
+/**
+ * Retourne le placeholder au champ
+ * 
+ * @return	string	le placeholder
+ * @access	public
+ */
+	public function get_placeholder()
+	{
+		return (isset($this->attrs['placeholder'])) ? $this->attrs['placeholder'] : '';
+	}
 }
 ?>
