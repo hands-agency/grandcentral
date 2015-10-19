@@ -154,6 +154,7 @@
 	{
 		dots: false,
 		arrows:false,
+		swipe:false,
 		infinite: false,
 		speed: 300,
 		slidesToShow: 1,
