@@ -11,5 +11,16 @@
 class fieldArray extends _fields
 {
 	protected $datatype = array('array');
+/**
+ * Affecte un placeholder au champ
+ * 
+ * @param	string	le placeholder
+ * @access	public
+ */
+	public function set_placeholder($text)
+	{
+		if (!empty($text)) $this->attrs['placeholder'] = $text;
+		return $this;
+	}
 }
 ?>
