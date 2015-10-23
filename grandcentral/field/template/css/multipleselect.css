@@ -82,7 +82,7 @@ ol>li[data-type="multipleselect"] .field .add
 ol>li[data-type="multipleselect"] .field .add button
 {
 	cursor:pointer;
-	background:transparent !important;
+	border:none !important;
 	height:30px;
 	display:block;
 	line-height:30px;
@@ -93,7 +93,6 @@ ol>li[data-type="multipleselect"] .field .add button:after
 {
 	content:"+";
 	font-size:28px;
-	color:#666;
 }
 ol>li[data-type="multipleselect"] .field .add:hover button:
 {

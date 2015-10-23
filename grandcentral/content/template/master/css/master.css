@@ -810,6 +810,13 @@ ol .placeholder
 	z-index:100000;
 	font-size:16px !important;
 }
+#openNav:not(:hover),
+#closeNav:not(:hover),
+#switchEnv:not(:hover)
+{
+	border-color:#fff;
+	color:#fff !important;
+}
 .siteOpened #openNav,
 .siteOpened #closeNav,
 .siteOpened #switchEnv
@@ -1407,13 +1414,13 @@ footer
 
 #main button
 {
-	background:rgba(0, 0, 0,.2);
-	border:none;
+	background:transparent;
+	border:1px solid #419BF9;
 	border-radius:2px;
 	font-size:10px;
 	padding:10px 15px;
 	margin:0;
-	color:#fff;
+	color:#419BF9;
 	cursor: pointer;
 	text-transform:uppercase;
 	font-family:'ProximaNova-Bold';
