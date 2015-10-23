@@ -5,6 +5,13 @@ li[data-type="media"] .wrapper ol.data
 {
 	text-align:center;
 	position:relative;
+	border:1px dashed transparent;
+	border-radius:3px;
+}
+li[data-type="media"] .wrapper ol.data.hover
+{
+	cursor:pointer;
+	border-color:#FE9400;
 }
 li[data-type="media"] .wrapper ol.data li
 {
@@ -18,13 +25,13 @@ li[data-type="media"] .wrapper ol.data li
 	border-radius:2px;
 	vertical-align:top;
 }
-li[data-type="media"] .wrapper ol.data li:not(.upload)
+li[data-type="media"] .wrapper ol.data li:not(.add)
 {
 	box-shadow: 0 1px 3px rgba(34,25,25,0.4);
 	-moz-box-shadow: 0 1px 2px rgba(34,25,25,0.4);
 	-webkit-box-shadow: 0 1px 3px rgba(34,25,25,0.4);
 }
-li[data-type="media"] .wrapper ol.data li:not(.upload):hover
+li[data-type="media"] .wrapper ol.data li:not(.add):hover
 {
 	border-color: #419BF9;
 	-webkit-box-shadow: 0 0 4px #419BF9;
@@ -43,8 +50,8 @@ li[data-type="media"] .wrapper ol.data li:hover .delete
 	display:block;
 }
 
-/* Upload */
-li[data-type="media"] .wrapper ol.data li.upload
+/* Add */
+li[data-type="media"] .wrapper ol.data li.add
 {
 	height:120px;
 	line-height:130px;
@@ -56,15 +63,15 @@ li[data-type="media"] .wrapper ol.data li.upload
 	transition: all .1s ease-out;
 	cursor:pointer;
 }
-.contextOpened li[data-type="media"] .wrapper ol.data li.upload
+.contextOpened1 li[data-type="media"] .wrapper ol.data li.add
 {
-	border-color:#ddd;
+	width:0;
 }
-.contextOpened li[data-type="media"] .wrapper ol.data li.upload:before
+.contextOpened1 li[data-type="media"] .wrapper ol.data li.add:before
 {
 	content:'';
 }
-li[data-type="media"] .wrapper ol.data li.upload:before
+li[data-type="media"] .wrapper ol.data li.add:before
 {
 	content:"+";
 	font-size:90px;
@@ -72,19 +79,9 @@ li[data-type="media"] .wrapper ol.data li.upload:before
 	color:#666;
 	line-height:120px;
 }
-li[data-type="media"] .wrapper ol.data li.upload:hover:before
+li[data-type="media"] .wrapper ol.data li.add:hover:before
 {
 	color:#419BF9;
-}
-li[data-type="media"] .wrapper ol.data li.upload.hover
-{
-	color:#419BF9;
-	cursor:pointer;
-	color:#FE9400;
-	border-color:#FE9400;
-	-moz-transform: scale(1.1);
-	-webkit-transform: scale(1.1);
-	transform: scale(1.1);
 }
 
 /********************************************************************************************/

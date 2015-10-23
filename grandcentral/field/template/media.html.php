@@ -9,7 +9,7 @@
 
 		<ol class="data">
 			<?= $data; ?>
-			<li class="upload"></li>
+			<li class="add"></li>
 		</ol>
 		<pre class="template">
 			<?=$template; ?>

@@ -4,7 +4,8 @@
 	$field = $('li[data-type="media"] .wrapper');
 	$data = $field.find('ol.data');
 	$media = $data.find('li');
-	$upload = $('li[data-type="media"] .wrapper ol.data li.upload');
+	$upload = $('li[data-type="media"] .wrapper ol.data');
+	$add = $('li[data-type="media"] .wrapper ol.data li.add');
 	path = $media.find('input').val();
 	
 //	Upload droppable
@@ -25,7 +26,7 @@
 			code = $(template.html());
 			
 		//	Append and enable
-			$(this).before(code);
+			$(this).append(code);
 			$(code).show('fast').find('*:disabled').prop('disabled', false);
 		//	Add data
 			media = ui.helper;
@@ -59,7 +60,7 @@
 	});
 	
 //	Add media
-	$upload.on('click', function()
+	$add.on('click', function()
 	{
 		openContext(
 		{
