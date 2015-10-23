@@ -814,8 +814,9 @@ ol .placeholder
 #closeNav:not(:hover),
 #switchEnv:not(:hover)
 {
-	border-color:#fff;
-	color:#fff !important;
+	border-color:#777;
+	background:#777;
+	color:#333 !important;
 }
 .siteOpened #openNav,
 .siteOpened #closeNav,
