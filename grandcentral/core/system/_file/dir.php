@@ -1,13 +1,13 @@
 <?php
 /**
  * Directory handling class
- * 
+ *
  * <pre>
  * // Get the content of a directory
  * $dir = new dir('/path/to/dir');
  * $dir->get();
  * </pre>
- * 
+ *
  * @package		file
  * @author		Sylvain Frigui <sf@hands.agency>
  * @access		public
@@ -25,25 +25,25 @@ class dir implements Iterator
  *
  * @param	string	The path to the directory
  * @access	public
- */	
+ */
 	public function __construct($root)
 	{
 		$this->root = $root;
 		$this->_set_key();
 	}
-	
+
 /**
  * Change the key (the name) of the directory
  *
  * @access	private
- */	
+ */
 	private function _set_key()
 	{
 		$this->key = mb_substr($this->root, mb_strrpos($this->root, '/')+1);
 	}
 
 /**
- * Get the content of a directory	
+ * Get the content of a directory
  * <pre>
  * // Get the content of a directory
  * $dir = new dir('/path/to/dir');
@@ -74,20 +74,20 @@ class dir implements Iterator
 			}
 			$dir->close();
 		}
-		
+
 		return $this->data;
 	}
-	
+
 /**
  * Save all changes
  *
- * @access	private
+ * @access	public
  */
-	private function save()
+	public function save()
 	{
 		if (!$this->exists($this->root)) mkdir($this->root, 0775, true);
 	}
-	
+
 /**
  * Filter the listing of a directory using keywords
  *
@@ -109,7 +109,7 @@ class dir implements Iterator
 		}
 		$this->data = $filteredData;
 	}
-	
+
 /**
  * Sort a directory listing by date
  * <pre>
@@ -141,7 +141,7 @@ class dir implements Iterator
 	//	Overwrite data
 		$this->data = $data;
 	}
-	
+
 /**
  * Copy a directory and its content
  * <pre>
@@ -157,7 +157,7 @@ class dir implements Iterator
 		$copy = new dir($path);
 		$copy->save();
 		$this->get();
-		
+
 		foreach ($this->data as $key => $value)
 		{
 			$copy_path = $path.'/'.$key;
@@ -184,7 +184,7 @@ class dir implements Iterator
 		}
 		rmdir($this->root);
 	}
-	
+
 /**
  * Move a directory and its content
  * <pre>
@@ -217,7 +217,7 @@ class dir implements Iterator
 	{
 		return is_dir($this->root);
 	}
-	
+
 /**
  * Get the root of a directory
  * <pre>
