@@ -158,7 +158,8 @@
 		speed: 300,
 		slidesToShow: 1,
 		adaptiveHeight: false,
-		accessibility:false
+		accessibility:false,
+		swipe: false
 	});
 
 /*********************************************************************************************
