@@ -251,6 +251,10 @@ class master
 	{
 		self::$zones[$zone]['data'] = array();
 	}
+	public static function clean_bind($zone)
+	{
+		self::$zones[$zone]['data'] = array();
+	}
 
 	
 /**
