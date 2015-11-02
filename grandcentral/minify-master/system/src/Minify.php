@@ -373,13 +373,8 @@ abstract class Minify
     function minify_resources($type, $minifier)
     {
         $resource_array = master::get_zone_data($type)['data'];
-
-        // print '<pre>';
-        // print_r($resource_array);
-        // print '</pre>';
         
         // Vérification du chemin
-
         foreach ($resource_array as $resource)
         {
             if( isset($resource['url']) )
@@ -396,6 +391,7 @@ abstract class Minify
         
         $cache = $this->return_md5($type);
         $minifier->minify($cache);
+        master::vide_bind($type);
     }
 
     function return_md5($type)
@@ -406,21 +402,20 @@ abstract class Minify
         $app = app('cache');
         if( strcmp($type,'script') == 0)
         {
-            $cache = $app->get_templateroot('site').'/'.md5($current_page).'-ch'.'/mini.js';
+            $cache = $app->get_templateroot('site').'/mini/'.md5($current_page).'.js';
         }
         else
         {
-            $cache = $app->get_templateroot('site').'/'.md5($current_page).'-ch'.'/mini.'.$type;
+            $cache = $app->get_templateroot('site').'/mini/'.md5($current_page).'.'.$type;
         }
         return $cache;
     }
 
     function if_folder_exists($page)
     {
-
         $app = app('cache');
         $links = array(
-            $app->get_templateroot('site').'/'.md5($page).'-ch',
+            $app->get_templateroot('site').'/mini',
         );
 
         foreach ($links as $link ) {
@@ -430,7 +425,7 @@ abstract class Minify
             }
             else
             {
-                mkdir( $link, '0705');
+                mkdir( $link, '0755');
                 return false;
             }
         }
@@ -442,7 +437,6 @@ abstract class Minify
 
         $resource_array = master::get_zone_data($type)['data'];
 
-
         $cache = $this->return_md5($type);
         $file = file_exists($cache) ? filemtime($cache) : 0;
         
@@ -451,17 +445,11 @@ abstract class Minify
             {
                 $date_prov = filemtime($resource['url']);
             }
-            // else
-            // {
-            //     $date_prov = filemtime($resource['data']);
-            // }
-
             if($date_prov > $date)
             {
                 $date = $date_prov;
             }
         }
-
 
         if($date > $file)
         {
