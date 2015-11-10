@@ -94,15 +94,31 @@ class attrMedia extends attrArray
  * @return	string	une string
  * @access	public
  */
+	public function display($index)
+	{
+		$alt = null;
+		$return = (isset($this->data[$index]['url'])) ? media($this->data[$index]['url'])->set_alt($alt)->__tostring() : null;
+		return $return;
+	}
+/**
+ * xxxx
+ *
+ * @param	string	la variable
+ * @return	string	une string
+ * @access	public
+ */
 	public function __toString()
 	{
+	//	Some vars
 		$return = '';
+		$alt = null;
+	//	Let's get to work
 		if (!empty($this->data))
 		{
 			foreach ($this->data as $file)
 			{
 				// print'<pre>';print_r($file);print'</pre>';
-				$return .= media($file['url'])->__tostring();
+				$return .= media($file['url'])->set_alt($alt)->__tostring();
 			}
 		}
 		return $return;
