@@ -897,6 +897,7 @@ class Curl
                     $response = $json_decoder($response);
                 }
             } elseif (preg_match($this->xmlPattern, $response_headers['Content-Type'])) {
+                $response = strstr($response, '<');
                 $xml_obj = @simplexml_load_string($response);
                 if (!($xml_obj === false)) {
                     $response = $xml_obj;
