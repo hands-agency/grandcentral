@@ -1,0 +1,13 @@
+#map,#map2 {	
+    position: relative;    
+}
+#map img#mapclick,#map2 img#mapclick{
+	position: absolute;	
+	z-index: 5555;	
+}
+.pin {
+	height: auto;
+	position: absolute;
+	width: 24px;
+	z-index: 2;	
+}
