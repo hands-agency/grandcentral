@@ -4,8 +4,8 @@
 	$field = $('li[data-type="attr"]');
 	attrSelector = 'input[data-associative="attr"]';
 	label = 'label';
-	
-//	Make sortable	
+
+//	Make sortable
 	$field.sortable(
 	{
 		handle: '> .handle',
@@ -13,7 +13,7 @@
 		axis: 'y',
 		containment: 'parent',
 	});
-	
+
 //	Some binds the key
 	$field.off('input', 'input[data-associative="attr"]').on('input', 'input[data-associative="attr"]', function()
 	{
@@ -31,13 +31,13 @@
 		{
 			input = $(this);
 			name = input.attr('name');
-			input.attr('name', name.replace(/\[attr\]\[[a-z0-9_-]*\]/i, "[attr]["+key+"]"));
+			input.attr('name', name.replace(/\[attr\]\[[^\[]*\]/i, "[attr]["+key+"]"));
 		});
 	});
-	
+
 //	Expand
 	$field.on('click', label, function()
 	{
 		$(this).closest('ol').find('li:not(:first-child)').toggle('fast');
 	});
-})(jQuery); 
+})(jQuery);

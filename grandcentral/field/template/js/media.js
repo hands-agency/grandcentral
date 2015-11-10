@@ -5,7 +5,7 @@
 	$data = $field.find('ol.data');
 	$media = $data.find('li');
 	$upload = $('li[data-type="media"] .wrapper ol.data');
-	$add = $('li[data-type="media"] .wrapper ol.data li.add');
+	$add = $('li[data-type="media"] .wrapper .add, li[data-type="media"] ol.data:empty'); /*TODO Catch empty .data ! */
 	path = $media.find('input').val();
 	
 //	Upload droppable
@@ -22,8 +22,11 @@
 		},
 		drop:function(event, ui)
 		{
+		//	Some vars
 	 		template = $(this).closest('.field').find('.template');
 			code = $(template.html());
+			
+		//	TODO Prevent Self droppable
 			
 		//	Append and enable
 			$(this).append(code);
@@ -72,9 +75,15 @@
 //	Delete media
 	$(document).find($field).on('click', '.delete', function()
 	{
+	//	Some vars
+		$siblings = $(this).parents('.data');
+	//	Hide and delete
 		$(this).parent('li').hide('fast', function()
 		{
+		//	Kill
 			$(this).remove();
+		//	Make sure the data is completely empty to reach the nodata state
+			if ($siblings.children().length == 0) $siblings.html('');
 		});
 		return false;
 	});

@@ -51,29 +51,46 @@
 		{
 			$path = mb_substr($media->get_root(), mb_strpos($media->get_root(), '/media/') + 7); /* TODO Make a method out of this*/
 			$title = (isset($value['title'])) ? $value['title'] : null;
+			
+		//	Legend	
+			$p = array(
+				'value' => $title,
+				'placeholder' => 'Add a legend',
+			//	'field' => 'fieldText' /* Ready for fieldI18n */
+			);
+			$legend = new fieldText($_FIELD->get_name().'['.$count.'][title]', $p);
+		
 			$data .= '
 			<li title="'.$media->get_key().' • '.strtoupper($media->get_extension()).' • '.$media->get_size().'">
 				<button class="delete"></button>
-				<a>
-					<span class="preview">'.$media->thumbnail(120, null).'</span>
-					<span class="title"><input type="text" name="'.$_FIELD->get_name().'['.$count.'][title]" value="'.$title.'" placeholder="Add a legend" /></span>
-				</a>
+				<div class="preview">'.$media->thumbnail(120, null).'</div>
+				<div class="title">'.$legend.'</div>
 				<input type="hidden" name="'.$_FIELD->get_name().'['.$count.'][url]" value="'.$path.'" />
 			</li>';
 			$count++;
 		}
 	}
+		
+/********************************************************************************************/
+//	The list of add buttons
+/********************************************************************************************/
+	$addbuttons = '<li><button type="button" data-feathericon="&#xe114">Add media</button></li>';
 	
 /********************************************************************************************/
 //	Now we can build the templates used when creating new fields
 /********************************************************************************************/
+	$p = array(
+		'placeholder' => 'Add a legend',
+		'disabled' => true,
+	//	'field' => 'fieldText' /* Ready for fieldI18n */
+	);
+	$legend = new fieldText($_FIELD->get_name().'[][title]', $p);
+			
 	$template = '
 	<li style="display:none;">
 		<button class="delete"></button>
-		<a>
-			<span class="preview"><img src="" /></span>
-			<span class="title"><input type="text" name="'.$_FIELD->get_name().'[][title]" placeholder="Add a legend" disabled="disabled" /></span>
-		</a>
+		<div class="preview"><img src="" /></div>
+		<div class="title">'.$legend.'</div>
 		<input type="hidden" name="'.$_FIELD->get_name().'[][url]" value="" disabled="disabled" />
 	</li>';
 ?>

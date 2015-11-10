@@ -8,6 +8,17 @@ li[data-type="media"] .wrapper ol.data
 	border:1px dashed transparent;
 	border-radius:3px;
 }
+li[data-type="media"] .wrapper ol.data:empty
+{
+	line-height:160px;
+	cursor:pointer;
+}
+li[data-type="media"] .wrapper ol.data:empty:hover:before
+{
+	content:'+';
+	font-size:100px;
+	color:#419BF9;
+}
 li[data-type="media"] .wrapper ol.data.hover
 {
 	cursor:pointer;
@@ -16,7 +27,7 @@ li[data-type="media"] .wrapper ol.data.hover
 li[data-type="media"] .wrapper ol.data li
 {
 	display:inline-block;
-	margin:10px 0 10px 10px;
+	margin:10px;
 	width:120px;
 	color:#ddd;
 	position:relative;
@@ -25,13 +36,13 @@ li[data-type="media"] .wrapper ol.data li
 	border-radius:2px;
 	vertical-align:top;
 }
-li[data-type="media"] .wrapper ol.data li:not(.add)
+li[data-type="media"] .wrapper ol.data li
 {
 	box-shadow: 0 1px 3px rgba(34,25,25,0.4);
 	-moz-box-shadow: 0 1px 2px rgba(34,25,25,0.4);
 	-webkit-box-shadow: 0 1px 3px rgba(34,25,25,0.4);
 }
-li[data-type="media"] .wrapper ol.data li:not(.add):hover
+li[data-type="media"] .wrapper ol.data li:hover
 {
 	border-color: #419BF9;
 	-webkit-box-shadow: 0 0 4px #419BF9;
@@ -48,40 +59,6 @@ li[data-type="media"] .wrapper ol.data li .delete
 li[data-type="media"] .wrapper ol.data li:hover .delete
 {
 	display:block;
-}
-
-/* Add */
-li[data-type="media"] .wrapper ol.data li.add
-{
-	height:120px;
-	line-height:130px;
-	font-size:40px;
-	border:1px dashed transparent;
-	-webkit-transition: all .1s ease-out; 
-	-moz-transition: all .1s ease-out; 
-	-o-transition: all .1s ease-out; 
-	transition: all .1s ease-out;
-	cursor:pointer;
-}
-.contextOpened1 li[data-type="media"] .wrapper ol.data li.add
-{
-	width:0;
-}
-.contextOpened1 li[data-type="media"] .wrapper ol.data li.add:before
-{
-	content:'';
-}
-li[data-type="media"] .wrapper ol.data li.add:before
-{
-	content:"+";
-	font-size:90px;
-	text-align:center;
-	color:#666;
-	line-height:120px;
-}
-li[data-type="media"] .wrapper ol.data li.add:hover:before
-{
-	color:#419BF9;
 }
 
 /********************************************************************************************/
@@ -102,12 +79,27 @@ li[data-type="media"] .wrapper ol.data li .preview img
 	display:block;
 	width:100%;
 }
-li[data-type="media"] .wrapper ol.data li .title {
+li[data-type="media"] .wrapper ol.data li .title
+{
 	font-size:11px;
 	display:block;
 	color:#333;
-	padding:10px;
+	padding:5px;
 	background:#fff;
+}
+li[data-type="media"] .wrapper ol.data li .title label
+{
+	display:none;
+}
+li[data-type="media"] .wrapper ol.data li .title .wrapper
+{
+	padding:0;
+	width:auto;
+}
+li[data-type="media"] .wrapper ol.data li .title .wrapper .field
+{
+	padding:0;
+	border:none;
 }
 
 /********************************************************************************************/
@@ -116,4 +108,22 @@ li[data-type="media"] .wrapper ol.data li .title {
 li[data-type="media"] .wrapper .template
 {
 	display:none;
+}
+
+/********************************************************************************************/
+/* Add
+/********************************************************************************************/
+li[data-type="media"] .add
+{
+	padding:7px 0 5px 0;
+	text-align:center;
+}
+li[data-type="media"] .wrapper ol.data:empty + .add
+{
+	display:none;
+}
+li[data-type="media"] .add li
+{
+	display:inline-block;
+	margin:5px;
 }

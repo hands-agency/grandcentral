@@ -90,10 +90,15 @@
 		//	Delete a selected
 			$element.on('click', '.selected li .delete', function()
 			{
+			//	Some vars				
+				$selected = $(this).closest('ol');
+			//	Hide
 				$(this).parent().hide('slide', { direction: "down" }, 100, function()
 				{
+				//	Kill
 					$(this).remove();
-
+				//	Make sure the container is really empty to catch the nodata
+					if ($selected.children().length == 0) $selected.html('');
 				});
 			});
 			

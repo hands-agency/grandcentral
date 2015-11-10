@@ -7,10 +7,9 @@
 	<?php if ($_FIELD->get_descr() != null) : ?><div class="help"><?= $_FIELD->get_descr(); ?></div><?php endif ?>
 	<span class="field">
 
-		<ol class="data">
-			<?= $data; ?>
-			<li class="add"></li>
-		</ol>
+		<ol class="data" data-nodata="Choose some medias from the library"><?= $data; ?></ol>
+		<ul class="add"><?= $addbuttons; ?></ul>
+		
 		<pre class="template">
 			<?=$template; ?>
 		</pre>
