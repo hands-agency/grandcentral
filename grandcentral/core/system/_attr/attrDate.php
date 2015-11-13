@@ -101,19 +101,19 @@ class attrDate extends _attrs
 		$since = $timeSecond - $timeFirst;
 	
 	//	Just now (< 30 second ago)
-		if ($since < 30) $return = cst('DATE_NOW');
+		if ($since < 30) $return = cst('Just now');
 		
 	//	Otherwise
 		else
 		{
 			$chunks = array(
-				array(60 * 60 * 24 * 365 , cst('DATE_YEAR')),
-				array(60 * 60 * 24 * 30 , cst('DATE_MONTH')),
-				array(60 * 60 * 24 * 7, cst('DATE_WEEK')),
-				array(60 * 60 * 24 , cst('DATE_DAY')),
-				array(60 * 60 , cst('DATE_HOUR')),
-				array(60 , cst('DATE_MINUTE')),
-				array(1 , cst('DATE_SECOND'))
+				array(60 * 60 * 24 * 365 , t('year')),
+				array(60 * 60 * 24 * 30 , t('month')),
+				array(60 * 60 * 24 * 7, t('week')),
+				array(60 * 60 * 24 , t('day')),
+				array(60 * 60 , t('hour')),
+				array(60 , t('minute')),
+				array(1 , t('second'))
 			);
 
 			for ($i = 0, $j = count($chunks); $i < $j; $i++)
