@@ -15,8 +15,8 @@
 			<?php
 				if ($coverField)
 				{
-					$images = $i[$coverField]->unfold();
-					$thumbnail = (!$i[$coverField]->is_empty() && $images[0]->exists()) ? $images[0]->thumbnail(300, null)->get_url() : null;
+					$cover = isset($i[$coverField][0]['url']) ? media($i[$coverField][0]['url']) : null;
+					$thumbnail = ($cover && $cover->exists() && $cover->get_mimeType() == 'image') ? $cover->thumbnail(300, null)->get_url() : null;
 				}
 				else $thumbnail = null;
 				$empty = (!isset($thumbnail)) ? 'empty' : null;
@@ -25,8 +25,6 @@
 				/* <span class="cover" data-adaptive-background data-ab-css-background style="background-image:url('<?=$thumbnail?>')"></span>*/
 			?>
 			<a href="<?=$i->edit()?>" class="<?=$empty?>">
-
-				
 				<span class="cover" style="background-image:url('<?=$thumbnail?>')"><?php if ($thumbnail): ?><img style="display:none" src="<?=$thumbnail?>" /><?php endif ?></span>
 				<span class="title"><?= (isset($i['title']) && !$i['title']->is_empty()) ? $i['title']->cut(50) : $i->get_table().'#'.$i['id'] ?></span>
 			</a>
