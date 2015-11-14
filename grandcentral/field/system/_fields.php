@@ -415,6 +415,16 @@ abstract class _fields
 		return $this->disabled;
 	}
 /**
+ * Set a template for the field
+ * 
+ * @return	string	The template
+ * @access	public
+ */
+	public function set_template($template)
+	{
+		$this->template = $template;
+	}
+/**
  * Construit le code html du champ
  * 
  * Par défaut la méthode __toString va chercher un template dans /field/default/<nom du champ>
