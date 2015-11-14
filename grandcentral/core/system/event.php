@@ -117,7 +117,7 @@ class event
 				array_unshift($callback['args'], $item);
 			//	???
 				if (isset($callback['id']) && isset($item->data['id']) && $callback['id'] != $item->data['id'])	break;
-				if (isset($callback['function'])) call_user_func_array($callback['function'], (array) $callback['args']);
+				if (isset($callback['function'])) {call_user_func_array($callback['function'], (array) $callback['args']);}
 				else call_user_func_array(array($item, $callback['method']), (array) $callback['args']);
 			}
 		}
