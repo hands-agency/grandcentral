@@ -12,6 +12,7 @@ class image extends media
 	protected $width;
 	protected $height;
 	protected $alt;
+	protected $attrdata;
 
 /**
  * Obtenir, s'il existe, le contenu du fichier
@@ -109,6 +110,16 @@ class image extends media
 	public function set_alt($text)
 	{
 		$this->alt = trim((string) $text);
+		return $this;
+	}
+/**
+ * Fill data attribute of <img>
+ *
+ * @access	public
+ */
+	public function set_attrdata($data)
+	{
+		$this->attrdata = $data;
 		return $this;
 	}
 /**
@@ -380,7 +391,12 @@ class image extends media
 		public function __tostring()
 		{
 			$alt = !empty($this->alt) ? $this->alt : $this->name;
-			return '<img src="'.$this->get_url().'" alt="'.htmlentities($alt).'" />';
+			$data = null;
+		 	if (!empty($this->attrdata))
+			{	
+				foreach ($this->attrdata as $key => $value) $data .= ' data-'.$key.'="'.$value.'"';
+			}
+			return '<img src="'.$this->get_url().'" alt="'.htmlentities($alt).'" '.trim($data).' />';
 		}
 }
 ?>
