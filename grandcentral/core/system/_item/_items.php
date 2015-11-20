@@ -157,6 +157,22 @@ abstract class _items implements ArrayAccess, Iterator
 	//	retour
 		return $this;
 	}
+	
+/**
+ * Get the reader object of this item
+ *
+ * @access	public
+ */
+	public function get_reader()
+	{
+		$readers = registry::get(registry::reader_index);
+		foreach ($readers as $page => $reader)
+		{
+			if ($reader[0]['param']['item'] == $this->get_table()) $r = i($page);
+		}
+		return (isset($r)) ? $r : null;
+	}
+	
 /**
  * Fill the object with all his attributes
  *
