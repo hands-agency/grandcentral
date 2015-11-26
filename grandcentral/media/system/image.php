@@ -172,11 +172,11 @@ class image extends media
  */
 	public function thumbnail($width, $height, $quality = 75)
 	{
-		if(!in_array($this->get_mimeType(), array('image/gif','image/jpeg', 'image/png')))
+		if(!in_array($this->get_mime(), array('image/gif','image/jpeg', 'image/png')))
 		{
 			return $this;
 		}
-		
+
 		$app = app('cache');
 		$file = $app->get_templateroot('site').'/media/thumbnail_w'.$width.'_h'.$height.$this->get_path();
 
