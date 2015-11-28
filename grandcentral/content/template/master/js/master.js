@@ -160,7 +160,6 @@
 		slidesToShow: 1,
 		adaptiveHeight: false,
 		accessibility:false,
-		swipe: false
 	});
 
 /*********************************************************************************************
