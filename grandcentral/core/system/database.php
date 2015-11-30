@@ -19,12 +19,12 @@ class database
 {
 	const charset = 'utf8';
 	const collation = 'utf8_unicode_ci';
-	
+
 	private static $instance = array();
 	private static $env;
 	private static $query_count = 0;
 	private static $transactions;
-	
+
 	private $_pdo;
 	public $_spooler = array();
 
@@ -116,7 +116,7 @@ class database
 	    		'What went wrong ?' => 'Sorry, <strong>'.$db_type.'</strong> is not supported.',
 		    );
 		   	sentinel::log(E_ERROR, $l);
-		}		
+		}
 	}
 /**
  * Query the database
@@ -207,7 +207,7 @@ class database
 	{
 		return self::$query_count;
 	}
-	
+
 /**
  * Get all the tables from the database
  *
@@ -229,7 +229,7 @@ class database
 			}
 			registry::set($env, registry::dbtable_index, $tables);
 		}
-		
+
 		return $tables;
 	}
 /**
@@ -245,7 +245,7 @@ class database
 		$prefix = strtoupper(self::$env);
 		return constant($prefix.'_DB_NAME');
 	}
-	
+
 /**
  * Query database for items data
  *
@@ -253,14 +253,15 @@ class database
  * @param	string	database table
  * @param	array	query parameters
  * @param	bool	active count mode
- * @return	array	query results 
+ * @return	array	query results
  * @access	public
  * @static
  */
 	public static function query_item($env, $table, $params = null, $counter = false)
 	{
 	//	paramètres par défaut
-		//if (is_null($params) || (is_array($params) && !array_key_exists('live', $params))) $params['live'] = true;
+		// if (is_null($params) || (is_array($params) && !array_key_exists('live', $params))) $params['live'] = true;
+		if (is_null($params) || (is_array($params) && !array_key_exists('status', $params))) $params['status'] = 'live';
 	//	préparation des variables
 		$i = 0;
 		$cWhere = null;
@@ -302,7 +303,7 @@ class database
 		//	suppression des params inconnus
 			elseif (!isset($attrs[$key]))
 			{
-				
+
                 unset($params[$key]);
 			}
 			elseif (is_null($value)) {
@@ -365,7 +366,7 @@ class database
 			foreach ((array) $rel as $value)
 			{
 				$cIn .= ':relid'.$i.',';
-				$tmp =  
+				$tmp =
 				$preparedData['relid'.$i] = (mb_strpos($value, '_') !== false) ? mb_substr($value, mb_strpos($value, '_') + 1) : $value;
 				$i++;
 			}
@@ -398,7 +399,7 @@ class database
 			{
 				return '/\b('.$value.')\b/';
 			};
-			
+
 			$orders = preg_replace(array_map($func, $attrsKey),'`'.$table.'`.`$1`', $orders);
 		//	écriture de la clause order by
 			$cOrder = ' ORDER BY '.implode(', ', $orders).'';
@@ -460,7 +461,7 @@ class database
 		}
 		return array_values($datas);
 	}
-	
+
 /**
  * Stack queries in a static pile before execution.
  * With database::stack() you can execute multiple queries in a single transaction.
@@ -483,7 +484,7 @@ class database
 		}
 		$this->_spooler[] = $query;
 	}
-	
+
 /**
  * Execute a pile of queries
  *
@@ -498,7 +499,7 @@ class database
 			$this->_pdo->beginTransaction();
 		//	Préparation
 			for ($i=0, $count=count($this->_spooler); $i < $count; $i++)
-			{ 
+			{
 			//	prepare query
 				$stmt = $this->_pdo->prepare($this->_spooler[$i]['query']);
 			//	inject data et execute query
