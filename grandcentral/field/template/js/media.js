@@ -1,6 +1,6 @@
 (function($)
 {
-//	Our media
+//	Some vars
 	$field = $('li[data-type="media"] .wrapper');
 	$data = $field.find('ol.data');
 	$media = $data.find('li');
@@ -63,7 +63,7 @@
 	});
 	
 //	Add media
-	$add.on('click', function()
+	$(document).on('click', $add, function()
 	{
 		openContext(
 		{
