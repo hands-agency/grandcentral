@@ -70,7 +70,7 @@ class sitemaps
 	//	Use phpfastcache
 		phpfastcache::setup('storage', 'files');
 		$cache = phpfastcache();
-		$cache->delete($this->cachename);
+		#$cache->delete($this->cachename);
 		
 	//	Try to get the cache
 		$sitemap = $cache->get($this->cachename);
