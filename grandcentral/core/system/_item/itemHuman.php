@@ -43,11 +43,35 @@ class itemHuman extends _items
 		ini_set('session.cookie_httponly', true);
 		session_start();
 		
+		
 	//	si pas de session on log automatiquement l'utilisateur anonyme
 		if (!isset($_SESSION['user']) || (isset($_SESSION['user']) && !$_SESSION['user']->exists()))
 		{
-			$this->get('anonymous');
-			$this->login();
+			if(isset($_COOKIE['name']) && !empty($_COOKIE['name']))
+			{
+				// Vérifie si le cookie existe
+				$autologin = i('autologintoken', array(
+					'token' => $_COOKIE['name']
+				));
+
+				if((count($autologin) > 0) && ($autologin[0]['end'] < date()))
+				{
+					$user = $autologin[0]['user']->unfold();
+					$user->login();
+				}
+				else
+				{
+					$autologin = i('autologintoken');
+					$autologin->delete_cookie();
+					$this->get('anonymous');
+					$this->login();
+				}
+			}
+			else
+			{
+				$this->get('anonymous');
+				$this->login();
+			}
 		}
 	}
 /**
@@ -179,9 +203,36 @@ class itemHuman extends _items
  *
  * @access	public
  */
-	public function login()
+	public function login($cookie = false)
 	{
 		$_SESSION['user'] = $this;
+
+		if($cookie)
+		{
+			if(isset($_COOKIE['name']) && !empty($_COOKIE['name']))
+			{
+				$token = i('autologintoken', array(
+					'token' => $_COOKIE['name']
+				));
+
+				if(count($token) > 0)
+				{
+					$token = $token[0];
+					$token['user'] = $this->get_nickname();
+				}
+				else
+				{
+					$token = i('autologintoken');
+					$token['user'] = $this->get_nickname();
+				}
+			}
+			else
+			{
+				$token = i('autologintoken');
+				$token['user'] = $this->get_nickname();
+			}
+			$token->save();
+		}
 	}
 /**
  * Returns whether a user is logged in
@@ -200,6 +251,12 @@ class itemHuman extends _items
 	public function logout()
 	{
 		$_SESSION['user'] = null;
+
+		if(isset($_COOKIE['name']))
+		{
+			$autologin = i('autologintoken');
+			$autologin->delete_cookie();
+		}
 	}
 /**
  * Save item into database

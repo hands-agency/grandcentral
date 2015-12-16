@@ -12,7 +12,11 @@ class image extends media
 	protected $width;
 	protected $height;
 	protected $alt;
+<<<<<<< HEAD
 	protected $attrdata;
+=======
+	protected $is_lazyload = false;
+>>>>>>> 4.2
 
 /**
  * Obtenir, s'il existe, le contenu du fichier
@@ -182,6 +186,11 @@ class image extends media
  */
 	public function thumbnail($width, $height, $quality = 75)
 	{
+		if(!in_array($this->get_mime(), array('image/gif','image/jpeg', 'image/png')))
+		{
+			return $this;
+		}
+
 		$app = app('cache');
 		$file = $app->get_templateroot('site').'/media/thumbnail_w'.$width.'_h'.$height.$this->get_path();
 
@@ -327,6 +336,7 @@ class image extends media
 	public function resize($width, $height, $keep_proportions = true)
 	{
 		set_time_limit(10);
+		ini_set('memory_limit','1024M');
 
 		if (!$this->exists() || (empty($width) && empty($height))) return $this;
 		$this->get();
@@ -383,6 +393,13 @@ class image extends media
     	return $this;
     }
 
+    public function set_lazyload($bool = true)
+    {
+    	$this->is_lazyload = (bool) $bool;
+
+    	return $this;
+    }
+
 	/**
 	 * Prints the image in a <img tag>
 	 *
@@ -391,12 +408,26 @@ class image extends media
 		public function __tostring()
 		{
 			$alt = !empty($this->alt) ? $this->alt : $this->name;
+<<<<<<< HEAD
 			$data = null;
 		 	if (!empty($this->attrdata))
 			{	
 				foreach ($this->attrdata as $key => $value) $data .= ' data-'.$key.'="'.$value.'"';
 			}
 			return '<img src="'.$this->get_url().'" alt="'.htmlentities($alt).'" '.trim($data).' />';
+=======
+			if($this->is_lazyload)
+			{
+				$nature = 'data-original';
+			}
+			else
+			{
+				$nature = 'src';
+			}
+			// $nature = ($this->is_lazyload) ? 'data-original' : 'src';
+
+			return '<img '.$nature.'="'.$this->get_url().'" alt="'.htmlentities($alt).'"/>';
+>>>>>>> 4.2
 		}
 }
 ?>

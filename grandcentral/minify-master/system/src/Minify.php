@@ -377,10 +377,9 @@ abstract class Minify
         // Vérification du chemin
         foreach ($resource_array as $resource)
         {
-            if( isset($resource['url']) )
+            if( isset($resource['url']) && isset($resource['app']))
             {
                 // Current app
-                $current_app = explode('/',$resource['app']);
                 $minifier->add($resource['url']);
             }
             else
