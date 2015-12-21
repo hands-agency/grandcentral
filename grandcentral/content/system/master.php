@@ -166,7 +166,7 @@ class master
 					$url = (SITE_DEBUG === true) ? $file->get_url(true).'?'.time() : $file->get_url(true);
 				}
 			//	stylesheet
-				$return .= '<link rel="stylesheet" href="'.$url.'"  media="all" type="text/css" charset="utf-8">';
+				$return .= '<link rel="stylesheet" href="'.$url.'"  media="all" type="text/css">';
 			}
 		//	pour les styles bruts
 			else
