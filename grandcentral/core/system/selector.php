@@ -75,7 +75,7 @@
 			case is_null($params) && mb_strpos($table, '_'):
 				list($table, $id) = explode('_', $table);
 				// print'<pre>';print_r($table);print'</pre>';
-				return item::create($table, array('id' => $id, 'live' => array(true, false)), $env);
+				return item::create($table, array('id' => $id, 'status' => array('live', 'asleep'), 'live' => array(true, false)), $env);
 				break;
 		//	nouvel item
 			case is_null($params):
@@ -138,10 +138,10 @@
 				return '['.$n.']';
 			}, array_keys($data));
 			$to = array_values($data);
-			
+
 			$string = str_replace($from, $to, $string);
 		}
-		
+
 		return $string;
 	}
 /**
@@ -160,7 +160,7 @@
 /**
  * load() lets you simply load apps into the system:
  * <pre>
- * // Load jQuery, Sir Trevor and Masonry 
+ * // Load jQuery, Sir Trevor and Masonry
  * load('jquery', 'sirtrevor', 'jquery.masonry');
  * </pre>
  *
@@ -178,7 +178,7 @@
 			unset($app);
 		}
 	}
-	
+
 /**
  * App factory
  *
