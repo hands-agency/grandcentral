@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Sep 18, 2015 at 05:31 PM
+-- Generation Time: Dec 16, 2015 at 04:02 PM
 -- Server version: 5.5.42
 -- PHP Version: 5.6.10
 
@@ -169,7 +169,7 @@ CREATE TABLE `form` (
 --
 
 INSERT INTO `form` (`id`, `key`, `title`, `descr`, `template`, `action`, `method`, `target`, `enctype`, `field`, `created`, `updated`, `system`, `status`, `owner`) VALUES
-(1, 'login', 'Login', '', 'login', 'post', 'post', '', '', '{"login":{"type":"text","key":"login","label":"So. My login is","placeholder":"my email address","required":true},"password":{"type":"password","key":"password","label":"and this is","placeholder":"my password","required":true},"save":{"type":"button","buttontype":"submit","key":"save","value":"Now let me in!"}}', '2013-09-14 12:53:52', '2013-09-14 12:53:52', 0, 'live', 2),
+(1, 'login', 'Login', '', 'login', 'post', 'post', '', '', '{"login":{"type":"text","key":"login","label":"Login","placeholder":"Your login","required":true},"password":{"type":"password","key":"password","label":"Password","placeholder":"Password","required":true},"submit":{"type":"button","key":"submit","label":"submit","customdata":{"feathericon":"&#xe057"}}}', '2013-09-14 12:53:52', '2013-09-14 12:53:52', 0, 'live', 2),
 (141, 'note', 'Notes', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"The unique identifier","type":"hidden","readonly":true},"item":{"key":"item","label":"Item","type":"hidden","min":"","max":"","placeholder":"Item"},"text":{"key":"text","label":"Text","type":"textarea","min":"","max":"","placeholder":"A short description"}}', '2013-09-14 12:53:52', '2013-09-14 12:53:52', 0, 'live', 2),
 (164, 'admin_section', 'admin_section', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"id","type":"number","readonly":true},"key":{"key":"key","label":"key","type":"text"},"title":{"key":"title","label":"title","type":"i18n","field":"fieldText"},"zone":{"key":"zone","label":"zone","type":"text","required":"0","min":"0","max":"255"},"app":{"key":"app","label":"app","type":"app"},"created":{"key":"created","label":"created","type":"date"},"updated":{"key":"updated","label":"updated","type":"date"},"status":{"key":"status","label":"status","type":"text"},"greenbutton":{"key":"greenbutton","label":"greenbutton","valuestype":"bunch","values":[{"item":"greenbutton"}],"placeholder":"...","type":"multipleselect","required":"0","min":"","max":""},"owner":{"key":"owner","label":"owner","type":"text"},"nodata":{"key":"nodata","label":"nodata","type":"i18n","field":"fieldText"}}', '2014-05-15 09:47:46', '2015-02-08 23:49:03', 1, 'live', 2),
 (177, 'admin_site', 'admin_site', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"id","type":"number","readonly":true},"key":{"key":"key","label":"key","type":"text"},"title":{"key":"title","label":"title","type":"text","required":"1","min":"0","max":"255"},"created":{"key":"created","label":"created","type":"date"},"updated":{"key":"updated","label":"updated","type":"date"},"status":{"key":"status","label":"status","type":"text"},"defaultversion":{"key":"defaultversion","label":"defaultversion","type":"number","required":"0","min":"","max":""},"owner":{"key":"owner","label":"owner","type":"text"}}', '2014-05-29 07:02:14', '2015-04-28 11:24:57', 1, 'live', 2),
@@ -282,7 +282,7 @@ CREATE TABLE `logbook` (
   `updated` datetime NOT NULL,
   `status` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `owner` mediumint(3) unsigned NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=503 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=509 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `logbook`
@@ -787,7 +787,13 @@ INSERT INTO `logbook` (`id`, `key`, `subject`, `subjectid`, `item`, `itemid`, `c
 (499, 'insert', 'human', 2, 'page', 44, '2015-09-14 15:20:18', '2015-09-14 15:20:18', 'live', 0),
 (500, 'update', 'human', 2, 'page', 44, '2015-09-14 15:23:19', '2015-09-14 15:23:19', 'live', 0),
 (501, 'update', 'human', 2, 'page', 44, '2015-09-14 15:25:08', '2015-09-14 15:25:08', 'live', 0),
-(502, 'update', 'human', 2, 'page', 3, '2015-09-18 14:58:52', '2015-09-18 14:58:52', 'live', 0);
+(502, 'update', 'human', 2, 'page', 3, '2015-09-18 14:58:52', '2015-09-18 14:58:52', 'live', 0),
+(503, 'update', 'human', 2, 'page', 31, '2015-09-25 18:21:49', '2015-09-25 18:21:49', 'live', 0),
+(504, 'update', 'human', 2, 'page', 5, '2015-10-10 12:08:37', '2015-10-10 12:08:37', 'live', 0),
+(505, 'update', 'human', 2, 'page', 5, '2015-10-10 12:09:07', '2015-10-10 12:09:07', 'live', 0),
+(506, 'update', 'human', 2, 'page', 5, '2015-10-10 12:32:13', '2015-10-10 12:32:13', 'live', 0),
+(507, 'insert', 'human', 2, 'section', 33, '2015-10-10 12:33:21', '2015-10-10 12:33:21', 'live', 0),
+(508, 'update', 'human', 2, 'page', 5, '2015-10-10 12:33:50', '2015-10-10 12:33:50', 'live', 0);
 
 -- --------------------------------------------------------
 
@@ -836,7 +842,7 @@ INSERT INTO `page` (`id`, `key`, `title`, `type`, `descr`, `text`, `url`, `syste
 (1, 'home', '{"en":"Digest","fr":"Digest"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', 'Welcome home', '', '/', 0, '2013-10-03 08:28:48', '2015-08-15 16:30:39', 'live', 2),
 (2, 'error_404', '{"fr":"404","en":"404"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', '', '', '/404', 1, '2014-05-31 05:10:38', '2014-05-31 05:10:38', 'live', 2),
 (3, 'post', '{"en":"POST routine","fr":"POST routine"}', '{"key":"content","http_status":"200 OK","content_type":"json","url":"","master":{"app":"content","template":"\\/master\\/post"}}', 'Receives all the posts from the forms.', '', '/routine', 1, '2014-05-31 05:10:27', '2015-09-18 14:58:52', 'live', 2),
-(5, 'list', '{"en":"List","fr":"Liste"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', '', '', '/list', 0, '2013-10-13 01:05:53', '2015-04-28 11:18:03', 'live', 2),
+(5, 'list', '{"en":"List","fr":"Liste"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', '', '', '/list', 0, '2013-10-13 01:05:53', '2015-10-10 12:33:50', 'live', 2),
 (6, 'edit', '{"en":"Edit","fr":"Edition"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', '', '', '/edit', 0, '2013-10-12 22:01:52', '2015-06-18 16:02:27', 'live', 2),
 (7, 'doc', '{"fr":"Doc","en":"Doc"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', 'About classes, methods and functions available to you, kind developer.', '', '/doc', 0, '2013-10-14 13:11:22', '2014-05-31 05:38:16', 'live', 2),
 (9, 'site', '{"fr":"Environnement","en":"Environment"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', 'Structure', '', '/site', 0, '2014-04-08 19:54:46', '2014-05-31 05:38:35', 'live', 2),
@@ -844,7 +850,7 @@ INSERT INTO `page` (`id`, `key`, `title`, `type`, `descr`, `text`, `url`, `syste
 (11, 'apps', '{"en":"Apps","fr":"Apps"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', 'Tweak', '', '/apps', 0, '2013-10-18 18:40:46', '2015-08-12 14:51:13', 'live', 2),
 (29, 'logbook', '{"fr":"Livre des logs","en":"Log book"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', '', '', '/logbook', 0, '2014-05-31 05:38:10', '2014-05-31 05:38:10', 'live', 2),
 (30, 'login', '{"fr":"Login","en":"Login"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/login"}}', '', '', '/login', 1, '2013-10-03 04:16:31', '2014-05-31 05:10:46', 'live', 2),
-(31, 'csv', '{"en":"API (csv)","fr":"API (json)"}', '{"key":"content","http_status":"200 OK","content_type":"csv","url":"","master":{"app":"api","template":"\\/api"}}', '', '', '/csv', 1, '2013-03-06 03:21:46', '2015-08-25 17:14:51', 'live', 2),
+(31, 'api.json', '{"en":"API (json)","fr":"API (json)"}', '{"key":"content","http_status":"200 OK","content_type":"json","url":"","master":{"app":"api","template":"\\/api"}}', '', '', '/api.json', 1, '2013-03-06 03:21:46', '2015-09-25 18:21:49', 'live', 2),
 (32, 'me', '{"fr":"Moi","en":"Me"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/master"}}', 'dfsdf', '', '/me', 0, '2014-05-31 05:37:42', '2014-05-31 05:37:42', 'live', 2),
 (33, 'api.eventstream', '{"fr":"API (eventstream)","en":"API (eventstream)"}', '{"key":"content","http_status":"200 OK","content_type":"eventstream","url":"","master":{"app":"content","template":"\\/master\\/api"}}', '', '', '/api.eventstream', 1, '2013-03-06 03:21:46', '2014-05-31 05:10:03', 'live', 2),
 (35, 'ajax.html', '{"fr":"AJAX (html)","en":"AJAX (html)"}', '{"key":"content","http_status":"200 OK","content_type":"html","url":"","master":{"app":"content","template":"\\/master\\/ajax"}}', '', '', '/ajax.html', 1, '2013-03-06 03:21:46', '2014-05-31 05:10:12', 'live', 2),
@@ -872,14 +878,14 @@ CREATE TABLE `section` (
   `status` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `owner` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `nodata` mediumtext COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `section`
 --
 
 INSERT INTO `section` (`id`, `key`, `title`, `zone`, `app`, `created`, `updated`, `status`, `owner`, `nodata`) VALUES
-(1, 'list', '{"en":"List","fr":"Publiés"}', 'content', '{"app":"content","template":"\\/list\\/list","param":{"system":""}}', '2014-05-31 04:51:15', '2015-08-13 22:28:52', 'live', '2', '{"en":"Nothing live. Sorry, nothing. Zero. Zilch.","fr":"Rien du tout. Rien de rien de rien."}'),
+(1, 'list', '{"en":"List","fr":"Publiés"}', 'content', '{"app":"content","template":"\\/list\\/list","param":{"param":{"system":"0"}}}', '2014-05-31 04:51:15', '2015-08-13 22:28:52', 'live', '2', '{"en":"Nothing live. Sorry, nothing. Zero. Zilch.","fr":"Rien du tout. Rien de rien de rien."}'),
 (2, 'edit', '{"en":"Edit","fr":"Modifier"}', 'content', '{"app":"content","template":"\\/edit\\/edit"}', '2013-10-16 14:52:08', '2015-08-15 16:28:29', 'live', '2', '{"en":"","fr":""}'),
 (3, 'php', '{"fr":"Apps","en":"Apps"}', 'content', '{"app":"content","template":"\\/doc\\/code"}', '2014-05-15 09:47:55', '2014-05-31 04:48:57', 'live', '2', ''),
 (4, 'doc', '{"fr":"Doc","en":"Doc"}', 'content', '{"app":"content","template":"\\/doc\\/doc"}', '2013-10-20 22:52:03', '2014-05-31 04:49:55', 'live', '2', ''),
@@ -897,7 +903,8 @@ INSERT INTO `section` (`id`, `key`, `title`, `zone`, `app`, `created`, `updated`
 (28, 'login', '{"fr":"Login","en":"Login"}', 'site', '{"app":"form","template":"\\/login","param":{"key":"login"}}', '2013-04-07 15:55:22', '2014-05-31 04:50:04', 'live', '2', ''),
 (30, 'workflow', '{"en":"Workflow","fr":"Workflow"}', 'content', '{"app":"content","template":"\\/workflow\\/workflow"}', '2014-05-31 04:47:16', '2014-12-20 15:18:56', 'live', '2', '{"en":"No workflow.","fr":"Aucun flux de publication."}'),
 (31, 'lab', '{"en":"Lab","fr":"Lab"}', 'content', '{"app":"lab","template":"\\/lab"}', '2013-10-16 14:52:08', '2014-12-20 14:59:42', 'live', '2', '{"en":"There is nothing in your lab. You should experiment more!","fr":"Il n''y a rien au labo. Vous devriez tester des trucs!"}'),
-(32, 'buildapp', '{"en":"Step by step","fr":"Pas à pas"}', 'content', '{"app":"appbuilder","template":"\\/appbuilder\\/appbuilder"}', '2015-04-28 11:12:02', '2015-08-21 15:16:12', 'live', 'human_2', '{"en":"We''re working hard on this feature. Stay tuned!","fr":"Nous travaillons dur sur cette section. Revenez vite !"}');
+(32, 'buildapp', '{"en":"Step by step","fr":"Pas à pas"}', 'content', '{"app":"appbuilder","template":"\\/appbuilder\\/appbuilder"}', '2015-04-28 11:12:02', '2015-08-21 15:16:12', 'live', 'human_2', '{"en":"We''re working hard on this feature. Stay tuned!","fr":"Nous travaillons dur sur cette section. Revenez vite !"}'),
+(33, '34f0a92185b934f023778c4ac69404cc', '{"en":"Site configuration","fr":"Configuration du site"}', 'content', '{"app":"content","template":"\\/edit\\/edit","param":{"item":"site","id":"1"}}', '2015-10-10 12:33:21', '2015-10-10 12:33:21', 'live', 'human_2', '{"en":"","fr":""}');
 
 -- --------------------------------------------------------
 
@@ -1028,15 +1035,7 @@ INSERT INTO `_rel` (`item`, `itemid`, `key`, `rel`, `relid`, `position`) VALUES
 ('section', 17, 'greenbutton', 'greenbutton', 2, 6),
 ('section', 17, 'greenbutton', 'greenbutton', 9, 7),
 ('section', 17, 'greenbutton', 'greenbutton', 7, 8),
-('page', 5, 'section', 'section', 9, 0),
-('page', 5, 'section', 'section', 1, 1),
-('page', 5, 'section', 'section', 10, 2),
-('page', 5, 'section', 'section', 6, 3),
-('page', 5, 'section', 'section', 7, 4),
-('page', 5, 'section', 'section', 8, 5),
 ('page', 39, 'section', 'section', 4, 2),
-('page', 5, 'sectiondefault', 'section', 10, 0),
-('page', 5, 'sectiondefault', 'section', 1, 1),
 ('section', 7, 'greenbutton', 'greenbutton', 3, 0),
 ('section', 8, 'greenbutton', 'greenbutton', 3, 0),
 ('section', 6, 'greenbutton', 'greenbutton', 14, 0),
@@ -1064,7 +1063,16 @@ INSERT INTO `_rel` (`item`, `itemid`, `key`, `rel`, `relid`, `position`) VALUES
 ('page', 1, 'child', 'page', 10, 2),
 ('page', 1, 'child', 'page', 11, 3),
 ('page', 1, 'section', 'section', 9, 0),
-('page', 43, 'section', 'section', 32, 0);
+('page', 43, 'section', 'section', 32, 0),
+('section', 33, 'greenbutton', 'greenbutton', 8, 0),
+('page', 5, 'section', 'section', 9, 0),
+('page', 5, 'section', 'section', 1, 1),
+('page', 5, 'section', 'section', 10, 2),
+('page', 5, 'section', 'section', 6, 3),
+('page', 5, 'section', 'section', 8, 4),
+('page', 5, 'section', 'section', 33, 5),
+('page', 5, 'sectiondefault', 'section', 10, 0),
+('page', 5, 'sectiondefault', 'section', 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -1214,7 +1222,7 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT for table `logbook`
 --
 ALTER TABLE `logbook`
-  MODIFY `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=503;
+  MODIFY `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=509;
 --
 -- AUTO_INCREMENT for table `note`
 --
@@ -1229,7 +1237,7 @@ ALTER TABLE `page`
 -- AUTO_INCREMENT for table `section`
 --
 ALTER TABLE `section`
-  MODIFY `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
+  MODIFY `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `site`
 --

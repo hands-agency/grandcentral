@@ -24,15 +24,6 @@ class fetch
 	}
 
 /**
- * Get the list of accessible casts
- *
- * @param	string  la table des objets pour la recherche
- * @param	array  	le tableau de paramètres de la recherche
- * @param	string  admin ou site
- * @access	public
- */
-
-/**
  * Get the list of accessible items (a generic function)
  *
  * @param	string  la table des objets pour la recherche
@@ -91,7 +82,7 @@ class fetch
 	}
 
 /**
- * Get the list of accessible regions
+ * Get the list of accessible casts
  *
  * @param	string  la table des objets pour la recherche
  * @param	array  	le tableau de paramètres de la recherche
@@ -207,6 +198,19 @@ class fetch
 			$humans->get('human', $paramHuman);
 		}
 		return $humans;
+	}
+
+/**
+ * Get the list of accessible missions
+ *
+ * @param	string  la table des objets pour la recherche
+ * @param	array  	le tableau de paramètres de la recherche
+ * @param	string  admin ou site
+ * @access	public
+ */
+	public function get_missions($param = array())
+	{
+		return $this->get('mission', $param);
 	}
 }
 ?>

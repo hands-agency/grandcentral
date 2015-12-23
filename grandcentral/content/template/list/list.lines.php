@@ -67,7 +67,8 @@
 //	Fetch the bunch of items
 /********************************************************************************************/
 //	Build the params
-	$param = (isset($_POST['param'])) ? $_POST['param'] : null;
+	$param = (isset($_POST['param']['param'])) ? $_POST['param']['param'] : null;
+	// $param = (isset($_POST['param'])) ? $_POST['param'] : null;
 	$param['status'] = array('live', 'asleep');
 	$param['order()'] = $order.' '.$sort;
 	$param['limit()'] = $limit;

@@ -220,6 +220,10 @@
 							else popAlert(status, status);
 						};
 					},
+					error:function(r)
+					{			
+						console.log(r.responseText);
+					},
 				});
 			});
 			
