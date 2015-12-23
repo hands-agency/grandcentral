@@ -57,7 +57,7 @@
 		case 'updated':
 			function formatSeparator($val) {return $val->format('l d F Y');}
 			break;
-		
+
 		default:
 			function formatSeparator($val) {return $val;}
 			break;
@@ -68,6 +68,7 @@
 /********************************************************************************************/
 //	Build the params
 	$param = (isset($_POST['param'])) ? $_POST['param'] : null;
+	$param['status'] = array('live', 'asleep');
 	$param['order()'] = $order.' '.$sort;
 	$param['limit()'] = $limit;
 
@@ -75,7 +76,7 @@
 	$bunch = i($handled_item, $param, $handled_env);
 //	Fetch the structure
 	$item = i('item', $handled_item, $handled_env);
-	
+
 /********************************************************************************************/
 //	Some prepross
 /********************************************************************************************/
