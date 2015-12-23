@@ -81,12 +81,15 @@ class itemPage extends _items
 			// chargement de la page de home
 			$this->get_by_url($hash);
 			// 404
-		//	if ($this->get_env() == 'site' && !$this->is_reader())
+			// echo "<pre>";print_r('ici');echo "</pre>";exit;
+			if ($this->get_env() == 'site' && !$this->is_reader())
 			//if (!$this->exists())
-		//	{
-		//		$this->get_by_url('/404');
-		//	}
+			{
+				// echo "<pre>";print_r('ici');echo "</pre>";exit;
+				$this->get_by_url('/404');
+			}
 		}
+
 		// si on ne trouve rien, on renvoi une erreur
 		if (!$this->exists())
 		{
@@ -102,7 +105,7 @@ class itemPage extends _items
 	{
 	//	Save first
 		parent::save();
-	
+
 	//	If this page has a specified parent...
 		if (isset($this['parent']) && !$this['parent']->is_empty())
 		{
@@ -127,7 +130,7 @@ class itemPage extends _items
 		$mime = $this->get_authorised_mime();
 	//	Convert the GC content type to MIME content types
 		$content_type = $mime[$this['type']['content_type']];
-		
+
 	//	Print the header
 		header('HTTP/1.0 '.$this['type']['http_status']);
 		header('Content-Type: '.$content_type.'; charset=utf-8');
@@ -300,14 +303,14 @@ class itemPage extends _items
 	public function get_siblings($params = null, $self = true)
 	{
 		$tree = (array) registry::get(registry::legacy_index);
-		
+
 		$b = new bunch(null, null, $this->get_env());
-		
+
 		foreach ($tree as $parent => $children)
 		{
 			if (in_array($this->get_nickname(), $children))
 			{
-				
+
 				if ($self === false)
 				{
 					$index = array_search($this->get_nickname(), $children);
@@ -330,7 +333,7 @@ class itemPage extends _items
 	{
 		$page = $this->get_nickname();
 		$parent = (is_a($parent, 'itemPage')) ? $parent->get_nickname() : $parent;
-		
+
 		while ($page = $this->_get_parent_nickname($page))
 		{
 			if ($parent == $page) return true;
@@ -348,12 +351,12 @@ class itemPage extends _items
 	{
 		$page = $this->get_nickname();
 		$child = (is_a($child, 'itemPage')) ? $child->get_nickname() : $child;
-		
+
 		while ($child = $this->_get_parent_nickname($child))
 		{
 			if ($child == $page) return true;
 		}
-		
+
 		return false;
 	}
 /**
@@ -365,7 +368,7 @@ class itemPage extends _items
 	protected function _get_parent_nickname($page)
 	{
 		$return = false;
-		
+
 		// var_dump();
 		if (is_a($page, 'itemPage') || mb_strpos($page, 'page_') !== false)
 		{
@@ -382,7 +385,7 @@ class itemPage extends _items
 				}
 			}
 		}
-		
+
 		return $return;
 	}
 /**
