@@ -36,12 +36,12 @@ $(document).bind('unlock', function()
 		$card = $item.find('.card');
 		$back = $card.find('.back');
 		url = $item.data('url');
-		
+
 		$card.addClass('preview');
 		$back.find('.preview iframe').attr('src', url);
 	});
-	
-	
+
+
 /*********************************************************************************************
 /**	* Asleep / live
  	* @author	@mvdandrieux
@@ -55,7 +55,6 @@ $(document).bind('unlock', function()
 	//	live = $item.data('live'); /* #4.3 */
 		$card = $item.find('.card');
 		$back = $card.find('.back');
-
 	//	Change live status
 		$.ajx(
 		{
@@ -69,10 +68,14 @@ $(document).bind('unlock', function()
 		//	Done
 			done:function()
 			{
-				console.log(status);
+				// console.log(status);
 			//	Change the display
 			//	$item.attr('data-live', live).data('live', live);/* #4.3 */
 				$item.attr('data-status', status).data('status', status);
+			},
+			fail:function()
+			{
+				console.log('error');
 			}
 		});
 	});
