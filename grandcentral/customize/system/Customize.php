@@ -30,8 +30,8 @@ class Customize{
 				$this->tree[$key_declination][$key_detail] = array();
 				foreach ($detail as $key_img => $detail_img) {
 					$temp = media('custom/declination/'.$key_declination.'/'.$key_detail.'/'.$detail_img->get_key());
-					$this->tree[$key_declination][$key_detail][$detail_img->get_name()] = $temp->get_url();
-					// $this->tree[$key_declination][$key_detail][$detail_img->get_name()] = $temp->thumbnail(720,null)->get_url();
+					// $this->tree[$key_declination][$key_detail][$detail_img->get_name()] = $temp->get_url();
+					$this->tree[$key_declination][$key_detail][$detail_img->get_name()] = $temp->thumbnail(720,null)->get_url();
 				}
 			}
 		}
