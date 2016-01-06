@@ -173,7 +173,8 @@ abstract class _fieldsSelector extends _fields
 		//	Default order
 			$params['order()'] = 'title';
 		//	Get all status
-			$params['live'] = array(true, false);
+		//	$params['live'] = array(true, false);
+			$params['status'] = array('live', 'asleep');
 		//	Refine ?
 			if (isset($refine)) $params['title'] = '%'.$refine.'%';
 			// print'<pre>';print_r($value);print'</pre>';
