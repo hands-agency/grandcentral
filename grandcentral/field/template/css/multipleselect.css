@@ -43,6 +43,10 @@ ol>li[data-type="multipleselect"] .field li:hover
 	-webkit-box-shadow: 0 0 4px #419BF9;
 	box-shadow: 0 0 4px #419BF9;
 }
+ol>li[data-type="multipleselect"] .field li[data-status="asleep"]
+{
+	opacity:0.6;
+}
 
 /* Fields */
 ol>li[data-type="multipleselect"] .field li .icon
