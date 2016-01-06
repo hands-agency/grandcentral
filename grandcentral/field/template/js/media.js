@@ -5,7 +5,7 @@
 	$data = $field.find('ol.data');
 	$media = $data.find('li');
 	$upload = $('li[data-type="media"] .wrapper ol.data');
-	$add = $('li[data-type="media"] .wrapper .add, li[data-type="media"] ol.data:empty'); /*TODO Catch empty .data ! */
+	add = 'li[data-type="media"] .wrapper .add, li[data-type="media"] ol.data:empty';
 	path = $media.find('input').val();
 	
 //	Upload droppable
@@ -63,7 +63,7 @@
 	});
 	
 //	Add media
-	$(document).on('click', $add, function()
+	$(document).on('click', add, function()
 	{
 		openContext(
 		{
@@ -91,4 +91,4 @@
 //	Sortable
 	$data.sortable();
 	
-})(jQuery); 
+})(jQuery);
