@@ -166,14 +166,17 @@ class image extends media
 			if (isset($info['APP13']))
 			{
 				$data = iptcparse($info['APP13']);
-				foreach ($data as $key => $value)
+				if (is_array($data))
 				{
-					if (isset($iptcHeaders[$key])) $key = $iptcHeaders[$key];
-					$iptc[$key] = count($value) > 1 ? $value : $value[0];
+					foreach ($data as $key => $value)
+					{
+						if (isset($iptcHeaders[$key])) $key = $iptcHeaders[$key];
+						$iptc[$key] = count($value) > 1 ? $value : $value[0];
+					}
+					return $iptc;
 				}
-				return $iptc;
 			}
-      	}
+    }
 	}
 /**
  * Retourne le chemin vers le thumbnail
@@ -393,7 +396,7 @@ class image extends media
 			$alt = !empty($this->alt) ? $this->alt : $this->name;
 			$data = null;
 		 	if (!empty($this->attrdata))
-			{	
+			{
 				foreach ($this->attrdata as $key => $value) $data .= ' data-'.$key.'="'.$value.'"';
 			}
 			return '<img src="'.$this->get_url().'" alt="'.htmlentities($alt).'" '.trim($data).' />';
