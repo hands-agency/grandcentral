@@ -330,6 +330,8 @@ class image extends media
 	public function resize($width, $height, $keep_proportions = true)
 	{
 		set_time_limit(10);
+		$this->set_memory();
+		// ini_set( 'memory_limit', '1024M' );
 
 		if (!$this->exists() || (empty($width) && empty($height))) return $this;
 		$this->get();
@@ -374,7 +376,11 @@ class image extends media
 
         return $new_image;
     }
-
+	/**
+	 * Prints the image in a <img tag>
+	 *
+	 * @access	public
+	 */
     public function set_alt_from_iptc($field = 'ObjectName')
     {
     	$iptc = $this->get_iptc();
@@ -401,5 +407,39 @@ class image extends media
 			}
 			return '<img src="'.$this->get_url().'" alt="'.htmlentities($alt).'" '.trim($data).' />';
 		}
+/**
+ * Dynamic memory allocation from http://php.net/manual/en/function.imagecreatefromjpeg.php#64155
+ *
+ * @access	private
+ */
+	private function set_memory()
+	{
+		if (!$this->exists()) return false;
+    $imageInfo = getimagesize($this->root);
+
+    $MB = 1048576;  // number of bytes in 1M
+    $K64 = 65536;    // number of bytes in 64K
+    $TWEAKFACTOR = 1.5;  // Or whatever works for you
+    $memoryNeeded = round( ( $imageInfo[0] * $imageInfo[1]
+                                           * $imageInfo['bits']
+                                           * 4/8//$imageInfo['channels'] / 8
+                             + $K64
+                           ) * $TWEAKFACTOR
+                         );
+    //ini_get('memory_limit') only works if compiled with "--enable-memory-limit" also
+    //Default memory limit is 8MB so well stick with that.
+    //To find out what yours is, view your php.ini file.
+    $memoryLimit = 8 * $MB;
+    if (function_exists('memory_get_usage') && memory_get_usage() + $memoryNeeded > $memoryLimit)
+    {
+        $newLimit = $memoryLimit + ceil((memory_get_usage() + $memoryNeeded - $memoryLimit) / $MB);
+        ini_set( 'memory_limit', $newLimit . 'M' );
+        return true;
+    }
+		else
+		{
+			return false;
+		}
+  }
 }
 ?>
