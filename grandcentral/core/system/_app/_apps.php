@@ -486,6 +486,8 @@ abstract class _apps
 			{
 				foreach ($files['lib'] as $file)
 				{
+				//	Add slash
+					if (mb_strpos($file, '/') !== 0) $file = '/'.$file;
 					$libs[] = $app->get_systemroot().$file;
 				}
 			}
