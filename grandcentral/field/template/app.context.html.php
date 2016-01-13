@@ -1,12 +1,14 @@
+<h1>Configure</h1>
 <?php if ($templates): ?>
 <div class="template">
-	<h1>Templates</h1>
+	<h2>Templates</h2>
 	<?= $fieldTemplate; ?>
 </div>
 <?php endif ?>
 
+<?php if (isset($fields) && !empty($fields)): ?>
 <div class="param">
-	<h1>Params</h1>
+	<h2>Params</h2>
 	<form>
 		<fieldset>
 			<ol>
@@ -17,5 +19,6 @@
 		</fieldset>
 	</form>
 </div>
+<?php endif ?>
 
 <button class="done" data-feathericon="&#xe094"> Done</button>

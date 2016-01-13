@@ -320,7 +320,7 @@
 		{
 			context = $('.adminContext[data-template="'+param.template+'"]');
 		}
-	//	Other wise, append a new Context area
+	//	Otherwise, append a new Context area
 		else
 		{
 			adminContext = '<aside class="adminContext"><button type="button" class="close"></button><div><!-- Welcome Ajax --></div></aside>';

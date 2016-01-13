@@ -60,6 +60,16 @@ input[type="search"]
 	line-height:0;
 }
 
+/* Reset Bootstrap */
+.close {
+  float: none;
+  font-weight: normal;
+  line-height: auto;
+  text-shadow: auto;
+  filter: none;
+  opacity:1;
+}
+
 /********************************************************************************************/
 /* Body
 /********************************************************************************************/
@@ -614,7 +624,11 @@ ol .placeholder
 .contextOpened1 .adminContext
 {
 	width:40%;
-	padding:75px 45px 45px 45px;
+	padding:100px 45px 45px 45px;
+}
+.contextOpened1 .adminContext:nth-last-child(1)>button.close
+{
+	right:40%;
 }
 
 .contextOpened2 #adminContent,
@@ -626,11 +640,19 @@ ol .placeholder
 .contextOpened2 .adminContext
 {
 	width:30%;
-	padding:75px 45px 45px 45px;
+	padding:100px 45px 45px 45px;
 }
 .contextOpened2 .adminContext:nth-last-child(2)
 {
 	right:30%;
+}
+.contextOpened2 .adminContext:nth-last-child(1)>button.close
+{
+	right:30%;
+}
+.contextOpened2 .adminContext:nth-last-child(2)>button.close
+{
+	right:60%;
 }
 
 /* Context Section header */
@@ -990,38 +1012,68 @@ footer
 /********************************************************************************************/
 .adminContext
 {
-	overflow:auto;
+	/*overflow:auto; Let's try without */ 
 	background:#eee;
 	border-left:1px solid #ddd;
+	z-index:2;
 }
 .adminContext>button.close
 {
-	position:absolute;
-	top:15px;
-	left:50%;
-	margin-left:-25px !important;
-	z-index:2;
+	position:fixed !important;
+	top:50%;
+	/*right:40%; It's up there, with the panel sizes */
+	margin-right:-25px !important;
+	z-index:100;
 	width:50px !important;
 	height:50px !important;
+	border-radius:50% !important;
+	background:#FFC000 !important;
+	color:#fff !important;
+    -webkit-transform: scale(0);
+         -o-transform: scale(0);
+            transform: scale(0);
+	-webkit-transition: all .15s ease-out; 
+	-moz-transition: all .15s ease-out; 
+	-o-transition: all .15s ease-out; 
+	transition: all .15s ease-out;
+}
+.contextOpened1 .adminContext>button.close
+{
+    -webkit-transform: scale(0.9);
+         -o-transform: scale(0.9);
+            transform: scale(0.9);
+}
+.adminContext>button.close:hover
+{
+    -webkit-transform: scale(1);
+         -o-transform: scale(1);
+            transform: scale(1);
 }
 .adminContext>button.close:after
 {
-	font-size:30px !important;
-	line-height:50px !important;
-	color:#999;
+	color:#fff !important;
+	content:'\e055' !important;
+	font-family:"feather";
+	font-size:18px !important;
 }
 .adminContext h1
 {
 	font-family:"ProximaNova-Regular";
-	font-size:40px;
-	margin-bottom:20px;
-	clear:left;
+	font-size:18px;
+	text-transform:uppercase;
+	height:72px;
+	line-height:72px;
 	text-align:center;
+	background:rgba(0,0,0,0.1);
+	width:100%;
+	position:absolute;
+	top:0;
+	left:0;
 }
 .adminContext h2
 {
 	font-family:"ProximaNova-Regular";
-	margin:0 0 20px 0;
+	margin:0 0 10px 0;
 	border-bottom:1px solid #ccc;
 	padding:0 0 5px 0;
 	text-align:center;
@@ -1456,17 +1508,14 @@ footer
 	position:absolute;
 	z-index:2;
 	border:none;
-	background:transparent !important;
+	background:transparent;
 	color:#000;
-	opacity:0.65;
 	width:26px;
 	height:26px;
 	cursor:pointer;
 	font-size:12px;
 	padding:0 !important;
-}
-#grandCentralAdmin button.close:hover
-{
+	text-shadow:none;
 	opacity:1;
 }
 #grandCentralAdmin button.close:after,
@@ -1474,9 +1523,10 @@ footer
 {
 	content:'✕';
 	font-size:12px;
+	opacity:1;
 }
-#grandCentralAdmin button.close:hover,
-#grandCentralAdmin button.delete:hover
+#grandCentralAdmin button.close:after:hover,
+#grandCentralAdmin button.delete:after:hover
 {
 	opacity:1;
 }

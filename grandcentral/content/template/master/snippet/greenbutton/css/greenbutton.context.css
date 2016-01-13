@@ -126,9 +126,13 @@
 }
 .greenbutton-choices li .and .back:before
 {
-	content:'';
+	content:'\e039';
 }
 .greenbutton-choices li .and .reach:before
 {
-	content:'';
+	content:'\e000';
+}
+.greenbutton-choices li .and .new:before
+{
+	content:'\e040';
 }

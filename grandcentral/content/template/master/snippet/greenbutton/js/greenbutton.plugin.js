@@ -86,23 +86,27 @@
 			$(document).on('click', '#greenbutton-default, .greenbutton-choices a', function()
 			{
 				method = $(this).data('action');
+				canbesaved = ['live', 'live_reach', 'live_back'];
 
 			//	Create & execute the method
 				var fn = plugin[method];
 				fn();
 				
-			//	Save as the prefered method
+			//	Save as the prefered method if authorized
 				sectionkey = $('#adminContent section.active').data('key');
-				$.api(
+				if (canbesaved[method]) /* TODO */
 				{
-					method:'post',
-					url:'api.json/v1/pref/greenbutton/'+sectionkey+'/'+method,
-				},{
-					done:function(msg)
+					$.api(
 					{
-					//	console.log(msg);
-					}
-				});
+						method:'post',
+						url:'api.json/v1/pref/greenbutton/'+sectionkey+'/'+method,
+					},{
+						done:function(msg)
+						{
+						//	console.log(msg);
+						}
+					});
+				}
 			});
 			
 		//	Prevent regular submit
@@ -294,6 +298,16 @@
 			});
 		}
 
+	//	Go live and start anew
+		plugin.live_new = function()
+		{
+			plugin.live(function()
+			{
+			//	Go to the form page
+				document.location.href = ADMIN_URL+'/edit?item='+_GET['item'];
+			});
+		}
+
 	//	Asleep
 		plugin.asleep = function()
 		{
@@ -315,27 +329,36 @@
 		plugin.googlepreview = function()
 		{
 		//	Save a draft
-			plugin.save('draft', function()
+			plugin.save('draft', function(r)
 			{
+			//	Some vars
+				key = r.data.key;
+				wfUrl = SITE_URL+'/wf?key='+key;
+				
 			//	Open preview
-				openSite(CURRENTEDITED_URL);
-			//	Open the context
+				openSite(wfUrl);
+			//	Close choices, open the preview
+				closeContext('master/snippet/greenbutton/greenbutton.context');
 				openContext(
 				{
 					app:'content',
 					template:'master/snippet/googlepreview',
-					item:'page',
-					id:1,
 				}, function()
 				{	
 					$site = $('#siteContent');
+				//	We update the preview based on real <head> data
 					$site.load(function()
 					{
+					//	Some vars
 						title = $site.contents().find('title').html();
 						descr = $site.contents().find('meta[name="description"]').attr('content');
+						url = $site.contents().find('link[rel="canonical"]').attr('content');
 						$preview = $('.adminContext[data-template="master/snippet/googlepreview"] .true');
+						
+					//	Update the Preview
 						$preview.find('.title a').html(title);
 						$preview.find('.descr a').html(descr);
+						$preview.find('.url a').html(url);
 					});
 				});
 			});
@@ -363,7 +386,7 @@
 	//	Save and start anew
 		plugin.save_new = function()
 		{
-			plugin.live(function()
+			plugin.save(null, function()
 			{
 			//	Go to the form page
 				document.location.href = ADMIN_URL+'/edit?item='+_GET['item'];

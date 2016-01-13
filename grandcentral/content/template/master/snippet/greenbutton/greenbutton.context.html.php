@@ -1,3 +1,4 @@
+<h1>Options</h1>
 <?php foreach ($actions as $action): ?>
 <?php
 	if (isset($currentCat) && $currentCat != $action['cat']->get()) echo '</ul>';
@@ -12,8 +13,9 @@
 				<i data-feathericon="<?=$action['icon']->get()?>"></i>
 				<span class="title"><?=$action['title']?></span>
 			</a>
-			<?php if ($action['andback']->get() === true) $and .= '<a class="back" data-action="'.$action['key'].'_back"></a>'; ?>
-			<?php if ($action['andreach']->get() === true) $and .= '<a class="reach" data-action="'.$action['key'].'_reach"></a>'; ?>
+			<?php if (isset($action['andback']) && $action['andback']->get() === true) $and .= '<a class="back" data-action="'.$action['key'].'_back"></a>'; ?>
+			<?php if (isset($action['andreach']) && $action['andreach']->get() === true) $and .= '<a class="reach" data-action="'.$action['key'].'_reach"></a>'; ?>
+			<?php if (isset($action['andnew']) && $action['andnew']->get() === true) $and .= '<a class="new" data-action="'.$action['key'].'_new"></a>'; ?>
 			<?php if ($and) echo '<div class="and">'.$and.'</div>'; ?>
 		</div>
 	</li>
