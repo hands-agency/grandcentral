@@ -6,19 +6,15 @@
 </div>
 <?php endif ?>
 
-<?php if (isset($fields) && !empty($fields)): ?>
 <div class="param">
 	<h2>Params</h2>
 	<form>
 		<fieldset>
-			<ol>
-			<?php foreach ($fields as $field) : ?>
+			<ol data-nodata="There are no parameters"><?php foreach ($fields as $field) : ?>
 				<li data-type="<?= $field->get_type(); ?>" data-key="<?= $field->get_key(); ?>"><?= $field; ?></li>
-			<?php endforeach; ?>
-			</ol>
+			<?php endforeach; ?></ol>
 		</fieldset>
 	</form>
 </div>
-<?php endif ?>
 
 <button class="done" data-feathericon="&#xe094"> Done</button>
