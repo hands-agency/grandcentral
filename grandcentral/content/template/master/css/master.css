@@ -624,6 +624,9 @@ ol .placeholder
 .contextOpened1 .adminContext
 {
 	width:40%;
+}
+.contextOpened1 .adminContext>div
+{
 	padding:100px 45px 45px 45px;
 }
 .contextOpened1 .adminContext:nth-last-child(1)>button.close
@@ -640,6 +643,9 @@ ol .placeholder
 .contextOpened2 .adminContext
 {
 	width:30%;
+}
+.contextOpened2 .adminContext>div
+{
 	padding:100px 45px 45px 45px;
 }
 .contextOpened2 .adminContext:nth-last-child(2)
@@ -1012,10 +1018,14 @@ footer
 /********************************************************************************************/
 .adminContext
 {
-	/*overflow:auto; Let's try without */ 
 	background:#eee;
 	border-left:1px solid #ddd;
 	z-index:2;
+}
+.adminContext>div
+{
+	overflow:auto;
+	height:100vh;
 }
 .adminContext>button.close
 {
@@ -1036,8 +1046,16 @@ footer
 	-moz-transition: all .15s ease-out; 
 	-o-transition: all .15s ease-out; 
 	transition: all .15s ease-out;
+	-webkit-transition-delay:3s;
+	transition-delay:3s;
 }
 .contextOpened1 .adminContext>button.close
+{
+    -webkit-transform: scale(0.7);
+         -o-transform: scale(0.7);
+            transform: scale(0.7);
+}
+.adminContext:hover>button.close
 {
     -webkit-transform: scale(0.9);
          -o-transform: scale(0.9);
@@ -1069,6 +1087,7 @@ footer
 	position:absolute;
 	top:0;
 	left:0;
+	z-index:2;
 }
 .adminContext h2
 {
