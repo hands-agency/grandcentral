@@ -86,7 +86,7 @@
 			$(document).on('click', '#greenbutton-default, .greenbutton-choices a', function()
 			{
 				method = $(this).data('action');
-				canbesaved = ['live', 'live_reach', 'live_back'];
+				canbesaved = ['live', 'live_reach', 'live_back', 'live_new'];
 
 			//	Create & execute the method
 				var fn = plugin[method];
@@ -94,7 +94,8 @@
 				
 			//	Save as the prefered method if authorized
 				sectionkey = $('#adminContent section.active').data('key');
-				if (canbesaved[method]) /* TODO */
+				console.log(canbesaved.indexOf(method));
+				if (canbesaved.indexOf(method) != -1)
 				{
 					$.api(
 					{
@@ -250,7 +251,8 @@
 			plugin.save(null, function()
 			{
 			//	Reach
-				document.location.href = CURRENTEDITED_URL;
+				openSite(CURRENTEDITED_URL);
+			//	document.location.href = CURRENTEDITED_URL;
 			});
 		}
 
@@ -294,7 +296,8 @@
 			plugin.live(function()
 			{
 			//	Reach
-				document.location.href = CURRENTEDITED_URL;
+				openSite(CURRENTEDITED_URL);
+			//	document.location.href = CURRENTEDITED_URL;
 			});
 		}
 
