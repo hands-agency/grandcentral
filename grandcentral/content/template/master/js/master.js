@@ -376,22 +376,20 @@
 	openSite = function(url)
 	{
 	//	Some vars
-		$siteNav = $('#siteNav');
+		$siteNav = $('header .site');
 		$iframe = $('#grandCentralSite iframe');
 		
 		$sitetree = $siteNav.find('.sitetree');
-		$edit = $siteNav.find('.edit');
-		$admin = $siteNav.find('.admin');
+		$edit = $siteNav.find('.actionbutton button');
 		
+	//	Open site
 		if ($('#main').hasClass('siteOpened') === false)
 		{
 		//	Open at the right page
 			$('#main').addClass('siteOpened');
-			if (url && $iframe.is(':empty')) $iframe.attr('src', url);
+			if (url && $iframe.is('[src]') == false) {$iframe.attr('src', url);}
 		
-			$('#grandCentralSite').height($(window).height());
-		
-		//	sitetree
+		//	Sitetree
 			$sitetree.on('click', function()
 			{
 			//	Go to edit page
@@ -400,29 +398,18 @@
 		
 		//	Edit
 			$edit.on('click', function()
-			{			
+			{
 				nickname = $iframe.contents().find('meta[property="gc:item"]').attr('content');
 				item = nickname.split('_')[0];
 				id = nickname.split('_')[1];
 			//	Go to edit page
 				document.location.href = ADMIN_URL+'/edit?item='+item+'&id='+id;
 			});
-		
-		//	Back to admin
-			$admin.on('click', function()
-			{
-				$('html, body').animate({
-	       			 scrollTop: 150
-				    }, 300);
-			});
-		
-		//	Update edit button
-		//	window.history.pushState('string', 'chose', '/');
 		}
+	//	Back to admin
 		else
 		{
 			$('#main').removeClass('siteOpened');
-			$('#grandCentralSite').height('0');
 		}
 	}
 	
