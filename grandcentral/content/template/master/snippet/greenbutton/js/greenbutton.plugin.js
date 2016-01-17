@@ -357,11 +357,11 @@
 						descr = $site.contents().find('meta[name="description"]').attr('content');
 						url = $site.contents().find('link[rel="canonical"]').attr('content');
 						$preview = $('.adminContext[data-template="master/snippet/googlepreview"] .true');
-						
+
 					//	Update the Preview
-						$preview.find('.title a').html(title);
-						$preview.find('.descr a').html(descr);
-						$preview.find('.url a').html(url);
+						$preview.append('<div class="title"><a href="">'+title+'</a></div>');
+						$preview.append('<div class="descr"><a href="">'+descr+'</a></div>');
+						$preview.append('<div class="url"><a href="">'+url+'</a></div>');
 					});
 				});
 			});
