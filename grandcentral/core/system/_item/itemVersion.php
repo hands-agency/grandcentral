@@ -58,15 +58,25 @@ class itemVersion extends _items
 		{
 			foreach ((array) $site['url'] as $key => $url)
 			{
-				if (!defined('VERSION_DEFAULT'))
+				if ($site['key'] == SITE_KEY)
 				{
-					define('VERSION_DEFAULT', $key);
-				}
-				if ($site['key'] == SITE_KEY && !empty($key))
-				{
-					$version = 'VERSION_';
-					// define($version.'KEY', mb_strtoupper($key));
-					define($version.''.mb_strtoupper($key), $url);
+					if (!empty($key))
+					{
+						if (!defined('VERSION_DEFAULT'))
+						{
+								define('VERSION_DEFAULT', $key);
+						}
+						$version = 'VERSION_';
+						// define($version.'KEY', mb_strtoupper($key));
+						define($version.''.mb_strtoupper($key), $url);
+					}
+					else
+					{
+						$q = 'SELECT lang FROM version LIMIT 1';
+						$db = database::connect('site');
+						$r = $db->query($q);
+						define('VERSION_DEFAULT', $r['data'][0]['lang']);
+					}
 				}
 			}
 		}
