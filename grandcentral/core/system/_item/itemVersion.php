@@ -64,7 +64,7 @@ class itemVersion extends _items
 					{
 						if (!defined('VERSION_DEFAULT'))
 						{
-								define('VERSION_DEFAULT', $key);
+							define('VERSION_DEFAULT', $key);
 						}
 						$version = 'VERSION_';
 						// define($version.'KEY', mb_strtoupper($key));
