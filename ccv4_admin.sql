@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Dec 16, 2015 at 04:02 PM
+-- Generation Time: Jan 20, 2016 at 10:06 AM
 -- Server version: 5.5.42
 -- PHP Version: 5.6.10
 
@@ -175,7 +175,7 @@ INSERT INTO `form` (`id`, `key`, `title`, `descr`, `template`, `action`, `method
 (177, 'admin_site', 'admin_site', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"id","type":"number","readonly":true},"key":{"key":"key","label":"key","type":"text"},"title":{"key":"title","label":"title","type":"text","required":"1","min":"0","max":"255"},"created":{"key":"created","label":"created","type":"date"},"updated":{"key":"updated","label":"updated","type":"date"},"status":{"key":"status","label":"status","type":"text"},"defaultversion":{"key":"defaultversion","label":"defaultversion","type":"number","required":"0","min":"","max":""},"owner":{"key":"owner","label":"owner","type":"text"}}', '2014-05-29 07:02:14', '2015-04-28 11:24:57', 1, 'live', 2),
 (178, 'admin_const', 'admin_const', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"id","type":"number","readonly":true},"key":{"key":"key","label":"key","type":"text"},"title":{"key":"title","label":"title","type":"i18n","field":"fieldText"},"version":{"key":"version","label":"version","type":"text"},"created":{"key":"created","label":"created","type":"text"},"updated":{"key":"updated","label":"updated","type":"text"},"status":{"key":"status","label":"status","type":"text"},"owner":{"key":"owner","label":"owner","type":"text"}}', '2014-05-30 04:55:24', '2014-06-02 12:12:22', 1, 'live', 2),
 (179, 'admin_item', 'admin_item', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"id","type":"number","readonly":true},"key":{"key":"key","label":"key","type":"text","required":true},"title":{"key":"title","label":"title","type":"i18n","field":"fieldText"},"icon":{"key":"icon","label":"icon","type":"text","required":"0","min":"0","max":"100"},"attr":{"key":"attr","label":"attr","type":"attr"},"system":{"key":"system","label":"system","type":"bool","required":"0"},"created":{"key":"created","label":"created","type":"text"},"updated":{"key":"updated","label":"updated","type":"text"},"status":{"key":"status","label":"status","type":"text"},"hasurl":{"key":"hasurl","label":"hasurl","type":"bool","required":"0"},"owner":{"key":"owner","label":"owner","type":"text"}}', '2014-05-31 03:49:54', '2014-06-06 23:55:16', 1, 'live', 2),
-(184, 'admin_greenbutton', 'admin_greenbutton', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"id","type":"number","readonly":true},"key":{"key":"key","label":"key","type":"text"},"title":{"key":"title","label":"title","type":"i18n","field":"fieldText"},"created":{"key":"created","label":"created","type":"date"},"updated":{"key":"updated","label":"updated","type":"date"},"status":{"key":"status","label":"status","type":"text"},"icon":{"key":"icon","label":"icon","type":"text","required":"0","min":"0","max":"32"},"owner":{"key":"owner","label":"owner","type":"text"},"cat":{"key":"cat","label":"cat","type":"text","required":"0","min":"0","max":"100"},"andback":{"key":"andback","label":"andback","type":"bool","required":"0"},"andreach":{"key":"andreach","label":"andreach","type":"bool","required":"0"},"live":{"key":"live","label":"live","type":"text"},"color":{"key":"color","label":"color","type":"text","required":"0","min":"0","max":"8"}}', '2014-06-02 14:50:00', '2015-08-13 21:57:14', 1, 'live', 2),
+(184, 'admin_greenbutton', 'admin_greenbutton', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"id","type":"number","readonly":true},"key":{"key":"key","label":"key","type":"text"},"title":{"key":"title","label":"title","type":"i18n","field":"fieldText"},"created":{"key":"created","label":"created","type":"date"},"updated":{"key":"updated","label":"updated","type":"date"},"status":{"key":"status","label":"status","type":"text"},"icon":{"key":"icon","label":"icon","type":"text","required":"0","min":"0","max":"32"},"owner":{"key":"owner","label":"owner","type":"text"},"cat":{"key":"cat","label":"cat","type":"text","required":"0","min":"0","max":"100"},"andback":{"key":"andback","label":"andback","type":"bool","required":"0"},"andreach":{"key":"andreach","label":"andreach","type":"bool","required":"0"},"andnew":{"key":"andnew","label":"andnew","type":"bool","required":"0"},"live":{"key":"live","label":"live","type":"text"},"color":{"key":"color","label":"color","type":"text","required":"0","min":"0","max":"8"}}', '2014-06-02 14:50:00', '2016-01-12 20:32:40', 1, 'live', 2),
 (185, 'admin_version', 'admin_version', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"id","type":"number","readonly":true},"key":{"key":"key","label":"key","type":"text"},"title":{"key":"title","label":"title","type":"text","required":"1","min":"0","max":"255"},"lang":{"key":"lang","label":"lang","type":"text","required":"1","min":"0","max":"32"},"created":{"key":"created","label":"created","type":"text"},"updated":{"key":"updated","label":"updated","type":"text"},"status":{"key":"status","label":"status","type":"text"},"owner":{"key":"owner","label":"owner","type":"text"}}', '2014-06-02 16:11:28', '2014-06-02 16:11:28', 1, 'live', 2),
 (186, 'admin_api', 'admin_api', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","label":"id","type":"number","readonly":true},"title":{"key":"title","label":"title","type":"text","required":"0","min":"0","max":"255"},"method":{"key":"method","label":"method","type":"text","required":"0","min":"0","max":"4"},"key":{"key":"key","label":"key","type":"text"},"owner":{"key":"owner","label":"owner","type":"text"},"created":{"key":"created","label":"created","type":"date"},"updated":{"key":"updated","label":"updated","type":"date"},"status":{"key":"status","label":"status","type":"text"}}', '2015-02-18 16:42:36', '2015-02-18 16:42:36', 1, 'live', 0),
 (188, 'hands_page_zoning', 'hands_page_zoning', '', 'default', 'post', 'post', '', '', '{"id":{"key":"id","type":"hidden","readonly":true},"section":{"key":"section","type":"zoning"}}', '2015-08-12 01:38:19', '2015-08-12 01:38:19', 1, 'live', 0),
@@ -200,6 +200,7 @@ CREATE TABLE `greenbutton` (
   `cat` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `andback` tinyint(1) NOT NULL,
   `andreach` tinyint(1) NOT NULL,
+  `andnew` tinyint(1) NOT NULL,
   `live` tinyint(1) NOT NULL,
   `color` varchar(8) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -208,24 +209,23 @@ CREATE TABLE `greenbutton` (
 -- Dumping data for table `greenbutton`
 --
 
-INSERT INTO `greenbutton` (`id`, `key`, `title`, `created`, `updated`, `status`, `icon`, `owner`, `cat`, `andback`, `andreach`, `live`, `color`) VALUES
-(1, 'save', '{"en":"Save","fr":"Sauvegarder"}', '2014-06-02 14:50:17', '2015-08-13 22:32:46', 'live', '', '2', 'save', 1, 1, 0, '388E3C'),
-(2, 'asleep', '{"en":"Put asleep","fr":"Mettre en sommeil"}', '2014-06-02 15:00:50', '2015-08-13 22:32:48', 'live', '', '2', 'status', 1, 0, 0, '01579B'),
-(3, 'new', '{"en":"New","fr":"Ajouter"}', '2014-06-02 15:01:05', '2015-08-13 22:25:42', 'live', '', '2', '', 0, 0, 0, '6cbf2d'),
-(5, 'save_copy', '{"en":"Save as a copy","fr":"Sauvegarder comme copie"}', '2014-06-02 14:53:57', '2015-08-13 22:32:31', 'live', '', '2', 'save', 0, 0, 0, '66BB6A'),
-(6, 'save_new', '{"en":"Save & start a new one","fr":"Sauvegarder & ouvrir un nouveau"}', '2014-06-02 15:02:35', '2015-08-13 22:32:33', 'live', '', '2', 'save', 0, 0, 0, '81C784'),
-(7, 'trash', '{"en":"Move to trash","fr":"Jeter à la corbeille"}', '2014-06-02 14:59:21', '2015-08-13 22:32:43', 'live', '', '2', 'archive', 1, 0, 0, '666666'),
-(8, 'live', '{"en":"Go live","fr":"Publier"}', '2014-06-02 15:00:35', '2015-08-13 22:32:51', 'live', '', '2', 'status', 1, 1, 0, '6cbf2d'),
-(9, 'workflow', '{"en":"Back to the workflow","fr":"Remettre dans le workflow"}', '2014-06-02 15:00:00', '2015-08-13 22:32:39', 'live', '', '2', '', 0, 0, 0, '9C27B0'),
-(10, 'buildapp', '{"en":"Build an app!","fr":"Constuire une app!"}', '2013-03-22 08:57:22', '2015-08-13 22:32:29', 'live', '', '2', '', 0, 0, 0, ''),
-(11, 'newpage', '{"en":"Add a page to the tree","fr":"Ajouter une page à l''arborescence"}', '2013-10-23 02:14:09', '2015-08-13 22:33:37', 'live', '', '2', '', 0, 0, 0, ''),
-(12, 'preview', '{"en":"Preview","fr":"Previsualisation"}', '2013-10-28 10:39:50', '2015-08-13 22:16:48', 'live', '', '2', 'check', 0, 0, 0, '607D8B'),
-(14, 'newsystem', '{"en":"Add to the system","fr":"Ajouter au système"}', '2014-07-28 11:11:39', '2015-08-13 22:32:37', 'live', '', '2', '', 0, 0, 0, '4A148C'),
-(15, 'newworkflow', '{"en":"New workflow","fr":"Nouveau workflow"}', '2014-08-11 21:19:29', '2015-08-13 22:32:15', 'live', '', '2', '', 0, 0, 0, ''),
-(16, 'googlepreview', '{"en":"See what Google sees","fr":"Voyez ce que Google vois"}', '2015-01-06 21:28:39', '2015-08-13 22:16:57', 'live', '', 'human_2', 'check', 0, 0, 0, '546E7A'),
-(17, 'savecontext_zoning', '{"en":"Save section","fr":"Sauvegarder cette section"}', '2015-04-20 14:44:19', '2015-08-13 22:32:42', 'live', '', 'human_2', '', 0, 0, 0, '4CAF50'),
-(18, 'savecontext_multipleselect', '{"en":"Sauvegarder les modifications","fr":"Save changes"}', '2015-04-20 18:33:12', '2015-08-15 14:58:04', 'live', '', 'human_2', '', 0, 0, 0, '4CAF50'),
-(19, 'edititem', '{"en":"Edit Item","fr":"Modifier l''item"}', '2015-08-13 22:27:48', '2015-08-13 22:27:48', 'live', '&#xe079', 'human_2', '', 0, 0, 0, '7E57C2');
+INSERT INTO `greenbutton` (`id`, `key`, `title`, `created`, `updated`, `status`, `icon`, `owner`, `cat`, `andback`, `andreach`, `andnew`, `live`, `color`) VALUES
+(1, 'save', '{"en":"Save","fr":"Sauvegarder"}', '2014-06-02 14:50:17', '2016-01-12 20:33:07', 'live', '', 'human_2', 'save', 1, 1, 1, 0, '388E3C'),
+(2, 'asleep', '{"en":"Put asleep","fr":"Mettre en sommeil"}', '2014-06-02 15:00:50', '2016-01-12 20:33:18', 'live', '', 'human_2', 'status', 1, 0, 1, 0, '01579B'),
+(3, 'new', '{"en":"New","fr":"Ajouter"}', '2014-06-02 15:01:05', '2015-08-13 22:25:42', 'live', '', 'human_2', '', 0, 0, 0, 0, '6cbf2d'),
+(5, 'save_copy', '{"en":"Save as a copy","fr":"Sauvegarder comme copie"}', '2014-06-02 14:53:57', '2015-08-13 22:32:31', 'live', '', 'human_2', 'save', 0, 0, 0, 0, '66BB6A'),
+(7, 'trash', '{"en":"Move to trash","fr":"Jeter à la corbeille"}', '2014-06-02 14:59:21', '2015-08-13 22:32:43', 'live', '', 'human_2', 'status', 1, 0, 1, 0, '666666'),
+(8, 'live', '{"en":"Go live","fr":"Publier"}', '2014-06-02 15:00:35', '2016-01-12 22:20:21', 'live', '', 'human_2', 'status', 1, 1, 1, 0, '6cbf2d'),
+(9, 'workflow', '{"en":"Back to the workflow","fr":"Remettre dans le workflow"}', '2014-06-02 15:00:00', '2015-08-13 22:32:39', 'live', '', 'human_2', '', 0, 0, 0, 0, '9C27B0'),
+(10, 'buildapp', '{"en":"Build an app!","fr":"Constuire une app!"}', '2013-03-22 08:57:22', '2015-08-13 22:32:29', 'live', '', 'human_2', '', 0, 0, 0, 0, ''),
+(11, 'newpage', '{"en":"Add a page to the tree","fr":"Ajouter une page à l''arborescence"}', '2013-10-23 02:14:09', '2015-08-13 22:33:37', 'live', '', 'human_2', '', 0, 0, 0, 0, ''),
+(12, 'preview', '{"en":"Preview","fr":"Previsualisation"}', '2013-10-28 10:39:50', '2015-08-13 22:16:48', 'live', '', 'human_2', 'check', 0, 0, 0, 0, '607D8B'),
+(14, 'newsystem', '{"en":"Add to the system","fr":"Ajouter au système"}', '2014-07-28 11:11:39', '2015-08-13 22:32:37', 'live', '', 'human_2', '', 0, 0, 0, 0, '4A148C'),
+(15, 'newworkflow', '{"en":"New workflow","fr":"Nouveau workflow"}', '2014-08-11 21:19:29', '2015-08-13 22:32:15', 'live', '', 'human_2', '', 0, 0, 0, 0, ''),
+(16, 'googlepreview', '{"en":"See what Google sees","fr":"Voyez ce que Google vois"}', '2015-01-06 21:28:39', '2015-08-13 22:16:57', 'live', '', 'human_2', 'check', 0, 0, 0, 0, '546E7A'),
+(17, 'savecontext_zoning', '{"en":"Save section","fr":"Sauvegarder cette section"}', '2015-04-20 14:44:19', '2015-08-13 22:32:42', 'live', '', 'human_2', '', 0, 0, 0, 0, '4CAF50'),
+(18, 'savecontext_multipleselect', '{"en":"Sauvegarder les modifications","fr":"Save changes"}', '2015-04-20 18:33:12', '2015-08-15 14:58:04', 'live', '', 'human_2', '', 0, 0, 0, 0, '4CAF50'),
+(19, 'edititem', '{"en":"Edit Item","fr":"Modifier l''item"}', '2015-08-13 22:27:48', '2015-08-13 22:27:48', 'live', '&#xe079', 'human_2', '', 0, 0, 0, 0, '7E57C2');
 
 -- --------------------------------------------------------
 
@@ -259,7 +259,7 @@ INSERT INTO `item` (`id`, `key`, `title`, `icon`, `attr`, `system`, `created`, `
 (5, 'const', '{"en":"Labels","fr":"Intitulés"}', '028', '{"id":{"key":"id","type":"id"},"key":{"key":"key","type":"key"},"title":{"key":"title","type":"i18n","field":"fieldText"},"version":{"key":"version","type":"version"},"created":{"key":"created","type":"created"},"updated":{"key":"updated","type":"updated"},"status":{"key":"status","type":"status"},"owner":{"key":"owner","type":"owner"}}', 1, '2013-11-17 14:17:07', '2014-06-02 11:43:48', 'live', 0, 2),
 (6, 'form', '{"en":"Forms","fr":"Formulaires"}', '068', '{"id":{"key":"id","type":"id"},"key":{"key":"key","type":"key"},"title":{"key":"title","type":"string","required":"1","min":"0","max":"5000"},"descr":{"key":"descr","type":"string","required":"0","min":"0","max":"500"},"template":{"key":"template","type":"string","required":"1","min":"0","max":"5000"},"action":{"key":"action","type":"string","required":"1","min":"0","max":"5000"},"method":{"key":"method","type":"list","required":"1"},"target":{"key":"target","type":"string","required":"0","min":"0","max":"5000"},"enctype":{"key":"enctype","type":"list","required":"1"},"field":{"key":"field","type":"array"},"created":{"key":"created","type":"created"},"updated":{"key":"updated","type":"updated"},"system":{"key":"system","type":"bool","required":"0"},"status":{"key":"status","type":"status"},"owner":{"key":"owner","type":"owner"}}', 1, '2013-09-27 08:33:31', '2014-06-02 11:46:39', 'live', 0, 2),
 (7, 'section', '{"en":"Sections","fr":"Sections"}', '004', '{"id":{"key":"id","type":"id"},"key":{"key":"key","type":"key"},"title":{"key":"title","type":"i18n","field":"fieldText"},"zone":{"key":"zone","type":"string","required":"0","min":"0","max":"255"},"app":{"key":"app","type":"array"},"created":{"key":"created","type":"created"},"updated":{"key":"updated","type":"updated"},"status":{"key":"status","type":"status"},"greenbutton":{"key":"greenbutton","type":"rel","required":"0","param":[{"item":"greenbutton"}],"min":"","max":""},"owner":{"key":"owner","type":"owner"},"nodata":{"key":"nodata","type":"i18n","field":"fieldText"}}', 1, '2013-09-25 08:33:09', '2015-01-24 21:49:43', 'live', 0, 2),
-(8, 'greenbutton', '{"en":"Green button actions","fr":"Actions du bouton vert"}', '044', '{"id":{"key":"id","type":"id","field":""},"key":{"key":"key","type":"key","field":""},"title":{"key":"title","type":"i18n","field":"fieldText","attr":"attrString"},"created":{"key":"created","type":"created","field":""},"updated":{"key":"updated","type":"updated","field":""},"status":{"key":"status","type":"status","field":""},"icon":{"key":"icon","type":"string","required":"0","field":"","min":"0","max":"32"},"owner":{"key":"owner","type":"owner","field":""},"cat":{"key":"cat","type":"string","required":"0","field":"","min":"0","max":"100"},"andback":{"key":"andback","type":"bool","required":"0","field":""},"andreach":{"key":"andreach","type":"bool","required":"0","field":""},"live":{"key":"live","type":"live","field":""},"color":{"key":"color","type":"string","required":"0","field":"","min":"0","max":"8"}}', 1, '2013-09-25 08:33:09', '2015-08-13 21:57:07', 'live', 0, 2),
+(8, 'greenbutton', '{"en":"Green button actions","fr":"Actions du bouton vert"}', '044', '{"id":{"key":"id","type":"id","field":""},"key":{"key":"key","type":"key","field":""},"title":{"key":"title","type":"i18n","field":"fieldText","attr":"attrString"},"created":{"key":"created","type":"created","field":""},"updated":{"key":"updated","type":"updated","field":""},"status":{"key":"status","type":"status","field":""},"icon":{"key":"icon","type":"string","required":"0","field":"","min":"0","max":"32"},"owner":{"key":"owner","type":"owner","field":""},"cat":{"key":"cat","type":"string","required":"0","field":"","min":"0","max":"100"},"andback":{"key":"andback","type":"bool","required":"0","field":""},"andreach":{"key":"andreach","type":"bool","required":"0","field":""},"andnew":{"key":"andnew","type":"bool","required":"0","field":""},"live":{"key":"live","type":"live","field":""},"color":{"key":"color","type":"string","required":"0","field":"","min":"0","max":"8"}}', 1, '2013-09-25 08:33:09', '2016-01-12 20:31:17', 'live', 0, 2),
 (9, 'logbook', '{"en":"Logs","fr":"Logs"}', '030', '{"id":{"key":"id","type":"id"},"key":{"key":"key","type":"key"},"subject":{"key":"subject","type":"string","required":"0","min":"0","max":"5000"},"subjectid":{"key":"subjectid","type":"int","required":"0","min":"","max":""},"item":{"key":"item","type":"string","required":"0","min":"0","max":"5000"},"itemid":{"key":"itemid","type":"int","required":"0","min":"","max":""},"created":{"key":"created","type":"created"},"updated":{"key":"updated","type":"updated"},"status":{"key":"status","type":"status"},"owner":{"key":"owner","type":"owner"}}', 1, '2013-11-17 14:17:07', '2014-06-02 11:42:02', 'live', 0, 2),
 (10, 'note', '{"en":"Notes","fr":"Notes"}', '076', '{"id":{"key":"id","type":"id"},"key":{"key":"key","type":"key"},"created":{"key":"created","type":"created"},"updated":{"key":"updated","type":"updated"},"status":{"key":"status","type":"status"},"item":{"key":"item","type":"string","required":"1","min":"0","max":"5000"},"itemid":{"key":"itemid","type":"int","required":"1","min":"","max":""},"content":{"key":"content","type":"string","required":"1","min":"0","max":"5000"},"owner":{"key":"owner","type":"owner"}}', 1, '2013-10-20 22:59:08', '2014-06-02 11:46:57', 'live', 0, 2),
 (11, 'api', '{"en":"API","fr":"API"}', '', '{"id":{"key":"id","type":"id"},"title":{"key":"title","type":"string","required":"0","min":"0","max":"255"},"method":{"key":"method","type":"string","required":"0","min":"0","max":"4"},"key":{"key":"key","type":"key"},"owner":{"key":"owner","type":"owner"},"created":{"key":"created","type":"created"},"updated":{"key":"updated","type":"updated"},"status":{"key":"status","type":"status"}}', 1, '2015-02-18 16:41:38', '2015-02-18 16:41:38', 'live', 0, 2),
@@ -282,7 +282,7 @@ CREATE TABLE `logbook` (
   `updated` datetime NOT NULL,
   `status` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `owner` mediumint(3) unsigned NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=509 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=519 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `logbook`
@@ -793,7 +793,18 @@ INSERT INTO `logbook` (`id`, `key`, `subject`, `subjectid`, `item`, `itemid`, `c
 (505, 'update', 'human', 2, 'page', 5, '2015-10-10 12:09:07', '2015-10-10 12:09:07', 'live', 0),
 (506, 'update', 'human', 2, 'page', 5, '2015-10-10 12:32:13', '2015-10-10 12:32:13', 'live', 0),
 (507, 'insert', 'human', 2, 'section', 33, '2015-10-10 12:33:21', '2015-10-10 12:33:21', 'live', 0),
-(508, 'update', 'human', 2, 'page', 5, '2015-10-10 12:33:50', '2015-10-10 12:33:50', 'live', 0);
+(508, 'update', 'human', 2, 'page', 5, '2015-10-10 12:33:50', '2015-10-10 12:33:50', 'live', 0),
+(509, 'update', 'human', 2, 'item', 8, '2016-01-12 20:31:17', '2016-01-12 20:31:17', 'live', 0),
+(510, 'update', 'human', 2, 'form', 184, '2016-01-12 20:32:40', '2016-01-12 20:32:40', 'live', 0),
+(511, 'update', 'human', 2, 'greenbutton', 8, '2016-01-12 20:33:02', '2016-01-12 20:33:02', 'live', 0),
+(512, 'update', 'human', 2, 'greenbutton', 1, '2016-01-12 20:33:07', '2016-01-12 20:33:07', 'live', 0),
+(513, 'update', 'human', 2, 'greenbutton', 2, '2016-01-12 20:33:18', '2016-01-12 20:33:18', 'live', 0);
+INSERT INTO `logbook` (`id`, `key`, `subject`, `subjectid`, `item`, `itemid`, `created`, `updated`, `status`, `owner`) VALUES
+(514, 'update', 'human', 2, 'section', 2, '2016-01-12 20:46:16', '2016-01-12 20:46:16', 'live', 0),
+(515, 'update', 'human', 2, 'greenbutton', 8, '2016-01-12 22:20:02', '2016-01-12 22:20:02', 'live', 0),
+(516, 'update', 'human', 2, 'greenbutton', 8, '2016-01-12 22:20:08', '2016-01-12 22:20:08', 'live', 0),
+(517, 'update', 'human', 2, 'greenbutton', 8, '2016-01-12 22:20:17', '2016-01-12 22:20:17', 'live', 0),
+(518, 'update', 'human', 2, 'greenbutton', 8, '2016-01-12 22:20:21', '2016-01-12 22:20:21', 'live', 0);
 
 -- --------------------------------------------------------
 
@@ -886,7 +897,7 @@ CREATE TABLE `section` (
 
 INSERT INTO `section` (`id`, `key`, `title`, `zone`, `app`, `created`, `updated`, `status`, `owner`, `nodata`) VALUES
 (1, 'list', '{"en":"List","fr":"Publiés"}', 'content', '{"app":"content","template":"\\/list\\/list","param":{"param":{"system":"0"}}}', '2014-05-31 04:51:15', '2015-08-13 22:28:52', 'live', '2', '{"en":"Nothing live. Sorry, nothing. Zero. Zilch.","fr":"Rien du tout. Rien de rien de rien."}'),
-(2, 'edit', '{"en":"Edit","fr":"Modifier"}', 'content', '{"app":"content","template":"\\/edit\\/edit"}', '2013-10-16 14:52:08', '2015-08-15 16:28:29', 'live', '2', '{"en":"","fr":""}'),
+(2, 'edit', '{"en":"Edit","fr":"Modifier"}', 'content', '{"app":"content","template":"\\/edit\\/edit"}', '2013-10-16 14:52:08', '2016-01-12 20:46:16', 'live', '2', '{"en":"","fr":""}'),
 (3, 'php', '{"fr":"Apps","en":"Apps"}', 'content', '{"app":"content","template":"\\/doc\\/code"}', '2014-05-15 09:47:55', '2014-05-31 04:48:57', 'live', '2', ''),
 (4, 'doc', '{"fr":"Doc","en":"Doc"}', 'content', '{"app":"content","template":"\\/doc\\/doc"}', '2013-10-20 22:52:03', '2014-05-31 04:49:55', 'live', '2', ''),
 (5, 'splash', '{"fr":"Bienvenue","en":"Welcome"}', 'content', '{"app":"content","template":"\\/error\\/error"}', '2014-05-31 04:46:24', '2014-05-31 04:46:24', 'live', '2', ''),
@@ -1050,14 +1061,6 @@ INSERT INTO `_rel` (`item`, `itemid`, `key`, `rel`, `relid`, `position`) VALUES
 ('section', 19, 'greenbutton', 'greenbutton', 10, 0),
 ('section', 1, 'greenbutton', 'greenbutton', 3, 0),
 ('section', 1, 'greenbutton', 'greenbutton', 19, 1),
-('section', 2, 'greenbutton', 'greenbutton', 8, 0),
-('section', 2, 'greenbutton', 'greenbutton', 2, 1),
-('section', 2, 'greenbutton', 'greenbutton', 1, 2),
-('section', 2, 'greenbutton', 'greenbutton', 5, 3),
-('section', 2, 'greenbutton', 'greenbutton', 6, 4),
-('section', 2, 'greenbutton', 'greenbutton', 12, 5),
-('section', 2, 'greenbutton', 'greenbutton', 16, 6),
-('section', 2, 'greenbutton', 'greenbutton', 7, 7),
 ('page', 1, 'child', 'page', 32, 0),
 ('page', 1, 'child', 'page', 9, 1),
 ('page', 1, 'child', 'page', 10, 2),
@@ -1072,7 +1075,14 @@ INSERT INTO `_rel` (`item`, `itemid`, `key`, `rel`, `relid`, `position`) VALUES
 ('page', 5, 'section', 'section', 8, 4),
 ('page', 5, 'section', 'section', 33, 5),
 ('page', 5, 'sectiondefault', 'section', 10, 0),
-('page', 5, 'sectiondefault', 'section', 1, 1);
+('page', 5, 'sectiondefault', 'section', 1, 1),
+('section', 2, 'greenbutton', 'greenbutton', 8, 0),
+('section', 2, 'greenbutton', 'greenbutton', 2, 1),
+('section', 2, 'greenbutton', 'greenbutton', 7, 2),
+('section', 2, 'greenbutton', 'greenbutton', 1, 3),
+('section', 2, 'greenbutton', 'greenbutton', 5, 4),
+('section', 2, 'greenbutton', 'greenbutton', 12, 5),
+('section', 2, 'greenbutton', 'greenbutton', 16, 6);
 
 --
 -- Indexes for dumped tables
@@ -1222,7 +1232,7 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT for table `logbook`
 --
 ALTER TABLE `logbook`
-  MODIFY `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=509;
+  MODIFY `id` mediumint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=519;
 --
 -- AUTO_INCREMENT for table `note`
 --
