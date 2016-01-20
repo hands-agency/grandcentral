@@ -2,7 +2,8 @@
 /* i18n
 /********************************************************************************************/
 /* The labels */
-ol>li[data-type="i18n"] .labels
+ol>li[data-type="i18n"] .labels,
+ol>li[data-type="url"] .labels
 {
 	background:#fcfcfc;
 	border-bottom:1px solid #eee;
@@ -10,7 +11,8 @@ ol>li[data-type="i18n"] .labels
 	padding:5px 15px 0 15px;
 
 }
-ol>li[data-type="i18n"] .labels li
+ol>li[data-type="i18n"] .labels li,
+ol>li[data-type="url"] .labels li
 {
 	display:inline-block;
 	padding: 10px 15px 8px 15px;
@@ -25,28 +27,34 @@ ol>li[data-type="i18n"] .labels li
 	cursor:pointer;
 	text-transform:uppercase;
 }
-ol>li[data-type="i18n"] .labels li.on
+ol>li[data-type="i18n"] .labels li.on,
+ol>li[data-type="url"] .labels li.on
 {
 	background:#fff;
 	opacity:1;
 }
-ol>li[data-type="i18n"] .labels li:hover
+ol>li[data-type="i18n"] .labels li:hover,
+ol>li[data-type="url"] .labels li:hover
 {
 	background:#fff;
 }
 /* The field */
-ol>li[data-type="i18n"] .field li
+ol>li[data-type="i18n"] .field li,
+ol>li[data-type="url"] .field li
 {
 }
-ol>li[data-type="i18n"] .field label
+ol>li[data-type="i18n"] .field label,
+ol>li[data-type="url"] .field label
 {
 	display:none;
 }
-ol>li[data-type="i18n"] .field .wrapper
+ol>li[data-type="i18n"] .field .wrapper,
+ol>li[data-type="url"] .field .wrapper
 {
 	width:100% !important;
 }
-ol>li[data-type="i18n"] .field .wrapper .field
+ol>li[data-type="i18n"] .field .wrapper .field,
+ol>li[data-type="url"] .field .wrapper .field
 {
 	padding:0 !important;
 	border:none !important;

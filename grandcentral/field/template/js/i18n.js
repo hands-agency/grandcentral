@@ -1,13 +1,13 @@
 (function($)
 {
 //	Some vars
-	var selector = 'li[data-type="i18n"]';
+	var selector = 'li[data-type="i18n"] .labels li, li[data-type="url"] .labels li';
 	
 //	Open the tabs
-	$(document).on('click', selector+' .labels li', function()
+	$(document).on('click', selector, function()
 	{
 	//	Some vars
-		$field = $(selector);
+		$field = $(this).closest('[data-type]');
 		$fields = $field.find('> .wrapper > .field > ul');
 		$labels = $field.find('> .wrapper > .labels');
 		lang = $(this).data('lang');
