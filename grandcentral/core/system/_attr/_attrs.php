@@ -62,7 +62,7 @@ abstract class _attrs
 		return $this;
 	}
 /**
- * Get the raw data
+ * Get the raw data for write in bdd
  *
  * @return	mixed	attribute data
  * @access	public
@@ -193,7 +193,7 @@ abstract class _attrs
 			'label' => 'Required',
 			'labelbefore' => true
 		);
-		
+
 		$available = registry::get_class('field');
 		//	Get the properties for each attr
 		foreach ($available as $field) $fields[$field] = mb_substr(mb_strtolower($field), 5);
