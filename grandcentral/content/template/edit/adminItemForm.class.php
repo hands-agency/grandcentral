@@ -2,7 +2,7 @@
 /**
  * Classe de construction de formulaires html
  * http://www.siteduzero.com/informatique/tutoriels/votre-site-php-presque-complet-architecture-mvc-et-bonnes-pratiques/gestion-des-formulaires-avec-la-classe-form
- * 
+ *
  * @package		form
  * @author		Michaël V. Dandrieux <@mvdandrieux>
  * @author		Sylvain Frigui <sf@hands.agency>
@@ -91,7 +91,7 @@ class adminItemForm
 	{
 		$this->_create_form();
 	}
-	
+
 /**
  * Déduire le type de champ à afficher en fonction d'un attribut de structure
  *
@@ -128,7 +128,7 @@ class adminItemForm
 					case isset($attr['max']) && $attr['max'] <= 255:
 						$field['type'] = 'text';
 						break;
-					
+
 					default:
 						$field['type'] = 'textarea';
 						break;
@@ -174,7 +174,7 @@ class adminItemForm
 				break;
 		//	url
 			case $attr['type'] == 'url':
-				$field['type'] = 'text';
+				$field['type'] = 'url';
 				break;
 		//	Password
 			case $attr['type'] == 'password':
@@ -224,7 +224,7 @@ class adminItemForm
 				$field['placeholder'] = '...';
 				$field['type'] = (isset($attr['max']) && $attr['max'] == 1) ? 'select' : 'multipleselect';
 				break;
-				
+
 		//	Default field type
 			default :
 				$classes = registry::get(registry::class_index);
@@ -242,7 +242,7 @@ class adminItemForm
 		if (isset($attr['required'])) $field['required'] = $attr['required'];
 		if (isset($attr['min'])) $field['min'] = $attr['min'];
 		if (isset($attr['max'])) $field['max'] = $attr['max'];
-		
+
 		return $field;
 	}
 /**
@@ -265,21 +265,21 @@ class adminItemForm
 
 /**
  * Retourne le html du formulaire définit par son theme et son template
- * 
+ *
  * @return	string	le html du formulaire
  * @access	public
  */
 	public function __tostring()
 	{
 		$this->_conform_to_structure();
-		
+
 		// $this->form->data->data['field']['save'] = array(
 		// 	'type' => 'button',
 		// 	'key' => 'save',
 		// 	'buttontype' => 'submit',
 		// 	'value' => 'save'
 		// );
-		
+
 		$this->_populate_with_item();
 		// print'<pre>';print_r($this);print'</pre>';
 		$form = $this->form->prepare();

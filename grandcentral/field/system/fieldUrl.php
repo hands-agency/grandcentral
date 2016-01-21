@@ -1,7 +1,7 @@
 <?php
 /**
  * Classe du champ Url
- * 
+ *
  * @package		form
  * @author		Michaël V. Dandrieux <@mvdandrieux>
  * @author		Sylvain Frigui <sf@hands.agency>
@@ -14,7 +14,7 @@ class fieldUrl extends _fields
 	protected $field;
 /**
  * Définir le type du champ à internationaliser
- * 
+ *
  * @return	string	le nom du champ
  * @access	public
  */
@@ -24,7 +24,7 @@ class fieldUrl extends _fields
 	}
 /**
  * Obtenir le type du champ
- * 
+ *
  * @return	string	le nom du champ
  * @access	public
  */
@@ -32,21 +32,20 @@ class fieldUrl extends _fields
 	{
 		return $this->field;
 	}
-	
+
 /**
  * Check if a field is correctly filled
- * 
+ *
  * @return	bool	true ou false
  * @access	public
  */
 	public function is_valid()
 	{
 		$valid = parent::is_valid();
-		
+
 	//	Get the original field
-		$field = $this->get_field();
-		$field = new $field($this->get_key());
-	
+		$field = new fieldText($this->get_key());
+
 	//	Check if this field is valid
 		return $field->is_valid();
 	}
