@@ -27,6 +27,7 @@ class itemConst extends _items
  */
 	public static function t($string)
 	{
+		if (empty($string)) return '';
 		$key = mb_strtoupper(mb_substr($string, 0, 64));
 		// var
 		$lang = i(env, current)['version']['lang']->get();
