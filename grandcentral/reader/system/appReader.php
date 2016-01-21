@@ -25,18 +25,25 @@ class appReader extends _apps
 			echo i($this->param['detail']);
 			return;
 		}
-			
 	//	Some vars
 		$page = i('page', current);
-		$url = ('home' == $page['key']->get()) ? URLR : mb_substr(URLR, mb_strlen($page['url']->get()));
-
+		$url = ('home' == $page['key']->get()) ? URLR : mb_substr(URLR, mb_strlen($page['url']->get_current()));
 	//	Detail of an item
 		if (!empty($url))
 		{
 		//	Look for our item
 			$item = i($this->param['item']);
-			$item->get(array('url' => $url));
-			
+			// $item->get(array('url' => $url));
+			$version = i('version',current)['lang']->get();
+			$item->get(array(
+				'url' => array(
+					'%'.$version.'____'.$url.'%', // new format
+					$url // old format
+				),
+				'limit()' => 1)
+			);
+			// echo "<pre>";print_r($item);echo "</pre>";exit;
+
 		//	We have an item
 			if ($item->exists())
 			{
@@ -45,7 +52,7 @@ class appReader extends _apps
 				registry::set(registry::current_index, item, $item);
 				$detail = i($this->param['detail']);
 			//	Force display on the reader section
-			//	$detail['zone'] = 
+			//	$detail['zone'] =
 				echo $detail;
 			}
 		//	404

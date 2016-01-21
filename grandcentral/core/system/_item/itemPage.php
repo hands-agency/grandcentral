@@ -63,7 +63,15 @@ class itemPage extends _items
 	public function get_by_url($url = null)
 	{
 		if (empty($url)) $url = '/';
-		$this->get(array('url' => $url, 'limit()' => 1));
+		$version = i('version',current)['lang']->get();
+		$this->get(array(
+			'url' => array(
+				'%'.$version.'____'.$url.'%', // new format
+				$url // old format
+			),
+			'limit()' => 1)
+		);
+		// echo "<pre>";print_r($this);echo "</pre>";exit;
 	}
 /**
  * Guess the page to display

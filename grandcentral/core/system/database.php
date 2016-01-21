@@ -329,7 +329,7 @@ class database
 						$operator = $matches[1];
 						$value = $matches[2];
 						break;
-					case in_array($attrs[$key]['type'], array('string', 'date', 'array', 'key', 'updated', 'created', 'i18n')):
+					case in_array($attrs[$key]['type'], array('string', 'date', 'array', 'key', 'updated', 'created', 'i18n', 'url')):
 						$operator = 'LIKE';
 						break;
 					default:

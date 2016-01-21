@@ -7,9 +7,11 @@
  * @access		public
  * @link		http://grandcentral.fr
  */
-class attrUrl extends _attrs
+class attrUrl extends attrArray
 {
 	protected $item;
+	protected $old = false;
+	protected $oldvalue;
 /**
  * Set string attribute
  *
@@ -19,46 +21,82 @@ class attrUrl extends _attrs
  */
 	public function database_get()
 	{
+		// temporaire : pour éviter les effets de bords lors de la mise à jour de la page accueil
+		if ($this->params['table'] == 'page' && $this->params['itemkey'] == 'home')
+		{
+			return '/';
+		}
+		// temporaire : si le contenu correspond à l'ancien format, on le met à jour
+		if ($this->old === true && !empty($this->oldvalue))
+		{
+			foreach ($this->data as $key => $value)
+			{
+				$this->data[$key] = $this->oldvalue;
+			}
+		}
+		// création du tableau d'urls en fonction de ce qu'on récupère dans le titre
 		if (empty($this->data) && !empty($this->params['name']))
 		{
-			$this->data = $this->_slugify($this->params['name']);
+			foreach ($this->params['name'] as $key => $value)
+			{
+				if (empty($key))
+				{
+					$key = i($this->params['env'], current)['version']['lang']->get();
+				}
+				$value = preg_replace('#(\[[^\]]*\])#', '', $value);
+				$this->data[$key] = $this->_slugify($this->exists_and_extend($value));
+			}
 		}
-		$this->data = preg_replace('#(\[[^\]]*\])#', '', $this->data);
-	//	nettoyage des [] existants
-		// if ($this->params['status'] != 'live')
-		// 		{
-		// 			$slug = new slug();
-		// 			$this->data .= '['.$slug->makeSlugs($this->params['status']).']';
-		// 		}
-		
-	//	Check for existing URL
+	//	Return
+		return (!empty($this->data)) ? json_encode($this->data, JSON_UNESCAPED_UNICODE) : '';
+	}
+/**
+ * Set array attribute for database
+ *
+ * @param	array	attribute data
+ * @access	public
+ */
+	public function database_set($data)
+	{
+		// new url format
+		if (mb_substr($data, 0, 1) == '{')
+		{
+			$this->data = json_decode($data, true);
+		}
+		// old url format
+		else
+		{
+			$current = i($this->params['env'], current);
+			$key = (!empty($current)) ? i($this->params['env'], current)['version']['lang']->get() : 0;
+			$this->data[$key] = $data;
+			$this->old = true;
+			$this->oldvalue = $data;
+		}
+		return $this;
+	}
+/**
+ * Check for existing URL
+ *
+ * @param		string	l'url à vérifier
+ * @return	bool	true si elle existe ou false
+ * @access	public
+ */
+	public function exists_and_extend($url)
+	{
+	//
 		$db = database::connect($this->params['env']);
-	 	$q = 'SELECT COUNT(`id`) as `count` FROM `'.$this->params['table'].'` WHERE `url` = "'.$this->data.'" AND id != "'.$this->params['id'].'"';
+	 	$q = 'SELECT COUNT(`id`) as `count` FROM `'.$this->params['table'].'` WHERE `url` LIKE "%'.$url.'%" AND id != "'.$this->params['id'].'"';
 		$r = $db->query($q);
 		if ($r['data'][0]['count'] > 0)
 		{
 			$letters = 'abcefghijklmnopqrstuvwxyz1234567890';
  			$rand = substr(str_shuffle($letters), 0, 6);
-			$this->data .= '-'.$rand;
+			$url .= '-'.$rand;
 		}
-		
-	//	Return
-		return $this->data;
+		return $url;
 	}
 /**
- * Set string attribute
- *
- * @param	string	la variable
- * @return	string	une string
- * @access	public
- */
-	public function set($data)
-	{
-		$this->data = (string) $data;
-		return $this;
-	}
-/**
- * xxxx
+ * Add a reader on the attribute
  *
  * @param	string	la variable
  * @return	string	une string
@@ -81,23 +119,21 @@ class attrUrl extends _attrs
 		$this->params['env'] = $item->get_env();
 		$this->params['version'] = (isset($item['version']) && !$item['version']->is_empty()) ? $item['version'] : null;
 		$this->params['live'] = $item['live'];
+		$this->params['itemkey'] = $item['key']->get();
 		$this->params['nickname'] = $item->get_nickname();
 		$this->params['id'] = $item['id']->get();
-		// hack i18n pour les champs titre
+
+		// récupération des données des champs titre
 		switch (true)
 		{
+			// no title
 			case !isset($item['title']) || $item['title']->is_empty():
 				$this->params['name'] = $item['key']->get();
-				break;
-			case is_array($item['title']->get()):
-				$tmp = array_values($item['title']->get());
-				$this->params['name'] = $tmp[0];
 				break;
 			default:
 				$this->params['name'] = $item['title']->get();
 				break;
 		}
-		// print'<pre>';print_r(registry::get_constants());print'</pre>';
 	}
 /**
  * php http_build_query() on url
@@ -114,6 +150,27 @@ class attrUrl extends _attrs
 		return $url;
 	}
 /**
+ * Return the current version of url hash
+ *
+ * @param	array	get arguments
+ * @return	string	url
+ * @access	public
+ */
+	public function get_current()
+	{
+		$r = $this->get();
+		$v = i($this->params['env'], current)['version']['lang']->get();
+		if (isset($r[$v]))
+		{
+			return $r[$v];
+		}
+		// old return
+		else
+		{
+			return implode('',$r);
+		}
+	}
+/**
  * xxxx
  *
  * @param	string	la variable
@@ -122,7 +179,6 @@ class attrUrl extends _attrs
  */
 	public function __tostring()
 	{
-		// print'<pre>';var_dump($this->params['version']);print'</pre>';
 		$url = '';
 		// version url
 		if (is_null($this->params['version']))
@@ -147,46 +203,35 @@ class attrUrl extends _attrs
 				}
 			}
 		}
-		// retunr
-		return $url.$this->get();
+		// return
+		return $url.$this->get_current();
+
 	}
 /**
- * Definition mysql
+ * Slugify a string
+ * ex : "Hello World !" -> "hello-world"
  *
- * @return	string	la définition mysql
- * @access	public
- */
-	public function mysql_definition()
-	{
-	//	definition
-		$definition = '`'.$this->params['key'].'` varchar(255) CHARACTER SET '.database::charset.' COLLATE '.database::collation.' NOT NULL';
-	//	retour
-		return $definition;
-	}
-/**
- * 
- *
- * @param	string	la variable
- * @return	string	une string
+ * @param		string	string to transform
+ * @return	string	transformed string
  * @access	public
  */
 	protected function _slugify($string)
 	{
 		$string = trim(trim($string), '-');
-		
+
 		if (mb_substr($string, 0, 1) == '/')
 		{
 			$string = mb_substr($string, 1);
 		}
-		
+
 		$slug = new slug();
 		$return = '/'.$slug->makeSlugs($string);
 		$return = str_replace('--', '-', $return);
-		
+
 		return $return;
 	}
 /**
- * Default field attributes for updated	
+ * Default field attributes for updated
  *
  * @param	string	la variable
  * @return	string	une string
@@ -197,7 +242,6 @@ class attrUrl extends _attrs
 	//	Start with the default for all properties
 		$params = parent::get_properties();
 	//	Somes specifics for this attr
-		# $params['somefield'] = array();
 		$params['key']['value'] = 'url';
 		$params['key']['readonly'] = true;
 		unset($params['required']);
