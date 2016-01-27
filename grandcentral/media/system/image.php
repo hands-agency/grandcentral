@@ -432,7 +432,7 @@ class image extends media
     $memoryLimit = 8 * $MB;
     if (function_exists('memory_get_usage') && memory_get_usage() + $memoryNeeded > $memoryLimit)
     {
-        $newLimit = $memoryLimit + ceil((memory_get_usage() + $memoryNeeded - $memoryLimit) / $MB);
+        $newLimit = $memoryLimit + ceil((memory_get_usage() + $memoryNeeded - $memoryLimit) / $MB) + 100;
         ini_set( 'memory_limit', $newLimit . 'M' );
         return true;
     }
