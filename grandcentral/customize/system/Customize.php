@@ -1,4 +1,4 @@
-<?php 
+<?php
 class Customize{
 
 	protected $root_custom;
@@ -66,7 +66,6 @@ class Customize{
 			)
 		);
 		$this->finitions = array(
-			'default' => 'Finition',
 			'Brodé' => 'Brodé',
 			'Cuir' => 'Cuir',
 			'Platisque' => 'Platisque'
