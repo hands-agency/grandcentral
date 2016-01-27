@@ -160,6 +160,7 @@ class attrUrl extends attrArray
 	{
 		$r = $this->get();
 		$v = i($this->params['env'], current)['version']['lang']->get();
+
 		if (isset($r[$v]))
 		{
 			return $r[$v];
@@ -198,6 +199,13 @@ class attrUrl extends attrArray
 				if (isset($table[0]['param']) && $this->params['table'] == $table[0]['param']['item'])
 				{
 					$tmp = registry::get(registry::url_index, $page);
+					// new url format
+					if (mb_substr($tmp, 0, 1) == '{')
+					{
+						$t = json_decode($tmp, true);
+						$tmp = $t[i('version', current)['lang']->get()];
+					}
+					
 					if ($tmp != '/') $url .= $tmp;
 					break;
 				}
