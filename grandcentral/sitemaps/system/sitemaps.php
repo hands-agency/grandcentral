@@ -1,7 +1,7 @@
 <?php
 /**
  * The Sitemaps app
- * 
+ *
  * @package		Core
  * @author		Michaël V. Dandrieux <@mvdandrieux>
  * @access		public
@@ -25,7 +25,7 @@ class sitemaps
 		$lang = i('version', current)['key']->get();
 		$this->cachename = 'sitemap_'.$lang;
 	}
-	
+
 /**
  * Append an array of URLs to the sitemap
  *
@@ -44,14 +44,14 @@ class sitemaps
 		}
 		$this->appendedUrl->count = count($this->appendedUrl);
 	}
-	
+
 /**
  * Create the sitemap
  *
  * @param	array  The cache lifetime in ms, or using keywords : hourly, daily, weekly
  * @access	public
  */
-	public function create($refresh = '86400000')
+	public function create($refresh = '86400000', $force_refresh = false)
 	{
 	//	Translate refresh
 		switch ($refresh)
@@ -66,22 +66,22 @@ class sitemaps
 				$refresh = '604800000';
 				break;
 		}
-		
+
 	//	Use phpfastcache
 		phpfastcache::setup('storage', 'files');
 		$cache = phpfastcache();
-		#$cache->delete($this->cachename);
-		
+		if ($force_refresh === true) $cache->delete($this->cachename);
+
 	//	Try to get the cache
 		$sitemap = $cache->get($this->cachename);
-		
+
 	//	No cache ?
 		if ($sitemap == null)
 		{
-		
+
 		//	Get the items with url
 			$structures = i('item', array('hasurl' => true));
-		
+
 		//	Loop through structures with url
 			$url = '';
 			foreach ($structures as $structure)
@@ -98,7 +98,7 @@ class sitemaps
 						//	'key' => '',
 						);
 						break;
-				
+
 					default:
 						$p = array(
 						//	'live' => true,
@@ -108,7 +108,7 @@ class sitemaps
 						break;
 				}
 				$items = i($structure['key']->get(), $p);
-			
+
 			//	Append or prepend urls
 				if (!empty($this->appendedUrl))
 				{
@@ -118,7 +118,7 @@ class sitemaps
 					}
 				}
 				$items->count = count($items);
-			
+
 			//	Loop through items
 				foreach ($items as $item)
 				{
@@ -130,12 +130,12 @@ class sitemaps
 					$url .= "</url>\n";
 				}
 			}
-		
+
 		//	Encapsulate
 			$this->data .= "<urlset data-refresh=\"".$refresh."\" xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n";
 			$this->data .= $url;
 			$this->data .= "</urlset>";
-		
+
 		//	Write sitemaps to Cache in 10 minutes with same keyword
 			$cache->set($this->cachename, $this->data, $refresh);
 		}
@@ -151,7 +151,7 @@ class sitemaps
 		phpfastcache::setup('storage', 'files');
 		$cache = phpfastcache();
 		$sitemap = $cache->get($this->cachename);
-		
+
 		return $sitemap;
 	}
 }
