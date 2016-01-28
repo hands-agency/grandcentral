@@ -111,7 +111,7 @@ class Customize{
 	{
 		$array_colors = array();
 		foreach ($this->colors as $key => $color) {
-			$array_colors[$color->get_name()] = media('custom/color/'.$color->get_key())->thumbnail(400,null)->get_url();
+			$array_colors[$color->get_name()] = media('custom/color/'.$color->get_key())->thumbnail(100,null)->get_url();
 		}
 		return $array_colors;
 	}
