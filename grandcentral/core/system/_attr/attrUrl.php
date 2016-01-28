@@ -160,8 +160,8 @@ class attrUrl extends attrArray
 	{
 		$r = $this->get();
 		$v = i($this->params['env'], current)['version']['lang']->get();
-
-		if (isset($r[$v]))
+		// new version
+		if (isset($r[$v]) && !empty($r[$v]))
 		{
 			return $r[$v];
 		}
@@ -205,7 +205,7 @@ class attrUrl extends attrArray
 						$t = json_decode($tmp, true);
 						$tmp = $t[i('version', current)['lang']->get()];
 					}
-					
+
 					if ($tmp != '/') $url .= $tmp;
 					break;
 				}
