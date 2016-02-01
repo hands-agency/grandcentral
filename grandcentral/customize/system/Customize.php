@@ -34,16 +34,6 @@ class Customize{
 		$this->colors_uni = $dir_uni->get(true);
 		$this->colors_bicolore = $dir_bicolore->get(true);
 
-		// print '<pre>';
-		// print_r($this->colors_uni);
-		// print '</pre>';
-
-		// print '<pre>';
-		// print_r($this->colors_bicolore);
-		// print '</pre>';
-		// die;
-
-
 		// Thumbnail
 		// foreach ($this->declinations as $key_declination => $declination) {
 		// 	$this->tree[$key_declination] = array();
@@ -65,7 +55,7 @@ class Customize{
 			foreach ($uni as $key_img => $detail_img) {
 				$temp = media('custom/uni/'.$key_uni.'/'.$detail_img->get_key());
 
-				$this->tree['uni'][$key_uni][$detail_img->get_name()] = $temp->get_url();
+				$this->tree['uni'][$key_uni][$detail_img->get_name()] = $temp->thumbnail(720,null)->get_url();
 			
 			}
 
@@ -80,14 +70,10 @@ class Customize{
 				$this->tree['bicolore'][$key_declination][$key_detail] = array();
 				foreach ($detail as $key_img => $detail_img) {
 					$temp = media('custom/bicolore/'.$key_declination.'/'.$key_detail.'/'.$detail_img->get_key());
-					$this->tree['bicolore'][$key_declination][$key_detail][$detail_img->get_name()] = $temp->get_url();
+					$this->tree['bicolore'][$key_declination][$key_detail][$detail_img->get_name()] = $temp->thumbnail(720,null)->get_url();
 				}
 			}
 		}
-		print '<pre>';
-		print_r($this->tree);
-		print '</pre>';
-		die;
 
 	}
 
@@ -148,7 +134,7 @@ class Customize{
 			if($params['choicetyperadio'] == "uni")
 			{
 				if(isset($params['colorpoloradio']) && !empty($params['colorpoloradio']))
-					return $this->tree[$params['colorpoloradio']][$params['colorpoloradio']];
+					return $this->tree["uni"][$params['colorpoloradio']];
 				else
 					return null;
 			}
@@ -156,7 +142,7 @@ class Customize{
 			{
 				if((isset($params['colorpoloradio']) && !empty($params['colorpoloradio']))
 					&& (isset($params['colordetailradio']) && !empty($params['colordetailradio'])))
-					return $this->tree[$params['colorpoloradio']][explode('-',$params['colordetailradio'])[0]];
+					return $this->tree["bicolore"][$params['colorpoloradio']][explode('-',$params['colordetailradio'])[0]];
 				else
 					return null;
 			}
