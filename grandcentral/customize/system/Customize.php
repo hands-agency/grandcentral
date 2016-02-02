@@ -22,30 +22,15 @@ class Customize{
 	public function getDatas()
 	{
 		$dir_color = new dir($this->root_color);
-		// $dir_declination = new dir($this->root_declination);
 
 		$dir_uni = new dir($this->root_uni);
 		$dir_bicolore = new dir($this->root_bicolore);
 
 
 		$this->colors = $dir_color->get(true);
-		// $this->declinations = $dir_declination->get(true);
 
 		$this->colors_uni = $dir_uni->get(true);
 		$this->colors_bicolore = $dir_bicolore->get(true);
-
-		// Thumbnail
-		// foreach ($this->declinations as $key_declination => $declination) {
-		// 	$this->tree[$key_declination] = array();
-		// 	foreach ($declination as $key_detail => $detail) {
-		// 		$this->tree[$key_declination][$key_detail] = array();
-		// 		foreach ($detail as $key_img => $detail_img) {
-		// 			$temp = media('custom/declination/'.$key_declination.'/'.$key_detail.'/'.$detail_img->get_key());
-		// 			// $this->tree[$key_declination][$key_detail][$detail_img->get_name()] = $temp->get_url();
-		// 			$this->tree[$key_declination][$key_detail][$detail_img->get_name()] = $temp->thumbnail(720,null)->get_url();
-		// 		}
-		// 	}
-		// }
 
 		// Boucle polo uni
 		foreach ($this->colors_uni as $key_uni => $uni) {
@@ -74,6 +59,7 @@ class Customize{
 				}
 			}
 		}
+
 
 	}
 
