@@ -66,9 +66,9 @@ class Customize{
 			)
 		);
 		$this->finitions = array(
-			'Brodé' => 'Brodé',
-			'Cuir' => 'Cuir',
-			'Platisque' => 'Platisque'
+			'BRODE' => cst('CUSTOMIZE_BRODE'),
+			'IMPRIME' => cst('CUSTOMIZE_IMPRIME'),
+			// 'PLASTIQUE' => cst('CUSTOMIZE_PLASTIQUE')
 		);
 
 		$this->getDatas();
