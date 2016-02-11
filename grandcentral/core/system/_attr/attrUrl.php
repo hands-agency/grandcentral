@@ -34,19 +34,60 @@ class attrUrl extends attrArray
 				$this->data[$key] = $this->oldvalue;
 			}
 		}
-		// création du tableau d'urls en fonction de ce qu'on récupère dans le titre
-		if (empty($this->data) && !empty($this->params['name']))
+		// création du tableau des valeurs à insérer dans la base
+		foreach (i('version',all,$this->params['env']) as $version)
 		{
-			foreach ($this->params['name'] as $key => $value)
+			$key = $version['key']->get();
+			// si la valeur est vide, il faut la remplir
+			if (empty($this->data[$key]))
 			{
-				if (empty($key))
+				// si pas de titre, on prend la clé
+				if (empty($this->params['name']))
 				{
-					$key = i($this->params['env'], current)['version']['lang']->get();
+					$value = $this->params['itemkey'];
 				}
-				$value = preg_replace('#(\[[^\]]*\])#', '', $value);
+				// si un titre est disponible dans la version demandée
+				elseif (isset($this->params['name'][$key]) && !empty($this->params['name'][$key]))
+				{
+					$value = $this->params['name'][$key];
+				}
+				// sinon, on va chercher un des titres disponibles
+				else
+				{
+					echo "<pre>";print_r($this->params['name']);echo "</pre>";
+					foreach ((array) $this->params['name'] as $value)
+					{
+						if (!empty($value))
+						{
+							break;
+						}
+					}
+				}
+				echo "<pre>";print_r($value);echo "</pre>";
+				// affectation
 				$this->data[$key] = $this->_slugify($this->exists_and_extend($value));
 			}
 		}
+
+		// // création du tableau d'urls en fonction de ce qu'on récupère dans le titre
+		// if (empty($this->data) && !empty($this->params['name']))
+		// {
+		// 	foreach ($this->params['name'] as $key => $value)
+		// 	{
+		// 		if (empty($key))
+		// 		{
+		// 			$key = i($this->params['env'], current)['version']['lang']->get();
+		// 		}
+		// 		$value = preg_replace('#(\[[^\]]*\])#', '', $value);
+		// 		$this->data[$key] = $this->_slugify($this->exists_and_extend($value));
+		// 	}
+		// }
+		// // remplissage du tableau s'il manque des éléments
+		// else
+		// {
+		// 	// echo "<pre>";print_r(registry::get());echo "</pre>";exit;
+		//
+		// }
 	//	Return
 		return (!empty($this->data)) ? json_encode($this->data, JSON_UNESCAPED_UNICODE) : '';
 	}
@@ -122,18 +163,19 @@ class attrUrl extends attrArray
 		$this->params['itemkey'] = $item['key']->get();
 		$this->params['nickname'] = $item->get_nickname();
 		$this->params['id'] = $item['id']->get();
+		$this->params['name'] = $item['title']->get();
 
 		// récupération des données des champs titre
-		switch (true)
-		{
-			// no title
-			case !isset($item['title']) || $item['title']->is_empty():
-				$this->params['name'] = $item['key']->get();
-				break;
-			default:
-				$this->params['name'] = $item['title']->get();
-				break;
-		}
+		// switch (true)
+		// {
+		// 	// no title
+		// 	case !isset($item['title']) || $item['title']->is_empty():
+		// 		$this->params['name'] = $item['key']->get();
+		// 		break;
+		// 	default:
+		// 		$this->params['name'] = $item['title']->get();
+		// 		break;
+		// }
 	}
 /**
  * php http_build_query() on url
@@ -148,6 +190,17 @@ class attrUrl extends attrArray
 		$url = $this->__tostring();
 		$url .= (!empty($arg)) ? '?'.http_build_query($arg) : '';
 		return $url;
+	}
+/**
+ * get the current url in another version, if exists
+ *
+ * @param		string	version key
+ * @return	string	url
+ * @access	public
+ */
+	public function get_version($version_key)
+	{
+		return '';
 	}
 /**
  * Return the current version of url hash
@@ -234,7 +287,6 @@ class attrUrl extends attrArray
 
 		$slug = new slug();
 		$return = '/'.$slug->makeSlugs($string);
-		$return = str_replace('--', '-', $return);
 
 		return $return;
 	}
