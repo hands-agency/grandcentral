@@ -312,6 +312,7 @@
 //	Context
 	openContext = function(param, callback)
 	{
+		console.log(param);
 	//	Some vars
 		maxContext = 2;
 		

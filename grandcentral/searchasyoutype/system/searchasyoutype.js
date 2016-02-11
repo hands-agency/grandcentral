@@ -25,7 +25,8 @@
 		{
 		//	the plugin's final properties are the merged default and user-provided options (if any)
 			plugin.settings = $.extend({}, vars, options);
-
+			
+		//	Search on type
 			$element.on('input', function()
 			{
 			//	Some vars
@@ -40,7 +41,7 @@
 					q = $search.val();
 				//	Target can be a jQuery object or a selector
 					$target = (plugin.settings.target instanceof jQuery) ? plugin.settings.target : $(plugin.settings.target);
-					console.log('send');
+
 				//	Refresh the target
 				  	$target.ajx(
 					{
@@ -51,6 +52,12 @@
 					}
 					, callbacks);
 				}, plugin.settings.timing);
+			});
+		
+		//	Prevent Submit
+			$(element).keypress(function(e)
+			{
+			    if ( e.which == 13 ) e.preventDefault();
 			});
 		}
 
