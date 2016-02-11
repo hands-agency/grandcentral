@@ -36,6 +36,12 @@ ol>li[data-type="multipleselect"] .field li
 	-moz-user-select:none;
 	-webkit-user-select:none;
 	position:relative;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+li.ui-draggable-dragging
+{
 }
 ol>li[data-type="multipleselect"] .field li:hover
 {
@@ -55,12 +61,13 @@ ol>li[data-type="multipleselect"] .field li .icon
 	height:17px;
 	float:left;
 	margin:0 !important;
+	display:none;
 }
 
 ol>li[data-type="multipleselect"] .field li .title
 {
-	margin:0 23px 0 0;
 	cursor:pointer;
+	padding:0 23px 0 10px;
 }
 ol>li[data-type="multipleselect"] .field li .title:not(:hover)
 {
@@ -115,9 +122,9 @@ ol>li[data-type="multipleselect"] .field .selected
 	-o-transition: all .15s ease-out; 
 	transition: all .15s ease-out;
 }
-ol>li[data-type="multipleselect"] .field .selected li
+ol>li[data-type="multipleselect"] .field .selected li:not(.ui-draggable-dragging)
 {
-	width:auto !important;
+	width:100% !important;
 	cursor:ns-resize;
 }
 ol>li[data-type="multipleselect"] .field .selected li .delete

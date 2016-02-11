@@ -209,6 +209,7 @@
 					ui.helper.css(
 					{
 						height:$(this).outerHeight(),
+						width:$(this).outerWidth()+'px',
 					});
 				//	Hide dragged available
 					$(this).hide();
