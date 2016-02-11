@@ -26,7 +26,7 @@
 		<?php endforeach ?>
 		<?php endif;?>
 	</ul>
-	
+
 	<h2><span class="rule">Folders</span></h2>
 	<div class="folders">
 		<ul>
@@ -80,7 +80,7 @@
 		      dnd: 'draggable' in document.createElement('span'),
 		      formdata: !!window.FormData,
 		      progress: "upload" in new XMLHttpRequest
-		    }, 
+		    },
 		    support = {
 		      filereader: document.getElementById('filereader'),
 		      formdata: document.getElementById('formdata'),
@@ -108,23 +108,24 @@
 
 		function appendFile(file, filedata)
 		{
+			console.log(filedata);
 		//	Some vars
 			$container = $('#mediaLibrary ul.files');
 			$upload = $('#mediaLibrary ul.files li.upload');
-	
+
 		//	Preview images
 			if (tests.filereader === true)
 			{
 				var reader = new FileReader();
 				reader.onload = function (event)
 				{
-				
+
 				//	If it's an image
 					if (acceptedTypes[file.type] === true)
 					{
 						imageBase64 = event.target.result;
 					//	Add the image preview, path & url
-						media = '<li class="new" data-path="'+filedata.path+'" data-url="'+filedata.url+'" data-info="'+file.type+' • '+(file.size ? (file.size/1024|0)+' K' : '')+'" data-title=""><a class="file" href="#"><span class="preview"><img src="'+imageBase64+'" /></span><span class="title">' + file.name + '</span></a></li>';
+						media = '<li class="new" data-path="'+filedata.path+'" data-url="'+filedata.url+'" data-info="'+file.type+' • '+(file.size ? (file.size/1024|0)+' K' : '')+'" data-title=""><a class="file" href="#"><span class="preview"><img src="'+imageBase64+'" /></span><span class="title">' + filedata.name + '</span></a></li>';
 					//	Add
 						$upload.after(media);
 					}
@@ -132,7 +133,7 @@
 					$('#mediaLibrary .dir').removeClass('empty');
 				//	Re init Gallery (drag & masonry)
 					$('#mediaLibrary').data('mediaGallery').initList();
-			
+
 				};
 				reader.readAsDataURL(file);
 			}
@@ -142,12 +143,12 @@
 		{
 		//	Create a form data object
 			var formData = tests.formdata ? new FormData() : null;
-	
+
 		//	Add the ajx params
 			formData.append('app', 'media');
 			formData.append('template', 'upload');
 			formData.append('folder', '<?= $here ?>');
-	
+
 		//	Append the files to the form
 		    for (var i = 0; i < files.length; i++)
 			{
@@ -156,10 +157,10 @@
 
 		//	Now post a new XHR request
 		    if (tests.formdata)
-			{	
+			{
 		 		var xhr = new XMLHttpRequest();
 				xhr.open('POST', ADMIN_URL+'/ajax.html');
-		
+
 			//	Done !
 				xhr.onload = function()
 				{
@@ -167,11 +168,11 @@
 					progress.value = progress.innerHTML = 100;
 				//	Hide progressbar
 					$('#mediaLibrary #holder progress').hide(0, function(){$('#holder p').show()});
-			
+
 				//	Debug
 				//	console.log(xhr.response);
 					response = JSON.parse(xhr.response);
-					
+
 				//	Add the files to the page
 		    		for (var i = 0; i < files.length; i++)
 					{
@@ -190,13 +191,13 @@
 						}
 					}
 				}
-		
+
 			//	Send !
 				xhr.send(formData);
 		    }
 		}
 		if (tests.dnd)
-		{ 
+		{
 			holder.ondragover = function () { this.className = 'hover'; return false; };
 			holder.ondragend = function () { this.className = ''; return false; };
 			holder.ondragleave = function () { this.className = ''; return false; };
@@ -205,7 +206,7 @@
 				this.className = '';
 				e.preventDefault();
 				readfiles(e.dataTransfer.files);
-			//	Show progressbar	
+			//	Show progressbar
 				$('#holder p').hide(0, function(){$('#holder progress').show()});
 			}
 		}

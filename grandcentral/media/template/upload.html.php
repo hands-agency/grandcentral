@@ -33,30 +33,34 @@
 		$path = app('media')->get_templateroot('site').'/';
 	//	Add user folder
 		if (isset($_POST['folder'])) $path = str_replace('//', '/', $path.$_POST['folder'].'/');
-	
+
 	//	Loop through received files
 		foreach($_FILES as $id => $file)
 		{
 		//	Complete path
-			$filePath = $path.$file['name'];
+			$slug = new slug();
+			$thefilename = $slug->makeSlugs($file['name']);
+
+			$filePath = $path.$thefilename;
 		//	Move file
 			if (move_uploaded_file($file['tmp_name'], $filePath))
-			{	
+			{
 				$return['meta'] = array(
 					'msg' => 'All good',
 				);
 				$returnImg[] = array(
-					'path' => $_POST['folder'].'/'.$file['name'],
+					'path' => $_POST['folder'].'/'.$thefilename,
 					'url' => media($filePath)->get_url(),
+					'name' => $thefilename
 				);
 			}
 		//	Works not
 			else
 			{
-				$return['meta'] = array('msg' => 'Sorry, can\'t upload '.$file['tmp_name'].' into '.$filePath);		
+				$return['meta'] = array('msg' => 'Sorry, can\'t upload '.$file['tmp_name'].' into '.$filePath);
 			}
 		}
-	
+
 	//	Return
 		if (!empty($returnImg))
 		{
