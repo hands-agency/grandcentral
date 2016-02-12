@@ -29,7 +29,6 @@ class appApi extends _apps
 	//	Chop down the URL
 		$url = mb_substr(URLR, 1);
 		$method = strtolower($_SERVER['REQUEST_METHOD']);
-		
 	//	Explode parameters
 		$array = explode('/', $url);
 

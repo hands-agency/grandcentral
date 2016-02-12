@@ -88,9 +88,10 @@ class itemPage extends _items
 			$hash = mb_substr(URLR, 0, mb_strpos(URLR, '/', 1));
 			// chargement de la page de home
 			$this->get_by_url($hash);
+			// sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $this);exit;
 			// 404
 			// echo "<pre>";print_r('ici');echo "</pre>";exit;
-			if ($this->get_env() == 'site' && !$this->is_reader())
+			if ($this->get_env() == 'site' && !$this->is_reader() && !mb_strstr($hash,'api'))
 			//if (!$this->exists())
 			{
 				// echo "<pre>";print_r('ici');echo "</pre>";exit;
@@ -98,7 +99,7 @@ class itemPage extends _items
 			}
 		}
 
-		// si on ne trouve rien, on renvoi une erreur
+		// si on ne trouve rien, on renvoie une erreur
 		if (!$this->exists())
 		{
 			$this->get_by_url('/404');
