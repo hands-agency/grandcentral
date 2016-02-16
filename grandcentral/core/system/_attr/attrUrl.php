@@ -163,7 +163,7 @@ class attrUrl extends attrArray
 		$this->params['itemkey'] = $item['key']->get();
 		$this->params['nickname'] = $item->get_nickname();
 		$this->params['id'] = $item['id']->get();
-		$this->params['name'] = $item['title']->get();
+		$this->params['name'] = isset($item['title']) ? $item['title']->get() : '';
 
 		// récupération des données des champs titre
 		// switch (true)
