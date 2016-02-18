@@ -50,10 +50,10 @@ class attrMedia extends attrArray
 					$tmp['title'] = (isset($media['title'])) ? $media['title'] : '';
 					$this->data[] = $tmp;
 				}
-				
+
 			}
 		}
-		
+
 		return $this;
 	}
 /**
@@ -118,13 +118,17 @@ class attrMedia extends attrArray
 			foreach ($this->data as $file)
 			{
 				// print'<pre>';print_r($file);print'</pre>';
-				$return .= media($file['url'])->set_alt($alt)->__tostring();
+				$media = media($file['url']);
+				if ($media->exists())
+				{
+					$return .= media($file['url'])->set_alt($alt)->__tostring();
+				}
 			}
 		}
 		return $return;
 	}
 /**
- * Default field attributes for Int	
+ * Default field attributes for Int
  *
  * @param	string	la variable
  * @return	string	une string
