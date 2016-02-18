@@ -123,6 +123,9 @@ class attrMedia extends attrArray
 				{
 					$return .= media($file['url'])->set_alt($alt)->__tostring();
 				}
+				else {
+					trigger_error('Media '.$file['url'].' doesn\'t exists !', E_USER_NOTICE);
+				}
 			}
 		}
 		return $return;
