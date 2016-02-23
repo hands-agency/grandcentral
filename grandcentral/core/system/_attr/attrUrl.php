@@ -54,7 +54,7 @@ class attrUrl extends attrArray
 				// sinon, on va chercher un des titres disponibles
 				else
 				{
-					echo "<pre>";print_r($this->params['name']);echo "</pre>";
+					// echo "<pre>";print_r($this->params['name']);echo "</pre>";
 					foreach ((array) $this->params['name'] as $value)
 					{
 						if (!empty($value))
@@ -63,7 +63,7 @@ class attrUrl extends attrArray
 						}
 					}
 				}
-				echo "<pre>";print_r($value);echo "</pre>";
+				// echo "<pre>";print_r($value);echo "</pre>";
 				// affectation
 				$this->data[$key] = $this->_slugify($this->exists_and_extend($value));
 			}
