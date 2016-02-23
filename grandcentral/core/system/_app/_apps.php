@@ -1,7 +1,7 @@
 <?php
 /**
  * The abstract class for app handling.
- * 
+ *
  * @package		Core
  * @author		Michaël V. Dandrieux <@mvdandrieux>
  * @author		Sylvain Frigui <sf@hands.agency>
@@ -31,20 +31,20 @@ abstract class _apps
 	public function __construct($template = 'default', $params = null, $env = env)
 	{
 		$this->key = mb_substr(mb_strtolower(get_called_class()), 3);
-		
+
 		// $this->key = (!empty($key)) ? $key : trigger_error('Your <strong>$key param</strong> is empty, app() will not work', E_USER_WARNING);
 		$this->template = (mb_strpos($template, '/') === 0) ? $template : '/'.$template;
 		$this->env = $env;
-		
+
 		$this->system_root = ADMIN_ROOT.'/'.$this->key.'/'.boot::app_system_dir;
 		$this->system_url = '/'.boot::admin_dir.'/'.$this->key.'/'.boot::app_system_dir;
-		
+
 		$this->template_root['admin'] = ADMIN_ROOT.'/'.$this->key.'/'.boot::app_template_dir;
 		$this->template_root['site'] = SITE_ROOT.'/'.$this->key;
-		
+
 		$this->template_url['admin'] = '/'.boot::admin_dir.'/'.$this->key.'/'.boot::app_template_dir;
 		$this->template_url['site'] = '/'.boot::site_dir.'/'.SITE_KEY.'/'.$this->key;
-		
+
 		$this->get_ini();
 		$this->set_default_param();
 		$this->set_param($params);
@@ -127,7 +127,7 @@ abstract class _apps
 			$file = ADMIN_ROOT.'/'.$this->key.'/'.boot::app_ini_file;
 			$this->ini = (file_exists($file)) ? parse_ini_file($file, true) : trigger_error('Can\'t find <strong>"'.$this->get_key().'" app</strong> config.ini file.', E_USER_ERROR);
 		}
-		
+
 		return (!is_null($cat) && isset($this->ini[$cat])) ? $this->ini[$cat] : $this->ini;
 	}
 /**
@@ -146,7 +146,7 @@ abstract class _apps
 				preg_match($pattern, $param, $value);
 				// print'<pre>';print_r($value);print'</pre>';
 				$this->param[$key] = (empty($value)) ? $param : $value[1];
-				
+
 				switch (true)
 				{
 					case in_array($this->param[$key], array('true', 'false')):
@@ -265,7 +265,7 @@ abstract class _apps
  * Get content of a snippet
  *
  * <pre>
- * $_APP->get_snippet('snippet/header', $params)	
+ * $_APP->get_snippet('snippet/header', $params)
  * </pre>
  *
  * @param	string	The zone name where you want to bind the snippet (ex: content)
@@ -278,7 +278,7 @@ abstract class _apps
 	{
 	//	Failsafe first slash
 		$snippet_key = (mb_strpos($snippet_key, '/') === 0) ? $snippet_key : '/'.$snippet_key;
-		
+
 		$_APP = $this;
 		$_PARAM = $params;
 		// print'<pre>';print_r($data);print'</pre>';
@@ -299,7 +299,7 @@ abstract class _apps
  * Bind a snippet within the view
  *
  * <pre>
- * $_APP->bind_snippet('content', 'snippet/header')	
+ * $_APP->bind_snippet('content', 'snippet/header')
  * </pre>
  *
  * @param	string	The zone name where you want to bind the snippet (ex: content)
@@ -318,7 +318,7 @@ abstract class _apps
  * Bind a file within the view
  *
  * <pre>
- * $_APP->bind_file('content', 'master/header');	
+ * $_APP->bind_file('content', 'master/header');
  * </pre>
  *
  * @param	string	the zone name where you want to bind the snippet (ex: content)
@@ -354,7 +354,7 @@ abstract class _apps
  * Bind a cascading stylesheet within the css zone
  *
  * <pre>
- * $_APP->bind_css('master/css/style.css');	
+ * $_APP->bind_css('master/css/style.css');
  * </pre>
  *
  * @param	string	root of the css file (ex: master/css/style.css)
@@ -369,7 +369,7 @@ abstract class _apps
  * Bind a javscript file within the script zone
  *
  * <pre>
- * $_APP->bind_script('master/js/jquery.js');	
+ * $_APP->bind_script('master/js/jquery.js');
  * </pre>
  *
  * @param	string	root of the js file (ex: master/js/jquery.js)
@@ -386,7 +386,7 @@ abstract class _apps
  *
  * <pre>
  * // Bind some jQuery code to the script zone
- * $_APP->bind_code('script', 'console.log("Hi there");');	
+ * $_APP->bind_code('script', 'console.log("Hi there");');
  * </pre>
  *
  * @param	string	the zone name where you want to bind the code (ex: content)
@@ -447,13 +447,14 @@ abstract class _apps
 					{
 						if (preg_match($pattern, $item->get_key(), $matches))
 						{
-							$tpls[] = empty($basename) ? '/'.$matches[1] : '/'.$basename.'/'.$matches[1];
+							$tpls[] = empty($basename) ? '/'.$matches[1] : $basename.'/'.$matches[1];
 							// print'<pre>';print_r('SUCCESS');print'</pre>';
 						}
 					}
 					else
 					{
-						$tmp = $filterFile($item->get_root(), $item->get_key());
+						$base = $basename.'/'.$item->get_key();
+						$tmp = $filterFile($item->get_root(), $base);
 						$tpls = array_merge($tpls, $tmp);
 					}
 				}
@@ -464,7 +465,7 @@ abstract class _apps
 		$templates = $filterFile($this->get_templateroot($env));
 		return (empty($templates)) ? false : $templates;
 	}
-	
+
 /**
  * Prepare app list and save it into the registry
  *
@@ -475,7 +476,7 @@ abstract class _apps
 		$root = new dir(ADMIN_ROOT);
 		$root->get();
 		$classes = array();
-	
+
 		foreach ($root as $dir)
 		{
 			$key = $dir->get_key();
