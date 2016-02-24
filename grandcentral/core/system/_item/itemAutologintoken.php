@@ -33,19 +33,19 @@ class itemAutologintoken extends _items{
 	public function new_cookie()
 	{
 		$this['token'] = $this->get_token();
-		setcookie('name', $this['token'], time() + ($this->expiration * 24 * 60 * 60));
+		setcookie('gc-autologin', $this['token'], time() + ($this->expiration * 24 * 60 * 60));
 		$this['end'] = date('Y-m-d h:i:s' , time() +  ($this->expiration * 24 * 60 * 60));
 	}
 
 	public function set_cookie()
 	{
 		$this['token'] = $this->get_token();
-		setcookie('name', $this['token']);
+		setcookie('gc-autologin', $this['token']);
 	}
 
 	public function delete_cookie()
 	{
-		setcookie('name', $this['token'], time()-1);
+		setcookie('gc-autologin', $this['token'], time()-1);
 		$this->delete();
 	}
 

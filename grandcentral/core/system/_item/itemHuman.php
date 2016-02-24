@@ -38,20 +38,20 @@ class itemHuman extends _items
  */
 	public function guess()
 	{
+
 		ini_set('session.use_trans_sid', false);
 		ini_set('session.cache_expire', 60);
 		ini_set('session.cookie_httponly', true);
 		session_start();
 		
-		
-	//	si pas de session on log automatiquement l'utilisateur anonyme
+	//	Try to automatically log the user in if no user
 		if (!isset($_SESSION['user']) || (isset($_SESSION['user']) && !$_SESSION['user']->exists()))
 		{
-			if(isset($_COOKIE['name']) && !empty($_COOKIE['name']))
+			if(isset($_COOKIE['gc-autologin']) && !empty($_COOKIE['gc-autologin']))
 			{
 				// Vérifie si le cookie existe
 				$autologin = i('autologintoken', array(
-					'token' => $_COOKIE['name']
+					'token' => $_COOKIE['gc-autologin']
 				));
 
 				if((count($autologin) > 0) && ($autologin[0]['end'] < date()))
@@ -209,10 +209,11 @@ class itemHuman extends _items
 
 		if($cookie)
 		{
-			if(isset($_COOKIE['name']) && !empty($_COOKIE['name']))
+			if(isset($_COOKIE['gc-autologin']) && !empty($_COOKIE['gc-autologin']))
 			{
+
 				$token = i('autologintoken', array(
-					'token' => $_COOKIE['name']
+					'token' => $_COOKIE['gc-autologin']
 				));
 
 				if(count($token) > 0)
@@ -252,7 +253,7 @@ class itemHuman extends _items
 	{
 		$_SESSION['user'] = null;
 
-		if(isset($_COOKIE['name']))
+		if(isset($_COOKIE['gc-autologin']))
 		{
 			$autologin = i('autologintoken');
 			$autologin->delete_cookie();
