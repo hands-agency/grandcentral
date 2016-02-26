@@ -1,7 +1,9 @@
+<?php if (isset($item['title'])): ?>
 <header>
 	<div class="cover" <?php if (isset($coverField) && !$item[$coverField]->is_empty()): ?>style="background-image:url('<?=media($item[$coverField][0]['url'])->get_url()?>')"<?php endif ?>></div>
 	<h1><?=$item['title']->cut('55')?></h1>
 </header>
+<?php endif ?>
 
 <?= $form; ?>
 
