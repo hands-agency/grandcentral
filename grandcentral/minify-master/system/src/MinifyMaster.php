@@ -17,10 +17,11 @@ class MinifyMaster{
 				$minifier_js->minify_resources('script', $minifier_js);
 		    master::clean_bind('script');
 
-		    $current_page = defined('item') ? i('page', current)['url']->get().i(item, current)['url']->get() : i('page', current)['url']->get();
+		    $current_page = defined('item') ? i('page', current)['url']->get().i(item, current)['url']->get_current() : i('page', current)['url']->get_current();
+		    
 		    $app = app('cache');
-		    $app->bind_script('../cache/mini/'.md5($current_page).'.js');
-	    	$app->bind_css('../cache/mini/'.md5($current_page).'.css');
+		    $app->bind_script('mini/'.md5($current_page).'.js');
+	    	$app->bind_css('mini/'.md5($current_page).'.css');
 		}
 	}
 }

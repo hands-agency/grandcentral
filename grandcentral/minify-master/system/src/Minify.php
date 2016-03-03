@@ -395,7 +395,9 @@ abstract class Minify
 
     function return_md5($type)
     {
-        $current_page = defined('item') ? i('page', current)['url']->get().i(item, current)['url']->get() : i('page', current)['url']->get();
+        $version = i('version', current)['key'];
+        $current_page = defined('item') ? i('page', current)['url']->get().i(item, current)['url']->get_current() : i('page', current)['url']->get_current();
+        
         $this->if_folder_exists($current_page);
 
         $app = app('cache');
