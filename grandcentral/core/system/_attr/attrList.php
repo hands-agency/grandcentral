@@ -18,6 +18,19 @@ class attrList extends _attrs
  * @return	string	une string
  * @access	public
  */
+	/**
+	 * Get the attribute data
+	 *
+	 * @return	mixed	 attribute data value
+	 * @access	public
+	 */
+
+	public function get_data()
+	{
+		return $this->data;
+	}
+
+
 	public function set($data)
 	{
 		$this->data = (string) $data;
