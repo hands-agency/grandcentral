@@ -9,23 +9,24 @@
  */
 class attrList extends _attrs
 {
-	protected $values;
+	protected $values = array();
 	protected $placeholder;
+
 /**
- * Set string attribute
+ * Get the attribute data
  *
- * @param	string	la variable
- * @return	string	une string
+ * @return	mixed	 attribute data value
  * @access	public
  */
+	public function get()
+	{
+		return isset($this->values[$this->data]) ? $this->values[$this->data] : reset($this->values);
+	}
+
+
 	public function set($data)
 	{
 		$this->data = (string) $data;
-		// if (is_array($this->values) && in_array($data, $this->values))
-		// {
-			// $this->data = (string) $data;
-		// }
-		// return $this;
 	}
 /**
  * Ajouter la liste des valeurs disponibles
@@ -36,7 +37,11 @@ class attrList extends _attrs
  */
 	public function set_values($data)
 	{
-		$this->values = array_map('trim', explode(',', $data));
+		$values = explode(',', $data);
+		foreach ($values as $value)
+		{
+			$this->values[$value] = trim($value);
+		}
 	//	retour
 		return $this;
 	}
@@ -87,7 +92,7 @@ class attrList extends _attrs
 		return $definition;
 	}
 /**
- * Default field attributes for Rel	
+ * Default field attributes for Rel
  *
  * @param	string	la variable
  * @return	string	une string
