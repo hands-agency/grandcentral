@@ -182,28 +182,34 @@ class itemPage extends _items
  */
 	public function __tostring()
 	{
-		// maintenance
-		if (SITE_MAINTENANCE === true && env == 'site' && $this['key'] != 'login.post' && !$_SESSION['user']->is_admin())
-		{
-			$this->get('maintenance');
-		}
-		// application des droits
-		if (!$_SESSION['user']->can('see', $this))
-		{
-			$this->get('login');
-		}
-	//	prepare page display
-		$prepareFunction = '_prepare_'.$this['type']['key'];
-	//	error
-		if (!method_exists($this, $prepareFunction))
-		{
-			trigger_error('Cannot display page. I need a valid type.', E_USER_ERROR);
-		}
-	//	headers
-		$this->header();
+		try {
+        // maintenance
+				if (SITE_MAINTENANCE === true && env == 'site' && $this['key'] != 'login.post' && !$_SESSION['user']->is_admin())
+				{
+					$this->get('maintenance');
+				}
+				// application des droits
+				if (!$_SESSION['user']->can('see', $this))
+				{
+					$this->get('login');
+				}
+			//	prepare page display
+				$prepareFunction = '_prepare_'.$this['type']['key'];
+			//	error
+				if (!method_exists($this, $prepareFunction))
+				{
+					trigger_error('Cannot display page. I need a valid type.', E_USER_ERROR);
+				}
+			//	headers
+				$this->header();
 
-	//	display
-		return $this->$prepareFunction();
+			//	display
+				return (string) $this->$prepareFunction();
+    } catch (Exception $exception) {
+			echo "<pre>";print_r($exception);echo "</pre>";
+        return '';
+    }
+
 	}
 /**
  * Prepare display of a content page
