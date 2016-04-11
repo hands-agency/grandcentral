@@ -1,0 +1,140 @@
+@import "grid";
+@import "fonts";
+@import "media-queries";
+
+@primary-text-color:#34495e;
+@primary-bg-color:#ecf0f1;
+
+@primary-font:'telefonregular';
+@secondary-font-light:'solomon_sans_lightregular';
+@secondary-font-bold:'solomon_sans_semiboldregular';
+
+h1,h2,h3,h4 {
+    font-weight:normal;
+    margin:0;
+}
+a {
+    text-decoration:none;
+    color:inherit;
+}
+
+header {
+    background:#ecf0f1;
+    text-align:center;
+    padding:1.9rem;
+    h1 {
+        color:@primary-text-color;
+        font-family:@primary-font;
+        font-weight:normal;
+        font-size:2.5em;
+        margin-bottom:0;
+        text-shadow: 0px 2px 2px @primary-bg-color - 30;
+    }
+    hr {
+        width:20%;
+        border:1px solid @primary-bg-color - 20;
+    }
+    h2 {
+        font-family:@secondary-font-light;
+        color:@primary-text-color + 50;
+        font-size:1.2em;
+        font-weight:normal;
+    }
+}
+
+main {
+    background:@primary-bg-color + 20;
+    padding:1rem;
+    pre {
+        margin:0.5rem;
+    }
+    section.about {
+        a {
+            font-family:@secondary-font-bold;
+        }
+    }
+    section.usage {
+        padding-bottom:2rem;
+        hr {
+            width:40%;
+            border:1px solid @primary-bg-color - 20;
+        }
+    }
+    section.usage-options {
+        padding-top:0;
+        .if-taller {
+            margin-top:2rem;
+        }
+    }
+    .clearfix.options {
+        text-align:center;
+        border:1px solid @primary-bg-color;
+        margin:1rem;
+    }
+}
+section {
+    padding-top:2rem;
+    h2 {
+        color:@primary-text-color + 100;
+        font-family:@secondary-font-bold;
+    }
+    p {
+        color:@primary-text-color;
+        font-family:@secondary-font-light;
+    }
+    span {
+        font-family:@secondary-font-bold;
+        font-size:1.1em;
+    }
+}
+footer {
+    text-align:center;
+    background:#f1c40f;
+    padding:2rem;
+    p {
+        color:black;
+        font-size:2em;
+    }
+    .column.full {
+        p {
+            font-size:1em;
+            a {
+                color:white;
+            }
+        }
+    }
+    button {
+        width:15rem;
+        height:5rem;
+        border:0;
+        margin:1rem auto;
+        border-radius:0.5rem;
+        background:@primary-bg-color;
+        color:@primary-text-color;
+        font-size:2em;
+        font-family:@primary-font;
+        text-shadow: 0px 2px 2px @primary-bg-color - 30;
+        -moz-box-shadow : 0 20px 30px -20px #f1c40f - 200;
+        -webkit-box-shadow : 0 20px 30px -20px #f1c40f - 200;
+        box-shadow : 0 20px 30px -20px #f1c40f - 200;
+        -webkit-transition: all 0.2s;
+        -moz-transition: all 0.2s;
+        transition: all 0.2s;
+    }
+    section.download {
+        padding-bottom:2rem;
+    }
+}
+
+.no-touch {
+    footer {
+        button {
+            &:hover {
+                color:@primary-text-color - 20;
+                -moz-box-shadow : 0 20px 30px -17px #f1c40f - 200;
+                -webkit-box-shadow : 0 20px 30px -17px #f1c40f - 200;
+                box-shadow : 0 20px 30px -17px #f1c40f - 200;
+            }
+        }
+    }
+}
