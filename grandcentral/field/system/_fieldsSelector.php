@@ -1,7 +1,7 @@
 <?php
 /**
  * Classe abstaire de manipulation des champs de selection
- * 
+ *
  * @package		form
  * @author		Michaël V. Dandrieux <@mvdandrieux>
  * @author		Sylvain Frigui <sf@hands.agency>
@@ -13,11 +13,12 @@ abstract class _fieldsSelector extends _fields
 {
 	protected $datatype = array('rel, string');
 	protected $values;
+	protected $current;
 	protected $valuestype = 'function';
 	// protected $irel = false;
 /**
  * Affecte une valeur au champ. Les valeurs des sélecteurs peuvent être des dérivés de _item ou des string de type page_1
- * 
+ *
  * @param	mixed	un objet ou un tag d'objet (ex : page_1)
  * @access	public
  */
@@ -38,7 +39,7 @@ abstract class _fieldsSelector extends _fields
 	}
 /**
  * Affecte le type des values du selecteur. Les types sont : bunch, array, function, method
- * 
+ *
  * @param	string	bunch ou array ou function ou method
  * @access	public
  */
@@ -49,7 +50,7 @@ abstract class _fieldsSelector extends _fields
 	}
 /**
  * Définit les choix possible dans le sélecteur
- * 
+ *
  * @param	mixed	un tableau associatif, le nom d'une fonction, d'une méthode ou la description d'un bunch
  * @access	public
  */
@@ -59,7 +60,7 @@ abstract class _fieldsSelector extends _fields
 	}
 /**
  * Définit les choix possible dans le sélecteur
- * 
+ *
  * @param	mixed	un tableau associatif, le nom d'une fonction, d'une méthode ou la description d'un bunch
  * @access	public
  */
@@ -71,7 +72,7 @@ abstract class _fieldsSelector extends _fields
 	}
 /**
  * Définit les choix possible dans le sélecteur
- * 
+ *
  * @param	mixed	un tableau associatif, le nom d'une fonction, d'une méthode ou la description d'un bunch
  * @access	public
  */
@@ -81,7 +82,7 @@ abstract class _fieldsSelector extends _fields
 	}
 /**
  * Prépare la liste des valeurs en fonction du type passé
- * 
+ *
  * @param	string	Refine the values using a string
  * @return	array 	la liste des valeurs traitées sous forme de tableau
  * @access	public
@@ -120,7 +121,7 @@ abstract class _fieldsSelector extends _fields
 	}
 /**
  * Prépare la liste des valeurs de type array
- * 
+ *
  * @return	array 	la liste des valeurs traitées sous forme de tableau
  * @access	protected
  */
@@ -135,12 +136,12 @@ abstract class _fieldsSelector extends _fields
 		//	BAM
 			$values[] = array('id' => $id, 'title' => $title, 'descr' => $descr);
 		}
-		
+
 		return $values;
 	}
 /**
  * Prépare la liste des valeurs de type bunch
- * 
+ *
  * @param	string	Refine the values using a string
  * @return	array 	la liste des valeurs traitées sous forme de tableau
  * @access	protected
@@ -169,9 +170,23 @@ abstract class _fieldsSelector extends _fields
 		foreach ($this->values as $value)
 		{
 			$table = $value['item'];
-			$params = (isset($value['param'])) ? $value['param'] : null;
+			// [current]
+			if (isset($value['property']) && is_array($value['property']))
+			{
+				foreach ($value['property'] as $key => $v)
+				{
+					if ($v == '[current]') $value['property'][$key] = $_GET['item'].'_'.$_GET['id'];
+				}
+			}
+			// order
+			if (isset($value['property']['order']))
+			{
+				$value['property']['order()'] = $value['property']['order'];
+				unset($value['property']['order']);
+			}
+			$params = (isset($value['property'])) ? $value['property'] : null;
 		//	Default order
-			$params['order()'] = 'title';
+			if (!isset($params['order()'])) $params['order()'] = 'title';
 		//	Get all status
 		//	$params['live'] = array(true, false);
 			$params['status'] = array('live', 'asleep');
@@ -192,7 +207,7 @@ abstract class _fieldsSelector extends _fields
 			$status = (isset($value['status']) && !empty($value['status'])) ? $value['status'] : null;
 		//	BAM
 			// if ($countTable > 1) $values[$table][] = array('id' => $value->get_nickname(), 'title' => $title, 'descr' => $descr);
-			// else 
+			// else
 			$data = array('id' => $value->get_nickname(), 'title' => $title, 'descr' => $descr, 'status' => $status);
 			if ($countTable > 1) $data['item'] = $table;
 			$values[] = $data;
@@ -201,7 +216,7 @@ abstract class _fieldsSelector extends _fields
 	}
 /**
  * Prépare la liste des valeurs de type function
- * 
+ *
  * @return	array 	la liste des valeurs traitées sous forme de tableau
  * @access	protected
  */
@@ -220,12 +235,12 @@ abstract class _fieldsSelector extends _fields
 		{
 			$values = call_user_func_array($function[0], $function[1]);
 		}
-		
+
 		return $values;
 	}
 /**
  * Prépare la liste des valeurs de type method
- * 
+ *
  * @return	array 	la liste des valeurs traitées sous forme de tableau
  * @access	protected
  */
@@ -245,12 +260,12 @@ abstract class _fieldsSelector extends _fields
 		{
 			$values = call_user_func_array(array($method['class'], $method['name']), $method[1]);
 		}
-		
+
 		return $values;
 	}
 /**
  * Obtenir la définition des propriétés du champ
- * 
+ *
  * @return	array 	la liste des propriétés et leurs définitions
  * @access	public
  * @static
@@ -265,8 +280,8 @@ abstract class _fieldsSelector extends _fields
 			'value' => 'array',
 		);
 		$properties['values'] = 'text';
-		$properties['irel'] = 'text';
-		
+		//$properties['irel'] = 'text';
+
 		return $properties;
 	}
 }
