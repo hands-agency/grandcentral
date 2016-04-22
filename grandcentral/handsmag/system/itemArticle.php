@@ -7,6 +7,7 @@
  */
 class itemArticle extends _items
 {
+	protected static $topics;
 /**
  * Save item into database and sync with the magazine
  *
@@ -41,11 +42,14 @@ class itemArticle extends _items
  *
  * @access  public
  */
-	public function format_date()
+	public function get_topic()
 	{
-		if ($this['date']->is_empty()) return '';
-
-		return $this['date']->format('M');
+		if (empty(self::$topics))
+		{
+			self::$topics = i('topic', all)->set_index('id');
+		}
+		$topic = !$this['topic']->is_empty() ? self::$topics[$this['topic']->get()] : i('topic');
+		return $topic;
 	}
 }
 ?>
