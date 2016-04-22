@@ -51,7 +51,6 @@ class sitemaps
  * @param	array  The cache lifetime in ms, or using keywords : hourly, daily, weekly
  * @access	public
  */
-<<<<<<< HEAD
 	public function create($refresh = '86400000', $force_refresh = false)
 	{
 	//	Translate refresh
@@ -83,46 +82,12 @@ class sitemaps
 		//	Get the items with url
 			$structures = i('item', array('hasurl' => true));
 
-=======
-	public function create($refresh = '86400000')
-	{
-	//	Translate refresh
-		switch ($refresh)
-		{
-			case 'hourly':
-				$refresh = '3600000';
-				break;
-			case 'daily':
-				$refresh = '86400000';
-				break;
-			case 'weekly':
-				$refresh = '604800000';
-				break;
-		}
-		
-	//	Use phpfastcache
-		phpfastcache::setup('storage', 'files');
-		$cache = phpfastcache();
-		#$cache->delete($this->cachename);
-		
-	//	Try to get the cache
-		$sitemap = $cache->get($this->cachename);
-		
-	//	No cache ?
-		if ($sitemap == null)
-		{
-		
-		//	Get the items with url
-			$structures = i('item', array('hasurl' => true));
-		
->>>>>>> 4.2
 		//	Loop through structures with url
 			$url = '';
 			foreach ($structures as $structure)
 			{
 			//	Get the items
 				switch ($structure['key'])
-<<<<<<< HEAD
 				{
 					case 'page':
 						$p = array(
@@ -147,37 +112,10 @@ class sitemaps
 			//	Append or prepend urls
 				if (!empty($this->appendedUrl))
 				{
-=======
-				{
-					case 'page':
-						$p = array(
-							'type' => '%"content_type":"html"%',
-						//	'live' => true,
-							'status' => 'live',
-							'system' => false,
-						//	'key' => '',
-						);
-						break;
-				
-					default:
-						$p = array(
-						//	'live' => true,
-							'status' => 'live',
-							'system' => false,
-						);
-						break;
-				}
-				$items = i($structure['key']->get(), $p);
-			
-			//	Append or prepend urls
-				if (!empty($this->appendedUrl))
-				{
->>>>>>> 4.2
 					foreach ($this->appendedUrl as $i)
 					{
 						$items[] = $i;
 					}
-<<<<<<< HEAD
 				}
 				$items->count = count($items);
 
@@ -193,32 +131,11 @@ class sitemaps
 				}
 			}
 
-=======
-				}
-				$items->count = count($items);
-			
-			//	Loop through items
-				foreach ($items as $item)
-				{
-					$url .= "<url>\n";
-					$url .= "	<loc>".$item["url"]."</loc>\n";
-					$url .= "	<lastmod>".$item["updated"]->format("Y-m-d")."</lastmod>\n";
-				//	$url .= "	<changefreq>todo</changefreq>\n";
-				//	$url .= "	<priority>todo</priority>\n";
-					$url .= "</url>\n";
-				}
-			}
-		
->>>>>>> 4.2
 		//	Encapsulate
 			$this->data .= "<urlset data-refresh=\"".$refresh."\" xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n";
 			$this->data .= $url;
 			$this->data .= "</urlset>";
-<<<<<<< HEAD
 
-=======
-		
->>>>>>> 4.2
 		//	Write sitemaps to Cache in 10 minutes with same keyword
 			$cache->set($this->cachename, $this->data, $refresh);
 		}
@@ -234,11 +151,7 @@ class sitemaps
 		phpfastcache::setup('storage', 'files');
 		$cache = phpfastcache();
 		$sitemap = $cache->get($this->cachename);
-<<<<<<< HEAD
 
-=======
-		
->>>>>>> 4.2
 		return $sitemap;
 	}
 }
