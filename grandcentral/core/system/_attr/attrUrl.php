@@ -126,7 +126,7 @@ class attrUrl extends attrArray
 	{
 	//
 		$db = database::connect($this->params['env']);
-	 	$q = 'SELECT COUNT(`id`) as `count` FROM `'.$this->params['table'].'` WHERE `url` LIKE "%'.$url.'%" AND id != "'.$this->params['id'].'"';
+	 	$q = 'SELECT COUNT(`id`) as `count` FROM `'.$this->params['table'].'` WHERE (`url` = "'.$this->_slugify($url).'" OR `url` LIKE "%'.$this->_slugify($url).'\"%") AND id != "'.$this->params['id'].'"';
 		$r = $db->query($q);
 		if ($r['data'][0]['count'] > 0)
 		{
