@@ -38,6 +38,7 @@
 				<?php if (isset($i['url'])): ?><a class="preview" data-feathericon="&#xe000">Preview</a><?php endif ?>
 				<a class="asleep" data-feathericon="&#xe061">Asleep</a>
 				<a class="live" data-feathericon="&#xe064">Go live</a>
+				<a class="trash" data-feathericon="&#xe109">Trash</a>
 				<a class="alter" href="<?=$item->edit()?>" data-feathericon="&#xe064">Alter <?=$item['title']?></a>
 			</div>
 			<div class="preview"><iframe></iframe></div>

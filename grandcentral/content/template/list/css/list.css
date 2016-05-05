@@ -59,6 +59,17 @@ section[data-template="/list/list"]>div>ol>li[data-status="asleep"] .asleep
 	display:none !important;
 }
 
+/* Trash */
+section[data-template="/list/list"]>div>ol>li[data-status="trash"]
+{
+	transform:scale(0);
+	-moz-transform:scale(0);
+	-ms-transform:scale(0);
+	-webkit-transform:scale(0);
+	-o-transform:scale(0);
+	opacity:0;
+}
+
 /* Fields */
 section[data-template="/list/list"]>div>ol>li .card>.front .title
 {

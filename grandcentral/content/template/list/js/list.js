@@ -41,12 +41,11 @@ $(document).bind('unlock', function()
 		$back.find('.preview iframe').attr('src', url);
 	});
 
-
 /*********************************************************************************************
-/**	* Asleep / live
+/**	* Asleep / live / trash
  	* @author	@mvdandrieux
 **#******************************************************************************************/
-	$(document).on('click', '.action .asleep, .action .live', function()
+	$(document).on('click', '.action .asleep, .action .live, .action .trash', function()
 	{
 	//	Some vars
 		$item = $(this).closest('li');
@@ -72,6 +71,8 @@ $(document).bind('unlock', function()
 			//	Change the display
 			//	$item.attr('data-live', live).data('live', live);/* #4.3 */
 				$item.attr('data-status', status).data('status', status);
+			//	Detroy trash
+				if (status == 'trash') setTimeout(function(){$item.remove()},100);
 			},
 			fail:function()
 			{
