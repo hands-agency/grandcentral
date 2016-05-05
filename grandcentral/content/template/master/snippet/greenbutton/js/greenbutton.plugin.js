@@ -402,6 +402,16 @@
 			plugin.save('trash');
 		}
 
+	//	Trash and go back to the list
+		plugin.trash_back = function()
+		{
+			plugin.save('trash', function()
+			{
+			//	Go to the list page
+				document.location.href = ADMIN_URL+'/list?item='+_GET['item'];
+			});
+		}
+
 	//	Preview
 		plugin.preview = function()
 		{
