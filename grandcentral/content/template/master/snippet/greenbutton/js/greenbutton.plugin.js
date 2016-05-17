@@ -418,8 +418,8 @@
 			plugin.save('draft', function(r)
 			{
 				key = r.data.key;
-				url = SITE_URL+'/workflow?key='+key;
-				openSite(url);
+				url = SITE_URL+'/wf?key='+key;
+				openSite(url, true);
 			});
 		}
 

@@ -312,7 +312,6 @@
 //	Context
 	openContext = function(param, callback)
 	{
-		console.log(param);
 	//	Some vars
 		maxContext = 2;
 		
@@ -374,7 +373,7 @@
 	}
 	
 //	Site
-	openSite = function(url)
+	openSite = function(url, refresh)
 	{
 	//	Some vars
 		$siteNav = $('header .site');
@@ -388,7 +387,7 @@
 		{
 		//	Open at the right page
 			$('#main').addClass('siteOpened');
-			if (url && $iframe.is('[src]') == false) {$iframe.attr('src', url);}
+			if (url && ($iframe.is('[src]') == false || refresh == true)) {$iframe.attr('src', url);}
 		
 		//	Sitetree
 			$sitetree.on('click', function()
