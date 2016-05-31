@@ -334,7 +334,7 @@ class image extends media
  */
 	public function resize($width, $height, $keep_proportions = true)
 	{
-		set_time_limit(10);
+		set_time_limit(30);
 		$this->set_memory();
 		// ini_set( 'memory_limit', '1024M' );
 
