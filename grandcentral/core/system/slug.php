@@ -26,10 +26,11 @@ class Slug
 	private function noDiacritics($string)
 	{
 		$accents_regex = '~&([a-z]{1,2})(?:acute|cedil|circ|grave|lig|orn|ring|slash|th|tilde|uml);~i';
-    $special_cases = array( '&' => 'and', "'" => '','’'=>' ');
+    $special_cases = array('«&nbsp;' => ' ','&nbsp;»' => ' ','&nbsp;' => ' ','«' => '','»' => '', '&' => ' ', "'" => '','’'=>' ','°'=>' ');
     $string = mb_strtolower( trim( $string ), 'UTF-8' );
     $string = str_replace( array_keys($special_cases), array_values( $special_cases), $string );
     $string = preg_replace( $accents_regex, '$1', htmlentities( $string, ENT_QUOTES, 'UTF-8' ) );
+		$string = str_replace('nbsp','',$string);
     return $string;
 	}
 
@@ -61,7 +62,7 @@ class Slug
 	      $newString='';
 
 
-		$newString = str_replace('--', '-', $newString);
+		$newString = str_replace(array('--','---'), '-', $newString);
 		$return = mb_substr($newString,-1) == '-' ? mb_substr($newString,0,-1) : $newString;
 	   return rawurlencode($return);
 	}
