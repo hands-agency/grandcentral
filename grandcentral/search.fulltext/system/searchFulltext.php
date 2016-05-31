@@ -64,12 +64,12 @@ class searchFulltext
 		$results = new bunch(null, null, 'site');
 		$nicknames = array();
 		$r = $this->query($search, $alloweditems, $limit);
-		
+
 		foreach ($r['data'] as $result)
 		{
 			$nicknames[] = $result['nickname'];
 		}
-		
+
 		return $results->get_by_nickname($nicknames);
 	}
 /**
@@ -86,12 +86,12 @@ class searchFulltext
 		$results = new bunch(null, null, 'site');
 		$nicknames = array();
 		$r = $this->query($search, null, $limit, $alloweditems);
-		
+
 		foreach ($r['data'] as $result)
 		{
 			$nicknames[] = $result['nickname'];
 		}
-		
+
 		return $results->get_by_nickname($nicknames);
 	}
 /**
@@ -108,38 +108,38 @@ class searchFulltext
 		$where = empty($alloweditems) ? '' : 'AND `item` IN ("'.implode('","', $alloweditems).'")';
 		$where .= empty($allowednicknames) ? '' : 'AND `nickname` IN ("'.implode('","', $allowednicknames).'")';
 		$limit = is_null($limit) ? null : 'LIMIT '.$limit;
-		
+
 		$search = $this->sanitize($search);
 		$q = '
-			SELECT `item`, `nickname`,
-			MATCH (`title`) AGAINST ("'.$search.'" IN NATURAL LANGUAGE MODE) AS title_relevance,
-			MATCH (`txt`) AGAINST ("'.$search.'" IN NATURAL LANGUAGE MODE) AS txt_relevance,
-			MATCH (`rel`) AGAINST ("'.$search.'" IN NATURAL LANGUAGE MODE) AS rel_relevance
-			FROM `'.$this->key.'`
-			WHERE MATCH (`title`,`txt`,`rel`) AGAINST ("*'.$search.'*" IN NATURAL LANGUAGE MODE)
-			'.$where.'
-			ORDER BY (title_relevance*'.$this->relevance['title'].')+(txt_relevance*'.$this->relevance['txt'].')+(rel_relevance*'.$this->relevance['rel'].') DESC
-			'.$limit.'
+SELECT `item`, `nickname`,
+MATCH (`title`) AGAINST ("'.$search.'" IN NATURAL LANGUAGE MODE) AS title_relevance,
+MATCH (`txt`) AGAINST ("'.$search.'" IN NATURAL LANGUAGE MODE) AS txt_relevance,
+MATCH (`rel`) AGAINST ("'.$search.'" IN NATURAL LANGUAGE MODE) AS rel_relevance
+FROM `'.$this->key.'`
+WHERE MATCH (`title`,`txt`,`rel`) AGAINST ("*'.$search.'*" IN NATURAL LANGUAGE MODE)
+'.$where.'
+ORDER BY (title_relevance*'.$this->relevance['title'].')+(txt_relevance*'.$this->relevance['txt'].')+(rel_relevance*'.$this->relevance['rel'].') DESC
+'.$limit.'
 		';
 		$db = database::connect('site');
 		$r = $db->query($q);
-		
+
 		if ($r['count'] == 0)
 		{
 			$q = '
-				SELECT `item`, `nickname`,
-				MATCH (`title`) AGAINST ("*'.$search.'*" IN BOOLEAN MODE) AS title_relevance,
-				MATCH (`txt`) AGAINST ("*'.$search.'*" IN BOOLEAN MODE) AS txt_relevance,
-				MATCH (`rel`) AGAINST ("*'.$search.'*" IN BOOLEAN MODE) AS rel_relevance
-				FROM `'.$this->key.'`
-				WHERE MATCH (`title`,`txt`,`rel`) AGAINST ("*'.$search.'*" IN BOOLEAN MODE)
-				'.$where.'
-				ORDER BY (title_relevance*'.$this->relevance['title'].')+(txt_relevance*'.$this->relevance['txt'].')+(rel_relevance*'.$this->relevance['rel'].') DESC
-				'.$limit.'
+SELECT `item`, `nickname`,
+MATCH (`title`) AGAINST ("*'.$search.'*" IN BOOLEAN MODE) AS title_relevance,
+MATCH (`txt`) AGAINST ("*'.$search.'*" IN BOOLEAN MODE) AS txt_relevance,
+MATCH (`rel`) AGAINST ("*'.$search.'*" IN BOOLEAN MODE) AS rel_relevance
+FROM `'.$this->key.'`
+WHERE MATCH (`title`,`txt`,`rel`) AGAINST ("*'.$search.'*" IN BOOLEAN MODE)
+'.$where.'
+ORDER BY (title_relevance*'.$this->relevance['title'].')+(txt_relevance*'.$this->relevance['txt'].')+(rel_relevance*'.$this->relevance['rel'].') DESC
+'.$limit.'
 			';
 			$r = $db->query($q);
 		}
-		
+
 		return $r;
 	}
 /**
@@ -159,7 +159,7 @@ class searchFulltext
 		{
 			$toindex = array_merge($toindex, $this->prepare_items($item['key']->get()));
 		}
-		
+
 		return $toindex;
 	}
 /**
@@ -185,7 +185,7 @@ class searchFulltext
 				$e++;
 			}
 		}
-		
+
 		$db = database::connect('site');
 		$q = 'TRUNCATE TABLE `'.$this->key.'`;';
 		$db->query($q);
@@ -205,7 +205,7 @@ class searchFulltext
 	public function prepare_items($table)
 	{
 		$toindex = array();
-		
+
 		if (!in_array($table, $this->notable))
 		{
 			foreach (i($table, all, 'site') as $item)
@@ -213,7 +213,7 @@ class searchFulltext
 				$toindex[] = $this->prepare_item($item);
 			}
 		}
-		
+
 		return $toindex;
 	}
 /**
@@ -232,7 +232,7 @@ class searchFulltext
 			$item['title'] = '';
 		}
 		else $title = $item['key'];
-		
+
 		// tableau de retour
 		$toindex = array(
 			'item' => $item->get_table(),
@@ -257,7 +257,7 @@ class searchFulltext
 					break;
 			}
 		}
-		
+
 		return $toindex;
 	}
 /**
@@ -287,7 +287,7 @@ class searchFulltext
 		$value = strip_tags($value);
 		// suppression du slashs
 		$toindex = str_replace(array('\\', '"'), array('', ' '), $value);
-		
+
 		return $toindex;
 	}
 /**
@@ -300,13 +300,13 @@ class searchFulltext
 	public function flat_array(array $array)
 	{
 		$flat = null;
-		
+
 		$it = new RecursiveIteratorIterator(new RecursiveArrayIterator($array));
 		foreach($it as $v)
 		{
 			$flat .= $v.' ';
 		}
-		
+
 		return $flat;
 	}
 /**
@@ -343,10 +343,10 @@ class searchFulltext
 					{
 						$toindex .= ' '.self::$relTables[$rel];
 					}
-					
+
 				}
 			}
-			
+
 		}
 		// print'<pre>';print_r($toindex);print'</pre>';
 		return $toindex;
@@ -363,12 +363,12 @@ class searchFulltext
 			case is_array($data):
 				$data = implode(' ',$data);
 				break;
-			
+
 			default:
 				$data = strip_tags($data);
 				break;
 		}
-		
+
 		return $data;
 	}
 /**
@@ -382,7 +382,7 @@ class searchFulltext
 		$db= database::connect('site');
 		$q = '
 		DROP TABLE IF EXISTS `'.$this->key.'`;
-		CREATE TABLE `'.$this->key.'` 
+		CREATE TABLE `'.$this->key.'`
 		(
 			`item` varchar(32) COLLATE '.database::collation.' NOT NULL,
 			`nickname` varchar(64) COLLATE '.database::collation.' NOT NULL,
@@ -390,7 +390,7 @@ class searchFulltext
 			`txt` text COLLATE '.database::collation.' NOT NULL,
 			`rel` text COLLATE '.database::collation.' NOT NULL,
 			KEY `item` (`item`),
-			KEY `nickname` (`nickname`),
+			PRIMARY KEY `nickname` (`nickname`),
 			FULLTEXT KEY `all` (`title`,`txt`,`rel`),
 			FULLTEXT KEY `titre` (`title`),
 			FULLTEXT KEY `txt` (`txt`),
