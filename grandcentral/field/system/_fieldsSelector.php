@@ -171,7 +171,7 @@ abstract class _fieldsSelector extends _fields
 		{
 			$table = $value['item'];
 			// [current]
-			if (isset($value['property']) && is_array($value['property']))
+			if (isset($value['property']) && is_array($value['property']) && isset($_GET['id']))
 			{
 				foreach ($value['property'] as $key => $v)
 				{
