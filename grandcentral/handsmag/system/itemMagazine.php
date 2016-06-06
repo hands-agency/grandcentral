@@ -16,8 +16,8 @@ class itemMagazine extends _items
 	{
 		// on sauvegarde l'item courant
 		parent::save();
-    // recherche des articles liés
-    $articles = $this['article']->unfold();
+		// recherche des articles liés
+		$articles = $this['article']->unfold();
 		// mise à jour des données
     if ($articles->count > 0)
     {
@@ -30,6 +30,9 @@ class itemMagazine extends _items
       $q = 'UPDATE article SET magazine = "'.$this->get_nickname().'" WHERE id IN ('.implode(',',$articles->get_column('id')).')';
       $db->query($q);
     }
+		// process the good status
+		//$this['status'] = $this['workflow']->unfold()->process();
+		$this['workflow']->unfold()->process($this);
 	}
 /**
  * Format date for display
@@ -164,6 +167,7 @@ class itemMagazine extends _items
 					$zip->addFile($image->get_root(), $image->get_key());
 				}
 			}
+			$source = app('handsmag')->get_snippet('export/layout',array('html' => $source));
 			// create html file
 			$zip->addFromString($this['title']->cut(50).'.html', $source);
 			// close

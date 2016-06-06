@@ -79,9 +79,14 @@ class itemArticle extends _items
  *
  * @access  public
  */
-	public function make_source()
+	public function make_source($layout = false)
 	{
-		$html = app('handsmag')->get_snippet('export/article',array('article' => $this));
+		$app = app('handsmag');
+		$html = $app->get_snippet('export/article',array('article' => $this));
+		if ($layout === true)
+		{
+			$html = $app->get_snippet('export/layout',array('html' => $html));
+		}
 		// return
 		return $html;
 	}
@@ -121,7 +126,7 @@ class itemArticle extends _items
 		if ($t === true)
 		{
 			// html
-			$zip->addFromString($this['title']->cut(50).'.html', $this->make_source());
+			$zip->addFromString($this['title']->cut(50).'.html', $this->make_source(true));
 			// images
 			foreach ($this['image']->unfold() as $image)
 			{
