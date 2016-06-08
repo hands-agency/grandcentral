@@ -200,33 +200,40 @@ abstract class _apps
  */
 	public function __tostring()
 	{
-	//	chargement des dépendances
-		$this->load();
-	//	les quelques variables
-		$_APP = &$this;
-	//	HACK pour test des fichiers d'initialisation des paramtres de l'app
-	//	pour exemple voir le fichier launcher de l'app form
-		if (method_exists($this, 'prepare'))
-		{
-			$this->prepare();
-		}
-		$_PARAM = &$this->param;
-	//	on prépare la vue
-		$content_type = master::get_content_type();
-		$root = $this->get_templateroot();
-		$_ROUTINE = $root.$this->template.'.php';
-		$_TEMPLATE = $root.$this->template.'.'.$content_type.'.php';
+		try {
+      //	chargement des dépendances
+			$this->load();
+			//	les quelques variables
+			$_APP = &$this;
+			//	HACK pour test des fichiers d'initialisation des paramtres de l'app
+			//	pour exemple voir le fichier launcher de l'app form
+			if (method_exists($this, 'prepare'))
+			{
+				$this->prepare();
+			}
+			$_PARAM = &$this->param;
+			//	on prépare la vue
+			$content_type = master::get_content_type();
+			$root = $this->get_templateroot();
+			$_ROUTINE = $root.$this->template.'.php';
+			$_TEMPLATE = $root.$this->template.'.'.$content_type.'.php';
 
-	//	on ouvre le tampon
-		ob_start();
-	//	on charge les données à afficher
-		if (is_file($_ROUTINE)) include($_ROUTINE);
-		(is_file($_TEMPLATE)) ? require($_TEMPLATE) : trigger_error('Sorry. The template <strong>'.$this->template.'.'.$content_type.'.php'.'</strong> in <strong>'.$this->get_templateroot().'</strong> does not exists.', E_USER_WARNING);
-	//	on ferme le tampon
-		$content = ob_get_contents();
-		ob_end_clean();
-	//	on affiche
-		return $content;
+			//	on ouvre le tampon
+			ob_start();
+			//	on charge les données à afficher
+			if (is_file($_ROUTINE)) include($_ROUTINE);
+			(is_file($_TEMPLATE)) ? require($_TEMPLATE) : trigger_error('Sorry. The template <strong>'.$this->template.'.'.$content_type.'.php'.'</strong> in <strong>'.$this->get_templateroot().'</strong> does not exists.', E_USER_WARNING);
+			//	on ferme le tampon
+			$content = ob_get_contents();
+			ob_end_clean();
+			//	on affiche
+			return $content;
+    }
+		catch (Exception $exception)
+		{
+			echo "<pre>";print_r($exception);echo "</pre>";
+      return '';
+    }
 	}
 /**
  * Loads app files and dependencies
