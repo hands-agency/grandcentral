@@ -45,6 +45,8 @@
 		//	Move file
 			if (move_uploaded_file($file['tmp_name'], $filePath))
 			{
+				chmod($filePath, 0755);
+				
 				$return['meta'] = array(
 					'msg' => 'All good',
 				);
