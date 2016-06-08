@@ -248,6 +248,22 @@ class dir implements Iterator
 		return $this->key;
 	}
 
+/**
+ * Edit the rights for a directory and all his descendants
+ * http://php.net/manual/fr/function.chmod.php
+ * @param		int 	mode (0755 by default)
+ * @return	string
+ * @access	public
+ */
+	public function chmod($mode = 0755)
+	{
+		foreach ($this->get() as $value)
+		{
+			chmod($value->get_root(), $mode);
+		}
+		return $this;
+	}
+
 //	Iterator
 	function rewind()
 	{
