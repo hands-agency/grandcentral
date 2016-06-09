@@ -103,10 +103,11 @@ class searchFulltext
  * @return	array	les résultats de la recherche
  * @access	public
  */
-	public function query($search, $alloweditems = array(), $limit = null, $allowednicknames = array())
+	public function query($search, $alloweditems = array(), $limit = null, $allowednicknames = array(), $whereExt = null)
 	{
 		$where = empty($alloweditems) ? '' : 'AND `item` IN ("'.implode('","', $alloweditems).'")';
 		$where .= empty($allowednicknames) ? '' : 'AND `nickname` IN ("'.implode('","', $allowednicknames).'")';
+		$where .= ($whereExt === null) ? '' : $whereExt;
 		$limit = is_null($limit) ? null : 'LIMIT '.$limit;
 
 		$search = $this->sanitize($search);
