@@ -38,40 +38,16 @@ class itemHuman extends _items
  */
 	public function guess()
 	{
-
 		ini_set('session.use_trans_sid', false);
 		ini_set('session.cache_expire', 60);
 		ini_set('session.cookie_httponly', true);
 		session_start();
-		
-	//	Try to automatically log the user in if no user
-		if (!isset($_SESSION['user']) || (isset($_SESSION['user']) && !$_SESSION['user']->exists()))
+		//	Try to automatically log the user in if no user
+		$is_autologged = $this->is_autologged();
+		if ((!isset($_SESSION['user']) || (isset($_SESSION['user']) && !$_SESSION['user']->exists())) && !$is_autologged)
 		{
-			if(isset($_COOKIE['gc-autologin']) && !empty($_COOKIE['gc-autologin']))
-			{
-				// Vérifie si le cookie existe
-				$autologin = i('autologintoken', array(
-					'token' => $_COOKIE['gc-autologin']
-				));
-
-				if((count($autologin) > 0) && ($autologin[0]['end'] < date()))
-				{
-					$user = $autologin[0]['user']->unfold();
-					$user->login();
-				}
-				else
-				{
-					$autologin = i('autologintoken');
-					$autologin->delete_cookie();
-					$this->get('anonymous');
-					$this->login();
-				}
-			}
-			else
-			{
 				$this->get('anonymous');
 				$this->login();
-			}
 		}
 	}
 /**
@@ -121,13 +97,13 @@ class itemHuman extends _items
 			}
 			registry::set($this->get_env(), 'group', $allGroups);
 		}
-		
+
 		$userGroups = array();
 		foreach ($this['group'] as $userGroup)
 		{
 			$userGroups[] = $allGroups[$userGroup];
 		}
-		
+
 		return in_array($groupkey, $userGroups) ? true : false;
 	}
 /**
@@ -139,7 +115,6 @@ class itemHuman extends _items
  */
 	public function can($action, itemPage $page)
 	{
-		// print'<pre>';print_r($page['group']->get());print'</pre>';
 	//	Les admins peuvent tout voir
 		if ($this->is_admin())
 		{
@@ -150,8 +125,7 @@ class itemHuman extends _items
 		{
 			if (env == 'site')
 			{
-				// print'<pre>';print_r($this);print'</pre>';
-			//	si la page n'a pas de group associé, 
+			//	si la page n'a pas de group associé,
 				if ($page['group']->is_empty())
 				{
 				//	TODO : déplacer cette partie du code dans la class itemPage
@@ -165,7 +139,7 @@ class itemHuman extends _items
 					{
 					//	on cherche la page parente
 						$parent = i('page', $r['data'][0]['itemid']);
-					//	si la page parente existe dans la bdd, et qu'elle a des groupes, on copie ses groupes 
+					//	si la page parente existe dans la bdd, et qu'elle a des groupes, on copie ses groupes
 						if ($parent->exists() && !$parent['group']->is_empty())
 						{
 							$page['group'] = $parent['group']->get();
@@ -181,59 +155,68 @@ class itemHuman extends _items
 						return true;
 					}
 				}
-				
+
 				foreach ($page['group']->get() as $authorized_group)
 				{
-					
+
 					if (in_array($authorized_group, $this['group']->get()))
 					{
 						return true;
 					}
 				}
-				
-				// print'<pre>page : ';print_r($this['group']);print'</pre>';
-				// print'<pre>page : ';print_r($_SESSION['user']['group']);print'</pre>';
-				
 			}
 		}
 		return false;
 	}
 /**
- * Détermine en fonction du contexte quelle page afficher
+ * Mets l'utilisateur en session
  *
  * @access	public
  */
-	public function login($cookie = false)
+	public function login()
 	{
 		$_SESSION['user'] = $this;
-
-		if($cookie)
+	}
+/**
+ * Active le cookie d'autologin
+ *
+ * @return	itemAutologintoken
+ * @access	public
+ */
+	public function active_autologin()
+	{
+		$token = i('autologintoken');
+		$token['user'] = $this->get_nickname();
+		$token->save();
+		return $token;
+	}
+/**
+ * Autolog user if the cookie match
+ *
+ * @access	public
+ */
+	public function is_autologged()
+	{
+		$is_autologged = false;
+		if(isset($_COOKIE[itemAutologintoken::COOKIE_NAME]) && !empty($_COOKIE[itemAutologintoken::COOKIE_NAME]))
 		{
-			if(isset($_COOKIE['gc-autologin']) && !empty($_COOKIE['gc-autologin']))
+			$token = i('autologintoken', array(
+				'token' => $_COOKIE[itemAutologintoken::COOKIE_NAME],
+				'end' => '>'.date(itemAutologintoken::DATE_FORMAT),
+				'limit()' => 1
+			));
+			if ($token->count > 0)
 			{
-
-				$token = i('autologintoken', array(
-					'token' => $_COOKIE['gc-autologin']
-				));
-
-				if(count($token) > 0)
+				$nickname = explode('_',$token[0]['user']);
+				$this->get($nickname[1]);
+				if ($this->exists())
 				{
-					$token = $token[0];
-					$token['user'] = $this->get_nickname();
-				}
-				else
-				{
-					$token = i('autologintoken');
-					$token['user'] = $this->get_nickname();
+					$this->login();
+					$is_autologged = true;
 				}
 			}
-			else
-			{
-				$token = i('autologintoken');
-				$token['user'] = $this->get_nickname();
-			}
-			$token->save();
 		}
+		return $is_autologged;
 	}
 /**
  * Returns whether a user is logged in
@@ -253,8 +236,11 @@ class itemHuman extends _items
 	{
 		$_SESSION['user'] = null;
 
-		if(isset($_COOKIE['gc-autologin']))
+		if(isset($_COOKIE[itemAutologintoken::COOKIE_NAME]))
 		{
+			$q = 'DELETE FROM `autologintoken` WHERE user = "'.$this->get_nickname().'"';
+			$db = database::connect('site');
+			$db->query($q);
 			$autologin = i('autologintoken');
 			$autologin->delete_cookie();
 		}
@@ -311,17 +297,17 @@ class itemHuman extends _items
 		$value = end($path_el);
 		array_pop($path_el);
 		$count = count($path_el);
-        
+
 		$data = $this->data['pref']->get();
         $arr_ref =& $data;
-        
+
         for($i = 0; $i < $count; $i++)
         {
             $arr_ref =& $arr_ref[$path_el[$i]];
         }
-        
+
         $arr_ref = $value;
-		
+
 		$this->data['pref']->set($data);
 	}
 }

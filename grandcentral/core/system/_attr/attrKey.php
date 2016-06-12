@@ -30,7 +30,7 @@ class attrKey extends _attrs
  */
 	public function database_get()
 	{
-		if (empty($this->data)) $this->data = md5(uniqid($_SESSION['user']['key'], true));
+		if (empty($this->data)) $this->data = md5(uniqid('', true));
 		return $this->get();
 	}
 /**
@@ -60,7 +60,7 @@ class attrKey extends _attrs
 		return $definition;
 	}
 /**
- * Default field attributes for key	
+ * Default field attributes for key
  *
  * @param	string	la variable
  * @return	string	une string
