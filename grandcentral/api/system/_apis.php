@@ -24,7 +24,7 @@ abstract class _apis
  * Lorem
  * @access	public
  */
-	protected function map_hash($hash)
+	protected function map_hash($hash = array())
 	{
 		if (isset($this->param['hash']))
 		{
