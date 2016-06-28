@@ -106,18 +106,18 @@ abstract class Minify
      */
     protected function save($content, $path)
     {
-        // create file & open for writing
-        if (($handler = @fopen($path, 'w')) === false) {
-            throw new Exception('The file "'.$path.'" could not be opened. Check if PHP has enough permissions.');
-        }
+      // create file & open for writing
+      if (($handler = @fopen($path, 'w')) === false) {
+        throw new Exception('The file "'.$path.'" could not be opened. Check if PHP has enough permissions.');
+      }
 
-        // write to file
-        if (@fwrite($handler, $content) === false) {
-            throw new Exception('The file "'.$path.'" could not be written to. Check if PHP has enough permissions.');
-        }
+      // write to file
+      if (@fwrite($handler, $content) === false) {
+        throw new Exception('The file "'.$path.'" could not be written to. Check if PHP has enough permissions.');
+      }
 
-        // close the file
-        @fclose($handler);
+      // close the file
+      @fclose($handler);
     }
 
     /**
@@ -373,7 +373,7 @@ abstract class Minify
     function minify_resources($type, $minifier)
     {
         $resource_array = master::get_zone_data($type)['data'];
-        
+
         // Vérification du chemin
         foreach ($resource_array as $resource)
         {
@@ -387,7 +387,7 @@ abstract class Minify
                 $minifier->add($resource['data']);
             }
         }
-        
+
         $cache = $this->return_md5($type);
         $minifier->minify($cache);
         master::vide_bind($type);
@@ -396,8 +396,9 @@ abstract class Minify
     function return_md5($type)
     {
         $version = i('version', current)['key'];
-        $current_page = defined('item') ? i('page', current)['url']->get().i(item, current)['url']->get_current() : i('page', current)['url']->get_current();
-        
+        //$current_page = defined('item') ? i('page', current)['url']->get().i(item, current)['url']->get_current() : i('page', current)['url']->get_current();
+        $current_page = defined('item') ? (string) i(item, current)['url'] : (string) i('page', current)['url'];
+
         $this->if_folder_exists($current_page);
 
         $app = app('cache');
@@ -426,7 +427,7 @@ abstract class Minify
             }
             else
             {
-                mkdir( $link, '0755');
+                mkdir( $link, '0777');
                 return false;
             }
         }
@@ -437,10 +438,10 @@ abstract class Minify
         $date = 0;
 
         $resource_array = master::get_zone_data($type)['data'];
-
+        // echo "<pre>";print_r($resource_array);echo "</pre>";
         $cache = $this->return_md5($type);
         $file = file_exists($cache) ? filemtime($cache) : 0;
-        
+        // echo "<pre>";print_r($file);echo "</pre>";
         foreach ($resource_array as $resource) {
             if( isset($resource['url']) )
             {
