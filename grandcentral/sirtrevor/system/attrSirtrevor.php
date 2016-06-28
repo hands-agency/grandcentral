@@ -81,7 +81,7 @@ class attrSirtrevor extends _attrs
 	{
 		$return = '';
 		$json = json_decode($this->get(), true);
-		
+
 		if (isset($json['data']))
 		{
 			foreach ($json['data'] as $block)
@@ -92,7 +92,7 @@ class attrSirtrevor extends _attrs
 		return $return;
 	}
 /**
- * Default field attributes for Array	
+ * Default field attributes for Array
  *
  * @param	string	la variable
  * @return	string	une string
@@ -112,6 +112,47 @@ class attrSirtrevor extends _attrs
 	*/
 	//	Return
 		return $params;
+	}
+
+/**
+* Ajout d'espace insécable dans le texte
+*
+* @param	string	la texte à formatter
+* @return	string	une texte formaté
+* @access	public
+*/
+	public function format_text($txt)
+	{
+		$errors = array(" .", " ,",
+						" :", " ;", " !", " ?", " »",
+						"« ",
+						"( ","[ ",
+						" )"," ]",
+						" -", "- "
+						);
+		$solutions = array(".", ",",
+						"&nbsp:", "&nbsp;", "&nbsp!", "&nbsp?", "&nbsp»",
+						"«&nbsp",
+						"(","[",
+						")","]",
+						"-", "-"
+						);
+
+		$no_space_before_and_space_justify_after = array(".",",");
+		// Remplace " ." par "."
+		$space_insecable_before_and_space_justify_after = array(":",";","!","?","»");
+		// Remplace " :" par "$nbsp:"
+		$space_justify_before_and_space_insecable_after = array("«");
+		// Remplace "« " par "«$nbsp"
+		$space_justify_before_and_no_space_after = array("(","[");
+		// Remplace "( " par "("
+		$no_space_before_and_space_justify_after = array(")","]");
+		// Remplace " )" par ")"
+		$no_space_before_and_after = array("-");
+		// Remplace " -" par "-"
+		// Remplace "- " par "-"
+
+		return str_replace($errors, $solutions, $txt);
 	}
 }
 ?>
