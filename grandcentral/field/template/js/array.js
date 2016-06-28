@@ -2,14 +2,15 @@
 {
 //	Some vars
 	selector = 'li[data-type="array"] input[data-associative="array"]';
-	
+
 //	Some binds the key
 	$(document).off('input', selector).on('input', selector, function()
 	{
 	//	Get the value
 	//	TODO @sf trouver meilleure manière d'empêcher les clef de contenir des accents, espaces...
 		input = $(this);
-		key = input.val().replace(/ /g,'').toLowerCase();
+		// key = input.val().replace(/ /g,'').toLowerCase();
+		key = input.val();
 	//	Have the field names follow the value
 	//	TODO @mvd find a best way to catch the second <li> in the tree
 		li = input.parent().parent().parent().parent();
@@ -19,7 +20,8 @@
 		{
 			input = $(this);
 			name = input.attr('name');
-			input.attr('name', name.replace(/\[[a-z0-9]*\]$/i, "["+key+"]"));
+			// input.attr('name', name.replace(/\[[a-z0-9 ]*\]$/i, "["+key+"]"));
+			input.attr('name', name.replace(/\[[^\[\]]*\]$/i, "["+key+"]"));
 		});
 	});
-})(jQuery); 
+})(jQuery);
