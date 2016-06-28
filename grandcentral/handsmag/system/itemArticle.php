@@ -16,22 +16,31 @@ class itemArticle extends _items
  */
 	public function save()
 	{
+		if (!$this['magazine']->is_empty())
+		{
+			// recherche du magazine lié avec le présent article
+			$mag = $this['magazine']->unfold();
+			// echo "<pre>".$this['id']->get();print_r($mag);echo "</pre>";
+			// date de création synchronisée avec la date de publication du magazine
+			$this['created'] = isset($mag['date']) ? $mag['date']->get() : '';
+		}
 		// sauvegarde de l'item courant
 		parent::save();
-		// recherche du magazine lié avec le présent article
-		$mag = $this['magazine']->unfold();
-		$articles = array_keys($mag['article']->unfold()->set_index('id')->data);
-		// echo "<pre>";print_r($articles);echo "</pre>";
 		// mise à jour du magazine
-		if ($mag->exists() && !in_array($this->get_nickname(), $articles))
+		if (!$this['magazine']->is_empty())
 		{
-			$db = database::connect('site');
-			// on efface la précédente entrée liée à l'article
-			$q = 'DELETE FROM `_rel` WHERE `item` = "magazine" AND `rel` = "article" AND `relid` = '.$this['id'];
-			$db->query($q);
-			// création de la nouvelle liaison
-			$q = 'INSERT INTO `_rel` (`item`,`itemid`,`key`,`rel`,`relid`,`position`) VALUES ("magazine",'.$mag['id'].',"article","article",'.$this['id'].','.count($articles).')';
-			$db->query($q);
+			$articles = array_keys($mag['article']->unfold()->set_index('id')->data);
+			// mise à jour du magazine
+			if ($mag->exists() && !in_array($this->get_nickname(), $articles))
+			{
+				$db = database::connect('site');
+				// on efface la précédente entrée liée à l'article
+				$q = 'DELETE FROM `_rel` WHERE `item` = "magazine" AND `rel` = "article" AND `relid` = '.$this['id'];
+				$db->query($q);
+				// création de la nouvelle liaison
+				$q = 'INSERT INTO `_rel` (`item`,`itemid`,`key`,`rel`,`relid`,`position`) VALUES ("magazine",'.$mag['id'].',"article","article",'.$this['id'].','.count($articles).')';
+				$db->query($q);
+			}
 		}
 	}
 /**
