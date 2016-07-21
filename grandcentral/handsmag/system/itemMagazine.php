@@ -53,7 +53,10 @@ class itemMagazine extends _items
 	{
 		if (!registry::get('magazine'))
 		{
-			$mags = i('magazine', all)->set_index('id');
+			$mags = i('magazine', array(
+				'workflow' => 'magworkflow_1',
+				'order()' => 'date asc'
+			))->set_index('id');
 			registry::set('magazine', $mags);
 		}
 		else
@@ -65,7 +68,8 @@ class itemMagazine extends _items
 		switch (true)
 		{
 			case $currentIndex == 0:
-				$index = end($keys);
+				//$index = end($keys);
+				return null;
 				break;
 			default:
 				$index = $keys[$currentIndex - 1];
@@ -82,7 +86,10 @@ class itemMagazine extends _items
 	{
 		if (!registry::get('magazine'))
 		{
-			$mags = i('magazine', all)->set_index('id');
+			$mags = i('magazine', array(
+				'workflow' => 'magworkflow_1',
+				'order()' => 'date asc'
+			))->set_index('id');
 			registry::set('magazine', $mags);
 		}
 		else
@@ -95,11 +102,16 @@ class itemMagazine extends _items
 		{
 			case $currentIndex == count($keys) - 1:
 				$index = $keys[0];
+				// return null;
 				break;
 			default:
 				$index = $keys[$currentIndex + 1];
 				break;
 		}
+		// echo "<pre>this : ";print_r($this->get_nickname());echo "</pre>";
+		// echo "<pre>currentIndex : ";print_r($currentIndex);echo "</pre>";
+		// echo "<pre>index : ";print_r($index);echo "</pre>";
+		// echo "<pre>";print_r($keys);echo "</pre>";
 		return $mags[$index];
 	}
 /**
@@ -161,8 +173,9 @@ class itemMagazine extends _items
 			{
 				// html
 				$source .= $article->make_source();
+				$images = new attrMedia($article->get_all_images());
 				// images
-				foreach ($article['image']->unfold() as $image)
+				foreach ($images->unfold() as $image)
 				{
 					$zip->addFile($image->get_root(), $image->get_key());
 				}

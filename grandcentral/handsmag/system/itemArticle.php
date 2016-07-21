@@ -136,8 +136,10 @@ class itemArticle extends _items
 		{
 			// html
 			$zip->addFromString($this['title']->cut(50).'.html', $this->make_source(true));
+
 			// images
-			foreach ($this['image']->unfold() as $image)
+			$images = new attrMedia($this->get_all_images());
+			foreach ($images->unfold() as $image);
 			{
 				$zip->addFile($image->get_root(), $image->get_key());
 			}
@@ -149,5 +151,29 @@ class itemArticle extends _items
 
 		return false;
 	}
+/**
+ * extract image from sir trevor fields and concatenate with $article['image']
+ *
+ * @access  public
+ */
+	public function get_all_images()
+	{
+		if (!$this['text']->is_empty())
+		{
+			$datas = json_decode($this['text']->get()[SITE_VERSION], true);
+			$images = $this['image']->get();
+			// echo "<pre>";print_r($datas);echo "</pre>";
+			foreach ($datas['data'] as $block)
+			{
+				if ($block['type'] == 'image')
+				{
+					$images[] = $block['data'];
+				}
+			}
+			return $images;
+		}
+		else return false;
+	}
+
 }
 ?>
