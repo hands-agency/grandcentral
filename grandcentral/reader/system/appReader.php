@@ -37,7 +37,7 @@ class appReader extends _apps
 			$version = i('version',current)['lang']->get();
 			$item->get(array(
 				'url' => array(
-					'%'.$version.'____'.$url.'%', // new format
+					'%"'.$version.'____'.$url.'"%', // new format
 					$url // old format
 				),
 				'limit()' => 1)
@@ -58,11 +58,18 @@ class appReader extends _apps
 		//	404
 			else
 			{
-				ob_clean();
-				$page = i('page');
-				$page->get_by_url('/404');
-				registry::set(registry::current_index, 'page', $page);
-				echo $page;
+				if (isset($this->param['404']) && $this->param['404'] == false)
+				{
+					header('Status: 301 Moved Permanently', false, 301);
+					header('Location: '.$page['url']);
+				}
+				else {
+					ob_clean();
+					$page = i('page');
+					$page->get_by_url('/404');
+					registry::set(registry::current_index, 'page', $page);
+					echo $page;
+				}
 				exit;
 			}
 		}
