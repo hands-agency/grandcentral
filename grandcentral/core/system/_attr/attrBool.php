@@ -15,6 +15,16 @@ class attrBool extends _attrs
  * @param	mixed	attribute data (true or false)
  * @access	public
  */
+	public function get()
+	{
+		return ($this->data === true) ? 'true' : 'false';
+	}
+/**
+ * Set boolean attribute
+ *
+ * @param	mixed	attribute data (true or false)
+ * @access	public
+ */
 	public function set($data)
 	{
 		$this->data = (bool) $data;
@@ -43,9 +53,9 @@ class attrBool extends _attrs
 	//	retour
 		return $definition;
 	}
-	
+
 /**
- * Default field attributes for all fields	
+ * Default field attributes for all fields
  *
  * @return	array	an array of attribute properties
  * @access	public
