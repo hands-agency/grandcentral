@@ -1,0 +1,163 @@
+CE82 .START phpCAS-1.3.2 ****************** [phpCAS.php:450]
+CE82 .start authentification [login.html.php:15]
+CE82 .=> phpCAS::client('2.0', 'ppd-cas.capeb.fr', 80, '/cas', true) [login.html.php:17]
+CE82 .|    => CAS_Client::__construct('2.0', false, 'ppd-cas.capeb.fr', 80, '/cas', true) [phpCAS.php:347]
+CE82 .|    <= ''
+CE82 .<= ''
+CE82 .=> CAS_Client::handleLogoutRequests(false, false) [phpCAS.php:1297]
+CE82 .|    Not a logout request [CAS_Client.php:1470]
+CE82 .<= ''
+CE82 .=> phpCAS::setNoCasServerValidation() [login.html.php:21]
+CE82 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [phpCAS.php:1667]
+CE82 .<= ''
+CE82 .=> phpCAS::checkAuthentication() [login.html.php:23]
+CE82 .|    => CAS_Client::checkAuthentication() [phpCAS.php:1077]
+CE82 .|    |    => CAS_Client::isAuthenticated() [CAS_Client.php:1132]
+CE82 .|    |    |    => CAS_Client::_wasPreviouslyAuthenticated() [CAS_Client.php:1190]
+CE82 .|    |    |    |    no user found [CAS_Client.php:1376]
+CE82 .|    |    |    <= false
+CE82 .|    |    |    no ticket found [CAS_Client.php:1259]
+CE82 .|    |    <= false
+CE82 .|    |    user is not authenticated (cache reset) [CAS_Client.php:1168]
+CE82 .|    |    => CAS_Client::redirectToCas(true) [CAS_Client.php:1169]
+CE82 .|    |    |    => CAS_Client::getServerLoginURL(true, false) [CAS_Client.php:1397]
+CE82 .|    |    |    |    => CAS_Client::getURL() [CAS_Client.php:328]
+CE82 .|    |    |    |    |    Final URI: http://lettre-capeb.dev/cas-indentification?urlFrom=/ [CAS_Client.php:3073]
+CE82 .|    |    |    |    <= 'http://lettre-capeb.dev/cas-indentification?urlFrom=/'
+CE82 .|    |    |    <= 'http://ppd-cas.capeb.fr:80/cas/login?service=http%3A%2F%2Flettre-capeb.dev%2Fcas-indentification%3FurlFrom%3D%2F&gateway=true'
+CE82 .|    |    |    Redirect to : http://ppd-cas.capeb.fr:80/cas/login?service=http%3A%2F%2Flettre-capeb.dev%2Fcas-indentification%3FurlFrom%3D%2F&gateway=true [CAS_Client.php:1403]
+CE82 .|    |    |    exit()
+CE82 .|    |    |    -
+CE82 .|    |    -
+CE82 .|    -
+B6F1 .START phpCAS-1.3.2 ****************** [phpCAS.php:450]
+B6F1 .start authentification [login.html.php:15]
+B6F1 .=> phpCAS::client('2.0', 'ppd-cas.capeb.fr', 80, '/cas', true) [login.html.php:17]
+B6F1 .|    => CAS_Client::__construct('2.0', false, 'ppd-cas.capeb.fr', 80, '/cas', true) [phpCAS.php:347]
+B6F1 .|    <= ''
+B6F1 .<= ''
+B6F1 .=> CAS_Client::handleLogoutRequests(false, false) [phpCAS.php:1297]
+B6F1 .|    Not a logout request [CAS_Client.php:1470]
+B6F1 .<= ''
+B6F1 .=> phpCAS::setNoCasServerValidation() [login.html.php:21]
+B6F1 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [phpCAS.php:1667]
+B6F1 .<= ''
+B6F1 .=> phpCAS::checkAuthentication() [login.html.php:23]
+B6F1 .|    => CAS_Client::checkAuthentication() [phpCAS.php:1077]
+B6F1 .|    |    => CAS_Client::isAuthenticated() [CAS_Client.php:1132]
+B6F1 .|    |    |    => CAS_Client::_wasPreviouslyAuthenticated() [CAS_Client.php:1190]
+B6F1 .|    |    |    |    no user found [CAS_Client.php:1376]
+B6F1 .|    |    |    <= false
+B6F1 .|    |    |    no ticket found [CAS_Client.php:1259]
+B6F1 .|    |    <= false
+B6F1 .|    <= false
+B6F1 .<= false
+B6F1 .=> phpCAS::forceAuthentication() [login.html.php:25]
+B6F1 .|    => CAS_Client::forceAuthentication() [phpCAS.php:1099]
+B6F1 .|    |    => CAS_Client::isAuthenticated() [CAS_Client.php:1084]
+B6F1 .|    |    |    => CAS_Client::_wasPreviouslyAuthenticated() [CAS_Client.php:1190]
+B6F1 .|    |    |    |    no user found [CAS_Client.php:1376]
+B6F1 .|    |    |    <= false
+B6F1 .|    |    |    no ticket found [CAS_Client.php:1259]
+B6F1 .|    |    <= false
+B6F1 .|    |    => CAS_Client::redirectToCas(false) [CAS_Client.php:1093]
+B6F1 .|    |    |    => CAS_Client::getServerLoginURL(false, false) [CAS_Client.php:1397]
+B6F1 .|    |    |    |    => CAS_Client::getURL() [CAS_Client.php:328]
+B6F1 .|    |    |    |    |    Final URI: http://lettre-capeb.dev/cas-indentification?urlFrom=/ [CAS_Client.php:3073]
+B6F1 .|    |    |    |    <= 'http://lettre-capeb.dev/cas-indentification?urlFrom=/'
+B6F1 .|    |    |    <= 'http://ppd-cas.capeb.fr:80/cas/login?service=http%3A%2F%2Flettre-capeb.dev%2Fcas-indentification%3FurlFrom%3D%2F'
+B6F1 .|    |    |    Redirect to : http://ppd-cas.capeb.fr:80/cas/login?service=http%3A%2F%2Flettre-capeb.dev%2Fcas-indentification%3FurlFrom%3D%2F [CAS_Client.php:1403]
+B6F1 .|    |    |    exit()
+B6F1 .|    |    |    -
+B6F1 .|    |    -
+B6F1 .|    -
+7A0B .START phpCAS-1.3.2 ****************** [phpCAS.php:450]
+7A0B .start authentification [login.html.php:15]
+7A0B .=> phpCAS::client('2.0', 'ppd-cas.capeb.fr', 80, '/cas', true) [login.html.php:17]
+7A0B .|    => CAS_Client::__construct('2.0', false, 'ppd-cas.capeb.fr', 80, '/cas', true) [phpCAS.php:347]
+7A0B .|    |    Ticket 'ST-635-KaxIzgjabgIGEgaoWqyW-capeb.fr' found [CAS_Client.php:871]
+7A0B .|    <= ''
+7A0B .<= ''
+7A0B .=> CAS_Client::handleLogoutRequests(false, false) [phpCAS.php:1297]
+7A0B .|    Not a logout request [CAS_Client.php:1470]
+7A0B .<= ''
+7A0B .=> phpCAS::setNoCasServerValidation() [login.html.php:21]
+7A0B .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [phpCAS.php:1667]
+7A0B .<= ''
+7A0B .=> phpCAS::checkAuthentication() [login.html.php:23]
+7A0B .|    => CAS_Client::checkAuthentication() [phpCAS.php:1077]
+7A0B .|    |    => CAS_Client::isAuthenticated() [CAS_Client.php:1132]
+7A0B .|    |    |    => CAS_Client::_wasPreviouslyAuthenticated() [CAS_Client.php:1190]
+7A0B .|    |    |    |    no user found [CAS_Client.php:1376]
+7A0B .|    |    |    <= false
+7A0B .|    |    |    CAS 2.0 ticket `ST-635-KaxIzgjabgIGEgaoWqyW-capeb.fr' is present [CAS_Client.php:1224]
+7A0B .|    |    |    => CAS_Client::validateCAS20('', NULL, NULL) [CAS_Client.php:1225]
+7A0B .|    |    |    |     [CAS_Client.php:2749]
+7A0B .|    |    |    |    => CAS_Client::getServerServiceValidateURL() [CAS_Client.php:2755]
+7A0B .|    |    |    |    |    => CAS_Client::getURL() [CAS_Client.php:417]
+7A0B .|    |    |    |    |    |    Final URI: http://lettre-capeb.dev/cas-indentification?urlFrom=/ [CAS_Client.php:3073]
+7A0B .|    |    |    |    |    <= 'http://lettre-capeb.dev/cas-indentification?urlFrom=/'
+7A0B .|    |    |    |    <= 'http://ppd-cas.capeb.fr:80/cas/serviceValidate?service=http%3A%2F%2Flettre-capeb.dev%2Fcas-indentification%3FurlFrom%3D%2F'
+7A0B .|    |    |    |    => CAS_Client::_readURL('http://ppd-cas.capeb.fr:80/cas/serviceValidate?service=http%3A%2F%2Flettre-capeb.dev%2Fcas-indentification%3FurlFrom%3D%2F&ticket=ST-635-KaxIzgjabgIGEgaoWqyW-capeb.fr', NULL, NULL, NULL) [CAS_Client.php:2764]
+7A0B .|    |    |    |    |    => CAS_Request_CurlRequest::sendRequest() [CAS_Request_AbstractRequest.php:220]
+7A0B .|    |    |    |    |    |    Response Body: 
+7A0B .|    |    |    |    |    |    
+7A0B .|    |    |    |    |    |    
+7A0B .|    |    |    |    |    |    
+7A0B .|    |    |    |    |    |    
+7A0B .|    |    |    |    |    |    <cas:serviceResponse xmlns:cas='http://www.yale.edu/tp/cas'>
+7A0B .|    |    |    |    |    |    	<cas:authenticationSuccess>
+7A0B .|    |    |    |    |    |    		<cas:user>hornain</cas:user>
+7A0B .|    |    |    |    |    |    
+7A0B .|    |    |    |    |    |    
+7A0B .|    |    |    |    |    |    	</cas:authenticationSuccess>
+7A0B .|    |    |    |    |    |    </cas:serviceResponse>
+7A0B .|    |    |    |    |    |     [CAS_Request_CurlRequest.php:82]
+7A0B .|    |    |    |    |    <= true
+7A0B .|    |    |    |    <= true
+7A0B .|    |    |    |    => CAS_Client::_readExtraAttributesCas20(DOMNodeList) [CAS_Client.php:2815]
+7A0B .|    |    |    |    |    Testing for rubycas style attributes [CAS_Client.php:2925]
+7A0B .|    |    |    |    <= ''
+7A0B .|    |    |    |    Storing Proxy List [CAS_Client.php:2824]
+7A0B .|    |    |    |    => CAS_ProxyChain_AllowedList::isProxyListAllowed(array ()) [CAS_Client.php:2827]
+7A0B .|    |    |    |    |    No proxies were found in the response [CAS_ProxyChain_AllowedList.php:81]
+7A0B .|    |    |    |    <= true
+7A0B .|    |    |    |    => CAS_Client::_renameSession('ST-635-KaxIzgjabgIGEgaoWqyW-capeb.fr') [CAS_Client.php:2858]
+7A0B .|    |    |    |    |    Session ID: ST-635-KaxIzgjabgIGEgaoWqyW-capebfr [CAS_Client.php:3182]
+7A0B .|    |    |    |    |    Restoring old session vars [CAS_Client.php:3185]
+7A0B .|    |    |    |    |    new Session ID : ST-635-KaxIzgjabgIGEgaoWqyW-capebfr [CAS_Client.php:3186]
+7A0B .|    |    |    |    <= ''
+7A0B .|    |    |    <= true
+7A0B .|    |    |    CAS 2.0 ticket `ST-635-KaxIzgjabgIGEgaoWqyW-capeb.fr' was validated [CAS_Client.php:1226]
+7A0B .|    |    |    => CAS_Client::getURL() [CAS_Client.php:1280]
+7A0B .|    |    |    <= 'http://lettre-capeb.dev/cas-indentification?urlFrom=/'
+7A0B .|    |    |    Prepare redirect to : http://lettre-capeb.dev/cas-indentification?urlFrom=/ [CAS_Client.php:1280]
+7A0B .|    |    |    => CAS_Client::getURL() [CAS_Client.php:1281]
+7A0B .|    |    |    <= 'http://lettre-capeb.dev/cas-indentification?urlFrom=/'
+7A0B .|    |    |    exit()
+7A0B .|    |    |    -
+7A0B .|    |    -
+7A0B .|    -
+390C .START phpCAS-1.3.2 ****************** [phpCAS.php:450]
+390C .start authentification [login.html.php:15]
+390C .=> phpCAS::client('2.0', 'ppd-cas.capeb.fr', 80, '/cas', true) [login.html.php:17]
+390C .|    => CAS_Client::__construct('2.0', false, 'ppd-cas.capeb.fr', 80, '/cas', true) [phpCAS.php:347]
+390C .|    <= ''
+390C .<= ''
+390C .=> CAS_Client::handleLogoutRequests(false, false) [phpCAS.php:1297]
+390C .|    Not a logout request [CAS_Client.php:1470]
+390C .<= ''
+390C .=> phpCAS::setNoCasServerValidation() [login.html.php:21]
+390C .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [phpCAS.php:1667]
+390C .<= ''
+390C .=> phpCAS::checkAuthentication() [login.html.php:23]
+390C .|    => CAS_Client::checkAuthentication() [phpCAS.php:1077]
+390C .|    |    => CAS_Client::isAuthenticated() [CAS_Client.php:1132]
+390C .|    |    |    => CAS_Client::_wasPreviouslyAuthenticated() [CAS_Client.php:1190]
+390C .|    |    |    |    user = `hornain' [CAS_Client.php:1366]
+390C .|    |    |    <= true
+390C .|    |    |    user was already authenticated, no need to look for tickets [CAS_Client.php:1207]
+390C .|    |    <= true
+390C .|    |    user is authenticated [CAS_Client.php:1133]
+390C .|    <= true
+390C .<= true

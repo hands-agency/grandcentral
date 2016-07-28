@@ -15,20 +15,20 @@ class attrBool extends _attrs
  * @param	mixed	attribute data (true or false)
  * @access	public
  */
-	public function get()
-	{
-		return ($this->data === true) ? 'true' : 'false';
-	}
-/**
- * Set boolean attribute
- *
- * @param	mixed	attribute data (true or false)
- * @access	public
- */
 	public function set($data)
 	{
 		$this->data = (bool) $data;
 		return $this;
+	}
+/**
+ * Get the raw data for write in bdd
+ *
+ * @return	mixed	attribute data
+ * @access	public
+ */
+	public function database_get()
+	{
+		return (empty($this->data)) ? 0 : $this->get();
 	}
 /**
  * Display the attribute data
