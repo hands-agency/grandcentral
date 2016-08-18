@@ -153,20 +153,6 @@
 	//	Method
 		plugin.initList = function()
 		{
-		//	Masonry					
-			var container = $element.find('.dir:not(.empty) .files');
-			
-			container.imagesLoaded(function()
-			{
-
-				if (container.data('masonry')) container.masonry('destroy');
-				container.masonry(
-				{
-					itemSelector : 'li',
-  					gutter: 10,
-					isAnimated: true
-				});
-			});
 
 		//	Make li draggable
 			$element.find('.dir:not(.empty) .files li:not(.upload)').draggable(

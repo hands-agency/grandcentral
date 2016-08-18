@@ -17,9 +17,9 @@
 		<li data-path="<?=$file->get_path()?>" data-url="<?=$file->get_url()?>" data-info="<?= $file->get_extension() ?> • <?= $file->get_size() ?>" data-title="<?= $file->get_key() ?>">
 			<a href="#" class="file <?=$file->get_mimeType()?>">
 				<?php
-					$preview = (is_a($file, 'image')) ? $file->thumbnail(120, null) : null;
+					$preview = (is_a($file, 'image')) ? $file->thumbnail(120, null)->get_url() : null;
 				?>
-				<span class="preview"><?=$preview ?></span>
+				<span class="preview" style="background-image:url('<?=$preview?>');"></span>
 				<span class="title"><?= $file->get_key() ?></span>
 			</a>
 		</li>
