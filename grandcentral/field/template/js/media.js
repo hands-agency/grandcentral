@@ -7,7 +7,7 @@
 	$upload = $('li[data-type="media"] .wrapper ol.data');
 	add = 'li[data-type="media"] .wrapper .add, li[data-type="media"] ol.data:empty';
 	path = $media.find('input').val();
-	
+
 //	Upload droppable
 	$upload.droppable(
 	{
@@ -15,7 +15,7 @@
 		tolerance:'pointer',
 		activate:function(event, ui)
 		{
-			
+
 		},
 		deactivate:function(event, ui)
 		{
@@ -25,9 +25,9 @@
 		//	Some vars
 	 		template = $(this).closest('.field').find('.template');
 			code = $(template.html());
-			
+
 		//	TODO Prevent Self droppable
-			
+
 		//	Append and enable
 			$(this).append(code);
 			$(code).show('fast').find('*:disabled').prop('disabled', false);
@@ -40,8 +40,7 @@
 			var i = 0;
 			$(this).closest('.data').find('li').each(function()
 			{
-			//	console.log($(this).html().replace(/\[\]/g, '['+i+']'));
-				$(this).html($(this).html().replace(/\[\]/g, '['+i+']'));
+				$(this).html($(this).html().replace(/\[\]/g, '['+ i +']').replace(/\[[0-9]\]/g, '['+ i +']'));
 				i++;
 			});
 		//	Sortable
@@ -61,7 +60,7 @@
 			path:path,
 		});
 	});
-	
+
 //	Add media
 	$(document).on('click', add, function()
 	{
@@ -69,7 +68,7 @@
 		{
 			app:'media',
 			template:'admin',
-		});	
+		});
 	});
 
 //	Delete media
@@ -90,5 +89,5 @@
 
 //	Sortable
 	$data.sortable();
-	
+
 })(jQuery);
