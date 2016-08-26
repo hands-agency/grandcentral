@@ -40,8 +40,7 @@
 			var i = 0;
 			$(this).closest('.data').find('li').each(function()
 			{
-				$(this).html($(this).html().replace(/\[\]/g, '['+ i +']').replace(/\[[0-9]\]/g, '['+ i +']'));
-				i++;
+				$(this).html($(this).html().replace(/\[[0-9]*\]/g, '['+ i++ +']'));
 			});
 		//	Sortable
 			$data.sortable();
