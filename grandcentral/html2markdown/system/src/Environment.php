@@ -82,14 +82,14 @@ final class Environment
     {
         $environment = new static($config);
 
-        $environment->addConverter(new BlockquoteConverter());
+        // $environment->addConverter(new BlockquoteConverter());
         $environment->addConverter(new CommentConverter());
         $environment->addConverter(new DivConverter());
         $environment->addConverter(new EmphasisConverter());
         $environment->addConverter(new HardBreakConverter());
         $environment->addConverter(new HeaderConverter());
         $environment->addConverter(new HorizontalRuleConverter());
-        $environment->addConverter(new ImageConverter());
+        // $environment->addConverter(new ImageConverter());
         $environment->addConverter(new LinkConverter());
         $environment->addConverter(new ListBlockConverter());
         $environment->addConverter(new ListItemConverter());
