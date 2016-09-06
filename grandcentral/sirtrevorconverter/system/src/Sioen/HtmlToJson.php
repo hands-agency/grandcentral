@@ -51,8 +51,7 @@ final class HtmlToJson
         // loop trough the child nodes and convert them
         if ($body) {
             foreach ($body->childNodes as $node) {
-              echo "<pre>";print_r($node);echo "</pre>";
-                $data[] = $this->convert($node);
+              $data[] = $this->convert($node);
             }
         }
 
