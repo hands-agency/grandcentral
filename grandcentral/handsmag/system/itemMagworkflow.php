@@ -43,9 +43,10 @@ class itemMagworkflow extends _items
 	{
 		if (!$mail['to']->is_empty())
 		{
+			$mail->replace_text_with_data(array('link' => $magazine->get_source()));
 			// create message data
 			$message = array(
-				'html' => (string) nl2br($mail->replace_text_with_data(array('link' => $magazine->get_source()))),
+				'html' => nl2br((string) $mail['content']),
 				// 'text' => 'Example text content',
 				'subject' => $mail['subject']->get(),
 				'from_email' => $mail['fromemail']->get(),
@@ -53,6 +54,7 @@ class itemMagworkflow extends _items
 				'to' => array(),
 				'headers' => array('Reply-To' => $mail['fromemail']->get()),
 			);
+			// echo "<pre>";print_r($message);echo "</pre>";
 			// destinataires
 			foreach ($mail['to']->unfold() as $to)
 			{
