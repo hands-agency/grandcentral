@@ -29,8 +29,15 @@
 	$_APP->bind_script('field/custom-blocks/break.js');
 	$_APP->bind_script('field/custom-blocks/video.js');
 	$_APP->bind_script('field/custom-blocks/ImageGc.js');
+	$_APP->bind_script('field/custom-blocks/iframe.js');
 	// $_APP->bind_script('field/custom-blocks/ImageCaption.js');
 	$_APP->bind_css('field/custom-blocks/ImageGc.css');
+<<<<<<< Updated upstream
+=======
+	$_APP->bind_script('field/custom-blocks/Code.js');
+	$_APP->bind_script('field/custom-blocks/gist.js');
+	$_APP->bind_script('field/custom-blocks/ordered-list.js');
+>>>>>>> Stashed changes
 
 	$_APP->bind_script('field/js/text-selection.js');
 	$_APP->bind_script('field/js/sir-trevor-gc.js');

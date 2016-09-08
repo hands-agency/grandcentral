@@ -47,7 +47,8 @@ jQuery(document).ready(function()
 		new SirTrevor.Editor(
 		{
 			el: jQuery(this),
-			blockTypes: ["Text", "Image", "Heading", "List", "Quote", "Video", "Break"]
+			//blockTypes: ["Text", "Image", "Heading", "List", "OrderedList", "Quote", "Video", "Break", "Iframe", "Code", "Gist"]
+			blockTypes: ["Text", "Image", "Heading", "List", "Quote", "Video", "Break", "Iframe"]
 		});
 	});
 
@@ -185,7 +186,6 @@ jQuery(document).ready(function()
 	//       this.globalUploadCount = 0;
 	//       this._bindEvents();
 	//     };
-
 
 	// Affichage du nombre de caractère dans le SirTrevor
 
