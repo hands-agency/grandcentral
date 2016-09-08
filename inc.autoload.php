@@ -11,7 +11,7 @@
  *    echo "I am an example.";
  * }
  * </code>
- * 
+ *
  * @package  (Here, the name of this app)
  * @author   Michaël V. Dandrieux <mvd@cafecentral.fr>
  * @author   Sylvain Frigui <sf@cafecentral.fr>
@@ -20,15 +20,15 @@
  */
 class boot
 {
-   	const ini_file 			= 'inc.config.php';	//	le fichier de config
-   	const admin_dir 		= 'grandcentral';	//	le répertoire racine de cc
-   	const site_dir 			= 'www';			//	le répertoire racine des sites
-   	const app_system_dir 	= 'system';			//	le répertoire des fichiers systèmes d'une app
+  const ini_file 			= 'inc.config.php';	//	le fichier de config
+  const admin_dir 		= 'grandcentral';	//	le répertoire racine de cc
+  const site_dir 			= 'www';			//	le répertoire racine des sites
+  const app_system_dir 	= 'system';			//	le répertoire des fichiers systèmes d'une app
 	const app_template_dir 	= 'template';		//	le répertoire des apps
-   	const app_ini_file 		= 'config.ini';	 	//	le nom des fichiers de configuration des apps
-   	const index_enabled		= false;			//	pour afficher la page index si on ne trouve pas de site
+  const app_ini_file 		= 'config.ini';	 	//	le nom des fichiers de configuration des apps
+  const index_enabled		= false;			//	pour afficher la page index si on ne trouve pas de site
 	const app_maintenance 	= 'maintenance';		//	le répertoire de la maintenance
-	
+
 	private $boot 			= 'core';			//	l'app à charger par défaut
 	private $root;
 	// private $directory;
@@ -48,7 +48,7 @@ class boot
  */
 	public function __construct()
 	{
-	
+
 		//	ouverture du tampon
 		if(!ob_start("ob_gzhandler")) ob_start();
 		//	prise en charge de l'autoload des classes
@@ -96,7 +96,7 @@ class boot
 /**
  * Get data form the config file
  *
- * @return	mixed	$this or false 
+ * @return	mixed	$this or false
  * @access	private
  */
 	private function get_config()
@@ -142,7 +142,7 @@ class boot
 				}
 			}
 		}
-		
+
 		$this->admin = $admin;
 		$this->admin['root'] = $this->root.'/'.self::admin_dir;
 		if (is_array($this->site))
@@ -228,7 +228,7 @@ class boot
 	public static function get($app_root, $require = true)
 	{
 		$ini_file = $app_root.'/'.self::app_ini_file;
-		
+
 		if (is_file($ini_file) && $ini = parse_ini_file($ini_file, true))
 		{
 			foreach ($ini[self::app_system_dir] as $type => $files)
@@ -248,7 +248,7 @@ class boot
 			self::error('no-ini', $ini_file);
 		}
 	}
-	
+
 /**
  * What is this method about
  *
@@ -335,7 +335,7 @@ class boot
 			case 'no-class':
 				$param['What went wrong ?'] = 'Sorry, class <strong>'.$value.'</strong> not found.';
 				break;
-			
+
 		}
 		(class_exists('sentinel', false)) ? sentinel::log(E_ERROR, $param) : die($param['What went wrong ?']);
 	}
