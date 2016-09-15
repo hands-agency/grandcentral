@@ -263,17 +263,18 @@ class itemHuman extends _items
 	public function get_ip()
 	{
 		if(getenv('HTTP_X_FORWARDED_FOR'))
-        {
-            $this->ip = getenv('HTTP_X_FORWARDED_FOR');
-        }
-        elseif(getenv('HTTP_CLIENT_IP'))
-        {
-            $this->ip = getenv('HTTP_CLIENT_IP');
-        }
-        else
-        {
-            $this->ip = getenv('REMOTE_ADDR');
-        }
+      {
+        $this->ip = getenv('HTTP_X_FORWARDED_FOR');
+      }
+      elseif(getenv('HTTP_CLIENT_IP'))
+      {
+        $this->ip = getenv('HTTP_CLIENT_IP');
+      }
+      else
+      {
+        $this->ip = getenv('REMOTE_ADDR');
+      }
+		return $this->ip;
 	}
 /**
  * Check whether an item exists in base or not
