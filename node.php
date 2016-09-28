@@ -9,7 +9,7 @@
  *    echo "I am an example.";
  * }
  * </pre>
- * 
+ *
  * @package		The package
  * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
  * @author		Sylvain Frigui <sf@cafecentral.fr>
@@ -23,10 +23,11 @@
 /********************************************************************************************/
 //	The autoload takes care of starting the engine
 	require 'inc.autoload.php';
-	
+
+
 //	Loading the sentinel
 	sentinel::getInstance();
-	
+
 //	Loading the registry
 	registry::getInstance();
 

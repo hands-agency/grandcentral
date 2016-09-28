@@ -16,7 +16,7 @@ class searchFulltext
 	// n'explorez que les items qui ont des urls
 	public $url = true;
 	// tables blacklistées
-	public $notable = array();
+	public $notable = array('logbook');
 	// relation blacklistées
 	public $norel = array('child','section','page');
 	// liste des attributs texte
