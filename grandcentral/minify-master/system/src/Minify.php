@@ -370,7 +370,7 @@ abstract class Minify
         return $content;
     }
 
-    function minify_resources($type, $minifier)
+    function minify_resources($type, $minifier, $fileName)
     {
         $resource_array = master::get_zone_data($type)['data'];
 
@@ -388,12 +388,12 @@ abstract class Minify
             }
         }
 
-        $cache = $this->return_md5($type);
+        $cache = $this->return_md5($type, $fileName);
         $minifier->minify($cache);
         master::vide_bind($type);
     }
 
-    function return_md5($type)
+    function return_md5($type, $fileName)
     {
         $version = i('version', current)['key'];
         //$current_page = defined('item') ? i('page', current)['url']->get().i(item, current)['url']->get_current() : i('page', current)['url']->get_current();
@@ -404,11 +404,11 @@ abstract class Minify
         $app = app('cache');
         if( strcmp($type,'script') == 0)
         {
-            $cache = $app->get_templateroot('site').'/mini/'.md5($current_page).'.js';
+            $cache = $app->get_templateroot('site').'/mini/'.$fileName.'.js';
         }
         else
         {
-            $cache = $app->get_templateroot('site').'/mini/'.md5($current_page).'.'.$type;
+            $cache = $app->get_templateroot('site').'/mini/'.$fileName.'.'.$type;
         }
         return $cache;
     }
@@ -433,13 +433,13 @@ abstract class Minify
         }
     }
 
-    function last_modif_folder($type)
+    function last_modif_folder($type, $name)
     {
         $date = 0;
 
         $resource_array = master::get_zone_data($type)['data'];
         // echo "<pre>";print_r($resource_array);echo "</pre>";
-        $cache = $this->return_md5($type);
+        $cache = $this->return_md5($type, $name);
         $file = file_exists($cache) ? filemtime($cache) : 0;
         // echo "<pre>";print_r($file);echo "</pre>";
         foreach ($resource_array as $resource) {
