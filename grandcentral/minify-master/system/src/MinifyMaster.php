@@ -2,7 +2,7 @@
 
 class MinifyMaster{
 
-	public function __construct($name)
+	public function __construct($name = null)
 	{
 		if(((defined('SITE_MINIFY') && SITE_MINIFY === true) || !defined('SITE_MINIFY'))
 			&& (defined('SITE_DEBUG') && SITE_DEBUG === false))

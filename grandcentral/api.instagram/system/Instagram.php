@@ -81,6 +81,13 @@ class Instagram
     private $_actions = array('follow', 'unfollow', 'approve', 'ignore');
 
     /**
+     * Rate limit.
+     *
+     * @var int
+     */
+    private $_xRateLimitRemaining;
+
+    /**
      * Default constructor.
      *
      * @param array|string $config Instagram configuration data
@@ -219,7 +226,7 @@ class Instagram
      */
     public function getUserFollows($id = 'self', $limit = 0)
     {
-        $this->getFollows();
+        return $this->getFollows($id, $limit);
     }
 
     /**
@@ -227,9 +234,15 @@ class Instagram
      *
      * @return mixed
      */
-    public function getFollows()
+    public function getFollows($id = 'self', $limit = 0)
     {
-        return $this->_makeCall('users/self/follows');
+        $params = array();
+
+        if ($limit > 0) {
+            $params['count'] = $limit;
+        }
+
+        return $this->_makeCall('users/' . $id . '/follows', $params);
     }
 
     /**
@@ -243,7 +256,7 @@ class Instagram
      */
     public function getUserFollower($id = 'self', $limit = 0)
     {
-        $this->getFollower();
+        return $this->getFollower($id, $limit);
     }
 
     /**
@@ -251,9 +264,15 @@ class Instagram
      *
      * @return mixed
      */
-    public function getFollower()
+    public function getFollower($id = 'self', $limit = 0)
     {
-        return $this->_makeCall('users/self/followed-by');
+        $params = array();
+
+        if ($limit > 0) {
+            $params['count'] = $limit;
+        }
+
+        return $this->_makeCall('users/' . $id . '/followed-by', $params);
     }
 
     /**
@@ -266,6 +285,16 @@ class Instagram
     public function getUserRelationship($id)
     {
         return $this->_makeCall('users/' . $id . '/relationship');
+    }
+
+    /**
+     * Get the value of X-RateLimit-Remaining header field.
+     *
+     * @return int X-RateLimit-Remaining API calls left within 1 hour
+     */
+    public function getRateLimit()
+    {
+        return $this->_xRateLimitRemaining;
     }
 
     /**
@@ -625,6 +654,11 @@ class Instagram
 
         // convert header content into an array
         $headers = $this->processHeaders($headerContent);
+
+        // get the 'X-Ratelimit-Remaining' header value
+        if (isset($headers['X-Ratelimit-Remaining'])) {
+            $this->_xRateLimitRemaining = trim($headers['X-Ratelimit-Remaining']);
+        }
 
         if (!$jsonData) {
             throw new InstagramException('Error: _makeCall() - cURL error: ' . curl_error($ch));

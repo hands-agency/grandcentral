@@ -314,20 +314,31 @@
     },
 
     /** Handles the popstate event, like when the user hits 'back' */
+    // onPopState = function ( e ) {
+    //   if(e.state !== null) {
+    //     var url = window.location.href,
+    //       $page = $('#' + e.state.id),
+    //       page = $page.data('smoothState'),
+    //       diffUrl = (page.href !== url && !utility.isHash(url, page.href)),
+    //       diffState = (e.state !== page.cache[page.href].state);
+    //
+    //     if(diffUrl || diffState) {
+    //       if (diffState) {
+    //         page.clear(page.href);
+    //       }
+    //       page.load(url, false);
+    //     }
+    //   }
+    // },
+
     onPopState = function ( e ) {
       if(e.state !== null) {
-        var url = window.location.href,
-          $page = $('#' + e.state.id),
-          page = $page.data('smoothState'),
-          diffUrl = (page.href !== url && !utility.isHash(url, page.href)),
-          diffState = (e.state !== page.cache[page.href].state);
+        var url = window.location.href;
+        var $page = $('#' + e.state.id);
+        var page = $page.data('smoothState');
 
-        if(diffUrl || diffState) {
-          if (diffState) {
-            page.clear(page.href);
-          }
-          page.load(url, false);
-        }
+        page.clear(page.href);
+        page.load(url, false);
       }
     },
 
@@ -465,7 +476,7 @@
               if (options.scroll) {
                 repositionWindow();
               }
-              
+
               bindPrefetchHandlers($container);
 
             });
@@ -709,18 +720,18 @@
         setRateLimitRepeatTime = function () {
           rateLimitRepeatTime = parseInt(Date.now()) + parseInt(options.repeatDelay);
         },
-        
+
         /**
          * Binds prefetch events
          * @param   {object}    event
          */
         bindPrefetchHandlers = function ($element) {
-            		
+
           if (options.anchors && options.prefetch) {
             $element.find(options.anchors).not(options.prefetchBlacklist).on(options.prefetchOn, null, hoverAnchor);
           }
         },
-		
+
         /**
          * Binds all events and inits functionality
          * @param   {object}    event
