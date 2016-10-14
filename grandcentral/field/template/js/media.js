@@ -34,7 +34,7 @@
 		//	Add data
 			media = ui.helper;
 			$(code).attr('title', media.data('title')+' • '+media.data('info'));
-			$(code).find('.preview img').attr('src', media.find('.preview img').attr('src'));
+			$(code).find('.preview img').attr('src', media.attr('data-url'));
 			$(code).find('input[name$="[url]"]').val(media.data('path'));
 		//	Reorder array
 			var i = 0;
