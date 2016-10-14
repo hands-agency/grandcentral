@@ -66,7 +66,7 @@ class itemPage extends _items
 		$version = i('version',current)['lang']->get();
 		$this->get(array(
 			'url' => array(
-				'%"'.$version.'____'.$url.'"%', // new format
+				'%"'.$version.'___'.str_replace('/','\\\\/',$url).'"%', // new format
 				$url // old format
 			),
 			'limit()' => 1)
@@ -90,7 +90,7 @@ class itemPage extends _items
 			// sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $this);exit;
 			// 404
 			// echo "<pre>";print_r('ici');echo "</pre>";exit;
-			if ($this->get_env() == 'site' && !$this->is_reader() && !mb_strstr($hash,'api'))
+			if ($this->get_env() == 'site' && !$this->is_reader() && !mb_strstr($hash,'api') && $this['followurl']->get() == false)
 			//if (!$this->exists())
 			{
 				// echo "<pre>";print_r('ici');echo "</pre>";exit;
