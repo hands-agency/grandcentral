@@ -61,6 +61,7 @@ class dir implements Iterator
 		if (is_dir($this->root)) $dir = dir($this->root);
 		if (isset($dir) && !empty($dir))
 		{
+			// read directory content
 			while($entry = $dir->read())
 			{
 				$type = filetype($this->root.'/'.$entry);
@@ -78,6 +79,27 @@ class dir implements Iterator
 		return $this->data;
 	}
 
+/**
+ * Get the content of a directory
+ * <pre>
+ * // Get the content of a directory
+ * $dir = new dir('/path/to/dir');
+ * $dir->get();
+ * // Get the content of a directory and its subdirectories
+ * $dir = new dir('/path/to/dir');
+ * $dir->get(true);
+ * </pre>
+ * @param	bool	Retrieve sub directories to. Default: false
+ * @return	array	The directory listing
+ * @access	public
+ */
+	public function pagination($start = 0, $limit = 0)
+	{
+		if (empty($this->data)) $this->get();
+		$data = array('count' => count($this->data));
+		$data['data'] = $limit != 0 ? array_slice($this->data, $start, $limit + 1) : array_slice($this->data, $start);
+		return $data;
+	}
 /**
  * Save all changes
  *
