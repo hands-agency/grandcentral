@@ -354,33 +354,38 @@ class image extends media
 		unset($new_image);
 		return $this;
 	}
+/**
+ * Génère une image
+ *
+ * @access	public
+ */
+  private function make_image($dst_x,$dst_y,$src_x,$src_y,$dst_w,$dst_h,$src_w,$src_h)
+	{
+    $new_image = imagecreatetruecolor($dst_w, $dst_h);
 
-    private function make_image($dst_x,$dst_y,$src_x,$src_y,$dst_w,$dst_h,$src_w,$src_h){
-        $new_image = imagecreatetruecolor($dst_w, $dst_h);
-
-        if ($this->mime == IMAGETYPE_GIF || $this->mime == IMAGETYPE_PNG)
-        {
-            $current_transparent = imagecolortransparent($this->data);
-            if($current_transparent != -1)
-            {
-                $transparent_color = imagecolorsforindex($this->data, $current_transparent);
-                $current_transparent = imagecolorallocate($new_image, $transparent_color['red'], $transparent_color['green'], $transparent_color['blue']);
-                imagefill($new_image, 0, 0, $current_transparent);
-                imagecolortransparent($new_image, $current_transparent);
-            }
-            elseif( $this->mime == IMAGETYPE_PNG)
-            {
-                imagealphablending($new_image, false);
-                $color = imagecolorallocatealpha($new_image, 0, 0, 0, 127);
-                imagefill($new_image, 0, 0, $color);
-                imagesavealpha($new_image, true);
-            }
-        }
-
-        imagecopyresampled($new_image, $this->data, $dst_x,$dst_y,$src_x,$src_y,$dst_w,$dst_h,$src_w,$src_h);
-
-        return $new_image;
+    if ($this->mime == IMAGETYPE_GIF || $this->mime == IMAGETYPE_PNG)
+    {
+      $current_transparent = imagecolortransparent($this->data);
+      // if($current_transparent != -1)
+      // {
+      //   $transparent_color = imagecolorsforindex($this->data, $current_transparent);
+      //   $current_transparent = imagecolorallocate($new_image, $transparent_color['red'], $transparent_color['green'], $transparent_color['blue']);
+      //   imagefill($new_image, 0, 0, $current_transparent);
+      //   imagecolortransparent($new_image, $current_transparent);
+      // }
+      // elseif( $this->mime == IMAGETYPE_PNG)
+      // {
+      imagealphablending($new_image, false);
+      $color = imagecolorallocatealpha($new_image, 0, 0, 0, 127);
+      imagefill($new_image, 0, 0, $color);
+      imagesavealpha($new_image, true);
+        // }
     }
+
+    imagecopyresampled($new_image, $this->data, $dst_x,$dst_y,$src_x,$src_y,$dst_w,$dst_h,$src_w,$src_h);
+
+    return $new_image;
+  }
 	/**
 	 * Prints the image in a <img tag>
 	 *
