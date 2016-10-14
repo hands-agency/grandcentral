@@ -1,7 +1,7 @@
 <?php
 /**
  * The master class
- * 
+ *
  * @package		Core
  * @author		Michaël V. Dandrieux <@mvdandrieux>
  * @author		Sylvain Frigui <sf@hands.agency>
@@ -15,7 +15,7 @@ class master
 //	Storing
 	protected static $zones;
 	protected static $zoning = false;
-	
+
 /**
  * Create only one instance of the master
  *
@@ -29,6 +29,7 @@ class master
 	//	define the master content type
 		self::$content_type = (empty($page['type']['content_type'])) ? 'html' : $page['type']['content_type'];
 	//	instantiate the app master
+		$params = isset($page['type']->get()['master']['param']) ? $page['type']->get()['master']['param'] : array();
 		$params['page'] = $page;
 		$tpl = (mb_strpos($page['type']['master']['template'], '/') === 0) ? $page['type']['master']['template'] : '/'.$page['type']['master']['template'];
 		$this->app = app($page['type']['master']['app'], $tpl, $params, $page->get_env());
@@ -69,7 +70,7 @@ class master
 	//	retour
 		return $zones;
 	}
-	
+
 /**
  * Get content of a specific zone
  *
@@ -81,7 +82,7 @@ class master
 	//	retour
 		return self::$zones[$key];
 	}
-	
+
 /**
  * Display the master
  *
@@ -105,7 +106,7 @@ class master
 		return $buffer;
 	}
 /**
- * 
+ *
  *
  * @return	string	la clé de l'app
  * @access	protected
@@ -142,7 +143,7 @@ class master
 		return self::$zoning ? '<gc-zone data-zone="'.$zone['key'].'">'.$html.'</gc-zone>' : $html;
 	}
 /**
- * 
+ *
  *
  * @return	string	la clé de l'app
  * @access	protected
@@ -177,7 +178,7 @@ class master
 		return $return;
 	}
 /**
- * 
+ *
  *
  * @return	string	la clé de l'app
  * @access	protected
@@ -200,7 +201,7 @@ class master
 				//	url
 					$url = (SITE_DEBUG === true) ? $file->get_url(true).'?'.time() : $file->get_url(true);
 				}
-				
+
 			//	stylesheet
 				$return .= '<script src="'.$url.'" type="text/javascript" charset="utf-8"></script>';
 			}
@@ -213,7 +214,7 @@ class master
 		return $return;
 	}
 /**
- * 
+ *
  *
  * @return	string	la clé de l'app
  * @access	public
@@ -238,7 +239,7 @@ class master
 				'url' => $file,
 				'app' => $app
 			);
-			
+
 			if ($valid) self::$zones[$zone]['data'][] = $tmp;
 		}
 		else
@@ -256,9 +257,9 @@ class master
 		self::$zones[$zone]['data'] = array();
 	}
 
-	
+
 /**
- * 
+ *
  *
  * @return	string	la clé de l'app
  * @access	public
@@ -280,7 +281,7 @@ class master
 			{
 				array_unshift(self::$zones[$zone]['data'], $tmp);
 			}
-			
+
 		}
 		else
 		{
@@ -288,7 +289,7 @@ class master
 		}
 	}
 /**
- * 
+ *
  *
  * @return	string	la clé de l'app
  * @access	public
