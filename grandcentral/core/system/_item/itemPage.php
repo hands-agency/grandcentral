@@ -90,7 +90,7 @@ class itemPage extends _items
 			// sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $this);exit;
 			// 404
 			// echo "<pre>";print_r('ici');echo "</pre>";exit;
-			if ($this->get_env() == 'site' && !$this->is_reader() && !mb_strstr($hash,'api') && $this['followurl']->get() == false)
+			if ($this->get_env() == 'site' && !$this->is_reader() && !mb_strstr($hash,'api') && (isset($this['followurl']) && $this['followurl']->get() == false))
 			//if (!$this->exists())
 			{
 				// echo "<pre>";print_r('ici');echo "</pre>";exit;
