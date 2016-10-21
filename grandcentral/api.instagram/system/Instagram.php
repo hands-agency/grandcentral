@@ -855,3 +855,5 @@ class Instagram
         $this->_signedheader = $signedHeader;
     }
 }
+
+?>
