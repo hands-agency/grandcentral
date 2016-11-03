@@ -13,25 +13,15 @@ class itemCapeb extends _items
  *
  * @access public
  */
-	public function get_url($page = 'home')
+	public function get_home_url()
 	{
 		//
-		if ($page != 'home') {
-			if (isset($this['home']) && !empty($this['home'])) {
-				return $this['home']['url']->get_url . '/' . $page;
+			if ($this['home']->is_empty()) {
+				return '#';
 			}
 			else {
-				return 'http://capeb.dev';
+				return (string) $this['home']->unfold()[0]['url'];
 			}
-		}
-		else {
-			if (isset($this['home']) && !empty($this['home'])) {
-				return $this['home']['url']->get_url;
-			}
-			else {
-				return 'http://capeb.dev';
-			}
-		}
 	}
 
 /**
