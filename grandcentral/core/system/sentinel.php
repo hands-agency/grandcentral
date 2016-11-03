@@ -96,7 +96,7 @@ class sentinel
 	        case E_NOTICE:
 			case E_USER_NOTICE:
 				$type = 'Notice';
-				$trace = false;
+				$trace = true;
 				break;
       	//	warning
 			case 2:
@@ -127,7 +127,7 @@ class sentinel
 				break;
 		//	Autre
 			case 0:
-				
+
 				break;
 		//	Autre
 			default:
@@ -150,7 +150,7 @@ class sentinel
 	//	Write down the error
 		$error = null;
 		foreach($param as $key => $value) $error.= '<li><strong>'.$key.'</strong> : '.$value.'</li>';
-		
+
 	//	Throw error
 		if (SITE_DEBUG === true) sentinel::debug($type, $error, $type);
 	//	...end perhaps kill the script
@@ -204,7 +204,7 @@ class sentinel
 	public function error_shutdown()
     {
 		$error = error_get_last();
-		
+
 		if (!is_null($error))
 		{
 			$param = array(
@@ -226,17 +226,17 @@ class sentinel
  */
 	public static function debug($title, $descr, $flag = 'debug')
 	{
-		
+
 	//	Display varies depending on content type
 		$contentType = class_exists('master', false) ? master::get_content_type() : '';
-		
+
 		switch ($contentType)
 		{
 			//	Json
 			case 'json':
 				echo $flag.": ".$title."\n(".print_r($descr, true).")";
 				break;
-		
+
 			//	HTML & more
 			case 'html':
 			//	A little bit of fancy styling
@@ -244,7 +244,7 @@ class sentinel
 				{
 					$css = '
 					<style type="text/css">
-						.gc-sentinel 
+						.gc-sentinel
 						{
 							position: relative;
 							-moz-border-radius: 2px;
@@ -280,7 +280,7 @@ class sentinel
 						{
 							color:#FFFFFF;
 						}
-				
+
 						/* Flag */
 						.gc-sentinel-flag {
 							width:60px;
@@ -307,32 +307,32 @@ class sentinel
 							line-height:50px;
 							font-weight:bold;
 						}
-				
+
 						/* Colours */
 						.gc-sentinel-flag.ok
 						{
 							background:#01B255;
 							color:#01B255;
 						}
-				
+
 						.gc-sentinel-flag.debug
 						{
 							background:#1B44B2;
 							color:#1B44B2;
 						}
-				
+
 						.gc-sentinel-flag.notice
 						{
 							background:#FFD059;
 							color:#FFD059;
 						}
-				
+
 						.gc-sentinel-flag.warning,
 						.gc-sentinel-flag.strict
 						{
 							color:#FFD500;
 						}
-				
+
 						.gc-sentinel-flag.parse
 						{
 							background:#FFD059;
@@ -342,7 +342,7 @@ class sentinel
 						{
 							content:"?"
 						}
-				
+
 						.gc-sentinel-flag.error
 						{
 							background:#FF1A02;
@@ -389,7 +389,7 @@ class sentinel
 					'parse' => '117',
 					'error' => '117',
 				);
-		
+
 			//	Print the debug
 				if (isset($css)) echo $css;
 				echo '
@@ -404,7 +404,7 @@ class sentinel
 				echo $flag.': '.$title.' ('.$descr.')';
 				break;
 		}
-		
+
 	}
 
 /**
@@ -418,7 +418,7 @@ class sentinel
 	public static function startwatch()
 	{
 	//	Compter
-		$mtime = microtime(); 
+		$mtime = microtime();
 		$mtime = explode(' ', $mtime);
 	//	Plusieurs chronos peuvent cohabiter. En ouvrir un nouveau
 		self::$stopwatch[] = $mtime[1] + $mtime[0];
