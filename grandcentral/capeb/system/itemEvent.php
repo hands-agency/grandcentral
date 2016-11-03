@@ -6,7 +6,7 @@
  * @access	public
  * @link		http://grandcentral.fr
  */
-class itemService extends _items
+class itemEvent extends _items
 {
 /**
  * Sauvegarde et remplissage auto
@@ -25,18 +25,6 @@ class itemService extends _items
 		parent::save();
 
     return $this;
-	}
-/**
- * Détermine la categorie de service contenant le service
- *
- * @access	public
- */
-	public function get_category()
-	{
-		//
-		$category = i('servicecategory', ['service' => $this->get_nickname()]);
-		return $category;
-
 	}
 }
 ?>
