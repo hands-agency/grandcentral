@@ -79,25 +79,33 @@ class itemPage extends _items
  */
 	public function guess()
 	{
-		// recherche de la page
-		$this->get_by_url(URLR);
-		//	si la page n'existe pas, on éclate l'url et on fait une recherche aproximative
-		if (!$this->exists())
+
+		// home
+		if (empty(URLR))
 		{
-			$hash = mb_substr(URLR, 0, mb_strpos(URLR, '/', 1));
-			// chargement de la page de home
-			$this->get_by_url($hash);
-			// sentinel::debug(__FUNCTION__.' in '.__FILE__.' line '.__LINE__, $this);exit;
-			// 404
-			// echo "<pre>";print_r('ici');echo "</pre>";exit;
-			if ($this->get_env() == 'site' && !$this->is_reader() && !mb_strstr($hash,'api') && (isset($this['followurl']) && $this['followurl']->get() == false))
-			//if (!$this->exists())
+			$this->get('home');
+		}
+		// others
+		else
+		{
+			// recherche de la page
+			$this->get_by_url(URLR);
+			//	si la page n'existe pas, on éclate l'url et on fait une recherche aproximative
+			if (!$this->exists())
 			{
-				// echo "<pre>";print_r('ici');echo "</pre>";exit;
-				$this->get_by_url('/404');
+				$hash = mb_substr(URLR, 0, mb_strpos(URLR, '/', 1));
+				if (!empty($hash))
+				{
+					// chargement de la page de home
+					$this->get_by_url($hash);
+					// 404
+					if ($this->get_env() == 'site' && !$this->is_reader() && !mb_strstr($hash,'api') && (isset($this['followurl']) && $this['followurl']->get() == false))
+					{
+						$this->get_by_url('/404');
+					}
+				}
 			}
 		}
-
 		// si on ne trouve rien, on renvoie une erreur
 		if (!$this->exists())
 		{
