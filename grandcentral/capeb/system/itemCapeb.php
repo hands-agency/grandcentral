@@ -8,6 +8,29 @@
  */
 class itemCapeb extends _items
 {
+
+/**
+ *
+ *
+ * @access public
+ */
+	public function get_key()
+	{
+		//
+		return $this['key'];
+	}
+
+/**
+ *
+ *
+ * @access public
+ */
+	public function get_name()
+	{
+		//
+		return $this['shorttitle'];
+	}
+
 /**
  *
  *
@@ -29,31 +52,32 @@ class itemCapeb extends _items
  *
  * @access public
  */
-	public function get_name()
-	{
-		//
-		return $this['shorttitle'];
-	}
-
-/**
- *
- *
- * @access public
- */
-	public function create_cookie($value = 'nationale')
-	{
-		//
-    setcookie('capeb', $value, time() + (3600 * 24 * 30), '/', '.', false, true);
-	}
-
-/**
- *
- *
- * @access public
- */
 	public function redirect()
 	{
 		//
+		header('Location: '.$this->get_home_url());
+	}
+
+/**
+ *
+ *
+ * @access public
+ */
+	public function create_cookie($value = '00')
+	{
+		//
+    setcookie('capeb', $value, time() + (3600 * 24 * 30), '/', '', false, true);
+	}
+
+/**
+ *
+ *
+ * @access public
+ */
+	public function set_session($capeb)
+	{
+		//
+		$_SESSION['capeb'] = $capeb;
 	}
 
 /**
@@ -64,12 +88,10 @@ class itemCapeb extends _items
 	public function load()
 	{
 		//
-    if (isset($_COOKIE['capeb']) && !empty($_COOKIE['capeb'])) {
-      # code...
-    }
-    else {
-      $this->create_cookie();
-    }
+    $this->create_cookie($this['key']);
+		$this->set_session($this);
+
+		return $this->get_home_url();
 	}
 
 /**
