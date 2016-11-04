@@ -8,6 +8,7 @@
  */
 class itemNews extends _items
 {
+	private $pushlimit = 3;
 /**
  * Sauvegarde et remplissage auto
  *
@@ -49,6 +50,56 @@ class itemNews extends _items
 		}
 
     return $data;
+	}
+/**
+ * Get next and previous news in a bunch
+ *
+ * @access	public
+ */
+	public function get_previous()
+	{
+		$article = i($this->get_table(), array(
+			'id' => '!='.$this['id']->get(),
+			'date' => '<='. $this['date']->get(),
+			'limit()' => 1
+		));
+    return $article->count == 1 ? $article[0] : i('news');
+	}
+/**
+ * Get next and previous news in a bunch
+ *
+ * @access	public
+ */
+	public function get_next()
+	{
+		$article = i($this->get_table(), array(
+			'id' => '!='.$this['id']->get(),
+			'date' => '>='. $this['date']->get(),
+			'limit()' => 1
+		));
+    return $article->count == 1 ? $article[0] : i('news');
+	}
+/**
+ * Get news for aside column
+ *
+ * @access	public
+ */
+	public function get_push()
+	{
+		if ($this['push']->is_empty())
+		{
+			$articles = i($this->get_table(), array(
+				'order()' => 'date DESC',
+				'limit()' => $this->pushlimit
+			));
+		}
+		else
+		{
+			$articles = $this['push']->unfold(array(
+				'limit()' => $this->pushlimit
+			));
+		}
+    return $articles->count > 0 ? $articles : new bunch();
 	}
 }
 ?>
