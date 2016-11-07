@@ -184,9 +184,22 @@ class itemCapeb extends _items
 	 *
 	 * @access public
 	 */
-		public function get_services()
+		public function get_presentation_list()
 		{
-			//
+			$parents = i('page', array(
+				'key' => array($this['key'].'_about', 'about'),
+				'order()' => 'inherit(key)'
+			));
+			// echo "<pre>";print_r($parents);echo "</pre>";
+			$pages = array();
+			foreach ($parents as $parent)
+			{
+				$pages = array_merge($pages, $parent['child']->get());
+			}
+			$return = new bunch();
+			$return->get_by_nickname($pages);
+
+			return $return;
 		}
 
 	/**
@@ -205,6 +218,10 @@ class itemCapeb extends _items
 					{
 						$pages[] = $this['key'].'_'.$page;
 					}
+					else
+					{
+						$pages[] = $page;
+					}
 				}
 			}
 			else
@@ -216,15 +233,6 @@ class itemCapeb extends _items
 				'order()' => 'inherit(key)'
 			));
 			return $pages;
-		}
-	/**
-	 * obtenir la navigation par défaut
-	 *
-	 * @access public
-	 */
-		public function get_nav_default()
-		{
-
 		}
 }
 ?>
