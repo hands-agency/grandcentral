@@ -113,12 +113,10 @@ class itemCapeb extends _items
 		public function get_home_url()
 		{
 			//
-				if (isset($this['homepage']) && $this['homepage']->is_empty()) {
-					return '#';
-				}
-				else {
-					return (string) $this['homepage']->unfold()['url'];
-				}
+			$page = i('page', $this->get_key().'_home');
+			$url = (string) $page['url'];
+
+			return $url;
 		}
 
 	/**
