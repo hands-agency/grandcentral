@@ -96,7 +96,7 @@ class sentinel
 	        case E_NOTICE:
 			case E_USER_NOTICE:
 				$type = 'Notice';
-				$trace = true;
+				$trace = false;
 				break;
       	//	warning
 			case 2:
