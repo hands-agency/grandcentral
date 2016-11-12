@@ -110,13 +110,11 @@ class itemCapeb extends _items
 	 *
 	 * @access public
 	 */
-		public function get_home_url()
+		public function get_url($destination)
 		{
-			//
-			$page = i('page', $this->get_key().'_home');
-			$url = (string) $page['url'];
-
-			return $url;
+			$key = $this['key']->get() == self::FALLBACK ? $destination : $this['key']->get().'_'.$destination;
+			$page = i('page', $key);
+			return (string) $page['url'];
 		}
 
 	/**
@@ -201,12 +199,13 @@ class itemCapeb extends _items
 		}
 
 	/**
-	 *
+	 * get data to populate site navigation
 	 *
 	 * @access public
 	 */
 		public function get_nav()
 		{
+			// departement / région
 			$pages = array();
 			if ($this['key']->get() != self::FALLBACK)
 			{
@@ -222,6 +221,7 @@ class itemCapeb extends _items
 					}
 				}
 			}
+			// national
 			else
 			{
 				$pages = $this->navigation;

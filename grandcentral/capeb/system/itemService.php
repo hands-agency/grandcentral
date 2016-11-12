@@ -33,9 +33,33 @@ class itemService extends _items
  */
 	public function get_category()
 	{
-		//
-		$category = i('servicecategory', ['service' => $this->get_nickname()]);
+		$category = i('servicecategory');
+		$categories = i('servicecategory',all)->set_index('key');
+		$capeb = $_SESSION['capeb'];
+		foreach ($categories as $cat)
+		{
+			$key = (string) $cat['key'];
+			if (isset($capeb[$key]) && in_array($this->get_nickname(), $capeb[$key]->get()))
+			{
+				return isset($categories['servicecategory_'.$key]) ? $categories['servicecategory_'.$key] : $category;
+			}
+		}
+
 		return $category;
+
+	}
+/**
+ * Retourne le référent du service
+ *
+ * @access	public
+ */
+	public function get_referent()
+	{
+		$referent = i('referent');
+		$referent->get(array(
+			'service' => $this->get_nickname()
+		));
+		return $referent;
 
 	}
 }
