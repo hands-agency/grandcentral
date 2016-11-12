@@ -19,7 +19,7 @@ class itemNews extends _items
 		// capeb d'apartenance
 		if ($this['capeb']->is_empty())
 		{
-			$national = i('capeb','national');
+			$national = i('capeb',itemCapeb::FALLBACK);
 			$this['capeb']->set($national->get_nickname());
 		}
 		// date par défaut

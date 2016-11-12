@@ -8,7 +8,7 @@
  */
 class itemCapeb extends _items
 {
-	private $default = 'cnational'; // item à charger par défaut
+	const FALLBACK = 'cnational'; // item à charger par défaut
 	private static $overlay = true;
 	private $navigation = array(
 		'news',
@@ -68,7 +68,7 @@ class itemCapeb extends _items
 	 */
 		public function load_default()
 		{
-			$this->get($this->default);
+			$this->get(self::FALLBACK);
 	    $this->create_cookie();
 			$this->set_session();
 			return $this;
@@ -208,7 +208,7 @@ class itemCapeb extends _items
 		public function get_nav()
 		{
 			$pages = array();
-			if ($this['key']->get() != $this->default)
+			if ($this['key']->get() != self::FALLBACK)
 			{
 				foreach ($this->navigation as $page)
 				{

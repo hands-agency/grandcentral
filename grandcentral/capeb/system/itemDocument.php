@@ -6,7 +6,7 @@
  * @access	public
  * @link		http://grandcentral.fr
  */
-class itemEvent extends _items
+class itemDocument extends _items
 {
 /**
  * Sauvegarde et remplissage auto
