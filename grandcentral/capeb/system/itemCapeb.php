@@ -170,9 +170,34 @@ class itemCapeb extends _items
 	 *
 	 * @access public
 	 */
-		public function get_events()
+		public function get_page_capeb()
 		{
-			//
+			$page = i('page', current);
+			$key = $page['key']->get();
+			if (mb_strstr($key,'_'))
+			{
+				$data = explode('_',$key);
+				if ($data[0] == $this['key']->get())
+				{
+					$capeb = $this;
+				}
+				else
+				{
+					$capeb = i('capeb',$data[0]);
+				}
+			}
+			else
+			{
+				if (self::FALLBACK == $this['key']->get())
+				{
+					$capeb = $this;
+				}
+				else
+				{
+					$capeb = i('capeb',self::FALLBACK);
+				}
+			}
+			return $capeb;
 		}
 
 	/**
