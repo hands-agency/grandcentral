@@ -225,7 +225,7 @@ class itemHuman extends _items
  */
 	public function is_logged()
 	{
-		return (isset($_SESSION['user']['id'])) ? true : false;
+		return (isset($_SESSION['user']['id']) && $_SESSION['user']['key']->get() != 'anonymous') ? true : false;
 	}
 /**
  * Logs the user in the session
