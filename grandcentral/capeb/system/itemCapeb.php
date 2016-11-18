@@ -110,6 +110,17 @@ class itemCapeb extends _items
 	 *
 	 * @access public
 	 */
+		public function get_dep()
+		{
+			//
+			return mb_substr($this['zip'], 0, 2);
+		}
+
+	/**
+	 *
+	 *
+	 * @access public
+	 */
 		public function get_url($destination)
 		{
 			$key = $this['key']->get() == self::FALLBACK ? $destination : $this['key']->get().'_'.$destination;
