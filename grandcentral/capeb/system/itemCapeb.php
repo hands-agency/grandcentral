@@ -138,7 +138,7 @@ class itemCapeb extends _items
 		public function redirect()
 		{
 			//
-			header('Location: '.$this->get_home_url());
+			header('Location: '.$this->get_url('home'));
 		}
 
 	/**
