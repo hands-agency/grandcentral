@@ -15,10 +15,12 @@ class itemCapeb extends _items
 		'event',
 		'about',
 		'intent',
-		'service'
+		'service',
+		'contact'
 	);
 	private $national = array(
-		'intent'
+		'intent',
+		'contact'
 	);
 	/**
 	 *	Create cookie, session and return active capeb
