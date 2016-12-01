@@ -56,6 +56,32 @@ class attrSirtrevor extends _attrs
 		$this->data = (string) $data;
 		return $this;
 	}
+	/**
+	 * xxxx
+	 *
+	 * @param	string	la variable
+	 * @return	string	une string
+	 * @access	public
+	 */
+		public function cut($length, $add = '...')
+		{
+			$d = $this->data;
+			$text = json_decode($this->data)->data[0]->data->text;
+			if (mb_strlen($text) > $length)
+			{
+			//	On coupe
+				$string = mb_substr($text, 0, $length);
+			//	On enlève le dernier mot
+				$string = substr($string, 0, -(mb_strlen(mb_strrchr($string, ' '))));
+			//	On ajoute les ...
+				$string .= $add;
+			}
+			else
+			{
+				$string = $text;
+			}
+			return $string;
+		}
 
 /**
  * Definition mysql
