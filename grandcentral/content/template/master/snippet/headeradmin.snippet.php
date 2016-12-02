@@ -1,5 +1,5 @@
 <ul class="options">
-	<li id="refine" class="off" data-feathericon="&#xe036"><input type="search" placeholder="Refine or ↵ search" /></li>
+	<li id="refine" class="off" data-feathericon="&#xe036"><input type="search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Refine or ↵ search" /></li>
 	<li id="filter" class="off" data-feathericon="&#xe023"></li>
 </ul>
 <ul id="tabs" data-target="content" <?php if (isset($defaultSection)): ?>data-default="<?=$defaultSection?>"<?php endif ?>>
