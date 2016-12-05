@@ -10,18 +10,18 @@ class itemCapeb extends _items
 {
 	const FALLBACK = 'cnational'; // item à charger par défaut
 	private static $overlay = true;
-	private $navigation = array(
-		'news',
-		'event',
-		'about',
-		'intent',
-		'service',
-		'contact'
-	);
-	private $national = array(
-		'intent',
-		'contact'
-	);
+	// private $navigation = array(
+	// 	'news',
+	// 	'event',
+	// 	'about',
+	// 	'intent',
+	// 	'service_category',
+	// 	'contact'
+	// );
+	// private $national = array(
+	// 	'intent',
+	// 	'contact'
+	// );
 	/**
 	 *	Create cookie, session and return active capeb
 	 *
@@ -118,17 +118,17 @@ class itemCapeb extends _items
 			return mb_substr($this['zip'], 0, 2);
 		}
 
-	/**
-	 *
-	 *
-	 * @access public
-	 */
-		public function get_url($destination)
-		{
-			$key = $this['key']->get() == self::FALLBACK ? $destination : $this['key']->get().'_'.$destination;
-			$page = i('page', $key);
-			return (string) $page['url'];
-		}
+	// /**
+	//  *
+	//  *
+	//  * @access public
+	//  */
+	// 	public function get_url($destination)
+	// 	{
+	// 		$key = $this['key']->get() == self::FALLBACK ? $destination : $this['key']->get().'_'.$destination;
+	// 		$page = i('page', $key);
+	// 		return (string) $page['url'];
+	// 	}
 
 	/**
 	 *
@@ -168,107 +168,107 @@ class itemCapeb extends _items
 			$_SESSION['capeb'] = $this;
 		}
 
-	/**
-	 *
-	 *
-	 * @access public
-	 */
-		public function get_news()
-		{
-			//
-		}
+	// /**
+	//  *
+	//  *
+	//  * @access public
+	//  */
+	// 	public function get_news()
+	// 	{
+	// 		//
+	// 	}
 
-	/**
-	 *
-	 *
-	 * @access public
-	 */
-		public function get_page_capeb()
-		{
-			$page = i('page', current);
-			$key = $page['key']->get();
-			if (mb_strstr($key,'_'))
-			{
-				$data = explode('_',$key);
-				if ($data[0] == $this['key']->get())
-				{
-					$capeb = $this;
-				}
-				else
-				{
-					$capeb = i('capeb',$data[0]);
-				}
-			}
-			else
-			{
-				if (self::FALLBACK == $this['key']->get())
-				{
-					$capeb = $this;
-				}
-				else
-				{
-					$capeb = i('capeb',self::FALLBACK);
-				}
-			}
-			return $capeb;
-		}
+	// /**
+	//  *
+	//  *
+	//  * @access public
+	//  */
+	// 	public function get_page_capeb()
+	// 	{
+	// 		$page = i('page', current);
+	// 		$key = $page['key']->get();
+	// 		if (mb_strstr($key,'_'))
+	// 		{
+	// 			$data = explode('_',$key);
+	// 			if ($data[0] == $this['key']->get())
+	// 			{
+	// 				$capeb = $this;
+	// 			}
+	// 			else
+	// 			{
+	// 				$capeb = i('capeb',$data[0]);
+	// 			}
+	// 		}
+	// 		else
+	// 		{
+	// 			if (self::FALLBACK == $this['key']->get())
+	// 			{
+	// 				$capeb = $this;
+	// 			}
+	// 			else
+	// 			{
+	// 				$capeb = i('capeb',self::FALLBACK);
+	// 			}
+	// 		}
+	// 		return $capeb;
+	// 	}
 
-	/**
-	 *
-	 *
-	 * @access public
-	 */
-		public function get_presentation_list()
-		{
-			$parents = i('page', array(
-				'key' => array($this['key'].'_about', 'about'),
-				'order()' => 'inherit(key)'
-			));
-			// echo "<pre>";print_r($parents);echo "</pre>";
-			$pages = array();
-			foreach ($parents as $parent)
-			{
-				$pages = array_merge($pages, $parent['child']->get());
-			}
-			$return = new bunch();
-			$return->get_by_nickname($pages);
+	// /**
+	//  *
+	//  *
+	//  * @access public
+	//  */
+	// 	public function get_presentation_list()
+	// 	{
+	// 		$parents = i('page', array(
+	// 			'key' => array($this['key'].'_about', 'about'),
+	// 			'order()' => 'inherit(key)'
+	// 		));
+	// 		// echo "<pre>";print_r($parents);echo "</pre>";
+	// 		$pages = array();
+	// 		foreach ($parents as $parent)
+	// 		{
+	// 			$pages = array_merge($pages, $parent['child']->get());
+	// 		}
+	// 		$return = new bunch();
+	// 		$return->get_by_nickname($pages);
+	//
+	// 		return $return;
+	// 	}
 
-			return $return;
-		}
-
-	/**
-	 * get data to populate site navigation
-	 *
-	 * @access public
-	 */
-		public function get_nav()
-		{
-			// departement / région
-			$pages = array();
-			if ($this['key']->get() != self::FALLBACK)
-			{
-				foreach ($this->navigation as $page)
-				{
-					if (!in_array($page, $this->national) )
-					{
-						$pages[] = $this['key'].'_'.$page;
-					}
-					else
-					{
-						$pages[] = $page;
-					}
-				}
-			}
-			// national
-			else
-			{
-				$pages = $this->navigation;
-			}
-			$pages = i('page', array(
-				'key' => $pages,
-				'order()' => 'inherit(key)'
-			));
-			return $pages;
-		}
+	// /**
+	//  * get data to populate site navigation
+	//  *
+	//  * @access public
+	//  */
+	// 	public function get_nav()
+	// 	{
+	// 		// departement / région
+	// 		$pages = array();
+	// 		if ($this['key']->get() != self::FALLBACK)
+	// 		{
+	// 			foreach ($this->navigation as $page)
+	// 			{
+	// 				if (!in_array($page, $this->national) )
+	// 				{
+	// 					$pages[] = $this['key'].'_'.$page;
+	// 				}
+	// 				else
+	// 				{
+	// 					$pages[] = $page;
+	// 				}
+	// 			}
+	// 		}
+	// 		// national
+	// 		else
+	// 		{
+	// 			$pages = $this->navigation;
+	// 		}
+	// 		$pages = i('page', array(
+	// 			'key' => $pages,
+	// 			'order()' => 'inherit(key)'
+	// 		));
+	// 		return $pages;
+	// 	}
 }
 ?>
