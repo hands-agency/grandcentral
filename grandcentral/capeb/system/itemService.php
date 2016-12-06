@@ -62,5 +62,20 @@ class itemService extends _items
 		return $referent;
 
 	}
+/**
+ * Retourne le guide associé au service
+ *
+ * @access	public
+ */
+	public function get_guides()
+	{
+		$guides = new bunch();
+		if (isset($_SESSION['capeb'][$this['key']->get()]))
+		{
+			$guides = $_SESSION['capeb'][$this['key']->get()]->unfold();
+		}
+		return $guides;
+
+	}
 }
 ?>
