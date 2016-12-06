@@ -275,25 +275,25 @@ class dataCapeb
       return $trainings;
 		}
 
-	// /**
-	//  * Formations
-	//  *
-	//  * @access public
-	//  */
-	// 	public function get_referents($services = null)
-	// 	{
-  //     $referents = new bunch();
-  //     $referents->get('referent',array(
-  //       'capeb' => $this->capeb->get_nickname(),
-  //       'order()' => 'title ASC'
-  //     ));
-  //     if (!is_a($services, 'bunch'))
-  //     {
-  //       $params['']
-  //     }
-  //     $referents->get('referent',$params);
-  //     return $referents;
-	// 	}
+	/**
+	 * Formations
+	 *
+	 * @access public
+	 */
+		public function get_referents($services = null)
+		{
+      $referents = new bunch();
+      $params = array(
+        'capeb' => $this->capeb->get_nickname(),
+        'order()' => 'title ASC'
+      );
+      if (!is_a($services, 'bunch'))
+      {
+
+      }
+      $referents->get('referent',$params);
+      return $referents;
+		}
 
 }
 ?>
