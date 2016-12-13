@@ -57,7 +57,8 @@ class itemService extends _items
 	{
 		$referent = i('referent');
 		$referent->get(array(
-			'service' => $this->get_nickname()
+			'service' => $this->get_nickname(),
+			'capeb' => $_SESSION['capeb']->get_nickname()
 		));
 		return $referent;
 

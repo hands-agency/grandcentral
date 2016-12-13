@@ -150,6 +150,16 @@ class dataCapeb
         $tag = i('newscategory',$tag);
         $params['category'] = $tag->get_nickname();
       }
+      // blacklist
+      if (!$this->capeb['newsblacklist']->is_empty())
+      {
+        $params['id'] = array();
+        foreach ($this->capeb['newsblacklist']->get() as $nickname)
+        {
+          $data = explode('_',$nickname);
+          $params['id'][] = '!='.$data[1];
+        }
+      }
       // query news
       $data = i('news', $params);
       // total
@@ -217,6 +227,16 @@ class dataCapeb
       {
         $params['order()'] = 'start ASC';
       }
+      // blacklist
+      if (!$this->capeb['eventblacklist']->is_empty())
+      {
+        $params['id'] = array();
+        foreach ($this->capeb['eventblacklist']->get() as $nickname)
+        {
+          $data = explode('_',$nickname);
+          $params['id'][] = '!='.$data[1];
+        }
+      }
       $events = i('event', $params);
       return $events;
 		}
@@ -234,19 +254,26 @@ class dataCapeb
 	 *
 	 * @access public
 	 */
-		public function get_services()
-		{
-      $services = new bunch();
-      return $services;
-		}
-	/**
-	 * Services
-	 *
-	 * @access public
-	 */
 		public function get_partners()
 		{
-      $partners = new bunch();
+      // params
+      $p = array(
+        'order()' => 'title ASC',
+        'capeb' => array(self::FALLBACK, $this->capeb['id']->get())
+      );
+      // blacklist
+      if (!$this->capeb['partnerblacklist']->is_empty())
+      {
+        $p['id'] = array();
+        foreach ($this->capeb['partnerblacklist']->get() as $nickname)
+        {
+          $data = explode('_',$nickname);
+          $p['id'][] = '!='.$data[1];
+        }
+      }
+      // query
+      $partners = new bunch('partner',$p);
+      // echo "<pre>";print_r($partners);echo "</pre>";
       return $partners;
 		}
 	/**
@@ -254,10 +281,39 @@ class dataCapeb
 	 *
 	 * @access public
 	 */
-		public function get_guides()
+		public function get_sections()
 		{
-      $guides = new bunch();
-      return $guides;
+      $sections = i('section',array(
+        'capeb' => $this->capeb->get_nickname(),
+        'order()' => 'key'
+      ));
+      return $sections;
+		}
+	/**
+	 * Services
+	 *
+	 * @access public
+	 */
+		public function get_texts()
+		{
+      $texts = i('text',array(
+        'capeb' => $this->capeb->get_nickname(),
+        'order()' => 'key'
+      ));
+      return $texts;
+		}
+	/**
+	 * Services
+	 *
+	 * @access public
+	 */
+		public function get_facebook()
+		{
+      $texts = i('section',array(
+        'key' => $this->capeb->get_nickname(),
+        'order()' => 'key'
+      ));
+      return $texts;
 		}
 	/**
 	 * Formations
@@ -269,7 +325,7 @@ class dataCapeb
       $trainings = new bunch();
       $trainings->get('training',array(
         'capeb' => $this->capeb->get_nickname(),
-        // 'date' => '>= '.date('Y-m-d'),
+        'date' => '>= '.date('Y-m-d'),
         'order()' => 'date ASC'
       ));
       return $trainings;
