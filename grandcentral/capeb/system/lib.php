@@ -48,8 +48,8 @@
       ),
       'service' => array(
         'see' => (string) $nav[4]['url'],
-        'add'              => $url['update'].'?item=event',
-        'update'           => $url['update'].'?item=event&id=[itemid]',
+        'add'              => $url['update'].'?item=service',
+        'update'           => $url['update'].'?item=service&id=[itemid]',
         // 'delete'           => $url['delete'].'?item=event&id=[itemid]',
         'service_organize' => $url['update'].'?item=custom&id=service_organize',
         'service_intro'    => $url['update'].'?item=custom&id=service_intro',
