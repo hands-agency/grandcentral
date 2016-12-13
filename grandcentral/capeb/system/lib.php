@@ -106,9 +106,27 @@
     {
       $item = i(item,current);
       $capeb = isset($item['capeb']) ? $item['capeb']->get() : '';
+      // if (isset($item['capeb']))
+      // {
+      //   // echo "<pre>";print_r($capeb);echo "</pre>";
+      //   //   echo "<pre>";print_r($_SESSION['user']['capeb']->get());echo "</pre>";exit;
+      //   // delete
+      //   switch (true)
+      //   {
+      //     case in_array($table, array('news','partner','event')):
+      //       $authorizeDelete = true;
+      //       break;
+      //
+      //     default:
+      //       $authorizeDelete = false;
+      //       break;
+      //   }
+      //   // update
+      //   $authorizeUpdate = in_array($capeb, $_SESSION['user']['capeb']->get());
+      //
+      // }
       // gestion des cas particuliers
-      $authorizeDelete = in_array($capeb, $_SESSION['user']['capeb']->get());
-      $authorizeUpdate = in_array($capeb, $_SESSION['user']['capeb']->get());
+
        //&&
     }
     // clean menu
@@ -118,18 +136,37 @@
       foreach ($data as $key => $url)
       {
         // on remplace tous les éléments par l'id courante
-        if (isset($itemid))
+        if (isset($item))
         {
           $url = str_replace('[itemid]',$item['id']->get(), $url);
         }
         // on retire certaines options en fonction du contexte
-        if (!in_array($key, array('update')) || (isset($item['id']) && item == $table && $authorizeUpdate === true ))
+        // if (!in_array($key, array('update')) && isset($item) && item == $table && $authorizeUpdate === true)
+        // {
+        //   $menu[$table][$key] = $url;
+        // }
+        // if (!in_array($key, array('delete')) && isset($item) && item == $table && $authorizeDelete === true)
+        // {
+        //   $menu[$table][$key] = $url;
+        // }
+        switch ($key)
         {
-          $menu[$table][$key] = $url;
-        }
-        if (!in_array($key, array('delete')) || (isset($item['id']) && item == $table && $authorizeDelete === true ))
-        {
-          $menu[$table][$key] = $url;
+          case 'delete':
+            if (isset($item) && item == $table && in_array('partner','news','event'))
+            {
+              $menu[$table][$key] = $url;
+            }
+            break;
+          case 'update':
+            if (isset($item) && item == $table)
+            {
+              $menu[$table][$key] = $url;
+            }
+            break;
+
+          default:
+            $menu[$table][$key] = $url;
+            break;
         }
       }
     }
