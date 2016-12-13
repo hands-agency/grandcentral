@@ -54,6 +54,12 @@
         'service_organize' => $url['update'].'?item=custom&id=service_organize',
         'service_intro'    => $url['update'].'?item=custom&id=service_intro',
       ),
+      'document' => array(
+        'see' => (string) $nav[4]['url'],
+        'add'    => $url['update'].'?item=document',
+        'update' => $url['update'].'?item=document&id=[itemid]',
+        // 'delete' => $url['delete'].'?item=document&id=[itemid]'
+      ),
       'referent' => array(
         'see' => (string) $nav[4]['url'].'?tab=contact',
         'add'    => $url['update'].'?item=referent',
