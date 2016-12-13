@@ -2,7 +2,7 @@
 /**
  * Classe de construction de formulaires html
  * http://www.siteduzero.com/informatique/tutoriels/votre-site-php-presque-complet-architecture-mvc-et-bonnes-pratiques/gestion-des-formulaires-avec-la-classe-form
- * 
+ *
  * @package		form
  * @author		Michaël V. Dandrieux <@mvdandrieux>
  * @author		Sylvain Frigui <sf@hands.agency>
@@ -11,7 +11,7 @@
  */
 class form
 {
-	protected $attrs = array(
+	public $attrs = array(
 		'id' => null,
 		'class' => null,
 		'action' => null,
@@ -37,7 +37,7 @@ class form
  * 	'enctype' => 'multipart/form-data',
  * );
  * $form = new form('inscription');
- * 
+ *
  * @param	string	la clé du formulaire
  * @access	public
  */
@@ -60,7 +60,7 @@ class form
 	}
 /**
  * Ajouter un champ au formulaire
- * 
+ *
  * @param	string	le type de champ (text, number, select, ...)
  * @param	string	le nom du champ
  * @param	array	le tableau de paramètres du champ
@@ -70,7 +70,7 @@ class form
 	{
 		$field = 'field'.ucfirst($field);
 		$object = new $field($name, $param);
-		
+
 		if ($field == 'fieldHidden')
 		{
 			$this->hidden_fields[] = $name;
@@ -83,7 +83,7 @@ class form
 	}
 /**
  * Ajouter un nouveau fieldset au formulaire
- * 
+ *
  * ex :
  * $form = new form('inscription');
  * $param = array(
@@ -93,8 +93,8 @@ class form
  *	'class' => 'green'
  * );
  * $form->set_fieldset($param);
- * 
- * 
+ *
+ *
  * @param	array	le tableau de paramètres du fieldset
  * @access	public
  */
@@ -111,7 +111,7 @@ class form
 	}
 /**
  * Change la page de post visée par le formulaire
- * 
+ *
  * @param	string	le nom de la page de post à éxécuter
  * @access	public
  */
@@ -123,7 +123,7 @@ class form
 	}
 /**
  * Change la page de post visée par le formulaire
- * 
+ *
  * @param	string	le nom de la page de post à éxécuter
  * @access	public
  */
@@ -134,7 +134,7 @@ class form
 	}
 /**
  * Change la page de post visée par le formulaire
- * 
+ *
  * @param	string	le nom de la page de post à éxécuter
  * @access	public
  */
@@ -146,7 +146,7 @@ class form
 	}
 /**
  * Get the action of a form
- * 
+ *
  * @access	public
  */
 	public function get_action()
@@ -155,7 +155,7 @@ class form
 	}
 /**
  * Change une valeur de data
- * 
+ *
  * @param	string	le suffixe de l'attribut data-suffix
  * @param	string	la data à stocker
  * @access	public
@@ -167,7 +167,7 @@ class form
 	}
 /**
  * Change l'attribut target du formulaire
- * 
+ *
  * @param	string	le nom de la cible
  * @access	public
  */
@@ -177,8 +177,8 @@ class form
 		return $this;
 	}
 /**
- * Change la méthode d'encryption des données 
- * 
+ * Change la méthode d'encryption des données
+ *
  * @param	string	null, multipart/form-data ou application/x-www-form-urlencoded
  * @access	public
  */
@@ -190,7 +190,7 @@ class form
 	}
 /**
  * Obtenir la chaine d'attribut html du formaulaire courant
- * 
+ *
  * @return	string	la chaine d'attribut html du formulaire
  * @access	public
  */
@@ -205,7 +205,7 @@ class form
 	}
 /**
  * Change le template du formulaire (template "form" par défaut)
- * 
+ *
  * @param	string	le nom du template
  * @access	public
  */
@@ -216,7 +216,7 @@ class form
 	}
 /**
  * Obtenir le template du formulaire
- * 
+ *
  * @return	string	le thème
  * @access	public
  */
@@ -226,14 +226,14 @@ class form
 	}
 /**
  * Vérifie la validité de valeurs de tous les champs du formulaire
- * 
+ *
  * @return	bool	true si les champs sont valides, false sinon
  * @access	public
  */
 	public function is_valid()
 	{
 		$values = ($this->attrs['method'] == 'post') ? $_POST : $_GET;
-		
+
 		foreach ($this->fields as $key => $field)
 		{
 			if (!isset($values[$key])) $values[$key] = null;
@@ -244,7 +244,7 @@ class form
 	}
 /**
  * Retourne la liste des erreurs rencontrées lors de la validation
- * 
+ *
  * @return	array 	le tableau des erreurs rencontrées
  * @access	public
  */
@@ -254,7 +254,7 @@ class form
 	}
 /**
  * Retourne la liste des champs cachés
- * 
+ *
  * @return	array 	le tableau des erreurs rencontrées
  * @access	public
  */
@@ -264,7 +264,7 @@ class form
 	}
 /**
  * Retourne la liste des champs cachés
- * 
+ *
  * @return	array 	le tableau des erreurs rencontrées
  * @access	public
  */
@@ -274,14 +274,14 @@ class form
 	}
 /**
  * Retourne la liste des champs cachés
- * 
+ *
  * @return	array 	le tableau des erreurs rencontrées
  * @access	public
  */
 	public function delete_field($name)
 	{
 		unset($this->fields[$name]);
-		
+
 		foreach ($this->fieldsets as $key => $fieldset)
 		{
 			$index = array_search($name, $fieldset['fields']);
@@ -293,7 +293,7 @@ class form
 	}
 /**
  * Retourne la liste des champs cachés
- * 
+ *
  * @return	array 	le tableau des erreurs rencontrées
  * @access	public
  */
@@ -303,7 +303,7 @@ class form
 	}
 /**
  * Retourne la liste des champs cachés
- * 
+ *
  * @return	array 	le tableau des erreurs rencontrées
  * @access	public
  */
@@ -313,7 +313,7 @@ class form
 	}
 /**
  * Retourne le html du formulaire définit par son theme et son template
- * 
+ *
  * @return	string	le html du formulaire
  * @access	public
  */
@@ -325,7 +325,7 @@ class form
 	}
 /**
  * Retourne le tableau des champs disponibles dans le système
- * 
+ *
  * @return	array	le tableau des champs disponibles
  * @access	public
  * @static
