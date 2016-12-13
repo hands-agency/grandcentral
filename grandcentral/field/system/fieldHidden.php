@@ -1,7 +1,7 @@
 <?php
 /**
  * Classe du champ hidden
- * 
+ *
  * @package		form
  * @author		Michaël V. Dandrieux <@mvdandrieux>
  * @author		Sylvain Frigui <sf@hands.agency>
@@ -24,7 +24,7 @@ class fieldHidden extends _fieldsInput
 	}
 /**
  * Affecte une valeur au champ
- * 
+ *
  * @param	mixed	la valeur
  * @access	public
  */

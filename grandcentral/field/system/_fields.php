@@ -1,7 +1,7 @@
 <?php
 /**
  * Classe abstaire de manipulation des champs
- * 
+ *
  * @package		form
  * @author		Michaël V. Dandrieux <@mvdandrieux>
  * @author		Sylvain Frigui <sf@hands.agency>
@@ -26,7 +26,7 @@ abstract class _fields
 	protected $template;
 	protected $errors;
 	protected $errors_message;
-	
+
 /**
  * Créer un nouveau champ et le peupler de ses attributs
  *
@@ -45,19 +45,19 @@ abstract class _fields
  * 	...
  * );
  * new field_text('title', $param);
- * 
+ *
  * @param	string	le nom du champ
  * @param	array	le tableau de paramètres du champ
  * @access	public
  */
 	function __construct($name, $attrs = null)
 	{
-	
+
 		# Fields shouldn't have an idea all the time, but a name, YES
 	//	$this->attrs['name'] = $this->attrs['id'] = $this->name = $name;
 		$this->attrs['name'] = $this->name = $name;
 		if (isset($attrs['key'])) $this->attrs['data-key'] = $attrs['key'];
-	
+
 		foreach ((array) $attrs as $key => $value)
 		{
 			$method = 'set_'.$key;
@@ -69,7 +69,7 @@ abstract class _fields
 	}
 /**
  * Check if a field is correctly filled
- * 
+ *
  * @return	bool	true ou false
  * @access	public
  */
@@ -77,18 +77,18 @@ abstract class _fields
 	{
 		$valid = true;
 		// print '<pre>'.$this->name.' : ';print_r($this->value);print'</pre>';
-		
+
 		if (true === $this->required && empty($this->value))
 		{
 			$valid = false;
 			$this->_error('required');
 		}
-		
+
 		return $valid;
 	}
 /**
  * Charge les erreurs obtenues lors de la validation du champ
- * 
+ *
  * @param	string	la clé d'erreur
  * @param	mixed	la valeur ayant amenée l'erreur sur le champ
  * @access	protected
@@ -98,12 +98,12 @@ abstract class _fields
 		$this->errors[$error_id]['key'] = (isset($this->errors_message[$error_id])) ? $this->errors_message[$error_id] : $error_id;
 		$this->errors[$error_id]['descr'] = cst(strtoupper('FIELD_VALIDATION_ERROR_'.$this->errors[$error_id]['key']));
 		$this->errors[$error_id]['value'] = $this->value;
-		
+
 		return $this;
 	}
 /**
  * Affecte un label au champ
- * 
+ *
  * @param	string	le label
  * @access	public
  */
@@ -114,7 +114,7 @@ abstract class _fields
 	}
 /**
  * Affecte une description au champ
- * 
+ *
  * @param	string	la description
  * @access	public
  */
@@ -125,7 +125,7 @@ abstract class _fields
 	}
 /**
  * Affecte un minimum requis au champ
- * 
+ *
  * @param	string	le minimum
  * @access	public
  */
@@ -139,7 +139,7 @@ abstract class _fields
 	}
 /**
  * Affecte un maximum requis au champ
- * 
+ *
  * @param	string	le maximum
  * @access	public
  */
@@ -149,12 +149,12 @@ abstract class _fields
 		{
 			$this->max = $value;
 		}
-		
+
 		return $this;
 	}
 /**
  * Affecte un label au champ
- * 
+ *
  * @param	string	le label
  * @access	public
  */
@@ -166,7 +166,7 @@ abstract class _fields
 	}
 /**
  * Affecte un identifiant html (id) au champ
- * 
+ *
  * @param	string	l'id
  * @access	public
  */
@@ -177,7 +177,7 @@ abstract class _fields
 	}
 /**
  * Affecte une valeur au champ
- * 
+ *
  * @param	mixed	la valeur
  * @access	public
  */
@@ -196,7 +196,7 @@ abstract class _fields
 	}
 /**
  * Déclare le champ comme obligatoire
- * 
+ *
  * @param	bool	true (par défaut) ou false
  * @access	public
  */
@@ -217,7 +217,7 @@ abstract class _fields
 	}
 /**
  * Déclare le champ comme désactivé
- * 
+ *
  * @param	bool	true (par défaut) ou false
  * @access	public
  */
@@ -237,13 +237,13 @@ abstract class _fields
 	}
 /**
  * Affecte une série de data personnalisée (format HTML5) au champ
- * 
+ *
  * ex :
  * $field = new field_text('title');
  * $field->customdata(array('key' => 'jquery'))
- * 
+ *
  * rendu html = <input type="text" name="title" data-key="jquery" />
- * 
+ *
  * @param	array	le tableau de données personnalisées à ajouter
  * @access	public
  */
@@ -260,7 +260,7 @@ abstract class _fields
 	}
 /**
  * Déclare le champ en lecture seule
- * 
+ *
  * @param	bool	true (par défaut) ou false
  * @access	public
  */
@@ -280,7 +280,7 @@ abstract class _fields
 	}
 /**
  * Obtenir le nom du champ
- * 
+ *
  * @return	string	le nom du champ
  * @access	public
  */
@@ -289,8 +289,19 @@ abstract class _fields
 		return $this->name;
 	}
 /**
+ * Obtenir le nom du champ
+ *
+ * @return	string	le nom du champ
+ * @access	public
+ */
+	public function set_name($data)
+	{
+		$this->name = $data;
+		return $this;
+	}
+/**
  * Obtenir la valeur du champ
- * 
+ *
  * @return	string	la valeur du champ
  * @access	public
  */
@@ -300,7 +311,7 @@ abstract class _fields
 	}
 /**
  * Obtenir le datatype du champ
- * 
+ *
  * @return	string	la datatype du champ
  * @access	public
  */
@@ -310,7 +321,7 @@ abstract class _fields
 	}
 /**
  * Obtenir la valeur nettoyée du champ (pour un affichage sécurisé)
- * 
+ *
  * @return	string	le nom propre du champ
  * @access	public
  */
@@ -320,7 +331,7 @@ abstract class _fields
 	}
 /**
  * Obtenir la liste des erreurs soulevées lors de la validation du champ
- * 
+ *
  * @return	array	le tableau des erreurs, de leurs contenus et des valeurs responsables de l'erreur
  * @access	public
  */
@@ -330,7 +341,7 @@ abstract class _fields
 	}
 /**
  * Obtenir la description du champ
- * 
+ *
  * @return	string	la description du champ
  * @access	public
  */
@@ -340,7 +351,7 @@ abstract class _fields
 	}
 /**
  * Obtenir le label du champ
- * 
+ *
  * @return	string	le label du champ
  * @access	public
  */
@@ -350,7 +361,7 @@ abstract class _fields
 	}
 /**
  * Obtenir le type de champ
- * 
+ *
  * @return	string	le type du champ
  * @access	public
  */
@@ -361,7 +372,7 @@ abstract class _fields
 	}
 /**
  * Obtenir le label du champ
- * 
+ *
  * @return	string	le label du champ
  * @access	public
  */
@@ -371,7 +382,7 @@ abstract class _fields
 	}
 /**
  * Obtenir la clef du champ
- * 
+ *
  * @return	string	la clef du champ
  * @access	public
  */
@@ -381,7 +392,7 @@ abstract class _fields
 	}
 /**
  * Obtenir la liste de tous les attributs du champ
- * 
+ *
  * @return	array	le tableau des attributs du champ
  * @access	public
  */
@@ -396,7 +407,7 @@ abstract class _fields
 	}
 /**
  * Know whether is field is required or not
- * 
+ *
  * @return	string	la valeur du champ
  * @access	public
  */
@@ -406,7 +417,7 @@ abstract class _fields
 	}
 /**
  * Know whether is field is required or not
- * 
+ *
  * @return	string	la valeur du champ
  * @access	public
  */
@@ -416,7 +427,7 @@ abstract class _fields
 	}
 /**
  * Set a template for the field
- * 
+ *
  * @return	string	The template
  * @access	public
  */
@@ -426,9 +437,9 @@ abstract class _fields
 	}
 /**
  * Construit le code html du champ
- * 
+ *
  * Par défaut la méthode __toString va chercher un template dans /field/default/<nom du champ>
- * 
+ *
  * @return	string	le html du champ
  * @access	public
  */
@@ -445,14 +456,14 @@ abstract class _fields
 	}
 /**
  * Obtenir la définition des propriétés du champ
- * 
+ *
  * @return	array 	la liste des propriétés et leurs définitions
  * @access	public
  * @static
  */
 	public static function get_properties()
 	{
-		
+
 	}
 }
 ?>
