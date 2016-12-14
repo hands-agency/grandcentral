@@ -255,4 +255,218 @@
   //
   //   return $data;
   // }
+
+  function duplicate_capeb(itemCapeb $source, itemCapeb $destination)
+  {
+    // dupliquer le contenu
+    $texts = i('text',array('capeb' => $source->get_nickname()));
+    $sections = i('section',array(
+      'capeb' => $source->get_nickname())
+    );
+    $pages = i('page',array(
+      'key' => $source['key']->get().'_%',
+      'order()' => 'FIELD(key, "'.$source['key']->get().'_home",
+          "'.$source['key']->get().'_news",
+          "'.$source['key']->get().'_event",
+          "'.$source['key']->get().'_about",
+          "'.$source['key']->get().'_service",
+          "'.$source['key']->get().'_press",
+          "'.$source['key']->get().'_about1",
+          "'.$source['key']->get().'_about2",
+          "'.$source['key']->get().'_about3",
+          "'.$source['key']->get().'_partner"
+        )'
+    ))->set_index('id'); // on ordonne les pages pour garder l'ordre de l'arbo
+    $bridge = array();
+    $items = array(
+      'text' => new bunch(),
+      'section' => new bunch(),
+      'page' => new bunch()
+    );
+    foreach ($texts as $item)
+    {
+      // change title
+      $title = str_replace($source['shorttitle']->get(), $destination['shorttitle']->get(), $item['title']->get());
+      $item['title'] = $title;
+      // change capeb
+      $item['capeb'] = $destination->get_nickname();
+      // reset id and save to generate a new item
+      $old = $item->get_nickname();
+      $item['id']->database_set('');
+      $item->save();
+      // store data
+      $bridge['text'][$old] = $item->get_nickname();
+      $items['text'][] = $item;
+      // $item->delete();
+    }
+    foreach ($sections as $item)
+    {
+      // change title
+      $title = str_replace($source['shorttitle']->get(), $destination['shorttitle']->get(), $item['title']->get());
+      $item['title'] = $title;
+      // change capeb
+      $item['capeb'] = $destination->get_nickname();
+      // save and reset id
+      $old = $item->get_nickname();
+      $item['id']->database_set('');
+      $item->save();
+      // store data
+      $bridge['section'][$old] = $item->get_nickname();
+      $items['section'][] = $item;
+      // $item->delete();
+    }
+    foreach ($pages as $item)
+    {
+      // change title
+      $title = str_replace($source['shorttitle']->get(), $destination['shorttitle']->get(), $item['title']->get());
+      $item['title'] = $title;
+      // change url
+      $url = mb_strtolower(str_ireplace($source['shorttitle']->get(), $destination['shorttitle']->get(), $item['url']->get()['fr']));
+      $item['url'] = array('fr' => str_replace(' ', '-', $url));
+      // change key
+      $key = str_replace($source['key']->get(), $destination['key']->get(), $item['key']->get());
+      $item['key'] = $key;
+      // save parent
+      $parent = $item->get_parent();
+      // reset id and child
+      $old = $item->get_nickname();
+      $item['id']->database_set('');
+      $item['child']->set([]);
+      $item['parent']->set([]);
+      // save
+      $item->save();
+      // restore parent (destroyed by save)
+      $item['parent'] = $parent;
+      // store data
+      $bridge['page'][$old] = $item->get_nickname();
+      $items['page'][] = $item;
+      // $item->delete();
+    }
+    echo '<pre style="position:fixed;right:0;top:0;">';print_r($bridge);echo "</pre>";
+    // echo "<pre>";print_r($items['page']);echo "</pre>";
+    // relier tous les nouveaux contenus : mise à jour des relations
+    // page
+    foreach ($items['page'] as $key => $item)
+    {
+      // changer le parent des pages
+      $parent = $item['parent']->get()[0];
+      $item['parent'] = isset($bridge['page'][$parent]) ? $bridge['page'][$parent] : array($parent);
+      // echo '<h1>'.$item['key'].'</h1>';
+      // echo "parent : <br>";
+      // echo "old : <pre>";print_r($item['id']);echo "</pre>";
+      // echo "old : <pre>";print_r($parent);echo "</pre>";
+      // echo "new : <pre>";print_r($item['parent']->get()[0]);echo "</pre>";
+      // changer les sections
+      $sections = $item['section'];
+      $new = array();
+      foreach ($sections as $section)
+      {
+        $new[] = isset($bridge['section'][$section]) ? $bridge['section'][$section] : $section;
+      }
+      $item['section'] = $new;
+      // echo "section : <br>";
+      // echo "old : <pre>";print_r($sections->get());echo "</pre>";
+      // echo "new : <pre>";print_r($item['section']->get());echo "</pre>";
+      // echo '<hr>';
+      // echo "<pre>";print_r($item);echo "</pre>";
+      $item->save();
+      // sleep(1);
+    }
+    // section
+    foreach ($items['section'] as $key => $item)
+    {
+      $app = $item['app']->get();
+      // echo "<pre>";print_r($app);echo "</pre>";
+      foreach ($app['param'] as $param => $value)
+      {
+        if (is_array($value))
+        {
+          foreach ($value as $id => $v)
+          {
+            // echo "<pre>";print_r($v);echo "</pre>";
+            if (!is_array($v) && isset($bridge['section'][$v]))
+            {
+              $app['param'][$param][$id] = $bridge['section'][$v];
+            }
+            if (!is_array($v) && isset($bridge['text'][$v]))
+            {
+              $app['param'][$param][$id] = $bridge['text'][$v];
+            }
+          }
+        }
+        else
+        {
+          if (!is_array($value) && isset($bridge['section'][$value]))
+          {
+            $app['param'][$param] = $bridge['section'][$value];
+          }
+          if (!is_array($value) && isset($bridge['text'][$value]))
+          {
+            $app['param'][$param] = $bridge['text'][$value];
+          }
+        }
+      }
+      // echo "<pre>";print_r($app);echo "</pre><hr>";
+      $item['app']->set($app);
+      // echo "section : <br>";
+      // echo "old : <pre>";print_r($sections->get());echo "</pre>";
+      // echo "new : <pre>";print_r($item['section']->get());echo "</pre>";
+      // echo '<hr>';
+      // echo "<pre>";print_r($item);echo "</pre>";
+      $item->save();
+      // sleep(1);
+    }
+    // on replique les données des services et des guides
+    $replicate = array(
+      'creer','gerer','salarie','conjoint','developpe','avantage','guide','chantier','cahier','guidepartner'
+    );
+    foreach ($replicate as $attr)
+    {
+      $destination[$attr]->set($source[$attr]->get());
+    }
+    // on rempli le répertoire media
+    $destination['directory'] = mb_strtolower($destination['shorttile']);
+    // echo "<pre>";print_r($destination);echo "</pre>";
+    $destination->save();
+
+    echo 'done';
+    // $bridge = array(
+    //   'text' => array(
+    //       'text_7' => 'text_29',
+    //       'text_12' => 'text_30'
+    //   ),
+    //   'section' => array(
+    //       'section_11' => 'section_133',
+    //       'section_47' => 'section_134',
+    //       'section_48' => 'section_135',
+    //       'section_77' => 'section_136',
+    //       'section_78' => 'section_137',
+    //       'section_79' => 'section_138',
+    //       'section_80' => 'section_139',
+    //       'section_91' => 'section_140',
+    //       'section_93' => 'section_141',
+    //       'section_95' => 'section_142',
+    //       'section_98' => 'section_143'
+    //   ),
+    //   'page' => array(
+    //       'page_34' => 'page_108',
+    //       'page_38' => 'page_109',
+    //       'page_39' => 'page_110',
+    //       'page_40' => 'page_111',
+    //       'page_36' => 'page_112',
+    //       'page_33' => 'page_113',
+    //       'page_35' => 'page_114',
+    //       'page_67' => 'page_115',
+    //       'page_75' => 'page_116',
+    //       'page_37' => 'page_117'
+    //   )
+    // );
+    // echo "<pre>";print_r($bridge);echo "</pre>";
+    // foreach ($variable as $key => $value) {
+    //   # code...
+    // }
+    // echo "<pre>";print_r($tosave['text']->get_column('title'));echo "</pre>";
+    // echo "<pre>";print_r($tosave['section']->get_column('title'));echo "</pre>";
+    // echo "<pre>";print_r($tosave['page']->get_column('title'));echo "</pre>";
+  }
 ?>

@@ -220,7 +220,10 @@ class dataCapeb
           $region = i('capeb',array(
             'departement' => $nickname
           ));
-          $params['capeb'] = array($nickname, $region[0]->get_nickname(), self::FALLBACK);
+          if ($region->count > 0) {
+            $params['capeb'] = array($nickname, $region[0]->get_nickname(), self::FALLBACK);
+          }
+
           break;
       }
       if (!isset($params['order()']))
