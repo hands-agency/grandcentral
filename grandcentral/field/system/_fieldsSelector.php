@@ -199,18 +199,18 @@ abstract class _fieldsSelector extends _fields
 	//	création de la liste des valeurs
 		foreach ($bunch as $value)
 		{
-			// $table = $value->get_table();
+			$table = $value->get_table();
 		//	Prepare id, title and descr for values
-			// $id = $table.'_'.$value['id'];
-			// $title = (isset($value['title']) && !empty($value['title'])) ? $value['title'] : $value['key'];
-			// $descr = (isset($value['descr']) && !empty($value['descr'])) ? $value['descr'] : null;
-			// $status = (isset($value['status']) && !empty($value['status'])) ? $value['status'] : null;
+			$id = $table.'_'.$value['id'];
+			$title = (isset($value['title']) && !empty($value['title'])) ? $value['title'] : $value['key'];
+			$descr = (isset($value['descr']) && !empty($value['descr'])) ? $value['descr'] : null;
+			$status = (isset($value['status']) && !empty($value['status'])) ? $value['status'] : null;
 		//	BAM
 			// if ($countTable > 1) $values[$table][] = array('id' => $value->get_nickname(), 'title' => $title, 'descr' => $descr);
 			// else
-			// $data = array('table' => $table, 'id' => $value->get_nickname(), 'title' => $title, 'descr' => $descr, 'status' => $status);
-			//if ($countTable > 1) $data['item'] = $table;
-			$values[] = $value;
+			$data = array('id' => $value->get_nickname(), 'title' => $title, 'descr' => $descr, 'status' => $status);
+			if ($countTable > 1) $data['item'] = $table;
+			$values[] = $data;
 		}
 		return $values;
 	}
