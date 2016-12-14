@@ -247,7 +247,15 @@ class dataCapeb
 	 */
 		public function get_pushed_events()
 		{
-      return $this->get_events(array('start' => '>= '.date('Y-m-d')));
+      $q = 'SELECT id FROM event WHERE start >= "'.date('Y-m-d 00:00:00').'" OR ( start <= "'.date('Y-m-d 00:00:00').'" AND end >= "'.date('Y-m-d 00:00:00').'") AND capeb IN ("capeb_118","'.$this->capeb->get_nickname().'")';
+      $db = database::connect('site');
+      $r = $db->query($q);
+      $ids = array();
+      foreach ($r['data'] as $id)
+      {
+        $ids[] = $id['id'];
+      }
+      return $this->get_events(array('id' => $ids));
 		}
 	/**
 	 * Services

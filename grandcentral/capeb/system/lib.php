@@ -55,7 +55,7 @@
         'service_intro'    => $url['update'].'?item=custom&id=service_intro',
       ),
       'document' => array(
-        'see' => (string) $nav[4]['url'],
+        // 'see' => (string) $nav[4]['url'],
         'add'    => $url['update'].'?item=document',
         'update' => $url['update'].'?item=document&id=[itemid]',
         // 'delete' => $url['delete'].'?item=document&id=[itemid]'
@@ -64,13 +64,13 @@
         'see' => (string) $nav[4]['url'].'?tab=contact',
         'add'    => $url['update'].'?item=referent',
         'update' => $url['update'].'?item=referent&id=[itemid]',
-        'delete' => $url['delete'].'?item=referent&id=[itemid]'
+        //'delete' => $url['delete'].'?item=referent&id=[itemid]'
       ),
       'training' => array(
         'see' => (string) $nav[4]['url'].'?tab=training',
         'add'    => $url['update'].'?item=training',
         'update' => $url['update'].'?item=training&id=[itemid]',
-        'delete' => $url['delete'].'?item=training&id=[itemid]'
+        //'delete' => $url['delete'].'?item=training&id=[itemid]'
       ),
       'partner' => array(
         'see' => (string) i('service','partner')['url'],
@@ -82,7 +82,7 @@
         'see' => (string) i('service','guide')['url'],
         'add'    => $url['update'].'?item=guide',
         'update' => $url['update'].'?item=guide&id=[itemid]',
-        'delete' => $url['delete'].'?item=guide&id=[itemid]',
+        //'delete' => $url['delete'].'?item=guide&id=[itemid]',
         'guide_organize' => $url['update'].'?item=custom&id=guide_organize',
       ),
       // 'press' => array(
@@ -158,13 +158,13 @@
         switch ($key)
         {
           case 'delete':
-            if (isset($item) && item == $table && in_array('partner','news','event'))
+            if (isset($item) && item == $table && in_array($table, array('partner','news','event')))
             {
               $menu[$table][$key] = $url;
             }
             break;
           case 'update':
-            if (isset($item) && item == $table)
+            if (isset($item) && item == $table && isset($item['capeb']) && in_array($item['capeb']->get(), $_SESSION['user']['capeb']->get()))
             {
               $menu[$table][$key] = $url;
             }

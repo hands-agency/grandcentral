@@ -10,18 +10,18 @@ class itemCapeb extends _items
 {
 	const FALLBACK = 'cnational'; // item à charger par défaut
 	private static $overlay = true;
-	// private $navigation = array(
-	// 	'news',
-	// 	'event',
-	// 	'about',
-	// 	'intent',
-	// 	'service_category',
-	// 	'contact'
-	// );
-	// private $national = array(
-	// 	'intent',
-	// 	'contact'
-	// );
+	private $navigation = array(
+    'news',
+    'event',
+    'about',
+    'intent',
+    'service',
+    'contact'
+  );
+  private $foreceNational = array(
+    'intent',
+    'contact'
+  );
 	/**
 	 *	Create cookie, session and return active capeb
 	 *
@@ -31,15 +31,33 @@ class itemCapeb extends _items
 		{
 			// init itemCapeb
 			$capeb = i('capeb');
-			// si la session existe
-			if (isset($_SESSION['capeb']) && is_a($_SESSION['capeb'], 'itemCapeb') && $_SESSION['capeb']->exists())
+			// analyse page key
+			$page = i('page',current);
+			$data = explode('_', $page['key']->get());
+			$count = count($data);
+			// echo "<pre>";print_r(registry::get());echo "</pre>";exit;
+	    if ($count > 1 && mb_substr($data[0], 0, 1) == 'c')
+	    {
+	      $key = $data[0];
+				$capeb->get($key);
+	    }
+			// on force la session pour certaines pages du national le national
+			elseif (in_array($page['key']->get(), array('home','about')))
 			{
-				$capeb = $_SESSION['capeb'];
+				$capeb->get('cnational');
 			}
-			elseif (isset($_COOKIE['capeb']) && !empty($_COOKIE['capeb']))
+			else
 			{
-				// on cherche la capeb en base
-				$capeb->get($_COOKIE['capeb']);
+				// si la session existe
+				if (isset($_SESSION['capeb']) && is_a($_SESSION['capeb'], 'itemCapeb') && $_SESSION['capeb']->exists())
+				{
+					$capeb = $_SESSION['capeb'];
+				}
+				elseif (isset($_COOKIE['capeb']) && !empty($_COOKIE['capeb']))
+				{
+					// on cherche la capeb en base
+					$capeb->get($_COOKIE['capeb']);
+				}
 			}
 			$capeb->load();
 			return $capeb;
