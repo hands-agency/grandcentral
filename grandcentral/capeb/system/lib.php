@@ -18,6 +18,7 @@
   function webmaster_menu()
   {
     $url = array(
+      'list' => (string) i('page', 'admin_list')['url'],
       'update' => (string) i('page', 'admin_update')['url'],
       'delete' => (string) i('page', 'admin_delete')['url']
     );
@@ -32,19 +33,23 @@
         'add'    => $url['update'].'?item=news',
         'update' => $url['update'].'?item=news&id=[itemid]',
         'delete' => $url['delete'].'?item=news&id=[itemid]',
+        'blacklist' => $url['update'].'?item=custom&id=newsblacklist'
       ),
       'event' => array(
         'see' => (string) $nav[1]['url'],
         'add'    => $url['update'].'?item=event',
         'update' => $url['update'].'?item=event&id=[itemid]',
-        'delete' => $url['delete'].'?item=event&id=[itemid]',
+        //'delete' => $url['delete'].'?item=event&id=[itemid]',
+        //'blacklist' => $url['update'].'?item=custom&id=eventblacklist'
       ),
       'presentation' => array(
         'see' => (string) $nav[2]['url'],
         'text_about1'    => $url['update'].'?item=text&id='.$texts['text_about1']['id'],
         'text_about3'    => $url['update'].'?item=text&id='.$texts['text_about3']['id'],
+        'contributor_see' => $url['list'].'?item=contributor',
         'contributor_add' => $url['update'].'?item=contributor',
-        'contributor_organize' => $url['update'].'?item=section&id='.$sections['section_about2']['id']
+        'contributor_organize' => $url['update'].'?item=section&id='.$sections['section_about2']['id'],
+        'contact' => $url['update'].'?item=custom&id=contact'
       ),
       'service' => array(
         'see' => (string) $nav[4]['url'],
@@ -55,19 +60,19 @@
         'service_intro'    => $url['update'].'?item=custom&id=service_intro',
       ),
       'document' => array(
-        // 'see' => (string) $nav[4]['url'],
+        'see' => $url['list'].'?item==document',
         'add'    => $url['update'].'?item=document',
         'update' => $url['update'].'?item=document&id=[itemid]',
         // 'delete' => $url['delete'].'?item=document&id=[itemid]'
       ),
       'referent' => array(
-        'see' => (string) $nav[4]['url'].'?tab=contact',
+        'see' => $url['list'].'?item=referent',
         'add'    => $url['update'].'?item=referent',
         'update' => $url['update'].'?item=referent&id=[itemid]',
         //'delete' => $url['delete'].'?item=referent&id=[itemid]'
       ),
       'training' => array(
-        'see' => (string) $nav[4]['url'].'?tab=training',
+        'see' => $url['list'].'?item=training',
         'add'    => $url['update'].'?item=training',
         'update' => $url['update'].'?item=training&id=[itemid]',
         //'delete' => $url['delete'].'?item=training&id=[itemid]'
@@ -77,6 +82,7 @@
         'add'    => $url['update'].'?item=partner',
         'update' => $url['update'].'?item=partner&id=[itemid]',
         'delete' => $url['delete'].'?item=partner&id=[itemid]',
+        'blacklist' => $url['update'].'?item=custom&id=partnerblacklist'
       ),
       'guide' => array(
         'see' => (string) i('service','guide')['url'],
@@ -175,6 +181,10 @@
             break;
         }
       }
+    }
+    if (isset($capeb->capeb['type']) && $capeb->capeb['type']->get() == 'region')
+    {
+      unset($menu['service']);
     }
     return $menu;
   }
