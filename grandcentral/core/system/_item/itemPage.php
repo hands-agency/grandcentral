@@ -81,7 +81,7 @@ class itemPage extends _items
 	{
 
 		// home
-		if (empty(URLR))
+		if (!defined('URLR') || URLR == '')
 		{
 			$this->get('home');
 		}
