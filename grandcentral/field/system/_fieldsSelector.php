@@ -201,7 +201,7 @@ abstract class _fieldsSelector extends _fields
 		{
 			$table = $value->get_table();
 		//	Prepare id, title and descr for values
-			$id = $table.'_'.$value['id'];
+			// $id = $table.'_'.$value['id'];
 			$title = (isset($value['title']) && !empty($value['title'])) ? $value['title'] : $value['key'];
 			$descr = (isset($value['descr']) && !empty($value['descr'])) ? $value['descr'] : null;
 			$status = (isset($value['status']) && !empty($value['status'])) ? $value['status'] : null;

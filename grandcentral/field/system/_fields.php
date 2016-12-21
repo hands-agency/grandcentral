@@ -288,17 +288,18 @@ abstract class _fields
 	{
 		return $this->name;
 	}
-/**
- * Obtenir le nom du champ
- *
- * @return	string	le nom du champ
- * @access	public
- */
-	public function set_name($data)
-	{
-		$this->name = $data;
-		return $this;
-	}
+// /**
+//  * Obtenir le nom du champ
+//  *
+//  * @return	string	le nom du champ
+//  * @access	public
+//  */
+// 	public function set_name($data)
+// 	{
+// 		$this->name = $data;
+// 		$this->attrs['name'] = $this->name;
+// 		return $this;
+// 	}
 /**
  * Obtenir la valeur du champ
  *
