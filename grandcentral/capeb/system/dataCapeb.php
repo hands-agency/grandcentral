@@ -223,9 +223,12 @@ class dataCapeb
           if ($region->count > 0) {
             $params['capeb'] = array($nickname, $region[0]->get_nickname(), self::FALLBACK);
           }
+          else $params['capeb'] = array($nickname, self::FALLBACK);
 
           break;
       }
+      // echo "<pre>";print_r($this->capeb['type']->get());echo "</pre>";
+      // echo "<pre>";print_r($params);echo "</pre>";
       if (!isset($params['order()']))
       {
         $params['order()'] = 'start ASC';
