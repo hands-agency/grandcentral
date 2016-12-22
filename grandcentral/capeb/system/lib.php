@@ -60,7 +60,7 @@
         'service_intro'    => $url['update'].'?item=custom&id=service_intro',
       ),
       'document' => array(
-        'see' => $url['list'].'?item==document',
+        'see' => $url['list'].'?item=document',
         'add'    => $url['update'].'?item=document',
         'update' => $url['update'].'?item=document&id=[itemid]',
         // 'delete' => $url['delete'].'?item=document&id=[itemid]'
