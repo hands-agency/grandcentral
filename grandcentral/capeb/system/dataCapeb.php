@@ -261,7 +261,7 @@ class dataCapeb
       {
         $ids[] = $id['id'];
       }
-      return $this->get_events(array('id' => $ids));
+      return $this->get_events(array('id' => $ids, 'limit()' => 3));
 		}
 	/**
 	 * Services
