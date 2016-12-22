@@ -273,7 +273,7 @@ class dataCapeb
       // params
       $p = array(
         'order()' => 'title ASC',
-        'capeb' => array(self::FALLBACK, $this->capeb['id']->get())
+        'capeb' => array(self::FALLBACK, $this->capeb->get_nickname())
       );
       // blacklist
       if (!$this->capeb['partnerblacklist']->is_empty())
