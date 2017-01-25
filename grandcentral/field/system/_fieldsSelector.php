@@ -189,7 +189,12 @@ abstract class _fieldsSelector extends _fields
 			if (!isset($params['order()'])) $params['order()'] = 'title';
 		//	Get all status
 		//	$params['live'] = array(true, false);
+		if ($env == 'admin') {
 			$params['status'] = array('live', 'asleep');
+		}
+		elseif (!isset($params['status'])) {
+			$params['status'] = 'live';
+		}
 		//	Refine ?
 			if (isset($refine)) $params['title'] = '%'.$refine.'%';
 			// print'<pre>';print_r($value);print'</pre>';
