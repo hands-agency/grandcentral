@@ -334,14 +334,24 @@ class dataCapeb
 	 *
 	 * @access public
 	 */
-		public function get_trainings()
+		public function get_trainings($limit = null)
 		{
       $trainings = new bunch();
-      $trainings->get('training',array(
-        'capeb' => $this->capeb->get_nickname(),
-        'date' => '>= '.date('Y-m-d'),
-        'order()' => 'date ASC'
-      ));
+      if (isset($limit) && !empty($limit) && is_numeric($limit)) {
+        $trainings->get('training',array(
+          'capeb' => $this->capeb->get_nickname(),
+          'date' => '>= '.date('Y-m-d'),
+          'order()' => 'date ASC',
+          'limit()' => $limit
+        ));
+      }
+      else {
+        $trainings->get('training',array(
+          'capeb' => $this->capeb->get_nickname(),
+          'date' => '>= '.date('Y-m-d'),
+          'order()' => 'date ASC'
+        ));
+      }
       return $trainings;
 		}
 
