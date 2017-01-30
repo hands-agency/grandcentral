@@ -435,7 +435,7 @@
       $destination[$attr]->set($source[$attr]->get());
     }
     // on rempli le répertoire media
-    $destination['directory'] = mb_strtolower($destination['shorttile']);
+    // $destination['directory'] = mb_strtolower($destination['shorttile']->get());
     // echo "<pre>";print_r($destination);echo "</pre>";
     $destination->save();
 

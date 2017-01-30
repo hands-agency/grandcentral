@@ -28,7 +28,7 @@ class dataCapeb
 	 * @access public
 	 */
 		// public function __construct($capeb = null)
-    public function __construct()
+    public function __construct($capeb = null)
 		{
       // switch (true)
       // {
@@ -57,7 +57,9 @@ class dataCapeb
       //     trigger_error('Can\'t find a matching capeb');
       //     break;
       // }
-      $this->capeb = $_SESSION['capeb'];
+      // echo "<pre>";print_r($_SESSION['capeb']);echo "</pre>";
+      // exit;
+      $this->capeb = is_null($capeb) ? $_SESSION['capeb'] : $capeb;
 		}
 	/**
 	 * Retourne la page du national, de la région ou du département
@@ -334,14 +336,16 @@ class dataCapeb
 	 *
 	 * @access public
 	 */
-		public function get_trainings()
+		public function get_trainings($limit = null)
 		{
       $trainings = new bunch();
-      $trainings->get('training',array(
+      $p = array(
         'capeb' => $this->capeb->get_nickname(),
         'date' => '>= '.date('Y-m-d'),
         'order()' => 'date ASC'
-      ));
+      );
+      if (!is_null($limit)) $p['limit()'] = $limit;
+      $trainings->get('training',$p);
       return $trainings;
 		}
 
