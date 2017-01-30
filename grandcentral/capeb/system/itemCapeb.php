@@ -59,6 +59,14 @@ class itemCapeb extends _items
 					$capeb->get($_COOKIE['capeb']);
 				}
 			}
+
+			if(isset($_COOKIE['capeb']) && !empty($_COOKIE['capeb'])) {
+				self::$overlay = false;
+			}
+			else {
+				self::$overlay = true;
+			}
+
 			$capeb->load();
 			return $capeb;
 		}
@@ -73,7 +81,7 @@ class itemCapeb extends _items
 			{
 				$this->create_cookie();
 				$this->set_session();
-				self::$overlay = false;
+				// self::$overlay = false;
 			}
 			else
 			{
