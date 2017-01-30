@@ -19,6 +19,9 @@
 class appApi extends _apps
 {
 	public $param;
+	public $url = null;
+	public $method = null;
+	public $contenttype = null;
 /**
  * key constructor (Don't forget it is an abstract key)
  *
@@ -27,8 +30,10 @@ class appApi extends _apps
 	public function prepare()
 	{
 	//	Chop down the URL
-		$url = mb_substr(URLR, 1);
-		$method = strtolower($_SERVER['REQUEST_METHOD']);
+		$url = (is_null($this->url)) ? mb_substr(URLR, 1) : $this->url;
+		$method = (is_null($this->method)) ? strtolower($_SERVER['REQUEST_METHOD']) : $this->method;
+	//	Get content type
+		$contenttype = (is_null($this->method)) ? master::get_content_type() : $this->contenttype; 
 	//	Explode parameters
 		$array = explode('/', $url);
 
@@ -54,7 +59,7 @@ class appApi extends _apps
 		$pathTokey = $this->get_templateroot(env).'/'.$this->param['api']['v'].'/'.$key;
 		if (is_file($pathTokey))
 		{
-		//	require($pathTokey);
+		//	require_once($pathTokey);
 		
 		//	Instantiate the api
 			$api = 'api'.ucfirst($this->param['api']['key']);
@@ -62,7 +67,7 @@ class appApi extends _apps
 			$o->request($method);
 			
 		//	Fetch & print the results
-			if (method_exists($api, $method)) $this->param['api']['result'] = $o->{master::get_content_type()}();
+			if (method_exists($api, $method)) $this->param['api']['result'] = $o->$contenttype();
 			else trigger_error('Sorry, no such method as as "'.$api.'::'.$method.'"', E_USER_ERROR);
 		}
 		else trigger_error('Sorry, no such API key as "'.$key.'".', E_USER_ERROR);
