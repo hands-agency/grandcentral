@@ -14,7 +14,7 @@
  * @param	string	app 2...
  * @access	public
  */
-	function api($method, $hash)
+	function api($method, $hash, $arg = null)
 	{
 	//	Load the class
 		$a = app('api');
@@ -24,7 +24,8 @@
 		$a->url = 'api.xxx/'.$hash;
 		$a->method = $method;
 		$a->contenttype = 'php';
-	
+		if (!is_null($arg)) $_GET = $arg;
+
 	//	Prepare API
 		$a->prepare();
 		

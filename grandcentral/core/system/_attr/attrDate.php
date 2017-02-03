@@ -123,7 +123,7 @@ class attrDate extends _attrs
 				if (($count = floor($since / $seconds)) != 0) break;
 			}
 
-		    $return = ($count == 1) ? '1 '.$name : "$count {$name}s";
+		    $return = ($count == 1) ? '1 '.$name : $count.' '.$name.'s';
 		}
 	//	Return
 	    return $return;
