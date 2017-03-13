@@ -44,6 +44,17 @@ abstract class _apis
 	abstract public function request($request);
 
 /**
+ * Returns the api data in html
+ * @access	public
+ */
+	public function html()
+	{
+	//	Add Some Return Meta
+		$this->result['meta']['executiontime'] = sentinel::stopwatch();
+	//	Return
+		return $this->result;
+	}
+/**
  * Returns the api data in php
  * @access	public
  */
