@@ -20,7 +20,6 @@
  */
 	function media($file)
 	{
-		
 		$appMedia = app('media');
 		$root = $appMedia->get_templateroot('site');
 	//	Accept media with the full serveur root
