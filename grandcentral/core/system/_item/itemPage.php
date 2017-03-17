@@ -171,6 +171,7 @@ class itemPage extends _items
 			'html' => 'text/html',
 			'routine' => 'text/x-php',
 			'eventstream' => 'text/event-stream',
+			'jpg' => 'image/jpeg',
 		);
 		return $mime;
 	}

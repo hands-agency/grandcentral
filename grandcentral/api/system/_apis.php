@@ -123,5 +123,14 @@ abstract class _apis
 		    fputcsv($fp, $fields);
 		}
 	}
+/**
+ * Returns the api data in jpg
+ * @access	public
+ */
+	public function jpg()
+	{
+	//	Return
+		return $this->result;
+	}
 }
 ?>

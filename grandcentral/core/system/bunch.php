@@ -227,6 +227,7 @@ class bunch implements ArrayAccess, Iterator, Countable
  */
 	public function get_nickname()
 	{
+		$tags = array();
 		foreach ($this->data as $data)
 		{
 			$tags[] = $data->get_nickname();
