@@ -331,7 +331,7 @@
       $title = str_replace($source['shorttitle']->get(), $destination['shorttitle']->get(), $item['title']->get());
       $item['title'] = $title;
       // change url
-      $url = mb_strtolower(str_ireplace($source['shorttitle']->get(), $destination['shorttitle']->get(), $item['url']->get()['fr']));
+      $url = mb_strtolower(str_ireplace(wd_remove_accents($source['shorttitle']->get()), wd_remove_accents($destination['shorttitle']->get()), $item['url']->get()['fr']));
       $item['url'] = array('fr' => str_replace(' ', '-', $url));
       // change key
       $key = str_replace($source['key']->get(), $destination['key']->get(), $item['key']->get());
@@ -479,4 +479,15 @@
     // echo "<pre>";print_r($tosave['section']->get_column('title'));echo "</pre>";
     // echo "<pre>";print_r($tosave['page']->get_column('title'));echo "</pre>";
   }
+
+function wd_remove_accents($str, $charset='utf-8')
+{
+    $str = htmlentities($str, ENT_NOQUOTES, $charset);
+
+    $str = preg_replace('#&([A-za-z])(?:acute|cedil|caron|circ|grave|orn|ring|slash|th|tilde|uml);#', '\1', $str);
+    $str = preg_replace('#&([A-za-z]{2})(?:lig);#', '\1', $str); // pour les ligatures e.g. '&oelig;'
+    $str = preg_replace('#&[^;]+;#', '', $str); // supprime les autres caractères
+
+    return $str;
+}
 ?>
