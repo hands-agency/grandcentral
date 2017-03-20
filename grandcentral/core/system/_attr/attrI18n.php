@@ -31,13 +31,13 @@ class attrI18n extends attrArray
 	public function cut($length, $add = '...')
 	{
 		$str = strip_tags($this->__tostring());
-		
+
 		if (mb_strlen($str) > $length)
 		{
 		//	On coupe
 			$string = mb_substr($str, 0, $length);
 		//	On enlève le dernier mot
-			$string = substr($string, 0, -(mb_strlen(mb_strrchr($string, ' '))));
+			$string = mb_substr($string, 0, -(mb_strlen(mb_strrchr($string, ' '))));
 		//	On ajoute les ...
 			$string .= $add;
 		}
@@ -62,7 +62,7 @@ class attrI18n extends attrArray
 	}
 /**
  * (deprecated) Field to display inside i18n block
- * 
+ *
  * @param	string	fields classname (ex: fieldText, fieldTextarea...)
  * @access	public
  */
@@ -72,7 +72,7 @@ class attrI18n extends attrArray
 	}
 /**
  * (deprecated) Field displayed inside i18n block
- * 
+ *
  * @return	string	fields classname (ex: fieldText, fieldTextarea...)
  * @access	public
  */
@@ -82,7 +82,7 @@ class attrI18n extends attrArray
 	}
 /**
  * Define the attribute to internationalize
- * 
+ *
  * @param	string	attribute classname (ex: attrString, attrSirtrevor)
  * @access	public
  */
@@ -92,7 +92,7 @@ class attrI18n extends attrArray
 	}
 /**
  * Get the attribute to internationalize
- * 
+ *
  * @return	string	attribute classname (ex: attrString, attrSirtrevor)
  * @access	public
  */

@@ -35,7 +35,7 @@ class attrString extends _attrs
 		//	On coupe
 			$string = mb_substr($this->data, 0, $length);
 		//	On enlève le dernier mot
-			$string = substr($string, 0, -(mb_strlen(mb_strrchr($string, ' '))));
+			$string = mb_substr($string, 0, -(mb_strlen(mb_strrchr($string, ' '))));
 		//	On ajoute les ...
 			$string .= $add;
 		}
@@ -108,7 +108,7 @@ class attrString extends _attrs
 		return $definition;
 	}
 /**
- * Default field attributes for String	
+ * Default field attributes for String
  *
  * @param	string	la variable
  * @return	string	une string

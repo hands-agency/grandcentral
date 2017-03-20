@@ -72,7 +72,7 @@ class attrSirtrevor extends _attrs
 			//	On coupe
 				$string = mb_substr($text, 0, $length);
 			//	On enlève le dernier mot
-				$string = substr($string, 0, -(mb_strlen(mb_strrchr($string, ' '))));
+				$string = mb_substr($string, 0, -(mb_strlen(mb_strrchr($string, ' '))));
 			//	On ajoute les ...
 				$string .= $add;
 			}
