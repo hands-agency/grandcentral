@@ -46,7 +46,8 @@ class itemMagworkflow extends _items
 			$mail->replace_text_with_data(array('link' => $magazine->get_source()));
 			// create message data
 			$message = array(
-				'html' => nl2br((string) $mail['content']),
+				'html' => nl2br(htmlspecialchars_decode((string) $mail['content'], ENT_QUOTES)),
+				// 'html' => nl2br((string) $mail['content']),
 				// 'text' => 'Example text content',
 				'subject' => $mail['subject']->get(),
 				'from_email' => $mail['fromemail']->get(),
