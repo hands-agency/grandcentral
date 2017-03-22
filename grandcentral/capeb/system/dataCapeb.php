@@ -185,18 +185,24 @@ class dataCapeb
 	 */
 		public function get_presentation()
 		{
-      $parents = i('page', array(
-        'key' => array($this->capeb['key'].'_about', 'about'),
-        'order()' => 'inherit(key)'
-      ));
-      // echo "<pre>";print_r($parents);echo "</pre>";
-      $pages = array();
-      foreach ($parents as $parent)
-      {
-        $pages = array_merge($pages, $parent['child']->get());
+      if ($this->capeb['key'] == 'cnational') {
+        $keys = ['about1', 'about2', 'about3', 'about4', 'about6'];
       }
+      else {
+        $keys = ['about1', 'about2', $this->capeb['key'].'_about1', $this->capeb['key'].'_about2', $this->capeb['key'].'_about3', 'about3', 'about4', 'about6'];
+      }
+      // $parents = i('page', array(
+      //   'key' => array('about', $this->capeb['key'].'_about'),
+      //   'order()' => 'inherit(key)'
+      // ));
+      // $pages = array();
+      // foreach ($parents as $parent)
+      // {
+      //   $pages = array_merge($pages, $parent['child']->get());
+      // }
+      // echo "<pre>";print_r($pages);echo "</pre>";exit;
       $return = new bunch();
-      $return->get_by_nickname($pages);
+      $return->get('page', ['key' => $keys, 'order()' => 'inherit(key)']);
 
       return $return;
 		}
