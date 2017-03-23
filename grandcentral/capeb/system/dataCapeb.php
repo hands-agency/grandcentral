@@ -216,15 +216,15 @@ class dataCapeb
       $nickname = $this->capeb->get_nickname();
       switch ($this->capeb['type']->get())
       {
-        case 'national':
+        case 'national': //  national
           $params['capeb'] = $nickname;
           break;
-        case 'region':
+        case 'region': // national + region + departements
           $departements = $this->capeb['departement']->get();
           array_push($departements, $nickname, self::FALLBACK);
           $params['capeb'] = $departements;
           break;
-        case 'departement':
+        case 'departement': // national + region + departement
           $region = i('capeb',array(
             'departement' => $nickname
           ));
@@ -251,8 +251,23 @@ class dataCapeb
           $params['id'][] = '!='.$data[1];
         }
       }
+      // echo "<pre>";print_r($params);echo "</pre>";exit;
       $events = i('event', $params);
-      return $events;
+
+      $columns = $events->get_column('start');
+      $dateNow = date('Y-m-d  h:m:s');
+      $cut = 0;
+      foreach ($columns as $key => $column) {
+        if ($column >= $dateNow) {
+          $cut = $key;
+          break;
+        }
+      }
+      $past = array_slice($events->data, 0, $cut);
+      $future = array_slice($events->data, $cut);
+      $result = array_merge($future, $past);
+
+      return $result;
 		}
 	/**
 	 * Event
@@ -261,15 +276,16 @@ class dataCapeb
 	 */
 		public function get_pushed_events()
 		{
-      $q = 'SELECT id FROM event WHERE start >= "'.date('Y-m-d 00:00:00').'" OR ( start <= "'.date('Y-m-d 00:00:00').'" AND end >= "'.date('Y-m-d 00:00:00').'") AND capeb IN ("capeb_118","'.$this->capeb->get_nickname().'")';
-      $db = database::connect('site');
-      $r = $db->query($q);
-      $ids = array();
-      foreach ($r['data'] as $id)
-      {
-        $ids[] = $id['id'];
-      }
-      return $this->get_events(array('id' => $ids, 'limit()' => 3));
+      // $q = 'SELECT id FROM event WHERE start >= "'.date('Y-m-d 00:00:00').'" OR ( start <= "'.date('Y-m-d 00:00:00').'" AND end >= "'.date('Y-m-d 00:00:00').'") AND capeb IN ("capeb_118","'.$this->capeb->get_nickname().'")';
+      // $db = database::connect('site');
+      // $r = $db->query($q);
+      // $ids = array();
+      // foreach ($r['data'] as $id)
+      // {
+      //   $ids[] = $id['id'];
+      // }
+      // return $this->get_events(array('id' => $ids, 'limit()' => 3));
+      return array_slice($this->get_events(), 0, 3);
 		}
 	/**
 	 * Services
