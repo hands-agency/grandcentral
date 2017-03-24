@@ -40,8 +40,8 @@
         'see'    => $url['list'].'?item=event',
         'add'    => $url['update'].'?item=event',
         'update' => $url['update'].'?item=event&id=[itemid]',
-        //'delete' => $url['delete'].'?item=event&id=[itemid]',
-        //'blacklist' => $url['update'].'?item=custom&id=eventblacklist'
+        'delete' => $url['delete'].'?item=event&id=[itemid]',
+        'blacklist' => $url['update'].'?item=custom&id=eventblacklist'
       ),
       'presentation' => array(
         //'see'            => $url['list'].'?item=text',
@@ -347,26 +347,21 @@
     foreach ($combats as $item)
     {
       // change title
-      $title = str_replace($source['shorttitle']->get(), $destination['shorttitle']->get(), $item['title']->get());
-      $item['title'] = $title;
+      // $title = str_replace($source['shorttitle']->get(), $destination['shorttitle']->get(), $item['title']->get());
+      // $item['title'] = $title;
       // change capeb
       $item['capeb'] = $destination->get_nickname();
       // reset id and save to generate a new item
-      $old = $item->get_nickname();
-      if (!in_array($item['key']->get(), $destinationTextsKeys))
+      // $old = $item->get_nickname();
+      if ($destinationCombats->count == 0)
       {
         $item['id']->database_set('');
         $item->save();
-        echo "<pre>";print_r('- Création du texte : '.$title);echo "</pre>";
-      }
-      else
-      {
-        $index = array_search($item['key']->get(), $destinationTextsKeys);
-        $item = $destinationTexts[$index];
+        echo "<pre>";print_r('- Création du combat : '.$item['title']);echo "</pre>";
       }
       // store data for relation
-      $bridge['text'][$old] = $item->get_nickname();
-      $items['text'][] = $item;
+      // $bridge['text'][$old] = $item->get_nickname();
+      // $items['text'][] = $item;
     }
     foreach ($texts as $item)
     {
@@ -459,7 +454,7 @@
     // echo "<pre>";print_r($items['page']->get_column('key'));echo "</pre>";
     echo '<pre style="position:fixed;right:0;top:0;">';print_r($bridge);echo "</pre>";
 
-    echo "<pre>";print_r('<h1>Mise en relation</h1>');echo "</pre>";
+    // echo "<pre>";print_r('<h1>Mise en relation</h1>');echo "</pre>";
     // echo "<pre>";print_r($items['page']);echo "</pre>";
     // relier tous les nouveaux contenus : mise à jour des relations
     // page
@@ -471,8 +466,8 @@
       $item['parent'] = isset($bridge['page'][$parent]) ? $bridge['page'][$parent] : $parent;
       // echo '<h1>'.$item['key'].'</h1>';
       // echo "parent : <br>";
-      echo "<pre>";print_r('<h3>Parent de la page '.$item['title']['fr'].'</h3>');echo "</pre>";
-      echo "<pre>";print_r('de '.$parent.' vers '.$item['parent']->get()[0]);echo "</pre>";
+      // echo "<pre>";print_r('<h3>Parent de la page '.$item['title']['fr'].'</h3>');echo "</pre>";
+      // echo "<pre>";print_r('de '.$parent.' vers '.$item['parent']->get()[0]);echo "</pre>";
       // changer les sections
       $old = $item['section']->get();
       $new = array();
@@ -482,11 +477,10 @@
       }
       $item['section'] = $new;
       // echo "section : <br>";
-      echo "<pre>";print_r('<h3>Section(s) de la page '.$item['title']['fr'].'</h3>');echo "</pre>";
-      // echo "id : <pre>";print_r($item->get_nickname());echo "</pre>";
-      echo "de : <pre>";print_r($old);echo "</pre>";
-      echo "vers : <pre>";print_r($item['section']->get());echo "</pre>";
-      echo '<hr>';
+      // echo "<pre>";print_r('<h3>Section(s) de la page '.$item['title']['fr'].'</h3>');echo "</pre>";
+      // echo "de : <pre>";print_r($old);echo "</pre>";
+      // echo "vers : <pre>";print_r($item['section']->get());echo "</pre>";
+      // echo '<hr>';
       // echo "<pre>";print_r($item['title']->get());echo "</pre>";
 
       // save relation
@@ -497,7 +491,7 @@
     foreach ($items['section'] as $key => $item)
     {
       $app = $item['app']->get();
-      echo "<pre>";print_r('<h3>Section '.$item['title'].'</h3>');echo "</pre>";
+      // echo "<pre>";print_r('<h3>Section '.$item['title'].'</h3>');echo "</pre>";
       // echo "<pre>de : ";print_r($app['param']);echo "</pre>";
       // recherche des champs de relation
       foreach ($app['param'] as $param => $value)
@@ -514,7 +508,7 @@
               {
                 if (isset($bridge[$i][$v]))
                 {
-                  echo "<pre>";print_r('on a trouvé une relation de la table '.$table.' : '.$v.' qui devient : '.$bridge[$i][$v]);echo "</pre>";
+                  // echo "<pre>";print_r('on a trouvé une relation de la table '.$table.' : '.$v.' qui devient : '.$bridge[$i][$v]);echo "</pre>";
                   $app['param'][$param][$id] = $bridge[$i][$v];
                 }
               }
@@ -524,7 +518,7 @@
       }
       // echo "<pre>";print_r($app);echo "</pre><hr>";
       $item['app']->set($app);
-      echo '<hr>';
+      // echo '<hr>';
       // echo "<pre>";print_r($item);echo "</pre>";
       $item->save();
       // sleep(1);
