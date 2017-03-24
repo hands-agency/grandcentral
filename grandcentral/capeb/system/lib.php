@@ -25,34 +25,47 @@
     $capeb = new dataCapeb();
     $texts = $capeb->get_texts()->set_index('key');
     $sections = $capeb->get_sections()->set_index('key');
-    $nav = $capeb->get_nav();
+    // $nav = $capeb->get_nav();
+    // echo "<pre>";print_r($nav->get_column('title'));echo "</pre>";
 
     $tree = array(
       'news' => array(
-        'see' => (string) $nav[0]['url'],
+        'see'            => $url['list'].'?item=news',
         'add'    => $url['update'].'?item=news',
         'update' => $url['update'].'?item=news&id=[itemid]',
         'delete' => $url['delete'].'?item=news&id=[itemid]',
         'blacklist' => $url['update'].'?item=custom&id=newsblacklist'
       ),
       'event' => array(
-        'see' => (string) $nav[1]['url'],
+        'see'    => $url['list'].'?item=event',
         'add'    => $url['update'].'?item=event',
         'update' => $url['update'].'?item=event&id=[itemid]',
         //'delete' => $url['delete'].'?item=event&id=[itemid]',
         //'blacklist' => $url['update'].'?item=custom&id=eventblacklist'
       ),
       'presentation' => array(
-        'see' => (string) $nav[2]['url'],
+        //'see'            => $url['list'].'?item=text',
         'text_about1'    => $url['update'].'?item=text&id='.$texts['text_about1']['id'],
         'text_about3'    => $url['update'].'?item=text&id='.$texts['text_about3']['id'],
         'contributor_see' => $url['list'].'?item=contributor',
         'contributor_add' => $url['update'].'?item=contributor',
         'contributor_organize' => $url['update'].'?item=section&id='.$sections['section_about2']['id'],
-        'contact' => $url['update'].'?item=custom&id=contact'
+        'contact' => $url['update'].'?item=custom&id=contact',
+        'contactform' => $url['update'].'?item=section&id='.$sections['section_contact']['id'],
+        'annoncer' => $url['update'].'?item=section&id='.$sections['section_annoncer']['id'],
+        'exposer' => $url['update'].'?item=section&id='.$sections['section_exposer']['id'],
+        'press' => $url['update'].'?item=text&id='.$texts['text_press']['id'],
       ),
       'service' => array(
-        'see' => (string) $nav[4]['url'],
+        'see'              => $url['list'].'?item=service',
+        'add'              => $url['update'].'?item=service',
+        'update'           => $url['update'].'?item=service&id=[itemid]',
+        // 'delete'           => $url['delete'].'?item=event&id=[itemid]',
+        'service_organize' => $url['update'].'?item=custom&id=service_organize',
+        'service_intro'    => $url['update'].'?item=custom&id=service_intro',
+      ),
+      'serviceannexe' => array(
+        'see'              => $url['list'].'?item=serviceannexe',
         'add'              => $url['update'].'?item=service',
         'update'           => $url['update'].'?item=service&id=[itemid]',
         // 'delete'           => $url['delete'].'?item=event&id=[itemid]',
@@ -77,15 +90,21 @@
         'update' => $url['update'].'?item=training&id=[itemid]',
         //'delete' => $url['delete'].'?item=training&id=[itemid]'
       ),
+      'combat' => array(
+        'see' => $url['list'].'?item=combat',
+        // 'add'    => $url['update'].'?item=training',
+        'update' => $url['update'].'?item=combat&id=[itemid]',
+        //'delete' => $url['delete'].'?item=training&id=[itemid]'
+      ),
       'partner' => array(
-        'see' => (string) i('service','partner')['url'],
+        'see' => $url['list'].'?item=partner',
         'add'    => $url['update'].'?item=partner',
         'update' => $url['update'].'?item=partner&id=[itemid]',
         'delete' => $url['delete'].'?item=partner&id=[itemid]',
         'blacklist' => $url['update'].'?item=custom&id=partnerblacklist'
       ),
       'guide' => array(
-        'see' => (string) i('service','guide')['url'],
+        'see' => $url['list'].'?item=guide',
         'add'    => $url['update'].'?item=guide',
         'update' => $url['update'].'?item=guide&id=[itemid]',
         //'delete' => $url['delete'].'?item=guide&id=[itemid]',
@@ -109,7 +128,8 @@
         'section_video' => $url['update'].'?item=section&id='.$sections['section_video']['id'],
         'section_links' => $url['update'].'?item=section&id='.$sections['section_links']['id'],
         'section_facebook' => $url['update'].'?item=section&id='.$sections['section_facebook']['id'],
-        'section_twitter' => $url['update'].'?item=section&id='.$sections['section_twitter']['id']
+        'section_twitter' => $url['update'].'?item=section&id='.$sections['section_twitter']['id'],
+        'sort' => $url['update'].'?item=custom&id=sorthome'
       )
     );
     // echo "<pre>";print_r($tree);echo "</pre>";exit;
@@ -269,6 +289,7 @@
   function duplicate_capeb(itemCapeb $source, itemCapeb $destination)
   {
     // dupliquer le contenu
+    $combats = i('combat',array('capeb' => $source->get_nickname()));
     $texts = i('text',array('capeb' => $source->get_nickname()));
     $sections = i('section',array(
       'capeb' => $source->get_nickname())
@@ -292,6 +313,7 @@
         )'
     ))->set_index('id'); // on ordonne les pages pour garder l'ordre de l'arbo
 
+    $combatsKeys = $combats->get_column('key');
     $sectionsKeys = $sections->get_column('key');
     $textsKeys = $texts->get_column('key');
     $pagesKeys = $pages->get_column('key');
@@ -300,10 +322,12 @@
     // echo "<pre>Sections : ";print_r($sectionsKeys);echo "</pre>";
     // echo "<pre>Pages : ";print_r($pagesKeys);echo "</pre>";
     // destination
+    $destinationCombats = i('combat',array('capeb' => $destination->get_nickname()));
     $destinationTexts = i('text',array('capeb' => $destination->get_nickname()));
     $destinationSections = i('section',array('capeb' => $destination->get_nickname()));
     $destinationPages = i('page', array('key' => $destination['key'].'%'));
 
+    $destinationCombatsKeys = $destinationCombats->get_column('key');
     $destinationSectionsKeys = $destinationSections->get_column('key');
     $destinationTextsKeys = $destinationTexts->get_column('key');
     $destinationPagesKeys = $destinationPages->get_column('key');
@@ -314,11 +338,36 @@
     // vars
     $bridge = array();
     $items = array(
+      'combat' => new bunch(),
       'text' => new bunch(),
       'section' => new bunch(),
       'page' => new bunch()
     );
     echo "<pre>";print_r('<h1>Tâches accomplies</h1>');echo "</pre>";
+    foreach ($combats as $item)
+    {
+      // change title
+      $title = str_replace($source['shorttitle']->get(), $destination['shorttitle']->get(), $item['title']->get());
+      $item['title'] = $title;
+      // change capeb
+      $item['capeb'] = $destination->get_nickname();
+      // reset id and save to generate a new item
+      $old = $item->get_nickname();
+      if (!in_array($item['key']->get(), $destinationTextsKeys))
+      {
+        $item['id']->database_set('');
+        $item->save();
+        echo "<pre>";print_r('- Création du texte : '.$title);echo "</pre>";
+      }
+      else
+      {
+        $index = array_search($item['key']->get(), $destinationTextsKeys);
+        $item = $destinationTexts[$index];
+      }
+      // store data for relation
+      $bridge['text'][$old] = $item->get_nickname();
+      $items['text'][] = $item;
+    }
     foreach ($texts as $item)
     {
       // change title
