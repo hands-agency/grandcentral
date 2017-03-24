@@ -18,10 +18,7 @@ class dataCapeb
     'service',
     'contact'
   );
-  private $foreceNational = array(
-    'intent',
-    'contact'
-  );
+  private $foreceNational = array();
 	/**
 	 *	Create cookie, session and return active capeb
 	 *
