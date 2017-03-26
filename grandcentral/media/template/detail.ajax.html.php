@@ -1,8 +1,7 @@
-<div class="detail" data-path="<?=$file->get_path()?>" data-info="<?= $file->get_extension() ?> • <?= $file->get_size() ?>" data-title="<?= $file->get_key() ?>">
+<div class="detail">
 	<?php if (isset($thumbnail)): ?>
-	<div class="preview"><?= $thumbnail; ?></div>
+	<div class="preview" data-path="<?=$file->get_path()?>" data-url="<?=$file->get_url()?>" data-info="<?= $file->get_extension() ?> • <?= $file->get_size() ?>" data-title="<?= $file->get_key() ?>"><?= $thumbnail; ?></div>
 	<?php endif ?>
-
 	<h2><span class="rule">About</span></h2>
 	<table class="about">
 		<tr>
@@ -36,4 +35,7 @@
 			<td><?= $updated; ?></td>
 		</tr>
 	</table>
+</div>
+<div class="button-group">
+	<button type="button" name="delete" data-path="<?=$file->get_path()?>" data-title="<?= $file->get_key() ?>">Delete</button>
 </div>

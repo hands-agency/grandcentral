@@ -3,7 +3,7 @@
  	* @author	@mvdandrieux
 **#******************************************************************************************/
 (function($)
-{	
+{
 //	Here we go!
 	$.mediaGallery = function(element, options)
 	{
@@ -13,7 +13,7 @@
 		plugin.settings = {}
 		var $element = $(element), // reference to the jQuery version of DOM element
 		element = element;	// reference to the actual DOM element
-		
+
 	//	Plugin's variables
 		var vars = {
 			'root': '',						//	Root of the Media Library
@@ -40,7 +40,7 @@
 			}
 			// load list of medias
 			plugin.loadList();
-			
+
 		//	Go to a directory
 			$element.on('click', 'li.folder', function()
 			{
@@ -52,14 +52,14 @@
 
 		//	Start adding folder
 			$element.on('click', '.folders .add .button', function()
-			{	
+			{
 			//	Show title, hide button
 				$(this).parent().find('.title').show('fast').find('input').focus();
 				$(this).hide('fast');
-				
+
 			});
 			$element.on('mouseleave', '.folders .add', function()
-			{	
+			{
 			//	Hide title, show button
 				$(this).find('.title').hide('fast');
 				$(this).find('.button').show('fast');
@@ -67,14 +67,14 @@
 
 		//	Add on a folder
 			$element.on('submit', '.folders .add form', function()
-			{	
+			{
 			//	Some vars
 				$folders = $(this).closest('ul');
 				$folder = $(this).closest('li');
 				path = $folder.data('path');
 				$input = $(this).find('input');
 				dir = $input.val();
-			
+
 			//	Create!
 				$.ajx(
 				{
@@ -101,7 +101,7 @@
 				});
 				return false;
 			});
-		
+
 		//	Click on a media
 			$element.on('click', 'a.file', function()
 			{
@@ -111,7 +111,7 @@
 				plugin.loadDetail();
 				return false;
 			});
-		
+
 		//	Click on the back button
 			$('#mediaLibraryNav').on('click', '.back', function()
 			{
@@ -123,7 +123,7 @@
 				return false;
 			});
 		}
-		
+
 	//	Method
 		plugin.loadList = function()
 		{
@@ -149,7 +149,7 @@
 		//	Clear refine
 			plugin.clearRefine();
 		}
-		
+
 	//	Method
 		plugin.initList = function()
 		{
@@ -166,16 +166,16 @@
 				{
         			$(this).hide();
 				//	Show trashbin
-					$('#trashbin').data('trashbin').toggle();
+					// $('#trashbin').data('trashbin').toggle();
 				},
 				stop:function()
 				{
-        			$(this).show();
+        	$(this).show();
 				//	Hide trashbin
-					$('#trashbin').data('trashbin').toggle();
+					// $('#trashbin').data('trashbin').toggle();
 				}
 			});
-			
+
 		//	Refine the content of a directory
 			$search = $('#mediaLibraryNav').find('input[type="search"]');
 			if (undefined == $search.data('searchasyoutype'))
@@ -201,7 +201,7 @@
 				$search.data('searchasyoutype').settings.param.root = plugin.settings.current.substr(0, 1) != '/' ? '/' + plugin.settings.current : plugin.settings.current;
 			}
 		}
-		
+
 	//	Method
 		plugin.loadDetail = function()
 		{
@@ -216,7 +216,7 @@
 				done:function()
 				{
 				//	Make li draggable
-					$element.find('.files:not(.empty) .detail').draggable(
+					$element.find('.files:not(.empty) .detail .preview').draggable(
 					{
 						revert: true,
 						revertDuration: 100,
@@ -225,18 +225,47 @@
 						cursorAt:{top:40,left:40},
 						start:function()
 						{
-		        			$(this).css('opacity', '0.5');
+		        	$(this).css('opacity', '0.5');
 						//	Show trashbin
-							$('#trashbin').data('trashbin').toggle();
+							// $('#trashbin').data('trashbin').toggle();
 						},
 						stop:function()
 						{
 		        			$(this).css('opacity', '1');
 						//	Hide trashbin
-							$('#trashbin').data('trashbin').toggle();
+							// $('#trashbin').data('trashbin').toggle();
 						}
 					});
-			
+
+					$('button[name="delete"]').on('click',function()
+					{
+						var button = $(this);
+						var confirm = true;//confirm('Delete '+button.data('title')+'  ?');
+
+						if (confirm == true)
+						{
+							$.ajx(
+							{
+								app: 'media',
+								template: 'delete',
+								path: button.data('path')
+								// dir: dir,
+							},{
+								done:function(html)
+								{
+									if (html.slice(-1) == '1')
+									{
+										$('#mediaLibraryNav .back').trigger('click');
+									}
+								}
+							});
+						}
+					});
+					// $element.find('.files:not(.empty) .detail .preview').draggable(
+					// {
+					//
+					// });
+
 				/*
 				//	Setup callback function
 					if (plugin.settings.onSelect)
@@ -260,7 +289,7 @@
 				}
 			});
 		}
-		
+
 	//	Method
 		plugin.strrpos = function(haystack, needle)
 		{
@@ -268,7 +297,7 @@
 			// console.log(pos);
 			return pos >= 0 ? pos : false;
 		}
-		
+
 	//	Clear refine field
 		plugin.clearRefine = function()
 		{
