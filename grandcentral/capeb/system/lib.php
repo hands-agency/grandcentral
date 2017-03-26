@@ -452,9 +452,9 @@
     // echo "<pre>";print_r($items['text']->get_column('key'));echo "</pre>";
     // echo "<pre>";print_r($items['section']->get_column('key'));echo "</pre>";
     // echo "<pre>";print_r($items['page']->get_column('key'));echo "</pre>";
-    echo '<pre style="position:fixed;right:0;top:0;">';print_r($bridge);echo "</pre>";
+    // echo '<pre style="position:fixed;right:0;top:0;">';print_r($bridge);echo "</pre>";
 
-    // echo "<pre>";print_r('<h1>Mise en relation</h1>');echo "</pre>";
+    echo "<pre>";print_r('<h1>Mise en relation</h1>');echo "</pre>";
     // echo "<pre>";print_r($items['page']);echo "</pre>";
     // relier tous les nouveaux contenus : mise à jour des relations
     // page
@@ -466,8 +466,7 @@
       $item['parent'] = isset($bridge['page'][$parent]) ? $bridge['page'][$parent] : $parent;
       // echo '<h1>'.$item['key'].'</h1>';
       // echo "parent : <br>";
-      // echo "<pre>";print_r('<h3>Parent de la page '.$item['title']['fr'].'</h3>');echo "</pre>";
-      // echo "<pre>";print_r('de '.$parent.' vers '.$item['parent']->get()[0]);echo "</pre>";
+      echo "<pre>";print_r('<h3>Parent de la page '.$item['title']['fr'].'</h3>'.'de '.$parent.' vers '.$item['parent']->get()[0]);echo "</pre>";
       // changer les sections
       $old = $item['section']->get();
       $new = array();
@@ -508,7 +507,7 @@
               {
                 if (isset($bridge[$i][$v]))
                 {
-                  // echo "<pre>";print_r('on a trouvé une relation de la table '.$table.' : '.$v.' qui devient : '.$bridge[$i][$v]);echo "</pre>";
+                  echo "<pre>";print_r('on a trouvé une relation de la table '.$table.' : '.$v.' qui devient : '.$bridge[$i][$v]);echo "</pre>";
                   $app['param'][$param][$id] = $bridge[$i][$v];
                 }
               }
@@ -589,28 +588,25 @@ function wd_remove_accents($str, $charset='utf-8')
 }
 
 // param : un tableau de capeb
-    function restore_services($toVerify)
+    function restore_services($capeb)
     {
       // on recupere le national
       $source = i('capeb','cnational');
       // liste des attributs de services
       $attrs = ['creer','gerer','salarie','conjoint','developpe','avantage'];
       // on vérifie chaque capeb
-      foreach ($toVerify as $capeb)
+      foreach ($attrs as $attr)
       {
-        foreach ($attrs as $attr)
-        {
-          $diff = array_diff($source[$attr]->get(),$capeb[$attr]->get());
+        $diff = array_diff($source[$attr]->get(),$capeb[$attr]->get());
 
-          if (count($diff) > 0)
-          {
-            echo "<pre>Différence : ";print_r($diff);echo "</pre>";
-            echo "<pre>";print_r('La capeb '.$capeb['shorttitle'].' présente une anomalie.');echo "</pre>";
-            $capeb[$attr]->set(array_merge($capeb[$attr]->get(),$diff));
-            echo "<pre>";print_r('Corrigée.');echo "</pre>";
-          }
+        if (count($diff) > 0)
+        {
+          // echo "<pre>Différence : ";print_r($diff);echo "</pre>";
+          // echo "<pre>";print_r('La capeb '.$capeb['shorttitle'].' présente une anomalie.');echo "</pre>";
+          $capeb[$attr]->set(array_merge($capeb[$attr]->get(),$diff));
+          // echo "<pre>";print_r('Corrigée.');echo "</pre>";
         }
-        $capeb->save();
       }
+      return $capeb;
     }
 ?>
