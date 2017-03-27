@@ -222,7 +222,7 @@ jQuery(document).ready(function()
 			var $container = $this.closest('li[data-type="sirtrevor"]');
 
 			// On change l'aspect du control et le fait disparaitre apres 1 seconde
-			showControl($container, {'control': 'ok', 'timeout': 1000, 'feathericon': ''});
+			showControl($container, {'control': 'ok', 'timeout': 1000, 'feathericon': '', 'class': 'counter'});
 		});
 	});
 });
