@@ -66,11 +66,11 @@
       ),
       'serviceannexe' => array(
         'see'              => $url['list'].'?item=serviceannexe',
-        'add'              => $url['update'].'?item=service',
-        'update'           => $url['update'].'?item=service&id=[itemid]',
+        'add'              => $url['update'].'?item=serviceannexe',
+        'update'           => $url['update'].'?item=serviceannexe&id=[itemid]',
         // 'delete'           => $url['delete'].'?item=event&id=[itemid]',
-        'service_organize' => $url['update'].'?item=custom&id=service_organize',
-        'service_intro'    => $url['update'].'?item=custom&id=service_intro',
+        // 'service_organize' => $url['update'].'?item=custom&id=service_organize',
+        // 'service_intro'    => $url['update'].'?item=custom&id=service_intro',
       ),
       'document' => array(
         'see' => $url['list'].'?item=document',
