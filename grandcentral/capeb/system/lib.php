@@ -48,7 +48,7 @@
         'text_about1'    => $url['update'].'?item=text&id='.$texts['text_about1']['id'],
         'text_about3'    => $url['update'].'?item=text&id='.$texts['text_about3']['id'],
         'contributor_see' => $url['list'].'?item=contributor',
-        // 'contributor_add' => $url['update'].'?item=contributor',
+        'contributor_add' => $url['update'].'?item=contributor',
         'contributor_organize' => $url['update'].'?item=section&id='.$sections['section_about2']['id'],
         'contact' => $url['update'].'?item=custom&id=contact',
         'contactform' => $url['update'].'?item=section&id='.$sections['section_contact']['id'],
