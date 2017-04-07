@@ -129,7 +129,7 @@
         'section_links' => $url['update'].'?item=section&id='.$sections['section_links']['id'],
         'section_facebook' => $url['update'].'?item=section&id='.$sections['section_facebook']['id'],
         'section_twitter' => $url['update'].'?item=section&id='.$sections['section_twitter']['id'],
-        // 'sort' => $url['update'].'?item=custom&id=sorthome'
+        'sort' => $url['update'].'?item=custom&id=sorthome'
       )
     );
     // echo "<pre>";print_r($tree);echo "</pre>";exit;
