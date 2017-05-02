@@ -33,6 +33,9 @@ class searchFulltext
  */
 	public function __construct($key)
 	{
+		ini_set('memory_limit', '1024M');
+		set_time_limit(0);
+
 		if (empty($key))
 		{
 			trigger_error('I need a key.', E_USER_ERROR);
