@@ -1,0 +1,61 @@
+/********************************************************************************************/
+/* Delete
+/********************************************************************************************/
+ol>li[data-type="casting"] .data>li
+{
+	position:relative;
+	border:1px solid #eee;
+	margin:5px;
+	background:#fff;
+}
+ol>li[data-type="casting"] .data>li .handle
+{
+	top:5px;
+	left:5px;
+	position:absolute;
+}
+ol>li[data-type="casting"] .data>li .delete
+{
+	top:5px;
+	right:5px;
+}
+ol>li[data-type="casting"] .data>li .handle,
+ol>li[data-type="casting"] .data>li .delete
+{
+	opacity:0.2;
+}
+ol>li[data-type="casting"] .data>li:hover .handle,
+ol>li[data-type="casting"] .data>li:hover .delete
+{
+	opacity:1;
+}
+ol>li[data-type="casting"] .data>li label
+{
+	width:15% !important;
+}
+ol>li[data-type="casting"] .data>li .wrapper
+{
+	width:85% !important;
+}
+
+/********************************************************************************************/
+/* Add
+/********************************************************************************************/
+[data-type="casting"] .add
+{
+	padding:7px 0 5px 0;
+	text-align:center;
+}
+[data-type="casting"] .add li
+{
+	display:inline-block;
+	margin:5px;
+}
+
+/********************************************************************************************/
+/* Templates
+/********************************************************************************************/
+[data-type="casting"] .template
+{
+	display:none;
+}
