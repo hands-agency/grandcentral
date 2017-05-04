@@ -44,11 +44,13 @@ class itemMagworkflow extends _items
 		if (!$mail['to']->is_empty())
 		{
 			$mail->replace_text_with_data(array('link' => $magazine->get_source()));
+
+			$text = str_replace('&apos;','\'',htmlspecialchars_decode($mail['content']->get(), ENT_QUOTES));
 			// create message data
 			$message = array(
-				'html' => str_replace('&apos;','\'',nl2br(htmlspecialchars_decode($mail['content']->get(), ENT_QUOTES))),
+				'html' => nl2br($text),
 				// 'html' => nl2br((string) $mail['content']),
-				// 'text' => 'Example text content',
+				'text' => $text,
 				'subject' => $mail['subject']->get(),
 				'from_email' => $mail['fromemail']->get(),
 				'from_name' => $mail['fromname']->get(),
