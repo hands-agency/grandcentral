@@ -25,7 +25,7 @@
 	$_APP->bind_script('js/addable.js');
 	$_APP->bind_script('js/attr.js');
 	$_APP->bind_code('script', '$(\'li[data-type="attr"]\').addable();');
-	
+
 /********************************************************************************************/
 //	Some vars
 /********************************************************************************************/
@@ -37,10 +37,10 @@
 //	The add buttons
 	$addbuttons = '';
 //	The html templates for jQuery
-	$template = '';
+	$template = array();
 //	Hide everything except
 	$donthide = array('key', 'type');
-	
+
 /********************************************************************************************/
 //	Set defaults
 /********************************************************************************************/
@@ -71,10 +71,10 @@
 			$hideRows = (in_array($param['name'], $donthide)) ? null : 'style="display:none;"';
 			$li .= '<li data-type="'.$field->get_type().'" data-key="'.$param['name'].'" '.$hideRows.'>'.$field.'</li>';
 		}
-		
+
 		$data .= '<li><span class="handle" data-feathericon="&#xe026"></span><ol>'.$li.'</ol><button type="button" class="delete"></button></li>';
 	}
-	
+
 /********************************************************************************************/
 //	Now we can build the templates used when creating new fields
 /********************************************************************************************/
@@ -83,7 +83,7 @@
 	{
 		foreach ($field as $key => $param) $fields[$name][$key]['disabled'] = true;
 	}
-	
+
 	foreach ($fields as $key => $fieldtype)
 	{
 		$li = '';

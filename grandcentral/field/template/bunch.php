@@ -22,7 +22,7 @@
 /********************************************************************************************/
 //	$_APP->bind_css('css/bunch.css');
 	// $_APP->bind_script('js/bunch.js');
-	
+
 /********************************************************************************************/
 //	Some vars
 /********************************************************************************************/
@@ -34,10 +34,10 @@
 //	The add buttons
 	$addbuttons = '';
 //	The html templates for jQuery
-	$template = '';
+	$template = array();
 //	An index to be caught by jQuery in the field name
 	$index = '__index__';
-	
+
 /********************************************************************************************/
 //	Callbacks
 /********************************************************************************************/
@@ -51,24 +51,24 @@
 				data = field.find("> .wrapper > .field > .data")
 				li = data.find("li:last-child");
 				count = data.children().length;
-						
+
 				li.find("input, select, textarea").each(function()
 				{
 					input = $(this);
 					name = input.attr("name").replace("'.$index.'", count);
 					input.attr("name", name);
 				});
-		
+
 			}
 		});
 	');
-	
+
 /********************************************************************************************/
 //	Set defaults
 /********************************************************************************************/
 //	List of available bunches
 	$available = array('bunch');
-	
+
 	$items = i('item', all, $_SESSION['pref']['handled_env']);
 	// $items = i($_POST['table'], all);
 	// $s[''] = '...';
@@ -93,7 +93,7 @@
 		'label' => 'Refine',
 		'placeholder' => 'properties',
 	);
-		
+
 /********************************************************************************************/
 //	The list of add buttons
 /********************************************************************************************/
@@ -106,7 +106,7 @@
 	$i = 0;
 	foreach ((array) $values as $key => $value)
 	{
-		$li = '';		
+		$li = '';
 		foreach ($params as $param)
 		{
 		//	Field
@@ -122,7 +122,7 @@
 
 /********************************************************************************************/
 //	Now we can build the templates used when creating new fields
-/********************************************************************************************/	
+/********************************************************************************************/
 //	It's a template, these fields MUST be disabled (appending will enable them)
  	for ($i=0; $i < count($params); $i++) $params[$i]['disabled'] = true;
 	$li = '';
@@ -134,7 +134,7 @@
 	//	Li
 		$li .= '<li data-type="'.$field->get_type().'">'.$field.'</li>';
 	}
-	
+
 //	We store them in jscript vars, so that the addable.js plugin can retrieve them
 	$html = '<li style="display:none;"><ol>'.$li.'</ol><button type="button" class="delete"></li>';
 	$template['bunch'] = $html;

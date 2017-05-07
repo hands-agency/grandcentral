@@ -21,27 +21,27 @@
 //	Some vars
 /********************************************************************************************/
 	$_FIELD = $_PARAM['field'];
-	
+
 /********************************************************************************************/
 //	Some binds
 /********************************************************************************************/
 	$_APP->bind_css('css/multipleselect.css');
 	$_APP->bind_script('js/multipleselect.plugin.js');
 	$_APP->bind_script('js/multipleselect.js');
-	
+
 /********************************************************************************************/
 //	The rel
 /********************************************************************************************/
 	// $attrs = $_FIELD->get_attrs();
 	// print '<pre>';print_r($attrs);print'</pre>';
-	
+
 //	Careful with the environement
 	$env = (env == 'admin' && !empty($_SESSION['pref']['handled_env'])) ? $_SESSION['pref']['handled_env'] : env;
 	$selected = new bunch(null, null, $env);
-	
+
 //	Get the selected value(s)
 	$value = $_FIELD->get_value();
-	
+
 	$tmp = array();
 	if (!empty($value))
 	{
@@ -58,10 +58,10 @@
 //	Show/hide Noda
 	if ($selected->count() == 0) $hideNodata = null;
 	else $hideNodata = 'style="display:none;"';
-	
+
 //	Get the available values
 	$available = $_FIELD->prepare_values();
-	
+
 /********************************************************************************************/
 //	Sort of a repository of data for Ajax
 /********************************************************************************************/

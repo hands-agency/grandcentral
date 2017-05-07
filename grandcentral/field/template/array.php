@@ -25,7 +25,7 @@
 	$_APP->bind_script('js/addable.js');
 	$_APP->bind_script('js/array.js');
 	$_APP->bind_code('script', '$(\'li[data-type="array"]\').addable();');
-	
+
 /********************************************************************************************/
 //	Some vars
 /********************************************************************************************/
@@ -37,8 +37,8 @@
 //	The add buttons
 	$addbuttons = '';
 //	The html templates for jQuery
-	$template = '';
-	
+	$template = array();
+
 /********************************************************************************************/
 //	Nasty hack : if multidimentional array, display a textarea
 /********************************************************************************************/
@@ -57,7 +57,7 @@
 /********************************************************************************************/
 //	List of available rel
 	$available = array('line');
-	
+
 //	Default field attributes for all fields
 	$params[] = array(
 		'type' => 'text',
@@ -69,7 +69,7 @@
 		'type' => 'text',
 		'placeholder' => 'Value',
 	);
-		
+
 /********************************************************************************************/
 //	The list of add buttons
 /********************************************************************************************/
@@ -115,7 +115,7 @@
 	foreach ($params as $param)
 	{
 	//	Field
-		$class = 'field'.ucfirst($param['type']);	
+		$class = 'field'.ucfirst($param['type']);
 	//	Key and value fields are differents
 		if (isset($param['customdata']['associative'])) $field = new $class(null, $param);
 		else $field = new $class($_FIELD->get_name().'[]', $param);
@@ -123,10 +123,10 @@
 		$field->set_label('');
 		$li .= '<li data-type="'.$field->get_type().'">'.$field.'</li>';
 	}
-	
+
 //	We store them in jscript vars, so that the addable.js plugin can retrieve them
 	$html = '<li style="display:none;"><ol>'.$li.'</ol><button type="button" class="delete"></li>';
 	$template['line'] = $html;
-	
+
 	} /* end Nasty Hack */
 ?>

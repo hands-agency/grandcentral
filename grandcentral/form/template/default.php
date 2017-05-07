@@ -35,4 +35,4 @@
 	$_APP->bind_script('js/form.js');
 	$_APP->bind_script('js/item.js');
 	$_APP->bind_code('script', '(function($) {$(\'section form\').validate();})(jQuery);');
-?> 
+?>

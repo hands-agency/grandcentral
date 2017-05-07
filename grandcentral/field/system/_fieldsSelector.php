@@ -149,7 +149,7 @@ abstract class _fieldsSelector extends _fields
 	protected function _prepare_values_bunch($refine = null)
 	{
 	//	Some vars
-		$values = '';
+		$values = array();
 	//	création du bunch
 		$env = (env == 'admin' && !empty($_SESSION['pref']['handled_env'])) ? $_SESSION['pref']['handled_env'] : env;
 		$bunch = new bunch(null, null, $env);
@@ -184,7 +184,7 @@ abstract class _fieldsSelector extends _fields
 				$value['property']['order()'] = $value['property']['order'];
 				unset($value['property']['order']);
 			}
-			$params = (isset($value['property'])) ? $value['property'] : null;
+			$params = (isset($value['property'])) && !empty($value['property']) ? $value['property'] : array();
 		//	Default order
 			if (!isset($params['order()'])) $params['order()'] = 'title';
 		//	Get all status
