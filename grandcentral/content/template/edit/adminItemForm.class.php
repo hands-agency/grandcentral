@@ -191,7 +191,7 @@ class adminItemForm
 				break;
 		//	array
 			case $attr['type'] == 'array':
-				$field['type'] = 'array';
+				$field['type'] = isset($attr['field']) && !empty($attr['field']) ? mb_strtolower(mb_substr($attr['field'], 5)) : 'array';
 			//	particularités
 				switch (true)
 				{
