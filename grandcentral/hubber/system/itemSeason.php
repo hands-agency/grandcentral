@@ -22,52 +22,46 @@ class itemSeason extends _items
 			'order()' => 'title desc',
 			'limit()' => 1
 		));
-		print'<pre>';print_r($this);print'</pre>';
 		return $this;
 	}
 /**
- * Obtenir la liste de tous les événements d'une saison, filtrable par tag
+ * Sauvegarder en faisant suivre le status des events liés
  *
  * @param	mixed  Catégorie des événements
  * @return	bunch  Retourne le bunch des events
  * @access	public
  * @static
  */
-	public function get_events($params = array())
+	public function save()
 	{
-		$p = array(
-			'season' => $this->get_nickname(),
-			'order()' => 'start'
-		);
-		foreach ($params as $key => $value)
+		parent::save();
+		// change history value
+		foreach ($this->get_events() as $event)
 		{
-			$p[$key] = $value;
-		}
-		$events = i('event', $p);
-		$datas = $events->data;
-		
-		for ($i=0; $i < $events->count; $i++)
-		{
-			if ($events[$i]->is_disabled())
+			if ($event['history']->get() != $this['history']->get())
 			{
-				$tmp = $events[$i];
-				array_push($datas, array_shift($datas));
+				$event['history'] = $this['history']->get();
+				$event->save();
 			}
+
 		}
-		$events->data = $datas;
-		
-		return $events;
 	}
 /**
- * Obtenir la liste de tous les séances d'une saison
+ * Obtenir la liste des events de la saison
  *
+ * @param	mixed  Catégorie des événements
  * @return	bunch  Retourne le bunch des events
  * @access	public
  * @static
  */
-	public static function get_seances()
+	public function get_events()
 	{
-		
+		$events = new bunch(null, null, 'site');
+		$events->get('event',array(
+			'season' => $this->get_nickname(),
+			'order()' => 'start ASC'
+		));
+		return $events;
 	}
 }
 ?>
