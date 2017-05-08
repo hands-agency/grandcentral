@@ -9,7 +9,7 @@
  *    echo "I am an example.";
  * }
  * </pre>
- * 
+ *
  * @package		The package
  * @author		Michaël V. Dandrieux <mvd@cafecentral.fr>
  * @author		Sylvain Frigui <sf@cafecentral.fr>
@@ -25,7 +25,7 @@
 	$_APP->bind_file('script', 'js/casting.js');
 	$_APP->bind_file('css', 'css/casting.css');
 	$_APP->bind_code('script', '$(\'li[data-type="casting"]\').addable();');
-	
+
 /********************************************************************************************/
 //	Some vars
 /********************************************************************************************/
@@ -39,14 +39,14 @@
 //	The add buttons
 	$addbuttons = '';
 //	The html templates for jQuery
-	$template = '';
+	$template = array();
 
 /********************************************************************************************/
 //	Set defaults
 /********************************************************************************************/
 	// List of available rel
 	$available = array('casting');
-	
+
 	// Default field attributes for all fields
 	$params[] = array(
 		'type' => 'i18n',
@@ -56,7 +56,7 @@
 		'customdata' => array('associative' => 'casting'),
 		'name' => 'role'
 	);
-	
+
 	//	liste des artistes
 	$artists = array();
 	foreach (i('artist', all, 'site') as $artist)
@@ -69,7 +69,7 @@
 		'datalist' => $artists,
 		'name' => 'artist'
 	);
-		
+
 /********************************************************************************************/
 //	The list of add buttons
 /********************************************************************************************/
@@ -111,7 +111,7 @@
 	foreach ($params as $param)
 	{
 	//	Field
-		$class = 'field'.ucfirst($param['type']);	
+		$class = 'field'.ucfirst($param['type']);
 	//	Key and value fields are differents
 		// if (isset($param['customdata']['associative'])) $field = new $class($_FIELD->get_name().'[][role]', $param);
 		$field = new $class($_FIELD->get_name().'[]['.$param['name'].']', $param);
@@ -120,7 +120,7 @@
 		$field->set_disabled(true);
 		$li .= '<li data-type="'.$field->get_type().'">'.$field.'</li>';
 	}
-	
+
 //	We store them in jscript vars, so that the addable.js plugin can retrieve them
 	$html = '<li style="display:none;"><span class="handle" data-feathericon="&#xe026"></span><ol>'.$li.'</ol><button type="button" class="delete"></li>';
 	$template['casting'] = $html;
