@@ -126,8 +126,6 @@ class boot
 				{
 					$param['url'] = $url;
 					$this->site = $param;
-					//	version
-					$this->site['version'] = ($version !== 0) ? $version : null;
 					break 2;
 				}
 			}
@@ -142,6 +140,8 @@ class boot
 				}
 			}
 		}
+	//	version
+		$this->site['version'] = ($version !== 0) ? $version : null;
 
 		$this->admin = $admin;
 		$this->admin['root'] = $this->root.'/'.self::admin_dir;
@@ -209,7 +209,7 @@ class boot
 	{
 		$uri = (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on') ? 'http' : 'https';
 		$uri .= '://'.$_SERVER['SERVER_NAME'];
-		$uri .= ($_SERVER['SERVER_PORT'] == '80') ? null : ':'.$_SERVER['SERVER_PORT'];
+		$uri .= ($_SERVER['SERVER_PORT'] == '80' || $_SERVER['SERVER_PORT'] == '443') ? null : ':'.$_SERVER['SERVER_PORT'];
 		$this->domain = $uri;
 		$uri .= $_SERVER['REQUEST_URI'];
 		if (mb_substr($uri, -1) == '/') $uri = mb_substr($uri, 0, -1);
