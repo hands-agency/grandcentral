@@ -17,11 +17,27 @@ class hubberCatalog
  * @return	bunch  Retourne le bunch des séances de l'événement
  * @access	public
  */
-    var $test = "test";
-
 	public function contruct()
 	{
 
+	}
+/**
+ * Récupérer le catalogue
+ *
+ * @return	bunch  Retourne le bunch des séances de l'événement
+ * @access	public
+ */
+	public function save_xml($path)
+	{
+    $dir = new dir($path);
+    if (!$dir->exists())
+    {
+      $dir->save();
+    }
+
+    $file = new file($path.'/catalog-'.date('Y-z-U').'.xml');
+    $file->set($this->xml);
+    $file->save();
 	}
 
 /**
@@ -77,30 +93,18 @@ class hubberCatalog
     // parse
     else
     {
-      $toSync = array(
-        980 // TOUT PUBLIC
-      );
-      $productType = $dom->getElementsByTagName('SPECTACLE');
+      $seasons = $dom->getElementsByTagName('SPECTACLE');
 
-      foreach ($productType as $season)
+      foreach ($seasons as $season)
       {
-        $id = $season->firstChild->nodeValue;
+        $title = $season->getElementsByTagName('TITLE')[0]->nodeValue;
 
-        switch ($id)
+        if (mb_strstr(mb_strtolower($title), 'saison'))
         {
-          case 980: // TOUT PUBLIC
-            $data = $this->_parse_season($season);
-            $this->_save_season($data);
-            break;
-
-          default:
-            # code...
-            break;
+          $data = $this->_parse_season($season);
+          $this->_save_season($data);
         }
       }
-
-      // $root = $dom->documentElement;
-      // echo "<pre>";print_r($dom->firstChild->nodeValue);echo "</pre>";
     }
 	}
 /**
@@ -111,6 +115,8 @@ class hubberCatalog
   private function _parse_season(DOMElement $season)
 	{
     $data = [];
+    $data['id'] = $season->getElementsByTagName('ID')[0]->nodeValue;
+    $data['title'] = preg_replace('/[^0-9-]/', '', $season->getElementsByTagName('TITLE')[0]->nodeValue);
     $events = $season->getElementsByTagName('MANIFESTATION');
     foreach ($events as $event)
     {
@@ -254,9 +260,17 @@ class hubberCatalog
  */
   private function _save_season($data)
 	{
+    $season = i('season');
+    $season->get(array(
+      'externalid' => $data['id']
+    ));
+    $season['externalid'] = $data['id'];
+    $season['title'] = $data['title'];
+    $season->save();
+
     foreach ($data['event'] as $event)
     {
-      $this->_save_event($event);
+      $this->_save_event($event, $season);
     }
 
   }
@@ -265,11 +279,14 @@ class hubberCatalog
  *
  * @access	private
  */
-  private function _save_event($data)
+  private function _save_event($data, itemSeason $season)
 	{
     $event = i('event');
-    $event->get(array('externalid' => $data['id']));
+    $event->get(array(
+      'externalid' => $data['id']
+    ));
 
+    $event['season'] = $season->get_nickname();
     $event['externalid'] = $data['id'];
     $event['externalurl'] = $data['url'];
     $event['title'] = $data['title'];
@@ -283,11 +300,9 @@ class hubberCatalog
     $event['place'] = $this->_get_place($data['place']);
     $event['status'] = $this->_get_status($data['status_id']);
     $event['sellstatus'] = $this->_get_sellstatus($data['sell_status']);
-    echo "<pre>";print_r($data);echo "</pre>";
     $event['seance'] = json_encode($data['seance']);
 
     $event->save();
-    echo "<pre>";print_r($event);echo "</pre>";exit;
   }
 /**
  * Sauvegarder une séance
