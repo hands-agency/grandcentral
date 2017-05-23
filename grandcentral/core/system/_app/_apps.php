@@ -231,7 +231,7 @@ abstract class _apps
     }
 		catch (Exception $exception)
 		{
-			echo "<pre>";print_r($exception);echo "</pre>";
+			trigger_error($exception->getMessage(), E_USER_ERROR);
       return '';
     }
 	}
