@@ -4,7 +4,19 @@ $(function()
 	{
 		dateFormat: 'yy-mm-dd',
 		firstDay: 1,
-		onSelect:function()
+		// onSelect:function()
+		// {
+		// //	Current date time
+		// 	$field = $(this).parent().find('.datetime');
+		// 	time = $field.val().substr(11, 16);
+		// //	New date
+		// 	val = $(this).val();
+		// 	date = val.substr(0, 10);
+		// 	console.log('cii');
+		// //	Add new date to datetime
+		// 	$field.val(date+' '+time);
+		// },
+		onClose:function()
 		{
 		//	Current date time
 			$field = $(this).parent().find('.datetime');
@@ -12,6 +24,7 @@ $(function()
 		//	New date
 			val = $(this).val();
 			date = val.substr(0, 10);
+			console.log('ii');
 		//	Add new date to datetime
 			$field.val(date+' '+time);
 		}
