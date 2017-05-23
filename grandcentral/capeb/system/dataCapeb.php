@@ -236,7 +236,7 @@ class dataCapeb
       // echo "<pre>";print_r($params);echo "</pre>";
       if (!isset($params['order()']))
       {
-        $params['order()'] = 'start ASC';
+        $params['order()'] = 'end ASC';
       }
       // blacklist
       if (!$this->capeb['eventblacklist']->is_empty())
@@ -248,10 +248,10 @@ class dataCapeb
           $params['id'][] = '!='.$data[1];
         }
       }
-      
+
       $events = i('event', $params);
 
-      $columns = $events->get_column('start');
+      $columns = $events->get_column('end');
       $dateNow = date('Y-m-d  h:m:s');
       $cut = 0;
       foreach ($columns as $key => $column) {
