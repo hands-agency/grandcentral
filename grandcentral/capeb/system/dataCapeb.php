@@ -236,7 +236,7 @@ class dataCapeb
       // echo "<pre>";print_r($params);echo "</pre>";
       if (!isset($params['order()']))
       {
-        $params['order()'] = 'end ASC';
+        $params['order()'] = 'start ASC';
       }
       // blacklist
       if (!$this->capeb['eventblacklist']->is_empty())
@@ -251,17 +251,18 @@ class dataCapeb
 
       $events = i('event', $params);
 
-      $columns = $events->get_column('end');
+      $columns = $events->get_attr('end');
+      $past = [];
+      $future = [];
       $dateNow = date('Y-m-d  h:m:s');
-      $cut = 0;
-      foreach ($columns as $key => $column) {
-        if (date($column) >= $dateNow) {
-          $cut = $key;
-          break;
+      foreach ($events as $key => $event) {
+        if ($event['end']->get() < $dateNow) {
+          array_push($past, $event);
+        }
+        else {
+          array_push($future, $event);
         }
       }
-      $past = array_slice($events->data, 0, $cut);
-      $future = array_slice($events->data, $cut);
       $result = array_merge($future, $past);
 
       return $result;
