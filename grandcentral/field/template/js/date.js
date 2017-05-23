@@ -24,7 +24,6 @@ $(function()
 		//	New date
 			val = $(this).val();
 			date = val.substr(0, 10);
-			console.log('ii');
 		//	Add new date to datetime
 			$field.val(date+' '+time);
 		}
