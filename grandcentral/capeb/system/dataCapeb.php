@@ -248,14 +248,14 @@ class dataCapeb
           $params['id'][] = '!='.$data[1];
         }
       }
-      // echo "<pre>";print_r($params);echo "</pre>";exit;
+      
       $events = i('event', $params);
 
       $columns = $events->get_column('start');
       $dateNow = date('Y-m-d  h:m:s');
       $cut = 0;
       foreach ($columns as $key => $column) {
-        if ($column >= $dateNow) {
+        if (date($column) >= $dateNow) {
           $cut = $key;
           break;
         }
