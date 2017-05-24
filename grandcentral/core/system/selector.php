@@ -199,4 +199,22 @@
 		}
 		return $app;
 	}
+/**
+ * Get content of a snippet
+ *
+ * <pre>
+ * get_snippet('content','snippet/header',$params)
+ * </pre>
+ *
+ * @param	string	The zone name where you want to bind the snippet (ex: content)
+ * @param	string	The relative path to the snippet (ex: master/content)
+ * @param	string	Variables you want to use in the snippet
+ * @param	bool	Bind the snippet on top of the pile
+ * @access	public
+ */
+	function get_snippet($app, $snippet_key, $params = null)
+	{
+		$app = app($app);
+		return $app->get_snippet($snippet_key, $params = null);
+	}
 ?>
