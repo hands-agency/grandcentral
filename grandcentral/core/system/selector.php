@@ -215,6 +215,6 @@
 	function get_snippet($app, $snippet_key, $params = null)
 	{
 		$app = app($app);
-		return $app->get_snippet($snippet_key, $params = null);
+		return $app->get_snippet($snippet_key, $params);
 	}
 ?>
