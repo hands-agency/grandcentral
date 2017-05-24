@@ -62,5 +62,18 @@ class itemArtist extends _items
 
 		return $displayName;
 	}
+
+	/**
+	* Save
+	*
+	* @return	string  Retourne une chaine de caractères
+	* @access	public
+	*/
+	public function save() {
+    if ($this['type']->get() == 'eleve') {
+      $this['status'] = 'asleep';
+    }
+		parent::save();
+  }
 }
 ?>
