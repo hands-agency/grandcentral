@@ -59,7 +59,7 @@
 
 	//	liste des artistes
 	$artists = array();
-	foreach (i('artist', all, 'site') as $artist)
+	foreach (i('artist', ['status' => ['live', 'asleep']], 'site') as $artist)
 	{
 		$artists[] = $artist['title']->get().' ['.$artist['id']->get().']';
 	}
