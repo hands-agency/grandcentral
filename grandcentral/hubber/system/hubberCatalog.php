@@ -209,12 +209,17 @@ class hubberCatalog
     $data['status'] = $status->item(0)->nodeValue;
     $data['maxplace'] = $maxplace->item(0)->nodeValue;
     $data['date_vente'] = $date_vente->item(0)->nodeValue;
+    $data['date_vente'] = $date_vente->item(0)->nodeValue;
 
     $categories = $seance->getElementsByTagName('CATEGORIE');
     foreach ($categories as $category)
     {
       $data['category'][] = $this->_parse_category($category);
     }
+
+    $data['pricemin'] = $this->_get_minprice($data);
+    $data['pricemax'] = $this->_get_maxprice($data);
+
     return $data;
   }
 /**
@@ -358,6 +363,46 @@ class hubberCatalog
       return $item->get_nickname();
     }
     return null;
+  }
+/**
+ * Obtenir le status de l'event
+ *
+ * @access	private
+ */
+  private function _get_minprice($data)
+	{
+    $minprice = null;
+    foreach ($data['category'] as $category)
+    {
+      foreach ($category['price'] as $price)
+      {
+        if (is_null($minprice) || $price['amount'] < $minprice)
+        {
+          $minprice = $price['amount'];
+        }
+      }
+    }
+    return $minprice;
+  }
+/**
+ * Obtenir le status de l'event
+ *
+ * @access	private
+ */
+  private function _get_maxprice($data)
+	{
+    $maxprice = null;
+    foreach ($data['category'] as $category)
+    {
+      foreach ($category['price'] as $price)
+      {
+        if (is_null($maxprice) || $price['amount'] > $maxprice)
+        {
+          $maxprice = $price['amount'];
+        }
+      }
+    }
+    return $maxprice;
   }
 }
 ?>
