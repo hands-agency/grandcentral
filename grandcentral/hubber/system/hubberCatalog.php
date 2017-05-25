@@ -372,13 +372,16 @@ class hubberCatalog
   private function _get_minprice($data)
 	{
     $minprice = null;
-    foreach ($data['category'] as $category)
+    if (isset($data['category']))
     {
-      foreach ($category['price'] as $price)
+      foreach ($data['category'] as $category)
       {
-        if (is_null($minprice) || $price['amount'] < $minprice)
+        foreach ($category['price'] as $price)
         {
-          $minprice = $price['amount'];
+          if (is_null($minprice) || $price['amount'] < $minprice)
+          {
+            $minprice = $price['amount'];
+          }
         }
       }
     }
@@ -392,13 +395,16 @@ class hubberCatalog
   private function _get_maxprice($data)
 	{
     $maxprice = null;
-    foreach ($data['category'] as $category)
+    if (isset($data['category']))
     {
-      foreach ($category['price'] as $price)
+      foreach ($data['category'] as $category)
       {
-        if (is_null($maxprice) || $price['amount'] > $maxprice)
+        foreach ($category['price'] as $price)
         {
-          $maxprice = $price['amount'];
+          if (is_null($maxprice) || $price['amount'] > $maxprice)
+          {
+            $maxprice = $price['amount'];
+          }
         }
       }
     }
