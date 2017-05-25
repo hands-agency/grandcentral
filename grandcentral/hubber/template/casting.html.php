@@ -3,7 +3,6 @@
 	<span class="help"></span>
 </label>
 <div class="wrapper">
-	<? if ($_FIELD->get_descr() != null) : ?><div class="help"><?= $_FIELD->get_descr() ?></div><? endif ?>
 	<div class="field">
 		<input type="hidden" name="<?= $_FIELD->get_name(); ?>" value="">
 		<div class="nodata" <?= $hideNodata ?>>Add a role and an artist to this casting</div>
