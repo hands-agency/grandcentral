@@ -96,7 +96,7 @@ class fieldText extends _fieldsInput
  */
 	public function get_attrs()
 	{
-		$this->attrs['value'] = str_replace('"','&quot;',$this->attrs['value']);
+		if (isset($this->attrs['value'])) $this->attrs['value'] = str_replace('"','&quot;',$this->attrs['value']);
 		return parent::get_attrs();
 	}
 /**
