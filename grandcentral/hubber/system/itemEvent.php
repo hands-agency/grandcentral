@@ -48,28 +48,31 @@ class itemEvent extends _items
     $fieldData = $this[$field];
     $ids = [];
     $datas = [];
-    foreach ($fieldData as $data) {
-      preg_match('/\[(\d*)\]/', $data['artist'], $idArray);
-      if (!empty($idArray)) {
-        $ids[] = $idArray[1];
-        $datas['artist_'.$idArray[1]] = $data;
+    if (!$fieldData->is_empty())
+    {
+      foreach ($fieldData as $data) {
+        preg_match('/\[(\d*)\]/', $data['artist'], $idArray);
+        if (!empty($idArray)) {
+          $ids[] = $idArray[1];
+          $datas['artist_'.$idArray[1]] = $data;
+        }
+        else {
+          $datas[] = $data;
+        }
       }
-      else {
-        $datas[] = $data;
-      }
-    }
 
-    $artists = i('artist', [
-      'id' => $ids,
-      'order()' => 'inherit(id)',
-    ])->set_index('id');
+      $artists = i('artist', [
+        'id' => $ids,
+        'order()' => 'inherit(id)',
+      ])->set_index('id');
 
-    foreach ($artists as $artist) {
-      $nickname = $artist->get_nickname();
-      if (isset($datas[$nickname])) {
-        $datas[$nickname]['artist'] = $artist->get_display_name();
-        $datas[$nickname]['url'] = $artist['url'];
-        $datas[$nickname]['imagepush'] = $artist['imagepush'];
+      foreach ($artists as $artist) {
+        $nickname = $artist->get_nickname();
+        if (isset($datas[$nickname])) {
+          $datas[$nickname]['artist'] = $artist->get_display_name();
+          $datas[$nickname]['url'] = $artist['url'];
+          $datas[$nickname]['imagepush'] = $artist['imagepush'];
+        }
       }
     }
 
