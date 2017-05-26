@@ -87,7 +87,7 @@ abstract class _fieldsSelector extends _fields
  * @return	array 	la liste des valeurs traitées sous forme de tableau
  * @access	public
  */
-	public function prepare_values($refine = null)
+	public function prepare_values($refine = null, $limit = null)
 	{
 		if (empty($this->valuestype))
 		{
@@ -105,7 +105,7 @@ abstract class _fieldsSelector extends _fields
 				$values = $this->_prepare_values_array();
 				break;
 			case 'bunch':
-				$values = $this->_prepare_values_bunch($refine);
+				$values = $this->_prepare_values_bunch($refine, $limit);
 				break;
 			case 'function':
 				$values = $this->_prepare_values_function();
@@ -146,7 +146,7 @@ abstract class _fieldsSelector extends _fields
  * @return	array 	la liste des valeurs traitées sous forme de tableau
  * @access	protected
  */
-	protected function _prepare_values_bunch($refine = null)
+	protected function _prepare_values_bunch($refine = null, $limit = null)
 	{
 	//	Some vars
 		$values = array();
@@ -185,18 +185,19 @@ abstract class _fieldsSelector extends _fields
 				unset($value['property']['order']);
 			}
 			$params = (isset($value['property'])) && !empty($value['property']) ? $value['property'] : array();
-		//	Default order
-			if (!isset($params['order()'])) $params['order()'] = 'title';
-		//	Get all status
-		//	$params['live'] = array(true, false);
-		if ($env == 'admin') {
-			$params['status'] = array('live', 'asleep');
-		}
-		elseif (!isset($params['status'])) {
-			$params['status'] = 'live';
-		}
-		//	Refine ?
+			//	Default order
+				if (!isset($params['order()'])) $params['order()'] = 'title';
+			//	Get all status
+			//	$params['live'] = array(true, false);
+			if ($env == 'admin') {
+				$params['status'] = array('live', 'asleep');
+			}
+			elseif (!isset($params['status'])) {
+				$params['status'] = 'live';
+			}
+			//	Refine ?
 			if (isset($refine)) $params['title'] = '%'.$refine.'%';
+			if (!is_null($limit)) $params['limit()'] = $limit;
 			// print'<pre>';print_r($value);print'</pre>';
 			$bunch->get($table, $params);
 			$countTable++;

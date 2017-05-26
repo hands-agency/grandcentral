@@ -60,7 +60,7 @@
 	else $hideNodata = 'style="display:none;"';
 
 //	Get the available values
-	$available = $_FIELD->prepare_values();
+	// $available = $_FIELD->prepare_values();
 
 /********************************************************************************************/
 //	Sort of a repository of data for Ajax

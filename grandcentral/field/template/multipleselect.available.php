@@ -26,7 +26,7 @@
 	$valuestype = $_POST['param']['valuestype'];
 //	Refine values?
 	$refine = (isset($_POST['q'])) ? $_POST['q'] : null;
-	
+
 /********************************************************************************************/
 //	Get and process from ajax
 /********************************************************************************************/
@@ -36,7 +36,7 @@
 		'valuestype' => $valuestype,
 	);
 	$multipleselect = new fieldMultipleselect(null, $param);
-	
+
 //	Get the available values
-	$available = $multipleselect->prepare_values($refine);
+	$available = $multipleselect->prepare_values($refine, 50);
 ?>

@@ -22,7 +22,7 @@
 /********************************************************************************************/
 	$_APP->bind_css('master/css/eventstream.css');
 	$_APP->bind_script('master/js/eventstream.js');
-	
+
 /********************************************************************************************/
 //	Some vars
 /********************************************************************************************/
@@ -55,29 +55,29 @@
 				//	Get the data
 					data = JSON.parse(e.data);
 					item = data['item']+'_'+data['itemid'];
-				
+
 				//	Whose data is it?
 					if (data['subject'] == 'human' && data['subjectid'] == ".$_SESSION["user"]["id"]." ) whose = 'mine';
 					else whose = 'everybodyelses';
 					ul = $('#eventstream ul.'+whose);
-				
+
 				//	Ensure the items get loaded just one time;
 					old = $('#eventstream li[data-item='+item+']');
 					if (old.length != 0) old.stop().hide('fast', function(){\$(this).remove();});
-				
+
 				//	Show eventstream
 					$('#eventstream').show();
-					
+
 				//	Link to the item
 					itemList = '".i("page", "list")["url"]."?item=';
-					
+
 				//	Link to the title
 					title = (data['url']) ? '<a href=\"'+data['url']+'\">'+data['title']+'</a>' : '<span>'+data['title']+'</span>';
-					
+
 				//	Add the new line
 					li = '<li data-item=\"'+item+'\" style=\"display:none;opacity:'+data['opacity']+'\"><a href=\"'+data['editauthor']+'\">'+data['author']+'</a> <span>'+data['event']+'</span> <a href=\"'+itemList+data['item']+'\" class=\"item\">'+data['item']+'</a> '+title+' <span>'+data['timeSince']+'</span> <a href=\"'+data['edit']+'\" class=\"edit\">Edit</a></li>';
 					$(li).prependTo(ul).show('fast', function()
-					{		
+					{
 					//	Resize the header after
 						height = $('header .admin').outerHeight();
 						$('#adminContent').css('padding-top', height+'px');
@@ -92,6 +92,6 @@
 				}
 			});
 		";
-		$_APP->bind_code('script', $script);
+		// $_APP->bind_code('script', $script);
 	}
 ?>
