@@ -48,18 +48,16 @@ class itemEvent extends _items
     $fieldData = $this[$field];
     $ids = [];
     $datas = [];
-    if (!$fieldData->is_empty())
-    {
-      foreach ($fieldData as $data) {
-        preg_match('/\[(\d*)\]/', $data['artist'], $idArray);
-        if (!empty($idArray)) {
-          $ids[] = $idArray[1];
-          $datas['artist_'.$idArray[1]] = $data;
-        }
-        else {
-          $datas[] = $data;
-        }
+    foreach ($fieldData as $data) {
+      preg_match('/\[(\d*)\]/', $data['artist'], $idArray);
+      if (!empty($idArray)) {
+        $ids[] = $idArray[1];
+        $datas['artist_'.$idArray[1]] = $data;
       }
+      else {
+        $datas[] = $data;
+      }
+    }
 
     if (!empty($ids)) {
       $artists = i('artist', [
@@ -75,7 +73,6 @@ class itemEvent extends _items
             $datas[$nickname]['imagepush'] = $artist['imagepush'];
           }
         }
-
     }
 
     return $datas;
