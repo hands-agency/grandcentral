@@ -61,19 +61,21 @@ class itemEvent extends _items
         }
       }
 
+    if (!empty($ids)) {
       $artists = i('artist', [
         'id' => $ids,
         'order()' => 'inherit(id)',
-      ])->set_index('id');
+        ])->set_index('id');
 
-      foreach ($artists as $artist) {
-        $nickname = $artist->get_nickname();
-        if (isset($datas[$nickname])) {
-          $datas[$nickname]['artist'] = $artist->get_display_name();
-          $datas[$nickname]['url'] = $artist['url'];
-          $datas[$nickname]['imagepush'] = $artist['imagepush'];
+        foreach ($artists as $artist) {
+          $nickname = $artist->get_nickname();
+          if (isset($datas[$nickname])) {
+            $datas[$nickname]['artist'] = $artist->get_display_name();
+            $datas[$nickname]['url'] = $artist['url'];
+            $datas[$nickname]['imagepush'] = $artist['imagepush'];
+          }
         }
-      }
+
     }
 
     return $datas;
