@@ -89,5 +89,53 @@ class itemEvent extends _items
 
     return $seances;
   }
+
+  public static function get_seance_date($date, $nbDays, $diff = '') {
+		$dateNow = is_string($date) ? new DateTime($date) : $date;
+		$dateFirst = is_string($diff) && $diff != '' ? $dateNow->modify($diff) : clone $dateNow;
+		$dateTemp = clone $dateFirst;
+		$data = [];
+
+		$db = database::connect('site');
+		$q = 'SELECT `title`, `shortdescr`, `start`, `end`, `seance`, `place`, `url` FROM `event` WHERE ';
+		$where = [];
+		for ($i=0; $i < $nbDays; $i++)
+		{
+			$where[] = '(`start` <= "'.$dateTemp->format('Y-m-d').'" AND `end` >= "'.$dateTemp->format('Y-m-d').'")';
+			$data[$dateTemp->format('Y-m-d')] = [];
+			$dateTemp->modify('+1 day');
+		}
+		$q .= implode(' OR ', $where);
+		$results = $db->query($q);
+
+		foreach ($results['data'] as $value)
+		{
+			$event = i('event');
+			$event['seance'] = $value['seance'];
+			$event['title'] = json_decode($value['title'], true);
+			$event['shortdescr'] = json_decode($value['shortdescr'], true);
+      $event['place'] = $value['place'];
+			$seances = $event->get_seance();
+
+			foreach ($seances as $seance) {
+				unset($seance['category']);
+				$dateSeance = new DateTime($seance['date']);
+				$dateSeance->setTime(0, 0, 0);
+
+				$seance['title'] = (string) $event['title'];
+				$seance['descr'] = (string) $event['shortdescr'];
+				$seance['place'] = (string) $event['place'];
+				$seance['button'] = trim(get_snippet('content', '_snippet/button/button-status', ['seance' => $seance]));
+
+				if (isset($data[$dateSeance->format('Y-m-d')])) {
+					$data[$dateSeance->format('Y-m-d')][] = $seance;
+				}
+			}
+		}
+
+		ksort($data);
+
+    return $data;
+	}
 }
 ?>
