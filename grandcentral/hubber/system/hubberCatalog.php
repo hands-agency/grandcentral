@@ -156,20 +156,20 @@ class hubberCatalog
     $data['id'] = $id->item(0)->nodeValue;
     $data['url'] = $url->item(0)->nodeValue;
     $data['title'] = array(
-      'fr' => trim($title->item(0)->nodeValue),
-      'en' => trim($title->item(0)->nodeValue)
+      'fr' => trim(html_entity_decode($title->item(0)->nodeValue, ENT_XML1, 'UTF-8')),
+      'en' => trim(html_entity_decode($title->item(0)->nodeValue, ENT_XML1, 'UTF-8'))
     );
     $data['place'] = trim($place->item(0)->nodeValue);
     $data['place_id'] = $place_id->item(0)->nodeValue;
     $data['date_debut'] = $date_debut->item(0)->nodeValue;
     $data['date_fin'] = $date_fin->item(0)->nodeValue;
     $data['description'] = array(
-      'fr' => trim($description_fr->item(0)->nodeValue),
-      'en' => trim($description_en->item(0)->nodeValue)
+      'fr' => trim(html_entity_decode($description_fr->item(0)->nodeValue, ENT_XML1, 'UTF-8')),
+      'en' => trim(html_entity_decode($description_en->item(0)->nodeValue, ENT_XML1, 'UTF-8'))
     );
     $data['short_description'] = array(
-      'fr' => trim($short_description_fr->item(0)->nodeValue),
-      'en' => trim($short_description_en->item(0)->nodeValue)
+      'fr' => trim(html_entity_decode($short_description_fr->item(0)->nodeValue, ENT_XML1, 'UTF-8')),
+      'en' => trim(html_entity_decode($short_description_en->item(0)->nodeValue, ENT_XML1, 'UTF-8'))
     );
     $data['ordre'] = $ordre->item(0)->nodeValue;
     $data['prix_min'] = $prix_min->item(0)->nodeValue;
