@@ -9,9 +9,9 @@
 		<ol class="data"><?= $data; ?></ol>
 		<ul class="add"><?= $addbuttons; ?></ul>
 		<pre class="template">
-			<? foreach ($template as $key => $html): ?>
+			<?php foreach ($template as $key => $html): ?>
 			<div class="<?=$key?>"><?=$html?></div>
-			<? endforeach ?>
+			<?php endforeach ?>
 		</pre>
 	</div>
 </div>
