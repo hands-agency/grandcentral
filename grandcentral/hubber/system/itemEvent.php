@@ -45,7 +45,7 @@ class itemEvent extends _items
   //   return $artists;
   // }
   public function get_artist($field = 'casting') {
-    $fieldData = $this[$field];
+    $fieldData = isset($this[$field]) && !$this[$field]->is_empty() ? $this[$field] : array();
     $ids = [];
     $datas = [];
     foreach ($fieldData as $data) {
