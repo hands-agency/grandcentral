@@ -121,10 +121,11 @@ class itemEvent extends _items
 				unset($seance['category']);
 				$dateSeance = new DateTime($seance['date']);
 				$dateSeance->setTime(0, 0, 0);
+        $place = i($event['place']);
 
 				$seance['title'] = (string) $event['title'];
 				$seance['descr'] = (string) $event['shortdescr'];
-				$seance['place'] = (string) $event['place'];
+				$seance['place'] = (string) $place['title'];
 				$seance['button'] = trim(get_snippet('content', '_snippet/button/button-status', ['seance' => $seance]));
 
 				if (isset($data[$dateSeance->format('Y-m-d')])) {
