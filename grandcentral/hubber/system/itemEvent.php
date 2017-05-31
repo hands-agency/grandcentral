@@ -115,22 +115,26 @@ class itemEvent extends _items
 			$event['title'] = json_decode($value['title'], true);
 			$event['shortdescr'] = json_decode($value['shortdescr'], true);
       $event['place'] = $value['place'];
+      $event['url'] = json_decode($value['url'], true);
 			$seances = $event->get_seance();
 
-			foreach ($seances as $seance) {
-				unset($seance['category']);
-				$dateSeance = new DateTime($seance['date']);
-				$dateSeance->setTime(0, 0, 0);
-        $place = i($event['place']);
+			if (!empty($seances)) {
+        foreach ($seances as $seance) {
+  				unset($seance['category']);
+  				$dateSeance = new DateTime($seance['date']);
+  				$dateSeance->setTime(0, 0, 0);
+          $place = i($event['place']);
 
-				$seance['title'] = (string) $event['title'];
-				$seance['descr'] = (string) $event['shortdescr'];
-				$seance['place'] = (string) $place['title'];
-				$seance['button'] = trim(get_snippet('content', '_snippet/button/button-status', ['seance' => $seance]));
+  				$seance['title'] = (string) $event['title'];
+  				$seance['descr'] = (string) $event['shortdescr'];
+  				$seance['place'] = (string) $place['title'];
+  				$seance['button'] = trim(get_snippet('content', '_snippet/button/button-status', ['seance' => $seance]));
+          $seance['event_url'] = (string) $event['url'];
 
-				if (isset($data[$dateSeance->format('Y-m-d')])) {
-					$data[$dateSeance->format('Y-m-d')][] = $seance;
-				}
+  				if (isset($data[$dateSeance->format('Y-m-d')])) {
+  					$data[$dateSeance->format('Y-m-d')][] = $seance;
+  				}
+  			}
 			}
 		}
 
