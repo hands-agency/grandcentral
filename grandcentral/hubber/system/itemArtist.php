@@ -27,9 +27,10 @@ class itemArtist extends _items
 	* @return	bunch  Retourne le bunch des events
 	* @access	public
 	*/
-	public function get_events()
+	public function get_events($params = [])
 	{
-		$events = i('event', ['casting' => '%['.$this['id'].']%']);
+		$params['casting'] = '%['.$this['id'].']%';
+		$events = i('event', $params);
 		return $events;
 	}
 	/**
