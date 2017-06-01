@@ -28,7 +28,20 @@ class itemMedia extends _items
         $params['id'] = $ids;
 		}
 
-    return i('media', $params);
+    $result = i('media', $params);
+
+    $data = [];
+    foreach ($result->data as $value) {
+      $media = [];
+      $media['title'] = (string) $value['title'];
+      $media['descr'] = (string) $value['descr']->cut(100);
+      $type = (string) $value['type'];
+      $media['type'] = cst('MEDIA_' . $type);
+      $media['image'] = isset($value['imagepush']) && !$value['imagepush']->is_empty() ? (string) $value['imagepush']->unfold()[0]->crop(400, 400) : '';
+      $data[] = $media;
+    }
+
+    return $data;
 	}
 }
 ?>
