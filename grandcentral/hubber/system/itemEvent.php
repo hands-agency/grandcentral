@@ -142,5 +142,42 @@ class itemEvent extends _items
 
     return $data;
 	}
+
+  public static function get_history_event($date, $nbDays, $diff = '') {
+		$dateNow = is_string($date) ? new DateTime($date) : $date;
+		$dateFirst = is_string($diff) && $diff != '' ? $dateNow->modify($diff) : clone $dateNow;
+		$dateTemp = clone $dateFirst;
+		$data = [];
+
+		$db = database::connect('site');
+		$q = 'SELECT `title`, `text`, `date`, `imagepush`, `legend` FROM `historyevent` WHERE ';
+		$where = [];
+		for ($i=0; $i < $nbDays; $i++)
+		{
+			$where[] = '`date` LIKE "%-' . $dateTemp->format('m-d') . '%"';
+			$dateTemp->modify('+1 day');
+		}
+		$q .= implode(' OR ', $where);
+		$results = $db->query($q);
+
+    foreach ($results['data'] as $key => $value) {
+      $historyEvent = [];
+      $event = i('historyevent');
+      $event['title'] = json_decode($value['title'], true);
+      $event['text'] = json_decode($value['text'], true);
+      $event['legend'] = json_decode($value['legend'], true);
+      $mediaObject = json_decode($value['imagepush'], true);
+      $event['imagepush'] = media($mediaObject[0]['url']);
+
+      $historyEvent['title'] = (string) $event['title'];
+      $historyEvent['text'] = (string) $event['text'];
+      $historyEvent['legend'] = (string) $event['legend'];
+      $historyEvent['date'] = (string) $value['date'];
+      $historyEvent['image'] = isset($event['imagepush']) && !$event['imagepush']->is_empty() ? (string) $event['imagepush']->unfold()[0]->crop(600, 600) : '';
+      $data[] = $historyEvent;
+    }
+
+    return $data;
+	}
 }
 ?>
