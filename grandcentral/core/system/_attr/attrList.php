@@ -20,7 +20,8 @@ class attrList extends _attrs
  */
 	public function get()
 	{
-		return isset($this->values[$this->data]) ? $this->values[$this->data] : reset($this->values);
+		// return isset($this->values[$this->data]) ? $this->values[$this->data] : reset($this->values);
+		return $this->data;
 	}
 
 
