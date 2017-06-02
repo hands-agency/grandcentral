@@ -99,7 +99,8 @@ class hubberCatalog
       {
         $title = $season->getElementsByTagName('TITLE')[0]->nodeValue;
 
-        if (mb_strstr(mb_strtolower($title), 'saison'))
+        if (mb_strstr(mb_strtolower($title), 'saison') !== false)
+        // if (mb_strstr(mb_strtolower($title), 'billets hors carte') !== false)
         {
           $data = $this->_parse_season($season);
           $this->_save_season($data);
