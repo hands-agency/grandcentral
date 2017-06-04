@@ -20,7 +20,7 @@ class itemMail extends _items
 		$env = 'site';
 		parent::__construct($env);
 	}
-	
+
 	public function replace_text_with_data($datas)
 	{
 		$msg = (string) $this['content'];
@@ -35,7 +35,7 @@ class itemMail extends _items
 		//print'<pre>';print_r($msg);print'</pre>';
 		$this['content'] = $msg;
 	}
-	
+
 	public function sendtohuman(itemHuman $human, array $datas = null)
 	{
 		if ($this->exists())
@@ -57,7 +57,7 @@ class itemMail extends _items
 		//convert HTML into a basic plain-text alternative body
 			// $mail->msgHTML('<p>Login : '.$user['key'].'</p><p>Password : '.$password.'</p>');
 			$txt = nl2br($this->replace_text_with_data($datas));
-			
+
 			$mail->msgHTML($txt);
 		//Replace the plain text body with one created manually
 			// $mail->AltBody = '
@@ -80,11 +80,11 @@ class itemMail extends _items
 			return false;
 		}
 	}
-	
+
 	public function send()
 	{
-		if ($this->exists())
-		{
+		// if ($this->exists())
+		// {
 		//Create a new PHPMailer instance
 			$mail = new PHPMailer();
 			$mail->CharSet = 'UTF-8';
@@ -102,7 +102,7 @@ class itemMail extends _items
 		//convert HTML into a basic plain-text alternative body
 			// $mail->msgHTML('<p>Login : '.$user['key'].'</p><p>Password : '.$password.'</p>');
 			$txt = nl2br(htmlspecialchars_decode((string) $this['content'], ENT_HTML5));
-			
+
 			$mail->msgHTML($txt);
 		//Replace the plain text body with one created manually
 			// $mail->AltBody = '
@@ -111,7 +111,7 @@ class itemMail extends _items
 			// ';
 		//Attach an image file
 			// $mail->addAttachment('images/phpmailer_mini.gif');
-			
+
 			//send the message, check for errors
 			if (!$mail->send())
 			{
@@ -119,11 +119,12 @@ class itemMail extends _items
 			} else {
 			    $validation =  "Message sent!";
 			}
-		}
-		else
-		{
-			return false;
-		}
+		// 	echo "<pre>";print_r($validation);echo "</pre>";
+		// }
+		// else
+		// {
+		// 	return false;
+		// }
 	}
 }
 ?>
