@@ -111,7 +111,7 @@ class itemMail extends _items
 			// ';
 		//Attach an image file
 			// $mail->addAttachment('images/phpmailer_mini.gif');
-			$return = $mail->send()
+			$return = $mail->send();
 			//send the message, check for errors
 			if (!$return)
 			{
