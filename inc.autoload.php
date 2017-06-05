@@ -211,7 +211,7 @@ class boot
 		$uri .= '://'.$_SERVER['SERVER_NAME'];
 		$uri .= ($_SERVER['SERVER_PORT'] == '80' || $_SERVER['SERVER_PORT'] == '443') ? null : ':'.$_SERVER['SERVER_PORT'];
 		$this->domain = $uri;
-		$uri .= $_SERVER['REQUEST_URI'];
+		$uri .= mb_strstr('http', $_SERVER['REQUEST_URI']) != $uri ? '' : $_SERVER['REQUEST_URI'];
 		if (mb_substr($uri, -1) == '/') $uri = mb_substr($uri, 0, -1);
 		$this->uri = $uri;
 		$this->url = (!mb_strstr($this->uri, '?')) ? $this->uri : mb_substr($this->uri, 0, mb_strpos($this->uri, '?'));
