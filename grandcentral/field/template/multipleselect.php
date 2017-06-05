@@ -66,6 +66,6 @@
 //	Sort of a repository of data for Ajax
 /********************************************************************************************/
 	$name = $_FIELD->get_name();
-	$values = htmlspecialchars(json_encode($_FIELD->get_values()), ENT_COMPAT);
+	$values = htmlspecialchars(json_encode($_FIELD->get_values()), ENT_COMPAT | JSON_UNESCAPED_UNICODE);
 	$valuestype = $_FIELD->get_valuestype();
 ?>
