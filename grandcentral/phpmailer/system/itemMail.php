@@ -111,14 +111,16 @@ class itemMail extends _items
 			// ';
 		//Attach an image file
 			// $mail->addAttachment('images/phpmailer_mini.gif');
-
+			$return = $mail->send()
 			//send the message, check for errors
-			if (!$mail->send())
+			if (!$return)
 			{
 			    $validation = "Mailer Error: " . $mail->ErrorInfo;
 			} else {
 			    $validation =  "Message sent!";
 			}
+
+			return $return;
 		// 	echo "<pre>";print_r($validation);echo "</pre>";
 		// }
 		// else
