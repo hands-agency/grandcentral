@@ -45,5 +45,13 @@ class itemMedia extends _items
 
     return $data;
 	}
+
+  public static function get_media_by_tag($nicknames)
+  {
+    $medias = [];
+    echo "<pre>";print_r($nicknames);echo "</pre>";
+
+    return $medias;
+	}
 }
 ?>
