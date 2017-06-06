@@ -215,13 +215,16 @@ class itemEvent extends _items
     $medias = new bunch();
 
     $rels = $this->get_rel_by_tag('media');
-    $ids = array_keys($rels['media']);
-    $medias->get('media', [
-      'id' => $ids,
-      'type' => array('image','video'),
-      'order()' => 'created DESC',
-      'limit()' => 12
-    ]);
+    if (isset($rels['media']))
+    {
+      $ids = array_keys($rels['media']);
+      $medias->get('media', [
+        'id' => $ids,
+        'type' => array('image','video'),
+        'order()' => 'created DESC',
+        'limit()' => 12
+      ]);
+    }
     return $medias;
   }
 
