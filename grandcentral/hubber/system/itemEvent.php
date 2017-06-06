@@ -9,6 +9,7 @@
 */
 class itemEvent extends _items
 {
+  public $tagrel;
   /**
 	* Obtenir les artistes associé à l'événement
 	*
@@ -179,5 +180,70 @@ class itemEvent extends _items
 
     return $data;
 	}
+
+  public function get_rel_by_tag($tables = [])
+  {
+    $tables = (array) $tables;
+
+    if (empty($this->tagrel))
+    {
+      $tagIds = [];
+      foreach ($this['tag'] as $nickname)
+      {
+        $t = explode('_', $nickname);
+        $tagIds[] = $t[1];
+      }
+
+      $q = 'SELECT * FROM _rel WHERE rel = "tag" AND item != "event" AND relid IN ('.implode(',',$tagIds).')';
+      $db = database::connect('site');
+      $r = $db->query($q);
+      $datas = [];
+      foreach ($r['data'] as $rel)
+      {
+        if (!empty($tables) && in_array($rel['item'], $tables))
+        {
+          $datas[$rel['item']][$rel['itemid']] = isset($datas[$rel['item']][$rel['itemid']]) ? $datas[$rel['item']][$rel['itemid']] + 1 : 1;
+        }
+
+      }
+      $this->tagrel = $datas;
+    }
+    return $this->tagrel;
+  }
+
+  public function get_gallery() {
+    $medias = new bunch();
+
+    $rels = $this->get_rel_by_tag('media');
+    $ids = array_keys($rels['media']);
+    $medias->get('media', [
+      'id' => $ids,
+      'type' => array('image','video'),
+      'order()' => 'created DESC',
+      'limit()' => 12
+    ]);
+    return $medias;
+  }
+
+  public function get_news() {
+    $news = new bunch();
+    $tables = array('media','artist');
+    $rels = $this->get_rel_by_tag($tables);
+
+    foreach ($tables as $table)
+    {
+      if (isset($items[$table]))
+      {
+        $p = [
+          'id' => array_keys($rels['media']),
+          'order()' => 'created DESC',
+          'limit()' => 12
+        ];
+        if ($table == 'media') $p['type'] = 'pdf';
+        $news->get($table, $p);
+      }
+    }
+    return $news;
+  }
 }
 ?>
