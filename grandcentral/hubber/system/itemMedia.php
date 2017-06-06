@@ -40,9 +40,17 @@ class itemMedia extends _items
       $type = (string) $value['type'];
       $media['type'] = cst('MEDIA_' . $type);
       $media['image'] = isset($value['imagepush']) && !$value['imagepush']->is_empty() ? (string) $value['imagepush']->unfold()[0]->crop(400, 400) : '';
+      switch ($type) {
+        case 'video':
+          $media['link'] = (string) $value['youtube'];
+          break;
+        default:
+          $media['link'] = isset($value['file']) && !$value['file']->is_empty() ? (string) $value['file']->unfold()[0]->get_url() : '';
+          break;
+      }
       $data['data'][] = $media;
     }
-
+    
     return $data;
 	}
 
