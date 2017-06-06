@@ -230,12 +230,12 @@ class itemEvent extends _items
 
   public function get_news() {
     $news = new bunch();
-    $tables = array('media','artist');
+    $tables = array('media','news');
     $rels = $this->get_rel_by_tag($tables);
 
     foreach ($tables as $table)
     {
-      if (isset($items[$table]))
+      if (isset($rels[$table]))
       {
         $p = [
           'id' => array_keys($rels['media']),

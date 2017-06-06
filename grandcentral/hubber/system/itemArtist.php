@@ -114,20 +114,6 @@ class itemArtist extends _items
     return $this->tagrel;
   }
 
-  public function get_gallery() {
-    $medias = new bunch();
-
-    $rels = $this->get_rel_by_tag('media');
-    $ids = array_keys($rels['media']);
-    $medias->get('media', [
-      'id' => $ids,
-      'type' => array('image','video'),
-      'order()' => 'created DESC',
-      'limit()' => 12
-    ]);
-    return $medias;
-  }
-
   public function get_news() {
     $news = new bunch();
     $tables = array('media','news');
