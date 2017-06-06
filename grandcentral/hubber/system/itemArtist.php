@@ -55,10 +55,10 @@ class itemArtist extends _items
 	  			$genderWord = 'dit(e)';
 	  			break;
 	  	}
-	  	$displayName = $this['firstname']->get() . ' ' . $this['lastname']->get() . ' ' . $genderWord . ' ' . mb_strtoupper($this['nickname']->get());
+	  	$displayName = $this['firstname']->get() . '<br>' . $this['lastname']->get() . ' ' . $genderWord . ' ' . mb_strtoupper($this['nickname']->get());
 	  }
 	  else {
-	  	$displayName = $this['firstname']->get() . ' ' . $this['lastname']->get();
+	  	$displayName = $this['firstname']->get() . '<br>' . $this['lastname']->get();
 	  }
 
 		return $displayName;
