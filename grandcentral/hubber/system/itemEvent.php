@@ -123,6 +123,7 @@ class itemEvent extends _items
         foreach ($seances as $seance) {
   				unset($seance['category']);
   				$dateSeance = new DateTime($seance['date']);
+          $hour = $dateSeance->format('H:i');
   				$dateSeance->setTime(0, 0, 0);
           $place = i($event['place']);
 
@@ -133,13 +134,19 @@ class itemEvent extends _items
           $seance['event_url'] = (string) $event['url'];
 
   				if (isset($data[$dateSeance->format('Y-m-d')])) {
-  					$data[$dateSeance->format('Y-m-d')][] = $seance;
+  					$data[$dateSeance->format('Y-m-d')][$hour.'_'.$seance['id']] = $seance;
   				}
   			}
 			}
 		}
 
 		ksort($data);
+
+    foreach ($data as $key => $l)
+    {
+      ksort($l);
+      $data[$key] = array_values($l);
+    }
 
     return $data;
 	}

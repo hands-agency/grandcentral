@@ -37,8 +37,8 @@ class itemMedia extends _items
       $media = [];
       $media['title'] = (string) $value['title'];
       $media['descr'] = (string) $value['descr']->cut(100);
-      $type = (string) $value['type'];
-      $media['type'] = cst('MEDIA_' . $type);
+      $type = trim($value['type']->get());
+      $media['type'] = cst('MEDIA_' . mb_strtoupper($type), null, 'site');
       $media['image'] = isset($value['imagepush']) && !$value['imagepush']->is_empty() ? (string) $value['imagepush']->unfold()[0]->crop(400, 400) : '';
       switch ($type) {
         case 'video':
@@ -50,16 +50,8 @@ class itemMedia extends _items
       }
       $data['data'][] = $media;
     }
-    
+
     return $data;
-	}
-
-  public static function get_media_by_tag($nicknames)
-  {
-    $medias = [];
-    echo "<pre>";print_r($nicknames);echo "</pre>";
-
-    return $medias;
 	}
 }
 ?>
