@@ -63,6 +63,7 @@ class itemEvent extends _items
     if (!empty($ids)) {
       $artists = i('artist', [
         'id' => $ids,
+        'status' => array('live','asleep'),
         'order()' => 'inherit(id)',
         ])->set_index('id');
 
@@ -103,10 +104,12 @@ class itemEvent extends _items
 		for ($i=0; $i < $nbDays; $i++)
 		{
 			$where[] = '(`start` <= "'.$dateTemp->format('Y-m-d').'" AND `end` >= "'.$dateTemp->format('Y-m-d').'")';
+      $where[] = '(`start` LIKE "%'.$dateTemp->format('Y-m-d').'%" AND `end` LIKE "%'.$dateTemp->format('Y-m-d').'%")';
 			$data[$dateTemp->format('Y-m-d')] = [];
 			$dateTemp->modify('+1 day');
 		}
 		$q .= implode(' OR ', $where);
+    // echo "<pre>";print_r($q);echo "</pre>";
 		$results = $db->query($q);
 
 		foreach ($results['data'] as $value)
@@ -118,7 +121,7 @@ class itemEvent extends _items
       $event['place'] = $value['place'];
       $event['url'] = json_decode($value['url'], true);
 			$seances = $event->get_seance();
-
+      // echo "<pre>";print_r($seances);echo "</pre>";
 			if (!empty($seances)) {
         foreach ($seances as $seance) {
   				unset($seance['category']);
