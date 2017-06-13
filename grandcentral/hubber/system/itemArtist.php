@@ -32,7 +32,7 @@ class itemArtist extends _items
 		$type = $this['type'];
 		$number = $this['number'];
 		if ($number != '0') {
-			$sup = $number == '1' ? '<sup>er</sup>' : '<sup>ème</sup>';
+			$sup = $number == '1' ? '<sup>er</sup>' : '<sup>e</sup>';
 			$status = $number . $sup . ' ' . $type;
 		}
 		else {
