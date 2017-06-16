@@ -193,6 +193,9 @@ class itemEvent extends _items
 
   public function get_rel_by_tag($tables = [])
   {
+
+    if ($this['tag']->is_empty()) return [];
+
     $tables = (array) $tables;
 
     if (empty($this->tagrel))
