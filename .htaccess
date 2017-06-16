@@ -11,7 +11,209 @@
 #********************************************************************************************/
 #	OVH
 #********************************************************************************************/
-	SetEnv PHP_VER 5_4
+
+#********************************************************************************************/
+#	PLAN DE REDIRECTION 2017-06-15 17:29 
+#********************************************************************************************/
+
+#*****************************************PERMANENT********************************************/
+
+RewriteEngine On
+RedirectPermanent /calendrier.php /calendrier
+
+# /spectacles-en-vente-actuellement.php 
+RewriteCond %{REQUEST_URI} ^/spectacles-en-vente-actuellement.php$
+RewriteCond %{QUERY_STRING} ^id=209$
+RewriteRule ^(.*)$ /fr/en-vente-actuellement? [R=301,L]
+
+# billetterie-reservation.php
+RewriteCond %{REQUEST_URI} ^/billetterie-reservation.php$
+RewriteCond %{QUERY_STRING} ^id=192$
+RewriteRule ^(.*)$ /fr/comment-reserver? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=190$
+RewriteRule ^(.*)$ /fr/tarifs? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=487$
+RewriteRule ^(.*)$ /fr/la-carte-cf? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=487$
+RewriteRule ^(.*)$ /fr/la-carte-cf? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=199$
+RewriteRule ^(.*)$ /fr/28-ans? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=587$
+RewriteRule ^(.*)$ /fr/en-situation-de-handicap? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=488$
+RewriteRule ^(.*)$ /fr/groupes-et-collectivites? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=630$
+RewriteRule ^(.*)$ /fr/bons-plans? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=610$
+RewriteRule ^(.*)$ /fr/bons-plans? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=566$
+RewriteRule ^(.*)$ /fr/informations-pratiques? [R=301,L]
+
+# /la-troupe-aujourdhui.php 
+RewriteCond %{REQUEST_URI} ^/la-troupe-aujourdhui.php$
+RewriteCond %{QUERY_STRING} ^id=512$
+RewriteRule ^(.*)$ /fr/comediens-de-la-troupe? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=513$
+RewriteRule ^(.*)$ /fr/societaires-honoraires? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=514$
+RewriteRule ^(.*)$ /fr/fonctionnement-troupe? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=515$
+RewriteRule ^(.*)$ /fr/societaires-honoraires? [R=301,L]
+
+# /la-comedie-francaise-aujourdhui.php
+RewriteCond %{REQUEST_URI} ^/la-comedie-francaise-aujourdhui.php$
+RewriteCond %{QUERY_STRING} ^id=92$
+RewriteRule ^(.*)$ /fr/saison? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=131$
+RewriteRule ^(.*)$ /fr/administration-et-comites? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=227$
+RewriteRule ^(.*)$ /fr/expositions? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=240$
+RewriteRule ^(.*)$ /fr/expositions? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=545$
+RewriteRule ^(.*)$ /fr/administrateur-general? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=491$
+RewriteRule ^(.*)$ /fr/les-salles? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=495$
+RewriteRule ^(.*)$ /fr/les-salles? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=502$
+RewriteRule ^(.*)$ /fr/action-educative? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=562$
+RewriteRule ^(.*)$ /fr/public-de-lenseignement? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=563$
+RewriteRule ^(.*)$ /fr/public-de-lenseignement? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=564$
+RewriteRule ^(.*)$ /fr/ressources-numeriques? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=503$
+RewriteRule ^(.*)$ /fr/visites-de-groupe? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=504$
+RewriteRule ^(.*)$ /fr/visites-de-groupe? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=568$
+RewriteRule ^(.*)$ /fr/visites-individuelles? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=505$
+RewriteRule ^(.*)$ /fr/les-metiers? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=624$
+RewriteRule ^(.*)$ /fr/academie? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=507$
+RewriteRule ^(.*)$ /fr/bibliotheque-et-documentation? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=508$
+RewriteRule ^(.*)$ /fr/les-collections? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=509$
+RewriteRule ^(.*)$ /fr/les-collections? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=493$
+RewriteRule ^(.*)$ /fr/budgets-et-statuts? [R=301,L]
+
+# /histoire-et-patrimoine.php
+RewriteCond %{REQUEST_URI} ^/histoire-et-patrimoine.php$
+RewriteCond %{QUERY_STRING} ^id=540$
+RewriteRule ^(.*)$ /fr/actualites? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=511$
+RewriteRule ^(.*)$ /fr/moliere? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=255$
+RewriteRule ^(.*)$ /fr/moliere-hier? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=524$
+RewriteRule ^(.*)$ /fr/fonctionnement-troupe? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=525$
+RewriteRule ^(.*)$ /fr/les-piliers? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=526$
+RewriteRule ^(.*)$ /fr/lhistoire-du-patrimoine? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=584$
+RewriteRule ^(.*)$ /fr/lhistoire-du-patrimoine? [R=301,L]
+
+# /la-grange-recherche-avancee.php
+RewriteCond %{REQUEST_URI} ^/la-grange-recherche-avancee.php$
+RewriteCond %{QUERY_STRING} ^id=551$
+RewriteRule ^(.*)$ /fr/base-la-grange? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=550$
+RewriteRule ^(.*)$ /fr/base-la-grange? [R=301,L]
+
+# /mecenat-entreprises.php
+RewriteCond %{REQUEST_URI} ^/mecenat-entreprises.php$
+RewriteCond %{QUERY_STRING} ^id=484$
+RewriteRule ^(.*)$ /fr/faites-un-don-en-ligne? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=115$
+RewriteRule ^(.*)$ /fr/mecene-entreprises? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=116$
+RewriteRule ^(.*)$ /fr/les-entreprises? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=117$
+RewriteRule ^(.*)$ /fr/les-particuliers? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=607$
+RewriteRule ^(.*)$ /fr/projets-a-soutenir? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=605$
+RewriteRule ^(.*)$ /fr/faites-un-don-en-ligne? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=567$
+RewriteRule ^(.*)$ /fr/faites-un-don-en-ligne? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=118$
+RewriteRule ^(.*)$ /fr/partenariats? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=580$
+RewriteRule ^(.*)$ /fr/vos-evenements? [R=301,L]
+
+# /presse.php
+RewriteCond %{REQUEST_URI} ^/presse.php$
+RewriteCond %{QUERY_STRING} ^id=485$
+RewriteRule ^(.*)$ /fr/journaliste? [R=301,L]
+
+# /informations.php
+RewriteCond %{REQUEST_URI} ^/informations.php$
+RewriteCond %{QUERY_STRING} ^id=217$
+RewriteRule ^(.*)$ /fr/contacts? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=185$
+RewriteRule ^(.*)$ /fr/informations-pratiques? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=188$
+RewriteRule ^(.*)$ /fr/mentions-legales? [R=301,L]
+
+# /plan-du-site.php
+RewriteCond %{REQUEST_URI} ^/plan-du-site.php$
+RewriteCond %{QUERY_STRING} ^id=184$
+RewriteRule ^(.*)$ /fr/? [R=301,L]
 
 #********************************************************************************************/
 #	Better website experience for IE users
