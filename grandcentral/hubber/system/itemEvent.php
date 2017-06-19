@@ -73,6 +73,7 @@ class itemEvent extends _items
             $datas[$nickname]['artist'] = $artist->get_display_name();
             $datas[$nickname]['url'] = $artist['url'];
             $datas[$nickname]['imagepush'] = $artist['imagepush'];
+            $datas[$nickname]['status'] = $artist['status'];
           }
         }
     }
