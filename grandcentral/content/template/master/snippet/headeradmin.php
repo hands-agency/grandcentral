@@ -46,7 +46,6 @@
 //	List
 	$onlyfor['list'] = array(
 	//	'tree' => array('page'),
-		'list' => array('page'),
 		'siteconfig' => array('page'),
 	);
 	$stripfrom['list'] = array(
