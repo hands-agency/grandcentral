@@ -26,7 +26,7 @@
 	$_APP->bind_script('master/js/tabs.js');
 	$_APP->bind_css('master/css/options.css');
 	$_APP->bind_script('master/js/options.js');
-	
+
 /********************************************************************************************/
 //	Some vars
 /********************************************************************************************/
@@ -39,19 +39,20 @@
 	$current = null;
 	$back = null;
 	$link = null;
-	
+
 /********************************************************************************************/
 //	Remove sections on the fly
 /********************************************************************************************/
 //	List
 	$onlyfor['list'] = array(
-		'tree' => array('page'),
+	//	'tree' => array('page'),
+		'list' => array('page'),
 		'siteconfig' => array('page'),
 	);
 	$stripfrom['list'] = array(
-		'list' => array('page'),
+		// 'list' => array('page'),
 	);
-	
+
 //	Edit
 	$onlyfor['edit'] = array(
 		'zoning' => array('site', 'version', 'page'),
@@ -59,7 +60,7 @@
 		'appconfig' => array('app'),
 		'appini' => array('app'),
 	);
-	
+
 //	Add and remove sections (PIG STUFF)
 	foreach ($sections as $section)
 	{
