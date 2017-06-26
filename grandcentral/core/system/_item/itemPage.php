@@ -127,16 +127,19 @@ class itemPage extends _items
 		{
 		//	...hook'em up
 			$parent = $this['parent']->unfold();
-			if (is_a($parent, 'bunch')) $parent = $parent[0];
-			// only one child
-			$q = 'DELETE FROM `_rel` WHERE `item` = "page" AND `rel` = "page" AND`relid` = '.$this['id']->get().' AND `key` = "child"';
-			$db = database::connect();
-			$r = $db->query($q);
-			// save new child
-			$parent['child']->add($this);
-			$parent->save();
-		//	Clean the instruction
-			$this['parent'] = null;
+			if (is_a($parent, 'bunch') && $parent->count > 0)
+			{
+				$parent = $parent[0];
+				// only one child
+				$q = 'DELETE FROM `_rel` WHERE `item` = "page" AND `rel` = "page" AND`relid` = '.$this['id']->get().' AND `key` = "child"';
+				$db = database::connect();
+				$r = $db->query($q);
+				// save new child
+				isset($parent['child']) ? $parent['child']->add($this) : '';
+				$parent->save();
+			//	Clean the instruction
+				$this['parent'] = null;
+			}
 		}
 	}
 /**
