@@ -48,7 +48,24 @@
 	if (isset($_POST['param'])) $_PARAM = $_POST['param'];
 	else $_PARAM = array();
 //	Refine
-	if (isset($_POST['q'])) $_PARAM['param']['title'] = '%'.$_POST['q'].'%';
+	if (isset($_POST['q']))
+	{
+		$q = 'SELECT `id` FROM `'.$handled_item.'` WHERE title LIKE "%'.$_POST['q'].'%" OR `key` LIKE "%'.$_POST['q'].'%" OR `url` LIKE "%'.$_POST['q'].'%"';
+		$db = database::connect('site');
+		$r = $db->query($q);
+		if ($r['count'] > 0)
+		{
+			$_PARAM['param']['id'] = array();
+			foreach ($r['data'] as $id)
+			{
+				$_PARAM['param']['id'][] = $id['id'];
+			}
+			// echo "<pre>";print_r($_PARAM['param']['id']);echo "</pre>";
+		}
+
+		// $_PARAM['param']['title'] = '%'.$_POST['q'].'%';
+	}
+
 	// always
 	$_PARAM['param']['status'] = array('live','asleep');
 //	Amount of items to be displayed at one time
