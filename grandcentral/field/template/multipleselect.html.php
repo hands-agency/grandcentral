@@ -10,7 +10,7 @@
 				<li data-item="<?=$li->get_nickname()?>">
 					<button class="delete" type="button"></button>
 					<div class="icon"></div>
-					<a class="title"><?=$li['title']?></a>
+					<span class="title"><?=$li['title']?></span>
 					<input type="hidden" name="<?=$_FIELD->get_name()?>[]" value="<?=$li->get_nickname()?>" />
 				</li>
 				<?php endforeach ?></ol>
@@ -18,7 +18,7 @@
 		<div class="available" data-name="<?=$name?>" data-values="<?=$values?>" data-valuestype="<?=$valuestype?>">
 			<div class="refine"><input type="search" placeholder="Refine" /></div>
 			<ul class="choices"><!-- Welcome Ajax --></ul>
-			<div class="add"><button></button></div>
+			<!--div class="add"><button></button></div-->
 		</div>
 		<div class="clear"><!-- Clearing floats --></div>
 	</div>
