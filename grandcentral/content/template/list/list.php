@@ -50,7 +50,7 @@
 //	Refine
 	if (isset($_POST['q']))
 	{
-		$q = 'SELECT `id` FROM `'.$handled_item.'` WHERE title LIKE "%'.$_POST['q'].'%" OR `key` LIKE "%'.$_POST['q'].'%" OR `url` LIKE "%'.$_POST['q'].'%"';
+		$q = 'SELECT `id` FROM `'.$handled_item.'` WHERE title LIKE "%'.$_POST['q'].'%" OR `key` LIKE "%'.$_POST['q'].'%"';
 		$db = database::connect('site');
 		$r = $db->query($q);
 		if ($r['count'] > 0)
