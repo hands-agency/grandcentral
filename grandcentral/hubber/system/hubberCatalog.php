@@ -99,8 +99,8 @@ class hubberCatalog
       {
         $title = $season->getElementsByTagName('TITLE')[0]->nodeValue;
 
-        if (mb_strstr(mb_strtolower($title), 'saison') !== false)
-        // if (mb_strtolower(trim($title)) == 'billets')
+        // if (mb_strstr(mb_strtolower($title), 'saison') !== false)
+        if (mb_strtolower(trim($title)) == 'billets')
         // if (mb_strstr(mb_strtolower($title), 'billets hors carte') !== false)
         {
           $data = $this->_parse_season($season);
@@ -186,6 +186,8 @@ class hubberCatalog
     {
       $data['seance'][] = $this->_parse_seance($seance);
     }
+    $data['url'] = $data['seance'][0]['url'];
+
     return $data;
   }
 /**
@@ -271,9 +273,13 @@ class hubberCatalog
     $season->get(array(
       'externalid' => $data['id']
     ));
-    $season['externalid'] = $data['id'];
-    $season['title'] = $data['title'];
-    $season->save();
+
+    if (!$season->exists())
+    {
+      $season['externalid'] = $data['id'];
+      $season['title'] = $data['title'];
+      $season->save();
+    }
 
     foreach ($data['event'] as $event)
     {
@@ -310,6 +316,7 @@ class hubberCatalog
     $event['seance'] = json_encode($data['seance']);
 
     $event->save();
+    echo $event['title'].' : saved <br>';
   }
 /**
  * Sauvegarder une séance
