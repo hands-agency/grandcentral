@@ -1,6 +1,6 @@
 <?php
 
-//namespace Abraham\TwitterOAuth;
+// namespace Abraham\TwitterOAuth;
 
 /**
  * The result of the most recent API request.
@@ -14,11 +14,11 @@ class Response
     /** @var int HTTP status code from the most recent request */
     private $httpCode = 0;
     /** @var array HTTP headers from the most recent request */
-    private $headers = array();
+    private $headers = [];
     /** @var array|object Response body from the most recent request */
-    private $body = array();
+    private $body = [];
     /** @var array HTTP headers from the most recent request that start with X */
-    private $xHeaders = array();
+    private $xHeaders = [];
 
     /**
      * @param string $apiPath
@@ -71,7 +71,7 @@ class Response
     /**
      * @param array $headers
      */
-    public function setHeaders($headers)
+    public function setHeaders(array $headers)
     {
         foreach ($headers as $key => $value) {
             if (substr($key, 0, 1) == 'x') {
@@ -92,7 +92,7 @@ class Response
     /**
      * @param array $xHeaders
      */
-    public function setXHeaders($xHeaders)
+    public function setXHeaders(array $xHeaders = [])
     {
         $this->xHeaders = $xHeaders;
     }
