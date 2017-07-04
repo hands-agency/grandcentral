@@ -51,6 +51,7 @@
 	if (isset($_POST['q']))
 	{
 		$q = 'SELECT `id` FROM `'.$handled_item.'` WHERE title LIKE "%'.$_POST['q'].'%" OR `key` LIKE "%'.$_POST['q'].'%"';
+		echo "<pre>";print_r($q);echo "</pre>";
 		$db = database::connect('site');
 		$r = $db->query($q);
 		if ($r['count'] > 0)
@@ -60,10 +61,11 @@
 			{
 				$_PARAM['param']['id'][] = $id['id'];
 			}
-			// echo "<pre>";print_r($_PARAM['param']['id']);echo "</pre>";
 		}
-
-		// $_PARAM['param']['title'] = '%'.$_POST['q'].'%';
+		else
+		{
+			$_PARAM['param']['id'] = '';
+		}
 	}
 
 	// always
