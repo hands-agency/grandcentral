@@ -9,6 +9,7 @@
 */
 class itemArtist extends _items
 {
+	public $tagrel = array();
 	/**
 	* Obtenir la liste des événements liés à cet artiste
 	*
@@ -88,7 +89,7 @@ class itemArtist extends _items
   {
     $tables = (array) $tables;
 
-    if (empty($this->tagrel))
+    if (empty($this->tagrel) && !$this['tag']->is_empty())
     {
       $tagIds = [];
       foreach ($this['tag'] as $nickname)
