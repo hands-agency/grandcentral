@@ -100,7 +100,7 @@ class itemEvent extends _items
 		$data = [];
 
 		$db = database::connect('site');
-		$q = 'SELECT `title`, `shortdescr`, `start`, `end`, `seance`, `place`, `url` FROM `event` WHERE ';
+		$q = 'SELECT `title`, `shortdescr`, `start`, `end`, `seance`, `place`, `url` FROM `event` WHERE `status` = "live" AND (';
 		$where = [];
 		for ($i=0; $i < $nbDays; $i++)
 		{
@@ -109,7 +109,7 @@ class itemEvent extends _items
 			$data[$dateTemp->format('Y-m-d')] = [];
 			$dateTemp->modify('+1 day');
 		}
-		$q .= implode(' OR ', $where);
+		$q .= implode(' OR ', $where).')';
     // echo "<pre>";print_r($q);echo "</pre>";
 		$results = $db->query($q);
 
