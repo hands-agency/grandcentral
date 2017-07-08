@@ -138,8 +138,8 @@ class appApi extends _apps
 	public function call($method, $url, $data = false)
 	{
 	//	Maintain session
-		$strCookie = 'PHPSESSID=' . $_COOKIE['PHPSESSID'] . '; path=/';
-		session_write_close();
+		$strCookie = isset($_COOKIE['PHPSESSID']) ? 'PHPSESSID=' . $_COOKIE['PHPSESSID'] . '; path=/' : null;
+	//	session_write_close();
 		
 	//	Init Curl
 	    $curl = curl_init();
