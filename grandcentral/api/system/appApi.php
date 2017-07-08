@@ -139,7 +139,7 @@ class appApi extends _apps
 	{
 	//	Maintain session
 		$strCookie = isset($_COOKIE['PHPSESSID']) ? 'PHPSESSID=' . $_COOKIE['PHPSESSID'] . '; path=/' : null;
-	//	session_write_close();
+		session_write_close();
 		
 	//	Init Curl
 	    $curl = curl_init();
@@ -175,7 +175,7 @@ class appApi extends _apps
 	    $result = curl_exec($curl);
 
 	    curl_close($curl);
-
+		session_start();
 	    return $result;
 	}
 }
