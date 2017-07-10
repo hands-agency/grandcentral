@@ -44,8 +44,8 @@
         $this.css({
           'width' : $prev.outerWidth()
         });
-        console.log($this.outerHeight());
-        console.log()
+        // console.log($this.outerHeight());
+        // console.log()
         $prev.css({
           'margin-bottom' : $this.outerHeight() + defaults.marginCorrection
         });
