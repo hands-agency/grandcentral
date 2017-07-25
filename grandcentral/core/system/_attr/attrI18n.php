@@ -142,6 +142,7 @@ class attrI18n extends attrArray
 		foreach ($available as $field) $fields[$field] = mb_substr(mb_strtolower($field), 5);
 		//	Start with the default for all properties
 		$params = parent::get_properties();
+		asort($fields);
 		//	Somes specifics for this attr
 		$params['field'] = array(
 			'placeholder' => '...',
@@ -156,6 +157,7 @@ class attrI18n extends attrArray
 		//	Get the properties for each attr
 		foreach ($available as $attr) $attrs[$attr] = mb_substr(mb_strtolower($attr), 4);
 		unset($attrs['attrI18n']);
+		asort($attrs);
 		//	Start with the default for all properties
 		// $params = parent::get_properties();
 		//	Somes specifics for this attr
