@@ -206,7 +206,10 @@
     if (isset($capeb->capeb['type']) && $capeb->capeb['type']->get() == 'region')
     {
       unset($menu['service']);
+      unset($menu['serviceannexe']);
+      // unset($menu['document']);
     }
+
     return $menu;
   }
 
@@ -529,12 +532,15 @@
     // );
     // foreach ($replicate as $attr)
     // {
-    //   $destination[$attr]->set($source[$attr]->get());
+    //   if ($destination[$attr]->is_empty())
+    //   {
+    //     $destination[$attr]->set($source[$attr]->get());
+    //   }
     // }
     // on rempli le répertoire media
     // $destination['directory'] = mb_strtolower($destination['shorttile']->get());
     // echo "<pre>";print_r($destination);echo "</pre>";
-    // $destination->save();
+    $destination->save();
 
     echo '<h1>done</h1>';
     // $bridge = array(
