@@ -527,16 +527,16 @@
       // sleep(1);
     }
     // on replique les données des services et des guides
-    // $replicate = array(
-    //   'creer','gerer','salarie','conjoint','developpe','avantage','guide','chantier','cahier','guidepartner'
-    // );
-    // foreach ($replicate as $attr)
-    // {
-    //   if ($destination[$attr]->is_empty())
-    //   {
-    //     $destination[$attr]->set($source[$attr]->get());
-    //   }
-    // }
+    $replicate = array(
+      'creer','gerer','salarie','conjoint','developpe','avantage','guide','chantier','cahier','guidepartner'
+    );
+    foreach ($replicate as $attr)
+    {
+      if ($destination[$attr]->is_empty())
+      {
+        $destination[$attr]->set($source[$attr]->get());
+      }
+    }
     // on rempli le répertoire media
     // $destination['directory'] = mb_strtolower($destination['shorttile']->get());
     // echo "<pre>";print_r($destination);echo "</pre>";
