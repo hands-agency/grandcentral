@@ -65,6 +65,7 @@ class attrSirtrevor extends _attrs
 	 */
 		public function cut($length, $add = '...')
 		{
+			if ($this->is_empty()) return '';
 			$d = $this->data;
 			$text = json_decode($this->data)->data[0]->data->text;
 			if (mb_strlen($text) > $length)
