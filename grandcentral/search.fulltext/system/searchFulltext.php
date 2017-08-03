@@ -152,19 +152,15 @@ ORDER BY (title_relevance*'.$this->relevance['title'].')+(txt_relevance*'.$this-
  * @return	array	l'index des contenus
  * @access	public
  */
-	public function get_index()
+	public function create_index()
 	{
 		$p = $this->url ? array('hasurl' => true) : array();
 		// recherche des items à indexer. On prendi
 		$items = i('item', $p, 'site');
-		// construction de l'index
-		$toindex = array();
 		foreach ($items as $item)
 		{
-			$toindex = array_merge($toindex, $this->prepare_items($item['key']->get()));
+			$this->prepare_items($item['key']->get());
 		}
-
-		return $toindex;
 	}
 /**
  * Put index into bdd
@@ -174,30 +170,9 @@ ORDER BY (title_relevance*'.$this->relevance['title'].')+(txt_relevance*'.$this-
 	public function save_index()
 	{
 		$this->create_table();
-	//	Some vars
-		$i = 0;
-		$e = 0;
-	//	Insert lines by sets of...
-		$lines = 100;
-		foreach ($this->get_index() as $row)
-		{
-			$values[$e][] = '("'.$row['item'].'", "'.$row['nickname'].'", "'.$row['title'].'", "'.$row['txt'].'", "'.$row['rel'].'")';
-			$i++;
-			if ($i == $lines)
-			{
-				$i = 0;
-				$e++;
-			}
-		}
+		$this->create_index();
 
-		$db = database::connect('site');
-		$q = 'TRUNCATE TABLE `'.$this->key.'`;';
-		$db->query($q);
-		foreach ($values as $value)
-		{
-			$q = 'INSERT INTO `'.$this->key.'` (`item`, `nickname`, `title`, `txt`, `rel`) VALUES '.implode(',', $value).';';
-			$db->query($q);
-		}
+
 	}
 /**
  * Prepare a table for indexing
@@ -209,16 +184,44 @@ ORDER BY (title_relevance*'.$this->relevance['title'].')+(txt_relevance*'.$this-
 	public function prepare_items($table)
 	{
 		$toindex = array();
+		$limit = 100;
+		$start = 0;
+		$max = count::get($table, [], 'site');
 
 		if (!in_array($table, $this->notable))
 		{
-			foreach (i($table, all, 'site') as $item)
+			$i = 0;
+			while ($i <= $max)
 			{
-				$toindex[] = $this->prepare_item($item);
+				$p = ['limit()' => $i.', '.$limit];
+				foreach (i($table, $p, 'site') as $item)
+				{
+					$this->save_item($item);
+				}
+				$i += 100;
 			}
+			$start += $limit;
 		}
 
-		return $toindex;
+		// echo $table.' : '.$max.PHP_EOL;
+		echo $table.' done'.PHP_EOL;
+		// return $toindex;
+	}
+/**
+ * Prepare an item for indexing
+ *
+ * @param	_items	l'item à parser
+ * @return	array	l'item parsé
+ * @access	public
+ */
+	public function save_item(_items $item, $norelation = false)
+	{
+		set_time_limit(2);
+		$data = $this->prepare_item($item, $norelation);
+		$db = database::connect('site');
+		$q = 'TRUNCATE TABLE `'.$this->key.'`;';
+		$q = 'INSERT INTO `'.$this->key.'` (`item`, `nickname`, `title`, `txt`, `rel`) VALUES ("'.$data['item'].'","'.$data['nickname'].'","'.$data['title'].'","'.$data['txt'].'","'.$data['rel'].'");';
+		$db->query($q);
 	}
 /**
  * Prepare an item for indexing
@@ -288,11 +291,11 @@ ORDER BY (title_relevance*'.$this->relevance['title'].')+(txt_relevance*'.$this-
 			}
 		}
 		// suppression du html
-		$value = strip_tags($value);
+		$value = trim(strip_tags($value));
 		// suppression du slashs
-		$toindex = str_replace(array('\\', '"'), array('', ' '), $value);
+		$toindex = str_replace(array('\\', '"', '&#039;'), array('', ' ','\''), $value);
 
-		return $toindex;
+		return ' '.$toindex.' ';
 	}
 /**
  * Prepare an text attribute for indexing
@@ -322,58 +325,24 @@ ORDER BY (title_relevance*'.$this->relevance['title'].')+(txt_relevance*'.$this-
  */
 	public function prepare_rel(_attrs $attr)
 	{
-		$toindex = null;
-		$rels = (array) $attr->get();
-		// hack cast défectueux
-		if (isset($rels[0]) && empty($rels[0])) $rels = array();
-		// pour limiter les requêtes, stocke toutes les données dans une statique
-		if (!empty($rels) && !in_array($attr->get_key(), $this->norel))
+		$toindex = '';
+
+		if (!$attr->is_empty())
 		{
+			$rels = new bunch(null,null,'site');
+			// print_r($attr->get());echo PHP_EOL;
+			$rels->get_by_nickname($attr->get());
+
 			foreach ($rels as $rel)
 			{
-				if (!empty($rel))
-				{
-					// print'<pre>';print_r($rel);print'</pre>';
-					if (!isset(self::$relTables[$rel]))
-					{
-						foreach (i(explode('_', $rel)[0], all, 'site') as $item)
-						{
-							$tmp = $this->prepare_item($item, true);
-							unset($tmp['table'], $tmp['nickname']);
-							self::$relTables[$item->get_nickname()] = $this->flat_array($tmp);
-						}
-					}
-					if (isset(self::$relTables[$rel]))
-					{
-						$toindex .= ' '.self::$relTables[$rel];
-					}
-
-				}
+				$tmp = $this->prepare_item($rel, true);
+				// echo "<pre>";print_r($this->flat_array($tmp));echo "</pre>";
+				unset($tmp['table'], $tmp['nickname']);
+				$toindex .= ' '.$this->flat_array($tmp);
 			}
-
 		}
-		// print'<pre>';print_r($toindex);print'</pre>';
+
 		return $toindex;
-	}
-/**
- * Clean the data for indexing
- *
- * @param	array	tableau de paramètres
- * @access	public
- */
-	public function cleandata($data)
-	{
-		switch (true) {
-			case is_array($data):
-				$data = implode(' ',$data);
-				break;
-
-			default:
-				$data = strip_tags($data);
-				break;
-		}
-
-		return $data;
 	}
 /**
  * Create the index table
