@@ -35,8 +35,9 @@ class itemMedia extends _items
     $data['count'] = $result->count;
     foreach ($result->data as $value) {
       $media = [];
+      $media['key'] = (string) $value['key'];
       $media['title'] = (string) $value['title'];
-      $media['descr'] = (string) $value['descr']->cut(100);
+      $media['descr'] = (string) $value['descr']->cut(135);
       $type = trim($value['type']->get());
       $media['type'] = cst('MEDIA_' . mb_strtoupper($type), null, 'site');
       $media['image'] = isset($value['imagepush']) && !$value['imagepush']->is_empty() ? (string) $value['imagepush']->unfold()[0]->crop(400, 400) : '';
