@@ -265,7 +265,7 @@ class attrUrl extends attrArray
 			}
 		}
 		$url .= $this->get_current();
-		$url .= $_SESSION['capeb']->get_nickname() != 'capeb_118' ? '?c='.$_SESSION['capeb']['departmentcode'] : '';
+		$url .= $_SESSION['capeb']->get_nickname() != 'capeb_118' &&  $this->params['table'] != 'page' ? '?c='.$_SESSION['capeb']['departmentcode'] : '';
 		// return
 		return $url;
 
