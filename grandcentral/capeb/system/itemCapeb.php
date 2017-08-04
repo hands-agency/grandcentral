@@ -36,7 +36,11 @@ class itemCapeb extends _items
 			$data = explode('_', $page['key']->get());
 			$count = count($data);
 			// echo "<pre>";print_r(registry::get());echo "</pre>";exit;
-	    if ($count > 1 && mb_substr($data[0], 0, 1) == 'c')
+			if (!empty($_GET['c']))
+	    {
+				$capeb->get(['departmentcode' => $_GET['c']]);
+	    }
+	    elseif ($count > 1 && mb_substr($data[0], 0, 1) == 'c')
 	    {
 	      $key = $data[0];
 				$capeb->get($key);
