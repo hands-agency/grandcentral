@@ -197,9 +197,9 @@ abstract class _fieldsSelector extends _fields
 			}
 			//	Refine ?
 			if (isset($refine)) $params['title'] = '%'.$refine.'%';
-			if (!is_null($limit)) $params['limit()'] = $limit;
-			// print'<pre>';print_r($value);print'</pre>';
-			$bunch->get($table, $params);
+			$params['limit()'] = (!is_null($limit)) ? $limit : 100;
+
+			$bunch->get($table,$params);
 			$countTable++;
 		}
 	//	création de la liste des valeurs

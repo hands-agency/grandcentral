@@ -284,6 +284,17 @@ abstract class _fields
  * @return	string	le nom du champ
  * @access	public
  */
+	public function set_name($name)
+	{
+		$this->attrs['name'] = $this->name = $name;
+		return $this;
+	}
+/**
+ * Obtenir le nom du champ
+ *
+ * @return	string	le nom du champ
+ * @access	public
+ */
 	public function get_name()
 	{
 		return $this->name;
@@ -447,12 +458,12 @@ abstract class _fields
 	public function __tostring()
 	{
 		$app = registry::get(registry::class_index, get_called_class());
-		// print'<pre>';print_r($app);print'</pre>';
 		if (empty($this->template))
 		{
 			$this->template = mb_substr(mb_strtolower(get_called_class()), 5);
 		}
 		$app = app($app, $this->template, array('field' => $this));
+
 		return $app->__tostring();
 	}
 /**
