@@ -118,19 +118,28 @@
       //   'edit_contact' => '',
       // ),
       'home' => array(
-        'see' => (string) $capeb->get_page('home')['url'],
+        //'see' => (string) $capeb->get_page('home')['url'],
         'section_cover' => $url['update'].'?item=section&id='.$sections['section_cover']['id'],
         // 'hide_context' => '',
         // 'show_context' => '',
-        'edit_2col' => $url['update'].'?item=section&id='.$sections['section_2col']['id'],
-        'edit_1col' => $url['update'].'?item=section&id='.$sections['section_1col']['id'],
         // 'hide_video' => '',
         // 'show_video' => '',
         'section_video' => $url['update'].'?item=section&id='.$sections['section_video']['id'],
         'section_links' => $url['update'].'?item=section&id='.$sections['section_links']['id'],
         'section_facebook' => $url['update'].'?item=section&id='.$sections['section_facebook']['id'],
         'section_twitter' => $url['update'].'?item=section&id='.$sections['section_twitter']['id'],
-        'sort' => $url['update'].'?item=custom&id=sorthome'
+        'sort' => $url['update'].'?item=custom&id=sorthome',
+      ),
+      'ctx' => array(
+        'see_ctx' => $url['list'].'?item=section&type=ctx',
+        'add_ctx_image' => $url['update'].'?item=custom&id=ctx_image',
+        'add_ctx_text' => $url['update'].'?item=custom&id=ctx_text',
+        'add_ctx_icon' => $url['update'].'?item=custom&id=ctx_icon',
+        'add_ctx_2col' => $url['update'].'?item=custom&id=ctx_2col',
+        'section_ctx' => $url['update'].'?item=section&id='.$sections['section_boxes_context']['id']
+        // 'edit_2col' => $url['update'].'?item=section&id='.$sections['section_2col']['id'],
+        // 'edit_1col' => $url['update'].'?item=section&id='.$sections['section_1col']['id'],
+
       )
     );
     // echo "<pre>";print_r($tree);echo "</pre>";exit;
