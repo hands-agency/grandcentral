@@ -278,7 +278,7 @@ class hubberCatalog
     if (!$season->exists())
     {
       $season['externalid'] = $data['id'];
-      if ($season['title']->is_empty()) $season['title'] = $data['title'];
+      $season['title'] = $data['title'];
       $season->save();
     }
 
@@ -304,7 +304,7 @@ class hubberCatalog
     $event['externalid'] = $data['id'];
     $event['externalurl'] = $data['url'];
     if ($event['title']->is_empty()) $event['title'] = $data['title'];
-    $event['descr'] = $data['description'];
+    if ($event['descr']->is_empty()) $event['descr'] = $data['description'];
     $event['start'] = $data['date_debut'];
     $event['end'] = $data['date_fin'];
     $event['salestart'] = $this->_get_salestart($data);
