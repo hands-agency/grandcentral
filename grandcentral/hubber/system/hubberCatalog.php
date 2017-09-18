@@ -186,7 +186,8 @@ class hubberCatalog
     {
       $data['seance'][] = $this->_parse_seance($seance);
     }
-    $data['url'] = $data['seance'][0]['url'];
+    // hack : first seance for event url
+    // $data['url'] = $data['seance'][0]['url'];
 
     return $data;
   }
@@ -277,7 +278,7 @@ class hubberCatalog
     if (!$season->exists())
     {
       $season['externalid'] = $data['id'];
-      $season['title'] = $data['title'];
+      if ($season['title']->is_empty()) $season['title'] = $data['title'];
       $season->save();
     }
 
@@ -302,7 +303,7 @@ class hubberCatalog
     $event['season'] = $season->get_nickname();
     $event['externalid'] = $data['id'];
     $event['externalurl'] = $data['url'];
-    $event['title'] = $data['title'];
+    if ($event['title']->is_empty()) $event['title'] = $data['title'];
     $event['descr'] = $data['description'];
     $event['start'] = $data['date_debut'];
     $event['end'] = $data['date_fin'];
