@@ -35,7 +35,7 @@ class itemMedia extends _items
     $data['count'] = $result->count;
     foreach ($result->data as $value) {
       $media = [];
-      $media['key'] = (string) $value['key'];
+      $media['key'] = (string) $value['id'];
       $media['title'] = (string) $value['title'];
       $media['descr'] = (string) $value['descr']->cut(135);
       $type = trim($value['type']->get());
