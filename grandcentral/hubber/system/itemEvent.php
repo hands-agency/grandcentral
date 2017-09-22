@@ -104,7 +104,7 @@ class itemEvent extends _items
 		$where = [];
 		for ($i=0; $i < $nbDays; $i++)
 		{
-			$where[] = '(`start` <= "'.$dateTemp->format('Y-m-d').'" AND `end` >= "'.$dateTemp->format('Y-m-d').'")';
+			$where[] = '(`start` <= "'.$dateTemp->format('Y-m-d').' 23:59:59" AND `end` >= "'.$dateTemp->format('Y-m-d').'")';
       $where[] = '(`start` LIKE "%'.$dateTemp->format('Y-m-d').'%" AND `end` LIKE "%'.$dateTemp->format('Y-m-d').'%")';
 			$data[$dateTemp->format('Y-m-d')] = [];
 			$dateTemp->modify('+1 day');
