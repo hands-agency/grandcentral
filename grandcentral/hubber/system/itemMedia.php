@@ -10,7 +10,7 @@
 class itemMedia extends _items
 {
   public static function get_media($options = []) {
-		$params['limit()'] = isset($options['limit']) ? $options['limit'] : 12;
+		$params['limit()'] = isset($options['limit']) ? $options['limit'] : '0, 12';
 		$params['order()'] = isset($options['order']) ? $options['order'] : 'created DESC';
 		if (isset($options['type']) && !empty($options['type'])) $params['type'] = $options['type'];
 		if (isset($options['category']) && !empty($options['category'])) $params['category'] = $options['category'];
@@ -25,7 +25,12 @@ class itemMedia extends _items
         {
           $ids[] = $value['id'];
         }
-        $params['id'] = $ids;
+        if (count($ids) > 0) {
+          $params['id'] = $ids;
+        }
+        else {
+          $params['id'] = [0];
+        }
 		}
 
     $result = i('media', $params);
