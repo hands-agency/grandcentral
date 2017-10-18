@@ -269,7 +269,7 @@ class itemEvent extends _items
  * @return	string  la date formatée
  * @access	public
  */
-	public function get_formated_date()
+	public function get_formated_date($for)
 	{
 
 		switch (true)
@@ -308,13 +308,24 @@ class itemEvent extends _items
 				$sday = $this['start']->format('j') == '1' ? $this['start']->format('j').cst('DATE_DAY_FIRST') : $this['start']->format('j');
 				$smonth = $this['start']->format('n') == $this['end']->format('n') ? null : cst('MONTH_'.$this['start']->format('n'));
 				$eday = $this['end']->format('j') == '1' ? $this['end']->format('j').cst('DATE_DAY_FIRST') : $this['end']->format('j');
-				$return = cst('EVENT_BOX_DATE_END', array(
-					'sday' => $sday,
-					'smonth' => $smonth,
-					'eday' => $eday,
-					'emonth' => cst('MONTH_'.$this['end']->format('n')),
-					'year' => $this['end']->format('Y')
-				));
+        if ($for === 'cover') {
+          $return = cst('EVENT_BOX_DATE_END_COVER', array(
+            'sday' => $sday,
+            'smonth' => $smonth,
+            'eday' => $eday,
+            'emonth' => cst('MONTH_'.$this['end']->format('n')),
+            'year' => $this['end']->format('Y')
+          ));
+        }
+        else {
+          $return = cst('EVENT_BOX_DATE_END', array(
+            'sday' => $sday,
+            'smonth' => $smonth,
+            'eday' => $eday,
+            'emonth' => cst('MONTH_'.$this['end']->format('n')),
+            'year' => $this['end']->format('Y')
+          ));
+        }
 				break;
 		}
 		return $return;
