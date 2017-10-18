@@ -17,7 +17,7 @@ class itemExhibition extends _items
  * @return	string  la date formatée
  * @access	public
  */
-	public function get_formated_date($for)
+	public function get_formated_date($for = false)
 	{
 
 		switch (true)
