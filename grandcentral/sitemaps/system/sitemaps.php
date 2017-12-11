@@ -51,7 +51,7 @@ class sitemaps
  * @param	array  The cache lifetime in ms, or using keywords : hourly, daily, weekly
  * @access	public
  */
-	public function create($refresh = '86400000', $force_refresh = false)
+	public function create($refresh = '86400000', $force_refresh = false, $exclude = null)
 	{
 	//	Translate refresh
 		switch ($refresh)
@@ -80,7 +80,18 @@ class sitemaps
 		{
 
 		//	Get the items with url
-			$structures = i('item', array('hasurl' => true));
+			$p = array('hasurl' => true);
+			if (is_array($exclude))
+			{
+				$tmp = [];
+				foreach ($exclude as $table)
+				{
+					$tmp[] = '!='.$table;
+				}
+			}
+			// echo "<pre>";print_r($p);echo "</pre>";
+			$structures = i('item', $p);
+			// echo "<pre>";print_r($structures->get_column('title'));echo "</pre>";
 
 		//	Loop through structures with url
 			$url = '';
