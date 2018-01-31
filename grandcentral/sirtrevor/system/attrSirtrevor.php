@@ -22,25 +22,21 @@ class attrSirtrevor extends _attrs
 		$to = array();
 		$pattern = '/<a href=\"([^\"]*)\">.*<\/a>/iU';
 		preg_match_all($pattern, $txt, $matches, PREG_SET_ORDER);
-		// print'<pre>';print_r($matches);print'</pre>';
 		foreach ($matches as $link)
 		{
 			$from[] = $link[1];
 			$url = html_entity_decode($link[1]);
-			// url déjà dans le texte
-			if (filter_var($url, FILTER_VALIDATE_URL))
-			{
-				$to[] = $url;
-			}
 			// lien Grand Central
-			elseif (mb_strstr($url, '['))
+			if (mb_strstr($url, '['))
 			{
 				$tmp = explode('_', str_replace(array('[', ']'), '', $url));
 				$to[] = i($tmp[0], $tmp[1])['url']->__tostring();
 			}
+			// url déjà dans le texte
+			else {
+				$to[] = $url;
+			}
 		}
-		// print'<pre>from : ';print_r($from);print'</pre>';
-		// print'<pre>to : ';print_r($to);print'</pre>';
 	//	retour
 		return str_replace($from, $to, $txt);
 	}
