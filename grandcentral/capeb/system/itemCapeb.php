@@ -198,6 +198,34 @@ class itemCapeb extends _items
 			$_SESSION['capeb'] = $this;
 		}
 
+/**
+ * Sauvegarde et remplissage auto
+ *
+ * @access	public
+ */
+	public function save()
+	{
+		// sauvegarde
+		parent::save();
+
+		// synchronisation des services du national vers les autres CAPEB
+		if ($this['key']->get() == 'cnational')
+		{
+			$capebs = i('capeb',all);
+			// echo "<pre>";print_r('restore_services');echo "</pre>";
+
+			foreach ($capebs as $capeb)
+			{
+				$capeb = restore_services($capeb);
+				// echo "<pre>";print_r($capeb);echo "</pre>";
+				$capeb->save();
+			}
+		}
+
+
+    return $this;
+	}
+
 	// /**
 	//  *
 	//  *
