@@ -42,7 +42,7 @@
  * @link	http://grandcentral.fr
  */
 class bunch implements ArrayAccess, Iterator, Countable
-{	
+{
 	private $env;
 	private $_cIndex = false;
 	private $_sIndex;
@@ -84,14 +84,14 @@ class bunch implements ArrayAccess, Iterator, Countable
  *
  * @return	string	The deduplicated bunch
  * @access	public
- */	
+ */
 	public function deduplicate()
 	{
 	//	Some vars
 		$i = 0;
 		$tmp = array();
 		$done = array();
-		
+
 	//	Lets' get to work
 		while ($i < $this->count)
 		{
@@ -112,7 +112,7 @@ class bunch implements ArrayAccess, Iterator, Countable
  * @param	bool	Reverse order ("false" by default)
  * @return	string	The ordered bunch
  * @access	public
- */	
+ */
 	public function order($index, $reverse = false)
 	{
 	//	on extrait la colonne à trier
@@ -135,9 +135,9 @@ class bunch implements ArrayAccess, Iterator, Countable
 		}
 		$this->data = &$tmp;
 		$this->order = $index;
-		
+
 		array_values($this->data);
-		
+
 		return $this;
 	}
 
@@ -165,7 +165,7 @@ class bunch implements ArrayAccess, Iterator, Countable
 			$this->data = $datas;
 		}
 		$this->_cIndex = $index;
-		
+
 		return $this;
 	}
 
@@ -180,7 +180,7 @@ class bunch implements ArrayAccess, Iterator, Countable
 		$index = $this->_sIndex;
 		$this->set_index($index);
 		$this->_sIndex = $index;
-		
+
 		return $this;
 	}
 
@@ -205,7 +205,7 @@ class bunch implements ArrayAccess, Iterator, Countable
 			{
 				$c = is_a($item[$column], '_attrs') ? $item[$column]->get() : '';
 			}
-			
+
 			if ($assoc === true)
 			{
 				$columns[] = $c;
@@ -218,7 +218,7 @@ class bunch implements ArrayAccess, Iterator, Countable
 	//	retour
 		return $columns;
 	}
-	
+
 /**
  * Get an array of nicknames of all the items in the bunch
  *
@@ -235,7 +235,7 @@ class bunch implements ArrayAccess, Iterator, Countable
 	//	retour
 		return $tags;
 	}
-	
+
 /**
  * Get all the given attributes
  *
@@ -251,10 +251,10 @@ class bunch implements ArrayAccess, Iterator, Countable
 	//	retour
 		return $attrs;
 	}
-	
+
 /**
  * Fetch additional items for a bunch
- * 
+ *
  * <pre>
  * // A list of filtering parameters
  * $param = array(
@@ -263,7 +263,7 @@ class bunch implements ArrayAccess, Iterator, Countable
  * 	'section' => array(2, 4),
  * 	'tag' => 1,
  * 	'order()' => 'key DESC, type ASC',
- * 	'limit()' => 10 
+ * 	'limit()' => 10
  * );
  * // Fetch!
  * $bunch->get('page', $param);
@@ -312,7 +312,7 @@ class bunch implements ArrayAccess, Iterator, Countable
 	public function get_by_nickname($nicknames, $params = null)
 	{
 		// print'<pre>';print_r($nicknames);print'</pre>';
-		$nicknames = (array) $nicknames;
+		$nicknames = array_filter((array) $nicknames);
 	//	analyse des nicknames
 		foreach ($nicknames as $nickname)
 		{
@@ -390,7 +390,7 @@ class bunch implements ArrayAccess, Iterator, Countable
 	// 		{
 	// 	        $item->set_rel('version', registry::get(current, 'version')->get_attr('id'));
 	// 		}
-	// 		
+	//
 	// 		$item->prepare_save();
 	// 	//	sauvegarde des attributs
 	// 		$item->data->prepare_save();
@@ -407,12 +407,12 @@ class bunch implements ArrayAccess, Iterator, Countable
 	// 			}
 	// 		}
 	// 	}
-	// 	
+	//
 	// //	éxécution des requêtes
 	// 	reset($this->data);
 	// 	current($this->data)->data->execute();
-	// 	
-	// 	
+	//
+	//
 	// 	$lastid = $item->data->get_last_inserted_id();
 	// 	return $this;
 	// }
