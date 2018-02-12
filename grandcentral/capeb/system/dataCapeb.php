@@ -109,6 +109,10 @@ class dataCapeb
 				'key' => $pages,
 				'order()' => 'inherit(key)'
 			));
+      if (!$this->capeb['navigation']->is_empty())
+      {
+        $pages->get_by_nickname($this->capeb['navigation']->get());
+      }
 			return $pages;
 		}
 	/**
