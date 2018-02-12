@@ -378,7 +378,7 @@ class ElasticsearchInstance
   public function map()
   {
     $indexExists = $this->client->indices()->exists(['index' => $this->index]);
-    $typeExists = $this->client->indices()->existsType(['index' => $this->index, 'type' => $this->type]);
+    // $typeExists = $this->client->indices()->existsType(['index' => $this->index, 'type' => $this->type]);
 
     if (!$indexExists) {
       $params = [
