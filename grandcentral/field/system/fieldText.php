@@ -1,7 +1,7 @@
 <?php
 /**
  * Classe du champ text
- * 
+ *
  * @package		form
  * @author		Michaël V. Dandrieux <@mvdandrieux>
  * @author		Sylvain Frigui <sf@hands.agency>
@@ -32,7 +32,7 @@ class fieldText extends _fieldsInput
  * 	...
  * );
  * new field_text('title', $param);
- * 
+ *
  * @param	string	le nom du champ
  * @param	array	le tableau de paramètres du champ
  * @access	public
@@ -89,8 +89,19 @@ class fieldText extends _fieldsInput
 		return $this;
 	}
 /**
+ * Obtenir la liste de tous les attributs du champ
+ *
+ * @return	array	le tableau des attributs du champ
+ * @access	public
+ */
+	public function get_attrs()
+	{
+		if (isset($this->attrs['value'])) $this->attrs['value'] = str_replace('"','&quot;',$this->attrs['value']);
+		return parent::get_attrs();
+	}
+/**
  * Obtenir la définition des propriétés du champ
- * 
+ *
  * @return	array 	la liste des propriétés et leurs définitions
  * @access	public
  * @static
@@ -100,7 +111,7 @@ class fieldText extends _fieldsInput
 		$properties = parent::get_properties();
 		$properties['autocomplete'] = 'bool';
 		$properties['regexp'] = 'text';
-		
+
 		return $properties;
 	}
 }
