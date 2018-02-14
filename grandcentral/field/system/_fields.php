@@ -278,6 +278,18 @@ abstract class _fields
 		$this->readonly = $bool;
 		return $this;
 	}
+
+/**
+ * Affecte un label au champ
+ *
+ * @param	string	le label
+ * @access	public
+ */
+	public function change_name($name)
+	{
+		$this->attrs['name'] = $this->name = $name;
+		return $this;
+	}
 /**
  * Obtenir le nom du champ
  *
