@@ -6,6 +6,7 @@ body {
 	background: -o-linear-gradient(-45deg, #cebe29 0%,#9b1f50 33%,#2989d8 71%,#89b4ff 91%);
 	background: -ms-linear-gradient(-45deg, #cebe29 0%,#9b1f50 33%,#2989d8 71%,#89b4ff 91%);
 	background: linear-gradient(135deg, #cebe29 0%,#9b1f50 33%,#2989d8 71%,#89b4ff 91%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cebe29', endColorstr='#89b4ff',GradientType=1 );
 	-webkit-background-size: 100% 100%;
 	-moz-background-size: 100% 100%;
 	background-size: 100% 100%;
@@ -176,6 +177,10 @@ body {
 	left: 10px;
 	text-align: left;
 	text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+}
+
+.fc-calendar .fc-row > div > span.fc-emptydate {
+	color: rgba(255,255,255,0.4);
 }
 
 .fc-calendar .fc-body {

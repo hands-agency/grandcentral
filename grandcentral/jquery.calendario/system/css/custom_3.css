@@ -1,5 +1,5 @@
 body {
-    background: #f9f9f9 url(../images/bg-1.png);
+    background: url(../images/bg.jpg);
 }
 
 /* Custom calendar elements */
@@ -48,6 +48,7 @@ body {
 	background: -o-linear-gradient(-45deg, #cebe29 0%,#9b1f50 33%,#2989d8 71%,#89b4ff 91%);
 	background: -ms-linear-gradient(-45deg, #cebe29 0%,#9b1f50 33%,#2989d8 71%,#89b4ff 91%);
 	background: linear-gradient(135deg, #cebe29 0%,#9b1f50 33%,#2989d8 71%,#89b4ff 91%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cebe29', endColorstr='#89b4ff',GradientType=1 );
 	border-bottom: 1px solid #ddd;
 }
 
@@ -116,83 +117,6 @@ body {
 	color: #495468;
 }
 
-.custom-content-reveal {
-	background: #f6f6f6;
-	background: rgba(246, 246, 246, 0.9);
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	z-index: 100;
-	top: 100%;
-	left: 0px;
-	text-align: center;
-	-webkit-transition: all 0.6s ease-in-out;
-	-moz-transition: all 0.6s ease-in-out;
-	-o-transition: all 0.6s ease-in-out;
-	-ms-transition: all 0.6s ease-in-out;
-	transition: all 0.6s ease-in-out;
-}
-
-.custom-content-reveal span.custom-content-close {
-	position: absolute;
-	top: 15px;
-	right: 10px;
-	width: 20px;
-	height: 20px;
-	text-align: center;
-	background: #ef4f69;
-	box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-	cursor: pointer;
-	line-height: 13px;
-	padding: 0;
-}
-
-.custom-content-reveal span.custom-content-close:after {
-	content: 'x';
-	font-size: 18px;
-	color: #fff;
-}
-
-.custom-content-reveal a,
-.custom-content-reveal span {
-	font-size: 22px;
-	padding: 10px 30px;
-	display: block;
-}
-
-.custom-content-reveal h4 {
-	text-transform: uppercase;
-	font-size: 13px;
-	font-weight: 300;
-	letter-spacing: 3px;
-	color: #fff;
-	padding: 20px;
-	background: #fff;
-	background: -moz-linear-gradient(-45deg, #cebe29 0%, #9b1f50 33%, #2989d8 71%, #89b4ff 91%);
-	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#cebe29), color-stop(33%,#9b1f50), color-stop(71%,#2989d8), color-stop(91%,#89b4ff));
-	background: -webkit-linear-gradient(-45deg, #cebe29 0%,#9b1f50 33%,#2989d8 71%,#89b4ff 91%);
-	background: -o-linear-gradient(-45deg, #cebe29 0%,#9b1f50 33%,#2989d8 71%,#89b4ff 91%);
-	background: -ms-linear-gradient(-45deg, #cebe29 0%,#9b1f50 33%,#2989d8 71%,#89b4ff 91%);
-	background: linear-gradient(135deg, #cebe29 0%,#9b1f50 33%,#2989d8 71%,#89b4ff 91%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cebe29', endColorstr='#89b4ff',GradientType=1 );
-	border-bottom: 1px solid #ddd;
-	border-top: 5px solid #cebe29;
-	box-shadow: 0 1px rgba(255,255,255,0.9);
-	margin-bottom: 30px;
-}
-
-.custom-content-reveal span {
-	color: #888;
-}
-
-.custom-content-reveal a {
-	color: #ef4f69;
-}
-
-.custom-content-reveal a:hover {
-	color: #333;
-}
-
 /* Modifications */
 
 .fc-calendar-container {
@@ -228,6 +152,10 @@ body {
 	color: #686a6e;
 	font-weight: 400;
 	pointer-events: none;
+}
+
+.fc-calendar .fc-row > div > span.fc-emptydate {
+	color: #ccc;
 }
 
 .fc-calendar .fc-row > div.fc-content {
@@ -285,120 +213,6 @@ body {
 	font-size: 22px;
 }
 
-.tooltip {
-  position: absolute;
-  z-index: 1030;
-  display: block;
-  font-size: 12px;
-  line-height: 1.4;
-  opacity: 0;
-  filter: alpha(opacity=0);
-  visibility: visible;
-}
-
-.tooltip.in {
-  opacity: 0.9;
-  filter: alpha(opacity=90);
-}
-
-.tooltip.top {
-  padding: 5px 0;
-  margin-top: -3px;
-}
-
-.tooltip.right {
-  padding: 0 5px;
-  margin-left: 3px;
-}
-
-.tooltip.bottom {
-  padding: 5px 0;
-  margin-top: 3px;
-}
-
-.tooltip.left {
-  padding: 0 5px;
-  margin-left: -3px;
-}
-
-.tooltip-inner {
-  max-width: 200px;
-  padding: 3px 8px;
-  color: #ffffff;
-  text-align: center;
-  text-decoration: none;
-  background-color: #000000;
-  border-radius: 4px;
-}
-
-.tooltip-arrow {
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
-}
-
-.tooltip.top .tooltip-arrow {
-  bottom: 0;
-  left: 50%;
-  margin-left: -5px;
-  border-top-color: #000000;
-  border-width: 5px 5px 0;
-}
-
-.tooltip.top-left .tooltip-arrow {
-  bottom: 0;
-  left: 5px;
-  border-top-color: #000000;
-  border-width: 5px 5px 0;
-}
-
-.tooltip.top-right .tooltip-arrow {
-  right: 5px;
-  bottom: 0;
-  border-top-color: #000000;
-  border-width: 5px 5px 0;
-}
-
-.tooltip.right .tooltip-arrow {
-  top: 50%;
-  left: 0;
-  margin-top: -5px;
-  border-right-color: #000000;
-  border-width: 5px 5px 5px 0;
-}
-
-.tooltip.left .tooltip-arrow {
-  top: 50%;
-  right: 0;
-  margin-top: -5px;
-  border-left-color: #000000;
-  border-width: 5px 0 5px 5px;
-}
-
-.tooltip.bottom .tooltip-arrow {
-  top: 0;
-  left: 50%;
-  margin-left: -5px;
-  border-bottom-color: #000000;
-  border-width: 0 5px 5px;
-}
-
-.tooltip.bottom-left .tooltip-arrow {
-  top: 0;
-  left: 5px;
-  border-bottom-color: #000000;
-  border-width: 0 5px 5px;
-}
-
-.tooltip.bottom-right .tooltip-arrow {
-  top: 0;
-  right: 5px;
-  border-bottom-color: #000000;
-  border-width: 0 5px 5px;
-}
-
 .popover {
   position: absolute;
   top: 0;
@@ -452,6 +266,10 @@ body {
 .popover-content a,
 .popover-content span {
 	display: block;
+}
+
+.popover-content time {
+	display: none;
 }
 
 .popover .arrow,
