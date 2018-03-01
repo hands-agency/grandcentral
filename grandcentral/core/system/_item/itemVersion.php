@@ -68,7 +68,9 @@ class itemVersion extends _items
 						}
 						$version = 'VERSION_';
 						// define($version.'KEY', mb_strtoupper($key));
-						define($version.''.mb_strtoupper($key), $url);
+						if (!defined($version.''.mb_strtoupper($key))) {
+							define($version.''.mb_strtoupper($key), $url);
+						}
 					}
 					else
 					{

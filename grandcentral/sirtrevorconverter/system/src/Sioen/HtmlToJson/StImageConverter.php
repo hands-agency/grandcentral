@@ -11,12 +11,22 @@ final class StImageConverter implements StConverter
 {
     use StHtmlToMarkdown;
 
+    // public function toJson(\DOMElement $node)
+    // {
+    //     return new SirTrevorBlock(
+    //         'image',
+    //         array(
+    //             'file' => array('url' => $node->getAttribute('src')),
+    //         )
+    //     );
+    // }
     public function toJson(\DOMElement $node)
     {
         return new SirTrevorBlock(
             'image',
             array(
-                'file' => array('url' => $node->getAttribute('src')),
+                'url' => $node->getAttribute('src'),
+                'title' => basename($node->getAttribute('src'))
             )
         );
     }
