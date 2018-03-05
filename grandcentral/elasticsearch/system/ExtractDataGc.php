@@ -176,7 +176,7 @@ class ExtractDataGc
 
   private function getUrlValue($field)
   {
-    return $field->get();
+    return (string)$field;
   }
 
 }
