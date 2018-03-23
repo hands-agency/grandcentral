@@ -247,6 +247,9 @@ class ElasticsearchInstance
       $body = $bodyFilered;
     }
 
+    $body['from'] = 0;
+    $body['size'] = $this->searchConfig['limit'];
+
     return $this->client->search([
       'index' => $this->index,
       'type' => 'doc',
@@ -537,6 +540,54 @@ class ElasticsearchInstance
                 'french_elision',
                 'icu_folding',
                 'synonym_filter'
+              ]
+            ]
+          ]
+        ];
+      } else {
+        $params['body']['settings']['analysis'] = [
+          'filter' => [
+            'snowball_filter' => [
+              'type' => 'snowball'
+            ],
+            'french_elision' => [
+              'type' => 'elision',
+              'articles_case' => true,
+              'articles' => [
+                'l', 'm', 't', 'qu', 'n', 's',
+                'j', 'd', 'c', 'jusqu', 'quoiqu',
+                'lorsqu', 'puisqu'
+              ]
+            ],
+            'french_stop' => [
+              'type' => 'stop',
+              'stopwords' => '_french_'
+            ],
+            'french_keywords' => [
+              'type' => 'keyword_marker',
+              'keywords' => ['']
+            ],
+            'french_stemmer' => [
+              'type' => 'stemmer',
+              'language' => 'light_french'
+            ]
+          ],
+          'analyzer' => [
+            'french_heavy' => [
+              'type' => 'custom',
+              'tokenizer' => 'icu_tokenizer',
+              'filter' => [
+                'french_elision',
+                'icu_folding',
+                'french_stemmer'
+              ]
+            ],
+            'french_light' => [
+              'type' => 'custom',
+              'tokenizer' => 'icu_tokenizer',
+              'filter' => [
+                'french_elision',
+                'icu_folding'
               ]
             ]
           ]
