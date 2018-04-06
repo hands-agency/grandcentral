@@ -182,10 +182,12 @@ class itemPage extends _items
  */
 	public function bind_section()
 	{
-		foreach ($this['section']->unfold() as $section)
+		$sections = $this['section']->unfold();
+		foreach ($sections as $section)
 		{
 			$section->__tostring();
 		}
+		return $sections;
 	}
 /**
  * Display the page
@@ -312,7 +314,6 @@ class itemPage extends _items
 		while ($page = $this->_get_parent_nickname($page))
 		{
 			$parent[] = $page;
-			$i++;
 		}
 		$parent = (isset($parent)) ? array_reverse($parent) : null;
 	//	get the items
