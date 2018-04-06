@@ -161,14 +161,14 @@
 
     _checkUpdate : function() {
       var self = this;
-      $.getScript("https://raw.githubusercontent.com/codrops/Calendario/master/js/update.js")
-      .done(function(script, textStatus){
-        if(calendario.current != self.version() && parseFloat(calendario.current) >= parseFloat(self.version()))
-          console.info(calendario.msg);
-      })
-      .fail(function(jqxhr, settings, exception){
-        console.error(exception);
-      });
+      // $.getScript("https://raw.githubusercontent.com/codrops/Calendario/master/js/update.js")
+      // .done(function(script, textStatus){
+      //   if(calendario.current != self.version() && parseFloat(calendario.current) >= parseFloat(self.version()))
+      //     console.info(calendario.msg);
+      // })
+      // .fail(function(jqxhr, settings, exception){
+      //   console.error(exception);
+      // });
     },
 
     // Calendar logic based on http://jszen.blogspot.pt/2007/03/how-to-build-simple-calendar-with.html
