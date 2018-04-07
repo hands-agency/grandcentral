@@ -27,6 +27,7 @@ class itemConst extends _items
  */
 	public static function t($string)
 	{
+
 		$string = trim($string);
 		if (empty($string)) return '';
 		$key = mb_strtoupper(mb_substr($string, 0, 64));
@@ -39,7 +40,7 @@ class itemConst extends _items
 			return $const;
 		}
 		// ajout
-		elseif (empty($key))
+		elseif (!empty($key))
 		{
 			$const = i('const');
 			$const['title'][$lang] = $string;
