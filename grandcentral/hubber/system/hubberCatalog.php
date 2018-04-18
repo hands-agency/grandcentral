@@ -17,16 +17,6 @@ class hubberCatalog
  * @return	bunch  Retourne le bunch des séances de l'événement
  * @access	public
  */
-	public function contruct()
-	{
-
-	}
-/**
- * Récupérer le catalogue
- *
- * @return	bunch  Retourne le bunch des séances de l'événement
- * @access	public
- */
 	public function save_xml($path)
 	{
     $dir = new dir($path);
@@ -93,18 +83,20 @@ class hubberCatalog
     // parse
     else
     {
-      $seasons = $dom->getElementsByTagName('SPECTACLE');
+      $catalogs = $dom->getElementsByTagName('SPECTACLE');
 
-      foreach ($seasons as $season)
+      foreach ($catalogs as $catalog)
       {
-        $title = $season->getElementsByTagName('TITLE')[0]->nodeValue;
-
+        $title = $catalog->getElementsByTagName('TITLE')[0]->nodeValue;
+        // echo "<pre>";print_r($title);echo "</pre>";
         // if (mb_strstr(mb_strtolower($title), 'saison') !== false)
-        if (mb_strtolower(trim($title)) == 'billets')
+        // if (mb_strtolower(trim($title)) == 'billets')
+        if (trim($title) == 'COMEDIEFRANCAISE7')
+
         // if (mb_strstr(mb_strtolower($title), 'billets hors carte') !== false)
         {
-          $data = $this->_parse_season($season);
-          $this->_save_season($data);
+          $data = $this->_parse_catalog($catalog);
+          $this->_save_catalog($data);
         }
       }
     }
@@ -114,12 +106,12 @@ class hubberCatalog
  *
  * @access	private
  */
-  private function _parse_season(DOMElement $season)
+  private function _parse_catalog(DOMElement $catalog)
 	{
     $data = [];
-    $data['id'] = $season->getElementsByTagName('ID')[0]->nodeValue;
-    $data['title'] = preg_replace('/[^0-9-]/', '', $season->getElementsByTagName('TITLE')[0]->nodeValue);
-    $events = $season->getElementsByTagName('MANIFESTATION');
+    $data['id'] = $catalog->getElementsByTagName('ID')[0]->nodeValue;
+    $data['title'] = preg_replace('/[^0-9-]/', '', $catalog->getElementsByTagName('TITLE')[0]->nodeValue);
+    $events = $catalog->getElementsByTagName('MANIFESTATION');
     foreach ($events as $event)
     {
       $data['event'][] = $this->_parse_event($event);
@@ -163,8 +155,10 @@ class hubberCatalog
     );
     $data['place'] = trim($place->item(0)->nodeValue);
     $data['place_id'] = $place_id->item(0)->nodeValue;
-    $data['date_debut'] = $date_debut->item(0)->nodeValue;
-    $data['date_fin'] = $date_fin->item(0)->nodeValue;
+    // $data['date_debut'] = $date_debut->item(0)->nodeValue;
+    $data['date_debut'] = '9999-99-99 99:99:99';
+    // $data['date_fin'] = $date_fin->item(0)->nodeValue;
+    $data['date_fin'] = '0000-00-00 00:00:00';
     $data['description'] = array(
       'fr' => trim(html_entity_decode($description_fr->item(0)->nodeValue, ENT_XML1, 'UTF-8')),
       'en' => trim(html_entity_decode($description_en->item(0)->nodeValue, ENT_XML1, 'UTF-8'))
@@ -184,9 +178,18 @@ class hubberCatalog
     $seances = $event->getElementsByTagName('MEETING');
     foreach ($seances as $seance)
     {
-      $data['seance'][] = $this->_parse_seance($seance);
+      $tmp = $this->_parse_seance($seance);
+      // push only seance with publication = 1
+      if ($tmp['publication'] == 1)
+      {
+        $data['seance'][] = $this->_parse_seance($seance);
+      }
     }
-    // hack : first seance for event url
+    // hack : get start and end date from seance instead of xml feed
+    $data['date_debut'] = $data['seance'][0]['date'];
+    $data['date_fin'] = $data['seance'][(count($data['seance']) - 1)]['date'];
+
+    // echo "<pre>event : ";print_r($data);echo "</pre>";
     // $data['url'] = $data['seance'][0]['url'];
 
     return $data;
@@ -268,23 +271,23 @@ class hubberCatalog
  *
  * @access	private
  */
-  private function _save_season($data)
+  private function _save_catalog($data)
 	{
-    $season = i('season');
-    $season->get(array(
-      'externalid' => $data['id']
-    ));
-
-    if (!$season->exists())
-    {
-      $season['externalid'] = $data['id'];
-      $season['title'] = $data['title'];
-      $season->save();
-    }
-
+    // $season = i('season');
+    // $season->get(array(
+    //   'externalid' => $data['id']
+    // ));
+    //
+    // if (!$season->exists())
+    // {
+    //   $season['externalid'] = $data['id'];
+    //   $season['title'] = $data['title'];
+    //   // $season->save();
+    // }
+    //
     foreach ($data['event'] as $event)
     {
-      $this->_save_event($event, $season);
+      $this->_save_event($event);
     }
 
   }
@@ -293,31 +296,38 @@ class hubberCatalog
  *
  * @access	private
  */
-  private function _save_event($data, itemSeason $season)
+  private function _save_event($data)
 	{
-    $event = i('event');
-    $event->get(array(
-      'externalid' => $data['id']
-    ));
+    $q = 'SELECT id FROM season WHERE start <= "'.mb_substr($data['date_debut'], 0, 10).'" AND end >= "'.mb_substr($data['date_debut'], 0, 10).'" LIMIT 1';
+    $db = database::connect('site');
+    $r = $db->query($q);
 
-    $event['season'] = $season->get_nickname();
-    $event['externalid'] = $data['id'];
-    $event['externalurl'] = $data['url'];
-    if ($event['title']->is_empty()) $event['title'] = $data['title'];
-    if ($event['descr']->is_empty()) $event['descr'] = $data['description'];
-    $event['start'] = $data['date_debut'];
-    $event['end'] = $data['date_fin'];
-    $event['salestart'] = $this->_get_salestart($data);
-    $event['saleend'] = $data['date_fin'];
-    $event['pricemin'] = $data['prix_min'];
-    $event['pricemax'] = $data['prix_max'];
-    $event['place'] = $this->_get_place($data['place']);
-    $event['status'] = $this->_get_status($data['status_id']);
-    $event['sellstatus'] = $this->_get_sellstatus($data['sell_status']);
-    $event['seance'] = json_encode($data['seance']);
+    if ($r['count'] > 0)
+    {
+      $event = i('event');
+      $event->get(array(
+        'externalid' => $data['id']
+      ));
 
-    $event->save();
-    echo $event['title'].' : saved <br>';
+      $event['season'] = 'season_'.$r['data'][0]['id'];
+      $event['externalid'] = $data['id'];
+      $event['externalurl'] = $data['url'];
+      if ($event['title']->is_empty()) $event['title'] = $data['title'];
+      if ($event['descr']->is_empty()) $event['descr'] = $data['description'];
+      $event['start'] = $data['date_debut'];
+      $event['end'] = $data['date_fin'];
+      $event['salestart'] = $this->_get_salestart($data);
+      $event['saleend'] = $data['date_fin'];
+      $event['pricemin'] = $data['prix_min'];
+      $event['pricemax'] = $data['prix_max'];
+      $event['place'] = $this->_get_place($data['place']);
+      $event['status'] = $this->_get_status($data['status_id']);
+      $event['sellstatus'] = $this->_get_sellstatus($data['sell_status']);
+      $event['seance'] = json_encode($data['seance']);
+
+      $event->save();
+      echo $event['title'].' : saved <br>';
+    }
   }
 /**
  * Sauvegarder une séance
