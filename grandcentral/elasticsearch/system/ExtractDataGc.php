@@ -155,10 +155,19 @@ class ExtractDataGc
     return $text;
   }
 
+  private function getArrayValue($field)
+  {
+    $text = (string)$field;
+    $text = trim(str_replace(PHP_EOL, ' ', strip_tags($text)));
+
+    return $text;
+  }
+
   private function getI18nValue($field)
   {
     $attr = mb_substr($field->get_attr(), 4);
     $text = '';
+    // echo "<pre>attr";print_r($attr);echo "</pre>";
 
     if (method_exists($this, 'get' . $attr . 'Value')) {
       $class = 'attr' . $attr;
