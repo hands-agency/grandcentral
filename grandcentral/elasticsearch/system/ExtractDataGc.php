@@ -80,7 +80,7 @@ class ExtractDataGc
 
     foreach ($item as $key => $attr) {
       $class = get_class($attr);
-      if (in_array($class, $this->allowedAttrs)) {
+      if (in_array($class, $this->allowedAttrs) || in_array("$table:$class", $this->allowedAttrs)) {
         // This sould be based on class but only text for now
         $allowedFields[$key] = 'text';
       }
