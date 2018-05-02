@@ -35,6 +35,7 @@ class ElasticsearchInstance
     $this->synonymsPath = $synonymsPath;
     $this->searchConfig = !empty($config['search']) ? $config['search'] : [];
     $this->searchConfig['limit'] = !empty($this->searchConfig['limit']) ? $this->searchConfig['limit'] : 10;
+    $this->searchConfig['page'] = !empty($this->searchConfig['page']) ? $this->searchConfig['page'] : 1;
     $this->searchConfig['min_score'] = !empty($this->searchConfig['min_score']) ? $this->searchConfig['min_score'] : false;
 
     if (is_null($this->index)) {
@@ -247,7 +248,7 @@ class ElasticsearchInstance
       $body = $bodyFilered;
     }
 
-    $body['from'] = 0;
+    $body['from'] = $this->searchConfig['limit'] * ($this->searchConfig['page'] - 1);
     $body['size'] = $this->searchConfig['limit'];
 
     return $this->client->search([
