@@ -155,6 +155,17 @@ class ExtractDataGc
     return $text;
   }
 
+  private function getArrayValue($field)
+  {
+    $values = $field->get();
+    $text = '';
+    foreach ($values as $key => $value) {
+      $text .= "$key $value ";
+    }
+
+    return $text;
+  }
+
   private function getI18nValue($field)
   {
     $attr = mb_substr($field->get_attr(), 4);
