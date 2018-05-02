@@ -157,8 +157,11 @@ class ExtractDataGc
 
   private function getArrayValue($field)
   {
-    $text = (string)$field;
-    $text = trim(str_replace(PHP_EOL, ' ', strip_tags($text)));
+    $values = $field->get();
+    $text = '';
+    foreach ($values as $key => $value) {
+      $text .= "$key $value ";
+    }
 
     return $text;
   }
@@ -167,7 +170,6 @@ class ExtractDataGc
   {
     $attr = mb_substr($field->get_attr(), 4);
     $text = '';
-    // echo "<pre>attr";print_r($attr);echo "</pre>";
 
     if (method_exists($this, 'get' . $attr . 'Value')) {
       $class = 'attr' . $attr;
