@@ -67,7 +67,8 @@ class ElasticsearchInstance
     }
     $this->hosts = [$host];
     if(!defined('JSON_PRESERVE_ZERO_FRACTION')) {
-      $this->client = ClientBuilder::create()->setHosts($this->hosts)->allowBadJSONSerialization()->build();
+      define('JSON_PRESERVE_ZERO_FRACTION', 1024);
+      $this->client = ClientBuilder::create()->setHosts($this->hosts)->build();
     } else {
       $this->client = ClientBuilder::create()->setHosts($this->hosts)->build();
     }
