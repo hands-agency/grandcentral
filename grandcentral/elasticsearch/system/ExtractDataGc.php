@@ -82,7 +82,19 @@ class ExtractDataGc
       $class = get_class($attr);
       if (in_array($class, $this->allowedAttrs) || in_array("$table:$class", $this->allowedAttrs)) {
         // This sould be based on class but only text for now
-        $allowedFields[$key] = 'text';
+        $type = '';
+        switch ($class) {
+          case 'attrDate':
+          case 'attrCreated':
+          case 'attrUpdated':
+            $type = 'date';
+            break;
+
+          default:
+            $type = 'text';
+            break;
+        }
+        $allowedFields[$key] = $type;
       }
     }
 

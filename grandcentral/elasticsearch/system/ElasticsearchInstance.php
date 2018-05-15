@@ -441,6 +441,9 @@ class ElasticsearchInstance
         if ($value === 'geo_point') {
           $params['body']['mappings']['doc']['properties'][$key] = ['type' => 'geo_point'];
         }
+        if ($value === 'date') {
+          $params['body']['mappings']['doc']['properties'][$key] = ['type' => 'date', 'format' => 'yyyy-MM-dd HH:mm:ss'];
+        }
       }
 
       if (!is_null($this->synonymsPath)) {
