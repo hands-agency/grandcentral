@@ -35,6 +35,7 @@ class ElasticsearchInstance
     $this->synonymsPath = $synonymsPath;
     $this->searchConfig = !empty($config['search']) ? $config['search'] : [];
     $this->searchConfig['limit'] = !empty($this->searchConfig['limit']) ? $this->searchConfig['limit'] : 10;
+    $this->searchConfig['page'] = !empty($this->searchConfig['page']) ? $this->searchConfig['page'] : 1;
     $this->searchConfig['min_score'] = !empty($this->searchConfig['min_score']) ? $this->searchConfig['min_score'] : false;
 
     if (is_null($this->index)) {
@@ -66,7 +67,8 @@ class ElasticsearchInstance
     }
     $this->hosts = [$host];
     if(!defined('JSON_PRESERVE_ZERO_FRACTION')) {
-      $this->client = ClientBuilder::create()->setHosts($this->hosts)->allowBadJSONSerialization()->build();
+      define('JSON_PRESERVE_ZERO_FRACTION', 1024);
+      $this->client = ClientBuilder::create()->setHosts($this->hosts)->build();
     } else {
       $this->client = ClientBuilder::create()->setHosts($this->hosts)->build();
     }
@@ -247,7 +249,7 @@ class ElasticsearchInstance
       $body = $bodyFilered;
     }
 
-    $body['from'] = 0;
+    $body['from'] = $this->searchConfig['limit'] * ($this->searchConfig['page'] - 1);
     $body['size'] = $this->searchConfig['limit'];
 
     return $this->client->search([
@@ -438,6 +440,9 @@ class ElasticsearchInstance
       foreach ($this->allowedFields as $key => $value) {
         if ($value === 'geo_point') {
           $params['body']['mappings']['doc']['properties'][$key] = ['type' => 'geo_point'];
+        }
+        if ($value === 'date') {
+          $params['body']['mappings']['doc']['properties'][$key] = ['type' => 'date', 'format' => 'yyyy-MM-dd HH:mm:ss'];
         }
       }
 

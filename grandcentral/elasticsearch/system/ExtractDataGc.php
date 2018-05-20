@@ -80,9 +80,21 @@ class ExtractDataGc
 
     foreach ($item as $key => $attr) {
       $class = get_class($attr);
-      if (in_array($class, $this->allowedAttrs)) {
+      if (in_array($class, $this->allowedAttrs) || in_array("$table:$class", $this->allowedAttrs)) {
         // This sould be based on class but only text for now
-        $allowedFields[$key] = 'text';
+        $type = '';
+        switch ($class) {
+          case 'attrDate':
+          case 'attrCreated':
+          case 'attrUpdated':
+            $type = 'date';
+            break;
+
+          default:
+            $type = 'text';
+            break;
+        }
+        $allowedFields[$key] = $type;
       }
     }
 
@@ -151,6 +163,17 @@ class ExtractDataGc
     $value = json_decode($field->get(), true);
     $text = (string)$field;
     $text = trim(str_replace(PHP_EOL, ' ', strip_tags($text)));
+
+    return $text;
+  }
+
+  private function getArrayValue($field)
+  {
+    $values = $field->get();
+    $text = '';
+    foreach ($values as $key => $value) {
+      $text .= "$key $value ";
+    }
 
     return $text;
   }
