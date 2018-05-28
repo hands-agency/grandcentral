@@ -27,7 +27,11 @@ class ExtractDataGc
 
   private function extractTable($table)
   {
-    $p = ['status' => 'live', 'limit()' => $this->start . ', ' . $this->limit];
+    if ($table != 'page') {
+      $p = ['status' => 'live', 'limit()' => $this->start . ', ' . $this->limit];
+    } else {
+      $p = ['status' => 'live', 'limit()' => $this->start . ', ' . $this->limit, 'system' => false, 'type' => '%"key":"content"%'];
+    }
     $this->bunchData = i($table, $p, 'site');
     $this->start += $this->limit;
   }
@@ -86,6 +90,10 @@ class ExtractDataGc
       }
     }
 
+    if (in_array("$table:section", $this->allowedAttrs)) {
+      $allowedFields['section'] = 'text';
+    }
+
     return $allowedFields;
   }
 
@@ -108,37 +116,50 @@ class ExtractDataGc
 
   private function formatData($item)
   {
-    $data = [];
-    $data['id'] = $item->get_nickname();
-    $data['body'] = [];
+    if (!empty($item)) {
+      $data = [];
+      $data['id'] = $item->get_nickname();
+      $data['body'] = [];
 
-    foreach ($this->allowedFields as $key => $field) {
-      $class = get_class($item[$key]);
-      $attr = mb_substr($class, 4);
+      foreach ($this->allowedFields as $key => $field) {
+        $class = gettype($item[$key]) == 'object' ? get_class($item[$key]) : '';
+        $attr = mb_substr($class, 4);
 
-      switch ($class) {
-        case 'attrString':
-          $data['body'][$key] = $this->getGenericValue($item[$key]);
-          break;
-        case 'attrSirtrevor':
-          $data['body'][$key] = $this->getSirtrevorValue($item[$key]);
-          break;
-        case 'attrI18n':
-          $data['body'][$key] = $this->getI18nValue($item[$key]);
-          break;
-        case 'attrUrl':
-          $data['body'][$key] = $this->getUrlValue($item[$key]);
-          break;
+        // switch ($class) {
+        //   case 'attrString':
+        //     $data['body'][$key] = $this->getGenericValue($item[$key]);
+        //     break;
+        //   case 'attrSirtrevor':
+        //     $data['body'][$key] = $this->getSirtrevorValue($item[$key]);
+        //     break;
+        //   case 'attrI18n':
+        //     $data['body'][$key] = $this->getI18nValue($item[$key]);
+        //     break;
+        //   case 'attrUrl':
+        //     $data['body'][$key] = $this->getUrlValue($item[$key]);
+        //     break;
+        //   default:
+        //     if ($key === 'section') {
+        //       $data['body'][$key] = $this->getSectionValue($item[$key]);
+        //     }
+        //     break;
+        // }
+
+        if (method_exists($this, 'get' . $attr . 'Value')) {
+          $data['body'][$key] = $this->{'get' . $attr . 'Value'}($item[$key]);
+        } else {
+          if ($key === 'section') {
+            $data['body'][$key] = $this->getSectionValue($item);
+          } else {
+            $data['body'][$key] = $this->getGenericValue($item[$key]);
+          }
+        }
       }
 
-      if (method_exists($this, 'get' . $attr . 'Value')) {
-        $data['body'][$key] = $this->{'get' . $attr . 'Value'}($item[$key]);
-      } else {
-        $data['body'][$key] = $this->getGenericValue($item[$key]);
-      }
+      return $data;
     }
 
-    return $data;
+    return false;
   }
 
   private function getGenericValue($field)
@@ -188,6 +209,13 @@ class ExtractDataGc
   private function getUrlValue($field)
   {
     return (string)$field;
+  }
+
+  private function getSectionValue($page)
+  {
+    // echo "<pre>";print_r($page);echo "</pre>";
+    $data = preg_replace('/\s+/', ' ', strip_tags(preg_replace('#<(script|style)(.*?)>(.*?)</(script|style)>#is', '', $page->get_tostring())));
+    return $data;
   }
 
 }
