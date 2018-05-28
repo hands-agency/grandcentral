@@ -225,6 +225,17 @@ class itemPage extends _items
 
 	}
 /**
+ * Return page html content
+ *
+ * @return	string	le code html de la page
+ * @access	public
+ */
+	public function get_tostring()
+	{
+		$data = $this->__tostring();
+		return $data;
+	}
+/**
  * Prepare display of a content page
  *
  * @access	private
