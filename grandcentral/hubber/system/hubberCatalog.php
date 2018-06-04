@@ -301,6 +301,7 @@ class hubberCatalog
     //   // $season->save();
     // }
     //
+    // echo "<pre>";print_r($data);echo "</pre>";exit;
     foreach ($data['event'] as $event)
     {
       $this->_save_event($event);
@@ -322,7 +323,8 @@ class hubberCatalog
     {
       $event = i('event');
       $event->get(array(
-        'externalid' => $data['id']
+        'externalid' => $data['id'],
+        'status' => ['live','asleep']
       ));
 
       $event['season'] = 'season_'.$r['data'][0]['id'];
@@ -342,7 +344,7 @@ class hubberCatalog
       if (isset($data['seance'])) $event['seance'] = json_encode($data['seance']);
 
       $event->save();
-      echo $event['title'].' : saved ('.$r['data'][0]['title'].')<br>';
+      echo $event['id'].' / '.$event['title'].' : saved ('.$r['data'][0]['title'].')<br>';
     }
   }
 /**
