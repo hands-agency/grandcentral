@@ -86,10 +86,22 @@ class ExtractDataGc
       $class = get_class($attr);
       if (in_array($class, $this->allowedAttrs) || in_array("$table:$class", $this->allowedAttrs)) {
         // This sould be based on class but only text for now
-        $allowedFields[$key] = 'text';
+        $type = '';
+        switch ($class) {
+          case 'attrDate':
+          case 'attrCreated':
+          case 'attrUpdated':
+            $type = 'date';
+            break;
+
+          default:
+            $type = 'text';
+            break;
+        }
+        $allowedFields[$key] = $type;
       }
     }
-
+    
     if (in_array("$table:section", $this->allowedAttrs)) {
       $allowedFields['section'] = 'text';
     }
@@ -116,50 +128,37 @@ class ExtractDataGc
 
   private function formatData($item)
   {
-    if (!empty($item)) {
-      $data = [];
-      $data['id'] = $item->get_nickname();
-      $data['body'] = [];
+    $data = [];
+    $data['id'] = $item->get_nickname();
+    $data['body'] = [];
 
-      foreach ($this->allowedFields as $key => $field) {
-        $class = gettype($item[$key]) == 'object' ? get_class($item[$key]) : '';
-        $attr = mb_substr($class, 4);
+    foreach ($this->allowedFields as $key => $field) {
+      $class = get_class($item[$key]);
+      $attr = mb_substr($class, 4);
 
-        // switch ($class) {
-        //   case 'attrString':
-        //     $data['body'][$key] = $this->getGenericValue($item[$key]);
-        //     break;
-        //   case 'attrSirtrevor':
-        //     $data['body'][$key] = $this->getSirtrevorValue($item[$key]);
-        //     break;
-        //   case 'attrI18n':
-        //     $data['body'][$key] = $this->getI18nValue($item[$key]);
-        //     break;
-        //   case 'attrUrl':
-        //     $data['body'][$key] = $this->getUrlValue($item[$key]);
-        //     break;
-        //   default:
-        //     if ($key === 'section') {
-        //       $data['body'][$key] = $this->getSectionValue($item[$key]);
-        //     }
-        //     break;
-        // }
-
-        if (method_exists($this, 'get' . $attr . 'Value')) {
-          $data['body'][$key] = $this->{'get' . $attr . 'Value'}($item[$key]);
-        } else {
-          if ($key === 'section') {
-            $data['body'][$key] = $this->getSectionValue($item);
-          } else {
-            $data['body'][$key] = $this->getGenericValue($item[$key]);
-          }
-        }
+      switch ($class) {
+        case 'attrString':
+          $data['body'][$key] = $this->getGenericValue($item[$key]);
+          break;
+        case 'attrSirtrevor':
+          $data['body'][$key] = $this->getSirtrevorValue($item[$key]);
+          break;
+        case 'attrI18n':
+          $data['body'][$key] = $this->getI18nValue($item[$key]);
+          break;
+        case 'attrUrl':
+          $data['body'][$key] = $this->getUrlValue($item[$key]);
+          break;
       }
 
-      return $data;
+      if (method_exists($this, 'get' . $attr . 'Value')) {
+        $data['body'][$key] = $this->{'get' . $attr . 'Value'}($item[$key]);
+      } else {
+        $data['body'][$key] = $this->getGenericValue($item[$key]);
+      }
     }
 
-    return false;
+    return $data;
   }
 
   private function getGenericValue($field)
