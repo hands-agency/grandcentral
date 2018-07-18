@@ -3,8 +3,8 @@ SirTrevor.Blocks.Iframe = (function() {
 	return SirTrevor.Block.extend({
 
 		regex_src : /(?:<iframe)(?:.+)(?:src="){1}([^"].+?)(?:")(?:.+)(?:<\/iframe>)/i,
-		regex_width : /(?:<iframe)(?:.+)(?:width="){1}([^"].+?)(?:")(?:.+)(?:<\/iframe>)/i,
-		regex_height : /(?:<iframe)(?:.+)(?:height="){1}([^"].+?)(?:")(?:.+)(?:<\/iframe>)/i,
+		regex_width : /(?:<iframe)(?:.+)(?: width="){1}([^"].+?)(?:")(?:.+)(?:<\/iframe>)/i,
+		regex_height : /(?:<iframe)(?:.+)(?: height="){1}([^"].+?)(?:")(?:.+)(?:<\/iframe>)/i,
 
 		type : 'iframe',
 
@@ -37,13 +37,13 @@ SirTrevor.Blocks.Iframe = (function() {
 				obj.src = match_src[1];
 
 				match_width = val.match(this.regex_width);
-				
+
 				if (match_width !== null && !_.isUndefined(match_width[1])) {
 					obj.width = match_width[1];
 				}
 
 				match_height = val.match(this.regex_height);
-				
+
 				if (match_height !== null && !_.isUndefined(match_height[1])) {
 					obj.height = match_height[1];
 				}
