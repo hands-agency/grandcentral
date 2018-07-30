@@ -267,6 +267,7 @@ class dataCapeb
           array_push($future, $event);
         }
       }
+      $past = array_reverse($past);
       $result = array_merge($future, $past);
 
       return $result;
