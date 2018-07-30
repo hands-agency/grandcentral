@@ -77,9 +77,9 @@ class itemNews extends _items
 				$params['capeb'] = $capeb->get_nickname();
 				break;
 		}
-
 		$article = i($this->get_table(), array(
 			'id' => '!='.$this['id']->get(),
+			'order()' => 'date DESC',
 			'date' => '<='. $this['date']->get(),
 			'capeb' => $params['capeb'],
 			'limit()' => 1
@@ -114,6 +114,7 @@ class itemNews extends _items
 		}
 		$article = i($this->get_table(), array(
 			'id' => '!='.$this['id']->get(),
+			'order()' => 'date ASC',
 			'date' => '>='. $this['date']->get(),
 			'capeb' => $params['capeb'],
 			'limit()' => 1

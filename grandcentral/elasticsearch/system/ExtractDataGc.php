@@ -101,7 +101,7 @@ class ExtractDataGc
         $allowedFields[$key] = $type;
       }
     }
-    
+
     if (in_array("$table:section", $this->allowedAttrs)) {
       $allowedFields['section'] = 'text';
     }
@@ -154,7 +154,11 @@ class ExtractDataGc
       if (method_exists($this, 'get' . $attr . 'Value')) {
         $data['body'][$key] = $this->{'get' . $attr . 'Value'}($item[$key]);
       } else {
-        $data['body'][$key] = $this->getGenericValue($item[$key]);
+        if ($key === 'section') {
+          $data['body'][$key] = $this->getSectionValue($item);
+        } else {
+          $data['body'][$key] = $this->getGenericValue($item[$key]);
+        }
       }
     }
 
