@@ -1,5 +1,5 @@
 <div class="dir <?php if (!isset($files)): ?>empty<?php endif ?>">
-
+	<?php $count = 0; ?>
 	<h2><span class="rule"><?=$here?></span></h2>
 	<ul class="files">
 		<li class="upload">
@@ -13,7 +13,9 @@
 			<p id="progress">XHR2's upload progress isn't supported</p>
 		</li>
 		<?php if (isset($files)) : ?>
-		<?php foreach ($files as $file): ?>
+		<?php foreach ($files as $file):
+			$file = media($file->get_root());
+		?>
 		<li data-path="<?=$file->get_path()?>" data-url="<?=$file->get_url()?>" data-info="<?= $file->get_extension() ?> • <?= $file->get_size() ?>" data-title="<?= $file->get_key() ?>">
 			<a href="#" class="file <?=$file->get_mimeType()?>">
 				<?php
@@ -23,9 +25,17 @@
 				<span class="title"><?= $file->get_key() ?></span>
 			</a>
 		</li>
-		<?php endforeach ?>
+		<?php
+		$count++;
+		if ($count >= 50 && !isset($_POST['q'])) {
+			break;
+		}
+		endforeach; ?>
 		<?php endif;?>
 	</ul>
+	<?php if ($count >= 50 && !isset($_POST['q'])): ?>
+		<div class="do-search" style="clear:both;text-align:center;padding:30px;font-size: 12px;">Seules les 50 dernières images sont affichées ici.<br>Veuillez utiliser la recherche si l'image désirée n'est pas ci dessus.</div>
+	<?php endif; ?>
 
 	<h2><span class="rule">Folders</span></h2>
 	<div class="folders">
