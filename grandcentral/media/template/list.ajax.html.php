@@ -34,7 +34,7 @@
 		<?php endif;?>
 	</ul>
 	<?php if ($count >= 50 && !isset($_POST['q'])): ?>
-		<div class="do-search" style="clear:both;text-align:center;padding:30px;font-size: 12px;">Seules les 50 dernières images sont affichées ici.<br>Veuillez utiliser la recherche si l'image désirée n'est pas ci dessus.</div>
+		<div class="do-search" style="clear:both;text-align:center;padding:30px;font-size: 12px;">...</div>
 	<?php endif; ?>
 
 	<h2><span class="rule">Folders</span></h2>
@@ -81,8 +81,7 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-	$(document).ready(function()
-	{
+
 		/* D&D UPLOAD TEMP*/
 		var holder = document.getElementById('holder'),
 		    tests = {
@@ -137,6 +136,10 @@
 					//	Add the image preview, path & url
 						media = '<li class="new" data-path="'+filedata.path+'" data-url="'+filedata.url+'" data-info="'+file.type+' • '+(file.size ? (file.size/1024|0)+' K' : '')+'" data-title=""><a class="file" href="#"><span class="preview"><img src="'+imageBase64+'" /></span><span class="title">' + filedata.name + '</span></a></li>';
 					//	Add
+						$upload.after(media);
+					}
+					else {
+						media = '<li class="new" data-path="'+filedata.path+'" data-url="'+filedata.url+'" data-info="'+file.type+' • '+(file.size ? (file.size/1024|0)+' K' : '')+'" data-title=""><a class="file application" href="#"><span class="preview"></span><span class="title">' + filedata.name + '</span></a></li>';
 						$upload.after(media);
 					}
 				//	This directory is no longer empty
@@ -228,5 +231,5 @@
 				readfiles(this.files);
 			};
 		}
-	});
+
 </script>
