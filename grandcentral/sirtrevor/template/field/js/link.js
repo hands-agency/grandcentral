@@ -84,7 +84,7 @@
 			{
 				var link_regex = /(ftp|http|https):\/\/./;
 				if (!link_regex.test(link)) link = "http://" + link;
-				document.execCommand('CreateLink', false, encodeURI(link));
+				document.execCommand('CreateLink', false, link);
 				closeContext(template);
 			}
 		//	Bad link
