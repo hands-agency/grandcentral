@@ -53,10 +53,10 @@
 	//	Build the label
 		$labels[] = $lang['lang'];
 	//	Build the field
-		$value = (isset($value[$lang['lang']])) ? $value[$lang['lang']] : '';
+		$val = (isset($value[$lang['lang']])) ? $value[$lang['lang']] : '';
 		$params = array(
 		//	'label' => null,
-			'value' => $value,
+			'value' => $val,
 			'values' => $values,
 			'valuestype' => $valuestype,
 			'disabled' => $_FIELD->is_disabled()
