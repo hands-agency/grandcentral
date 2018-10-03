@@ -49,7 +49,7 @@ class appReader extends _apps
 			{
 				define('reader', $this->param['item']);
 				define('item', $this->param['item']);
-				registry::set(registry::current_index, item, $item);
+				registry::set(registry::current_index, item, $item);				
 				$detail = i($this->param['detail']);
 			//	Force display on the reader section
 			//	$detail['zone'] =

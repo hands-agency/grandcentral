@@ -8,7 +8,7 @@
  * @access		public
  * @link		http://grandcentral.fr
  */
-class fieldI18n extends _fields
+class fieldI18n extends _fieldsSelector
 {
 	protected $datatype = array('array');
 	protected $field;

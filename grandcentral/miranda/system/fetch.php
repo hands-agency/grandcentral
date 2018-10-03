@@ -53,14 +53,14 @@ class fetch
 				$items->get($table, $param);
 				break;
 				
-		//	Sociologists and admin see everything
-			case $this->user->is_a('sociologist'):
+		//	Gods and admin see everything
 			case $this->user->is_a('admin'):
+			case $this->user->is_a('adminfront'):
 				$items->get($table, $param);
 				break;
 			
-		//	Investigators only see publics and their privates
-			case $this->user->is_a('investigator'):
+		//	Normal users only see publics and their privates
+			case $this->user->is_a('normal'):
 				$items->get($table, array_merge(
 					$param,
 					array(
@@ -166,7 +166,7 @@ class fetch
 		{
 			return i('map', array(
 				'id' => $i,
-				'order()' => 'inherit(id)',
+				'order()' => 'updated DESC',
 				'status' => 'live',
 			));
 		}

@@ -41,18 +41,24 @@
  	$q = 'SELECT DISTINCT `lang` FROM `version`';
 	$r = $db->query($q);
 	
+//	For all fields
+	$class = $_FIELD->get_field();
+	$value = $_FIELD->get_value();
+	$values = $_FIELD->get_values();
+	$valuestype = $_FIELD->get_valuestype();
+		
 //	Loop through the versions
 	foreach ($r['data'] as $lang)
 	{
 	//	Build the label
 		$labels[] = $lang['lang'];
 	//	Build the field
-		$class = $_FIELD->get_field();
-		$value = $_FIELD->get_value();
 		$value = (isset($value[$lang['lang']])) ? $value[$lang['lang']] : '';
 		$params = array(
 		//	'label' => null,
 			'value' => $value,
+			'values' => $values,
+			'valuestype' => $valuestype,
 			'disabled' => $_FIELD->is_disabled()
 		);
 		$fields[] = new $class($_FIELD->get_name().'['.$lang['lang'].']', $params);
