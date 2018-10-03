@@ -39,11 +39,11 @@ function restoreSelection(range) {
 //         tempRange.selectNodeContents(containerEl);
 //         tempRange.setEnd(range.startContainer, range.startOffset);
 //         before = tempRange.toString();
-// 
+//
 //         tempRange.selectNodeContents(containerEl);
 //         tempRange.setStart(range.endContainer, range.endOffset);
 //         after = tempRange.toString();
-// 
+//
 //         tempRange.detach();
 //     } else if ( (sel = document.selection) && sel.type != "Control") {
 //         range = sel.createRange();
@@ -51,7 +51,7 @@ function restoreSelection(range) {
 //         tempRange.moveToElementText(containerEl);
 //         tempRange.setEndPoint("EndToStart", range);
 //         before = tempRange.text;
-// 
+//
 //         tempRange.moveToElementText(containerEl);
 //         tempRange.setEndPoint("StartToEnd", range);
 //         after = tempRange.text;
@@ -85,7 +85,7 @@ function getCurrentHref()
 	var $node = $(node);
 	// console.log($node[0].tagName);
 	// console.log(sirtrevorSelRange);
-	
+
 	if ($node[0].tagName == 'A')
 	{
 		return $node.attr('href');
@@ -103,7 +103,7 @@ var sirtrevorHref;
 //         if (sel.getRangeAt && sel.rangeCount) {
 //             range = sel.getRangeAt(0);
 //             range.deleteContents();
-//             var textNode = document.createTextNode(text) 
+//             var textNode = document.createTextNode(text)
 //             range.insertNode(textNode);
 //             sel.removeAllRanges();
 //             range = range.cloneRange();
@@ -124,8 +124,8 @@ var sirtrevorHref;
 //     document.getElementById("textInserter").style.display = "block";
 //     document.getElementById("textToInsert").focus();
 // }
-//  
-// 
+//
+//
 // function insertText() {
 //     var text = document.getElementById("textToInsert").value;
 //     document.getElementById("textInserter").style.display = "none";

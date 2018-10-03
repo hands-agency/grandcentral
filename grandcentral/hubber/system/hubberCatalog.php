@@ -10,6 +10,7 @@
 class hubberCatalog
 {
   private $xml;
+  private $catalog;
 
 /**
  * Récupérer le catalogue
@@ -35,8 +36,10 @@ class hubberCatalog
  *
  * @access	public
  */
-  public function parse_url($url, $user, $pass)
+  public function parse_url($url, $user, $pass, $catalog = 'billets')
 	{
+    $this->catalog = explode(',',mb_strtolower($catalog));
+    for ($i=0, $count=count($this->catalog) ; $i < $count; $i++) $this->catalog[$i] = trim($this->catalog[$i]);
     $timeout = 15;
 
     $ch = curl_init();
@@ -88,13 +91,18 @@ class hubberCatalog
       foreach ($catalogs as $catalog)
       {
         $title = $catalog->getElementsByTagName('TITLE')[0]->nodeValue;
+        $title = mb_strtolower(trim($title));
         // echo "<pre>";print_r($title);echo "</pre>";
         // if (mb_strstr(mb_strtolower($title), 'saison') !== false)
         // if (mb_strtolower(trim($title)) == 'billets')
-        if (trim($title) == 'COMEDIEFRANCAISE7')
-
+        // if (trim($title) == 'COMEDIEFRANCAISE7')
         // if (mb_strstr(mb_strtolower($title), 'billets hors carte') !== false)
+        // echo "<pre>";print_r($title);echo "</pre>";
+        // if (mb_strtolower(trim($title)) == 'billets 18-19')
+        if (in_array($title, $this->catalog))
         {
+          // echo "<pre>";print_r($title);echo "</pre>";
+          echo '<strong>Catalogue : '.$title.'</strong><br>';
           $data = $this->_parse_catalog($catalog);
           $this->_save_catalog($data);
         }
@@ -182,12 +190,20 @@ class hubberCatalog
       // push only seance with publication = 1
       if ($tmp['publication'] == 1)
       {
-        $data['seance'][] = $this->_parse_seance($seance);
+        $data['seance'][] = $tmp;
       }
     }
     // hack : get start and end date from seance instead of xml feed
-    $data['date_debut'] = $data['seance'][0]['date'];
-    $data['date_fin'] = $data['seance'][(count($data['seance']) - 1)]['date'];
+    if (!empty($data['seance']))
+    {
+      $data['date_debut'] = $data['seance'][0]['date'];
+      $data['date_fin'] = $data['seance'][(count($data['seance']) - 1)]['date'];
+    }
+    else
+    {
+      $data['date_debut'] = $date_debut->item(0)->nodeValue;
+      $data['date_fin'] = $date_fin->item(0)->nodeValue;
+    }
 
     // echo "<pre>event : ";print_r($data);echo "</pre>";
     // $data['url'] = $data['seance'][0]['url'];
@@ -285,6 +301,7 @@ class hubberCatalog
     //   // $season->save();
     // }
     //
+    // echo "<pre>";print_r($data);echo "</pre>";exit;
     foreach ($data['event'] as $event)
     {
       $this->_save_event($event);
@@ -298,15 +315,16 @@ class hubberCatalog
  */
   private function _save_event($data)
 	{
-    $q = 'SELECT id FROM season WHERE start <= "'.mb_substr($data['date_debut'], 0, 10).'" AND end >= "'.mb_substr($data['date_debut'], 0, 10).'" LIMIT 1';
+    $q = 'SELECT id, title FROM season WHERE start <= "'.mb_substr($data['date_debut'], 0, 10).'" AND end >= "'.mb_substr($data['date_debut'], 0, 10).'" LIMIT 1';
     $db = database::connect('site');
     $r = $db->query($q);
-
+    // echo "<pre>";print_r($r);echo "</pre>";
     if ($r['count'] > 0)
     {
       $event = i('event');
       $event->get(array(
-        'externalid' => $data['id']
+        'externalid' => $data['id'],
+        'status' => ['live','asleep']
       ));
 
       $event['season'] = 'season_'.$r['data'][0]['id'];
@@ -323,10 +341,10 @@ class hubberCatalog
       $event['place'] = $this->_get_place($data['place']);
       $event['status'] = $this->_get_status($data['status_id']);
       $event['sellstatus'] = $this->_get_sellstatus($data['sell_status']);
-      $event['seance'] = json_encode($data['seance']);
+      if (isset($data['seance'])) $event['seance'] = json_encode($data['seance']);
 
       $event->save();
-      echo $event['title'].' : saved <br>';
+      echo $event['id'].' / '.$event['title'].' : saved ('.$r['data'][0]['title'].')<br>';
     }
   }
 /**
@@ -350,6 +368,7 @@ class hubberCatalog
  */
   private function _get_salestart($event)
 	{
+    if (!isset($event['seance'])) return '0000-00-00 00:00:00';
     $start = new DateTime('now');
     foreach ($event['seance'] as $seance)
     {
