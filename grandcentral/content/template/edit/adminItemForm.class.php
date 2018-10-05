@@ -154,7 +154,11 @@ class adminItemForm
 				$field['values'] = $tmp->get_values();
 				break;
 		//	date, created, updated
-			case in_array($attr['type'], array('created', 'updated', 'date')):
+			case $attr['type'] == 'date':
+				$field['type'] = 'date';
+				$field['now'] = $attr['now'];
+				break;
+			case in_array($attr['type'], array('created', 'updated')):
 				$field['type'] = 'date';
 				break;
 		//	status

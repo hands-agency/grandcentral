@@ -25,6 +25,17 @@ class attrDate extends _attrs
 		return $this;
 	}
 /**
+ * Set the data into the attribute.
+ *
+ * @param	mixed	attribute data
+ * @access	public
+ */
+	public function get()
+	{
+		// echo "<pre>";print_r($this);echo "</pre>";
+		return $this->is_empty() && $this->params['now'] === true ? date('Y-m-d h:i:s') : $this->data;
+	}
+/**
  * Check if the attribute data is empty
  *
  * @return	bool	true if is empty, false otherwise
@@ -99,10 +110,10 @@ class attrDate extends _attrs
 		$timeFirst  = strtotime($this->data);
 		$timeSecond = strtotime(date('Y-m-d H:i:s'));
 		$since = $timeSecond - $timeFirst;
-	
+
 	//	Just now (< 30 second ago)
 		if ($since < 30) $return = cst('Just now');
-		
+
 	//	Otherwise
 		else
 		{
@@ -128,7 +139,7 @@ class attrDate extends _attrs
 	//	Return
 	    return $return;
 	}
-	
+
 /**
  * Get the properties of an attributes
  *
@@ -146,6 +157,11 @@ class attrDate extends _attrs
 			'label' => 'Format',
 			'valuestype' => 'array',
 			'values' => array('datetime', 'date')
+		);
+		$params['now'] = array(
+			'name' => 'now',
+			'type' => 'bool',
+			'label' => 'Insert current date if empty'
 		);
 	//	Return
 		return $params;
