@@ -313,11 +313,13 @@ class bunch implements ArrayAccess, Iterator, Countable
 	{
 		// print'<pre>';print_r($nicknames);print'</pre>';
 		$nicknames = array_filter((array) $nicknames);
+		$ids = [];
 	//	analyse des nicknames
 		foreach ($nicknames as $nickname)
 		{
 			list($table, $id) = explode('_', $nickname);
-			$ids[$table][] = $id;
+			if (!isset($ids[$table])) $ids[$table] = [];
+			array_push($ids[$table], $id);
 		}
 	//	Only if we have params
 		if (!empty($ids))
@@ -332,6 +334,7 @@ class bunch implements ArrayAccess, Iterator, Countable
 				}
 				$this->get($table, $params);
 			}
+
 		// //	tri
 		// 		foreach ($this->data as $item)
 		// 		{

@@ -450,6 +450,8 @@ class database
 			//	affectation des résultats
 				foreach ($results['data'] as $rel)
 				{
+					// if (!isset($datas[$rel['itemid']]) || empty($datas[$rel['itemid']])) $datas[$rel['itemid']] = array();
+					if (!isset($datas[$rel['itemid']][$rel['key']]) || empty($datas[$rel['itemid']][$rel['key']])) $datas[$rel['itemid']][$rel['key']] = [];
 					$datas[$rel['itemid']][$rel['key']][] = $rel['rel'].'_'.$rel['relid'];
 				}
 			}
