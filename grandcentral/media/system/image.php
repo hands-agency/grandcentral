@@ -203,7 +203,7 @@ class image extends media
 				$this->copy($thumb->get_dir());
 				$thumb = new image($file);
 				$thumb->resize($width, $height, true);
-				$thumb->save(true);
+				$thumb->save(true, 0755, $quality);
 			}
 		//	Return
 			return $thumb;

@@ -158,7 +158,7 @@ li.ui-draggable-dragging *
 
 #mediaLibrary .files li a:not(.image) .preview
 {
-	height:60px;
+	height:70px;
 	background:#F2F2F2;
 }
 #mediaLibrary .files li a .preview:before
@@ -243,6 +243,7 @@ li.ui-draggable-dragging *
 	width:120px;
 	vertical-align: middle;
 	font-size:12px;
+	height: 210px;
 }
 #mediaLibrary .dir.empty .files li.upload
 {
