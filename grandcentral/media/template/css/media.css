@@ -20,7 +20,7 @@
 #mediaLibraryNav li.back
 {
 	width:70px;
-	float:left;
+	display: inline-block;
 }
 #mediaLibraryNav li.back button
 {
@@ -31,8 +31,8 @@
 }
 #mediaLibraryNav li.search
 {
-	padding-left:80px;
-	width:100%;
+	width: calc(100% - 80px);
+	float: right;
 }
 #mediaLibraryNav li.search input
 {
