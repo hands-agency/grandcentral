@@ -188,7 +188,9 @@ class sentinel
     {
 		// print '<pre>';print_r($e);print'</pre>';
 		$param = array(
-			'What went wrong' => $e->getMessage()
+			'What went wrong' => $e->getMessage(),
+			'File' => $e->getFile(),
+			'Line' => $e->getLine(),
 		);
 		$this->log(E_WARNING, $param);
     }
