@@ -18,10 +18,10 @@
  * @link		http://grandcentral.fr
  */
 /********************************************************************************************/
-//	
+//
 /********************************************************************************************/
 	$_FIELD = $_PARAM['field'];
-	$values = $_FIELD->prepare_values();
+	$values = $_FIELD->prepare_values(null, 500);
 	$placeholder = $_FIELD->get_placeholder();
 	// TODO : colgroup
 ?>
