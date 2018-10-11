@@ -56,6 +56,7 @@
         'exposer' => $url['update'].'?item=section&id='.$sections['section_exposer']['id'],
         'press' => $url['update'].'?item=text&id='.$texts['text_press']['id'],
         'legal' => $url['update'].'?item=text&id='.$texts['text_legals']['id'],
+        'privacy' => $url['update'].'?item=custom&id=privacy',
       ),
       'service' => array(
         'see'              => $url['list'].'?item=service',
