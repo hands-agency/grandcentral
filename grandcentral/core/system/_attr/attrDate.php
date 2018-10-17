@@ -11,7 +11,8 @@ class attrDate extends _attrs
 {
 	protected $data = '0000-00-00 00:00:00';
 	protected $params = array(
-		'type' => 'datetime'
+		'type' => 'datetime',
+		'now' => false
 	);
 /**
  * Set the data into the attribute.
@@ -57,6 +58,19 @@ class attrDate extends _attrs
 	{
 		$date = new DateTime($this->data);
 		return $date->format($format);
+	}
+/**
+ * Returns date formatted according to given format.
+ * Uses php [Datetime::format](http://php.net/manual/en/datetime.format.php) method.
+ *
+ * @param	string	Format accepted by [date()](http://php.net/manual/en/function.date.php)
+ * @return	string	Returns the formatted date string on success or FALSE on failure.
+ * @access	public
+ */
+	public function set_now($bool)
+	{
+		$this->params['now'] = (bool) $bool;
+		return $this;
 	}
 /**
  * Returns date difference
