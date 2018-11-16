@@ -11,7 +11,8 @@ class attrDate extends _attrs
 {
 	protected $data = '0000-00-00 00:00:00';
 	protected $params = array(
-		'type' => 'datetime'
+		'type' => 'datetime',
+		'now' => false
 	);
 /**
  * Set the data into the attribute.
@@ -23,6 +24,17 @@ class attrDate extends _attrs
 	{
 		$this->data = (empty($data)) ? '0000-00-00 00:00:00' : $data;
 		return $this;
+	}
+/**
+ * Set the data into the attribute.
+ *
+ * @param	mixed	attribute data
+ * @access	public
+ */
+	public function get()
+	{
+		// echo "<pre>";print_r($this);echo "</pre>";
+		return $this->is_empty() && $this->params['now'] === true ? date('Y-m-d h:i:s') : $this->data;
 	}
 /**
  * Check if the attribute data is empty
@@ -46,6 +58,19 @@ class attrDate extends _attrs
 	{
 		$date = new DateTime($this->data);
 		return $date->format($format);
+	}
+/**
+ * Returns date formatted according to given format.
+ * Uses php [Datetime::format](http://php.net/manual/en/datetime.format.php) method.
+ *
+ * @param	string	Format accepted by [date()](http://php.net/manual/en/function.date.php)
+ * @return	string	Returns the formatted date string on success or FALSE on failure.
+ * @access	public
+ */
+	public function set_now($bool)
+	{
+		$this->params['now'] = (bool) $bool;
+		return $this;
 	}
 /**
  * Returns date difference
@@ -99,10 +124,10 @@ class attrDate extends _attrs
 		$timeFirst  = strtotime($this->data);
 		$timeSecond = strtotime(date('Y-m-d H:i:s'));
 		$since = $timeSecond - $timeFirst;
-	
+
 	//	Just now (< 30 second ago)
 		if ($since < 30) $return = cst('Just now');
-		
+
 	//	Otherwise
 		else
 		{
@@ -128,7 +153,7 @@ class attrDate extends _attrs
 	//	Return
 	    return $return;
 	}
-	
+
 /**
  * Get the properties of an attributes
  *
@@ -146,6 +171,11 @@ class attrDate extends _attrs
 			'label' => 'Format',
 			'valuestype' => 'array',
 			'values' => array('datetime', 'date')
+		);
+		$params['now'] = array(
+			'name' => 'now',
+			'type' => 'bool',
+			'label' => 'Insert current date if empty'
 		);
 	//	Return
 		return $params;

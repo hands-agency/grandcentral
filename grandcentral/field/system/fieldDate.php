@@ -1,7 +1,7 @@
 <?php
 /**
  * Classe du champ text
- * 
+ *
  * @package		form
  * @author		Michaël V. Dandrieux <@mvdandrieux>
  * @author		Sylvain Frigui <sf@hands.agency>
@@ -12,6 +12,7 @@ class fieldDate extends _fieldsInput
 {
 	protected $autocomplete = false;
 	protected $regexp;
+	protected $now = false;
 	protected $datalist = false;
 	protected $datatype = array('string');
 /**
@@ -32,7 +33,7 @@ class fieldDate extends _fieldsInput
  * 	...
  * );
  * new field_text('title', $param);
- * 
+ *
  * @param	string	le nom du champ
  * @param	array	le tableau de paramètres du champ
  * @access	public
@@ -55,6 +56,17 @@ class fieldDate extends _fieldsInput
 		return $this;
 	}
 /**
+ * Auto fill date field with current date
+ *
+ * @param		bool
+ * @access	public
+ */
+	public function set_now($bool)
+	{
+		$this->now = (bool) $bool;
+		return $this;
+	}
+/**
  * Obtenir la liste des suggestions
  *
  * @return	array	la liste de suggestions
@@ -63,6 +75,16 @@ class fieldDate extends _fieldsInput
 	public function get_datalist()
 	{
 		return $this->datalist;
+	}
+/**
+ * Obtenir la valeur du champ
+ *
+ * @return	date la date
+ * @access	public
+ */
+	public function get_value()
+	{
+		return $this->value;
 	}
 /**
  * Définit la valeur de l'attribut autocomplete du champ
@@ -90,7 +112,7 @@ class fieldDate extends _fieldsInput
 	}
 /**
  * Obtenir la définition des propriétés du champ
- * 
+ *
  * @return	array 	la liste des propriétés et leurs définitions
  * @access	public
  * @static
@@ -100,7 +122,7 @@ class fieldDate extends _fieldsInput
 		$properties = parent::get_properties();
 		$properties['autocomplete'] = 'bool';
 		$properties['regexp'] = 'text';
-		
+
 		return $properties;
 	}
 }
