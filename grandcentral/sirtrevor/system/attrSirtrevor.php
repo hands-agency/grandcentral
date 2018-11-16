@@ -38,6 +38,9 @@ class attrSirtrevor extends _attrs
 				$tmp = explode('_', str_replace(array('[', ']'), '', $url));
 				$to[] = i($tmp[0], $tmp[1])['url']->__tostring();
 			}
+			else {
+				$to[] = $url;
+			}
 		}
 		// print'<pre>from : ';print_r($from);print'</pre>';
 		// print'<pre>to : ';print_r($to);print'</pre>';
