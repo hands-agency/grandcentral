@@ -1,4 +1,4 @@
-/*! UIkit 3.0.0-rc.20 | http://www.getuikit.com | (c) 2014 - 2018 YOOtheme | MIT License */
+/*! UIkit 3.0.0-rc.23 | http://www.getuikit.com | (c) 2014 - 2018 YOOtheme | MIT License */
 /* ========================================================================
    Component: Base
  ========================================================================== */
@@ -161,7 +161,6 @@ video {
  * 3. Corrects responsive `max-width` behavior if padding and border are used.
  * 4. Exclude SVGs for IE11 because they don't preserve their aspect ratio.
  */
-audio,
 canvas,
 img,
 video {
@@ -5379,7 +5378,6 @@ ul.uk-nav-sub {
 /*
  * 1. Hide by default
  * 2. Set position
- * 3. Use height instead of `bottom: 0` because of wrong height calculation on Android (+ Chrome Responsive Mode)
  */
 .uk-offcanvas {
   /* 1 */
@@ -5387,10 +5385,9 @@ ul.uk-nav-sub {
   /* 2 */
   position: fixed;
   top: 0;
+  bottom: 0;
   right: 0;
   z-index: 1000;
-  /* 3 */
-  height: 100vh;
 }
 /*
  * Flip modifier
@@ -7699,7 +7696,6 @@ iframe.uk-cover {
  * Because `img, `video`, `canvas` and  `audio` are already responsive by default, see Base component
  */
 .uk-preserve-width,
-.uk-preserve-width audio,
 .uk-preserve-width canvas,
 .uk-preserve-width img,
 .uk-preserve-width svg,
