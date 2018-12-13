@@ -252,15 +252,15 @@ class dataCapeb
           $params['id'][] = '!='.$data[1];
         }
       }
-
       $events = i('event', $params);
 
       $columns = $events->get_attr('end');
       $past = [];
       $future = [];
-      $dateNow = date('Y-m-d  h:m:s');
-      foreach ($events as $key => $event) {
-        if ($event['end']->get() < $dateNow) {
+      // $dateNow = date('Y-m-d  h:m:s');
+      foreach ($events as $key => $event)
+      {
+        if (mktime($event['end']->format('H'), $event['end']->format('i'), $event['end']->format('s'), $event['end']->format('n'), $event['end']->format('j'), $event['end']->format('Y')) <= mktime(date('H'),date('i'),date('s'),date('n'),date('j'),date('Y'))) {
           array_push($past, $event);
         }
         else {
