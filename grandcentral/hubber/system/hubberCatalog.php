@@ -193,6 +193,10 @@ class hubberCatalog
         $data['seance'][] = $tmp;
       }
     }
+    // order seance by date
+    // ksort($data['seance']);
+    // $data['seance'] = array_values($data['seance']);
+
     // hack : get start and end date from seance instead of xml feed
     if (!empty($data['seance']))
     {
@@ -332,17 +336,32 @@ class hubberCatalog
       $event['externalurl'] = $data['url'];
       if ($event['title']->is_empty()) $event['title'] = $data['title'];
       if ($event['descr']->is_empty()) $event['descr'] = $data['description'];
-      $event['start'] = $data['date_debut'];
-      $event['end'] = $data['date_fin'];
       $event['salestart'] = $this->_get_salestart($data);
-      $event['saleend'] = $data['date_fin'];
       $event['pricemin'] = $data['prix_min'];
       $event['pricemax'] = $data['prix_max'];
       $event['place'] = $this->_get_place($data['place']);
       $event['status'] = $this->_get_status($data['status_id']);
-      $event['sellstatus'] = $this->_get_sellstatus($data['sell_status']);
-      if (isset($data['seance'])) $event['seance'] = json_encode($data['seance']);
+      // on ne change pas l'état des spectacles bientôt disponibles (https://trello.com/c/E9SqtEuH)
+      if ($event['sellstatus']->is_empty() || $event['sellstatus']->get() != 'sellstatus_4') {$event['sellstatus'] = $this->_get_sellstatus($data['sell_status']);}
+      if (isset($data['seance']))
+      {
+        $seances = $this->_get_seances($event, $data['seance']);
+        // echo "<pre>";print_r($seances);echo "</pre>";
+        $event['seance'] = json_encode($seances, JSON_UNESCAPED_UNICODE);//json_encode($data['seance']);
+        $event['start'] = $seances[0]['date'];
+        $event['end'] = $seances[(count($data['seance']) - 1)]['date'];
+      }
+      else {
+        $event['start'] = $data['date_debut'];
+        $event['end'] = $data['date_fin'];
+      }
+      $event['saleend'] = $data['date_fin'];
 
+      // if ($event['id']->get() == 1322)
+      // {
+      //   // echo "<pre>";print_r($event);echo "</pre>";
+      //   echo "<pre>";print_r($data);echo "</pre>";
+      // }
       $event->save();
       echo $event['id'].' / '.$event['title'].' : saved ('.$r['data'][0]['title'].')<br>';
     }
@@ -360,6 +379,35 @@ class hubberCatalog
       return $item->get_nickname();
     }
     return null;
+  }
+/**
+ * Sauvegarder une séance
+ *
+ * @access	private
+ */
+  private function _get_seances($event, $rawseances)
+	{
+    $seances = [];
+    // if ($event['id']->get() == 1322)
+    // {
+    foreach (json_decode($event['seance']->get(), true) as $seance)
+    {
+      $seances[$seance['date']] = $seance;
+    }
+    foreach ($rawseances as $seance)
+    {
+      $seances[$seance['date']] = $seance;
+    }
+    // echo "<pre>";print_r($seances);echo "</pre>";
+    ksort($seances);
+    $seances = array_values($seances);
+    // $seances = json_encode($seances);
+    // echo "<pre>";print_r(count($seances));echo "</pre>";
+
+    // echo "<pre>ancien : ";print_r(count(json_decode($event['seance']->get(), true)));echo "</pre>";
+    // echo "<pre>nouveau : ";print_r($rawseances);echo "</pre>";
+    // }
+    return $seances;
   }
 /**
  * Sauvegarder une séance
@@ -387,7 +435,8 @@ class hubberCatalog
  */
   private function _get_status($statusId)
 	{
-    return $statusId == 1 ? 'live' : 'asleep';
+    // return $statusId == 1 ? 'live' : 'asleep';
+    return 'live';
   }
 /**
  * Obtenir le status de venter

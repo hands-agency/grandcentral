@@ -65,7 +65,7 @@
 				target:$target,
 			})
 		//	Start with something
-			.trigger('input');
+			// .trigger('input');
 		});
 	}
 
