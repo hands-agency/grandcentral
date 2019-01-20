@@ -54,7 +54,6 @@ class attrUrl extends attrArray
 				// sinon, on va chercher un des titres disponibles
 				else
 				{
-					// echo "<pre>";print_r($this->params['name']);echo "</pre>";
 					foreach ((array) $this->params['name'] as $value)
 					{
 						if (!empty($value))
@@ -63,31 +62,10 @@ class attrUrl extends attrArray
 						}
 					}
 				}
-				// echo "<pre>";print_r($value);echo "</pre>";
 				// affectation
 				$this->data[$key] = $this->_slugify($this->exists_and_extend($value));
 			}
 		}
-
-		// // création du tableau d'urls en fonction de ce qu'on récupère dans le titre
-		// if (empty($this->data) && !empty($this->params['name']))
-		// {
-		// 	foreach ($this->params['name'] as $key => $value)
-		// 	{
-		// 		if (empty($key))
-		// 		{
-		// 			$key = i($this->params['env'], current)['version']['lang']->get();
-		// 		}
-		// 		$value = preg_replace('#(\[[^\]]*\])#', '', $value);
-		// 		$this->data[$key] = $this->_slugify($this->exists_and_extend($value));
-		// 	}
-		// }
-		// // remplissage du tableau s'il manque des éléments
-		// else
-		// {
-		// 	// echo "<pre>";print_r(registry::get());echo "</pre>";exit;
-		//
-		// }
 	//	Return
 		return (!empty($this->data)) ? json_encode($this->data, JSON_UNESCAPED_UNICODE) : '';
 	}
@@ -126,7 +104,9 @@ class attrUrl extends attrArray
 	{
 	//
 		$db = database::connect($this->params['env']);
-	 	$q = 'SELECT COUNT(`id`) as `count` FROM `'.$this->params['table'].'` WHERE (`url` = "'.$this->_slugify($url).'" OR `url` LIKE "%'.$this->_slugify($url).'\"%") AND id != "'.$this->params['id'].'"';
+	 	$q = 'SELECT COUNT(`id`) as `count` FROM `'.$this->params['table'].'`
+		WHERE (`url` = "'.$this->_slugify($url).'" OR `url` LIKE "%'.$this->_slugify($url).'%")
+		AND id != "'.$this->params['id'].'"';
 		$r = $db->query($q);
 		if ($r['data'][0]['count'] > 0)
 		{
@@ -164,18 +144,6 @@ class attrUrl extends attrArray
 		$this->params['nickname'] = $item->get_nickname();
 		$this->params['id'] = $item['id']->get();
 		$this->params['name'] = isset($item['title']) ? $item['title']->get() : '';
-
-		// récupération des données des champs titre
-		// switch (true)
-		// {
-		// 	// no title
-		// 	case !isset($item['title']) || $item['title']->is_empty():
-		// 		$this->params['name'] = $item['key']->get();
-		// 		break;
-		// 	default:
-		// 		$this->params['name'] = $item['title']->get();
-		// 		break;
-		// }
 	}
 /**
  * php http_build_query() on url
@@ -192,15 +160,30 @@ class attrUrl extends attrArray
 		return $url;
 	}
 /**
- * get the current url in another version, if exists
+ * get all urls of current item
  *
  * @param		string	version key
  * @return	string	url
  * @access	public
  */
-	public function get_version($version_key)
+	public function get_hreflang()
 	{
-		return '';
+		$hreflang = [];
+		$versions = i('version',all)->set_index('key');
+		$save = registry::get(registry::current_index, 'site');
+		$site = clone $save;
+
+		foreach ($this->data as $lang => $url)
+		{
+			$site['version'] = $versions['version_'.$lang];
+			registry::set(registry::current_index, 'version', $versions['version_'.$lang]);
+			registry::set(registry::current_index, 'site', $site);
+			$hreflang[$lang] = $this->__tostring();
+		}
+		// restore
+		registry::set(registry::current_index, 'version', $save['version']);
+		registry::set(registry::current_index, 'site', $save);
+		return $hreflang;
 	}
 /**
  * Return the current version of url hash
@@ -234,6 +217,7 @@ class attrUrl extends attrArray
 	public function __tostring()
 	{
 		$url = '';
+		// echo "<pre>";print_r('la');echo "</pre>";
 		// version url
 		if (is_null($this->params['version']))
 		{
@@ -247,6 +231,7 @@ class attrUrl extends attrArray
 		// reader
 		if ($this->params['table'] != 'page')
 		{
+			// echo "<pre>";print_r('ici');echo "</pre>";
 			foreach (registry::get(registry::reader_index) as $page => $table)
 			{
 				if (isset($table[0]['param']) && $this->params['table'] == $table[0]['param']['item'])
