@@ -329,7 +329,7 @@ class hubberCatalog
         'externalid' => $data['id'],
         'status' => ['live','asleep']
       ));
-
+      // echo "<pre>";print_r($data);echo "</pre>";
       $event['season'] = 'season_'.$r['data'][0]['id'];
       $event['externalid'] = $data['id'];
       $event['externalurl'] = $data['url'];
@@ -387,6 +387,7 @@ class hubberCatalog
   private function _get_seances($event, $rawseances)
 	{
     $seances = [];
+    // echo "<pre>";print_r($event);echo "</pre>";
     // if ($event['id']->get() == 1322)
     // {
     foreach (json_decode($event['seance']->get(), true) as $seance)
@@ -415,7 +416,7 @@ class hubberCatalog
  */
   private function _get_salestart($event)
 	{
-    if (!isset($event['seance'])) return '0000-00-00 00:00:00';
+    if (!isset($event['seance'])) return '2001-01-01 00:00:00';
     $start = new DateTime('now');
     foreach ($event['seance'] as $seance)
     {
