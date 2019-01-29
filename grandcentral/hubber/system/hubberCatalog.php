@@ -237,7 +237,6 @@ class hubberCatalog
     $data['status'] = $status->item(0)->nodeValue;
     $data['maxplace'] = $maxplace->item(0)->nodeValue;
     $data['date_vente'] = $date_vente->item(0)->nodeValue;
-    $data['date_vente'] = $date_vente->item(0)->nodeValue;
 
     $categories = $seance->getElementsByTagName('CATEGORIE');
     foreach ($categories as $category)
@@ -330,7 +329,7 @@ class hubberCatalog
         'externalid' => $data['id'],
         'status' => ['live','asleep']
       ));
-
+      // echo "<pre>";print_r($data);echo "</pre>";
       $event['season'] = 'season_'.$r['data'][0]['id'];
       $event['externalid'] = $data['id'];
       $event['externalurl'] = $data['url'];
@@ -348,14 +347,14 @@ class hubberCatalog
         $seances = $this->_get_seances($event, $data['seance']);
         // echo "<pre>";print_r($seances);echo "</pre>";
         $event['seance'] = json_encode($seances, JSON_UNESCAPED_UNICODE);//json_encode($data['seance']);
-        $event['start'] = $seances[0]['date'];
-        $event['end'] = $seances[(count($data['seance']) - 1)]['date'];
+        if ($event['start']->is_empty()) $event['start'] = $seances[0]['date'];
+        if ($event['end']->is_empty()) $event['end'] = $seances[(count($data['seance']) - 1)]['date'];
       }
       else {
-        $event['start'] = $data['date_debut'];
-        $event['end'] = $data['date_fin'];
+        if ($event['start']->is_empty()) $event['start'] = $data['date_debut'];
+        if ($event['end']->is_empty()) $event['end'] = $data['date_fin'];
       }
-      $event['saleend'] = $data['date_fin'];
+      if ($event['saleend']->is_empty()) $event['saleend'] = $data['date_fin'];
 
       // if ($event['id']->get() == 1322)
       // {
@@ -388,6 +387,7 @@ class hubberCatalog
   private function _get_seances($event, $rawseances)
 	{
     $seances = [];
+    // echo "<pre>";print_r($event);echo "</pre>";
     // if ($event['id']->get() == 1322)
     // {
     foreach (json_decode($event['seance']->get(), true) as $seance)
@@ -416,7 +416,7 @@ class hubberCatalog
  */
   private function _get_salestart($event)
 	{
-    if (!isset($event['seance'])) return '0000-00-00 00:00:00';
+    if (!isset($event['seance'])) return '2001-01-01 00:00:00';
     $start = new DateTime('now');
     foreach ($event['seance'] as $seance)
     {
