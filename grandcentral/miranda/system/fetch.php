@@ -57,7 +57,7 @@ class fetch
 			case $this->user->is_a('admin'):
 			case $this->user->is_a('adminfront'):
 			//	God view!!!
-				if ($GLOBALS['map']->is_godView()) unset($param['map']);
+				if (isset($GLOBALS['map']) && $GLOBALS['map']->is_godView()) unset($param['map']);
 			//	Fetch
 				$items->get($table, $param);
 				break;
