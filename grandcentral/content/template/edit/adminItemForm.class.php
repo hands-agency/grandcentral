@@ -156,7 +156,7 @@ class adminItemForm
 		//	date, created, updated
 			case $attr['type'] == 'date':
 				$field['type'] = 'date';
-				$field['now'] = $attr['now'];
+				if (isset($attr['now'])) $field['now'] = $attr['now'];
 				break;
 			case in_array($attr['type'], array('created', 'updated')):
 				$field['type'] = 'date';

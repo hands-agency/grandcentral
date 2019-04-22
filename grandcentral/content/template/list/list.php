@@ -55,7 +55,7 @@
 	$limit = 50;
 
 //	Count
-	$count = count::get($handled_item, $_PARAM, $handled_env);
+	$count = count::get($handled_item, $_PARAM['param'], $handled_env);
 
 //	Pref
 	$pref_filter = isset($_POST['filter']) ? $_POST['filter'] : null;
