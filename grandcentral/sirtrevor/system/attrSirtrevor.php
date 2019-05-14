@@ -22,7 +22,6 @@ class attrSirtrevor extends _attrs
 		$to = array();
 		$pattern = '/<a href=\"([^\"]*)\">.*<\/a>/iU';
 		preg_match_all($pattern, $txt, $matches, PREG_SET_ORDER);
-		// print'<pre>';print_r($matches);print'</pre>';
 		foreach ($matches as $link)
 		{
 			$from[] = $link[1];
@@ -30,11 +29,13 @@ class attrSirtrevor extends _attrs
 			// url déjà dans le texte
 			if (filter_var($url, FILTER_VALIDATE_URL))
 			{
+
 				$to[] = $url;
 			}
 			// lien Grand Central
 			elseif (mb_strstr($url, '['))
 			{
+
 				$tmp = explode('_', str_replace(array('[', ']'), '', $url));
 				$to[] = i($tmp[0], $tmp[1])['url']->__tostring();
 			}
@@ -68,7 +69,6 @@ class attrSirtrevor extends _attrs
 	 */
 		public function cut($length, $add = '...')
 		{
-			if ($this->is_empty()) return '';
 			$d = $this->data;
 			$text = json_decode($this->data)->data[0]->data->text;
 			if (mb_strlen($text) > $length)

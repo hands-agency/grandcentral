@@ -72,13 +72,15 @@
 }
 
 /* External links */
-.adminContext[data-template="/field/link"] [data-panel="external"] iframe
+.adminContext[data-template="/field/link"] [data-panel="external"] iframe,
+.adminContext[data-template="/field/link"] [data-panel="mailto"] iframe
 {
 	height:50px;
 	width:60%;
 	float:left;
 }
-.adminContext[data-template="/field/link"] [data-panel="external"] button
+.adminContext[data-template="/field/link"] [data-panel="external"] button,
+.adminContext[data-template="/field/link"] [data-panel="mailto"] button
 {
 	float:right;
 }

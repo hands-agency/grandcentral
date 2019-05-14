@@ -92,6 +92,28 @@
 		});
 	}
 
+//	Init external linking
+	initMailto = function(panel)
+	{
+
+	//	Send external link
+		$(document).on('click', '.adminContext[data-template="/field/link"] [data-panel="mailto"] button.done', function()
+		{
+		//	Get the value from the iframe
+			var link = $(this).parent().find('iframe').contents().find('input').val();
+
+		//	Good link
+			if(link && link.length > 0)
+			{
+				link = 'mailto:' + link;
+				document.execCommand('CreateLink', false, link);
+				closeContext(template);
+			}
+		//	Bad link
+			else console.log('That is not a valid URL, buddy');
+		});
+	}
+
 //	Init media linking
 	initMedia = function(panel)
 	{
