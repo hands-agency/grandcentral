@@ -1600,7 +1600,7 @@ footer
     -moz-transform: rotateY(180deg);
 }
 .card .face.back {
-    z-index: 8;
+    z-index: -1;
     -webkit-transform: rotateY(-180deg);
     -moz-transform: rotateY(-180deg);
 	background-color:#666;
