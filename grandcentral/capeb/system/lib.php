@@ -52,11 +52,10 @@
         'contributor_organize' => $url['update'].'?item=section&id='.$sections['section_about2']['id'],
         'contact' => $url['update'].'?item=custom&id=contact',
         'contactform' => $url['update'].'?item=section&id='.$sections['section_contact']['id'],
-        'annoncer' => $url['update'].'?item=section&id='.$sections['section_annoncer']['id'],
-        'exposer' => $url['update'].'?item=section&id='.$sections['section_exposer']['id'],
         'press' => $url['update'].'?item=text&id='.$texts['text_press']['id'],
         'legal' => $url['update'].'?item=text&id='.$texts['text_legals']['id'],
         'privacy' => $url['update'].'?item=custom&id=privacy',
+        'text_exposer' => $url['update'].'?item=section&id='.$sections['section_exposer']['id'],
       ),
       'service' => array(
         'see'              => $url['list'].'?item=service',
@@ -108,7 +107,7 @@
       'guide' => array(
         'see' => $url['list'].'?item=guide',
         'add'    => $url['update'].'?item=guide',
-        'update' => $url['update'].'?item=guide&id=[itemid]',
+        // 'update' => $url['update'].'?item=guide&id=[itemid]',
         //'delete' => $url['delete'].'?item=guide&id=[itemid]',
         'guide_organize' => $url['update'].'?item=custom&id=guide_organize',
       ),
@@ -144,6 +143,11 @@
       ),
       'media' => array(
         'see_media' => $url['update'].'?item=custom&id=media'
+      ),
+      'formad' => array(
+        'text_annoncer' => $url['update'].'?item=section&id='.$sections['section_annoncer']['id'],
+        'see' => $url['list'].'?item=formad',
+        'add' => $url['update'].'?item=formad'
       )
     );
     // echo "<pre>";print_r($tree);echo "</pre>";exit;
