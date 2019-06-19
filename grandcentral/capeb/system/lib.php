@@ -141,6 +141,9 @@
         // 'edit_2col' => $url['update'].'?item=section&id='.$sections['section_2col']['id'],
         // 'edit_1col' => $url['update'].'?item=section&id='.$sections['section_1col']['id'],
 
+      ),
+      'media' => array(
+        'see_media' => $url['update'].'?item=custom&id=media'
       )
     );
     // echo "<pre>";print_r($tree);echo "</pre>";exit;
