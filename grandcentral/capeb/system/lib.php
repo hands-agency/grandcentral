@@ -2,7 +2,7 @@
   // tester si l'utilisateur est connecté et peut voir les offres réservées
   function user_can_see()
   {
-    return $_SESSION['user']->is_a('member') || $_SESSION['user']->is_a('webmaster') || $_SESSION['user']->is_admin() ? true : false;
+    return ($_SESSION['user']->is_a('member') && in_array($_SESSION['capeb']->get_nickname(), $_SESSION['user']['capeb']->get())) || $_SESSION['user']->is_a('webmaster') || $_SESSION['user']->is_admin() ? true : false;
   }
 
   function webmaster_can_edit($table)
