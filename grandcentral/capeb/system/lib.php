@@ -93,8 +93,8 @@
       ),
       'combat' => array(
         'see' => $url['list'].'?item=combat',
-        // 'add'    => $url['update'].'?item=training',
-        'update' => $url['update'].'?item=combat&id=[itemid]',
+        'add'    => $url['update'].'?item=combat',
+        // 'update' => $url['update'].'?item=combat&id=[itemid]',
         //'delete' => $url['delete'].'?item=training&id=[itemid]'
       ),
       'partner' => array(
