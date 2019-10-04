@@ -297,8 +297,8 @@ class CAS_Client
     private function _getServerBaseURL()
     {
         // the URL is build only when needed
-        if ( empty($this->_server['base_url']) ) {		
-            $this->_server['base_url'] = 'http://' . $this->_getServerHostname();
+        if ( empty($this->_server['base_url']) ) {
+            $this->_server['base_url'] = 'https://' . $this->_getServerHostname();
             if ($this->_getServerPort()!=443) {
                 $this->_server['base_url'] .= ':'
                 .$this->_getServerPort();
@@ -789,10 +789,10 @@ class CAS_Client
 
         // skip Session Handling for logout requests and if don't want it'
         if (session_id()=="" && !$this->_isLogoutRequest()) {
-        	phpCAS::trace("session id = ".session_id());    
-		phpCAS :: trace("Starting a new session");          
+        	phpCAS::trace("session id = ".session_id());
+		phpCAS :: trace("Starting a new session");
 	    session_start();
-        } 
+        }
 
         // are we in proxy mode ?
         $this->_proxy = $proxy;
