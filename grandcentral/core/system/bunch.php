@@ -332,17 +332,20 @@ class bunch implements ArrayAccess, Iterator, Countable
 				}
 				$this->get($table, $params);
 			}
-		// //	tri
-		// 		foreach ($this->data as $item)
-		// 		{
-		// 			$order[] = array_search($item->get_nickname(), $nicknames);
-		// 		}
-		// 		asort($order);
-		// 		foreach ($order as $key => $index)
-		// 		{
-		// 			$data[$index] = $this->data[$key];
-		// 		}
-		// 		$this->data = array_values($data);
+			//	tri
+			if (count($ids) > 1)
+			{
+				foreach ($this->data as $item)
+				{
+					$order[] = array_search($item->get_nickname(), $nicknames);
+				}
+				asort($order);
+				foreach ($order as $key => $index)
+				{
+					$data[$index] = $this->data[$key];
+				}
+				$this->data = array_values($data);
+			}
 		}
 		return $this;
 	}
