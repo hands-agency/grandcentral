@@ -299,7 +299,7 @@ class dataCapeb
 		{
       // params
       $p = array(
-        'order()' => 'title ASC',
+        'order()' => 'position ASC, title ASC',
         'capeb' => array(self::FALLBACK, $this->capeb->get_nickname())
       );
       // blacklist
