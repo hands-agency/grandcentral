@@ -241,7 +241,7 @@ class attrUrl extends attrArray
 					if (mb_substr($tmp, 0, 1) == '{')
 					{
 						$t = json_decode($tmp, true);
-						$tmp = $t[i('version', current)['lang']->get()];
+						if (isset($t[i('version', current)['lang']->get()])) $tmp = $t[i('version', current)['lang']->get()];
 					}
 
 					if ($tmp != '/') $url .= $tmp;
