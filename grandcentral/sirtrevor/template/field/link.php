@@ -16,13 +16,13 @@
  * @license		http://grandcentral.fr/license MIT License
  * @access		public
  * @link		http://grandcentral.fr
- */	
+ */
 /********************************************************************************************/
 //	Some bind
 /********************************************************************************************/
 	$_APP->bind_css('field/css/link.css');
 	$_APP->bind_script('field/js/link.js');
-	
+
 /********************************************************************************************/
 //	Some vars
 /********************************************************************************************/
@@ -30,7 +30,8 @@
 	$currentLink = isset($_POST['link']) ? $_POST['link'] : null;
 //	Iframe Link (Worst.Method.Ever)
 	$iframeLink = '/grandcentral/sirtrevor/template/field/link.html';
-	
+	$iframeMailto = '/grandcentral/sirtrevor/template/field/link.mailto.html';
+
 /********************************************************************************************/
 //	Get some work done
 /********************************************************************************************/
@@ -39,27 +40,31 @@
 	{
 		switch (true)
 		{
-		//	Internal link
+			//	Internal link
 			case $currentLink{0} == '[' :
 				$currentLinkType = 'internal';
 				break;
-		//	Media
-			case strstr($currentLink, app('media')->get_templateurl('site')) :
+			//	Media
+			case mb_strstr($currentLink, app('media')->get_templateurl('site')) :
 				$currentLinkType = 'media';
 				break;
-		//	External link
+			//	External link
+			case mb_substr($currentLink, 0, 6) == 'mailto' :
+				$currentLinkType = 'mailto';
+				break;
+			//	External link
 			default:
 				$currentLinkType = 'external';
 				break;
 		}
 	}
-	
+
 //	Get the things you can link to
 	$items = i('item', array(
 		'hasurl' => true,
 	//	'order()' => 'title',
 	), 'site');
-	
+
 //	Save pref and open the last panel
 	$panel = (isset($_SESSION['user']['pref']['sirtrevor']['link'])) ? $_SESSION['user']['pref']['sirtrevor']['link'] : $defaultPanel;
 	// $_APP->bind_code('script', '

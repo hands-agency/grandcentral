@@ -1,43 +1,8 @@
+<?php $rawfiles = !empty($files) ? $files : [];  ?>
 <div class="dir <?php if (!isset($files)): ?>empty<?php endif ?>">
 	<?php $count = 0; ?>
 	<h2><span class="rule"><?=$here?></span></h2>
-	<ul class="files">
-		<li class="upload">
-			<div id="holder">
-				<p>Drag & drop files from your computer to upload (yes you can)</p>
-				<progress id="uploadprogress" min="0" max="100" value="0">0</progress>
-			</div>
-			<p id="upload" class="hidden"><label>Drag & drop not supported, but you can still upload via this input field:<br><input type="file"></label></p>
-			<p id="filereader">File API & FileReader API not supported</p>
-			<p id="formdata">XHR2's FormData is not supported</p>
-			<p id="progress">XHR2's upload progress isn't supported</p>
-		</li>
-		<?php if (isset($files)) : ?>
-		<?php foreach ($files as $file):
-			$file = media($file->get_root());
-		?>
-		<li data-path="<?=$file->get_path()?>" data-url="<?=$file->get_url()?>" data-info="<?= $file->get_extension() ?> • <?= $file->get_size() ?>" data-title="<?= $file->get_key() ?>">
-			<a href="#" class="file <?=$file->get_mimeType()?>">
-				<?php
-					$preview = (is_a($file, 'image')) ? $file->thumbnail(120, null)->get_url() : null;
-				?>
-				<span class="preview" style="background-image:url('<?=$preview?>');"></span>
-				<span class="title"><?= $file->get_key() ?></span>
-			</a>
-		</li>
-		<?php
-		$count++;
-		if ($count >= 50 && !isset($_POST['q'])) {
-			break;
-		}
-		endforeach; ?>
-		<?php endif;?>
-	</ul>
-	<?php if ($count >= 50 && !isset($_POST['q'])): ?>
-		<div class="do-search" style="clear:both;text-align:center;padding:30px;font-size: 12px;">...</div>
-	<?php endif; ?>
 
-	<h2><span class="rule">Folders</span></h2>
 	<div class="folders">
 		<ul>
 			<li class="add" data-path="<?=$here?>">
@@ -78,6 +43,43 @@
 			<?php endif ?>
 		</ul>
 	</div>
+	<h2><span class="rule">Files</span></h2>
+	<ul class="files">
+		<li class="upload">
+			<div id="holder">
+				<p>Drag & drop files from your computer to upload (yes you can)</p>
+				<progress id="uploadprogress" min="0" max="100" value="0">0</progress>
+			</div>
+			<p id="upload" class="hidden"><label>Drag & drop not supported, but you can still upload via this input field:<br><input type="file"></label></p>
+			<p id="filereader">File API & FileReader API not supported</p>
+			<p id="formdata">XHR2's FormData is not supported</p>
+			<p id="progress">XHR2's upload progress isn't supported</p>
+		</li>
+		<?php if (isset($files)) : ?>
+		<?php foreach ($rawfiles as $file):
+			$file = media($file->get_root());
+		?>
+		<li data-path="<?=$file->get_path()?>" data-url="<?=$file->get_url()?>" data-info="<?= $file->get_extension() ?> • <?= $file->get_size() ?>" data-title="<?= $file->get_key() ?>">
+			<a href="#" class="file <?=$file->get_mimeType()?>">
+				<?php
+					$preview = (is_a($file, 'image')) ? $file->thumbnail(120, null)->get_url() : null;
+				?>
+				<span class="preview" style="background-image:url('<?=$preview?>');"></span>
+				<span class="title"><?= $file->get_key() ?></span>
+			</a>
+		</li>
+		<?php
+		$count++;
+		if ($count >= 50 && !isset($_POST['q'])) {
+			break;
+		}
+		endforeach; ?>
+		<?php endif;?>
+	</ul>
+	<?php if ($count >= 50 && !isset($_POST['q'])): ?>
+		<div class="do-search" style="clear:both;text-align:center;padding:30px;font-size: 12px;">...</div>
+	<?php endif; ?>
+
 </div>
 
 <script type="text/javascript" charset="utf-8">
