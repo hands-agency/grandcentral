@@ -1,5 +1,4 @@
 <?php
-use \Mailjet\Resources;
 /**
  * Projects
  *
@@ -8,9 +7,7 @@ use \Mailjet\Resources;
  */
 class itemMagworkflow extends _items
 {
-	protected $mailjet_key = 'aa0b1411e8782a230eacf814cb7ffca7';
-	protected $mailjet_secret = '152427259a82cb0c5f3268acb67f8520';
-
+	protected $mandrill = 'OyDD7MicNLXoEvx3G259Uw';
 /**
  * Execute the workflow
  *
@@ -46,32 +43,37 @@ class itemMagworkflow extends _items
 	{
 		if (!$mail['to']->is_empty())
 		{
-			$mailjet = new \Mailjet\Client($this->mailjet_key, $this->mailjet_secret);
-
 			$mail->replace_text_with_data(array('link' => $magazine->get_source()));
 
 			$text = str_replace('&apos;','\'',htmlspecialchars_decode($mail['content']->get(), ENT_QUOTES));
 			// create message data
-			$body = [
-        'FromEmail' => $mail['fromemail']->get(),
-        'FromName' => $mail['fromname']->get(),
-        'Subject' => $mail['subject']->get(),
-        'Html-part' => nl2br($text),
-				'TextPart' => $text,
-        'Recipients' => []
-      ];
+			$message = array(
+				'html' => nl2br($text),
+				// 'html' => nl2br((string) $mail['content']),
+				'text' => $text,
+				'subject' => $mail['subject']->get(),
+				'from_email' => $mail['fromemail']->get(),
+				'from_name' => $mail['fromname']->get(),
+				'to' => array(),
+				'headers' => array('Reply-To' => $mail['fromemail']->get()),
+			);
+			// echo "<pre>";print_r($message);echo "</pre>";
 			// destinataires
 			foreach ($mail['to']->unfold() as $to)
 			{
-				$body['Recipients'][] = array(
-					'Email' => $to['email']->get(),
-					'Name' => $to['title']->get(),
+				$message['to'][] = array(
+					'email' => $to['email']->get(),
+					'name' => $to['title']->get(),
+					'type' => 'to'
 				);
 			}
-			$response = $mailjet->post(Resources::$Email, ['body' => $body]);
-			// echo "<pre>";print_r($response);echo "</pre>";
-
-			if ($response->success())
+			$async = false;
+			// print'<pre>';print_r($message);print'</pre>';
+			$mandrill = new Mandrill($this->mandrill);
+			$r = $mandrill->messages->send($message, $async);
+			// $r = $mandrill->messages->sendTemplate($template_name, $template_content, $message, $async);
+			// print'<pre>';print_r($r);print'</pre>';exit;
+			if (isset($r[0]) && $r[0]['status'] == 'sent')
 			{
 				$return = array(
 					'success' => true
