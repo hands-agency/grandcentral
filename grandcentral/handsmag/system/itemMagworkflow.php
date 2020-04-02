@@ -1,5 +1,5 @@
 <?php
-use \Mailjet\Resources;
+// use \Mailjet\Resources;
 /**
  * Projects
  *
@@ -46,32 +46,49 @@ class itemMagworkflow extends _items
 	{
 		if (!$mail['to']->is_empty())
 		{
-			$mailjet = new \Mailjet\Client($this->mailjet_key, $this->mailjet_secret);
-
 			$mail->replace_text_with_data(array('link' => $magazine->get_source()));
 
 			$text = str_replace('&apos;','\'',htmlspecialchars_decode($mail['content']->get(), ENT_QUOTES));
 			// create message data
-			$body = [
-        'FromEmail' => $mail['fromemail']->get(),
-        'FromName' => $mail['fromname']->get(),
-        'Subject' => $mail['subject']->get(),
-        'Html-part' => nl2br($text),
-				'TextPart' => $text,
-        'Recipients' => []
-      ];
-			// destinataires
+			// $body = [
+      //   'FromEmail' => $mail['fromemail']->get(),
+      //   'FromName' => $mail['fromname']->get(),
+      //   'Subject' => $mail['subject']->get(),
+      //   'Html-part' => nl2br($text),
+			// 	'TextPart' => $text,
+      //   'Recipients' => []
+      // ];
+			// // destinataires
+			// foreach ($mail['to']->unfold() as $to)
+			// {
+			// 	$body['Recipients'][] = array(
+			// 		'Email' => $to['email']->get(),
+			// 		'Name' => $to['title']->get(),
+			// 	);
+			// }
+			// $mailjet = new \Mailjet\Client($this->mailjet_key, $this->mailjet_secret);
+			// $response = $mailjet->post(Resources::$Email, ['body' => $body]);
+			// // echo "<pre>";print_r($response);echo "</pre>";
+			//
+			// if ($response->success())
+			// create message data
+	    $params = array(
+	      'method' => 'POST',
+	      'from' => $mail['fromemail']->get(),
+	      'subject' => $mail['subject']->get(),
+	      'html' => nl2br($text),
+	      'text' => $text,
+				'to' => []
+	    );
 			foreach ($mail['to']->unfold() as $to)
 			{
-				$body['Recipients'][] = array(
-					'Email' => $to['email']->get(),
-					'Name' => $to['title']->get(),
-				);
+				$params['to'][] = $to['email']->get();
 			}
-			$response = $mailjet->post(Resources::$Email, ['body' => $body]);
-			// echo "<pre>";print_r($response);echo "</pre>";
 
-			if ($response->success())
+	    $mailjet = new Mailjet($this->mailjet_key, $this->mailjet_secret);
+	    $mailjet->sendEmail($params);
+
+	    if ($mailjet->_response_code == 200)
 			{
 				$return = array(
 					'success' => true
