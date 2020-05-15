@@ -35,6 +35,7 @@ class itemCapeb extends _items
 			$page = i('page',current);
 			$data = explode('_', $page['key']->get());
 			$count = count($data);
+
 			// echo "<pre>";print_r(registry::get());echo "</pre>";exit;
 			if (!empty($_GET['c']))
 	    {
@@ -64,12 +65,12 @@ class itemCapeb extends _items
 				}
 			}
 
-			if(isset($_COOKIE['capeb']) && !empty($_COOKIE['capeb'])) {
+			// if(isset($_COOKIE['capeb']) && !empty($_COOKIE['capeb'])) {
 				self::$overlay = false;
-			}
-			else {
-				self::$overlay = true;
-			}
+			// }
+			// else {
+			// 	self::$overlay = true;
+			// }
 
 			$capeb->load();
 			return $capeb;
