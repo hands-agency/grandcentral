@@ -127,7 +127,8 @@ class dataCapeb
       $start = $page * $limit - $limit;
       $params = array(
         'limit()' => $start.','.$limit,
-        'order()' => 'date DESC'
+        'order()' => 'date DESC',
+        'date' => '<= '.date('Y-m-d h:i:s')
       );
       // capeb
       switch ($this->capeb['type'])
