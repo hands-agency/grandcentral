@@ -66,7 +66,7 @@ class itemHuman extends _items
 			foreach ($this['group']->unfold() as $group)
 			{
 			//	#deprecated $group['admin']->get() = old style admins / $group['right']['level'] = new style admin
-				if ($group['admin']->get() === true OR $group['right']['level'] == 'admin')
+				if ($group['admin']->get() === true OR (isset($group['right']) && $group['right']['level'] == 'admin'))
 				{
 					$this->_admin = true;
 					return true;
