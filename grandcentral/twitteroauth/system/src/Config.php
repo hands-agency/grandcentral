@@ -1,6 +1,6 @@
 <?php
 
-//namespace Abraham\TwitterOAuth;
+// namespace Abraham\TwitterOAuth;
 
 /**
  * Handle setting and storing config for TwitterOAuth.
@@ -24,7 +24,13 @@ class Config
     /** @var string User-Agent header */
     protected $userAgent = 'TwitterOAuth (+https://twitteroauth.com)';
     /** @var array Store proxy connection details */
-    protected $proxy = array();
+    protected $proxy = [];
+
+    /** @var bool Whether to encode the curl requests with gzip or not */
+    protected $gzipEncoding = true;
+
+    /** @var integer Size for Chunked Uploads */
+    protected $chunkSize = 250000; // 0.25 MegaByte
 
     /**
      * Set the connection and response timeouts.
@@ -60,5 +66,25 @@ class Config
     public function setProxy(array $proxy)
     {
         $this->proxy = $proxy;
+    }
+
+    /**
+     * Whether to encode the curl requests with gzip or not.
+     *
+     * @param boolean $gzipEncoding
+     */
+    public function setGzipEncoding($gzipEncoding)
+    {
+        $this->gzipEncoding = (bool)$gzipEncoding;
+    }
+
+    /**
+     * Set the size of each part of file for chunked media upload.
+     *
+     * @param int $value
+     */
+    public function setChunkSize($value)
+    {
+        $this->chunkSize = (int)$value;
     }
 }

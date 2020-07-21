@@ -3,7 +3,7 @@
  * Handles data fetched in the database
  *
  * a data = one line in the database
- * 
+ *
  * @author	Sylvain Frigui <sf@hands.agency>
  * @access	public
  * @link		http://grandcentral.fr
@@ -13,7 +13,7 @@ abstract class _items implements ArrayAccess, Iterator
 	protected $env;
 	protected $table;
 	protected $data;
-	
+
 /**
  * Class constructor (Don't forget it is an abstract class)
  *
@@ -25,11 +25,11 @@ abstract class _items implements ArrayAccess, Iterator
 	{
 		$this->table = mb_substr(mb_strtolower(get_called_class()), 4);
 		$this->env = (in_array($env, array('site', 'admin'))) ? $env : trigger_error('Environment should be <strong>admin</strong> or <strong>site</strong>.Not '.$env.'.', E_USER_ERROR);
-		
-        
+
+
 	//	création de la liste des attributs vide
 		$attrs = registry::get($this->get_env(), registry::attr_index, $this->get_table(), 'attr');
-		
+
         if (empty($attrs))
 		{
 			trigger_error('Can not find <strong>'.$this->get_table().'</strong> structure', E_USER_ERROR);
@@ -81,7 +81,7 @@ abstract class _items implements ArrayAccess, Iterator
 	{
 		return ($this->exists()) ? $this->get_table().'_'.$this['id']->get() : null;
 	}
-	
+
 /**
  * Get the abbreviate link of the item
  *
@@ -111,7 +111,7 @@ abstract class _items implements ArrayAccess, Iterator
 	public function set_attr($key, $value)
 	{
 	//	on remplit un attr existant
-		if (isset($this->data[$key]))
+		if (isset($this->data[$key]) && is_a($this->data[$key], '_attrs'))
 		{
 			$this->data[$key]->set($value);
 		}
@@ -121,7 +121,7 @@ abstract class _items implements ArrayAccess, Iterator
 		}
 		return $this;
 	}
-	
+
 /**
  * Gets the full item from the database, using an id, a key or an array of parameters
  *
@@ -157,7 +157,7 @@ abstract class _items implements ArrayAccess, Iterator
 	//	retour
 		return $this;
 	}
-	
+
 /**
  * Get the reader object of this item
  *
@@ -172,7 +172,7 @@ abstract class _items implements ArrayAccess, Iterator
 		}
 		return (isset($r)) ? $r : null;
 	}
-	
+
 /**
  * Fill the object with all his attributes
  *
@@ -244,7 +244,7 @@ abstract class _items implements ArrayAccess, Iterator
 	//	Trigger event
 		event::trigger($this, $event);
 		// print'<pre>';print_r($db->_spooler);print'</pre>';
-		
+
 	//	Here, we need to delete all the workflow items having this item as their original
 		/* todo */
 		if (method_exists(get_class($this), 'register'))
@@ -275,10 +275,10 @@ abstract class _items implements ArrayAccess, Iterator
 			switch (true)
 			{
 				case !is_a($attr, '_attrs'):
-					
+
 					break;
 				case is_a($attr, 'attrId'):
-					
+
 					break;
 				case !is_a($attr, 'attrRel'):
 					// $mainQuery[] = '`'.$attr->get_key().'`=:'.$attr->get_key();
@@ -294,16 +294,16 @@ abstract class _items implements ArrayAccess, Iterator
 					{
 						// $relQuery[] = '(:'.$attr->get_key().'_item_'.$i.',:'.$attr->get_key().'_itemid_'.$i.',:'.$attr->get_key().'_key_'.$i.',:'.$attr->get_key().'_rel_'.$i.',:'.$attr->get_key().'_relid_'.$i.',:'.$attr->get_key().'_position_'.$i.')';
 						$relQuery[] = '(?,?,?,?,?,?)';
-						
+
 						list($rel_table, $rel_id) = explode('_', $rel);
-						
+
 						// $relData[':'.$attr->get_key().'_item_'.$i] 		= $this->get_table();
 						// $relData[':'.$attr->get_key().'_itemid_'.$i] 	= $this['id']->get();
 						// $relData[':'.$attr->get_key().'_key_'.$i] 		= $attr->get_key();
 						// $relData[':'.$attr->get_key().'_rel_'.$i] 		= $rel_table;
 						// $relData[':'.$attr->get_key().'_relid_'.$i] 	= $rel_id;
 						// $relData[':'.$attr->get_key().'_position_'.$i] 	= $i;
-						
+
 						$relData[] = $this->get_table();
 						$relData[] = $this['id']->get();
 						$relData[] = $attr->get_key();
@@ -346,7 +346,7 @@ abstract class _items implements ArrayAccess, Iterator
 			switch (true)
 			{
 				case !is_a($attr, '_attrs'):
-					
+
 					break;
 				case is_a($attr, 'attrId'):
 					$id = $attr->get();
@@ -365,9 +365,9 @@ abstract class _items implements ArrayAccess, Iterator
 					{
 						// $relQuery[] = '(:'.$attr->get_key().'_item_'.$i.',:'.$attr->get_key().'_itemid_'.$i.',:'.$attr->get_key().'_key_'.$i.',:'.$attr->get_key().'_rel_'.$i.',:'.$attr->get_key().'_relid_'.$i.',:'.$attr->get_key().'_position_'.$i.')';
 						$relQuery[] = '(?,?,?,?,?,?)';
-						
+
 						list($rel_table, $rel_id) = explode('_', $rel);
-						
+
 						// $relData[':'.$attr->get_key().'_item_'.$i] 		= $this->get_table();
 						// $relData[':'.$attr->get_key().'_itemid_'.$i] 	= 'lastid';
 						// $relData[':'.$attr->get_key().'_key_'.$i] 		= $attr->get_key();
@@ -435,7 +435,7 @@ abstract class _items implements ArrayAccess, Iterator
 	{
 		return ADMIN_URL.'/list?item='.$this->get_table();
 	}
-	
+
 /**
  * Returns the link to the back-end form of a particular item
  *
@@ -472,7 +472,7 @@ abstract class _items implements ArrayAccess, Iterator
 			if (!empty($return)) return json_encode($return, JSON_UNESCAPED_UNICODE);
 		}
 	}
-	
+
 /********************************************************************************************/
 //	ArrayAccess
 /********************************************************************************************/
@@ -480,7 +480,7 @@ abstract class _items implements ArrayAccess, Iterator
 	{
 		$this->set_attr($offset, $value);
 	}
-	public function offsetExists($offset) 
+	public function offsetExists($offset)
 	{
 		return isset($this->data[$offset]);
 	}
@@ -516,6 +516,6 @@ abstract class _items implements ArrayAccess, Iterator
 	{
 	    return key($this->data) !== null;
 	}
-}	
+}
 
 ?>

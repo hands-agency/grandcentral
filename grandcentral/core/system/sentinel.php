@@ -166,16 +166,16 @@ class sentinel
  * @access	public
  */
 	public function error_handler($Ftype, $Fmsg, $Ffile, $Fline, $Fcontext)
-    {
-        $param = array(
+  {
+		if (error_reporting() == 0) return;
+    $param = array(
 			'What went wrong' => $Fmsg,
 			'file' => $Ffile,
 			'line' => $Fline
 		);
 		$this->log($Ftype, $param);
-        return true;
-    }
-
+    return true;
+  }
 /**
  * Fetch and format PHP exceptions
  *
@@ -185,15 +185,15 @@ class sentinel
  * @access	public
  */
 	public function exception_handler($e)
-    {
-		// print '<pre>';print_r($e);print'</pre>';
+  {
 		$param = array(
 			'What went wrong' => $e->getMessage(),
-			'File' => $e->getFile(),
-			'Line' => $e->getLine(),
+			'file' => $e->getFile(),
+			'line' => $e->getLine(),
 		);
-		$this->log(E_WARNING, $param);
-    }
+		$this->log(E_ERROR, $param);
+		return true;
+  }
 
 /**
  * Fetch and format PHP exceptions

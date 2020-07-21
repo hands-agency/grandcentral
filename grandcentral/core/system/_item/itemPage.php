@@ -182,10 +182,12 @@ class itemPage extends _items
  */
 	public function bind_section()
 	{
-		foreach ($this['section']->unfold() as $section)
+		$sections = $this['section']->unfold();
+		foreach ($sections as $section)
 		{
 			$section->__tostring();
 		}
+		return $sections;
 	}
 /**
  * Display the page
@@ -223,17 +225,6 @@ class itemPage extends _items
         return '';
     }
 
-	}
-/**
- * Return page html content
- *
- * @return	string	le code html de la page
- * @access	public
- */
-	public function get_tostring()
-	{
-		$data = $this->__tostring();
-		return $data;
 	}
 /**
  * Prepare display of a content page
@@ -323,7 +314,6 @@ class itemPage extends _items
 		while ($page = $this->_get_parent_nickname($page))
 		{
 			$parent[] = $page;
-			$i++;
 		}
 		$parent = (isset($parent)) ? array_reverse($parent) : null;
 	//	get the items

@@ -10,7 +10,7 @@ class itemItem extends _items
 {
 	protected $_key;
 	protected $_attr;
-
+	
 /**
  * Fill the object with all his attributes
  *
@@ -23,7 +23,7 @@ class itemItem extends _items
 		$this->_attr = $this['attr']->get();
 		$this->_key = $data['key'];
 	}
-
+	
 /**
  * Check if the items of this structure have an url and can be requested
  *
@@ -41,7 +41,6 @@ class itemItem extends _items
 	public function save()
 	{
 		$this->_prepare_attr();
-		// echo "<pre>";print_r($this->data['attr']);echo "</pre>";
 		parent::save();
 	}
 /**
@@ -92,7 +91,7 @@ class itemItem extends _items
 		// 		'max' => 255
 		// 	);
 		// }
-
+	
 		//	add Url attribute
 		if (!isset($attrs['url']) && $this['hasurl']->get() === true)
 		{
@@ -188,7 +187,7 @@ class itemItem extends _items
 		$db->stack('CREATE TABLE IF NOT EXISTS `'.$db->get_name().'`.`'.$this['key'].'` ('.PHP_EOL.'	'.implode(','.PHP_EOL.'	', $columns).','.PHP_EOL.'	'.implode(','.PHP_EOL.'	', $indexes).''.PHP_EOL.') ENGINE=InnoDB DEFAULT CHARSET='.database::charset.' COLLATE='.database::collation.'');
 	//	insert data into table structure
 		parent::_insert();
-
+		
 		// print'<pre>';print_r($db->_spooler);print'</pre>';
 		// exit;
 	}
@@ -276,13 +275,13 @@ class itemItem extends _items
  */
 	private function _column_position($key)
 	{
-
+		
 		$pos = array_search($key, $this->columns);
 		// echo $key.PHP_EOL;
 		$position = ($pos == 0) ? 'FIRST' : 'AFTER `'.$this->columns[$pos - 1].'`';
 		return ' '.$position;
 	}
-
+	
 /**
  * On charge toutes les structures disponibles et on crée la liste de définition des attributs
  *
@@ -302,7 +301,7 @@ class itemItem extends _items
 				foreach ($r['data'] as $item)
 				{
 					$item['attr'] = json_decode($item['attr'], true);
-
+				
 					$datas[$env][registry::attr_index][$item['key']] = $item;
 					//self::set($env, self::attr_index, $result['key'], $result);
 				}

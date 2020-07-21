@@ -3,7 +3,7 @@
  * The MIT License
  * Copyright (c) 2007 Andy Smith
  */
-//namespace Abraham\TwitterOAuth;
+// namespace Abraham\TwitterOAuth;
 
 /**
  * The HMAC-SHA1 signature method uses the HMAC-SHA1 signature algorithm as defined in [RFC2104]
@@ -28,9 +28,8 @@ class HmacSha1 extends SignatureMethod
     public function buildSignature(Request $request, Consumer $consumer, Token $token = null)
     {
         $signatureBase = $request->getSignatureBaseString();
-        $request->baseString = $signatureBase;
 
-        $parts = array($consumer->secret, null !== $token ? $token->secret : "");
+        $parts = [$consumer->secret, null !== $token ? $token->secret : ""];
 
         $parts = Util::urlencodeRfc3986($parts);
         $key = implode('&', $parts);
