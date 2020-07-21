@@ -1113,7 +1113,7 @@ class CAS_Client
     public function setSessionHandler(\SessionHandlerInterface $sessionHandler)
     {
         $this->_sessionHandler = $sessionHandler;
-        return session_set_save_handler($this->_sessionHandler, true);
+        return @session_set_save_handler($this->_sessionHandler, true);
     }
 
     /**
