@@ -165,7 +165,6 @@ class dataCapeb
           $params['id'][] = '!='.$data[1];
         }
       }
-      echo "<pre>";print_r($params);echo "</pre>";
       // query news
       $data = i('news', $params);
       // total
