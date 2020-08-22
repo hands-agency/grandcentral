@@ -167,6 +167,7 @@ class sentinel
  */
 	public function error_handler($Ftype, $Fmsg, $Ffile, $Fline, $Fcontext)
   {
+		if (error_reporting() == 0) return;
     $param = array(
 			'What went wrong' => $Fmsg,
 			'file' => $Ffile,

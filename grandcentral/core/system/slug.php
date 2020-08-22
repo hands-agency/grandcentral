@@ -18,7 +18,7 @@ class Slug
 	{
 	   $slen=strlen($string);
 	   for($i=0; $i<$slen; $i++)
-	      $sArray[$i]=$string{$i};
+	      $sArray[$i]=$string[$i];
 
 	   return $sArray;
 	}
