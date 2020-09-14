@@ -339,7 +339,7 @@ class hubberCatalog
       $event['pricemin'] = $data['prix_min'];
       $event['pricemax'] = $data['prix_max'];
       $event['place'] = $this->_get_place($data['place']);
-      $event['status'] = $this->_get_status($data['status_id']);
+      if ($event['status']->is_empty()) $event['status'] = $this->_get_status($data['status_id']);
       // on ne change pas l'état des spectacles bientôt disponibles (https://trello.com/c/E9SqtEuH)
       if ($event['sellstatus']->is_empty() || $event['sellstatus']->get() != 'sellstatus_4') {$event['sellstatus'] = $this->_get_sellstatus($data['sell_status']);}
       if (isset($data['seance']))
