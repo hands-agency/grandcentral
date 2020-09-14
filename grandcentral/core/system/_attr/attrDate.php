@@ -34,7 +34,7 @@ class attrDate extends _attrs
 	public function get()
 	{
 		// echo "<pre>";print_r($this);echo "</pre>";
-		return $this->is_empty() && $this->params['now'] === true ? date('Y-m-d H:i:s') : $this->data;
+		return $this->is_empty() && $this->params['now'] === true ? date('Y-m-d h:i:s') : $this->data;
 	}
 /**
  * Check if the attribute data is empty
