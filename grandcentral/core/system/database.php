@@ -51,6 +51,7 @@ class database
 		//	configuration de la connexion
 			$this->_pdo->query('SET NAMES '.self::charset);
 			$this->_pdo->query('SET @@collation_connection = '.self::collation);
+			$this->_pdo->query('SET sql_mode = ""');
 		}
 	//	si une erreur se produit, on envoie la sentinel
 		catch (PDOException $e) {
