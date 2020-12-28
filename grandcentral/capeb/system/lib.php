@@ -5,7 +5,7 @@
     return ($_SESSION['user']->is_a('member') && ($_SESSION['capeb']->get_nickname() === 'capeb_118' || in_array($_SESSION['capeb']->get_nickname(), $_SESSION['user']['capeb']->get()))) || $_SESSION['user']->is_a('webmaster') || $_SESSION['user']->is_admin() ? true : false;
   }
 
-  function webmaster_can_edit($table)
+  function webmaster_can_edit()
   {
     return $_SESSION['user']->is_admin() || ($_SESSION['user']->is_a('webmaster') && in_array($_SESSION['capeb']->get_nickname(), $_SESSION['user']['capeb']->get())) ? true : false;
   }
