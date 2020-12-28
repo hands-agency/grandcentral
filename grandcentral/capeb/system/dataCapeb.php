@@ -125,11 +125,11 @@ class dataCapeb
       $nickname = $this->capeb->get_nickname();
       // default query params
       $start = $page * $limit - $limit;
-      $date = new dateTime();
+      $date = new dateTime('now', new DateTimeZone('Europe/Paris'));
       $params = array(
         'limit()' => $start.','.$limit,
         'order()' => 'date DESC',
-        'date' => ['<= '.$date->format('Y-m-d h:i:s'), '>= '.$date->modify('-2 years')->format('Y-m-d h:i:s')]
+        'date' => ['<= '.$date->format('Y-m-d H:i:s'), '>= '.$date->modify('-2 years')->format('Y-m-d H:i:s')]
       );
       // capeb
       switch ($this->capeb['type'])
