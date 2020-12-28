@@ -25,7 +25,8 @@ class itemNews extends _items
 		// date par défaut
 		if ($this['date']->is_empty())
 		{
-			$this['date'] = date('Y-m-d h:i:s');
+			$now = new DateTime('now', new DateTimeZone('Europe/Paris'));
+			$this['date'] = $now->format('Y-m-d H:i:s');
 		}
 		// sauvegarde
 		parent::save();
