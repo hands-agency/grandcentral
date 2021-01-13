@@ -147,7 +147,7 @@ li.ko .field
 /* field in control */
 form fieldset ol>li.controlling
 {
-	margin-right:50px !important;
+	/* margin-right:50px !important; */
 }
 
 /* All controls */

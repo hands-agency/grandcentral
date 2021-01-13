@@ -3,7 +3,7 @@
  	* @author	@mvdandrieux
 **#******************************************************************************************/
 (function($)
-{	
+{
 //	Here we go!
 	$.ajx = function(options, callbacks, element)
 	{
@@ -13,7 +13,7 @@
 		plugin.settings = {}
 		var $element = $(element), // reference to the jQuery version of DOM element
 		element = element;	// reference to the actual DOM element
-		
+
 	//	Plugin's variables
 		var vars = {
 		}
@@ -23,12 +23,12 @@
 		{
 		//	the plugin's final properties are the merged default and user-provided options (if any)
 			plugin.settings = $.extend({}, vars, options);
-			
+
 		//	Some vars
 			mime = (typeof(plugin.settings.mime) != 'undefined') ? plugin.settings.mime : 'html';
 			async = (typeof(plugin.settings.async) != 'undefined') ? plugin.settings.async : true;
 			url = ADMIN_URL+'/ajax.'+mime;
-			
+
 		//	Reroute the _GET otherwise overriden (currently declared in the master)
 			if (typeof(plugin.settings['_GET']) == 'undefined') plugin.settings['_GET'] = _GET;
 
@@ -48,14 +48,14 @@
 			//	Move <script> and <link> up to the header
 				$element.find('script, link').appendTo('head');
 			//	Execute callback (make sure the callback is a function)
-				if ((typeof(callbacks) != 'undefined') && (typeof(callbacks['done']) == "function")) callbacks['done'].call($element, result);	
+				if ((typeof(callbacks) != 'undefined') && (typeof(callbacks['done']) == "function")) callbacks['done'].call($element, result);
 			})
 			.fail(function( jqXHR, textStatus )
 			{
 			//	console.log( "Request failed: " + textStatus );
 				console.log( "Request failed: " + jqXHR.responseText );
 			});
-			
+
 		}
 
 	//	Fire up the plugin!
@@ -81,7 +81,7 @@
  	* @author	@mvdandrieux
 **#******************************************************************************************/
 (function($)
-{	
+{
 //	Here we go!
 	$.api = function(options, callbacks, element)
 	{
@@ -91,7 +91,7 @@
 		plugin.settings = {}
 		var $element = $(element), // reference to the jQuery version of DOM element
 		element = element;	// reference to the actual DOM element
-		
+
 	//	Plugin's variables
 		var vars = {
 		}
@@ -119,13 +119,13 @@
 			.done(function(result)
 			{
 			//	Execute callback (make sure the callback is a function)
-				if ((typeof(callbacks) != 'undefined') && (typeof(callbacks['done']) == "function")) callbacks['done'].call($element, result);	
+				if ((typeof(callbacks) != 'undefined') && (typeof(callbacks['done']) == "function")) callbacks['done'].call($element, result);
 			})
 			.fail(function( jqXHR, textStatus )
 			{
 			//	console.log( "Request failed: " + textStatus );
 				console.log( "Request failed: " + jqXHR.responseText );
-			});	
+			});
 		}
 
 	//	Fire up the plugin!
@@ -145,7 +145,7 @@
 		});
 	}
 })(jQuery);
-		
+
 /*********************************************************************************************
 /**	* Slick the tray
  	* @author	@mvdandrieux
@@ -170,7 +170,7 @@
 	{
 	//	Some vars
 		$tabs = $(tabs);
-		
+
 	//	Set to off all the tabs, and set to on just "the one"
 		$tabs.find('li').removeClass('on');
 		index = currentSlide.currentSlide;
@@ -207,15 +207,15 @@
 		}
 	//	Already loaded: toggle
 		else $notes.toggle('fast');
-		
+
 	//	Focus
 	//	notes.find('textarea').focus();
-	
+
 	//	Prevent link
 		return false;
 	});
-	
-	
+
+
 /*********************************************************************************************
 /**	* Open / close lanes
  	* @author	@mvdandrieux
@@ -229,7 +229,7 @@
 	{
 		openSite(CURRENTEDITED_URL);
 	});
-	
+
 /*********************************************************************************************
 /**	* All links
  	* @author	@mvdandrieux
@@ -244,7 +244,7 @@
 		url = ADMIN_URL+'/edit?item='+item+'&id='+id+'#'+tab;
 		document.location.href = url;
 	});
-	
+
 /*********************************************************************************************
 /**	* Load the site
  	* @author	@mvdandrieux
@@ -254,10 +254,10 @@
 	{
 		document.onreadystatechange = function()
 		{
-		    if (document.readyState === 'complete') 
+		    if (document.readyState === 'complete')
 			{
 				$('#grandCentralSite').append('<iframe src="'+CURRENTEDITED_URL+'"></iframe>');
-				
+
 				$('#grandCentralSite iframe').load(function()
 				{
 					currentTitle = $(this).contents().find('meta[property="gc:title"]').html();
@@ -273,7 +273,7 @@
  	* @author	@mvdandrieux
 **#******************************************************************************************/
 (function($)
-{	
+{
 	//	Here we go!
 	$.loading = function(callback, element)
 	{
@@ -283,10 +283,10 @@
 		plugin.settings = {}
 		var $element = $(element), // reference to the jQuery version of DOM element
 		element = element;	// reference to the actual DOM element
-		
+
 		spinner = '<div	class="loadingbox"><svg class="spinner" width="50px" height="50px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="1" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div>';
 		$element.html('').append(spinner);
-		
+
 	//	Execute callback (make sure the callback is a function)
 		if ((typeof(callback) != 'undefined') && (typeof(callback) == 'function')) callback.call($element);
 	}
@@ -304,7 +304,7 @@
 		});
 	}
 })( jQuery );
-	
+
 /*********************************************************************************************
 /**	* Opening and closing context Lanes
  	* @author	@mvdandrieux
@@ -314,7 +314,7 @@
 	{
 	//	Some vars
 		maxContext = 2;
-		
+
 	//	If context already exists, refresh it
 		if ($('.adminContext[data-template="'+param.template+'"]').length > 0)
 		{
@@ -326,11 +326,11 @@
 			adminContext = '<aside class="adminContext"><button type="button" class="close"></button><div><!-- Welcome Ajax --></div></aside>';
 			context = $(adminContext).appendTo('#grandCentralAdmin');
 		}
-		
+
 	//	Resize Content & Context
 		countContext = $('#grandCentralAdmin').find('.adminContext').length;
 		$('#main').addClass('contextOpened'+countContext);
-	
+
 	//	Load
 		$(context)
 			.attr('data-template', param.template)
@@ -338,18 +338,18 @@
 			param,
 			{
 				done:function()
-				{					
+				{
 				//	Callback
 					if ((typeof(callback) != 'undefined') && (typeof(callback) == 'function')) callback.call(this);
 				}
 			}
 		);
-		
+
 	//	Recenter the panel after transition
 		$('#adminContent').one('transitionend', function()
 		{
-			current = $('#sectiontray').slick('slickCurrentSlide');
-			$('#sectiontray').slick('slickGoTo', current);
+			// current = $('#sectiontray').slick('slickCurrentSlide');
+			// $('#sectiontray').slick('slickGoTo', current);
 		});
 	}
 	closeContext = function(template)
@@ -357,13 +357,13 @@
 	//	Resize
 		countContext = $('#grandCentralAdmin').find('.adminContext').length;
 		$('#main').removeClass('contextOpened'+countContext);
-		
+
 	//	Kill
 		$('.adminContext[data-template="'+template+'"]').remove();
-		
+
 	//	Kill all focuses
 		$('.focusedByContext').removeClass('focusedByContext');
-		
+
 	//	Recenter the panel after transition
 		$('#adminContent').one('transitionend', function()
 		{
@@ -371,31 +371,31 @@
 			$('#sectiontray').slick('slickGoTo', current);
 		});
 	}
-	
+
 //	Site
 	openSite = function(url, refresh)
 	{
 	//	Some vars
 		$siteNav = $('header .site');
 		$iframe = $('#grandCentralSite iframe');
-		
+
 		$sitetree = $siteNav.find('.sitetree');
 		$edit = $siteNav.find('.actionbutton button');
-		
+
 	//	Open site
 		if ($('#main').hasClass('siteOpened') === false)
 		{
 		//	Open at the right page
 			$('#main').addClass('siteOpened');
 			if (url && ($iframe.is('[src]') == false || refresh == true)) {$iframe.attr('src', url);}
-		
+
 		//	Sitetree
 			$sitetree.on('click', function()
 			{
 			//	Go to edit page
 				document.location.href = ADMIN_URL+'/list?item=page';
 			});
-		
+
 		//	Edit
 			$edit.on('click', function()
 			{
@@ -412,7 +412,7 @@
 			$('#main').removeClass('siteOpened');
 		}
 	}
-	
+
 //	Alert
 	popAlert = function(type, label, callback)
 	{
@@ -450,7 +450,7 @@
 	//	Some vars
 		$nav = $('#nav');
 		$('#main').addClass('poppedNav');
-		
+
 	//	Load nav just once
 		if ($nav.is(':empty'))
 		{
@@ -466,7 +466,7 @@
 				}
 			});
 		}
-		
+
 	});
 	$(document).on('click', '#closeNav', function()
 	{
