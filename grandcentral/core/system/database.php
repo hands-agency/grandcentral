@@ -43,7 +43,7 @@ class database
 		try
 		{
 		//	récupération du data source name
-			$db_dsn = 'mysql:host='.$db_host.';dbname='.$db_name;
+			$db_dsn = 'mysql:host='.$db_host.';dbname='.$db_name.';port=35404';
 		//	connexion
     		$this->_pdo = new PDO($db_dsn, $db_user, $db_password);
 		//	pour que les erreurs généréer soient des exceptions
