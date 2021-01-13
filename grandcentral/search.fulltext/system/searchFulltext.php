@@ -173,7 +173,7 @@ ORDER BY (title_relevance*'.$this->relevance['title'].')+(txt_relevance*'.$this-
  */
 	public function save_index()
 	{
-		$this->create_table();
+		$this->create_table(); /* comment that line */
 	//	Some vars
 		$i = 0;
 		$e = 0;
