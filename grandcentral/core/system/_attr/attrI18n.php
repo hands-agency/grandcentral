@@ -109,22 +109,22 @@ class attrI18n extends attrArray
 	public function __tostring()
 	{
 		if (empty($this->params['env'])) $this->params['env'] = env;
+
+		// echo "<pre>";print_r(registry::get_constants());echo "</pre>";
+		$current_version = i($this->params['env'], current)['version']['lang']->get();
+		if (empty($this->data[$current_version])) $this->data[$current_version] = $this->data[VERSION_DEFAULT];
 		//	HACK à refaire
 		switch (true)
 		{
-			case $this->is_empty():
-			case empty($this->data[i($this->params['env'], current)['version']['lang']->get()]):
-				return '';
-				break;
 			case $this->field == 'fieldSirtrevor':
-				$attr = new attrSirtrevor($this->data[i($this->params['env'], current)['version']['lang']->get()]);
+				$attr = new attrSirtrevor($this->data[$current_version]);
 				return $attr->__tostring();
 				break;
 			case is_string($this->data):
 				return $this->data;
 				break;
 			default:
-				return $this->data[i($this->params['env'], current)['version']['lang']->get()];
+				return $this->data[$current_version];
 				break;
 		}
 	}
