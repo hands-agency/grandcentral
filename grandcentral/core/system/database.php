@@ -44,8 +44,10 @@ class database
 		{
 		//	récupération du data source name
 			$db_dsn = 'mysql:host='.$db_host.';dbname='.$db_name.';port=35404';
+		// add port
+			if (defined(strtoupper(self::$env).'_DB_PORT')) $db_dsn .= ';port='.constant(strtoupper(self::$env).'_DB_PORT');
 		//	connexion
-    		$this->_pdo = new PDO($db_dsn, $db_user, $db_password);
+    	$this->_pdo = new PDO($db_dsn, $db_user, $db_password);
 		//	pour que les erreurs généréer soient des exceptions
 			$this->_pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		//	configuration de la connexion
