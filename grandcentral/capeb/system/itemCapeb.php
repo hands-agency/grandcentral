@@ -33,14 +33,20 @@ class itemCapeb extends _items
 			$capeb = i('capeb');
 			// analyse page key
 			$page = i('page',current);
+
+			$item = i(item, current);
 			$data = explode('_', $page['key']->get());
 			$count = count($data);
 
-			// echo "<pre>";print_r(registry::get());echo "</pre>";exit;
 			if (!empty($_GET['c']))
 	    {
 				$capeb->get(['departmentcode' => $_GET['c']]);
 	    }
+			elseif (defined('item') && isset($item['capeb']) && $item['capeb']->get() != 'capeb_118' && !self::is_capeb_in_the_region_in_session($item['capeb']->get()))
+			{
+				list($table, $id) = explode('_', $item['capeb']->get());
+				$capeb->get($id);
+			}
 	    elseif ($count > 1 && mb_substr($data[0], 0, 1) == 'c')
 	    {
 	      $key = $data[0];
@@ -71,7 +77,6 @@ class itemCapeb extends _items
 			// else {
 			// 	self::$overlay = true;
 			// }
-
 			$capeb->load();
 			return $capeb;
 		}
@@ -225,6 +230,18 @@ class itemCapeb extends _items
 
 
     return $this;
+	}
+
+	public function is_capeb_in_the_region_in_session($capeb_id)
+	{
+		if ($_SESSION['capeb']['type'] == 'region')
+		{
+			if (in_array($capeb_id, $_SESSION['capeb']['departement']->get()))
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	// /**
