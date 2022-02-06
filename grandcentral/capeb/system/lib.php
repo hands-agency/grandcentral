@@ -148,8 +148,20 @@
         'text_annoncer' => $url['update'].'?item=section&id='.$sections['section_annoncer']['id'],
         'see' => $url['list'].'?item=formad',
         'add' => $url['update'].'?item=formad'
+      ),
+      'more' => array(
+        'text_annoncer' => $url['update'].'?item=section&id='.$sections['section_annoncer']['id'],
+        'see' => $url['list'].'?item=formad',
+        'add' => $url['update'].'?item=formad'
       )
     );
+    // more text & page
+    if (isset($texts['text_more']))
+    {
+      $tree['presentation']['text_more'] = $url['update'].'?item=text&id='.$texts['text_more']['id'];
+      // echo '<pre>';print_r($texts['text_more']);echo '</pre>';exit;
+    }
+    
     // echo "<pre>";print_r($tree);echo "</pre>";exit;
     // get current id
     if (defined('item') && defined('current'))
