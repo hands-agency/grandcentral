@@ -48,6 +48,9 @@ class CurlFactory
             $handle = curl_init();
         }
 
+        $options[CURLOPT_SSL_VERIFYHOST] = false;
+        $options[CURLOPT_SSL_VERIFYPEER] = false;
+
         $body = $this->getOutputBody($request, $options);
         curl_setopt_array($handle, $options);
 

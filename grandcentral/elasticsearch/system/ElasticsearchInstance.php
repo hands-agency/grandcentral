@@ -365,6 +365,8 @@ class ElasticsearchInstance
       curl_setopt($curl, CURLOPT_URL, $apiUrl);
       curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
       curl_setopt($curl, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
+      curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+      curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
       $response = curl_exec($curl);
       $errors = curl_error($curl);
       if (!empty($errors)) echo "<pre>";print_r($errors);echo "</pre>";
