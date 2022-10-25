@@ -1,21 +1,49 @@
-== Breaking changes from 2.x
+[[breaking_changes]]
+=== Breaking changes from 7.x
 
-- Indices/Analyze Endpoint: `filters` and `char_filters` URI parameters have renamed to `filter` and `char_filter` respectively
-- SearchExists endpoint has been removed (use `size=0` and `terminate_after=1` instead)
-- Warmers have been removed because they are no longer useful
-- Indices/Optimize Endpoint has been removed (use `_forcemerge` instead)
-- MoreLikeThis (MLT) endpoint has been removed
-- DeleteByQuery endpoint has been removed.
-- Tasks/List and Tasks/Get are now separate endpoints (see: link:http://github.com/elasticsearch/elasticsearch-php/commit/752d5a2[e0cc5f9])
-- Client requires PHP 5.6.6 or higher
+This major release is a complete new PHP client for {es}. We build it from scratch!
+We tried to reduce the BC breaks as much as possible but there are some (big) differences: 
 
-=== Deprecations
+[discrete]
+==== Architectural changes
 
-- Percolator endpoints are deprecated and will be removed in Elasticsearch 6.0
+- we changed the namespace, now everything is under `Elastic\Elasticsearch`
+- we used the https://github.com/elastic/elastic-transport-php[elastic-transport-php] library for HTTP communications;
+- we changed the `Exception` model, using the namespace `Elastic\Elasticsearch\Exception`. All the exceptions extends the
+  `ElasticsearchException` interface, as in 7.x
+- we changed the response type of each endpoint using an https://github.com/elastic/elasticsearch-php/blob/master/src/Response/Elasticsearch.php[Elasticsearch] response class.
+  This class wraps a https://www.php-fig.org/psr/psr-7/[PSR-7] response allowing the access of the body response
+  as array or object. This means you can access the API response as in 7.x, no BC break here! :angel:
+- we changed the `ConnectionPool` in `NodePool`. The `connection` naming was ambigous since the objects are nodes (hosts)
 
-=== Internal BWC Breaks
+[discrete]
+==== Specific changes
 
-- Namespace injection has changed slightly.  If you use custom namespaces, you'll need to update your code (see: Add better ability to inject namespaces link:http://github.com/elasticsearch/elasticsearch-php/commit/b1a27b7[b1a27b7])
-- Endpoints no longer use the Transport directly.  If you use custom endpoints, you'll need to do some minor
-refactoring (see: Refactor to remove Transport dependence in endpoints link:http://github.com/elasticsearch/elasticsearch-php/commit/ecd454c[ecd454c])
-- To facilitate testing and other features, the `ConnectionInterface` has expanded to obtain some more methods (link:http://github.com/elasticsearch/elasticsearch-php/commit/8bcf1a8[getPath()], link:http://github.com/elasticsearch/elasticsearch-php/commit/586fbdb[getUserPass()], link:http://github.com/elasticsearch/elasticsearch-php/commit/445fdea[getHost()])
+The following functions has been removed:
+
+- `ClientBuilder::getEndpoint()`
+- `ClientBuilder::getRegisteredNamespacesBuilders()`
+- `ClientBuilder::getRegisteredNamespacesBuilders()`
+- `ClientBuilder::defaultHandler()`
+- `ClientBuilder::multiHandler()`
+- `ClientBuilder::singleHandler()`
+- `ClientBuilder::setConnectionFactory()`
+- `ClientBuilder::setConnectionPool()`, you can use `ClientBuilder::setNodePool` instead
+- `ClientBuilder::setEndpoint()`
+- `ClientBuilder::registerNamespace()`
+- `ClientBuilder::setTransport()`, you can specify an HTTP PSR-18 client using `ClientBuilder::setHttpClient()`
+- `ClientBuilder::setHandler()`
+- `ClientBuilder::setTracer()`, you can only set a Logger using  `ClientBuilder::setLogger()`
+- `ClientBuilder::setSerializer()`
+- `ClientBuilder::setConnectionParams()`, you can use `ClientBuilder::setHttpClientOptions()` instead
+- `ClientBuilder::setSelector()`, you can set a `Selector` using the `setNodePool`, see [here](https://github.com/elastic/elastic-transport-php/blob/8.x/README.md#use-a-custom-selector) for more information
+- `ClientBuilder::setSniffOnStart()`
+- `ClientBuilder::includePortInHostHeader()`
+
+We removed the special `client` parameter passed in `$params` endpoints. In details: 
+
+- `$params['client']['never_retry']`
+- `$params['client']['verbose']`
+- `$params['client']['port_in_header']`
+- `$params['client']['future']`, you can set HTTP async using `Client::setAsync(true)`
+- `$params['client']['ignore']`, you can disable the Exception using `Client::setResponseException(false)`

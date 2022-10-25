@@ -1,192 +1,247 @@
-elasticsearch-php
-=================
+<img align="right" width="auto" height="auto" src="https://www.elastic.co/static-res/images/elastic-logo-200.png"/>
 
-[![Build Status](https://img.shields.io/travis/elastic/elasticsearch-php.svg?style=flat-square)](https://travis-ci.org/elastic/elasticsearch-php)
+Elasticsearch PHP client
+========================
 
+[![Build status](https://github.com/elastic/elasticsearch-php/workflows/PHP%20test/badge.svg)](https://github.com/elastic/elasticsearch-php/actions) [![Latest Stable Version](https://poser.pugx.org/elasticsearch/elasticsearch/v/stable)](https://packagist.org/packages/elasticsearch/elasticsearch) [![Total Downloads](https://poser.pugx.org/elasticsearch/elasticsearch/downloads)](https://packagist.org/packages/elasticsearch/elasticsearch)
 
-Official low-level client for Elasticsearch. Its goal is to provide common ground for all Elasticsearch-related code in PHP; because of this it tries to be opinion-free and very extendable.
+This is the official PHP client for 
+[Elasticsearch](https://www.elastic.co/elasticsearch/).
 
-To maintain consistency across all the low-level clients (Ruby, Python, etc), clients accept simple associative arrays as parameters.  All parameters, from the URI to the document body, are defined in the associative array.
+## Contents
 
+- [Getting started](#getting-started-)
+- [Configuration](#configuration)
+  - [Use Elastic Cloud](#use-elastic-cloud)
+- [Usage](#usage)
+  - [Index a document](#index-a-document)
+  - [Search a document](#search-a-document)
+  - [Delete a document](#delete-a-document)
+- [Versioning](#versioning)
+- [Backward Incompatible Changes](#backward-incompatible-changes-boom)
+- [Mock the Elasticsearch client](#mock-the-elasticsearch-client)
+- [FAQ](#faq-)
+- [Contribute](#contribute-)
+- [License](#license-)
 
-Features
---------
+***
 
- - One-to-one mapping with REST API and other language clients
- - Configurable, automatic discovery of cluster nodes
- - Persistent, Keep-Alive connections (within the lifetime of the script)
- - Load balancing (with pluggable selection strategy) across all available nodes. Defaults to round-robin
- - Pluggable connection pools to offer different connection strategies
- - Generalized, pluggable architecture - most components can be replaced with your own custom class if specialized behavior is required
- - Option to use asyncronous future, which enables parallel execution of curl requests to multiple nodes
+## Getting started 🐣
 
-Version Matrix
---------------
+Using this client assumes that you have an 
+[Elasticsearch](https://www.elastic.co/elasticsearch/) server installed and 
+running.
 
-| Elasticsearch Version | Elasticsearch-PHP Branch |
-| --------------------- | ------------------------ |
-| >= 5.0                | 5.0               |
-| >= 2.0, < 5.0         | 1.0 or 2.0               |
-| >= 1.0, < 2.0         | 1.0 or 2.0               |
-| <= 0.90.x             | 0.4                      |
+You can install the client in your PHP project using 
+[composer](https://getcomposer.org/):
 
- - If you are using Elasticsearch 5.0+ , use Elasticsearch-PHP 5.0 branch.
- - If you are using Elasticsearch 1.x or 2.x, prefer using the Elasticsearch-PHP 2.0 branch.  The 1.0 branch is compatible however.
- - If you are using a version older than 1.0, you must install the `0.4` Elasticsearch-PHP branch. Since ES 0.90.x and below is now EOL, the corresponding `0.4` branch will not receive any more development or bugfixes.  Please upgrade.
- - You should never use Elasticsearch-PHP Master branch, as it tracks Elasticearch master and may contain incomplete features or breaks in backwards compat.  Only use ES-PHP master if you are developing against ES master for some reason.
+```bash
+composer require elasticsearch/elasticsearch
+```
 
-Documentation
---------------
-[Full documentation can be found here.](http://www.elasticsearch.org/guide/en/elasticsearch/client/php-api/5.0/index.html)  Docs are stored within the repo under /docs/, so if you see a typo or problem, please submit a PR to fix it!
+After the installation you can connect to Elasticsearch using the 
+`ClientBuilder` class. For instance, if your Elasticsearch is running on 
+`localhost:9200` you can use the following code:
 
-Installation via Composer
--------------------------
-The recommended method to install _Elasticsearch-PHP_ is through [Composer](http://getcomposer.org).
+```php
 
-1. Add ``elasticsearch/elasticsearch`` as a dependency in your project's ``composer.json`` file (change version to suit your version of Elasticsearch):
+use Elastic\Elasticsearch\ClientBuilder;
 
-    ```json
-        {
-            "require": {
-                "elasticsearch/elasticsearch": "~5.0"
-            }
-        }
-    ```
+$client = ClientBuilder::create()
+    ->setHosts(['localhost:9200'])
+    ->build();
 
-2. Download and install Composer:
+// Info API
+$response = $client->info();
 
-    ```bash
-        curl -s http://getcomposer.org/installer | php
-    ```
+echo $response['version']['number']; // 8.0.0
+```
 
-3. Install your dependencies:
+The `$response` is an object of `Elastic\Elasticsearch\Response\Elasticsearch`
+class that implements `ElasticsearchInterface`, PSR-7 
+[ResponseInterface](https://www.php-fig.org/psr/psr-7/#33-psrhttpmessageresponseinterface)
+and [ArrayAccess](https://www.php.net/manual/en/class.arrayaccess.php).
 
-    ```bash
-        php composer.phar install
-    ```
+This means the `$response` is a [PSR-7](https://www.php-fig.org/psr/psr-7/)
+object:
 
-4. Require Composer's autoloader
+```php
+echo $response->getStatusCode(); // 200
+echo (string) $response->getBody(); // Response body in JSON
+```
 
-    Composer also prepares an autoload file that's capable of autoloading all of the classes in any of the libraries that it downloads. To use it, just add the following line to your code's bootstrap process:
-
-    ```php
-        <?php
-
-        use Elasticsearch\ClientBuilder;
-
-        require 'vendor/autoload.php';
-
-        $client = ClientBuilder::create()->build();
-    ```
-You can find out more on how to install Composer, configure autoloading, and other best-practices for defining dependencies at [getcomposer.org](http://getcomposer.org).
-
-PHP Version Requirement
-----
-Version 5.0 of this library requires at least PHP version 5.6.6 to function.  In addition, it requires the native JSON
-extension to be version 1.3.7 or higher.
-
-| Elasticsearch-PHP Branch | PHP Version |
-| ----------- | ------------------------ |
-| 5.0         | >= 5.6.6                 |
-| 2.0         | >= 5.4.0                 |
-| 0.4, 1.0    | >= 5.3.9                 |
+and also an "array", meaning you can access the response body as an
+associative array, as follows:
 
 
-Quickstart
-----
+```php
+echo $response['version']['number']; // 8.0.0
 
+var_dump($response->asArray());  // response body content as array
+```
+
+Moreover, you can access the response body as object, string or bool:
+
+```php
+echo $response->version->number; // 8.0.0
+
+var_dump($response->asObject()); // response body content as object
+var_dump($response->asString()); // response body as string (JSON)
+var_dump($response->asBool());   // true if HTTP response code between 200 and 300
+```
+
+## Configuration
+
+Elasticsearch 8.0 offers 
+[security by default](https://www.elastic.co/blog/introducing-simplified-elastic-stack-security),
+that means it uses [TLS](https://en.wikipedia.org/wiki/Transport_Layer_Security)
+for protect the communication between client and server.
+
+In order to configure `elasticsearch-php` for connecting to Elasticsearch 8.0 we
+need to have the certificate authority file (CA).
+
+You can install Elasticsearch in different ways, for instance using 
+[Docker](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html)
+you need to execute the followind command:
+
+```bash
+docker pull docker.elastic.co/elasticsearch/elasticsearch:8.0.1
+```
+Once you have the docker image installed, you can execute Elasticsearch, for 
+instance using a single-node cluster configuration, as follows:
+
+```bash
+docker network create elastic
+docker run --name es01 --net elastic -p 9200:9200 -p 9300:9300 -it docker.elastic.co/elasticsearch/elasticsearch:8.0.1
+```
+
+This command creates an `elastic` Docker network and start Elasticsearch
+using the port `9200` (default).
+
+When you run the docker image a password is generated for the `elastic` user
+and it's printed to the terminal (you might need to scroll back a bit in the 
+terminal to view it). You have to copy it since we will need to connect to 
+Elasticsearch.
+
+Now that Elasticsearch is running we can get the `http_ca.crt` file certificate.
+We need to copy it from the docker instance, using the following command:
+
+```bash
+docker cp es01:/usr/share/elasticsearch/config/certs/http_ca.crt .
+```
+
+Once we have the `http_ca.crt` certificate and the `password`, copied during the
+start of Elasticsearch, we can use it to connect with `elasticsearch-php` as 
+follows:
+
+```php
+$client = ClientBuilder::create()
+    ->setHosts(['https://localhost:9200'])
+    ->setBasicAuthentication('elastic', 'password copied during Elasticsearch start')
+    ->setCABundle('path/to/http_ca.crt')
+    ->build();
+```
+
+For more information about the Docker configuration of Elasticsearch you can
+read the official documentation 
+[here](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html).
+
+### Use Elastic Cloud
+
+You can use [Elastic Cloud](https://www.elastic.co/cloud/) as server with 
+`elasticsearch-php`. Elastic Cloud is the PaaS solution offered by 
+[Elastic](https://www.elastic.co).
+
+For connecting to Elastic Cloud you just need the `Cloud ID` and the `API key`.
+
+You can get the `Cloud ID` from the `My deployment` page of your dashboard (see 
+the red rectangle reported in the screenshot).
+
+![Cloud ID](docs/images/cloud_id.png)
+
+You can generate an `API key` in the `Management` page under the section 
+`Security`.
+
+![Security](docs/images/create_api_key.png)
+
+When you click on `Create API key` button you can choose a name and set the 
+other options (for example, restrict privileges, expire after time, and so on).
+
+![Choose an API name](docs/images/api_key_name.png)
+
+After this step you will get the `API key`in the API keys page. 
+
+![API key](docs/images/cloud_api_key.png)
+
+**IMPORTANT**: you need to copy and store the `API key`in a secure place, since 
+you will not be able to view it again in Elastic Cloud.
+
+Once you have collected the `Cloud ID` and the `API key`, you can use 
+`elasticsearch-php` to connect to your Elastic Cloud instance, as follows:
+
+```php
+$client = ClientBuilder::create()
+    ->setElasticCloudId('insert here the Cloud ID')
+    ->setApiKey('insert here the API key')
+    ->build();
+```
+
+## Usage
+
+The `elasticsearch-php` client offers 400+ endpoints for interacting with 
+Elasticsearch. A list of all these endpoints is available in the 
+[official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/rest-apis.html)
+of Elasticsearch APIs.
+
+Here we reported the basic operation that you can perform with the client: 
+index, search and delete.
 
 ### Index a document
 
-In elasticsearch-php, almost everything is configured by associative arrays.  The REST endpoint, document and optional parameters - everything is an associative array.
-
-To index a document, we need to specify four pieces of information: index, type, id and a document body. This is done by
-constructing an associative array of key:value pairs.  The request body is itself an associative array with key:value pairs
-corresponding to the data in your document:
+You can store (index) a JSON document in Elasticsearch using the following code:
 
 ```php
+use Elastic\Elasticsearch\Exception\ClientResponseException;
+use Elastic\Elasticsearch\Exception\ServerResponseException;
+
 $params = [
     'index' => 'my_index',
-    'type' => 'my_type',
-    'id' => 'my_id',
-    'body' => ['testField' => 'abc']
+    'body'  => [ 'testField' => 'abc']
 ];
 
-$response = $client->index($params);
-print_r($response);
+try {
+  $response = $client->index($params);
+} catch (ClientResponseException $e) {
+  // manage the 4xx error
+} catch (ServerResponseException $e) {
+  // manage the 5xx error
+} catch (Exception $e) {
+  // eg. network error like NoNodeAvailableException
+}
+
+print_r($response->asArray());  // response body content as array
 ```
 
-The response that you get back indicates the document was created in the index that you specified.  The response is an
-associative array containing a decoded version of the JSON that Elasticsearch returns:
+Elasticsearch stores the `{"testField":"abc"}` JSON document in the `my_index` 
+index. The `ID` of the document is created automatically by Elasticsearch and 
+stored in `$response['_id']` field value. If you want to specify an `ID` for the 
+document you need to store it in `$params['id']`.
 
-```php
-Array
-(
-    [_index] => my_index
-    [_type] => my_type
-    [_id] => my_id
-    [_version] => 1
-    [created] => 1
-)
+You can manage errors using `ClientResponseException` and 
+`ServerResponseException`. The PSR-7 response is available using 
+`$e->getResponse()` and the HTTP status code is available using `$e->getCode()`.
 
-```
+### Search a document
 
-### Get a document
-
-Let's get the document that we just indexed.  This will simply return the document:
-
-```php
-$params = [
-    'index' => 'my_index',
-    'type' => 'my_type',
-    'id' => 'my_id'
-];
-
-$response = $client->get($params);
-print_r($response);
-```
-
-The response contains some metadata (index, type, etc) as well as a `_source` field...this is the original document
-that you sent to Elasticsearch.
-
-```php
-Array
-(
-    [_index] => my_index
-    [_type] => my_type
-    [_id] => my_id
-    [_version] => 1
-    [found] => 1
-    [_source] => Array
-        (
-            [testField] => abc
-        )
-
-)
-```
-
-If you want to retrieve the `_source` field directly, there is the `getSource` method:
+Elasticsearch provides many different way to search documents. The simplest 
+search that you can perform is a 
+[match query](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html),
+as follows:
 
 ```php
 $params = [
     'index' => 'my_index',
-    'type' => 'my_type',
-    'id' => 'my_id'
-];
-
-$source = $client->getSource($params);
-doSomething($source);
-```
-
-### Search for a document
-
-Searching is a hallmark of Elasticsearch, so let's perform a search.  We are going to use the Match query as a demonstration:
-
-```php
-$params = [
-    'index' => 'my_index',
-    'type' => 'my_type',
-    'body' => [
+    'body'  => [
         'query' => [
             'match' => [
                 'testField' => 'abc'
@@ -194,202 +249,166 @@ $params = [
         ]
     ]
 ];
-
 $response = $client->search($params);
-print_r($response);
+
+printf("Total docs: %d\n", $response['hits']['total']['value']);
+printf("Max score : %.4f\n", $response['hits']['max_score']);
+printf("Took      : %d ms\n", $response['took']);
+
+print_r($response['hits']['hits']); // documents
 ```
 
-The response is a little different from the previous responses.  We see some metadata (`took`, `timed_out`, etc) and
-an array named `hits`.  This represents your search results.  Inside of `hits` is another array named `hits`, which contains
-individual search results:
-
-```php
-Array
-(
-    [took] => 1
-    [timed_out] =>
-    [_shards] => Array
-        (
-            [total] => 5
-            [successful] => 5
-            [failed] => 0
-        )
-
-    [hits] => Array
-        (
-            [total] => 1
-            [max_score] => 0.30685282
-            [hits] => Array
-                (
-                    [0] => Array
-                        (
-                            [_index] => my_index
-                            [_type] => my_type
-                            [_id] => my_id
-                            [_score] => 0.30685282
-                            [_source] => Array
-                                (
-                                    [testField] => abc
-                                )
-                        )
-                )
-        )
-)
-```
+Using Elasticsearch you can perform different query search, for more information 
+we suggest toread the official documention reported 
+[here](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-your-data.html).
 
 ### Delete a document
 
-Alright, let's go ahead and delete the document that we added previously:
+You can delete a document specifing the `index` name and the `ID` of the 
+document, as follows:
 
 ```php
-$params = [
-    'index' => 'my_index',
-    'type' => 'my_type',
-    'id' => 'my_id'
-];
+use Elastic\Elasticsearch\Exception\ClientResponseException;
 
-$response = $client->delete($params);
-print_r($response);
+try {
+    $response = $client->delete([
+        'index' => 'my_index',
+        'id' => 'my_id'
+    ]);
+} catch (ClientResponseException $e) {
+    if ($e->getCode() === 404) {
+        // the document does not exist
+    }
+}
+if ($response['acknowledge'] === 1) {
+    // the document has been delete
+}
 ```
 
-You'll notice this is identical syntax to the `get` syntax.  The only difference is the operation: `delete` instead of
-`get`.  The response will confirm the document was deleted:
+For more information about the Elasticsearch REST API you can read the official 
+documentation [here](https://www.elastic.co/guide/en/elasticsearch/reference/current/rest-apis.html).
+
+### Versioning
+
+This client is versioned and released alongside Elasticsearch server.
+
+To guarantee compatibility, use the most recent version of this library within 
+the major version of the corresponding Enterprise Search implementation.
+
+For example, for Elasticsearch `7.16`, use `7.16` of this library or above, but 
+not `8.0`.
+
+## Backward Incompatible Changes :boom:
+
+The 8.0.0 version of `elasticsearch-php` contains a new implementation compared 
+with 7.x. It supports [PSR-7](https://www.php-fig.org/psr/psr-7/) for HTTP 
+messages and [PSR-18](https://www.php-fig.org/psr/psr-18/) for HTTP client 
+communications. 
+
+We tried to reduce the BC breaks as much as possible with `7.x` but there are 
+some (big) differences:
+
+- we changed the namespace, now everything is under `Elastic\Elasticsearch`
+- we used the 
+  [elastic-transport-php](https://github.com/elastic/elastic-transport-php) 
+  library for HTTP communications;
+- we changed the `Exception` model, using the namespace 
+  `Elastic\Elasticsearch\Exception`. All the exceptions extends the 
+  `ElasticsearchException` interface, as in 7.x
+- we changed the response type of each endpoints using an 
+  [Elasticsearch](src/Response/Elasticsearch.php) response class. This class 
+  wraps a a [PSR-7](https://www.php-fig.org/psr/psr-7/) response allowing the 
+  access of the body response as array or object. This means you can access the 
+  API response as in 7.x, no BC break here! :angel:
+- we changed the `ConnectionPool` in `NodePool`. The `connection` naming was 
+  ambigous since the objects are nodes (hosts)
+
+You can have a look at the [BREAKING_CHANGES](BREAKING_CHANGES.md) file for more 
+information.
+
+## Mock the Elasticsearch client
+
+If you need to mock the Elasticsearch client you just need to mock a
+[PSR-18](https://www.php-fig.org/psr/psr-18/) HTTP Client.
+
+For instance, you can use the 
+[php-http/mock-client](https://github.com/php-http/mock-client) as follows:
 
 ```php
-Array
-(
-    [found] => 1
-    [_index] => my_index
-    [_type] => my_type
-    [_id] => my_id
-    [_version] => 2
-)
+use Elastic\Elasticsearch\ClientBuilder;
+use Elastic\Elasticsearch\Response\Elasticsearch;
+use Http\Mock\Client;
+use Nyholm\Psr7\Response;
+
+$mock = new Client(); // This is the mock client
+
+$client = ClientBuilder::create()
+    ->setHttpClient($mock)
+    ->build();
+
+// This is a PSR-7 response
+$response = new Response(
+    200, 
+    [Elasticsearch::HEADER_CHECK => Elasticsearch::PRODUCT_NAME],
+    'This is the body!'
+);
+$mock->addResponse($response);
+
+$result = $client->info(); // Just calling an Elasticsearch endpoint
+
+echo $result->asString(); // This is the body!
 ```
 
-
-### Delete an index
-
-Due to the dynamic nature of Elasticsearch, the first document we added automatically built an index with some default settings.  Let's delete that index because we want to specify our own settings later:
+We are using the `ClientBuilder::setHttpClient()` to set the mock client.
+You can specify the response that you want to have using the 
+`addResponse($response)` function. As you can see the `$response` is a PSR-7 
+response object. In this example we used the `Nyholm\Psr7\Response` object from 
+the [nyholm/psr7](https://github.com/Nyholm/psr7) project. If you are using 
+[PHPUnit](https://phpunit.de/) you can even mock the `ResponseInterface` as 
+follows:
 
 ```php
-$deleteParams = [
-    'index' => 'my_index'
-];
-$response = $client->indices()->delete($deleteParams);
-print_r($response);
+$response = $this->createMock('Psr\Http\Message\ResponseInterface');
 ```
 
-The response:
+**Notice**: we added a special header in the HTTP response. This is the product 
+check header, and it is required for guarantee that `elasticsearch-php` is 
+communicating with an Elasticsearch server 8.0+.
 
+For more information you can read the 
+[Mock client](https://docs.php-http.org/en/latest/clients/mock-client.html) 
+section of PHP-HTTP documentation.
 
-```php
-Array
-(
-    [acknowledged] => 1
-)
-```
+## FAQ 🔮
 
-### Create an index
+### Where do I report issues with the client?
 
-Now that we are starting fresh (no data or index), let's add a new index with some custom settings:
+If something is not working as expected, please open an 
+[issue](https://github.com/elastic/elasticsearch-php/issues/new).
 
-```php
-$params = [
-    'index' => 'my_index',
-    'body' => [
-        'settings' => [
-            'number_of_shards' => 2,
-            'number_of_replicas' => 0
-        ]
-    ]
-];
+### Where else can I go to get help?
 
-$response = $client->indices()->create($params);
-print_r($response);
-```
+You can checkout the 
+[Elastic community discuss forums](https://discuss.elastic.co/).
 
-Elasticsearch will now create that index with your chosen settings, and return an acknowledgement:
+## Contribute 🚀
 
-```php
-Array
-(
-    [acknowledged] => 1
-)
-```
+We welcome contributors to the project. Before you begin, some useful info...
 
-Unit Testing using Mock a Elastic Client
-========================================
-```php
-use GuzzleHttp\Ring\Client\MockHandler;
-use Elasticsearch\ClientBuilder;
++ If you want to contribute to this project you need to subscribe to a 
+  [Contributor Agreement](https://www.elastic.co/contributor-agreement).
++ Before opening a pull request, please create an issue to 
+  [discuss the scope of your proposal](https://github.com/elastic/elasticsearch-php/issues).
++ If you want to send a PR for version `8.0` please use the `8.0` branch, for 
+  `8.1` use the `8.1` branch and so on. 
++ Never send PR to `master` unless you want to contribute to the development 
+  version of the client (`master` represents the next major version).
++ Each PR should include a **unit test** using [PHPUnit](https://phpunit.de/). 
+  If you are not familiar with PHPUnit you can have a look at the 
+  [reference](https://phpunit.readthedocs.io/en/9.5/). 
 
-// The connection class requires 'body' to be a file stream handle
-// Depending on what kind of request you do, you may need to set more values here
-$handler = new MockHandler([
-  'status' => 200,
-  'transfer_stats' => [
-     'total_time' => 100
-  ],
-  'body' => fopen('somefile.json')
-]);
-$builder = ClientBuilder::create();
-$builder->setHosts(['somehost']);
-$builder->setHandler($handler);
-$client = $builder->build();
-// Do a request and you'll get back the 'body' response above
-```
+Thanks in advance for your contribution! :heart:
 
-Wrap up
-=======
+## License 📗
 
-That was just a crash-course overview of the client and it's syntax.  If you are familiar with elasticsearch, you'll notice that the methods are named just like REST endpoints.
-
-You'll also notice that the client is configured in a manner that facilitates easy discovery via the IDE.  All core actions are available under the `$client` object (indexing, searching, getting, etc).  Index and cluster management are located under the `$client->indices()` and `$client->cluster()` objects, respectively.
-
-Check out the rest of the [Documentation](http://www.elasticsearch.org/guide/en/elasticsearch/client/php-api/current/index.html) to see how the entire client works.
-
-
-Available Licenses
--------
-
-Starting with version 1.3.1, Elasticsearch-PHP is available under two licenses: Apache v2.0 and LGPL v2.1.  Versions
-prior to 1.3.1 are still licensed with only Apache v2.0.
-
-The user may choose which license they wish to use.  Since there is no discriminating executable or distribution bundle
-to differentiate licensing, the user should document their license choice externally, in case the library is re-distributed.
-If no explicit choice is made, assumption is that redistribution obeys rules of both licenses.
-
-### Contributions
-All contributions to the library are to be so that they can be licensed under both licenses.
-
-Apache v2.0 License:
->Copyright 2013-2016 Elasticsearch
->
->Licensed under the Apache License, Version 2.0 (the "License");
->you may not use this file except in compliance with the License.
->You may obtain a copy of the License at
->
->    http://www.apache.org/licenses/LICENSE-2.0
->
->Unless required by applicable law or agreed to in writing, software
->distributed under the License is distributed on an "AS IS" BASIS,
->WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
->See the License for the specific language governing permissions and
->limitations under the License.
-
-LGPL v2.1 Notice:
->Copyright (C) 2013-2016 Elasticsearch
->
->This library is free software; you can redistribute it and/or
->modify it under the terms of the GNU Lesser General Public
->License as published by the Free Software Foundation; either
->version 2.1 of the License, or (at your option) any later version.
->
->This library is distributed in the hope that it will be useful,
->but WITHOUT ANY WARRANTY; without even the implied warranty of
->MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
->Lesser General Public License for more details.
->
->You should have received a copy of the GNU Lesser General Public
->License along with this library; if not, write to the Free Software
->Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+[MIT](LICENSE) © [Elastic](https://www.elastic.co/)

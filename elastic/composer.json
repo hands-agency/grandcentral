@@ -1,0 +1,6 @@
+{
+    "name": "capeb/elastic",
+    "require": {
+        "elasticsearch/elasticsearch": "^8.4"
+    }
+}

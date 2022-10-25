@@ -1,8 +1,10 @@
 <?php
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/elastic/vendor/autoload.php';
-use Elasticsearch\ClientBuilder;
+use Elastic\Elasticsearch\ClientBuilder;
 
+
+// echo "<pre>";print_r(get_declared_classes());echo "</pre>";exit;
 /**
  *
  */
