@@ -2,9 +2,6 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/elastic/vendor/autoload.php';
 use Elastic\Elasticsearch\ClientBuilder;
-
-
-// echo "<pre>";print_r(get_declared_classes());echo "</pre>";exit;
 /**
  *
  */
@@ -44,33 +41,7 @@ class ElasticsearchInstance
       throw new Exception('Index have to be set in the config', 1);
     }
 
-    // $host;
-    // if (!is_null($this->host['username'])) {
-    //   if (preg_match("/https?/", $this->host['url'], $matches)) {
-    //     $hostProtocol = $matches[0] . '://';
-    //     $hostLength = mb_strlen($hostProtocol);
-    //     $hostDomain = mb_substr($this->host['url'], $hostLength);
-    //     $host = $hostProtocol . $this->host['username'] . ':' . $this->host['password'] . '@' . $hostDomain;
-    //   } else {
-    //     $hostProtocol = 'http://';
-    //     $hostDomain = $this->host['url'];
-    //     $host = $hostProtocol . $this->host['username'] . ':' . $this->host['password'] . '@' . $hostDomain;
-    //   }
-    // } else {
-    //   if (preg_match("/https?/", $this->host['url'], $matches)) {
-    //     $hostProtocol = $matches[0] . '://';
-    //     $hostDomain = $this->host['url'];
-    //     $host = $hostProtocol . $hostDomain;
-    //   } else {
-    //     $hostProtocol = 'http://';
-    //     $hostDomain = $this->host['url'];
-    //     $host = $hostProtocol . $hostDomain;
-    //   }
-    // }
-    // $this->hosts = [$host];
-
     $this->hosts = [$this->host['url']];
-    // echo "<pre>";print_r($this->hosts);echo "</pre>";exit;
     if(!defined('JSON_PRESERVE_ZERO_FRACTION')) {
       define('JSON_PRESERVE_ZERO_FRACTION', 1024);
       if (!empty($this->host['username']) && !empty($this->host['password'])) {
@@ -78,7 +49,6 @@ class ElasticsearchInstance
           ->setHosts($this->hosts)
           ->setBasicAuthentication($this->host['username'], $this->host['password'])
           ->build();
-        // $this->client = ClientBuilder::create()->setHosts($this->hosts)->build();
       } else {
         $this->client = ClientBuilder::create()
           ->setHosts($this->hosts)
@@ -409,13 +379,10 @@ class ElasticsearchInstance
 
   public function map()
   {
-    // $lazelazlealzelaelzae = $this->client->indices()->delete(['index' => $this->index]);
     $indexExistsResponse = $this->client->indices()->exists(['index' => $this->index]);
-    // echo "<pre>";var_dump($indexExistsResponse->asBool());echo "</pre>";exit;
-    // $typeExists = $this->client->indices()->existsType(['index' => $this->index, 'type' => $this->type]);
 
-    if (!$indexExistsResponse->asBool()) {
-      // echo "<pre>";print_r('pmpm');echo "</pre>";exit;
+    if (!$indexExistsResponse->asBool())
+    {
       $params = [
         'index' => $this->index,
         'body' => [
@@ -425,48 +392,14 @@ class ElasticsearchInstance
           ],
         ],
         'mappings' => [
-          // 'doc' => [
           'properties' => [
             'type' => [
               'type' => 'keyword'
             ]
           ]
-          // ]
         ]
       ];
 
-      // $properties = [];
-      // foreach ($this->allowedFields as $key => $value) {
-      //   switch ($value) {
-      //     case 'id':
-      //       break;
-      //
-      //     case 'boolean':
-      //       $properties[$key] = [
-      //         'type' => 'boolean'
-      //       ];
-      //       break;
-      //
-      //     case 'geo_point':
-      //       $properties[$key] = [
-      //         'type' => 'geo_point'
-      //       ];
-      //       break;
-      //
-      //     case 'flag':
-      //       $properties[$key] = [
-      //         'type' => 'boolean'
-      //       ];
-      //       break;
-      //
-      //     default:
-      //       $properties[$key] = [
-      //         'type' => 'text'
-      //       ];
-      //       break;
-      //   }
-      // }
-      // $params['body']['mappings'][$this->type]['properties'] = $properties;
       foreach ($this->allowedFields as $key => $value) {
         if ($value === 'geo_point') {
           $params['mappings']['properties'][$key] = ['type' => 'geo_point'];
@@ -476,65 +409,12 @@ class ElasticsearchInstance
         }
       }
 
-      if (!is_null($this->synonymsPath)) {
-        // echo "<pre>";print_r('if');echo "</pre>";exit;
-        // $params['body']['settings']['analysis'] = [
-        //   'filter' => [
-        //     'synonym_filter' => [
-        //       'type' => 'synonym',
-        //       'synonyms_path' => $this->synonymsPath
-        //     ],
-        //     'snowball_filter' => [
-        //       'type' => 'snowball'
-        //     ],
-        //     'french_elision' => [
-        //       'type' => 'elision',
-        //       'articles_case' => true,
-        //       'articles' => [
-        //         'l', 'm', 't', 'qu', 'n', 's',
-        //         'j', 'd', 'c', 'jusqu', 'quoiqu',
-        //         'lorsqu', 'puisqu'
-        //       ]
-        //     ],
-        //     'french_stop' => [
-        //       'type' => 'stop',
-        //       'stopwords' => '_french_'
-        //     ],
-        //     'french_keywords' => [
-        //       'type' => 'keyword_marker',
-        //       'keywords' => ['']
-        //     ],
-        //     'french_stemmer' => [
-        //       'type' => 'stemmer',
-        //       'language' => 'light_french'
-        //     ]
-        //   ],
-        //   'analyzer' => [
-        //     $this->index.'_synonyms_analyzer' => [
-        //       'type' => 'custom',
-        //       'tokenizer' => 'standard',
-        //       'filter' => [
-        //         'french_elision',
-        //         'asciifolding',
-        //         'lowercase',
-        //         'french_stop',
-        //         'french_keywords',
-        //         'french_stemmer',
-        //         'synonym_filter',
-        //         'snowball_filter',
-        //       ]
-        //     ]
-        //   ]
-        // ];
+      
         $params['body']['settings']['analysis'] = [
           'filter' => [
-            'synonym_filter' => [
-              'type' => 'synonym',
-              'ignore_case' => true,
-              'synonyms_path' => $this->synonymsPath
-            ],
             'snowball_filter' => [
-              'type' => 'snowball'
+              'type' => 'snowball',
+              'language' => 'French'
             ],
             'french_elision' => [
               'type' => 'elision',
@@ -564,8 +444,8 @@ class ElasticsearchInstance
               'tokenizer' => 'icu_tokenizer',
               'filter' => [
                 'french_elision',
-                'icu_folding',
-                'synonym_filter',
+                // 'icu_folding',
+                // 'synonym_filter',
                 'french_stemmer'
               ]
             ],
@@ -574,62 +454,22 @@ class ElasticsearchInstance
               'tokenizer' => 'icu_tokenizer',
               'filter' => [
                 'french_elision',
-                'icu_folding',
-                'synonym_filter'
+                // 'icu_folding',
+                // 'synonym_filter'
               ]
             ]
           ]
         ];
-      } else {
-        // echo "<pre>";print_r('else');echo "</pre>";exit;
-        $params['body']['settings']['analysis'] = [
-          'filter' => [
-            'snowball_filter' => [
-              'type' => 'snowball'
-            ],
-            'french_elision' => [
-              'type' => 'elision',
-              'articles_case' => true,
-              'articles' => [
-                'l', 'm', 't', 'qu', 'n', 's',
-                'j', 'd', 'c', 'jusqu', 'quoiqu',
-                'lorsqu', 'puisqu'
-              ]
-            ],
-            'french_stop' => [
-              'type' => 'stop',
-              'stopwords' => '_french_'
-            ],
-            'french_keywords' => [
-              'type' => 'keyword_marker',
-              'keywords' => ['']
-            ],
-            'french_stemmer' => [
-              'type' => 'stemmer',
-              'language' => 'light_french'
-            ]
-          ],
-          // 'analyzer' => [
-          //   'french_heavy' => [
-          //     'type' => 'custom',
-          //     'tokenizer' => 'icu_tokenizer',
-          //     'filter' => [
-          //       'french_elision',
-          //       'icu_folding',
-          //       'french_stemmer'
-          //     ]
-          //   ],
-          //   'french_light' => [
-          //     'type' => 'custom',
-          //     'tokenizer' => 'icu_tokenizer',
-          //     'filter' => [
-          //       'french_elision',
-          //       'icu_folding'
-          //     ]
-          //   ]
-          // ]
-        ];
-      }
+        if (!is_null($this->synonymsPath))
+        {
+          $params['body']['settings']['analysis']['filter']['synonym_filter'] = [
+            'type' => 'synonym',
+            'ignore_case' => true,
+            'synonyms_path' => $this->synonymsPath
+          ];
+          $params['body']['settings']['analysis']['analyzer']['french_heavy']['filter'][] = 'synonym_filter';
+          $params['body']['settings']['analysis']['analyzer']['french_light']['filter'][] = 'synonym_filter';
+        }
 
       $indexCreateResponse = $this->client->indices()->create($params);
     }
