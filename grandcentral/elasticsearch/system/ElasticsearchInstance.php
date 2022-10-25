@@ -44,35 +44,58 @@ class ElasticsearchInstance
       throw new Exception('Index have to be set in the config', 1);
     }
 
-    $host;
-    if (!is_null($this->host['username'])) {
-      if (preg_match("/https?/", $this->host['url'], $matches)) {
-        $hostProtocol = $matches[0] . '://';
-        $hostLength = mb_strlen($hostProtocol);
-        $hostDomain = mb_substr($this->host['url'], $hostLength);
-        $host = $hostProtocol . $this->host['username'] . ':' . $this->host['password'] . '@' . $hostDomain;
-      } else {
-        $hostProtocol = 'http://';
-        $hostDomain = $this->host['url'];
-        $host = $hostProtocol . $this->host['username'] . ':' . $this->host['password'] . '@' . $hostDomain;
-      }
-    } else {
-      if (preg_match("/https?/", $this->host['url'], $matches)) {
-        $hostProtocol = $matches[0] . '://';
-        $hostDomain = $this->host['url'];
-        $host = $hostProtocol . $hostDomain;
-      } else {
-        $hostProtocol = 'http://';
-        $hostDomain = $this->host['url'];
-        $host = $hostProtocol . $hostDomain;
-      }
-    }
-    $this->hosts = [$host];
+    // $host;
+    // if (!is_null($this->host['username'])) {
+    //   if (preg_match("/https?/", $this->host['url'], $matches)) {
+    //     $hostProtocol = $matches[0] . '://';
+    //     $hostLength = mb_strlen($hostProtocol);
+    //     $hostDomain = mb_substr($this->host['url'], $hostLength);
+    //     $host = $hostProtocol . $this->host['username'] . ':' . $this->host['password'] . '@' . $hostDomain;
+    //   } else {
+    //     $hostProtocol = 'http://';
+    //     $hostDomain = $this->host['url'];
+    //     $host = $hostProtocol . $this->host['username'] . ':' . $this->host['password'] . '@' . $hostDomain;
+    //   }
+    // } else {
+    //   if (preg_match("/https?/", $this->host['url'], $matches)) {
+    //     $hostProtocol = $matches[0] . '://';
+    //     $hostDomain = $this->host['url'];
+    //     $host = $hostProtocol . $hostDomain;
+    //   } else {
+    //     $hostProtocol = 'http://';
+    //     $hostDomain = $this->host['url'];
+    //     $host = $hostProtocol . $hostDomain;
+    //   }
+    // }
+    // $this->hosts = [$host];
+
+    $this->hosts = [$this->host['url']];
+    // echo "<pre>";print_r($this->hosts);echo "</pre>";exit;
     if(!defined('JSON_PRESERVE_ZERO_FRACTION')) {
       define('JSON_PRESERVE_ZERO_FRACTION', 1024);
-      $this->client = ClientBuilder::create()->setHosts($this->hosts)->build();
+      if (!empty($this->host['username']) && !empty($this->host['password'])) {
+        $this->client = ClientBuilder::create()
+          ->setHosts($this->hosts)
+          ->setBasicAuthentication($this->host['username'], $this->host['password'])
+          ->build();
+        // $this->client = ClientBuilder::create()->setHosts($this->hosts)->build();
+      } else {
+        $this->client = ClientBuilder::create()
+          ->setHosts($this->hosts)
+          ->build();
+      }
     } else {
-      $this->client = ClientBuilder::create()->setHosts($this->hosts)->build();
+      if (!empty($this->host['username']) && !empty($this->host['password'])) {
+        $this->client = ClientBuilder::create()
+          ->setHosts($this->hosts)
+          ->setBasicAuthentication($this->host['username'], $this->host['password'])
+          ->build();
+        // $this->client = ClientBuilder::create()->setHosts($this->hosts)->build();
+      } else {
+        $this->client = ClientBuilder::create()
+          ->setHosts($this->hosts)
+          ->build();
+      }
     }
 
     return $this;
@@ -386,10 +409,13 @@ class ElasticsearchInstance
 
   public function map()
   {
-    $indexExists = $this->client->indices()->exists(['index' => $this->index]);
+    // $lazelazlealzelaelzae = $this->client->indices()->delete(['index' => $this->index]);
+    $indexExistsResponse = $this->client->indices()->exists(['index' => $this->index]);
+    // echo "<pre>";var_dump($indexExistsResponse->asBool());echo "</pre>";exit;
     // $typeExists = $this->client->indices()->existsType(['index' => $this->index, 'type' => $this->type]);
 
-    if (!$indexExists) {
+    if (!$indexExistsResponse->asBool()) {
+      // echo "<pre>";print_r('pmpm');echo "</pre>";exit;
       $params = [
         'index' => $this->index,
         'body' => [
@@ -397,15 +423,15 @@ class ElasticsearchInstance
             'number_of_shards' => 3,
             'number_of_replicas' => 2
           ],
-          'mappings' => [
-            'doc' => [
-              'properties' => [
-                'type' => [
-                  'type' => 'keyword'
-                ]
-              ]
+        ],
+        'mappings' => [
+          // 'doc' => [
+          'properties' => [
+            'type' => [
+              'type' => 'keyword'
             ]
           ]
+          // ]
         ]
       ];
 
@@ -443,14 +469,15 @@ class ElasticsearchInstance
       // $params['body']['mappings'][$this->type]['properties'] = $properties;
       foreach ($this->allowedFields as $key => $value) {
         if ($value === 'geo_point') {
-          $params['body']['mappings']['doc']['properties'][$key] = ['type' => 'geo_point'];
+          $params['mappings']['properties'][$key] = ['type' => 'geo_point'];
         }
         if ($value === 'date') {
-          $params['body']['mappings']['doc']['properties'][$key] = ['type' => 'date', 'format' => 'yyyy-MM-dd HH:mm:ss'];
+          $params['mappings']['properties'][$key] = ['type' => 'date', 'format' => 'yyyy-MM-dd HH:mm:ss'];
         }
       }
 
       if (!is_null($this->synonymsPath)) {
+        // echo "<pre>";print_r('if');echo "</pre>";exit;
         // $params['body']['settings']['analysis'] = [
         //   'filter' => [
         //     'synonym_filter' => [
@@ -554,6 +581,7 @@ class ElasticsearchInstance
           ]
         ];
       } else {
+        // echo "<pre>";print_r('else');echo "</pre>";exit;
         $params['body']['settings']['analysis'] = [
           'filter' => [
             'snowball_filter' => [
@@ -581,29 +609,29 @@ class ElasticsearchInstance
               'language' => 'light_french'
             ]
           ],
-          'analyzer' => [
-            'french_heavy' => [
-              'type' => 'custom',
-              'tokenizer' => 'icu_tokenizer',
-              'filter' => [
-                'french_elision',
-                'icu_folding',
-                'french_stemmer'
-              ]
-            ],
-            'french_light' => [
-              'type' => 'custom',
-              'tokenizer' => 'icu_tokenizer',
-              'filter' => [
-                'french_elision',
-                'icu_folding'
-              ]
-            ]
-          ]
+          // 'analyzer' => [
+          //   'french_heavy' => [
+          //     'type' => 'custom',
+          //     'tokenizer' => 'icu_tokenizer',
+          //     'filter' => [
+          //       'french_elision',
+          //       'icu_folding',
+          //       'french_stemmer'
+          //     ]
+          //   ],
+          //   'french_light' => [
+          //     'type' => 'custom',
+          //     'tokenizer' => 'icu_tokenizer',
+          //     'filter' => [
+          //       'french_elision',
+          //       'icu_folding'
+          //     ]
+          //   ]
+          // ]
         ];
       }
 
-      $this->client->indices()->create($params);
+      $indexCreateResponse = $this->client->indices()->create($params);
     }
   }
 
