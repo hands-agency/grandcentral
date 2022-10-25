@@ -300,7 +300,10 @@ class boot
  */
 	private function autoload($name)
 	{
-		(class_exists('registry', false) && $app = registry::get(registry::class_index, $name)) ? self::get(ADMIN_ROOT.'/'.$app) : self::error('no-class', $name);
+    if (!mb_strstr($name, '\\'))
+    {
+      (class_exists('registry', false) && $app = registry::get(registry::class_index, $name)) ? self::get(ADMIN_ROOT.'/'.$app) : self::error('no-class', $name);
+    }
 	}
 
 /**
