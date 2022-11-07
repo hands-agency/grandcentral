@@ -390,11 +390,11 @@ class ElasticsearchInstance
             'number_of_shards' => 3,
             'number_of_replicas' => 2
           ],
-        ],
-        'mappings' => [
-          'properties' => [
-            'type' => [
-              'type' => 'keyword'
+          'mappings' => [
+            'properties' => [
+              'type' => [
+                'type' => 'keyword'
+              ]
             ]
           ]
         ]
@@ -402,10 +402,10 @@ class ElasticsearchInstance
 
       foreach ($this->allowedFields as $key => $value) {
         if ($value === 'geo_point') {
-          $params['mappings']['properties'][$key] = ['type' => 'geo_point'];
+          $params['body']['mappings']['properties'][$key] = ['type' => 'geo_point'];
         }
         if ($value === 'date') {
-          $params['mappings']['properties'][$key] = ['type' => 'date', 'format' => 'yyyy-MM-dd HH:mm:ss'];
+          $params['body']['mappings']['properties'][$key] = ['type' => 'date', 'format' => 'yyyy-MM-dd HH:mm:ss'];
         }
       }
 
