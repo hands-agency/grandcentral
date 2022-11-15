@@ -1,8 +1,7 @@
 <?php
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/elastic/vendor/autoload.php';
-use Elasticsearch\ClientBuilder;
-
+use Elastic\Elasticsearch\ClientBuilder;
 /**
  *
  */
@@ -42,35 +41,31 @@ class ElasticsearchInstance
       throw new Exception('Index have to be set in the config', 1);
     }
 
-    $host;
-    if (!is_null($this->host['username'])) {
-      if (preg_match("/https?/", $this->host['url'], $matches)) {
-        $hostProtocol = $matches[0] . '://';
-        $hostLength = mb_strlen($hostProtocol);
-        $hostDomain = mb_substr($this->host['url'], $hostLength);
-        $host = $hostProtocol . $this->host['username'] . ':' . $this->host['password'] . '@' . $hostDomain;
-      } else {
-        $hostProtocol = 'http://';
-        $hostDomain = $this->host['url'];
-        $host = $hostProtocol . $this->host['username'] . ':' . $this->host['password'] . '@' . $hostDomain;
-      }
-    } else {
-      if (preg_match("/https?/", $this->host['url'], $matches)) {
-        $hostProtocol = $matches[0] . '://';
-        $hostDomain = $this->host['url'];
-        $host = $hostProtocol . $hostDomain;
-      } else {
-        $hostProtocol = 'http://';
-        $hostDomain = $this->host['url'];
-        $host = $hostProtocol . $hostDomain;
-      }
-    }
-    $this->hosts = [$host];
+    $this->hosts = [$this->host['url']];
     if(!defined('JSON_PRESERVE_ZERO_FRACTION')) {
       define('JSON_PRESERVE_ZERO_FRACTION', 1024);
-      $this->client = ClientBuilder::create()->setHosts($this->hosts)->build();
+      if (!empty($this->host['username']) && !empty($this->host['password'])) {
+        $this->client = ClientBuilder::create()
+          ->setHosts($this->hosts)
+          ->setBasicAuthentication($this->host['username'], $this->host['password'])
+          ->build();
+      } else {
+        $this->client = ClientBuilder::create()
+          ->setHosts($this->hosts)
+          ->build();
+      }
     } else {
-      $this->client = ClientBuilder::create()->setHosts($this->hosts)->build();
+      if (!empty($this->host['username']) && !empty($this->host['password'])) {
+        $this->client = ClientBuilder::create()
+          ->setHosts($this->hosts)
+          ->setBasicAuthentication($this->host['username'], $this->host['password'])
+          ->build();
+        // $this->client = ClientBuilder::create()->setHosts($this->hosts)->build();
+      } else {
+        $this->client = ClientBuilder::create()
+          ->setHosts($this->hosts)
+          ->build();
+      }
     }
 
     return $this;
@@ -365,6 +360,8 @@ class ElasticsearchInstance
       curl_setopt($curl, CURLOPT_URL, $apiUrl);
       curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
       curl_setopt($curl, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
+      curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+      curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
       $response = curl_exec($curl);
       $errors = curl_error($curl);
       if (!empty($errors)) echo "<pre>";print_r($errors);echo "</pre>";
@@ -382,10 +379,10 @@ class ElasticsearchInstance
 
   public function map()
   {
-    $indexExists = $this->client->indices()->exists(['index' => $this->index]);
-    // $typeExists = $this->client->indices()->existsType(['index' => $this->index, 'type' => $this->type]);
+    $indexExistsResponse = $this->client->indices()->exists(['index' => $this->index]);
 
-    if (!$indexExists) {
+    if (!$indexExistsResponse->asBool())
+    {
       $params = [
         'index' => $this->index,
         'body' => [
@@ -394,212 +391,83 @@ class ElasticsearchInstance
             'number_of_replicas' => 2
           ],
           'mappings' => [
-            'doc' => [
-              'properties' => [
-                'type' => [
-                  'type' => 'keyword'
-                ]
+            'properties' => [
+              'type' => [
+                'type' => 'keyword'
               ]
             ]
           ]
         ]
       ];
 
-      // $properties = [];
-      // foreach ($this->allowedFields as $key => $value) {
-      //   switch ($value) {
-      //     case 'id':
-      //       break;
-      //
-      //     case 'boolean':
-      //       $properties[$key] = [
-      //         'type' => 'boolean'
-      //       ];
-      //       break;
-      //
-      //     case 'geo_point':
-      //       $properties[$key] = [
-      //         'type' => 'geo_point'
-      //       ];
-      //       break;
-      //
-      //     case 'flag':
-      //       $properties[$key] = [
-      //         'type' => 'boolean'
-      //       ];
-      //       break;
-      //
-      //     default:
-      //       $properties[$key] = [
-      //         'type' => 'text'
-      //       ];
-      //       break;
-      //   }
-      // }
-      // $params['body']['mappings'][$this->type]['properties'] = $properties;
       foreach ($this->allowedFields as $key => $value) {
         if ($value === 'geo_point') {
-          $params['body']['mappings']['doc']['properties'][$key] = ['type' => 'geo_point'];
+          $params['body']['mappings']['properties'][$key] = ['type' => 'geo_point'];
         }
         if ($value === 'date') {
-          $params['body']['mappings']['doc']['properties'][$key] = ['type' => 'date', 'format' => 'yyyy-MM-dd HH:mm:ss'];
+          $params['body']['mappings']['properties'][$key] = ['type' => 'date', 'format' => 'yyyy-MM-dd HH:mm:ss'];
         }
       }
 
-      if (!is_null($this->synonymsPath)) {
-        // $params['body']['settings']['analysis'] = [
-        //   'filter' => [
-        //     'synonym_filter' => [
-        //       'type' => 'synonym',
-        //       'synonyms_path' => $this->synonymsPath
-        //     ],
-        //     'snowball_filter' => [
-        //       'type' => 'snowball'
-        //     ],
-        //     'french_elision' => [
-        //       'type' => 'elision',
-        //       'articles_case' => true,
-        //       'articles' => [
-        //         'l', 'm', 't', 'qu', 'n', 's',
-        //         'j', 'd', 'c', 'jusqu', 'quoiqu',
-        //         'lorsqu', 'puisqu'
-        //       ]
-        //     ],
-        //     'french_stop' => [
-        //       'type' => 'stop',
-        //       'stopwords' => '_french_'
-        //     ],
-        //     'french_keywords' => [
-        //       'type' => 'keyword_marker',
-        //       'keywords' => ['']
-        //     ],
-        //     'french_stemmer' => [
-        //       'type' => 'stemmer',
-        //       'language' => 'light_french'
-        //     ]
-        //   ],
-        //   'analyzer' => [
-        //     $this->index.'_synonyms_analyzer' => [
-        //       'type' => 'custom',
-        //       'tokenizer' => 'standard',
-        //       'filter' => [
-        //         'french_elision',
-        //         'asciifolding',
-        //         'lowercase',
-        //         'french_stop',
-        //         'french_keywords',
-        //         'french_stemmer',
-        //         'synonym_filter',
-        //         'snowball_filter',
-        //       ]
-        //     ]
-        //   ]
-        // ];
-        $params['body']['settings']['analysis'] = [
-          'filter' => [
-            'synonym_filter' => [
-              'type' => 'synonym',
-              'ignore_case' => true,
-              'synonyms_path' => $this->synonymsPath
-            ],
-            'snowball_filter' => [
-              'type' => 'snowball'
-            ],
-            'french_elision' => [
-              'type' => 'elision',
-              'articles_case' => true,
-              'articles' => [
-                'l', 'm', 't', 'qu', 'n', 's',
-                'j', 'd', 'c', 'jusqu', 'quoiqu',
-                'lorsqu', 'puisqu'
-              ]
-            ],
-            'french_stop' => [
-              'type' => 'stop',
-              'stopwords' => '_french_'
-            ],
-            'french_keywords' => [
-              'type' => 'keyword_marker',
-              'keywords' => ['']
-            ],
-            'french_stemmer' => [
-              'type' => 'stemmer',
-              'language' => 'light_french'
+      $params['body']['settings']['analysis'] = [
+        'filter' => [
+          'snowball_filter' => [
+            'type' => 'snowball',
+            'language' => 'French'
+          ],
+          'french_elision' => [
+            'type' => 'elision',
+            'articles_case' => true,
+            'articles' => [
+              'l', 'm', 't', 'qu', 'n', 's',
+              'j', 'd', 'c', 'jusqu', 'quoiqu',
+              'lorsqu', 'puisqu'
             ]
           ],
-          'analyzer' => [
-            'french_heavy' => [
-              'type' => 'custom',
-              'tokenizer' => 'icu_tokenizer',
-              'filter' => [
-                'french_elision',
-                'icu_folding',
-                'synonym_filter',
-                'french_stemmer'
-              ]
-            ],
-            'french_light' => [
-              'type' => 'custom',
-              'tokenizer' => 'icu_tokenizer',
-              'filter' => [
-                'french_elision',
-                'icu_folding',
-                'synonym_filter'
-              ]
-            ]
+          'french_stop' => [
+            'type' => 'stop',
+            'stopwords' => '_french_'
+          ],
+          'french_keywords' => [
+            'type' => 'keyword_marker',
+            'keywords' => ['']
+          ],
+          'french_stemmer' => [
+            'type' => 'stemmer',
+            'language' => 'light_french'
           ]
-        ];
-      } else {
-        $params['body']['settings']['analysis'] = [
-          'filter' => [
-            'snowball_filter' => [
-              'type' => 'snowball'
-            ],
-            'french_elision' => [
-              'type' => 'elision',
-              'articles_case' => true,
-              'articles' => [
-                'l', 'm', 't', 'qu', 'n', 's',
-                'j', 'd', 'c', 'jusqu', 'quoiqu',
-                'lorsqu', 'puisqu'
-              ]
-            ],
-            'french_stop' => [
-              'type' => 'stop',
-              'stopwords' => '_french_'
-            ],
-            'french_keywords' => [
-              'type' => 'keyword_marker',
-              'keywords' => ['']
-            ],
-            'french_stemmer' => [
-              'type' => 'stemmer',
-              'language' => 'light_french'
+        ],
+        'analyzer' => [
+          'french_heavy' => [
+            'type' => 'custom',
+            'tokenizer' => 'icu_tokenizer',
+            'filter' => [
+              'french_elision',
+              'icu_folding',
+              'french_stemmer'
             ]
           ],
-          'analyzer' => [
-            'french_heavy' => [
-              'type' => 'custom',
-              'tokenizer' => 'icu_tokenizer',
-              'filter' => [
-                'french_elision',
-                'icu_folding',
-                'french_stemmer'
-              ]
-            ],
-            'french_light' => [
-              'type' => 'custom',
-              'tokenizer' => 'icu_tokenizer',
-              'filter' => [
-                'french_elision',
-                'icu_folding'
-              ]
+          'french_light' => [
+            'type' => 'custom',
+            'tokenizer' => 'icu_tokenizer',
+            'filter' => [
+              'french_elision',
+              'icu_folding',
             ]
           ]
+        ]
+      ];
+      if (!is_null($this->synonymsPath))
+      {
+        $params['body']['settings']['analysis']['filter']['synonym_filter'] = [
+          'type' => 'synonym',
+          'ignore_case' => true,
+          'synonyms_path' => $this->synonymsPath
         ];
+        $params['body']['settings']['analysis']['analyzer']['french_heavy']['filter'][] = 'synonym_filter';
+        $params['body']['settings']['analysis']['analyzer']['french_light']['filter'][] = 'synonym_filter';
       }
-
-      $this->client->indices()->create($params);
+      $indexCreateResponse = $this->client->indices()->create($params);
     }
   }
 
