@@ -31,6 +31,7 @@
 //	Iframe Link (Worst.Method.Ever)
 	$iframeLink = '/grandcentral/sirtrevor/template/field/link.html';
 	$iframeMailto = '/grandcentral/sirtrevor/template/field/link.mailto.html';
+	$iframeTelephone = '/grandcentral/sirtrevor/template/field/link.telephone.html';
 
 /********************************************************************************************/
 //	Get some work done
@@ -48,9 +49,13 @@
 			case mb_strstr($currentLink, app('media')->get_templateurl('site')) :
 				$currentLinkType = 'media';
 				break;
-			//	External link
+			//	Mailto
 			case mb_substr($currentLink, 0, 6) == 'mailto' :
 				$currentLinkType = 'mailto';
+				break;
+			//	Telephone
+			case mb_substr($currentLink, 0, 1) == '0' :
+				$currentLinkType = 'telephone';
 				break;
 			//	External link
 			default:
