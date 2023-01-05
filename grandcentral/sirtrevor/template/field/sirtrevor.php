@@ -46,4 +46,23 @@
 	$_FIELD = $_PARAM['field'];
 	$value = $_FIELD->get_value();
 	$attrs = $_FIELD->get_attrs();
+
+/********************************************************************************************/
+//	HACK fix block quote error when no text value
+/********************************************************************************************/
+	$arrayvalue = json_decode($value, true);
+	$tofix = false;
+	foreach ($arrayvalue['data'] as $key => $block)
+	{
+		if ($block['type'] == 'quote' && (!isset($block['data']['text']) || empty($block['data']['text'])))
+		{
+			$arrayvalue['data'][$key]['data']['text'] = ' ';
+			$tofix = true;
+		}
+	}
+	if ($tofix === true)
+	{
+		$value = json_encode($arrayvalue);
+	}
+	// END HACK
 ?>
