@@ -2,7 +2,16 @@
   // tester si l'utilisateur est connecté et peut voir les offres réservées
   function user_can_see()
   {
-    return ($_SESSION['user']->is_a('member') && ($_SESSION['capeb']->get_nickname() === 'capeb_118' || in_array($_SESSION['capeb']->get_nickname(), $_SESSION['user']['capeb']->get()))) || $_SESSION['user']->is_a('webmaster') || $_SESSION['user']->is_admin() ? true : false;
+    return (
+      $_SESSION['user']->is_a('member') 
+      && (
+        $_SESSION['capeb']->get_nickname() === 'capeb_118' // ok for national
+        || in_array($_SESSION['capeb']->get_nickname(), $_SESSION['user']['capeb']->get()) // ok if the same capeb
+        || in_array($_SESSION['user']['capeb']->get()[0], $_SESSION['capeb']['departement']->get()) // ok if the user capeb is into departement list
+      )
+    ) 
+    || $_SESSION['user']->is_a('webmaster') 
+    || $_SESSION['user']->is_admin() ? true : false;
   }
 
   function webmaster_can_edit()
