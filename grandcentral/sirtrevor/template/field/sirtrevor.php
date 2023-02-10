@@ -26,6 +26,7 @@
 	$_APP->bind_css('field/lib/css/sir-trevor.css');
 	$_APP->bind_css('field/lib/css/sir-trevor-icons.css');
 //	CSS & Scripts
+	$_APP->bind_script('field/custom-blocks/text.js');
 	$_APP->bind_script('field/custom-blocks/break.js');
 	$_APP->bind_script('field/custom-blocks/video.js');
 	$_APP->bind_script('field/custom-blocks/ImageGc.js');
