@@ -80,11 +80,15 @@ class registry
 
 		if (!SITE_DEBUG)
 		{
-			$cache = app('cache');
-			$url = $cache->get_templateroot().'/registry/'.md5(URL.i('version', current)['key']);
-			$file = new file($url);
-			$file->set(serialize(self::$data));
-			$file->save(true);
+			$current = i('page',current);
+			if (isset($current['key']) && is_a($current['key'], 'attrKey') && $current['key']->get() != 'error_404')
+			{
+				$cache = app('cache');
+				$url = $cache->get_templateroot().'/registry/'.md5(URL);
+				$file = new file($url);
+				$file->set(serialize(self::$data));
+				$file->save(true);
+			}
 		}
 	}
 /**
