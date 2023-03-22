@@ -52,7 +52,20 @@ section[data-template="/list/list"]>div>ol>li[data-status="asleep"]
 	-webkit-transform:scale(0.8);
 	-o-transform:scale(0.8);
 	opacity:0.6;
+	background-color: #419BF9;
 }
+
+section[data-template="/list/list"]>div>ol>li[data-status="asleep"]:after
+{
+	content: '\e061';
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	font-family: "feather";
+	font-size: 40px;
+	color: #419BF9;
+}
+
 section[data-template="/list/list"]>div>ol>li[data-status="live"] .live,
 section[data-template="/list/list"]>div>ol>li[data-status="asleep"] .asleep
 {
@@ -62,12 +75,25 @@ section[data-template="/list/list"]>div>ol>li[data-status="asleep"] .asleep
 /* Trash */
 section[data-template="/list/list"]>div>ol>li[data-status="trash"]
 {
-	transform:scale(0);
-	-moz-transform:scale(0);
-	-ms-transform:scale(0);
-	-webkit-transform:scale(0);
-	-o-transform:scale(0);
-	opacity:0;
+	transform:scale(0.8);
+	-moz-transform:scale(0.8);
+	-ms-transform:scale(0.8);
+	-webkit-transform:scale(0.8);
+	-o-transform:scale(0.8);
+	opacity:0.6;
+	background-color: #ddd;
+	position: relative;
+}
+
+section[data-template="/list/list"]>div>ol>li[data-status="trash"]:after
+{
+	content: '\e109';
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	font-family: "feather";
+	font-size: 40px;
+	color: #ddd;
 }
 
 /* Fields */

@@ -68,7 +68,7 @@
 	}
 
 	// always
-	$_PARAM['param']['status'] = array('live','asleep');
+	$_PARAM['param']['status'] = array('live','asleep','trash');
 //	Amount of items to be displayed at one time
 	$limit = 50;
 
