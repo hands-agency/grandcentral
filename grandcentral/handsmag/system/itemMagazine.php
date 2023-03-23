@@ -101,8 +101,8 @@ class itemMagazine extends _items
 		switch (true)
 		{
 			case $currentIndex == count($keys) - 1:
-				$index = $keys[0];
-				// return null;
+				// $index = $keys[0];
+				return null;
 				break;
 			default:
 				$index = $keys[$currentIndex + 1];
