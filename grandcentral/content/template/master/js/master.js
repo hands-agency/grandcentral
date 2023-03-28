@@ -150,7 +150,7 @@
 /**	* Slick the tray
  	* @author	@mvdandrieux
 **#******************************************************************************************/
-	setTimeout(() => {
+	// setTimeout(() => {
 		$('#sectiontray').slick(
 			{
 				dots: false,
@@ -162,7 +162,7 @@
 				adaptiveHeight: false,
 				accessibility:false,
 			});
-	}, 200);
+	// }, 200);
 /*********************************************************************************************
 /**	* Ge the tabs to follow the slick slides
  	* @author	@mvdandrieux
