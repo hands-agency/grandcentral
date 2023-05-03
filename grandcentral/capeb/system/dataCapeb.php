@@ -192,7 +192,7 @@ class dataCapeb
         $keys = ['about1', 'about2', 'about3', 'about4', 'about6'];
       }
       else {
-        $keys = ['about1', 'about2', $this->capeb['key'].'_about1', $this->capeb['key'].'_about2', $this->capeb['key'].'_about3', 'about3', 'about4', 'about6'];
+        $keys = [$this->capeb['key'].'_about1', $this->capeb['key'].'_about2', $this->capeb['key'].'_about3', 'about1', 'about2', 'about3', 'about4', 'about6'];
       }
       // $parents = i('page', array(
       //   'key' => array('about', $this->capeb['key'].'_about'),
