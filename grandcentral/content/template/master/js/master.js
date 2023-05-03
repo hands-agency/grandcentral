@@ -150,19 +150,18 @@
 /**	* Slick the tray
  	* @author	@mvdandrieux
 **#******************************************************************************************/
-	setTimeout(() => {
-		$('#sectiontray').slick(
-			{
-				dots: false,
-				arrows:false,
-				swipe:false,
-				infinite: false,
-				speed: 300,
-				slidesToShow: 1,
-				adaptiveHeight: false,
-				accessibility:false,
-			});
-	}, 200);
+	$('#sectiontray').slick(
+	{
+		dots: false,
+		arrows:false,
+		swipe:false,
+		infinite: false,
+		speed: 300,
+		slidesToShow: 1,
+		adaptiveHeight: false,
+		accessibility:false,
+	});
+
 /*********************************************************************************************
 /**	* Ge the tabs to follow the slick slides
  	* @author	@mvdandrieux
