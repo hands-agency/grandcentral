@@ -48,7 +48,7 @@ jQuery(document).ready(function()
 		{
 			el: jQuery(this),
 			//blockTypes: ["Text", "Image", "Heading", "List", "OrderedList", "Quote", "Video", "Break", "Iframe", "Code", "Gist"]
-			blockTypes: ["Text", "Image", "Heading", "List", "Quote", "Video", "Break", "Iframe"]
+			blockTypes: ["Text", "Image", "Gallery", "Heading", "List", "Quote", "Video", "Break", "Iframe"]
 		});
 	});
 

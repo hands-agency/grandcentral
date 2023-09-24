@@ -9,7 +9,7 @@ SirTrevor.Blocks.Image = SirTrevor.Block.extend(
 		
 	editorHTML: function()
 	{
-		return '<pre class="template"><li><button class="delete"></button><a><span class="preview"><img src="" /></span><span class="title"></span></a><input type="hidden" name="url" disabled="disabled" /><input type="hidden" name="title" disabled="disabled" /></li></pre><ol class="data"><li class="upload"></li>';
+		return '<pre class="template"><li><button class="delete"></button><a><span class="preview"><img src="" /></span><span class="title"></span></a><input type="hidden" name="url" disabled="disabled" /><input type="hidden" name="title" disabled="disabled" /></li></pre><ol class="data"><li class="upload"></li></ol>';
     },
 
 	loadData: function(data)
@@ -60,7 +60,7 @@ SirTrevor.Blocks.Image = SirTrevor.Block.extend(
 				$(code).show('fast').find('*:disabled').prop('disabled', false);
 			//	Add data
 				media = ui.helper;
-				$(code).find('.preview img').attr('src', media.find('.preview img').attr('src'));
+				$(code).find('.preview img').attr('src', media.find('.preview').attr('style').slice(22, -3));
 				$(code).find('input').val(media.data('path'));
 				$(code).find('.title').html(media.data('title'));
 			}
