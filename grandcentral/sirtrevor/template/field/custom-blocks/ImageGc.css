@@ -79,3 +79,8 @@ li[data-type="sirtrevor"] .wrapper .st-block__inner pre.template
 {
 	display:none;
 }
+/* Gallery */
+li[data-type="sirtrevor"] .wrapper [data-type="gallery"] .st-block__inner ol.data li.upload
+{
+	width: 100%;
+}
