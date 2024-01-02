@@ -157,8 +157,9 @@
 				arrows:false,
 				swipe:false,
 				infinite: false,
-				speed: 300,
+				speed: 100,
 				slidesToShow: 1,
+				slidesToScroll: 1,
 				adaptiveHeight: false,
 				accessibility:false,
 			});
