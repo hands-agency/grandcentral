@@ -166,6 +166,8 @@
         'section_twitter' => $url['update'].'?item=section&id='.$sections['section_twitter']['id'],
         'linkedin' => $url['update'].'?item=custom&id=linkedin',
         'youtube' => $url['update'].'?item=custom&id=youtube',
+        'tiktok' => $url['update'].'?item=custom&id=tiktok',
+        'instagram' => $url['update'].'?item=custom&id=instagram',
       )
     );
     // more text & page
