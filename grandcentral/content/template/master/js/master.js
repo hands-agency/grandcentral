@@ -150,6 +150,7 @@
 /**	* Slick the tray
  	* @author	@mvdandrieux
 **#******************************************************************************************/
+$(function() {
 	// setTimeout(() => {
 		$('#sectiontray').slick(
 			{
@@ -164,6 +165,7 @@
 				accessibility:false,
 			});
 	// }, 200);
+});
 /*********************************************************************************************
 /**	* Ge the tabs to follow the slick slides
  	* @author	@mvdandrieux
