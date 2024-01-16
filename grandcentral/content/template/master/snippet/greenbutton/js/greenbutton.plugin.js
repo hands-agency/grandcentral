@@ -250,8 +250,15 @@
 		{
 			plugin.save(null, function()
 			{
-			//	Reach
-				openSite(CURRENTEDITED_URL);
+				if (CURRENTEDITED_URL === SITE_URL) {
+					$.get('/admin/api.json/v1/url', { item: _GET['item'], itemid: _GET['id'] }, (data) => {
+						if (data.meta.status === 'success') openSite(data.data);
+						else window.alert('Une erreur est survenue')
+					})
+				}
+				else {
+					openSite(CURRENTEDITED_URL);
+				}
 			//	document.location.href = CURRENTEDITED_URL;
 			});
 		}
@@ -296,8 +303,15 @@
 			plugin.live(function()
 			{
 			//	Reach
-				openSite(CURRENTEDITED_URL);
-			//	document.location.href = CURRENTEDITED_URL;
+				if (CURRENTEDITED_URL === SITE_URL) {
+					$.get('/admin/api.json/v1/url', { item: _GET['item'], itemid: _GET['id'] }, (data) => {
+						if (data.meta.status === 'success') openSite(data.data);
+						else window.alert('Une erreur est survenue')
+					})
+				}
+				else {
+					openSite(CURRENTEDITED_URL);
+				}
 			});
 		}
 
