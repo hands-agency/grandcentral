@@ -16,6 +16,7 @@ class dataCapeb
     'about',
     'intent',
     'service',
+    'job',
     'contact'
   );
   private $foreceNational = array();
