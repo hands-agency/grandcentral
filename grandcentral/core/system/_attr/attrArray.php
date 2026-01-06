@@ -9,7 +9,7 @@
  */
 class attrArray extends _attrs implements ArrayAccess, Iterator
 {
-	protected $data = array();
+	public $data = array();
 /**
  * Get the attribute data
  *
