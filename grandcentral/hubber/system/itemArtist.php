@@ -32,7 +32,7 @@ class itemArtist extends _items
 	{
 		$type = $this['type'];
 		$number = $this['number'];
-		if ($type == 'honoraire')
+		if (in_array($type, ['honoraire','pensionnaire','eleve','auxiliaire']))
 		{
 			$status = (string) t($type);
 		}
