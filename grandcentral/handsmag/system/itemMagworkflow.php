@@ -8,8 +8,8 @@
  */
 class itemMagworkflow extends _items
 {
-	protected $mailjet_key = 'aa0b1411e8782a230eacf814cb7ffca7';
-	protected $mailjet_secret = '0b51abbbb6f4108746873f423677de41';
+	protected $mailjet_key = '477ee9d618bac7ffd89bf76fb92dac8f';
+	protected $mailjet_secret = 'ddc97e1f7370ec11c53322a4321fd299';
 
 /**
  * Execute the workflow
