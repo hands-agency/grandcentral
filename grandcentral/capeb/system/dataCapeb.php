@@ -190,10 +190,10 @@ class dataCapeb
 		public function get_presentation()
 		{
       if ($this->capeb['key'] == 'cnational') {
-        $keys = ['about1', 'about2', 'about3', 'about4', 'about6'];
+        $keys = ['about1', 'about2', 'about3', 'about7', 'about4', 'about6'];
       }
       else {
-        $keys = [$this->capeb['key'].'_about1', $this->capeb['key'].'_about2', $this->capeb['key'].'_about3', 'about1', 'about2', 'about3', 'about4', 'about6'];
+        $keys = [$this->capeb['key'].'_about1', $this->capeb['key'].'_about2', $this->capeb['key'].'_about3', 'about1', 'about2', 'about3', 'about7', 'about4', 'about6'];
       }
       // $parents = i('page', array(
       //   'key' => array('about', $this->capeb['key'].'_about'),
